@@ -1,11 +1,11 @@
-import { HomeComponent } from './features/pages/home/home.component';
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
+    path: '',
+    loadChildren: () =>
+      import('../app/features/pages/pages.module').then((m) => m.PagesModule),
   },
 ];
 
