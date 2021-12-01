@@ -1,3 +1,4 @@
+import { PaymentsComponent } from './payments/payments.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -8,7 +9,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-  }
+  },
+  {
+    path: 'payments',
+    component: PaymentsComponent,
+  },
 ];
 
 @NgModule({
