@@ -1,0 +1,130 @@
+.mat-toolbar {
+  justify-content: space-between;
+  background: purple;
+  color: black;
+}
+
+.img-container {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  margin-top: 0px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-sidenav {
+  width: 300px;
+  background: #6F2DBD;
+  border: 1px solid rgba(63, 63, 68, 0.005);
+  /* menu */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.mat-list-item {
+  color: white;
+}
+
+.mat-nav-list .mat-list-item:hover,
+.mat-nav-list .mat-list-item:focus {
+  background: rgba(135, 63, 151, 0.12);
+  border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 0px 5px 5px 0px;
+  border-left-width: 8px;
+  border-left-color: white;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.mat-nav-list {
+  .mat-icon {
+    color: white;
+    margin-right: 5px;
+  }
+}
+
+.mat-list-base {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.mat-drawer-container {
+  color: black;
+  background-color: white;
+}
+
+.mat-sidenav-container {
+  height: 100%;
+  margin-top: 0px !important;
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: blue;
+  border-radius: 5px;
+  .mat-icon {
+    color: #dadada;
+  }
+  button {
+    color: black;
+  }
+}
+
+.btn {
+  &.btn-options {
+    width: auto;
+    min-width: 36px;
+    height: 42px;
+    padding: 0;
+    color: blue;
+    margin-right: -8px;
+  }
+}
+.btn-icon {
+  margin-left: -8px;
+}
+
+.sidenav-hr{
+  bottom: 0;
+  position: relative !important;
+  opacity: 50%;
+}
+
+.support-title{
+  color: white;
+}
+
+.sidenav-hr{
+  background-color: #dadada;
+  color: white;
+}
+
+#sidenav-bottom-text {
+  bottom: 0;
+  position: absolute;
+  color: white;
+  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Roboto', sans-serif;
+}
+
+.bottom-text-item{
+  margin-bottom: 0px;
+}
+
+.sidenav-title{
+  margin: 20px 10px 20px 10px;
+}
+
+.sidenav-title h1{
+  color: white;
+  font-size: xx-large;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+.sidenav-text{
+  padding-left: 10px;
+}
