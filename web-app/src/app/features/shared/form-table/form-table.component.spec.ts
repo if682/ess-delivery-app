@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormtableComponent } from './formtable.component';
+import { FormTableComponent } from './form-table.component';
 
-describe('FormtableComponent', () => {
-  let component: FormtableComponent;
-  let fixture: ComponentFixture<FormtableComponent>;
+describe('FormTableComponent', () => {
+  let component: FormTableComponent;
+  let fixture: ComponentFixture<FormTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormtableComponent ]
+      declarations: [ FormTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormtableComponent);
+    fixture = TestBed.createComponent(FormTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

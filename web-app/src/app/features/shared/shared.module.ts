@@ -6,11 +6,23 @@ import { MaterialModule } from 'src/app/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { OverviewTableComponent } from './overview-table/overview-table.component';
 import { addButtonComponent } from './addButton/addButton.component';
-import { FormtableComponent } from './formtable/formtable.component';
+import { FormTableComponent } from './form-table/form-table.component';
 
 @NgModule({
-  declarations: [NavbarComponent, SideMenuComponent, OverviewTableComponent, addButtonComponent, FormtableComponent],
+  declarations: [
+    NavbarComponent,
+    SideMenuComponent,
+    OverviewTableComponent,
+    addButtonComponent,
+    FormTableComponent,
+  ],
   imports: [CommonModule, MaterialModule, RouterModule],
-  exports: [NavbarComponent, SideMenuComponent, OverviewTableComponent, addButtonComponent, FormtableComponent],
+  exports: [
+    NavbarComponent,
+    SideMenuComponent,
+    OverviewTableComponent,
+    addButtonComponent,
+    FormTableComponent,
+  ],
 })
 export class SharedModule {}
