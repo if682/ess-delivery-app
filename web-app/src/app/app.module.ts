@@ -1,3 +1,4 @@
+import { DataService } from './features/services/data.service';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './features/shared/shared.module';
@@ -17,7 +18,7 @@ import { NgModule } from '@angular/core';
     SharedModule,
     PagesModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
