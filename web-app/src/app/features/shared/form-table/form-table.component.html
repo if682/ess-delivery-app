@@ -1,15 +1,20 @@
+<div class = "form">
 <mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput />
+  <mat-label>Promoção</mat-label>
+  <input matInput #input maxlength="30" placeholder="Ex: Milkshake de Cocô" />
 </mat-form-field>
+</div>
+
+<div class = "form">
 <mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
+  <mat-label>Periodo da promoção</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate formControlName="start" placeholder="Start date">
+    <input matEndDate formControlName="end" placeholder="End date">
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
 </mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
+</div>
+
+  <button mat-raised-button>Enviar</button>
