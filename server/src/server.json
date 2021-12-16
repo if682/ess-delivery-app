@@ -1,0 +1,27 @@
+{
+	"promotions": [
+		{
+			"id": 0,
+			"name": "Milkshake 50% de desconto",
+			"start": "2021-01-01T03:00:00.000Z",
+			"end": "2021-02-01T03:00:00.000Z"
+		}
+	],
+	"payments": [
+		{
+			"id": 0,
+			"type": "CREDIT_CARD",
+			"value": "Master Card"
+		},
+		{
+			"id": 2,
+			"type": "PIX",
+			"value": "armandinhocds@gmail.com"
+		},
+		{
+			"id": 1,
+			"type": "PIX",
+			"value": "jpsmp@cin.ufpe.br"
+		}
+	]
+}
