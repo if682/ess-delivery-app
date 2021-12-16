@@ -7,6 +7,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { OverviewTableComponent } from './overview-table/overview-table.component';
 import { addButtonComponent } from './addButton/addButton.component';
 import { FormTableComponent } from './form-table/form-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { FormTableComponent } from './form-table/form-table.component';
     addButtonComponent,
     FormTableComponent,
   ],
-  imports: [CommonModule, MaterialModule, RouterModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     NavbarComponent,
     SideMenuComponent,

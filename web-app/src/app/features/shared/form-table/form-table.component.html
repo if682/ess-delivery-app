@@ -1,20 +1,30 @@
-<div class = "form">
-<mat-form-field appearance="fill">
-  <mat-label>Promoção</mat-label>
-  <input matInput #input maxlength="30" placeholder="Ex: Milkshake de Cocô" />
-</mat-form-field>
+<div class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Promoção</mat-label>
+    <input
+      matInput
+      #input
+      maxlength="30"
+      placeholder="Ex: Milkshake de Côco"
+      [(ngModel)]="productName"
+    />
+  </mat-form-field>
 </div>
 
-<div class = "form">
-<mat-form-field appearance="fill">
-  <mat-label>Periodo da promoção</mat-label>
-  <mat-date-range-input [rangePicker]="picker">
-    <input matStartDate formControlName="start" placeholder="Start date">
-    <input matEndDate formControlName="end" placeholder="End date">
-  </mat-date-range-input>
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-date-range-picker #picker></mat-date-range-picker>
-</mat-form-field>
+<div class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Periodo da promoção</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input
+        matStartDate
+        placeholder="Data de início"
+        [(ngModel)]="from_date"
+      />
+      <input matEndDate placeholder="Data de fim" [(ngModel)]="to_date" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
 </div>
 
-  <button mat-raised-button>Enviar</button>
+<button mat-raised-button (click)="onClick()">Enviar</button>
