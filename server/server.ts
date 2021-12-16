@@ -23,21 +23,16 @@ app.use(bodyParser.json());
 var promotionService: PromotionService = new PromotionService();
 var paymentService: PaymentService = new PaymentService();
 
-app.get("/promotions", function (req, res) {
-	const promotions = promotionService.get();
-	res.send(JSON.stringify(promotions));
-});
-
-app.get("/payments", function (req, res) {
-	const payments = paymentService.get();
-	res.send(JSON.stringify(payments));
-});
-
 /*
 #########################################################################
 #                              PAGAMENTOS                               #
 #########################################################################
 */
+
+app.get("/payments", function (req, res) {
+	const payments = paymentService.get();
+	res.send(payments);
+});
 
 app.get("/payments/:id", function (req, res) {
 	const id = req.params.id;
@@ -95,6 +90,11 @@ app.delete(
 ##                             PROMOÇÕES                               ##
 #########################################################################
 */
+
+app.get("/promotions", function (req, res) {
+	const promotions = promotionService.get();
+	res.send(promotions);
+});
 
 app.get("/promotions/:id", function (req, res) {
 	const id = req.params.id;
