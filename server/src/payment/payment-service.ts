@@ -1,32 +1,51 @@
 import { Payment } from "./payment";
 
 export class PaymentService {
+	paymentMethods: Payment[] = [];
 
-  paymentMethods: Payment[] = [];
-  
-  add(payment: Payment): void {
-    this.paymentMethods.push(new Payment(payment));
-  }
+	add(payment: Payment): Payment {
+		let id = this.paymentMethods.length + 1;
 
-  update(payment: Payment): void {
-    const toBeUpdated = this.getById(payment.id)
-    toBeUpdated.update(payment);
-  }
+		payment.id = id;
 
-  deleteById(paymentId: number): void {
-    this.paymentMethods.filter(payment => payment.id != paymentId);
-  }
+		this.paymentMethods.push(new Payment(payment));
 
-  deleteByName(paymentName: string): void {
-    this.paymentMethods.filter(payment => payment.name != paymentName);
-  }
+		// fetch('http://localhost:3000/payment', {body: JSON.stringify(payment), method: 'POST'});
 
-  get() : Payment[] {
-    return this.paymentMethods;
-  }
+		return payment;
+	}
 
-  getById(paymentId: number) : Payment {
-    return this.paymentMethods.find(({id}) => id == paymentId)
-  }
+	update(payment: Payment): boolean {
+		const toBeUpdated = this.getById(payment.id);
 
+		try {
+			toBeUpdated.update(payment);
+		} catch (error) {
+			return false;
+		}
+
+		return true;
+	}
+
+	deleteById(paymentId: number): void {
+		let payments = this.paymentMethods.filter(
+			(payment) => payment.id != paymentId
+		);
+
+		console.log(payments);
+
+		this.paymentMethods = payments;
+	}
+
+	deleteByName(paymentName: string): void {
+		this.paymentMethods.filter((payment) => payment.value != paymentName);
+	}
+
+	get(): Payment[] {
+		return this.paymentMethods;
+	}
+
+	getById(paymentId: number): Payment {
+		return this.paymentMethods.find(({ id }) => id == paymentId);
+	}
 }
