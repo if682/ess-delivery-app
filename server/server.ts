@@ -1,11 +1,11 @@
 import bodyParser = require("body-parser");
 import express = require("express");
-
 import { PaymentService } from "./src/payment/payment-service";
 import { Payment } from "./src/payment/payment";
 
 import { PromotionService } from "./src/promotion/promotion-service";
 import { Promotion } from "./src/promotion/promotion";
+
 
 var app = express();
 
@@ -147,6 +147,7 @@ app.delete(
 		}
 	}
 );
+
 
 var server = app.listen(3000, function () {
 	console.log("Servidor iniciado.\n Vasco.");
