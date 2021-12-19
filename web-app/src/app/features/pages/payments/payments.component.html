@@ -1,1 +1,16 @@
-<h1>Pagina de pagamentos</h1>
+<nav>
+  <div *ngIf="loading$ | async" class="loading-container">
+    <mat-spinner [mode]="'indeterminate'"> </mat-spinner>
+  </div>
+  <div [hidden]="loading$ | async" class="payments-title">
+    <h1>Pagamentos</h1>
+    <div class="payments-container">
+      <div class="addbutton">
+        <app-addButton [environment]="true"></app-addButton>
+      </div>
+      <div class="payments-table">
+        <app-payment-table></app-payment-table>
+      </div>
+    </div>
+  </div>
+</nav>

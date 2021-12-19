@@ -1,94 +1,77 @@
+import { Promotion } from './../shared/interfaces/promotion.interface';
+import { Payment } from './../shared/interfaces/payment.interface';
 import { Product } from './../shared/interfaces/product.interface';
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor() {}
+  private promotionSubject = new BehaviorSubject<any>([]);
+  private paymentSubject = new BehaviorSubject<any>([]);
 
-  private _productList: Product[] = [
-    {
-      id: 1,
-      product: 'Hydrogen',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 2,
-      product: 'Helium',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 3,
-      product: 'Lithium',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 4,
-      product: 'Beryllium',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 5,
-      product: 'Boron',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 6,
-      product: 'Carbon',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 7,
-      product: 'Nitrogen',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 8,
-      product: 'Oxygen',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 9,
-      product: 'Fluorine',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-    {
-      id: 10,
-      product: 'Neon',
-      status: 'Active',
-      start_date: '2021-12-15T23:15:32.878Z',
-      end_date: '2021-12-15T23:15:32.878Z',
-    },
-  ];
+  private promotionLoadingSubject = new BehaviorSubject<boolean>(true);
+  private paymentLoadingSubject = new BehaviorSubject<boolean>(true);
 
-  private dataSubject = new BehaviorSubject<any>(this._productList);
+  BASE_URL = 'http://localhost:3000/';
 
-  get data$() {
-    return this.dataSubject.asObservable();
+  constructor(private http: HttpClient) {}
+
+  public getPromotions() {
+    this.promotionLoadingSubject.next(true);
+
+    this.http
+      .get<Promotion[]>(this.BASE_URL + 'promotions')
+      .subscribe((promotions) => {
+        console.log(promotions);
+        this.promotionSubject.next(promotions);
+        this.promotionLoadingSubject.next(false);
+      });
   }
 
-  updateList(data: Product) {
-    this.dataSubject.value.push(data);
-    this.dataSubject.next(this.dataSubject.value);
+  public getPayments() {
+    this.paymentLoadingSubject.next(true);
+
+    this.http
+      .get<Payment[]>(this.BASE_URL + 'payments')
+      .subscribe((payments) => {
+        console.log(payments);
+        this.paymentSubject.next(payments);
+        this.paymentLoadingSubject.next(false);
+      });
+  }
+
+  get promotions$() {
+    return this.promotionSubject.asObservable();
+  }
+
+  get payments$() {
+    return this.paymentSubject.asObservable();
+  }
+
+  get loadingPromotions$() {
+    return this.promotionLoadingSubject.asObservable();
+  }
+  get loadingPayments$() {
+    return this.paymentLoadingSubject.asObservable();
+  }
+
+  public updatePayments(data: Payment) {
+    this.http.post(this.BASE_URL + 'payments', data).subscribe((res) => {
+      console.log(res);
+    });
+    this.paymentSubject.value.push(data);
+    this.paymentSubject.next(this.paymentSubject.value);
+  }
+
+  public updatePromotions(data: Promotion) {
+    this.http.post(this.BASE_URL + 'promotions', data).subscribe((res) => {
+      console.log(res);
+    });
+
+    this.promotionSubject.value.push(data);
+    this.promotionSubject.next(this.promotionSubject.value);
   }
 }
