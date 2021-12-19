@@ -8,6 +8,8 @@ import { OverviewTableComponent } from './overview-table/overview-table.componen
 import { addButtonComponent } from './addButton/addButton.component';
 import { FormTableComponent } from './form-table/form-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormPaymentsComponent } from './form-payments/form-payments.component';
+import { PaymentTableComponent } from './payment-table/payment-table.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OverviewTableComponent,
     addButtonComponent,
     FormTableComponent,
+    FormPaymentsComponent,
+    PaymentTableComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OverviewTableComponent,
     addButtonComponent,
     FormTableComponent,
+    PaymentTableComponent,
   ],
 })
 export class SharedModule {}

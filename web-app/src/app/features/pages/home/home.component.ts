@@ -1,4 +1,5 @@
-import { AuthService } from './../../services/auth.service';
+import { Observable } from 'rxjs';
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  loadingPro$: Observable<boolean>;
+  loadingPay$: Observable<boolean>;
 
-  ngOnInit(): void {}
+  constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.loadingPay$ = this.dataService.loadingPromotions$;
+    this.loadingPro$ = this.dataService.loadingPayments$;
+  }
 }

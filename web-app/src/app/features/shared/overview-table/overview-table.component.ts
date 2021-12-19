@@ -1,3 +1,4 @@
+import { Promotion } from './../interfaces/promotion.interface';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,13 +12,13 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./overview-table.component.scss'],
 })
 export class OverviewTableComponent implements OnInit {
-  data$: Observable<Product[]>;
+  data$: Observable<Promotion[]> | undefined;
 
   @ViewChild(MatTable) table: MatTable<Product> | undefined;
 
   ELEMENT_DATA: Product[] = [];
 
-  displayedColumns: string[] = ['product', 'status', 'end_date'];
+  displayedColumns: string[] = ['Nome', 'Início', 'Fim'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource(
     this.ELEMENT_DATA
@@ -25,17 +26,15 @@ export class OverviewTableComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private dataService: DataService) {
-    this.data$ = dataService.data$;
-  }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.data$ = this.dataService.promotions$;
+
     this.data$.subscribe((data) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.loading = false;
       this.table?.renderRows();
-      console.log('Data has changed');
     });
   }
 }

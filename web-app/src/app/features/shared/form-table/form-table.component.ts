@@ -1,7 +1,8 @@
+import { Promotion } from './../interfaces/promotion.interface';
 import { Product } from './../interfaces/product.interface';
 import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-form-table',
@@ -21,17 +22,15 @@ export class FormTableComponent implements OnInit {
   ngOnInit(): void {}
 
   public onClick(): void {
-    let data: Product = {
-      end_date: this.to_date ? new Date(this.to_date).toISOString() : '',
-      product: this.productName ? this.productName : '',
-      start_date: this.from_date ? new Date(this.from_date).toISOString() : '',
-      status: 'Active',
-      id: 33,
+    let data: Promotion = {
+      name: String(this.productName),
+      end: this.to_date ? new Date(this.to_date).toISOString() : '',
+      start: this.from_date ? new Date(this.from_date).toISOString() : '',
     };
 
-    this.dataService.updateList(data);
+    this.dataService.updatePromotions(data);
 
-    this.dataService.data$.subscribe((d) => {
+    this.dataService.payments$.subscribe((d) => {
       console.log(d);
     });
 
