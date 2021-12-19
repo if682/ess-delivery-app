@@ -10,8 +10,6 @@ export class PaymentService {
 
 		this.paymentMethods.push(new Payment(payment));
 
-		// fetch('http://localhost:3000/payment', {body: JSON.stringify(payment), method: 'POST'});
-
 		return payment;
 	}
 
