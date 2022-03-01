@@ -42,7 +42,7 @@ Scenario: Falha no login com e-mail inválido
 
 Scenario: Falha no login com e-mail em branco
     Given que não estou logado com nenhum usuário
-        And existe um usuário cadastrado com e-mail  "aoqb@cin.ufpe.br" e senha "A1234567"
+        And existe um usuário cadastrado com e-mail "aoqb@cin.ufpe.br" e senha "A1234567"
         And estou na página de "Login"
     When eu preencho o campo de senha com "A1234567"
     Then não consigo pressionar o botão de entrar
