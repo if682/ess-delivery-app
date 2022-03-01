@@ -16,6 +16,14 @@ Scenario: Visualizando histórico de pedidos com filtro
   And clico no filtro de data “15 dias”
   Then é exibido na tela todos os pedidos que fiz nos últimos 15 dias de forma paginada
 
+Scenario: Visualizando histórico de pedidos com filtro
+  Given estou logada com o usuário “Arthur” com senha “Henrique”
+  When clico em “Acessar histórico de pedidos”
+  And já fiz pedidos esse mês
+  And clico no filtro de data “7 dias”
+  Then é exibido na tela todos os pedidos que fiz nos últimos 7 dias de forma paginada
+
+
 Scenario: Visualizando informações específicas no histórico de  pedidos 
 	Given estou logada com o usuário “Kinho” com senha “sz123”
 	When clico em “Acessar histórico de pedidos”
