@@ -29,3 +29,10 @@ Scenario: Não existe histórico de pedidos
 	When clico em “Acessar histórico de pedidos”
 	And não fiz nenhum pedido esse mês
   Then é exibido na tela o histórico vazio
+
+Scenario: Não existe histórico de pedidos com filtro
+	Given estou logada com o usuário "Jade" com senha "Picon"
+	When clico em “Acessar histórico de pedidos”
+  And clico no filtro de data "15 dias"
+	And não fiz nenhum pedido nos últimos 15 dias
+  Then é exibido na tela o histórico vazio
