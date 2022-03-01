@@ -43,3 +43,4 @@ Scenario: falha na modificação de senha
         And confirmo
     Then aparece uma mensagem de nova senha não pode ser igual à senha anterior
         And continua na página de "Redefinir senha"
+        And "passo adicional"
