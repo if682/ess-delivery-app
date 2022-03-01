@@ -31,3 +31,10 @@ Scenario: Tentativa de login com senha em branco
     When eu preencho o campo de e-mail com "aoqb@cin.ufpe.br"
     Then não consigo pressionar o botão de entrar
         And permaneço na página de login 
+
+Scenario: Tentativa de login com e-mail inválido
+    Given que não estou logado com nenhum usuário
+        And existe um usuário cadastrado com e-mail  "aoqb@cin.ufpe.br" e senha "A1234567"
+        And estou na página de "Login"
+    When eu preencho os campos com e-mail "aoqb" e senha "A7654321"
+    Then aparece uma mensagem de falha no login
