@@ -38,3 +38,4 @@ Scenario: Falha no login com e-mail inválido
         And estou na página de "Login"
     When eu preencho os campos com e-mail "aoqb" e senha "A7654321"
     Then aparece uma mensagem de falha no login
+        And passo adicional
