@@ -44,3 +44,8 @@ Scenario: Não existe histórico de pedidos com filtro
   And clico no filtro de data "15 dias"
 	And não fiz nenhum pedido nos últimos 15 dias
   Then é exibido na tela o histórico vazio
+
+Scenario: Novo cenário
+  Given um novo cenário 
+  When eu crio um novo cenário 
+  Then um novo cenário é criado
