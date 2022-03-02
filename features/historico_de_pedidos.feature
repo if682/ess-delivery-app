@@ -49,4 +49,5 @@ Scenario: Não existe histórico de pedidos com filtro
 Scenario: Novo cenário
   Given um novo cenário 
   When eu crio um novo cenário 
+  And consetando o cenário
   Then um novo cenário é criado
