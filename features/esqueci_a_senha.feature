@@ -45,3 +45,6 @@ Scenario: falha na modificação de senha
         And "passo adicional"
 
 Scenario: cenário
+    Given condição
+    When ação
+    Then resultado
