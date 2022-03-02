@@ -33,7 +33,6 @@ Scenario: falha na modificação de senha
         And confirmo
     Then aparece uma mensagem de senhas não coincidem
         And continua na página de “Redefinir senha”
-        And "passo adicional"
 
 Scenario: falha na modificação de senha
     Given eu estou na página de "Redefinir senha"
