@@ -1,7 +1,7 @@
 FEATURE: “remoção de cliente”
 AS A cliente cadastrado
 I want to poder remover minha conta
-SO THAT terei meus dados removidos do sistema
+SO THAT terei meus dados removidos do sistema 
 
 Cenário 1: remoção realizada com sucesso
 Given eu estou logada no usuário existente cadastrado com email "vlsc@cin.ufpe.br" e senha "exemplo123"
