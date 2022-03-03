@@ -1,6 +1,6 @@
 FEATURE: “remoção de cliente” 
 AS A cliente cadastrado 
-I want to poder remover minha conta
+I want to poder remover minha conta   
 SO THAT terei meus dados removidos do sistema 
 
 Cenário 1: remoção realizada com sucesso
@@ -59,3 +59,5 @@ Then eu vejo uma notificação perguntando se realmente desejo cancelar a opera�
 And confirmo a notificação
 And continuo logada na minha conta
 And continuo na tela de usuário
+
+test
