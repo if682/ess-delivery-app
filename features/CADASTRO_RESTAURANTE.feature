@@ -19,3 +19,20 @@ And ter maior lucro
 		And eu preencho o campo de “Telefone do Responsável” com “81 1234-5678”
 		And eu seleciono a opção cadastrar
 		Then eu vejo uma mensagem de que o cadastro foi feito com sucesso
+		
+	Scenario: Cadastro de restaurante com CNPJ já cadastrado
+		Given estou na tela de cadastro de restaurantes
+		And o CNPJ “77.777.777/001-77” já é utilizado por algum restaurante no sistema
+		When eu preencho o campo de “CNPJ” com “77.777.777/001-77”
+		And eu preencho o campo de “Nome do Restaurante” com “Pescados do Zé”
+		And eu preencho o campo de “Rua” com “Governador Schumacher”
+		And eu preencho o campo de “Número” com “77”
+		And eu preencho o campo de “Cidade” com “Paulista
+		And eu preencho o campo de “CEP” com “12.345.678”
+		And eu preencho o campo de “Complemento” com “Em frente ao pé de carambola”
+		And eu preencho o campo de “Horário de Início” com “10:00”
+		And eu preencho o campo de “Horário de Fim” com “18:00”
+		And eu preencho o campo de “Responsável” com “José Fidalgo dos Santos”
+		And eu preencho o campo de “Telefone do Responsável” com “81 3876-5432”
+		And eu seleciono a opção cadastrar
+		Then eu vejo uma mensagem de que o CNPJ já foi cadastrado e o cadastro não foi realizado, me perguntando se quero fazer login no sistema com esse CNPJ
