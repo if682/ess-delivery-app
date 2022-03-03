@@ -1,5 +1,5 @@
 FEATURE: “remoção de cliente” 
-AS A cliente cadastrado
+AS A cliente cadastrado 
 I want to poder remover minha conta
 SO THAT terei meus dados removidos do sistema 
 
