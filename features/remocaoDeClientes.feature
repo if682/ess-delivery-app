@@ -39,3 +39,12 @@ And coloco minha senha para confirmação da remoção
 And confirmo
 Then eu vejo uma notificação de erro
 And continuo logada na minha conta
+
+Cenário 5: tentativa de remoção de cliente que não colocou senha
+Given eu estou logada no usuário existente cadastrado com email "vlsc@cin.ufpe.br" e senha "exemplo123"
+And estou na página de usuário
+When eu tento remover minha conta
+And não coloco minha senha para confirmação da remoção
+And confirmo
+Then eu vejo uma notificação de erro
+And continuo logada na minha conta
