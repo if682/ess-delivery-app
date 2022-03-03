@@ -4,7 +4,6 @@ As a cliente com perfil
 I want to alterar dados que constam no perfil
 So that terei como atualizar dados no perfil
 
-
 Cenário 1: Atualizando um nome de cliente
 Given : Estou logado como “Bruno” no sistema
 And : estou na página do meu perfil
@@ -36,3 +35,11 @@ When : Eu tento atualizar meu número de celular no perfil
 Then : O sistema me pede uma confirmação via código enviado para o meu e-mail
 And : Eu tenho sucesso na autenticação
 And : Volto para minha página de perfil coloco o novo número “81 984752773”
+
+Cenário 5: Atualizando um telefone de cliente
+Given : Estou logado como “Breno” no sistema
+And : Estou na minha página de perfil com o telefone “81 984752737”
+When : Eu tento atualizar meu número de celular no perfil
+Then : O sistema me pede uma confirmação via código enviado para o meu e-mail
+And : Eu não tenho sucesso na autenticação
+And : Eu volto para minha página de perfil inalterada
