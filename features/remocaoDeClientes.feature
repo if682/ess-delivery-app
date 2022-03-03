@@ -58,3 +58,4 @@ And cancelo
 Then eu vejo uma notificação perguntando se realmente desejo cancelar a operação
 And confirmo a notificação
 And continuo logada na minha conta
+And continuo na tela de usuário
