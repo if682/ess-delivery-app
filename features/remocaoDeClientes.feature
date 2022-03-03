@@ -1,4 +1,4 @@
-Feature: “remoção de cliente”
+FEATURE: “remoção de cliente”
 As a cliente cadastrado
 I want to poder remover minha conta
 So that terei meus dados removidos do sistema
