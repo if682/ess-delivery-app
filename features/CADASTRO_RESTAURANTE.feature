@@ -61,4 +61,5 @@ And ter maior lucro
 	Scenario: Second generic scenario for guide completion
 		Given I am in a given state
 		When I do some action
+		And I do another action
 		Then I end in a specific state
