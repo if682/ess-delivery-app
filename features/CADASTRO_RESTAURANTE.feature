@@ -51,3 +51,4 @@ And ter maior lucro
 		And eu preencho o campo de “Telefone do Responsável” com “81 3876-5432”
 		And eu seleciono a opção cadastrar
 		Then eu vejo uma mensagem de que as informações dadas são insuficientes, logo o cadastro não foi realizado
+		And eu continuo na tela de cadastro
