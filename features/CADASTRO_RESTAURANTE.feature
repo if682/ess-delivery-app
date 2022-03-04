@@ -56,3 +56,8 @@ And ter maior lucro
 		Given I am in a specific state
 		When I do something
 		Then something happens
+
+	Scenario: Second generic scenario for guide completion
+		Given I am in a given state
+		When I do some action
+		Then I end in a specific state
