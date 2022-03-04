@@ -50,6 +50,5 @@ Feature: Atualização dos dados
         When : Eu tento atualizar meu e-mail no perfil
         Then : O sistema pede uma confirmação por código enviado via sms para o celular "81 984752773"
         And : Eu digito o código errado
-        And : Aparece uma mensagem de erro
-        And : Eu volto para minha página de perfil inalterada
+        And : Eu não tenho sucesso na autenticação e aparece uma mensagem de erro
         And : Eu não consigo alterar o e-mail
