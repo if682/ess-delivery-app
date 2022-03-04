@@ -46,9 +46,10 @@ And : Eu não tenho sucesso na autenticação e aparece uma mensagem de erro
 And : Eu volto para minha página de perfil inalterada
 
 Cenário 6: Atualizando um e-mail cliente
-Given : Estou logado como “Breno” no sistema
+Given : Estou logado como “Breno” no sistema com senha "123456"
 And :  Estou na página do meu perfil com o e-mail “bcfc@cin.ufpe.br”
 When : Eu tento atualizar meu e-mail no perfil
-Then : O sistema pede uma confirmação por código enviado via celular
-And : Eu não tenho sucesso na autenticação e aparece uma mensagem de erro
+Then : O sistema pede uma confirmação por código enviado via sms para o celular "81 984752773"
+And : Eu digito o código errado
+And : Aparece uma mensagem de erro
 And : Eu volto para minha página de perfil inalterada
