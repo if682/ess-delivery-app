@@ -52,3 +52,13 @@ And ter maior lucro
 		And eu seleciono a opção cadastrar
 		Then eu vejo uma mensagem de que as informações dadas são insuficientes, logo o cadastro não foi realizado
 		And eu continuo na tela de cadastro
+
+	Scenario: Generic scenario for guide completion
+		Given I am in a specific state
+		When I do something
+		Then something happens
+
+	Scenario: Second generic scenario for guide completion
+		Given I am in a given state
+		When I do some action
+		Then I end in a specific state
