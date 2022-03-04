@@ -52,3 +52,4 @@ Feature: Atualização dos dados
         And : Eu digito o código errado
         And : Aparece uma mensagem de erro
         And : Eu volto para minha página de perfil inalterada
+        And : Eu não consigo alterar o e-mail
