@@ -51,3 +51,8 @@ And ter maior lucro
 		And eu preencho o campo de “Telefone do Responsável” com “81 3876-5432”
 		And eu seleciono a opção cadastrar
 		Then eu vejo uma mensagem de que as informações dadas são insuficientes, logo o cadastro não foi realizado
+
+	Scenario: Generic scenario for guide completion
+		Given I am in a specific state
+		When I do something
+		Then something happens
