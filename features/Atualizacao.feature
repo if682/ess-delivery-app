@@ -52,3 +52,11 @@ Feature: Atualização dos dados
         And : Eu digito o código errado
         And : Eu não tenho sucesso na autenticação e aparece uma mensagem de erro
         And : Eu não consigo alterar o e-mail
+        
+    Scenario:  Atualizando um nome de cliente(7)
+        Given : Estou logado como “Bruno Álvaro” no sistema com senha "12312"
+        And : estou na página do meu perfil
+        When : Eu tento atualizar o campo de sobrenome do meu perfil
+        Then : O sistema me pede para uma autenticação por senha
+        And : Eu digito a senha corretamente e tenho sucesso na autenticação
+        And : Eu altero o sobrenome para “Andrade”
