@@ -48,4 +48,4 @@ When o usuário atualiza um método de pagamento com dados inválidos
 Then uma mensagem notificando método de pagamento inválido e
 solicitando que o procedimento seja refeito aparece na tela
 
-------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
