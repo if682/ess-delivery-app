@@ -18,3 +18,11 @@ Scenario: Registro de cliente com senha fora do padrão
     And vou preencher o próximo campo
    Then aparece uma mensagem de que a senha nao segue os requisitos
     And eu permaneço na mesma página de cadastro e não consigo seguir com o cadastro.
+
+Scenario: Registro de cliente com CPF falso
+  Given eu não estou registrado no sistema
+    And estou na página de cadastro de cliente
+   When eu insiro o cpf “111.222.333-44” falso no campo de “cpf”
+    And vou preencher o próximo campo
+   Then aparece uma mensagem de que o cpf não é válido
+    And eu permaneço na mesma página de cadastro e não consigo seguir com o cadastro.
