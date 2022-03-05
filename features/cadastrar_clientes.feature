@@ -10,3 +10,11 @@ Scenario: Registro de cliente já registrado querendo se registrar com novo e-ma
     And vou preencher o próximo campo
    Then aparece uma mensagem de que o cpf já está cadastrado para o email “p***2@*****pe.br”
     And sou perguntado se desejo redefinir a minha senha
+
+Scenario: Registro de cliente com senha fora do padrão
+  Given eu não estou registrado no sistema
+    And estou na página de cadastro de cliente
+   When eu insiro o uma senha “123456” fora do padrão especificado com 8 caracteres onde desses caracteres pelo menos 1 é número e 1 letra maiúscula
+    And vou preencher o próximo campo
+   Then aparece uma mensagem de que a senha nao segue os requisitos
+    And eu permaneço na mesma página de cadastro e não consigo seguir com o cadastro.
