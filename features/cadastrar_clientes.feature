@@ -28,7 +28,7 @@ Scenario: Registro de cliente com CPF falso
     And eu permaneço na mesma página de cadastro e não consigo seguir com o cadastro.
 
 Scenario: Confirmação do Registro de cliente com número de telefone
-  Given eu não estou registrado no sistema
+  Given eu não estou registrado no sistema e eu já preenchi meus dados pessoais
     And estou na página de cadastro de cliente e na seção de confirmação de numero de celular
    When insiro o código de confirmação “A12345”
    Then aparece uma mensagem de confirmação
