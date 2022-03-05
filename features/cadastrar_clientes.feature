@@ -32,4 +32,5 @@ Scenario: Confirmação do Registro de cliente com número de telefone
     And estou na página de cadastro de cliente e na seção de confirmação de numero de celular
    When insiro o código de confirmação “A12345”
    Then aparece uma mensagem de confirmação
-    And sou levado para a próxima página.
+    And sou levado para a próxima página
+    And estou logado na minha conta.
