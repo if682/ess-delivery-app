@@ -35,7 +35,7 @@ Scenario: Confirmação do Registro de cliente com número de telefone
     And sou levado para a próxima página
     And estou logado na minha conta.
 
-Scenario: Falha na confirmação do Registro de cliente com número de telefone
+Scenario: Falha na confirmação do Registro de cliente com número de telefone celular
   Given eu não estou registrado no sistema
     And estou na página de cadastro de cliente e na seção de confirmação de numero de celular
    When insiro o código de confirmação “A12345”
