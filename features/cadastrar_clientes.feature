@@ -26,3 +26,10 @@ Scenario: Registro de cliente com CPF falso
     And vou preencher o próximo campo
    Then aparece uma mensagem de que o cpf não é válido
     And eu permaneço na mesma página de cadastro e não consigo seguir com o cadastro.
+
+Scenario: Confirmação do Registro de cliente com número de telefone
+  Given eu não estou registrado no sistema
+    And estou na página de cadastro de cliente e na seção de confirmação de numero de celular
+   When insiro o código de confirmação “A12345”
+   Then aparece uma mensagem de confirmação
+    And sou levado para a próxima página.
