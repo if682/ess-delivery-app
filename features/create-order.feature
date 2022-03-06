@@ -8,6 +8,7 @@
         And selected 1 in product quantity "hamburguer"
         When try to save the order
         Then the error is shown in the telephone field indicating that the field is required
+        Then the telephone field gets a red border
         And the form data remains unchanged
 
     ii Scenario: Customer tries to create order with invalid phone number
