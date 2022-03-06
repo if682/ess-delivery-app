@@ -33,7 +33,7 @@
         Given Eduardo is a client and want to create a order by the APP
         And is on the "Create order" screen
         And entered the data into the form: Name - Eduardo; Address - Rua Sebastião Alencastro Salazar, 100; Phone - 81 999677567; Email - eaq@cin.ufpe.br
-        And selected 1 in product quantity "hamburguer"
+        And selected 2 in product quantity "hamburguer"
         When try to save the order
         Then an error is displayed when creating the order because the restaurant is closed
         And the form data remains unchanged
