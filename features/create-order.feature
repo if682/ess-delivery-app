@@ -1,7 +1,7 @@
 - Feature: Create order
     As a client, I want to place an order at the restaurant using the delivery APP, so I can receive my order at home
 
-    i Scenario: Client try to create a order without filling out all the fields in the form
+    i Scenario: Client tries to create a order without filling out all the fields in the form
         Given Eduardo is a client and want to create a order by the APP
         And is on the "Create order" screen
         And entered the data into the form: Name - Eduardo; Address - Rua Sebastião Alencastro Salazar, 100; Phone - [em banco]; Email - eduardoaqz@gmail.com
