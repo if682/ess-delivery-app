@@ -36,3 +36,4 @@
         And selected 1 in product quantity "hamburguer"
         When try to save the order
         Then an error is displayed when creating the order because the restaurant is closed
+        And the form data remains unchanged
