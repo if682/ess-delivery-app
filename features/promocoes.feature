@@ -22,9 +22,9 @@ When o restaurante "Méqui" tenta cadastrar o cupom "2BIGMEQUIPOR1" de valor "R$
 Then o cupom "2BIGMEQUIPOR1" é cadastrado
 
 Scenario: inserção de cupom inexistente em um pedido
-Given o usuário “Pedro” está na página de inserção de cupom no pedido “9316” com o valor “R$100,00”
-And o cupom “PIZZA20” não está cadastrado
-When o usuário “Pedro” tenta inserir o cupom “PIZZA20” no pedido “9316”
-Then o cupom “PIZZA20” é recusado
-And uma mensagem de erro é exibida indicando que o cupom “PIZZA20” não existe
-And o valor do pedido “9316” se mantém “R$100,00”
+Given o usuário "Pedro" está na página de inserção de cupom no pedido "9316" com o valor "R$100,00"
+And o cupom "PIZZA20" não está cadastrado
+When o usuário "Pedro" tenta inserir o cupom "PIZZA20" no pedido "9316"
+Then o cupom "PIZZA20" é recusado
+And uma mensagem de erro é exibida indicando que o cupom "PIZZA20" não existe
+And o valor do pedido "9316" se mantém "R$100,00"
