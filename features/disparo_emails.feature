@@ -1,7 +1,6 @@
 Scenario: Usuário finaliza o pedido com sucesso.
 Given o usuário "mateuzinho" está na página de confirmação do pedido “001”
-And "mateuzinho" não finalizou o pedido “001”
-When "mateuzinho" confirma o pedido “001” 
+And "mateuzinho" não finalizou o pedido “001” 
 Then o sistema envia um email para sua conta com um comprovante do pedido “001”.
 
 Scenario: Usuário finaliza o pedido com sucesso, mas quer que o e-mail de confirmação seja reenviado.
