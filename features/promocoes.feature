@@ -4,12 +4,12 @@ Feature: Cadastro e manutenção de promoções
     e usuários (clientes) poderão inserir e remover cupons de seus pedidos.
 
 Scenario: inserção de cupom em pedido bem-sucedida
-Given o usuário "Maria Luísa" está na página de inserção de cupom no pedido "1234" com o valor "R$40,00"
+Given o usuário "Maria Luísa" está na página de inserção de cupom no pedido "1237" com o valor "R$40,00"
 And o cupom "10%off" está ativo e possui um valor mínimo de "R$20,00"
-And o pedido "1234" não tem cupons aplicados
-When o usuário "Maria Luísa" tenta inserir o cupom "10%off" no pedido "1234"
+And o pedido "1237" não tem cupons aplicados
+When o usuário "Maria Luísa" tenta inserir o cupom "10%off" no pedido "1237"
 Then o cupom "10%off" é aplicado com sucesso
-And o valor do pedido "1234" é atualizado para "R$36,00"
+And o valor do pedido "1237" é atualizado para "R$36,00"
 
 Scenario: inserção de múltiplos cupons em um pedido
 Given o usuário "Acrucha" está na página de inserção de cupom no pedido "3456" com o valor "R$100,00"
