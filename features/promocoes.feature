@@ -2,9 +2,9 @@ Feature: Cadastro e manutenção de promoções
     Restaurantes e administradores poderão cadastrar, remover ou atualizar promoções (cupons), e usuários (clientes) poderão inserir e remover cupons de seus pedidos
 
 Scenario: cadastro de promoção bem-sucedido por administrador
-Given o administrador "Maluzinha" está na página de cadastro de promoção
+Given o administrador "Malu" está na página de cadastro de promoção
 And o cupom de código "PRIMEIRACOMPRA" não está cadastrado
-When o administrador "Maluzinha" tenta cadastrar o cupom "PRIMEIRACOMPRA" de valor "20% do valor do pedido" com valor mínimo de "R$30,00" sem prazo de validade
+When o administrador "Malu" tenta cadastrar o cupom "PRIMEIRACOMPRA" de valor "20% do valor do pedido" com valor mínimo de "R$30,00" sem prazo de validade
 Then o cupom "PRIMEIRACOMPRA" é cadastrado com sucesso
 
 Scenario: cadastro de promoção malsucedido pelo restaurante
