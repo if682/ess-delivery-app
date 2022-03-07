@@ -63,3 +63,8 @@ And ter maior lucro
 		When eu faço dada ação
         And faço outra ação
 		Then eu acabo em um certo estado
+
+	Scenario: Terceiro cenário genérico para completar o roteiro
+		Given estou em um certo estado
+		When eu realizo certa ação
+		Then eu termino em algum estado
