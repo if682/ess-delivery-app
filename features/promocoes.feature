@@ -19,7 +19,7 @@ Then o cupom "PIZZAEMDOBRO" é recusado
 And uma mensagem de erro é exibida indicando que já existe um cupom aplicado ao pedido "3456"
 And o valor do pedido "3456" se mantém "R$100,00"
 
-Scenario: inserção de cupom em pedido malsucedida
+Scenario: inserção de cupom em pedido que não atingiu o valor mínimo
 Given o usuário "Tales" está na página de inserção de cupom no pedido "2345" com o valor "R$10,00"
 And o cupom "10%off" está ativo possui um valor mínimo de "R$20,00"
 And o pedido "2345" não tem cupons aplicados
