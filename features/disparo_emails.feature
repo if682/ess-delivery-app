@@ -35,3 +35,6 @@ Then o usuário faz o baixa o comprovante do pedido “001” em pdf.
 
 
 cenario falha
+
+cenario falha 2
+
