@@ -20,3 +20,4 @@ And o pedido "1234" não tem cupons aplicados
 When o usuário "Maria Luísa" tenta inserir o cupom "PRIMEIRACOMPRA" no pedido "1234"
 Then o cupom "PRIMEIRACOMPRA" é recusado
 And uma mensagem de erro é exibida indicando que o cupom "PRIMEIRACOMPRA" já foi utilizado
+And o pedido "1234" se mantém com o valor "R$40,00"
