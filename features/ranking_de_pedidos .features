@@ -40,19 +40,14 @@ Feature: ranking de pedidos em determinado mês
     And está guardado no sistema que eu comprei nos últimos 30 dias 6 “kebab”
     When eu peço a frequência de cada produto  
     Then o sistema retorna “40%” associado a “pizza” e “60%” associado a “kebab”
-    And ainda está guardado no sistema o log de 4 “pizzas” e 6 ”kebabs” nos últimos
-    30 dias   
+    And ainda está guardado no sistema o log de 4 “pizzas” e 6 ”kebabs” nos últimos 30 dias   
 
   Scenario: pegar custo total de cada produto
-    Given está guardado no sistema que eu comprei nos últimos 30 dias 4 “pizza” que
-    custaram “R$40,00” cada
-    And está guardado no sistema que eu comprei nos últimos 30 dias 6 “kebab” que
-    custaram “R$15,00” cada
+    Given está guardado no sistema que eu comprei nos últimos 30 dias 4 “pizza” que custaram “R$40,00” cada
+    And está guardado no sistema que eu comprei nos últimos 30 dias 6 “kebab” que custaram “R$15,00” cada
     When eu peço o custo total de cada produto  
-    Then o sistema retorna “R$160,00” associado a “pizza” e “R$90,00” associado a
-    “kebab”
-    And ainda está guardado no sistema o log de 4 “pizzas” e 6 ”kebabs” nos últimos
-    30 dias
+    Then o sistema retorna “R$160,00” associado a “pizza” e “R$90,00” associado a “kebab”
+    And ainda está guardado no sistema o log de 4 “pizzas” e 6 ”kebabs” nos últimos 30 dias
 
 
 
