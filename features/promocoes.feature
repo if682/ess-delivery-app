@@ -11,6 +11,14 @@ When o usuário "Maria Luísa" tenta inserir o cupom "10%off" no pedido "1234"
 Then o cupom "10%off" é aplicado com sucesso
 And o valor do pedido "1234" é atualizado para "R$36,00"
 
+Scenario: inserção de múltiplos cupons em um pedido
+Given o usuário "Acrucha" está na página de inserção de cupom no pedido "3456" com o valor "R$100,00"
+And o cupom "PRIMEIRACOMPRA20" já está aplicado ao pedido "3456"
+When o usuário "Acrucha" tenta inserir o cupom "PIZZAEMDOBRO" no pedido "3456"
+Then o cupom "PIZZAEMDOBRO" é recusado
+And uma mensagem de erro é exibida indicando que já existe um cupom aplicado ao pedido "3456"
+And o valor do pedido "3456" se mantém "R$100,00"
+
 Scenario: inserção de cupom em pedido malsucedida
 Given o usuário "Tales" está na página de inserção de cupom no pedido "2345" com o valor "R$10,00"
 And o cupom "10%off" está ativo possui um valor mínimo de "R$20,00"
@@ -20,10 +28,4 @@ Then o cupom "10%off" é recusado
 And uma mensagem de erro é exibida indicando que o valor do pedido "2345" não atingiu o mínimo para aplicação do cupom "10%off"
 And o valor do pedido "2345" se mantém "R$10,00"
 
-Scenario: inserção de múltiplos cupons em um pedido
-Given o usuário "Acrucha" está na página de inserção de cupom no pedido "3456" com o valor "R$100,00"
-And o cupom "PRIMEIRACOMPRA20" já está aplicado ao pedido "3456"
-When o usuário "Acrucha" tenta inserir o cupom "PIZZAEMDOBRO" no pedido "3456"
-Then o cupom "PIZZAEMDOBRO" é recusado
-And uma mensagem de erro é exibida indicando que já existe um cupom aplicado ao pedido "3456"
-And o valor do pedido "3456" se mantém "R$100,00"
+
