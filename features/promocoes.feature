@@ -20,7 +20,6 @@ And o pedido "1234" não tem cupons aplicados
 When o usuário "Maria Luísa" tenta inserir o cupom "PRIMEIRACOMPRA" no pedido "1234"
 Then o cupom "PRIMEIRACOMPRA" é recusado
 And uma mensagem de erro é exibida indicando que o cupom "PRIMEIRACOMPRA" já foi utilizado
-
 Scenario: atualização de promoção bem sucedida pelo restaurante
 Given o restaurante "Méqui" está na página de atualização de promoção
 And o cupom "2BIGMEQUIPOR1" está cadastrado mas expirado
