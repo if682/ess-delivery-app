@@ -21,3 +21,9 @@ When o usuário "Maria Luísa" tenta inserir o cupom "PRIMEIRACOMPRA" no pedido 
 Then o cupom "PRIMEIRACOMPRA" é recusado
 And uma mensagem de erro é exibida indicando que o cupom "PRIMEIRACOMPRA" já foi utilizado
 And o pedido "1234" se mantém com o valor "R$40,00"
+
+Scenario: atualização de promoção bem sucedida pelo restaurante
+Given o restaurante "Méqui" está na página de atualização de promoção
+And o cupom "2BIGMEQUIPOR1" está cadastrado mas expirado
+When o restaurante "Méqui" tenta atualizar o cupom "2BIGMEQUIPOR1" para ser ativo na hora "21:00" do dia "05/04/2022" até "23:59" do "06/04/2022"
+Then o cupom "2BIGMEQUIPOR1" é atualizado
