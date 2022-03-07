@@ -12,3 +12,11 @@ And o produto "Big Méqui" já tem uma promoção associada ele
 When o restaurante "Méqui" tenta atualizar o cupom "2BIGMEQUIPOR1" para ser ativo
 Then a atualização do cupom "2BIGMEQUIPOR1" é negada
 And uma mensagem de erro é exibida indicando que o produto "Big Méqui" já tem uma promoção ativa associada a ele
+
+Scenario: inserção de cupom de primeira compra já utilizado
+Given o usuário "Maria Luísa" está na página de inserção de cupom no pedido "1234" com o valor "R$40,00"
+And o usuário "Maria Luísa" já utilizou o cupom "PRIMEIRACOMPRA"
+And o pedido "1234" não tem cupons aplicados
+When o usuário "Maria Luísa" tenta inserir o cupom "PRIMEIRACOMPRA" no pedido "1234"
+Then o cupom "PRIMEIRACOMPRA" é recusado
+And uma mensagem de erro é exibida indicando que o cupom "PRIMEIRACOMPRA" já foi utilizado
