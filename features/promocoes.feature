@@ -20,13 +20,13 @@ And uma mensagem de erro é exibida indicando que já existe um cupom aplicado a
 And o valor do pedido "3456" se mantém "R$100,00"
 
 Scenario: inserção de cupom em pedido malsucedida
-Given o usuário "Tales" está na página de inserção de cupom no pedido "2346" com o valor "R$10,00"
+Given o usuário "Tales" está na página de inserção de cupom no pedido "2345" com o valor "R$10,00"
 And o cupom "10%off" está ativo possui um valor mínimo de "R$20,00"
-And o pedido "2346" não tem cupons aplicados
-When o usuário "Tales" tenta inserir o cupom "10%off" no pedido "2346"
+And o pedido "2345" não tem cupons aplicados
+When o usuário "Tales" tenta inserir o cupom "10%off" no pedido "2345"
 Then o cupom "10%off" é recusado
-And uma mensagem de erro é exibida indicando que o valor do pedido "2346" não atingiu o mínimo para aplicação do cupom "10%off"
-And o valor do pedido "2346" se mantém "R$10,00"
+And uma mensagem de erro é exibida indicando que o valor do pedido "2345" não atingiu o mínimo para aplicação do cupom "10%off"
+And o valor do pedido "2345" se mantém "R$10,00"
 
 Scenario: inserção de cupom expirado em um pedido
 Given o usuário "Pedro" está na página de inserção de cupom no pedido "9856" com o valor "R$100,00"
