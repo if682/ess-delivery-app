@@ -10,7 +10,7 @@ And ter maior lucro
 		And eu preencho o campo de “Nome do Restaurante” com “Recanto da Jô”
 		And eu preencho o campo de “Rua” com “Rubinho Barriccello”
 		And eu preencho o campo de “Número” com “11”
-		And eu preencho o campo de “Cidade” com “Recife’
+		And eu preencho o campo de “Cidade” com “Recife"
 		And eu preencho o campo de “CEP” com “99.123.323”
 		And eu preencho o campo de “Complemento” com “Restaurante de esquina”
 		And eu preencho o campo de “Horário de Início” com “08:00”
@@ -27,7 +27,7 @@ And ter maior lucro
 		And eu preencho o campo de “Nome do Restaurante” com “Pescados do Zé”
 		And eu preencho o campo de “Rua” com “Governador Schumacher”
 		And eu preencho o campo de “Número” com “77”
-		And eu preencho o campo de “Cidade” com “Paulista
+		And eu preencho o campo de “Cidade” com “Paulista"
 		And eu preencho o campo de “CEP” com “12.345.678”
 		And eu preencho o campo de “Complemento” com “Em frente ao pé de carambola”
 		And eu preencho o campo de “Horário de Início” com “10:00”
@@ -42,7 +42,7 @@ And ter maior lucro
 		When eu preencho o campo de “CNPJ” com “77.777.777/001-77”
 		And eu preencho o campo de “Rua” com “Governador Schumacher”
 		And eu preencho o campo de “Número” com “77”
-		And eu preencho o campo de “Cidade” com “Paulista
+		And eu preencho o campo de “Cidade” com “Paulista"
 		And eu preencho o campo de “CEP” com “12.345.678”
 		And eu preencho o campo de “Complemento” com “Em frente ao pé de carambola”
 		And eu preencho o campo de “Horário de Início” com “10:00”
