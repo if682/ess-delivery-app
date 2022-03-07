@@ -27,5 +27,3 @@ When o usuário "Tales" tenta inserir o cupom "10%off" no pedido "2345"
 Then o cupom "10%off" é recusado
 And uma mensagem de erro é exibida indicando que o valor do pedido "2345" não atingiu o mínimo para aplicação do cupom "10%off"
 And o valor do pedido "2345" se mantém "R$10,00"
-
-
