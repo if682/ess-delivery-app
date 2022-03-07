@@ -53,13 +53,13 @@ And ter maior lucro
 		Then eu vejo uma mensagem de que as informações dadas são insuficientes, logo o cadastro não foi realizado
 		And eu continuo na tela de cadastro
 
-	Scenario: Generic scenario for guide completion
-		Given I am in a specific state
-		When I do something
-		Then something happens
+	Scenario: Cenário genérico para completar o roteiro
+		Given estou em um determinado estado
+		When eu faço algo
+		Then alguma coisa acontece
 
-	Scenario: Second generic scenario for guide completion
-		Given I am in a given state
-		When I do some action
-		And I do another action
-		Then I end in a specific state
+	Scenario: Segundo cenário genérico para completar o roteiro
+		Given estou em um dado estado
+		When eu faço dada ação
+        And faço outra ação
+		Then eu acabo em um certo estado
