@@ -39,16 +39,16 @@ And ter maior lucro
 
 	Scenario: Cadastro de restaurante com campo não preenchido
 		Given estou na tela de cadastro de restaurantes
-		When eu preencho o campo de “CNPJ” com “77.777.777/001-77”
-		And eu preencho o campo de “Rua” com “Governador Schumacher”
-		And eu preencho o campo de “Número” com “77”
-		And eu preencho o campo de “Cidade” com “Paulista"
-		And eu preencho o campo de “CEP” com “12.345.678”
-		And eu preencho o campo de “Complemento” com “Em frente ao pé de carambola”
-		And eu preencho o campo de “Horário de Início” com “10:00”
+		When eu preencho o campo de “CNPJ” com “98.765.432/001-10!
+		And eu preencho o campo de “Rua” com “Capitão Senna"
+		And eu preencho o campo de “Número” com “1”
+		And eu preencho o campo de “Cidade” com “Aldeia"
+		And eu preencho o campo de “CEP” com “23.332.233”
+		And eu preencho o campo de “Complemento” com “Em frente ao pé de jambo"
+		And eu preencho o campo de “Horário de Início” com “9:00”
 		And eu preencho o campo de “Horário de Fim” com “18:00”
-		And eu preencho o campo de “Responsável” com “José Fidalgo dos Santos”
-		And eu preencho o campo de “Telefone do Responsável” com “81 3876-5432”
+		And eu preencho o campo de “Responsável” com “José Paulo da Costa”
+		And eu preencho o campo de “Telefone do Responsável” com “81 98989-0011”
 		And eu seleciono a opção cadastrar
 		Then eu vejo uma mensagem de que as informações dadas são insuficientes, logo o cadastro não foi realizado
 		And eu continuo na tela de cadastro
