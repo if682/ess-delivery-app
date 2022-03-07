@@ -49,6 +49,15 @@ Feature: ranking de pedidos em determinado mês
     Then o sistema retorna “R$160,00” associado a “pizza” e “R$90,00” associado a “kebab”
     And ainda está guardado no sistema o log de 4 “pizzas” e 6 ”kebabs” nos últimos 30 dias
 
+  Scenario: pegar custo total de cada produto
+    Given não há nada no sistema 
+    When eu peço o custo total de cada produto  
+    Then o sistema retorna uma mensagem que indica que nada foi comprado 
+  
+  Scenario: pegar frequência comprada de cada produto
+    Given não há nada no sistema
+    When eu peço a frequência de cada produto  
+    Then o sistema retorna uma mensagem que indica que nada foi comprado 
 
 
 
