@@ -17,10 +17,10 @@
 		Then A sold out message will be sent to the client
 		And product will be made unavailable
 
-	iii. Scenario: Client tries to make an and order with less quantity than requested
+	iii. Scenario: Client tries to make an order with less quantity than requested
 		Given Vinicius is a manager and received a new order's notification
 		And Check the product to be prepared
 		And Check the quantity to be prepated
 		When Vinicius sees that product has less quantity than requested
-		Then A unavailable quantity message will be sent to the client
-		And  Request confirmation if want that product with less quantity than request
+		Then A unavailable quantity message will be sent to the client requesting a confirmation
+		And Request confirmation if want that product with less quantity than request
