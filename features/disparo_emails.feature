@@ -32,3 +32,6 @@ Scenario: Após finalizar o pedido, o cliente quer baixar o comprovante diretame
 Given o usuário “mateuzinho” finaliza o pedido número “001” 
 And o usuario clica no botão de baixar comprovante do pedido “001”
 Then o usuário faz o baixa o comprovante do pedido “001” em pdf.
+
+
+cenario falha
