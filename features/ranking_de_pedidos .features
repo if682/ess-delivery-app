@@ -27,12 +27,12 @@ Feature: ranking de pedidos em determinado mês
     And o percentual de custo de "pizza" é "64%" e o de kebab é "36%"
     And o custo total apresentado é "R$250,00"
 
-  Scenario: o item mais consumido não foi do restaurante onde o cliente mais gastou 
+  Scenario: o item mais consumido não foi do restaurante com mais custo 
     Given eu comprei nos últimos 30 dias 2 "pizza vegetariana" e 2 "pizza marguerita" do restaurante "Pizzaria Mia"
     And eu comprei nos últimos 30 dias 6 "kebab" do restaurante "Kebabado"
     When eu checo a página "Perfil de Consumo Mensal"
     Then o destaque de frequência indica "kebab"
-    And  o destaque de restaurante onde o cliente mais gastou indica "Pizzaria Mia"
+    And  o destaque de restaurante onde eu mais gastei indica "Pizzaria Mia"
     And o percentual de frequência de "pizza marguerita" é "20%", o de "pizza vegetariana" é "20%" e o de "kebab" é "60%"
   
   Scenario: o item mais consumido não foi do restaurante mais pedido 
@@ -43,6 +43,15 @@ Feature: ranking de pedidos em determinado mês
     And  o destaque de restaurante mais pedido indica "Pizzaria Mia"
     And o percentual de frequência de "pizza marguerita" é "30%", o de "pizza vegetariana" é "30%" e o de "kebab" é "40%"
     And o percentual de pedidos de "Pizzaria Mia" é "60%" e os de "Kebabado" é "40%"
+
+  Scenario: o restautante mais pedido não é onde o com mais custo
+    Given eu comprei nos últimos 30 dias 4 "pizza vegetariana" do restaurante "Pizzaria Mia"
+    And eu comprei nos últimos 30 dias 6 "kebab" do restaurante "Kebabado" 
+    When eu checo a página "Perfil de Consumo Mensal"
+    Then o destaque de restaurante mais pedido indica "Kebabado"
+    And o destaque de restaurante onde eu mais gastei indica "Pizzaria Mia" 
+    And o percentual de pedidos de "Pizzaria Mia" é "40%" e os de "Kebabado" é "60%"
+    And o percentual dos gastos nos restaurantes é de "64%" para "Pizzaria Mia" e "36%" para "Kebabado"
  
   Scenario: pegar frequência comprada de cada produto
     Given está guardado no sistema que eu comprei nos últimos 30 dias 4 "pizza" 
