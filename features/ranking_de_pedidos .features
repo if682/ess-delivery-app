@@ -34,6 +34,7 @@ Feature: ranking de pedidos em determinado mês
     Then o destaque de frequência indica "kebab"
     And  o destaque de restaurante onde o cliente mais gastou indica "Pizzaria Mia"
     And o percentual de frequência de "pizza marguerita" é "20%", o de "pizza vegetariana" é "20%" e o de "kebab" é "60%"
+    And o percentual dos gastos nos restaurantes é de "64%" para "Pizzaria Mia" e "36%" para "Kebabado"
   
   Scenario: o item mais consumido não foi do restaurante mais pedido 
     Given eu comprei nos últimos 30 dias 3 "pizza vegetariana" e 3 "pizza marguerita" do restaurante "Pizzaria Mia"
