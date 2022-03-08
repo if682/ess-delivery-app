@@ -38,3 +38,6 @@ cenario falha
 
 cenario falha 2
 
+cenario novo cenario
+
+cenario novo cenario 2
