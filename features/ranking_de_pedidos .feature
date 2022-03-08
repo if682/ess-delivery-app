@@ -90,6 +90,3 @@ Feature: ranking de pedidos em determinado mês
     And o percentual de pedidos de "Pizzaria Mia" é "80%" e os de "Kebabado" é "20%"
     And o percentual dos gastos nos restaurantes é de "91,4%" para "Pizzaria Mia" e "8,5%" para "Kebabado"
     And o custo total apresentado é "R$175,00" 
-
-
-
