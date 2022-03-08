@@ -35,3 +35,8 @@ When o pedido “001” não é completado
 Then o sistema envia um email avisando que houve um erro na finalização do pedido “001” e que o usuário “mateuzinho” deve tentar novamente mais tarde
 
 Scenario: example
+given
+and
+and
+when
+then
