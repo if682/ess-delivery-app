@@ -26,3 +26,10 @@ Given o usuário “mateuzinho” está fazendo o pedido “001”
 And o usuário “mateuzinho” fecha o aplicativo
 When um certo período de tempo “X” passa sem que ele aceite o pedido “001”
 Then o sistema envia um email notificando da não finalização do pedido “001”.
+
+Scenario: O usuário termina o pedido mas acontece uma falha com o sistema
+Given o usuário "mateuzinho" está na página de confirmação do pedido “001”
+And o usuário "mateuzinho" finaliza o pedido  “001”
+And o sistema apresenta um erro
+When o pedido “001” não é completado
+Then o sistema envia um email avisando que houve um erro na finalização do pedido “001” e que o usuário “mateuzinho” deve tentar novamente mais tarde
