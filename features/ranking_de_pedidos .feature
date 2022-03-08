@@ -88,5 +88,5 @@ Feature: ranking de pedidos em determinado mês
     Then o destaque de restaurante mais pedido indica "Kebabado"
     And o destaque de restaurante onde eu mais gastei indica "Pizzaria Mia" 
     And o percentual de pedidos de "Pizzaria Mia" é "80%" e os de "Kebabado" é "20%"
-    And o percentual dos gastos nos restaurantes é de "91,4%" para "Pizzaria Mia" e "8,5%" para "Kebabado"
+    And o percentual dos gastos nos restaurantes é de "91,43%" para "Pizzaria Mia" e "8,57%" para "Kebabado"
     And o custo total apresentado é "R$175,00" 
