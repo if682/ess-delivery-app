@@ -21,3 +21,8 @@ Given o usuário “mateuzinho” finaliza o pedido número “001”
 And o usuario clica no botão de baixar comprovante do pedido “001”
 Then o usuário faz o baixa o comprovante do pedido “001” em pdf.
 
+Scenario: O cliente não completa o pedido totalmente
+Given o usuário “mateuzinho” está fazendo o pedido “001”
+And o usuário “mateuzinho” fecha o aplicativo
+When um certo período de tempo “X” passa sem que ele aceite o pedido “001”
+Then o sistema envia um email notificando da não finalização do pedido “001”.
