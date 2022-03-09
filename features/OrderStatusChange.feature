@@ -75,7 +75,7 @@
 
         Given that Comida de Mainha has accepted the request
         When Comida de Mainha has'n confirmed in the application that the order is ready
-         Then the DB can't update the order status to ready
+        Then the DB can't update the order status to ready
         And Tiguinho won't be notified
 
     Scenario Outline: test if notifications are sent and received in under 5 min
