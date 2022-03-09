@@ -1,19 +1,79 @@
-Mudança do Status do Pedido
+  Feature: Order Status Change
 
-Restaurante aceita novo pedido, a ideia é que após um pedido ser realizado o banco de dados do aplicativo atualize o status e notifique o cliente.
+    Given a restaurant and a client this feature ensures that business orders are properly updated
+    as expected whenever they change their state that is to say orders are made, accepted and ready.
 
-Restaurante notifica cliente que pedido está pronto, a ideia é que após um pedido ser preparado o banco de dados do aplicativo atualize o status do mesmo e notifique o cliente
+    Example: Users orders "Fritas", then the restaurant "Marco's" should be notified of the request by a notification
+    and the system should notify the user the acceptance of it's order, then the business should prepare the food,
+    after preparation the system shoud notify the client that it's ready for delivery, notice that the delivery person
+    is not involved.
 
-Restaurante notifica delivery para entrega de pedido, a ideia aqui é que delivery deve ser notificado que há uma nova entrega, mas não há atualização de db.
+    Background:
 
-Restaurante modifica o status do pedido com sucesso, a ideia aqui é explorar possíveis cenários que são um sucesso.
+        Given a business named "Comida de Mainha"
+        And a customer named "Tiguinho"
+        And a order named "Fritas de Mainha"
 
-Restaurante envia uma notificação e cliente a recebe, a ideia aqui é testar possíveis cenários onde latência pode ocorrer ou não ocorrer.
+    Scenario Outline: making a new order
 
-Aplicativo testa ciclo de status de pedido e completa todos os testes com sucesso, a ideia aqui é testar se o aplicativo consegue reproduzir o ciclo de um pedido e diagnosticar possíveis problemas.
+        Given Tiguinho business is open
+        When Tiguinho orders Fritas de Mainha
+        Then Tiguinho order is validated
+        And the DB adds a new order and update it status to made
 
-Restaurante modifica o status do pedido mas falha no processo, a ideia aqui é explorar possíveis cenários que causariam uma falha na modificação do status no db.
+        Given Tiguinho business is open
+        When Tiguinho orders Fritas de Mainha
+        Then Tiguinho order is validated
+        And the DB fails to add a new entry with status made
+        And a service is executed to re-try the insertion
 
-Restaurante envia notificação e cliente não a recebe, a ideia aqui é testar o que fazer caso o cliente não receba a notificação
+        Given Tiguinho business is closed
+        When Tiguinho orders Fritas de Mainha
+        Then Tiguinho order isn't validated
+        And the DB won't add a new order
+        And a error message will appear
 
-Aplicativo testa ciclo de status de pedido e completa parcialmente os testes, a ideia aqui é descobrir possíveis testes que por ausência de cobertura de funcionalidades auxiliares não obtém sucesso.
+    Scenario Outline: receives a new order request
+
+        Given that Comida de Mainha is open
+        When Tiguinho orders Fritas de Mainha
+        Then Comida de Mainha will be notified of the order
+        And Comida de Mainha accept's the order
+        And the DB will updated Fritas de Mainha entry to accepted
+        And Tiguinho will be notified that the request was accepted by Comida de Mainha
+
+        Given that Comida de Mainha is open
+        When Tiguinho orders Fritas de Mainha
+        Then Comida de Mainha will be notified of the order
+        And Comida de Mainha accept's the order
+        And the DB can't update Fritas de Mainha entry to accepted
+        And a internal service will be executed re-try the DB update
+
+        Given that Comida de Mainha is open
+        When Tiguinho orders Fritas de Mainha
+        Then Comida de Mainha will be notified of the order
+        And Comida de Mainha won't accept the order
+        And the DB will not update Fritas de Mainha status to accepted
+        And Tiguinho will be notified that the request wasn't accepted by Comida de Mainha
+
+        Given that Comida de Mainha is closed
+        When Tiguinho orders Fritas de Mainha
+        Then Comida de Mainha won't be notified of the order
+        And the DB musn't add the order as an entry
+
+    Scenario Outline: client is notified that the order is ready
+
+        Given that Comida de Mainha has accepted the request
+        When Comida de Mainha confirm in the application that the order is ready
+        Then the DB should update order status to ready
+        And Tiguinho will be notified that his order is ready
+
+        Given that Comida de Mainha has accepted the request
+        When Comida de Mainha confirm in the application that the order is ready
+        Then the DB should update order status to ready
+        And Tiguinho will be notified that his order is ready
+
+        Given that Comida de Mainha has accepted the request
+        When Comida de Mainha has'n confirmed in the application that the order is ready
+        Then the DB can't update the order status to ready
+        And Tiguinho won't be notified
