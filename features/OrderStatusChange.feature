@@ -77,3 +77,20 @@
         When Comida de Mainha has'n confirmed in the application that the order is ready
          Then the DB can't update the order status to ready
         And Tiguinho won't be notified
+
+    Scenario Outline: test if notifications are sent and received in under 5 min
+
+        Given that Tiguinho has made a order
+        When Comida da Mainha confirms the order as <state>
+        Then A notification should be sent to Tiguinho
+        And must arrive at most 5min later
+
+        Given that Tiguinho has made a order
+        When Comida da Mainha confirms the order
+        Then A notification should be sent to Tiguinho
+        And will arrive after 5min
+        And a service will be executed to re-send the notification
+
+               |state   |
+               |ready   |
+               |accepted|
