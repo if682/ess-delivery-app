@@ -91,6 +91,6 @@
         And will arrive after 5min
         And a service will be executed to re-send the notification
 
-               |state   |
-               |ready   |
-               |accepted|
+                |state   |
+                |ready   |
+                |accepted|
