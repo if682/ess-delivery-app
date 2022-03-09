@@ -86,7 +86,7 @@
         And must arrive at most 5min later
 
         Given that Tiguinho has made a order
-        When Comida da Mainha confirms the order
+        When Comida da Mainha confirms the order as <state>
         Then A notification should be sent to Tiguinho
         And will arrive after 5min
         And a service will be executed to re-send the notification
