@@ -1,9 +1,15 @@
 .logo-container img {
-    height: 10rem;
+    width: 60vh;
 }
 
-.logo-container {
-    margin: 0rem;
+.logo-container, .image-container {
+    text-align: center;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.image-container img {
+    width: 50vh; 
 }
 
 h2 {
@@ -13,11 +19,6 @@ h2 {
     margin-top: 0.8rem;
     color: var(--color-title-in-primary);
     text-align: center;
-}
-
-.delivery-image {
-    width: 35rem; /* tamanho relativo ao sua tag mãe => nesse caso a id=container */
-    margin: 0rem 15rem 0rem 15rem;
 }
 
 .buttons-container {
@@ -67,27 +68,36 @@ h2 {
     transition: background 0.2s;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
     :root {
         font-size: 40%;
     }
 
-    .delivery-image {
-        height: 35rem;
+    .logo-container img,
+    .image-container img {
+        width: 35rem;
     }
-    
+
+    .buttons-container {
+        display: grid;
+    }
+
+    .buttons-container a.adm-link,
+    .buttons-container a.user-link {
+        margin: 0.8rem;
+    }
 }
 
 /* serve para indicar que tudo que está aqui dentro somente deverá ser aplicado se a largura minima da tela for 1100px */
-@media (min-width: 1100px){   
-    .logo-container{
-        text-align: center;
-        align-self: center;
-        margin-bottom: 0;
+@media (min-width: 900px){   
+
+    .grid-container {
+        display: flex;
     }
 
-    .logo-container img {
-        height: 200px;
+    .image-container, 
+    .logo-container {
+        margin: 1rem;
     }
 
     .buttons-container {
