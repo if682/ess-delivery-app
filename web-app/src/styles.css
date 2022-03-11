@@ -22,8 +22,9 @@
     --color-input-background: #F8F8FC;
     --color-button-text: #FFFFFF;
     --color-box-base: #FFFFFF;
-    --color-box-footer: #FAFAFC;
+    --color-box-footer: #fcfbfa;
     --color-small-info: #C1BCCC;
+    --color-opac: #29174d4a;
 
     font-size: 60%;
 }  
@@ -54,6 +55,10 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+*::selection {
+    background: none;
 }
 
 html, 
