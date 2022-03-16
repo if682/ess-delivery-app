@@ -1,0 +1,36 @@
+input::selection,
+label::selection {
+    background: var(--color-primary-lighter);
+    color: var(--color-all-dark);
+}
+
+#exp-cvv {
+    display: flex;
+}
+
+#exp-date {
+    margin-right: 1.5rem;
+}
+
+.logo-container img {
+    width: 30vh;
+    cursor: pointer;
+}
+
+.logo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    align-self: center;
+    margin: 1rem;
+}
+
+.buttons-container a.confirm-link {
+    background: var(--color-secondary);
+}
+
+.buttons-container a.confirm-link:hover {
+    background: var(--color-secondary-dark);
+    transition: background 0.2s;
+}

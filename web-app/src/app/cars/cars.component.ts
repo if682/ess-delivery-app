@@ -7,7 +7,7 @@ import { CarService } from './cars.service';
 @Component({
   selector: 'app-root',
   templateUrl: './cars.component.html',
-  styleUrls: ['./cars.component.css']
+  styleUrls: ['./cars.component.css', '../../public/forms.css']
 })
 export class CarsComponent implements OnInit {
    constructor(private carService: CarService) {}

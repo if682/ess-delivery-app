@@ -1,24 +1,37 @@
-<table>
-<tr>
-   <td><label>Name </label></td>
-   <td><input id="what" [(ngModel)]="car.name" ></td>
-   <td><button id="register-car" (click)="createCar(car)">Adicionar</button></td>
-</tr>
-<tr>
-   <td><label>Brand </label></td>
-   <td><input id="car-brand-input" [(ngModel)]="car.brand" ></td>
-</tr>
-<tr>
-   <td><label>Price </label></td>
-   <td><input id="car-price-input" type="number" [(ngModel)]="car.price" ></td>
-</tr>
-<tr>
-   <td><label>Color </label></td>
-   <td><input id="car-color-input" [(ngModel)]="car.color" ></td>
-</tr>
-</table>
-
-<table>
+<div mat-button class="logo-container" name="home" routerLink="/">
+   <img alt="Logo" src="/assets/images/logo.svg"/>
+</div>
+<div class="forms-block">
+   <div class="input-block" >
+      <!-- <label>Número do Cartão</label> -->
+      <input placeholder="Número do Cartão" id="cardNumber" [(ngModel)]="car.name">
+   </div>
+   <div class="input-block" id="exp-cvv">
+      <!-- <label>Validade </label> -->
+      <input placeholder="Validade"  id="exp-date" type="datetime" min="2018-03" [(ngModel)]="car.brand" >
+      <input placeholder="CVV" type="number" [(ngModel)]="car.price" >
+   </div>
+   <div class="input-block">
+      <!-- <label>Price </label> -->
+      <input placeholder="Nome do titular" type="number" [(ngModel)]="car.price" >
+   </div>
+   <div class="input-block">
+      <!-- <label>Color </label> -->
+      <input placeholder="CPF/CNPJ do titular" [(ngModel)]="car.color" >
+   </div>
+   <div class="input-block">
+      <!-- <label>Color </label> -->
+      <input placeholder="Apelido do Cartão (opcional)" [(ngModel)]="car.color" >
+   </div>
+   <div class="checkbox"><input type="checkbox"><label>Tornar método de pagamento padrão</label></div>
+   <div class="buttons-container">
+      <a class="confirm-link" (click)="createCar(car)">
+         <img alt="Ícone de cartão de crédito" src="/assets/icons/credit-card.svg"/>
+         Adicionar
+      </a>
+   </div>
+</div>
+<!-- <table>
 <tr *ngIf="cars.length > 0">
    <th>Name</th>
    <th>Brand</th>
@@ -31,4 +44,4 @@
    <td>{{car.price}}</td>
    <td>{{car.color}}</td>
 </tr>
-</table>
+</table> -->

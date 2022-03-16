@@ -1,8 +1,12 @@
+.forms-block {
+    justify-content: center;
+}
+
 .select-block label,
 .input-block label,
 .textarea-block label {
-    font-size: 1.4rem;
-    color: var(--color-text-complement);
+    font-size: 2rem;
+    color: var(--color-button-text);
 }
 
 .input-block input,
@@ -13,10 +17,11 @@
     margin-top: .8rem;
     border-radius: .8rem;
     background: var(--color-input-background);
+    color: var(--color-primary-darker);
     border: 1px solid var(--color-line-in-white);
     outline: 0;
     padding: 0 1.6rem;
-    font: 1.6rem Archivo;
+    font: 2rem 'DM Sans';
 }
 
 .textarea-block textarea {
@@ -28,22 +33,81 @@
 .input-block,
 .textarea-block {
     position: relative;
+    margin: 1rem 0 1rem 0;
 }
 
-.input-block:focus-within::after,
-.textarea-block:focus-within::after{ /*elemento dinâmico que só aparece quando algo algo está em foco(clicado)*/
+/* .input-block:focus-within::after,
+.textarea-block:focus-within::after{ //elemento dinâmico que só aparece quando algo algo está em foco(clicado)
     content: "";
 
     width: calc(100% - 3.2rem);
     height: 2px;
     background: var(--color-primary-light);
-    position: absolute; /*ele é relativo à posição do input-block, somente porque eu indiquei no input-block que a position é relative*/
+    position: absolute; // ele é relativo à posição do input-block, somente porque eu indiquei no input-block que a position é relative
     left: 1.6rem;
     bottom: 0px;
+} 
+*/
+label{
+    font-size: 1.8rem;
+    padding-left: 1.2rem;
+    color: var(--color-line-in-white);
 }
 
-label small {
-    font-size: 1.2rem;
-    padding-left: 1.2rem;
-    color: var(--color-small-info);
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.buttons-container a {
+    width: 30rem;
+    height: 8.4rem;
+
+    border-radius: 0.8rem; /* arredonda as bordas da caixa */
+    margin-right: 1.6rem;
+    margin-left: 1.6rem;
+
+    font: 700 2.4rem 'DM Sans';
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: var(--color-button-text);
+    text-decoration: none; /*tira a linha embaixo do link clicával => tem porque é uma tag a*/
+
+    cursor: pointer;
+}
+
+.buttons-container a img {
+    width: 3.5rem;
+    margin-right: 1.5rem;
+}
+
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+}
+
+input[type=checkbox]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-button-text);
+}
+
+input[type=checkbox]:checked:before {
+    content: "";
+    position: absolute;
+    background-color: var(--color-secondary);
+    background-image: url(../assets/icons/check.svg);
+}
+
+.checkbox {
+    margin: 1.5rem 0 1.5rem 0;
+    display: flex;
+    text-align: center;
 }

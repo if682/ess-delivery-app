@@ -23,7 +23,19 @@ import { CarService } from './cars/cars.service';
     HttpModule,
     RouterModule.forRoot([
       {
-        path: 'cars',
+        path: '',
+        component: NavbarComponent
+      },
+      {
+        path: 'cliente',
+        component: CarsComponent
+      },
+      {
+        path: 'restaurante',
+        component: CarsComponent
+      },
+      {
+        path: 'adm',
         component: CarsComponent
       }
     ])
