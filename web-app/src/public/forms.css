@@ -1,4 +1,5 @@
 .forms-block {
+    margin: 2.5rem;
     justify-content: center;
 }
 
@@ -54,6 +55,15 @@ label{
     color: var(--color-line-in-white);
 }
 
+h2 {
+    font-weight: 500;
+    font-size: 3.2rem;
+    line-height: 4.6rem;
+    margin-top: 0.8rem;
+    color: var(--color-title-in-primary);
+    text-align: center;
+}
+
 .buttons-container {
     display: flex;
     justify-content: center;
@@ -61,8 +71,8 @@ label{
 }
 
 .buttons-container a {
-    width: 30rem;
-    height: 8.4rem;
+    width: 27rem;
+    height: 8rem;
 
     border-radius: 0.8rem; /* arredonda as bordas da caixa */
     margin-right: 1.6rem;
@@ -78,11 +88,6 @@ label{
     text-decoration: none; /*tira a linha embaixo do link clicával => tem porque é uma tag a*/
 
     cursor: pointer;
-}
-
-.buttons-container a img {
-    width: 3.5rem;
-    margin-right: 1.5rem;
 }
 
 input[type=checkbox] {
@@ -110,4 +115,38 @@ input[type=checkbox]:checked:before {
     margin: 1.5rem 0 1.5rem 0;
     display: flex;
     text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    .buttons-container {
+        display: grid;
+        margin: 1rem;
+    }
+
+    .buttons-container a {
+        width: 26rem;
+        height: 7.6rem;
+        margin: 1rem;
+    }
+
+    .header-home {
+        font-size: 2.5rem;
+    }
+
+
+}
+
+/* serve para indicar que tudo que está aqui dentro somente deverá ser aplicado se a largura minima da tela for 1100px */
+@media (min-width: 730px){   
+
+    .grid-container {
+        display: flex;
+    }
+
+    .buttons-container {
+        justify-content: center; /*vai se comunicar com display flex do button-container antigo e vai sobreescrever o justify */
+        margin: 3rem;
+    }
+
 }

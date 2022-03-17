@@ -12,25 +12,32 @@ label::selection {
     margin-right: 1.5rem;
 }
 
-.logo-container img {
-    width: 30vh;
-    cursor: pointer;
-}
-
 .logo-container {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     text-align: center;
     align-self: center;
-    margin: 1rem;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.logo-container img {
+    width: 50vh;
 }
 
 .buttons-container a.confirm-link {
     background: var(--color-secondary);
 }
 
+.buttons-container a.confirm-link img {
+    margin-right: 2.5rem;
+}
+
 .buttons-container a.confirm-link:hover {
     background: var(--color-secondary-dark);
     transition: background 0.2s;
+}
+
+.header-home {
+    font-weight: bold;
+    margin: 1rem;
 }
