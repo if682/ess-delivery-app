@@ -42,7 +42,6 @@ And ter maior lucro
 	Scenario: Inserção de restaurante com campo não preenchido
 		Given estou na tela de cadastro de restaurantes
 		When eu preencho o campo de “CNPJ” com “98.765.432/0001-10"
-		And eu preencho o campo de “Rua” com “Capitão Senna"
 		And eu preencho o campo de “Número” com “1”
 		And eu preencho o campo de “Cidade” com “Aldeia"
 		And eu preencho o campo de “CEP” com “23.332.233”
@@ -56,10 +55,22 @@ And ter maior lucro
 		Then eu vejo uma mensagem de que o campo "Rua" não foi preenchido, logo o cadastro não foi realizado
 		And eu continuo na tela de cadastro
 
-	Scenario: Inserção de restaurante
-		Given estou em um determinado estado
-		When eu faço algo
-		Then alguma coisa acontece
+	Scenario: Inserção de restaurante com campo mal-preenchido
+		Given estou na tela de cadastro de restaurantes
+		When eu preencho o campo de “CNPJ” com “98.765.432/0007"
+		And eu preencho o campo de “Rua” com “Capitão Senna"
+		And eu preencho o campo de “Número” com “1”
+		And eu preencho o campo de “Cidade” com “Aldeia"
+		And eu preencho o campo de “CEP” com “23.332.233”
+		And eu preencho o campo de “Complemento” com “Em frente ao pé de jambo"
+		And eu preencho o campo de “Horário de Início” com “9:00”
+		And eu preencho o campo de “Horário de Fim” com “18:00”
+		And eu preencho o campo de “Responsável” com “José Paulo da Costa”
+		And eu preencho o campo de “Telefone do Responsável” com “81 98989-0011”
+		And eu preencho o campo de "Senha" com “potato”
+		And eu seleciono a opção cadastrar
+		Then eu vejo uma mensagem de que o campo "CNPJ" não foi preenchido corretamente, ele deve ter o formato "XX.XXX.XXX/0001-XX" e que o cadastro não foi realizado
+		And eu continuo na tela de cadastro
 
 	Scenario: Segundo cenário genérico para completar o roteiro
 		Given estou em um dado estado
