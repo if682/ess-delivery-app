@@ -1,5 +1,5 @@
 .forms-block {
-    margin: 2.5rem;
+    margin: 2rem;
     justify-content: center;
 }
 
@@ -62,12 +62,13 @@ h2 {
     margin-top: 0.8rem;
     color: var(--color-title-in-primary);
     text-align: center;
+    font-family: 'DM Sans';
 }
 
 .buttons-container {
     display: flex;
     justify-content: center;
-    margin: 2rem;
+    margin: 1.5rem;
 }
 
 .buttons-container a {
@@ -112,7 +113,7 @@ input[type=checkbox]:checked:before {
 }
 
 .checkbox {
-    margin: 1.5rem 0 1.5rem 0;
+    margin: 1rem 0 1rem 0;
     display: flex;
     text-align: center;
 }
@@ -146,7 +147,6 @@ input[type=checkbox]:checked:before {
 
     .buttons-container {
         justify-content: center; /*vai se comunicar com display flex do button-container antigo e vai sobreescrever o justify */
-        margin: 3rem;
     }
 
 }

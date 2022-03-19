@@ -80,7 +80,7 @@ textarea {
     font-weight: 500;
     font-size: 1.6rem;
     font-family: 'DM Sans', sans-serif;
-    color: var(--color-text-base);
+    color: var(--color-button-text);
 }
 
 #container {
@@ -93,3 +93,5 @@ textarea {
         font-size: 62.5%; /* cada 1rem equivale a 10px */
     }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

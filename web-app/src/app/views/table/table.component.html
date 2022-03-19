@@ -1,0 +1,103 @@
+<div class="container">
+<table mat-table [dataSource]="dataCoupons" class="demo-table">
+
+  <div class="column" matColumnDef="Código">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Código</label>
+    </th>
+    <td class="column-value" *matCellDef="let coupon"> 
+      <div class="coupon-container">
+        {{coupon.code}}
+        <img alt="Ícone de lixeira" src="/assets/icons/trash.svg" (click)="removeData(coupon.code)"/>
+      </div>
+    </td>
+  </div>
+  <div class="column" matColumnDef="Produto">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Produto</label>
+    </th>
+    <td class="column-value" *matCellDef="let coupon"> 
+      {{coupon.product}}
+     </td>
+  </div>
+
+  <div class="column" matColumnDef="Desconto">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Desconto</label>
+    </th>
+    <td class="column-value" *matCellDef="let coupon"> 
+      {{coupon.discount}}
+    </td>
+  </div>
+
+  <div class="column" matColumnDef="Início">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Início</label>
+    </th>
+    <td class="column-value" *matCellDef="let coupon"> {{coupon.begin}} </td>
+  </div>
+
+  <div class="column" matColumnDef="Fim">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Fim</label>
+    </th>
+    <td class="column-value" *matCellDef="let coupon"> {{coupon.end}} </td>
+  </div>
+
+  <div class="column" matColumnDef="Status">
+    <th mat-header-cell *matHeaderCellDef>
+      <label>Status</label>
+    </th>
+    <td *matCellDef="let coupon"> 
+      {{coupon.status}}
+    </td>
+  </div>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<h2>Adicionar ou editar um cupom:</h2>
+<div class="input-block table">
+  <input placeholder="Código">
+  <input placeholder="Produto">
+  <input placeholder="Desconto">
+  <input placeholder="Início">
+  <input placeholder="Fim">
+  <input placeholder="Status">
+</div>
+
+</div>
+
+<div class="buttons-container">
+  <a class="add-link" alt="Botão de Editar Cupom">
+    <img alt="Ícone de Lápis" src="/assets/icons/edit.svg"/>
+    Editar Cupom
+  </a>
+  <a class="add-link" alt="Botão de Adicionar Cupom">
+    <img alt="Ícone de soma" src="/assets/icons/plus.svg"/>
+    Adicionar Cupom
+  </a>
+</div>
+<!--
+<div>
+  <table mat-table [dataSource]="dataCoupons">
+    <tr *ngIf="dataCoupons.length > 0">
+       <th>name</th>
+       <th>product</th>
+       <th>discount</th>
+       <th>begin</th>
+       <th>end</th>
+       <th>status</th>
+    </tr>
+    <tr *ngFor="let coupon of dataCoupons">
+       <td id="coupon-{{coupon.name}}-{{coupon.product}}-{{coupon.discount}}-{{coupon.begin}}">{{coupon.name}}</td>
+       <td>{{coupon.product}}</td>
+       <td>{{coupon.discount}}</td>
+       <td>{{coupon.begin}}</td>
+       <td>{{coupon.end}}</td>
+       <td>{{coupon.status}}</td>
+    </tr>
+  </table>
+</div>
+ -->
