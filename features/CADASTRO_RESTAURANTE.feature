@@ -24,7 +24,7 @@ And ter maior lucro
 	Scenario: Inserção de restaurante com CNPJ já cadastrado
 		Given estou na tela de cadastro de restaurantes
 		And o CNPJ “77.777.777/001-77” já é utilizado por algum restaurante no sistema
-		When eu preencho o campo de “CNPJ” com “77.777.777/001-77”
+		When eu preencho o campo de “CNPJ” com “77.777.777/0001-77”
 		And eu preencho o campo de “Nome do Restaurante” com “Pescados do Zé”
 		And eu preencho o campo de “Rua” com “Governador Schumacher”
 		And eu preencho o campo de “Número” com “77”
@@ -71,14 +71,3 @@ And ter maior lucro
 		And eu seleciono a opção cadastrar
 		Then eu vejo uma mensagem de que o campo "CNPJ" não foi preenchido corretamente, ele deve ter o formato "XX.XXX.XXX/0001-XX" e que o cadastro não foi realizado
 		And eu continuo na tela de cadastro
-
-	Scenario: Segundo cenário genérico para completar o roteiro
-		Given estou em um dado estado
-		When eu faço dada ação
-        And faço outra ação
-		Then eu acabo em um certo estado
-
-	Scenario: Terceiro cenário genérico para completar o roteiro
-		Given estou em um certo estado
-		When eu realizo certa ação
-		Then eu termino em algum estado
