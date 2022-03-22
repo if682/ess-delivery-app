@@ -12,16 +12,23 @@ quatro dígitos do cartão além do nome do método
 Scenario: Troca de método de pagamento
 Given o usuário está na página de pagamento
 When ele seleciona a opção mudar método de pagamento
-Then os nomes dos outros métodos de pagamento, que
+And após os nomes dos outros métodos de pagamento, que
 ele inseriu com sucesso, exceto o nome do método
-padrão aparecem como opções selecionáveis
+padrão, aparecerem como opções selecionáveis, ele
+seleciona um dos métodos
+Then o usuário retorna para a página de pagamento
+com o método de pagamento selecionado no lugar do
+método padrão
 
 Scenario: Troca de método de pagamento padrão
 Given o usuário está na página do seu perfil
 When ele seleciona a opção mudar método de pagamento padrão
-Then os nomes dos outros métodos de pagamento, que
+And após os nomes dos outros métodos de pagamento, que
 ele inseriu com sucesso, exceto o nome do método
-padrão aparecem como opções selecionáveis
+padrão, aparecerem como opções selecionáveis, ele
+seleciona um dos métodos
+Then uma mensagem de troca de método padrão realizado
+com sucesso aparece na tela
 
 Scenario: Inserção, remoção ou atualização de métodos de pagamento
 Given o usuário está na página de inserção, remoção ou atualização de pagamento
@@ -48,4 +55,4 @@ When o usuário atualiza um método de pagamento com dados inválidos
 Then uma mensagem notificando método de pagamento inválido e
 solicitando que o procedimento seja refeito aparece na tela
 
------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
