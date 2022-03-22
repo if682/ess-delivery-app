@@ -23,4 +23,3 @@
 		And Check the quantity to be prepated
 		When Vinicius sees that less product than requested
 		Then A unavailable quantity message will be sent to the client
-		And Request confirmation if want that product with less quantity than request
