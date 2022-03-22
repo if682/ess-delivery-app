@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CarsComponent } from './cars/cars.component';
 import { CarService } from './cars/cars.service';
+import { PromotionComponent } from './promotion/promotion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    CarsComponent
+    CarsComponent,
+    PromotionComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,10 @@ import { CarService } from './cars/cars.service';
       {
         path: 'cars',
         component: CarsComponent
+      },
+      {
+        path: 'promotion',
+        component: PromotionComponent
       }
     ])
   ],
