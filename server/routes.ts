@@ -4,11 +4,11 @@ import { CarService } from './src/cars-service';
 
 const routes = Router();
 
-routes.get('/promocao', (req, res) => {
+routes.get('/promotion', (req, res) => {
     return res.send('Pagina de promocao');
 });
 
-routes.get('/pagamento', (req, res) => {
+routes.get('/payment', (req, res) => {
     return res.send('Pagina de pagamento');
 });
 
