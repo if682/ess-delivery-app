@@ -6,7 +6,7 @@ import { coupons, COUPONS, RESTAURANTS } from '../../bd';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css', '../../../public/forms.css']
+  styleUrls: ['./table.component.css']
 })
 
 export class TableComponent implements OnInit {

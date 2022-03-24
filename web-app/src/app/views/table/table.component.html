@@ -1,7 +1,7 @@
 <div class="container">
 <table mat-table [dataSource]="dataCoupons" class="demo-table">
 
-  <div class="column" matColumnDef="Código">
+  <div matColumnDef="Código">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Código</label>
     </th>
@@ -12,7 +12,7 @@
       </div>
     </td>
   </div>
-  <div class="column" matColumnDef="Produto">
+  <div matColumnDef="Produto">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Produto</label>
     </th>
@@ -21,7 +21,7 @@
      </td>
   </div>
 
-  <div class="column" matColumnDef="Desconto">
+  <div matColumnDef="Desconto">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Desconto</label>
     </th>
@@ -30,22 +30,22 @@
     </td>
   </div>
 
-  <div class="column" matColumnDef="Início">
+  <div matColumnDef="Início">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Início</label>
     </th>
     <td class="column-value" *matCellDef="let coupon"> {{coupon.begin}} </td>
   </div>
 
-  <div class="column" matColumnDef="Fim">
+  <div matColumnDef="Fim">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Fim</label>
     </th>
     <td class="column-value" *matCellDef="let coupon"> {{coupon.end}} </td>
   </div>
 
-  <div class="column" matColumnDef="Status">
-    <th mat-header-cell *matHeaderCellDef>
+  <div matColumnDef="Status">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Status</label>
     </th>
     <td *matCellDef="let coupon"> 
