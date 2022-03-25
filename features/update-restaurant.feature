@@ -18,3 +18,12 @@
         When try to finish the restaurant data update
         Then an error message shows up saying that the current password given is wrong
         And he can close the modal and get back to the edition screen
+
+    iii Scenario: Client insert an invalid CNPJ
+        Given Eduardo is the restaurant system admin 
+        And want to change the CNPJ of the restaurant
+        And is on the "Edit restaurant" screen
+        And he place the CNPJ 1234567800019 in the CNPJ field
+        When try to finish the restaurant data update
+        Then an error message shows up saying that the CNPJ given is invalid
+        And he can close the modal and get back to the edition screen
