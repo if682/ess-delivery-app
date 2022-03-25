@@ -1,0 +1,17 @@
+Feature: Cadastro e login de usuários
+
+Como responsável
+Eu quero ser capaz de logar na minha conta
+Para que seja possível utilizar a plataforma
+
+Cenário: Login bem sucedido
+Dado que o usuário esteja na página de login do sistema
+E existe um usuário cadastrado com E-MAIL "maria@ufpe.br" e SENHA "5678"
+Quando o usuário preencher E-MAIL "maria@ufpe.br" e SENHA "5678"
+Então o login é concluído e o usuário é redirecionado para a página inicial de acordo com o tipo do seu usuário
+
+Cenário: Login mal sucedido
+Dado que o usuário esteja na página de login do sistema
+E não existe um usuário cadastrado com E-MAIL "maria@ufpe.br" e SENHA "5678"
+Quando o usuário preencher E-MAIL "maria@ufpe.br" e SENHA "5678"
+Então o login não é concluído e aparece uma mensagem de erro na tela, informando que alguma informação foi inserida incorretamente
