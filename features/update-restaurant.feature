@@ -27,3 +27,12 @@
         When try to finish the restaurant data update
         Then an error message shows up saying that the CNPJ given is invalid
         And he can close the modal and get back to the edition screen
+
+    iv Scenario: Client leave a mandatory field blank
+        Given Eduardo is the restaurant system admin 
+        And want to change the street name of the restaurant
+        And is on the "Edit restaurant" screen
+        And change the data from the field "Restaurant name" to "" (empty string)
+        When try to finish the restaurant data update
+        Then an error message is showed below the street name field saying that the field needs to be filled
+        And he can close the modal and get back to the edition screen
