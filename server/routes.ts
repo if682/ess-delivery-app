@@ -85,14 +85,21 @@ routes.post('/promotion', function(req, res){
 //   }
 // })
 
-routes.put('/promotion', function (req, res) {
+routes.put('/promotion/:id', function (req, res) {
+  const id = req.params.id;
   const coupon: Coupon = <Coupon> req.body;
-  const result = promotionService.update(coupon);
+  const result = promotionService.update(id, coupon);
+
+  const message = `Coupon ${id} has been updated.`;
+  const err = `Coupon ${id} could not be found.`;
+
   if (result) {
-    res.send(result);
+    res.send({ message: message});
+    console.log(message);
   } else {
-    res.status(404).send({ message: `Coupon ${coupon.id} could not be found.`});
+    res.status(404).send({ message: err});
   }
+  
 })
 
 export default routes;

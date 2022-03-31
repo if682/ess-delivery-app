@@ -8,21 +8,33 @@ export class PromotionService {
   add(coupon: Coupon): Coupon {
     const idCount = crypto.randomBytes(4).toString('HEX'); 
     //serve para ele gerar 4 bytes de caracteres aleatórios e depois transformar tudo em uma sting no formato hexadecimal
-    
-    // if (this.coupons.length >= 10) return null;
+
     const newCoupon = new Coupon(<Coupon> { id: idCount, ...coupon });
     // if (newCoupon.price <= 0) {
     //   throw Error("Price can't equal or less than zero")
     // }
-    console.log(this.coupons)
+    console.log(newCoupon);
+
     this.coupons.push(newCoupon);
     return newCoupon;
+  
+  }
+  
+  getById(couponId: string) : Coupon {
+    return this.coupons.find(({ id }) => id == couponId);
   }
 
-  update(coupon: Coupon) : Coupon {
-    console.log(this.coupons)
-    var result : Coupon = this.coupons.find(c => c.id == c.id);
-    if (result) result.update(coupon);
+  update(couponId: string, coupon: Coupon) : Coupon {
+    var result: Coupon = this.getById(couponId);
+    var couponIndex = this.coupons.findIndex((result) => result.id == couponId); // retorna o índice do cupom no array
+
+    if (result) {
+      this.coupons[couponIndex] = <Coupon> { 
+        ...this.coupons[couponIndex],  // preserva tudo que já tem no cupom 
+        ...coupon                      // altera apenas o que é necessário
+      }      
+    }
+
     return result;
   }
 
@@ -30,7 +42,4 @@ export class PromotionService {
     return this.coupons;
   }
   
-  getById(couponId: string) : Coupon {
-    return this.coupons.find(({ id }) => id == couponId);
-  }
 }
