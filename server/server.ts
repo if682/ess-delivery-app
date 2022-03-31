@@ -1,8 +1,9 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import { CarService } from './src/cars-service';
-import { Car } from './src/car';
+import { ClientService } from './src/clients-service';
+import { Client } from './src/client';
+var fs = require('fs');
 
 var app = express();
 
@@ -16,53 +17,61 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
-var carService: CarService = new CarService();
+var clientService: ClientService = new ClientService();
+var clientFile = './database/client.txt';
 
-app.get('/cars', function(req, res){
-  const cars = carService.get();
-  res.send(JSON.stringify(cars));
-});
-
-app.get('/cars/:id', function(req, res){
-  const id = req.params.id;
-  const car = carService.getById(id);
-  if (car) {
-    res.send(car);
-  } else {
-    res.status(404).send({ message: `Car ${id} could not be found`});
-  }
-});
-
-app.post('/cars', function(req: express.Request, res: express.Response){
-  const car: Car = <Car> req.body;
+app.post('/client', async function(req: express.Request, res: express.Response){ // adicionar cliente
+  const client: Client = <Client> req.body;
   try {
-    const result = carService.add(car);
+    const result = clientService.add(client);
+    setClients()
     if (result) {
       res.status(201).send(result);
     } else {
-      res.status(403).send({ message: "Car list is full"});
+      res.status(403).send({ message: "Client could not be add"});
     }
   } catch (err) {
     const {message} = err;
-    res.status(400).send({ message })
+    res.status(400).send({ message });
   }
 });
 
-app.put('/cars', function (req: express.Request, res: express.Response) {
-  const car: Car = <Car> req.body;
-  const result = carService.update(car);
-  if (result) {
-    res.send(result);
-  } else {
-    res.status(404).send({ message: `Car ${car.id} could not be found.`});
+function getClients() : void {
+  fs.readFile(clientFile, 'utf8', function(err: any, data: { toString: () => string; }) {
+    if(err) throw err;
+
+    const arr = data.toString().replace(/\r\n/g,'\n').split('\n');
+
+    for (let i of arr) {
+      if (i) {
+        console.log(JSON.parse(i.replace('\n', '')));
+        clientService.clients.push(JSON.parse(i.replace('\n', '')));
+        clientService.idCount++;
+      }
+    }
+  });
+}
+
+function setClients() : void {
+  fs.writeFile(clientFile, '', function(err: any){
+    if(err) throw err;
+  });
+
+  for (let i of clientService.clients) {
+    fs.appendFile(clientFile, JSON.stringify(i)+'\n', function(err: any){
+      if(err) throw err;
+    });
   }
-})
+
+}
 
 var server = app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-})
+  console.log('Example app listening on port 3000!');
+  getClients();
+});
 
 function closeServer(): void {
+  console.log('bye');
   server.close();
 }
 
