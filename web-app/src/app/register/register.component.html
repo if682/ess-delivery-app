@@ -1,0 +1,23 @@
+<table>
+<tr>
+   <td><label>Name </label></td>
+   <td><input id="client-name-input" [(ngModel)]="client.name" ></td>
+</tr>
+<tr>
+   <td><label>CPF </label></td>
+   <td><input id="client-cpf-input" [(ngModel)]="client.cpf" ></td>
+</tr>
+<tr>
+   <td><label>Telefone </label></td>
+   <td><input id="client-phone-input" [(ngModel)]="client.phone" ></td>
+</tr>
+<tr>
+   <td><label>E-mail </label></td>
+   <td><input id="client-email-input" [(ngModel)]="client.email" ></td>
+</tr>
+<tr>
+   <td><label>Senha </label></td>
+   <td><input id="client-password-input" [(ngModel)]="client.password" ></td>
+</tr>
+</table>
+<button id="register-client" (click)="createClient(client)">Adicionar</button>
