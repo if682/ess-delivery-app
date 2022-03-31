@@ -23,6 +23,15 @@ export class ClientService {
     return result;
   }
 
+  delete(clientId: number): any {
+    if (this.getById(clientId)){
+      this.clients = this.clients.filter(c => c.id !== clientId);
+      return clientId;
+    }
+
+    return null;
+  }
+
   get() : Client[] {
     return this.clients;
   }

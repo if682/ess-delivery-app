@@ -1,5 +1,7 @@
 import { Injectable }    from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs';
+import { retry, map } from 'rxjs/operators';
 
 import { Client } from './client';
 
@@ -11,11 +13,22 @@ export class ClientService {
 
   constructor(private http: Http) { }
 
-    create(client: Client): Promise<Client> {
-    return this.http.post(this.taURL + "/client",JSON.stringify(client), {headers: this.headers})
+  create(client: Client): Promise<Client> {
+    return this.http.post(this.taURL + "/client", JSON.stringify(client), {headers: this.headers})
       .toPromise()
       .then(res => {
-        if (res.status === 201) {return client;} else {return null;}
+        if (res.status === 201) return client;
+        else return null;
+      })
+      .catch(this.catch);
+  }
+
+  delete(client: Client) : Promise<Client> {
+    return this.http.delete(this.taURL + `/client/${client.id}`, {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) return client;
+        else return null;
       })
       .catch(this.catch);
   }
