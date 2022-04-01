@@ -53,6 +53,17 @@ export class ClientService {
       .catch(this.catch);
   }
 
+  login(email: string, password: string): Promise<Client> {
+    var body = { email: email, password: password }
+    return this.http.post(this.taURL + "/client/login", JSON.stringify(body), {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) return true;
+        else return false;
+      })
+      .catch(this.catch);
+  }
+
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);
     return Promise.reject(erro.message || erro);

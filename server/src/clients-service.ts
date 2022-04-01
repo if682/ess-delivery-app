@@ -33,6 +33,15 @@ export class ClientService {
     return null;
   }
 
+  authenticate(email: string, password: string) {
+    var result : Client = this.clients.find(c => c.email === email);
+    if (result && result.password === password) {
+      return true;
+    }
+
+    return false;
+  }
+
   get() : Client[] {
     return this.clients;
   }

@@ -21,6 +21,7 @@ var clientService: ClientService = new ClientService();
 var clientFile = './database/client.txt';
 
 app.get('/clients', function(req: express.Request, res: express.Response){ // adicionar cliente
+  // get client list
   try {
     const result = clientService.get();
 
@@ -36,6 +37,7 @@ app.get('/clients', function(req: express.Request, res: express.Response){ // ad
 });
 
 app.get('/client/:id', function(req: express.Request, res: express.Response){ // adicionar cliente
+  // get client data by ID
   const id: number = <number> req.params.id;
   try {
     const result = clientService.getById(id);
@@ -52,6 +54,7 @@ app.get('/client/:id', function(req: express.Request, res: express.Response){ //
 });
 
 app.post('/client', function(req: express.Request, res: express.Response){ // adicionar cliente
+  // register
   const client: Client = <Client> req.body;
   try {
     const result = clientService.add(client);
@@ -69,6 +72,7 @@ app.post('/client', function(req: express.Request, res: express.Response){ // ad
 });
 
 app.delete('/client/:id', function (req: express.Request, res: express.Response) {
+  // delete
   const id: number = <number> req.params.id;
   try {
     const result = clientService.delete(id);
@@ -87,6 +91,7 @@ app.delete('/client/:id', function (req: express.Request, res: express.Response)
 });
 
 app.put('/client', function (req: express.Request, res: express.Response) {
+  // update
   const client: Client = <Client> req.body;
   try {
     const result = clientService.update(client);
@@ -101,7 +106,25 @@ app.put('/client', function (req: express.Request, res: express.Response) {
     const {message} = err;
     res.status(400).send({ message });
   }
-})
+});
+
+app.post('/client/login', function(req: express.Request, res: express.Response){ 
+  // login
+  const email: string = <string> req.body.email;
+  const password: string = <string> req.body.password;
+  try {
+    const result = clientService.authenticate(email, password);
+
+    if (result) {
+      res.status(201).send({ message: "Client authenticated"});
+    } else {
+      res.status(403).send({ message: "Client could not authenticate"});
+    }
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send({ message });
+  }
+});
 
 function getClients() : void {
   fs.readFile(clientFile, 'utf8', function(err: any, data: { toString: () => string; }) {
