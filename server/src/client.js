@@ -8,7 +8,7 @@ class Client {
         this.password = client.password;
         this.pay_method = "";
         this.addresses = [];
-        this.requests = [];
+        this.orders = [];
     }
     update(client) {
         this.name = client.name;

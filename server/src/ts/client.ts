@@ -7,7 +7,7 @@ export class Client {
   password: string;
   pay_method: string;
   addresses: string[];
-  requests: string[];
+  orders: string[];
 
   constructor(client: Client) {
     this.id = client.id;
@@ -18,7 +18,7 @@ export class Client {
     this.password = client.password;
     this.pay_method = "";
     this.addresses = [];
-    this.requests = [];
+    this.orders = [];
   }
 
   update(client: Client): void {

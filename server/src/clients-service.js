@@ -1,9 +1,10 @@
 const {Client} = require("./client");
+const {DBService} = require("../database/database")
 
 class ClientService {
 
     constructor() {
-        this.clients = [];
+        this.clients = new DBService('client');
         this.idCount = 0;
     }
 
@@ -23,31 +24,34 @@ class ClientService {
             email: client.email,
             password: client.password
         });
-        this.clients.push(newClient);
+        this.clients.add(newClient);
+
         this.idCount++;
         return newClient;
     }
 
     update(client) {
-        var result = this.clients.find(c => c.id === client.id);
-        if (result)
-            result.update(client);
-
-        return result;
+        var data = this.clients.getData().find(({ id }) => id == client.id);
+        if (data){
+            var index = this.clients.getData().indexOf(data);
+            this.clients.update(index, client);
+            return client;
+        }
+        return null;
     }
 
     delete(clientId) {
-        var client = this.getById(clientId);
-        if (client) {
-            var index = this.clients.indexOf(client);
-            this.clients.splice(index, 1);
+        var data = this.clients.getData().find(({ id }) => id == clientId);
+        if (data){
+            var index = this.clients.getData().indexOf(data);
+            this.clients.delete(index);
             return clientId;
         }
         return null;
     }
 
     authenticate(email, password) {
-        var result = this.clients.find(c => c.email === email);
+        var result = this.clients.getData().find(c => c.email === email);
         if (result && result.password === password) {
             return true;
         }
@@ -55,23 +59,23 @@ class ClientService {
     }
 
     get() {
-        return this.clients;
+        return this.clients.getData();
     }
 
     getById(clientId) {
-        return this.clients.find(({ id }) => id == clientId);
+        return this.clients.getData().find(({ id }) => id == clientId);
     }
 
     cpfRegistered(cpf) {
-        return this.clients.find(c => c.cpf === cpf) ? true : false;
+        return this.clients.getData().find(c => c.cpf === cpf) ? true : false;
     }
 
     emailRegistered(email) {
-        return this.clients.find(c => c.email === email) ? true : false;
+        return this.clients.getData().find(c => c.email === email) ? true : false;
     }
 
     phoneRegistered(phone) {
-        return this.clients.find(c => c.phone === phone) ? true : false;
+        return this.clients.getData().find(c => c.phone === phone) ? true : false;
     }
 }
 exports.ClientService = ClientService;

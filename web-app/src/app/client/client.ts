@@ -7,7 +7,7 @@ export class Client {
   password: string;
   pay_method: string;
   addresses: string[];
-  requests: string[];
+  orders: string[];
 
   constructor() { }
 }
