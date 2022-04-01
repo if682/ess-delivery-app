@@ -1,5 +1,9 @@
 const {Client} = require("./client");
-const {DBService} = require("../database/database")
+const {DBService} = require("../database/database");
+
+var nodemailer = require('nodemailer');
+const COMPANY_EMAIL = 'fomiauu@gmail.com';
+const COMPANY_PASSWORD = 'mgot qlcj oojz krvp';
 
 class ClientService {
 
@@ -76,6 +80,42 @@ class ClientService {
 
     phoneRegistered(phone) {
         return this.clients.getData().find(c => c.phone === phone) ? true : false;
+    }
+
+    forgotPassword(clientId) {
+        var data = this.getById(clientId);
+        return this.sendEmail({
+            email: data.email,
+            subject: 'Redefina sua senha agora',
+            text: '--- link para redefinir a senha ---'
+        });
+    }
+
+    async sendEmail(body) {
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: COMPANY_EMAIL,
+              pass: COMPANY_PASSWORD
+            }
+        });
+          
+        var mailOptions = {
+            from: COMPANY_EMAIL,
+            to: body.email,
+            subject: body.subject,
+            text: body.text
+        };
+          
+        await transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+                return false;
+            } else {
+                console.log('Email sent: ' + info.response);
+                return true;
+            }
+        });
     }
 }
 exports.ClientService = ClientService;

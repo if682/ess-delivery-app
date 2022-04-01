@@ -127,6 +127,24 @@ app.post('/client/login', function (req, res) {
     }
 });
 
+app.post('/client/forgot_password/:id', function (req, res) {
+  // login
+  const id = req.params.id;
+  try {
+    const result = clientService.forgotPassword(id);
+    if (result) {
+      res.status(201).send({ message: "E-mail sent" });
+    }
+    else {
+      res.status(403).send({ message: "E-mail not sent" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
 var server = app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
