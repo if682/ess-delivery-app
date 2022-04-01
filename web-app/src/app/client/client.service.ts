@@ -23,6 +23,16 @@ export class ClientService {
       .catch(this.catch);
   }
 
+  update(client: Client): Promise<Client> {
+    return this.http.put(this.taURL + "/client", JSON.stringify(client), {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) return client;
+        else return null;
+      })
+      .catch(this.catch);
+  }
+
   delete(client: Client) : Promise<Client> {
     return this.http.delete(this.taURL + `/client/${client.id}`, {headers: this.headers})
       .toPromise()

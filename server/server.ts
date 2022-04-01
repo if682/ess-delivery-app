@@ -25,6 +25,7 @@ app.post('/client', function(req: express.Request, res: express.Response){ // ad
   try {
     const result = clientService.add(client);
     setClients();
+
     if (result) {
       res.status(201).send(result);
     } else {
@@ -38,12 +39,33 @@ app.post('/client', function(req: express.Request, res: express.Response){ // ad
 
 app.delete('/client/:id', function (req: express.Request, res: express.Response) {
   const id: number = <number> req.params.id;
-  const result = clientService.delete(id);
-  setClients();
-  if (result) {
-    res.status(201).send({ message: "Client successfully deleted"});
-  } else {
-    res.status(403).send({ message: "Client could not be deleted"});
+  try {
+    const result = clientService.delete(id);
+    setClients();
+
+    if (result) {
+      res.status(201).send({ message: "Client successfully deleted"});
+    } else {
+      res.status(403).send({ message: "Client could not be deleted"});
+    }
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send({ message });
+  }
+});
+
+app.put('/client', function (req: express.Request, res: express.Response) {
+  const client: Client = <Client> req.body;
+  try {
+    var result = clientService.update(client);
+    if (result) {
+      res.status(201).send(result);
+    } else {
+      res.status(403).send({ message: "Client could not be updated"});
+    }
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send({ message });
   }
 })
 
