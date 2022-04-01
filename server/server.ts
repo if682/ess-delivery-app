@@ -57,6 +57,7 @@ app.delete('/client/:id', function (req: express.Request, res: express.Response)
   const id: number = <number> req.params.id;
   try {
     const result = clientService.delete(id);
+    console.log('result:', result);
     setClients();
 
     if (result) {
@@ -96,8 +97,9 @@ function getClients() : void {
     for (let i of arr) {
       if (i) {
         //console.log(JSON.parse(i.replace('\n', '')));
-        clientService.clients.push(JSON.parse(i.replace('\n', '')));
-        clientService.idCount++;
+        var obj = JSON.parse(i.replace('\n', ''));
+        clientService.clients.push(obj);
+        clientService.idCount = clientService.idCount > obj.id + 1 ? clientService.idCount : obj.id + 1;
       }
     }
   });

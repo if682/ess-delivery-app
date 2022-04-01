@@ -17,15 +17,16 @@ export class ClientService {
   }
 
   update(client: Client) : Client {
-    console.log(this.clients);
     var result : Client = this.clients.find(c => c.id === client.id);
     if (result) result.update(client);
     return result;
   }
 
   delete(clientId: number): any {
-    if (this.getById(clientId)){
-      this.clients = this.clients.filter(c => c.id !== clientId);
+    var client = this.getById(clientId);
+    if (client){
+      var index = this.clients.indexOf(client);
+      this.clients.splice(index, 1);
       return clientId;
     }
 
