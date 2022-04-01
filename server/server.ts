@@ -20,6 +20,21 @@ app.use(bodyParser.json());
 var clientService: ClientService = new ClientService();
 var clientFile = './database/client.txt';
 
+app.get('/clients', function(req: express.Request, res: express.Response){ // adicionar cliente
+  try {
+    const result = clientService.get();
+
+    if (result) {
+      res.status(201).send(result);
+    } else {
+      res.status(403).send({ message: "Client list could not be found"});
+    }
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send({ message });
+  }
+});
+
 app.get('/client/:id', function(req: express.Request, res: express.Response){ // adicionar cliente
   const id: number = <number> req.params.id;
   try {
