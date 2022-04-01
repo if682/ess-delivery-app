@@ -20,6 +20,22 @@ app.use(bodyParser.json());
 var clientService: ClientService = new ClientService();
 var clientFile = './database/client.txt';
 
+app.get('/client/:id', function(req: express.Request, res: express.Response){ // adicionar cliente
+  const id: number = <number> req.params.id;
+  try {
+    const result = clientService.getById(id);
+
+    if (result) {
+      res.status(201).send(result);
+    } else {
+      res.status(403).send({ message: "Client could not be found"});
+    }
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send({ message });
+  }
+});
+
 app.post('/client', function(req: express.Request, res: express.Response){ // adicionar cliente
   const client: Client = <Client> req.body;
   try {
@@ -57,7 +73,9 @@ app.delete('/client/:id', function (req: express.Request, res: express.Response)
 app.put('/client', function (req: express.Request, res: express.Response) {
   const client: Client = <Client> req.body;
   try {
-    var result = clientService.update(client);
+    const result = clientService.update(client);
+    setClients();
+
     if (result) {
       res.status(201).send(result);
     } else {
@@ -104,7 +122,6 @@ var server = app.listen(3000, function () {
 });
 
 function closeServer(): void {
-  console.log('bye');
   server.close();
 }
 

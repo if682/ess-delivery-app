@@ -13,6 +13,16 @@ export class ClientService {
 
   constructor(private http: Http) { }
 
+  getById(id: string) : Promise<Client> {
+    return this.http.delete(this.taURL + `/client/${id}`, {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) return res;
+        else return null;
+      })
+      .catch(this.catch);
+  }
+  
   create(client: Client): Promise<Client> {
     return this.http.post(this.taURL + "/client", JSON.stringify(client), {headers: this.headers})
       .toPromise()
