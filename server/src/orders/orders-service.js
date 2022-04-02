@@ -12,8 +12,12 @@ class OrderService {
         this.idCount = this.orders.getIdCount();
     }
 
-    get(id) {
-        return this.orders.getData().filter(({clientId}) => clientId == id);
+    getByClientId(client_id) {
+        return this.orders.getData().filter(({clientId}) => clientId == client_id);
+    }
+
+    getByRestaurantId(restaurant_id) {
+        return this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
     }
 
     

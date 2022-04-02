@@ -147,11 +147,29 @@ app.post('/client/forgot_password/:email', function (req, res) {
   }
 });
 
-app.get('/orders/:clientId', function (req, res) {
+app.get('/orders/client/:clientId', function (req, res) {
   // get order list
   const clientId = req.params.clientId;
   try {
-    const result = orderService.get(clientId);
+    const result = orderService.getByClientId(clientId);
+    if (result) {
+      res.status(201).send(result);
+    }
+    else {
+      res.status(403).send({ message: "Order list could not be found" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
+app.get('/orders/restaurant/:restaurantId', function (req, res) {
+  // get order list
+  const restaurantId = req.params.restaurantId;
+  try {
+    const result = orderService.getByRestaurantId(restaurantId);
     if (result) {
       res.status(201).send(result);
     }
