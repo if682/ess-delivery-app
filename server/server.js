@@ -200,6 +200,24 @@ app.get('/orders/restaurant/:restaurantId', function (req, res) {
   }
 });
 
+app.post('/order', function (req, res) {
+  // register
+  const order = req.body;
+  try {
+    const result = orderService.add(order);
+    if (result) {
+      res.status(201).send(result);
+    }
+    else {
+      res.status(403).send({ message: "Order could not be added" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
 var server = app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

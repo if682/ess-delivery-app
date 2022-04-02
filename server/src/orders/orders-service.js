@@ -24,6 +24,25 @@ class OrderService {
         return this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
     }
 
+    add(order) {
+        var date = new Date();
+        date.setTime( date.getTime() - date.getTimezoneOffset()*60*1000 );
+        var newOrder = new Order({
+            id: this.idCount,
+            clientId: order.clientId,
+            restaurantId: order.restaurantId,
+            address: order.address, 
+            items: order.items, 
+            cost: order.cost,
+            deliveryTax: order.deliveryTax,
+            created_at: date
+        });
+        this.orders.add(newOrder);
+
+        this.idCount++;
+        return newOrder;
+    }
+
     
 }
 exports.OrderService = OrderService;
