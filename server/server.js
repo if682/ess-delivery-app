@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const {ClientService} = require("./src/clients/clients-service");
+const {OrderService} = require("./src/orders/orders-service");
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
 var clientService = new ClientService();
+var orderService = new OrderService();
 
 app.get('/clients', function (req, res) {
     // get client list
@@ -137,6 +139,24 @@ app.post('/client/forgot_password/:email', function (req, res) {
     }
     else {
       res.status(403).send({ message: "E-mail not sent" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
+app.get('/orders/:clientId', function (req, res) {
+  // get order list
+  const clientId = req.params.clientId;
+  try {
+    const result = orderService.get(clientId);
+    if (result) {
+      res.status(201).send(result);
+    }
+    else {
+      res.status(403).send({ message: "Order list could not be found" });
     }
   }
   catch (err) {

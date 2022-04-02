@@ -12,6 +12,10 @@ class OrderService {
         this.idCount = this.orders.getIdCount();
     }
 
+    get(id) {
+        return this.orders.getData().filter(({clientId}) => clientId == id);
+    }
+
     
 }
-exports.ClientService = ClientService;
+exports.OrderService = OrderService;
