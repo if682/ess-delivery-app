@@ -129,6 +129,25 @@ app.post('/client/login', function (req, res) {
     }
 });
 
+app.post('/client/check_password/:id', function (req, res) {
+  // login
+  const id = req.params.id;
+  const password = req.body.password;
+  try {
+    const result = clientService.checkPassword(id, password);
+    if (result) {
+      res.status(201).send({ message: "Correct password" });
+    }
+    else {
+      res.status(403).send({ message: "Incorrect password" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
 app.post('/client/forgot_password/:email', function (req, res) {
   // login
   const email = req.params.email;

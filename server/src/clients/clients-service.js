@@ -67,10 +67,14 @@ class ClientService {
     }
 
     authenticate(email, password) {
-        var result = this.clients.getData().find(c => c.email === email);
-        if (result && result.password === password) {
-            return true;
-        }
+        var client = this.getByEmail(email);
+        if (client && client.password === password) return true;
+        return false;
+    }
+
+    checkPassword(clientId, password) {
+        var client = this.getById(clientId);
+        if (client && client.password === password) return true;
         return false;
     }
 
