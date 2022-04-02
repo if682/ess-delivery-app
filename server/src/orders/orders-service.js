@@ -2,6 +2,7 @@ const {Order} = require("./order");
 const {DBService} = require("../../database/database");
 
 var nodemailer = require('nodemailer');
+const { isTaggedTemplateExpression } = require("typescript");
 const COMPANY_EMAIL = 'fomiauu@gmail.com';
 const COMPANY_PASSWORD = 'mgot qlcj oojz krvp';
 
@@ -22,6 +23,11 @@ class OrderService {
 
     getByRestaurantId(restaurant_id) {
         return this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
+    }
+
+    getTotalOrders(client_id) {
+        var data = this.getByClientId(client_id);
+        return data.length;
     }
 
     add(order) {

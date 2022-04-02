@@ -200,6 +200,24 @@ app.get('/orders/restaurant/:restaurantId', function (req, res) {
   }
 });
 
+app.get('/orders/total_orders/:clientId', function (req, res) {
+  // get order qt
+  const clientId = req.params.clientId;
+  try {
+    const result = orderService.getTotalOrders(clientId);
+    if (result >= 0) {
+      res.status(201).send({total_orders: result});
+    }
+    else {
+      res.status(403).send({ message: "Order list could not be found" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
 app.post('/order', function (req, res) {
   // register
   const order = req.body;
