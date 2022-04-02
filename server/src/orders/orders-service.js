@@ -12,6 +12,10 @@ class OrderService {
         this.idCount = this.orders.getIdCount();
     }
 
+    get() {
+        return this.orders.getData();
+    }
+
     getByClientId(client_id) {
         return this.orders.getData().filter(({clientId}) => clientId == client_id);
     }
