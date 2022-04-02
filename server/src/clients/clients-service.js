@@ -1,5 +1,5 @@
 const {Client} = require("./client");
-const {DBService} = require("../database/database");
+const {DBService} = require("../../database/database");
 
 var nodemailer = require('nodemailer');
 const COMPANY_EMAIL = 'fomiauu@gmail.com';
@@ -8,8 +8,8 @@ const COMPANY_PASSWORD = 'mgot qlcj oojz krvp';
 class ClientService {
 
     constructor() {
-        this.clients = new DBService('client');
-        this.idCount = 0;
+        this.clients = new DBService('clients');
+        this.idCount = this.clients.getIdCount();
     }
 
     add(client) {

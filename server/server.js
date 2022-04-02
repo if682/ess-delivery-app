@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const {ClientService} = require("./src/clients-service");
+const {ClientService} = require("./src/clients/clients-service");
 
 var app = express();
 

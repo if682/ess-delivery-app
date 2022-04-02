@@ -26,6 +26,14 @@ class DBService {
         return this.data[this.name];
     }
 
+    getIdCount() {
+        var count = 0;
+        for(let i of this.data[this.name]) {
+            count = count > i.id + 1 ? count : i.id + 1;
+        }
+        return count;
+    }
+
     add(data) {
         this.data[this.name].push(data);
         this.write();
