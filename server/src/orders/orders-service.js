@@ -43,6 +43,16 @@ class OrderService {
         return newOrder;
     }
 
+    delete(orderId) {
+        var data = this.orders.getData().find(({ id }) => id == orderId);
+        if (data){
+            var index = this.orders.getData().indexOf(data);
+            this.orders.delete(index);
+            return orderId;
+        }
+        return null;
+    }
+
     
 }
 exports.OrderService = OrderService;

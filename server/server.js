@@ -218,6 +218,24 @@ app.post('/order', function (req, res) {
   }
 });
 
+app.delete('/order/:id', function (req, res) {
+  // delete
+  const id = req.params.id;
+  try {
+    const result = orderService.delete(id);
+    if (result) {
+      res.status(201).send({ message: "Order successfully deleted" });
+    }
+    else {
+      res.status(403).send({ message: "Order could not be deleted" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
 var server = app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
