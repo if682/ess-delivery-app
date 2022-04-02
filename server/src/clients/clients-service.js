@@ -12,6 +12,18 @@ class ClientService {
         this.idCount = this.clients.getIdCount();
     }
 
+    get() {
+        return this.clients.getData();
+    }
+
+    getById(clientId) {
+        return this.clients.getData().find(({ id }) => id == clientId);
+    }
+
+    getByEmail(clientEmail) {
+        return this.clients.getData().find(({ email }) => email == clientEmail);
+    }
+
     add(client) {
         if (this.cpfRegistered(client.cpf))
             return null;
@@ -62,16 +74,17 @@ class ClientService {
         return false;
     }
 
-    get() {
-        return this.clients.getData();
-    }
+    forgotPassword(email) {
+        var data = this.getByEmail(email);
+        if (data) {
+            return this.sendEmail({
+                email: data.email,
+                subject: 'Redefina sua senha agora',
+                text: '--- link para redefinir a senha ---'
+            });
+        }
 
-    getById(clientId) {
-        return this.clients.getData().find(({ id }) => id == clientId);
-    }
-
-    getByEmail(clientEmail) {
-        return this.clients.getData().find(({ email }) => email == clientEmail);
+        return null;
     }
 
     cpfRegistered(cpf) {
@@ -84,19 +97,6 @@ class ClientService {
 
     phoneRegistered(phone) {
         return this.clients.getData().find(c => c.phone === phone) ? true : false;
-    }
-
-    forgotPassword(email) {
-        var data = this.getByEmail(email);
-        if (data) {
-            return this.sendEmail({
-                email: data.email,
-                subject: 'Redefina sua senha agora',
-                text: '--- link para redefinir a senha ---'
-            });
-        }
-
-        return null;
     }
 
     async sendEmail(body) {
