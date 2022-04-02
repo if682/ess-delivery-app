@@ -64,6 +64,16 @@ export class ClientService {
       .catch(this.catch);
   }
 
+  forgot_password(email: string) : Promise<Client> {
+    return this.http.delete(this.taURL + `/client/forgot_password/${email}`, {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) return true;
+        else return null;
+      })
+      .catch(this.catch);
+  }
+
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);
     return Promise.reject(erro.message || erro);

@@ -127,11 +127,11 @@ app.post('/client/login', function (req, res) {
     }
 });
 
-app.post('/client/forgot_password/:id', function (req, res) {
+app.post('/client/forgot_password/:email', function (req, res) {
   // login
-  const id = req.params.id;
+  const email = req.params.email;
   try {
-    const result = clientService.forgotPassword(id);
+    const result = clientService.forgotPassword(email);
     if (result) {
       res.status(201).send({ message: "E-mail sent" });
     }
