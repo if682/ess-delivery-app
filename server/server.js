@@ -147,10 +147,11 @@ app.post('/client/forgot_password/:email', function (req, res) {
   }
 });
 
-app.get('/orders', function (req, res) {
+app.get('/orders/:page', function (req, res) {
   // get order list
+  var page = req.params.page;
   try {
-    const result = orderService.get();
+    const result = orderService.get(page);
     if (result) {
       res.status(201).send(result);
     }
@@ -164,11 +165,12 @@ app.get('/orders', function (req, res) {
   }
 });
 
-app.get('/orders/client/:clientId', function (req, res) {
+app.get('/orders/client/:clientId/:page', function (req, res) {
   // get order list
   const clientId = req.params.clientId;
+  const page = req.params.page;
   try {
-    const result = orderService.getByClientId(clientId);
+    const result = orderService.getByClientId(clientId, page);
     if (result) {
       res.status(201).send(result);
     }
@@ -182,11 +184,12 @@ app.get('/orders/client/:clientId', function (req, res) {
   }
 });
 
-app.get('/orders/restaurant/:restaurantId', function (req, res) {
+app.get('/orders/restaurant/:restaurantId/:page', function (req, res) {
   // get order list
   const restaurantId = req.params.restaurantId;
+  const page = req.params.page;
   try {
-    const result = orderService.getByRestaurantId(restaurantId);
+    const result = orderService.getByRestaurantId(restaurantId, page);
     if (result) {
       res.status(201).send(result);
     }

@@ -5,6 +5,7 @@ var nodemailer = require('nodemailer');
 const { isTaggedTemplateExpression } = require("typescript");
 const COMPANY_EMAIL = 'fomiauu@gmail.com';
 const COMPANY_PASSWORD = 'mgot qlcj oojz krvp';
+const ordersPerPage = 3;
 
 class OrderService {
 
@@ -13,16 +14,34 @@ class OrderService {
         this.idCount = this.orders.getIdCount();
     }
 
-    get() {
-        return this.orders.getData();
+    get(page) {
+        var data = this.orders.getData();
+        if (page < 1 || ordersPerPage*(page-1) > data.length) return [];
+        
+        if (ordersPerPage >= data.length - ordersPerPage*(page-1)) {
+            return data.slice(ordersPerPage*(page-1))
+        };
+        return data.slice(ordersPerPage*(page-1), ordersPerPage);
     }
 
-    getByClientId(client_id) {
-        return this.orders.getData().filter(({clientId}) => clientId == client_id);
+    getByClientId(client_id, page) {
+        var data = this.orders.getData().filter(({clientId}) => clientId == client_id);
+        if (page < 1 || ordersPerPage*(page-1) > data.length) return [];
+        
+        if (ordersPerPage >= data.length - ordersPerPage*(page-1)) {
+            return data.slice(ordersPerPage*(page-1))
+        };
+        return data.slice(ordersPerPage*(page-1), ordersPerPage);
     }
 
-    getByRestaurantId(restaurant_id) {
-        return this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
+    getByRestaurantId(restaurant_id, page) {
+        var data = this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
+        if (page < 1 || ordersPerPage*(page-1) > data.length) return [];
+        
+        if (ordersPerPage >= data.length - ordersPerPage*(page-1)) {
+            return data.slice(ordersPerPage*(page-1))
+        };
+        return data.slice(ordersPerPage*(page-1), ordersPerPage);
     }
 
     getTotalOrders(client_id) {
