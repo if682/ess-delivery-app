@@ -14,18 +14,36 @@ class OrderService {
         this.idCount = this.orders.getIdCount();
     }
 
-    get(page) {
-        var data = this.orders.getData();
+    get(page, filters) {
+        var start = new Date(filters.start);
+        var end = new Date(filters.end);
+        var data = this.orders.getData().filter(item => {
+            var itemDate = new Date(item.created_at);
+            if (itemDate >= start && itemDate <= end) return true;
+            return false;
+        });
         return this.getByPage(data, page);
     }
 
-    getByClientId(client_id, page) {
-        var data = this.orders.getData().filter(({clientId}) => clientId == client_id);
+    getByClientId(client_id, page, filters) {
+        var start = new Date(filters.start);
+        var end = new Date(filters.end);
+        var data = this.orders.getData().filter(item => {
+            var itemDate = new Date(item.created_at);
+            if (item.clientId == client_id && itemDate >= start && itemDate <= end) return true;
+            return false;
+        });
         return this.getByPage(data, page);
     }
 
-    getByRestaurantId(restaurant_id, page) {
-        var data = this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
+    getByRestaurantId(restaurant_id, page, filters) {
+        var start = new Date(filters.start);
+        var end = new Date(filters.end);
+        var data = this.orders.getData().filter(item => {
+            var itemDate = new Date(item.created_at);
+            if (item.restaurantId == restaurant_id && itemDate >= start && itemDate <= end) return true;
+            return false;
+        });
         return this.getByPage(data, page);
     }
 

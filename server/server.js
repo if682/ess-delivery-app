@@ -150,8 +150,9 @@ app.post('/client/forgot_password/:email', function (req, res) {
 app.get('/orders/:page', function (req, res) {
   // get order list
   var page = req.params.page;
+  var filters = req.body;
   try {
-    const result = orderService.get(page);
+    const result = orderService.get(page, filters);
     if (result) {
       res.status(201).send(result);
     }
@@ -169,8 +170,9 @@ app.get('/orders/client/:clientId/:page', function (req, res) {
   // get order list
   const clientId = req.params.clientId;
   const page = req.params.page;
+  var filters = req.body;
   try {
-    const result = orderService.getByClientId(clientId, page);
+    const result = orderService.getByClientId(clientId, page, filters);
     if (result) {
       res.status(201).send(result);
     }
@@ -188,8 +190,9 @@ app.get('/orders/restaurant/:restaurantId/:page', function (req, res) {
   // get order list
   const restaurantId = req.params.restaurantId;
   const page = req.params.page;
+  var filters = req.body;
   try {
-    const result = orderService.getByRestaurantId(restaurantId, page);
+    const result = orderService.getByRestaurantId(restaurantId, page, filters);
     if (result) {
       res.status(201).send(result);
     }
