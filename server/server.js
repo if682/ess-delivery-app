@@ -279,6 +279,41 @@ app.delete('/order/:id', function (req, res) {
   }
 });
 
+app.get('/orders/analytics/:clientId', function (req, res) {
+  // get order list
+  const clientId = req.params.clientId;
+  var filters = req.body;
+  try {
+    const result = orderService.getAnalytics(clientId, filters);
+    /*
+    result = {
+      most_request = {
+        food = [ {name: "", total: 3},  {name: "", total: 2}],
+        total_food = 5,
+        restaurant = [ {name: "", total: 3}, {name: "", total: 2} ],
+        total_restaurant = 5
+      },
+      most_expensive = {
+        food = [ {name: "", total: 13.00},  {name: "", total: 5.00}],
+        total_food = 18.00,
+        restaurant = [ {name: "", total: 13.00}, {name: "", total: 5.00} ],
+        total_restaurant = 18.00
+      }
+    }
+    */
+    if (result) {
+      res.status(201).send(result);
+    }
+    else {
+      res.status(403).send({ message: "Order analytics could not be calculated" });
+    }
+  }
+  catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+
 var server = app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
