@@ -16,26 +16,20 @@ class OrderService {
 
     get(page) {
         var data = this.orders.getData();
-        if (page < 1 || ordersPerPage*(page-1) > data.length) return [];
-        
-        if (ordersPerPage >= data.length - ordersPerPage*(page-1)) {
-            return data.slice(ordersPerPage*(page-1))
-        };
-        return data.slice(ordersPerPage*(page-1), ordersPerPage);
+        return this.getByPage(data, page);
     }
 
     getByClientId(client_id, page) {
         var data = this.orders.getData().filter(({clientId}) => clientId == client_id);
-        if (page < 1 || ordersPerPage*(page-1) > data.length) return [];
-        
-        if (ordersPerPage >= data.length - ordersPerPage*(page-1)) {
-            return data.slice(ordersPerPage*(page-1))
-        };
-        return data.slice(ordersPerPage*(page-1), ordersPerPage);
+        return this.getByPage(data, page);
     }
 
     getByRestaurantId(restaurant_id, page) {
         var data = this.orders.getData().filter(({restaurantId}) => restaurantId == restaurant_id);
+        return this.getByPage(data, page);
+    }
+
+    getByPage(data, page) {
         if (page < 1 || ordersPerPage*(page-1) > data.length) return [];
         
         if (ordersPerPage >= data.length - ordersPerPage*(page-1)) {
@@ -45,7 +39,7 @@ class OrderService {
     }
 
     getTotalOrders(client_id) {
-        var data = this.getByClientId(client_id);
+        var data = this.orders.getData().filter(({clientId}) => clientId == client_id);
         return data.length;
     }
 
