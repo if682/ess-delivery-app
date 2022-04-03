@@ -1,0 +1,59 @@
+nav {
+  margin: 0;
+  padding: 0px 10px 0px 10px;
+  height: 80px;
+
+  background-color: #e93574;
+  color: #ffff;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.navbar-title {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+
+  font-family: Cherry Bomb One Regular;
+  font-size: 48px;
+
+  cursor: pointer;
+}
+
+.logo {
+  position: relative;
+  top: 13px;
+}
+
+.navbar-link {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(32px, auto));
+  column-gap: 10px;
+
+  font-family: ABeeZee Regular;
+  font-size: 24px;
+  line-height: 32px;
+
+  justify-self: right;
+  align-self: center;
+}
+
+.menu {
+  float: right;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+
+  width: 200px;
+  padding: 10px;
+
+  background-color: #e93574;
+
+  font-family: ABeeZee Regular;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+a {
+  color: #ffff;
+}
