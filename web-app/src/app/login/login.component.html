@@ -24,7 +24,9 @@
         placeholder="•••••••••"
         required
       />
-      <div class="psw"><a href="#">Esqueceu a senha?</a></div>
+      <div class="psw">
+        <a routerLink="../forgot-password/" href="#">Esqueceu a senha?</a>
+      </div>
       <div class="msg-erro">
         <span *ngIf="errouSenha">Senha e/ou e-mail incorretos!</span>
       </div>

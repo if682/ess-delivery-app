@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+   FormBuilder,
+   FormControl,
+   FormGroup,
+   Validators,
+ } from "@angular/forms";
 
 import { Client } from '../client/client';
 import { ClientService } from '../client/client.service';
@@ -10,20 +17,36 @@ import { ClientService } from '../client/client.service';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-   constructor(private clientService: ClientService) {}
-
+   
    email: string = '';
-   wrong_email: boolean = false;
+   errouEmail: boolean = false;
+   form: FormGroup;
+   enviouEmail: boolean = false;
+   
+   constructor(
+      private clientService: ClientService,
+      private router: Router
+   ) {
+      this.form = new FormGroup({
+         email: new FormControl()
+       });
+   }
 
-   sendEmail(email: string): void {
-      alert('mandando email para ' + email);
-      this.clientService.forgot_password(email)
+   sendEmail(): void {
+      this.clientService.forgot_password(this.form.value.email)
       .then(result => {
-         if (result) this.wrong_email = false;
-         else this.wrong_email = true;
+         if (result) {
+            this.errouEmail = false;
+            this.enviouEmail = true;
+         }
+         else this.errouEmail = true;
       })
       .catch(erro => alert(erro));
    }
+
+   goBackToLogin() {
+      this.router.navigateByUrl('../login');
+   };
 
    ngOnInit(): void {
       

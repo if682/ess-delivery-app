@@ -7,7 +7,7 @@ import { Client } from './client';
 export class ClientService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private taURL = 'http://localhost:3000';
-  private id: string = '';
+  private id: number = 0;
   private client: Client = new Client();
   private isLoggedIn: boolean = false;
   loggedInEmitter = new EventEmitter<boolean>();
@@ -22,7 +22,7 @@ export class ClientService {
     return this.isLoggedIn;
   }
 
-  getById(id: string): Promise<Client> {
+  getById(id: number): Promise<Client> {
     return this.http
       .get(this.taURL + `/client/${id}`, { headers: this.headers })
       .toPromise()
