@@ -13,14 +13,14 @@ export class ClientService {
 
   constructor(private http: Http) { }
 
-  getById(id: string) : Promise<Client> {
-    return this.http.delete(this.taURL + `/client/${id}`, {headers: this.headers})
-      .toPromise()
-      .then(res => {
-        if (res.status === 201) return res;
-        else return null;
-      })
-      .catch(this.catch);
+  getById(id: number) : Observable<any> {
+    return this.http.get(this.taURL + `/client/${id}`, {headers: this.headers})
+      .pipe(
+        map((result: any) => {
+          console.log('\n\n----------------'+JSON.stringify(result._body)+'----------------\n\n');
+          return result._body;
+        })
+      );
   }
   
   create(client: Client): Promise<Client> {
@@ -65,7 +65,7 @@ export class ClientService {
   }
 
   forgot_password(email: string) : Promise<Client> {
-    return this.http.delete(this.taURL + `/client/forgot_password/${email}`, {headers: this.headers})
+    return this.http.post(this.taURL + `/client/forgot_password/${email}`, {headers: this.headers})
       .toPromise()
       .then(res => {
         if (res.status === 201) return true;

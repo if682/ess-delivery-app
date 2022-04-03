@@ -84,7 +84,7 @@ class ClientService {
             return this.sendEmail({
                 email: data.email,
                 subject: 'Redefina sua senha agora',
-                text: '--- link para redefinir a senha ---'
+                text: 'http://localhost:4200/update-password?id=' + data.id
             });
         }
 

@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { ClientService } from './client/client.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,18 @@ import { ClientService } from './client/client.service';
       {
         path: 'register',
         component: RegisterComponent
+      }
+    ]),
+    RouterModule.forRoot([
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent
+      }
+    ]),
+    RouterModule.forRoot([
+      {
+        path: 'update-password',
+        component: UpdatePasswordComponent
       }
     ])
   ],

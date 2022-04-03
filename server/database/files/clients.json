@@ -4,11 +4,11 @@
             "id": 0,
             "name": "Aninha",
             "cpf": "123",
-            "phone": "123",
             "email": "alas3@cin.ufpe.br",
-            "password": "aninha123",
+            "phone": "123",
             "pay_method": "",
-            "addresses": []
+            "addresses": [],
+            "password": "aninha123"
         }
     ]
 }
