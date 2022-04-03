@@ -1,0 +1,46 @@
+<form [formGroup]="loginForm">
+  <div class="title-container">
+    <img src="assets/images/logo_80.png" alt="Logo" class="logo" />
+    <h3>foMiau</h3>
+  </div>
+
+  <div class="container">
+    <div class="item">
+      <label for="email">E-mail</label>
+      <input
+        formControlName="email"
+        type="email"
+        name="email"
+        placeholder="nome@email.com"
+        required
+      />
+    </div>
+    <div class="item">
+      <label for="psw">Senha</label>
+      <input
+        formControlName="password"
+        type="password"
+        name="psw"
+        placeholder="•••••••••"
+        required
+      />
+      <div class="psw"><a href="#">Esqueceu a senha?</a></div>
+      <div class="msg-erro">
+        <span *ngIf="errouSenha">Senha e/ou e-mail incorretos!</span>
+      </div>
+    </div>
+    <div class="item">
+      <button
+        class="button-medium"
+        type="submit"
+        (click)="login()"
+        [disabled]="!loginForm.valid"
+      >
+        Entrar
+      </button>
+      <div class="psw">
+        <a routerLink="../register/" href="#">Cadastre-se</a>
+      </div>
+    </div>
+  </div>
+</form>

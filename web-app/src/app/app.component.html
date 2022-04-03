@@ -1,6 +1,11 @@
 <html>
-    <body>
-        <nav-bar></nav-bar>
-        <router-outlet></router-outlet>
-    </body>
+  <body>
+    <div class="background-member" *ngIf="mostrarMenu">
+      <nav-bar></nav-bar>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="background-guest" *ngIf="!mostrarMenu">
+      <router-outlet></router-outlet>
+    </div>
+  </body>
 </html>

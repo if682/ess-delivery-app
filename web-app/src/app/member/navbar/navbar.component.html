@@ -1,0 +1,32 @@
+<nav>
+  <div class="navbar-title" name="fomiau" routerLink="/">
+    <img class="logo" src="assets/images/logo_80.png" routerLink="/" />
+    <span class="title">foMiau</span>
+  </div>
+  <div class="navbar-link">
+    <span>Olá, {{ this.name }}</span>
+    <img src="assets/images/cat_nav.png" />
+    <svg
+      width="31"
+      height="32"
+      viewBox="0 0 31 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      cursor="pointer"
+      (click)="clickMenu()"
+    >
+      <path
+        d="M2.00022 1.99998L29 1.99999M1.99997 13H29M2.00025 24H15.5001H29"
+        stroke="#F8FCFF"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+</nav>
+<!-- TODO: Mostrar menu lateral -->
+<div class="menu" *ngIf="isMenuOpen">
+  <a routerLink="/profile/">Perfil</a>
+  <a routerLink="/history/">Histórico</a>
+</div>
