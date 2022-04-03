@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-//import 'rxjs/add/operator/filter';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 
 import { Client } from '../client/client';
 import { ClientService } from '../client/client.service';
+import { range } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,30 +21,61 @@ export class UpdatePasswordComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.form = new FormGroup({
+      password1: new FormControl(),
+      password2: new FormControl()
+    });
+  }
 
+  form: FormGroup;
   id: number = 0;
   client: Client = new Client();
-  password = {
-    um: '',
-    dois: ''
-  }
-  wrong_password: boolean = false;
+  mudouSenha:boolean = false;
+  errouSenha = {
+    equals: false,
+    format: false
+  };
+  
 
-  update(c: Client) {
-    if (this.password.um === this.password.dois) {
-      c.password = this.password.um;
-      this.clientService.update(c)
-      .then(result => {
-        if (result) {
-          this.wrong_password = false;
-        } else this.wrong_password = true;
-      })
-      .catch(erro => alert(erro));
+  update() {
+    if (this.form.value.password1 === this.form.value.password2) {
+      var psw = this.form.value.password1;
+      if (psw.length >= 8 && this.hasNumber(psw) && this.hasUppercaseLetter(psw)) {
+        this.client.password = psw;
+        this.clientService.update(this.client)
+        .then(result => {
+          if (result) {
+            this.mudouSenha = true;
+          } else {
+            this.mudouSenha = false;
+          }
+        })
+        .catch(erro => alert(erro));
+      } else {
+        this.wrong_passwords(false, true);
+      }
 
     } else {
-      this.wrong_password = true;
+      this.wrong_passwords(true, false);
     }
+  }
+
+  hasNumber(psw: string) {
+    return /\d/.test(psw);
+  }
+
+  hasUppercaseLetter(psw: string) {
+    return /[A-Z]/.test(psw);
+  }
+
+  wrong_passwords(equals: boolean, format: boolean) {
+    this.errouSenha.equals = equals;
+    this.errouSenha.format = format;
+    setTimeout(() => {
+      this.errouSenha.equals = false;
+      this.errouSenha.format = false;
+    }, 2000);
   }
 
   ngOnInit(): void {
@@ -52,10 +89,8 @@ export class UpdatePasswordComponent implements OnInit {
     );
 
     this.clientService.getById(this.id)
-    .subscribe(result => {
+    .then(result => {
       if (result) {
-        result = JSON.parse(result);
-        console.log('\n\n----------------'+JSON.stringify(result.name)+'----------------\n\n');
         this.client.id = result.id;
         this.client.name = result.name;
         this.client.cpf = result.cpf;
