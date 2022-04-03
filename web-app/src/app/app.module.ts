@@ -7,14 +7,14 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CarsComponent } from './cars/cars.component';
-import { CarService } from './cars/cars.service';
+import { RegisterComponent } from './register/register.component';
+import { ClientService } from './client/client.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    CarsComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -23,12 +23,12 @@ import { CarService } from './cars/cars.service';
     HttpModule,
     RouterModule.forRoot([
       {
-        path: 'cars',
-        component: CarsComponent
+        path: 'register',
+        component: RegisterComponent
       }
     ])
   ],
-  providers: [CarService],
+  providers: [ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
