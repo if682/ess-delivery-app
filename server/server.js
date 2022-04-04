@@ -55,12 +55,23 @@ app.get('/client/:id', function (req, res) {
 app.post('/client', function (req, res) {
   // register
   const client = req.body;
+  
+  if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    res.status(400).send({ message: 'Object missing' });
+    return;
+  }
+  
   try {
+    
     const result = clientService.add(client);
-    if (result) {
+    if (typeof result === 'object') {
       res.status(201).send(result);
-    } else {
-      res.status(403).send({ message: 'Client could not be added' });
+    } else if(result === "cpf") {
+      res.status(403).send({ message: 'Client with CPF already registered' });
+    } else if(result === "email") {
+      res.status(403).send({ message: 'Client with email already registered' });
+    }else if(result === "phone") {
+      res.status(403).send({ message: 'Client with phone already registered' });
     }
   } catch (err) {
     const { message } = err;
