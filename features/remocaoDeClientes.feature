@@ -59,5 +59,3 @@ Then eu vejo uma notificação perguntando se realmente desejo cancelar a opera�
 And confirmo a notificação
 And continuo logada na minha conta
 And continuo na tela de usuário
-
-test
