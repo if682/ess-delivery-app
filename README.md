@@ -1,4 +1,17 @@
-# Estrutura do projeto a ser utilizado na disciplina de ESS
+# Projeto Restaurantes - IF682 Engenharia de software e Sistemas
+
+## Descrição
+Esse projeto desenvolve as features relacionadas ao registro de clientes para um app de gestão de pedidos e restaurantes semelhante ao IFood. Este projeto faz parte da avaliação da disciplina IF682 - Engenharia de software e Sistemas no CIn-UFPE.
+
+## Time de desenvolvimento
+- Alice Oliveira de Queiroz Brito
+- Ana Letícia Albuquerque Santos
+- Caio de Mendonça Barbosa
+- Dayane Lira da Silva
+- Matheus Rodrigues Bueno Godinho
+
+
+## Como rodar o projeto
 
 ### Dependências
 
