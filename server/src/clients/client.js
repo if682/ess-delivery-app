@@ -9,6 +9,7 @@ class Client {
         this.pay_method = "";
         this.addresses = [];
         this.code = client.code;
+        this.validPhone = client.validPhone;
     }
 }
 exports.Client = Client;

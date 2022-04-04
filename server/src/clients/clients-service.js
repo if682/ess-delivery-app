@@ -44,7 +44,8 @@ class ClientService {
             phone: client.phone,
             email: client.email,
             password: client.password,
-            code: checkCode
+            code: checkCode,
+            validPhone: false
         });
         this.clients.add(newClient);
 
@@ -58,6 +59,21 @@ class ClientService {
             var index = this.clients.getData().indexOf(data);
             this.clients.update(index, client);
             return client;
+        }
+        return null;
+    }
+
+    updateValidNumberStatus(clientID, code) {
+        var data = this.clients.getData().find(({ id }) => id == clientID);
+
+        if (data.code === code){
+            data.validPhone = true;
+            var index = this.clients.getData().indexOf(data);
+            this.clients.update(index, data);
+            return data;
+        }else if(data.code !== code){
+            return data;
+
         }
         return null;
     }
