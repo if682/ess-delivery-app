@@ -144,10 +144,12 @@ app.post('/client/forgot_password/:email', function (req, res) {
     const result = clientService.forgotPassword(email);
     if (result) {
       res.status(201).send({ message: 'E-mail sent' });
-    } else {
-      res.status(403).send({ message: 'E-mail not sent' });
+    } 
+    else {
+      res.status(200).send({ message: "E-mail not sent" });
     }
-  } catch (err) {
+  }
+  catch (err) {
     const { message } = err;
     res.status(400).send({ message });
   }

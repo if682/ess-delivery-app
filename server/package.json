@@ -15,7 +15,9 @@
     "@types/express": "^4.0.37",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
+    "handlebars": "^4.7.7",
     "nodemailer": "^6.1.1",
+    "nodemailer-express-handlebars": "^5.0.0",
     "request": "^2.34"
   },
   "devDependencies": {

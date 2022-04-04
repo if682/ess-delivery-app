@@ -2,6 +2,8 @@ const {Client} = require("./client");
 const {DBService} = require("../../database/database");
 
 var nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
+const path = require('path');
 const COMPANY_EMAIL = 'fomiauu@gmail.com';
 const COMPANY_PASSWORD = 'mgot qlcj oojz krvp';
 
@@ -83,8 +85,8 @@ class ClientService {
         if (data) {
             return this.sendEmail({
                 email: data.email,
-                subject: 'Redefina sua senha agora',
-                text: '--- link para redefinir a senha ---'
+                subject: 'foMiau | Redefina sua senha agora',
+                id: data.id
             });
         }
 
@@ -111,12 +113,24 @@ class ClientService {
               pass: COMPANY_PASSWORD
             }
         });
+
+        transporter.use('compile', hbs({
+			viewEngine: {
+				extname: '.handlebars',
+				defaultLayout: 'template_email',
+				layoutsDir: path.join(__dirname, 'email-assets')
+			},
+			viewPath: path.join(__dirname, 'email-assets')
+		}));
           
         var mailOptions = {
             from: COMPANY_EMAIL,
             to: body.email,
             subject: body.subject,
-            text: body.text
+            template: 'template_email',
+            context: {                  // <=
+                id: body.id
+            }
         };
           
         await transporter.sendMail(mailOptions, function(error, info){

@@ -1,14 +1,1 @@
-{
-    "clients": [
-        {
-            "id": 0,
-            "name": "Aninha",
-            "cpf": "123",
-            "phone": "123",
-            "email": "alas3@cin.ufpe.br",
-            "password": "aninha123",
-            "pay_method": "",
-            "addresses": []
-        }
-    ]
-}
+{"clients":[{"id":0,"name":"Aninha","cpf":"123","email":"alas3@cin.ufpe.br","phone":"123","pay_method":"","addresses":[],"password":"aninha123A"}]}

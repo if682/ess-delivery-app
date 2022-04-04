@@ -3,6 +3,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./guards/auth.guard";
 import { NegateAuthGuard } from "./guards/negate-auth.guard";
 import { LoginComponent } from "./login/login.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { UpdatePasswordComponent } from "./update-password/update-password.component";
 import { MemberModule } from "./member/member.module";
 import { RegisterComponent } from "./register/register.component";
 
@@ -15,6 +17,16 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent,
+    canActivate: [NegateAuthGuard],
+  },
+  {
+    path: "forgot-password",
+    component: ForgotPasswordComponent,
+    canActivate: [NegateAuthGuard],
+  },
+  {
+    path: "update-password",
+    component: UpdatePasswordComponent,
     canActivate: [NegateAuthGuard],
   },
   {

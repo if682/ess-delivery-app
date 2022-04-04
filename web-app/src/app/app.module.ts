@@ -9,6 +9,8 @@ import { NegateAuthGuard } from "./guards/negate-auth.guard";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { NavbarComponent } from "./member/navbar/navbar.component";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MemberModule } from "./member/member.module";
 import { AuthGuard } from "./guards/auth.guard";
@@ -19,6 +21,8 @@ import { AuthGuard } from "./guards/auth.guard";
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    ForgotPasswordComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,
