@@ -1,6 +1,6 @@
 import 'jasmine';
-import { Car } from '../src/car';
-import { CarService } from '../src/cars-service';
+import { Car } from '../src/ts/car';
+import { CarService } from '../src/ts/cars-service';
 
 describe("O servico de carros", () => {
   var carService: CarService;

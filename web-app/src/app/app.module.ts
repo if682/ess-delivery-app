@@ -1,34 +1,38 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule }   from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpModule } from "@angular/http";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CarsComponent } from './cars/cars.component';
-import { CarService } from './cars/cars.service';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { ClientService } from "./client/client.service";
+import { NegateAuthGuard } from "./guards/negate-auth.guard";
+import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
+import { NavbarComponent } from "./member/navbar/navbar.component";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MemberModule } from "./member/member.module";
+import { AuthGuard } from "./guards/auth.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    CarsComponent
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
     HttpModule,
-    RouterModule.forRoot([
-      {
-        path: 'cars',
-        component: CarsComponent
-      }
-    ])
+    MemberModule
   ],
-  providers: [CarService],
-  bootstrap: [AppComponent]
+  providers: [ClientService, NegateAuthGuard, AuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

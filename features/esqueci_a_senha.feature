@@ -48,3 +48,4 @@ Scenario: cenário
     Given condição
     When ação
     Then resultado
+        And outro resultado
