@@ -1,5 +1,5 @@
 /***Barra de navegaço***/
-nav.navbar-transparente{
+/**nav.navbar-transparente{
     padding: 10px;
     background: rgba(0, 0, 0, 0.7);
 }
@@ -15,4 +15,45 @@ nav.navbar-transparente{
     width: 1px;
     background: white;
     margin: 12px 15px;
+}**/
+
+html{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+button{
+    height: 1.5rem;
+    border: 1px solid #000;
+    background: #000;
+    color: #fff;
+    border-radius: 0 .25rem .25rem 0;
+    /*border-radius: 500px;*/
+}
+
+#login{
+    border-radius: .25rem;
+    margin-right: 15px;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+input{
+    border: 1px solid #ddd;
+    height: 1.5rem;
+    padding: 0 .5rem;
+    border-radius: .25rem 0 0 .25rem;
+}
+
+section{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
