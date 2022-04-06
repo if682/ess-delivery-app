@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormControl,
@@ -15,8 +16,11 @@ import { ClientService } from "src/app/client/client.service";
 })
 export class RegisterComponent implements OnInit {
   registrationForm:FormGroup;
+  confirmNumberForm:FormGroup;
+  enviouFormsRegister: boolean = false;
+  showFormsConfirm: boolean = false;
 
-  constructor(private clientService: ClientService) {
+  constructor(private clientService: ClientService, private router: Router) {
     this.registrationForm = new FormGroup({
       name: new FormControl(),
       email: new FormControl(),
@@ -24,6 +28,11 @@ export class RegisterComponent implements OnInit {
       password: new FormControl(),
       phone: new FormControl(),
       confirm_password: new FormControl(),
+    });
+
+    this.confirmNumberForm = new FormGroup({
+      code: new FormControl(),
+      
     });
   }
 
@@ -48,6 +57,7 @@ export class RegisterComponent implements OnInit {
         if (result) {
           this.clients.push(<Client>result);
           this.client = new Client();
+          this.enviouFormsRegister = true;
         }
       })
       .catch((erro) => alert(erro));

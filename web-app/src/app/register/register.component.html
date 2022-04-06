@@ -1,4 +1,4 @@
-<form [formGroup]="registrationForm">
+<form *ngIf="!enviouFormsRegister" [formGroup]="registrationForm">
    <div class="title-container">
      <img src="assets/images/logo_80.png" alt="Logo" class="logo" />
      <h3>foMiau</h3>
@@ -89,3 +89,52 @@
      </div>
    </div>
  </form>
+
+
+
+
+<form *ngIf="showFormsConfirm" [formGroup]="confirmNumberForm">
+  <div class="title-container">
+    <img src="assets/images/logo_80.png" alt="Logo" class="logo" />
+    <h3>foMiau</h3>
+  </div>
+
+
+  <div class="container">
+     <div class="item">
+        <label for="name">Codigo de confirmação</label>
+        <input 
+        formControlName="code"
+        type="text" 
+        id="code" 
+        name="coded" 
+        required
+        
+        >
+     </div>
+
+     
+
+    <div class="button">
+       <button
+       class="button-medium"
+       type="submit"
+       
+       
+     >
+       Voltar
+     </button>
+
+      <button
+        class="button-medium"
+        type="submit"
+        (click)="createClient()"
+        
+      >
+        Continuar
+      </button>
+      
+    </div>
+
+  </div>
+</form>
