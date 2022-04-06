@@ -58,8 +58,9 @@ export class ClientService {
   }
 
   create(client: Client): Promise<Client> {
+    console.log("teste",client)
     return this.http
-      .post(this.taURL + '/client', JSON.stringify(client), {
+      .post(this.taURL + '/client', JSON.stringify(client),{
         headers: this.headers,
       })
       .toPromise()
