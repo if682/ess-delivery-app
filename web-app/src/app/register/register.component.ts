@@ -30,17 +30,18 @@ export class RegisterComponent implements OnInit {
   client: Client = new Client();
   clients: Client[] = [];
 
+
   createClient(): void {
     
 
-    var newClient = new Client(
-      this.registrationForm.value.name,
-      this.registrationForm.value.cpf,
-      this.registrationForm.value.email,
-      this.registrationForm.value.phone,
-      this.registrationForm.value.password
-  );
-    console.log(newClient);
+    var newClient = {
+      name: this.registrationForm.value.name,
+      cpf: this.registrationForm.value.cpf,
+      email: this.registrationForm.value.email,
+      phone: this.registrationForm.value.phone,
+      password: this.registrationForm.value.password
+    };
+    
     this.clientService
       .create(newClient)
       .then((result) => {
