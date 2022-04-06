@@ -1,76 +1,77 @@
 body {
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-/* Fontes usadas */
-
-/* Titulos */
-@font-face {
-  font-family: Cherry Bomb One Regular;
-  src: url("/assets/fonts/CherryBombOne-Regular.woff") format("woff");
-}
-
-/* Corpo */
-@font-face {
-  font-family: ABeeZee Regular;
-  src: url("/assets/fonts/ABeeZee-Regular.woff") format("woff");
-}
-
-/* Classes com estilo de elementos usados em varias páginas */
-
-/* Background para usar nas paginas em que usuario nao está logado, login, cadastro, redefinicao de senha etc */
-.background-guest {
-  position: absolute;
-  background-image: url("./assets/images/food.png"),
-    linear-gradient(#e93574, #ff5200);
-  width: 100%;
-  height: 100%;
-}
-
-/* Background para usar nas paginas em que o usuario está logado */
-.background-in {
-  position: absolute;
-  background-color: #ffff;
-  width: 100%;
-  height: 100%;
-}
-
-.button-medium {
-  height: 40px;
-  width: 150px;
-
-  background-color: #e93574;
-
-  border: 1px solid #e93574;
-  border-radius: 50px;
-
-  text-decoration: none;
-  font-family: ABeeZee Regular;
-  font-size: 20px;
-  color: #ffff;
-
-  box-shadow: 0px 0px 3px 0px #e93574;
-}
-
-.button-medium:hover:enabled {
-  background-color: #ff5200;
-  border: 1px solid #ff5200;
-  box-shadow: 0px 0px 3px 0px #ff5200;
-}
-
-.button-medium:active:enabled {
-  position: relative;
-  top: 1px;
-}
-
-.button-medium:disabled {
-  background-color: #ffb1b1;
-  color: #ffff;
-  border: none;
-  box-shadow: none;
-}
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* Fontes usadas */
+  
+  /* Titulos */
+  @font-face {
+    font-family: Cherry Bomb One Regular;
+    src: url("/assets/fonts/CherryBombOne-Regular.woff") format("woff");
+  }
+  
+  /* Corpo */
+  @font-face {
+    font-family: ABeeZee Regular;
+    src: url("/assets/fonts/ABeeZee-Regular.woff") format("woff");
+  }
+  
+  /* Classes com estilo de elementos usados em varias páginas */
+  
+  /* Background para usar nas paginas em que usuario nao está logado, login, cadastro, redefinicao de senha etc */
+  .background-guest {
+    position: absolute;
+    background-image: url("./assets/images/food.png"),
+      linear-gradient(#e93574, #ff5200);
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Background para usar nas paginas em que o usuario está logado */
+  .background-in {
+    position: absolute;
+    background-color: #ffff;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .button-medium {
+    height: 40px;
+    width: 150px;
+  
+    background-color: #e93574;
+  
+    border: 1px solid #e93574;
+    border-radius: 50px;
+  
+    text-decoration: none;
+    font-family: ABeeZee Regular;
+    font-size: 20px;
+    color: #ffff;
+  
+    box-shadow: 0px 0px 3px 0px #e93574;
+  }
+  
+  .button-medium:hover:enabled {
+    background-color: #ff5200;
+    border: 1px solid #ff5200;
+    box-shadow: 0px 0px 3px 0px #ff5200;
+  }
+  
+  .button-medium:active:enabled {
+    position: relative;
+    top: 1px;
+  }
+  
+  .button-medium:disabled {
+    background-color: #ffb1b1;
+    color: #ffff;
+    border: none;
+    box-shadow: none;
+  }
+  

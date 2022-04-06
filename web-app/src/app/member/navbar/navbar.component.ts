@@ -8,7 +8,7 @@ import { ClientService } from "src/app/client/client.service";
 })
 export class NavbarComponent implements OnInit {
   isMenuOpen: boolean = false;
-  name: string;
+  name: string="";
 
   constructor(private clientService: ClientService) {}
 

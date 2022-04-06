@@ -27,7 +27,7 @@ export class ClientService {
       .get(this.taURL + `/client/${id}`, { headers: this.headers })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) {
+        if (res?.status === 201) {
           this.client = res.json().client;
           return res.json();
         } else {
@@ -44,7 +44,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return client;
+        if (res?.status === 201) return client;
         else return null;
       })
       .catch(this.catch);
@@ -57,7 +57,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return client;
+        if (res?.status === 201) return client;
         else return null;
       })
       .catch(this.catch);
@@ -68,7 +68,7 @@ export class ClientService {
       .delete(this.taURL + `/client/${client.id}`, { headers: this.headers })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return client;
+        if (res?.status === 201) return client;
         else return null;
       })
       .catch(this.catch);
@@ -82,7 +82,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) {
+        if (res?.status === 201) {
           this.isLoggedIn = true;
           this.loggedInEmitter.emit(true);
           this.router.navigate(['']);
@@ -100,7 +100,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return true;
+        if (res?.status === 201) return true;
         else return null;
       })
       .catch(this.catch);
