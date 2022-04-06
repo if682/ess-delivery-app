@@ -57,16 +57,21 @@ export class ClientService {
       .catch(this.catch);
   }
 
-  create(client: Client): Promise<Client> {
-    console.log("teste",client)
+  create(client): Promise<Client> {
+    
     return this.http
       .post(this.taURL + '/client', JSON.stringify(client),{
         headers: this.headers,
       })
       .toPromise()
       .then((res) => {
-        if (res?.status === 201) return client;
-        else return null;
+        if (res.status === 201) {
+          var registeredClient =<Client> res.json();
+          this.router.navigate(['/confirm-number']);
+          return registeredClient
+        }else {
+          return null
+        };
       })
       .catch(this.catch);
   }
