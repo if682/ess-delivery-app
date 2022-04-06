@@ -31,11 +31,6 @@ const routes: Routes = [
     canActivate: [NegateAuthGuard],
   },
   {
-    path: "confirm-number",
-    component: ConfirmNumberComponent,
-    canActivate: [NegateAuthGuard],
-  },
-  {
     path: "",
     loadChildren: () => MemberModule,
     canActivate: [AuthGuard],

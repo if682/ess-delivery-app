@@ -138,6 +138,21 @@ export class ClientService {
       .catch(this.catch);
   }
 
+  confirmNumber(id: number, code:number): Promise<Client> {
+    return this.http
+      .get(this.taURL + `/client/${id}`, { headers: this.headers })
+      .toPromise()
+      .then((res) => {
+        if (res.status === 201) {
+          this.client = res.json().client;
+          return res.json();
+        } else {
+          return null;
+        }
+      })
+      .catch(this.catch);
+  }
+
   private catch(erro: any): Promise<any> {
     console.error('Oops, something went wrong', erro);
     return Promise.reject(erro.message || erro);
