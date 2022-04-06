@@ -8,7 +8,7 @@ export class Client {
   pay_method: string="";
   addresses: string[]=[];
 
-  constructor(name: string, 
+   constructor(name: string, 
     cpf: string,
     email: string,
     phone: string,
@@ -20,6 +20,6 @@ export class Client {
     this.password = password;
     this.pay_method = "";
     this.addresses = [];
-    
-  }
+
+  
 }
