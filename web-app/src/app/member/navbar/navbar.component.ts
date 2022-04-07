@@ -16,6 +16,10 @@ export class NavbarComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  public sair() {
+    this.clientService.logOut();
+  }
+
   ngOnInit(): void {
     this.clientService.getClient().then((result) => {
       this.name = result.name;
