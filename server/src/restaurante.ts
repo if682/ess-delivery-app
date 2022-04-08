@@ -3,7 +3,7 @@ export class Restaurante {
   cnpj: string;
   cep: string;
   rua: string;
-  numero: number;
+  numero: string;
   cidade: string;
   complemento: string;
   horario_inicio: string;

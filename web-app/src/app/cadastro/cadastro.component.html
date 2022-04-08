@@ -6,11 +6,11 @@
    </tr>
    <tr>
       <td><label>CNPJ </label></td>
-      <td><input id="cnpj-input" [(ngModel)]="restaurante.cnpj"></td>
+      <td><input id="cnpj-input" [ngModel]="restaurante.cnpj" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cnpj, 18)" (ngModelChange) = "formatCNPJ($event)"></td>
    </tr>
    <tr>
       <td><label>CEP </label></td>
-      <td><input id="cep-input" [(ngModel)]="restaurante.cep"></td>
+      <td><input id="cep-input" [ngModel]="restaurante.cep" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cep, 9)" (ngModelChange) = "formatCEP($event)"></td>
    </tr>
    <tr>
       <td><label>Rua </label></td>
@@ -18,7 +18,7 @@
    </tr>
    <tr>
       <td><label>Número </label></td>
-      <td><input id="numero-input" type="number" [(ngModel)]="restaurante.numero"></td>
+      <td><input id="numero-input" type="text" [(ngModel)]="restaurante.numero" (keypress) = "onlyNumbersKeyPress($event)" ></td>
    </tr>
    <tr>
       <td><label>Cidade </label></td>
@@ -30,11 +30,11 @@
    </tr>
    <tr>
       <td><label>Hora de Abrir </label></td>
-      <td><input id="hora_inicial-input" [(ngModel)]="restaurante.horario_inicio"></td>
+      <td><input id="hora_inicial-input" type = "text" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_inicio"></td>
    </tr>
    <tr>
       <td><label>Hora de Fechar </label></td>
-      <td><input id="hora_final-input" [(ngModel)]="restaurante.horario_fim"></td>
+      <td><input id="hora_final-input" type = "text" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_fim"></td>
    </tr>
    <tr>
       <td><label>Nome do Responsável </label></td>
@@ -42,7 +42,7 @@
    </tr>
    <tr>
       <td><label>Telefone do Responsável </label></td>
-      <td><input id="telefone_responsavel-input" [(ngModel)]="restaurante.telefone_responsavel"></td>
+      <td><input id="telefone_responsavel-input" [ngModel]="restaurante.telefone_responsavel" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.telefone_responsavel, 15)" (ngModelChange) = "formatTel($event)"></td>
    </tr>
    <tr>
       <td><label>Senha </label></td>

@@ -3,7 +3,7 @@ export class Restaurante {
   cnpj: string;
   cep: string;
   rua: string;
-  numero: number;
+  numero: string;
   cidade: string;
   complemento: string;
   horario_inicio: string;
@@ -12,5 +12,18 @@ export class Restaurante {
   telefone_responsavel: string;
   senha: string;
 
-  constructor() { }
+  constructor() {
+    this.nome_restaurante = "";
+    this.cnpj = "";
+    this.cep = "";
+    this.rua = "";
+    this.numero = "";
+    this.cidade = "";
+    this.complemento = "";
+    this.horario_inicio = "";
+    this.horario_fim = "";
+    this.nome_responsavel = "";
+    this.telefone_responsavel = "";
+    this.senha = "";
+  }
 }
