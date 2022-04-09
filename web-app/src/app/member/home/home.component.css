@@ -6,6 +6,9 @@
 
 .div-button {
   margin: 40px auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .div-feed {
