@@ -18,12 +18,12 @@ app.use(bodyParser.json());
 
 var restauranteService: RestaurantesService = new RestaurantesService();
 
-app.get('/restaurantes', function(req, res){
+app.get('/restaurant', function(req, res){
   const restaurantes = restauranteService.get();
   res.send(JSON.stringify(restaurantes));
 });
 
-app.get('/restaurantes/:cnpj', function(req, res){
+app.get('/restaurant/:cnpj', function(req, res){
   const cnpj = req.params.cnpj;
   const restaurante = restauranteService.getById(cnpj);
   if (restaurante) {
@@ -33,7 +33,7 @@ app.get('/restaurantes/:cnpj', function(req, res){
   }
 });
 
-app.post('/restaurantes', function(req: express.Request, res: express.Response){
+app.post('/restaurant', function(req: express.Request, res: express.Response){
   const restaurante: Restaurante = <Restaurante> req.body;
   try {
     const result = restauranteService.add(restaurante);
@@ -49,7 +49,7 @@ app.post('/restaurantes', function(req: express.Request, res: express.Response){
   }
 });
 
-app.put('/restaurantes', function (req: express.Request, res: express.Response) {
+app.put('/restaurant', function (req: express.Request, res: express.Response) {
   const restaurante: Restaurante = <Restaurante> req.body;
   const result = restauranteService.update(restaurante);
   if (result) {

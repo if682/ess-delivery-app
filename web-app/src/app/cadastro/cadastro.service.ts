@@ -12,7 +12,7 @@ export class CadastroService {
   constructor(private http: Http) { }
 
     create(restaurante: Restaurante): Promise<Restaurante> {
-    return this.http.post(this.taURL + "/restaurantes",JSON.stringify(restaurante), {headers: this.headers})
+    return this.http.post(this.taURL + "/restaurant",JSON.stringify(restaurante), {headers: this.headers})
       .toPromise()
       .then(res => {
         if (res.status === 201) {return restaurante;} else {return null;}
@@ -21,7 +21,7 @@ export class CadastroService {
   }
 
   getRestaurantes(): Promise<Restaurante[]> {
-    return this.http.get(this.taURL + "/restaurantes")
+    return this.http.get(this.taURL + "/restaurant")
              .toPromise()
              .then(res => res.json() as Restaurante[])
              .catch(this.catch);
