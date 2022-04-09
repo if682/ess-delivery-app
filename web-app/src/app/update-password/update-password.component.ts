@@ -83,7 +83,7 @@ export class UpdatePasswordComponent implements OnInit {
       .subscribe(params => {
         console.log(params); // { id: 0 }
 
-        this.id = params.id;
+        this.id = params['id'];
         console.log(this.id); // 0
       }
     );

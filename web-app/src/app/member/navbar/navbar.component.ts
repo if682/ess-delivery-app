@@ -8,12 +8,16 @@ import { ClientService } from "src/app/client/client.service";
 })
 export class NavbarComponent implements OnInit {
   isMenuOpen: boolean = false;
-  name: string;
+  name: string="";
 
   constructor(private clientService: ClientService) {}
 
   public clickMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  public sair() {
+    this.clientService.logOut();
   }
 
   ngOnInit(): void {

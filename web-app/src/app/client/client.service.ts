@@ -1,25 +1,45 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Client } from './client';
 
 @Injectable()
 export class ClientService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private taURL = 'http://localhost:3000';
-  private id: number = 0;
+
+  private id: number = JSON.parse(localStorage.getItem('id') || '-1');
   private client: Client = new Client();
-  private isLoggedIn: boolean = false;
-  loggedInEmitter = new EventEmitter<boolean>();
+
+  private isLoggedIn = new BehaviorSubject(
+    JSON.parse(localStorage.getItem('loggedIn') || 'false')
+  );
+  isLoggedIn$ = this.isLoggedIn.asObservable();
 
   constructor(private http: Http, private router: Router) {}
 
   getClient() {
-    return this.getById(this.id);
+    return this.getById(this.getId());
   }
 
-  loggedIn() {
-    return this.isLoggedIn;
+  getId() {
+    return JSON.parse(localStorage.getItem('id') || '-1');
+  }
+
+  getIsLoggedIn() {
+    return JSON.parse(
+      localStorage.getItem('loggedIn') || this.isLoggedIn.getValue()
+    );
+  }
+
+  setIsLoggedIn(value: boolean) {
+    this.isLoggedIn.next(value);
+    localStorage.setItem('loggedIn', value.toString());
+  }
+
+  setId(id: string) {
+    localStorage.setItem('id', id);
   }
 
   getById(id: number): Promise<Client> {
@@ -27,7 +47,7 @@ export class ClientService {
       .get(this.taURL + `/client/${id}`, { headers: this.headers })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) {
+        if (res?.status === 201) {
           this.client = res.json().client;
           return res.json();
         } else {
@@ -44,7 +64,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return client;
+        if (res?.status === 201) return client;
         else return null;
       })
       .catch(this.catch);
@@ -57,7 +77,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return client;
+        if (res?.status === 201) return client;
         else return null;
       })
       .catch(this.catch);
@@ -68,7 +88,7 @@ export class ClientService {
       .delete(this.taURL + `/client/${client.id}`, { headers: this.headers })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return client;
+        if (res?.status === 201) return client;
         else return null;
       })
       .catch(this.catch);
@@ -82,15 +102,21 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) {
-          this.isLoggedIn = true;
-          this.loggedInEmitter.emit(true);
+        if (res?.status === 201) {
+          this.setIsLoggedIn(true);
           this.router.navigate(['']);
-          this.id = res.json().token;
+          this.setId(res.json().token);
           return true;
         } else return false;
       })
       .catch(this.catch);
+  }
+
+  logOut() {
+    this.setId('-1');
+    this.setIsLoggedIn(false);
+    this.client = new Client();
+    this.router.navigate(['/login']);
   }
 
   forgot_password(email: string): Promise<Client> {
@@ -100,7 +126,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) return true;
+        if (res?.status === 201) return true;
         else return null;
       })
       .catch(this.catch);
