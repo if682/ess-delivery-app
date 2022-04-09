@@ -1,17 +1,23 @@
-Feature: Cadastro e login de usuários
+Feature: User login 
 
-Como responsável
-Eu quero ser capaz de logar na minha conta
-Para que seja possível utilizar a plataforma
+As the owner of the restaurant, I want to be able to log into my account to use a platform
 
-Cenário: Login bem sucedido
-Dado que o usuário esteja na página de login do sistema
-E existe um usuário cadastrado com E-MAIL "maria@ufpe.br" e SENHA "5678"
-Quando o usuário preencher E-MAIL "maria@ufpe.br" e SENHA "5678"
-Então o login é concluído e o usuário é redirecionado para a página inicial de acordo com o tipo do seu usuário
+i. Scenario: Login successful
+    Given that the user is on the system login page
+    And there is a registered user with CPF "123.123.123-12" and PASSWORD "5678"
+    When the user fills in CPF "123.123.123-12" and PASSWORD "5678"
+    Then the login is completed and the user is redirected to the home page
 
-Cenário: Login mal sucedido
-Dado que o usuário esteja na página de login do sistema
-E não existe um usuário cadastrado com E-MAIL "maria@ufpe.br" e SENHA "5678"
-Quando o usuário preencher E-MAIL "maria@ufpe.br" e SENHA "5678"
-Então o login não é concluído e aparece uma mensagem de erro na tela, informando que alguma informação foi inserida incorretamente
+
+ii. Scenario: Unsuccessful login because the CPF entered is not registered
+    Given that the user is on the system login page
+    And there is no registered user with the CPF "123.123.123-12"
+    When the user fills in the CPF "123.123.123-12" and PASSWORD "5678"
+    Then the login is not completed and an error message appears on the screen, informing us that it was not possible to find any account with the CPF entered
+
+
+iii. Scenario: Login failed because the password is incorrect
+    Given that the user is on the system login page
+    And there is a registered user with CPF "123.123.123-12" and PASSWORD "5678"
+    When the user fills in the CPF "123.123.123-12" and PASSWORD "1234"
+    Then the login is not completed and an error message appears on the screen, informing that the password entered is incorrect
