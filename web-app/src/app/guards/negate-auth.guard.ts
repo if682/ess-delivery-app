@@ -19,9 +19,8 @@ export class NegateAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
-    console.log(this.clientService.loggedIn());
-    if (this.clientService.loggedIn()) {
-      this.router.navigate([""]);
+    if (this.clientService.getIsLoggedIn()) {
+      this.router.navigate(['']);
       return false;
     } else {
       return true;

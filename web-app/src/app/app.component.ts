@@ -13,8 +13,8 @@ export class AppComponent {
   constructor(private clientService: ClientService) {}
 
   ngOnInit() {
-    this.clientService.loggedInEmitter.subscribe(
-      (loggedIn) => (this.mostrarMenu = loggedIn)
-    );
+    this.clientService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
+      this.mostrarMenu = isLoggedIn;
+    });
   }
 }
