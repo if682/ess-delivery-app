@@ -7,7 +7,6 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { UpdatePasswordComponent } from "./update-password/update-password.component";
 import { MemberModule } from "./member/member.module";
 import { RegisterComponent } from "./register/register.component";
-import { ConfirmNumberComponent } from "./confirm-number/confirm-number.component";
 
 const routes: Routes = [
   {

@@ -8,7 +8,6 @@ import { ClientService } from "./client/client.service";
 import { NegateAuthGuard } from "./guards/negate-auth.guard";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
-import { ConfirmNumberComponent } from "./confirm-number/confirm-number.component";
 import { NavbarComponent } from "./member/navbar/navbar.component";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
@@ -23,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ConfirmNumberComponent,
     ForgotPasswordComponent,
     UpdatePasswordComponent
   ],
