@@ -57,7 +57,7 @@ export class ClientService {
       .catch(this.catch);
   }
 
-  create(client): Promise<Client> {
+  create(client:{}): Promise<Client> {
     
     return this.http
       .post(this.taURL + '/client', JSON.stringify(client),{
@@ -65,7 +65,7 @@ export class ClientService {
       })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) {
+        if (res?.status === 201) {
           var registeredClient =<Client> res.json();
           this.router.navigate(['/confirm-number']);
           return registeredClient
@@ -143,7 +143,7 @@ export class ClientService {
       .get(this.taURL + `/client/${id}`, { headers: this.headers })
       .toPromise()
       .then((res) => {
-        if (res.status === 201) {
+        if (res?.status === 201) {
           this.client = res.json().client;
           return res.json();
         } else {
