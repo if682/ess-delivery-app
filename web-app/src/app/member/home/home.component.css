@@ -1,0 +1,110 @@
+.div-cont {
+  display: flex;
+  margin: 50px 100px;
+  flex-direction: column;
+}
+
+.div-button {
+  margin: 40px auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.div-feed {
+  margin: auto;
+  background-color: rgb(255, 191, 170);
+  width: 70%;
+  padding: 40px 60px 0px 60px;
+}
+
+.div-post{
+    margin: 50px 50px 0px 50px;
+    
+}
+
+.div-perfil {
+    display: grid;
+    grid-template-columns: 90px auto 200px;
+    align-items: end;
+
+}
+
+.div-infos {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0px;
+}
+
+.div-profile-pic {
+    background-color: white; 
+    border-radius: 50px; 
+    width: 50px; 
+    height: 50px; 
+    display: flex; 
+    justify-content: center; 
+    padding: 5px; 
+    box-shadow: 1px 3px 5px grey;
+}
+
+.profile {
+    width: 40px; 
+    margin: auto;
+}
+
+.div-price {
+    background-color: rgb(233, 53, 116); 
+    width: 150px; 
+    height: 50px; 
+    border-radius: 50px; 
+    display: flex; 
+    justify-content: center;
+    color: white; 
+}
+
+.post {
+    width: 100%;
+    border-radius: 20px;
+}
+
+h2 {
+    font-family: ABeeZee Regular;
+    font-weight: lighter;
+    margin: 0px;
+}
+
+h4 {
+    font-family: ABeeZee Regular;
+    font-weight: lighter;
+    margin: 0px;
+    color: gray;
+}
+
+button {
+  background-image: linear-gradient(rgb(251, 62, 179), red);
+  border-radius: 50px;
+  color: black;
+  width: 200px;
+  height: 60px;
+  margin: 20px 50px;
+}
+
+.span-button {
+  font-family: ABeeZee Regular;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 20%;
+}
+
+.big-word {
+  right: 15px;
+}
+
+.cat {
+  width: 150px;
+  height: 125px;
+  object-fit: cover;
+  position: absolute;
+  top: -40px;
+  right: 120px;
+}
