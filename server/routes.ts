@@ -100,6 +100,20 @@ routes.put('/promotion/:id', function (req, res) {
     res.status(404).send({ message: err});
   }
   
-})
+});
 
+routes.delete('/promotion/:id', function (req, res){
+  const id = req.params.id;
+  const result = promotionService.delete(id);
+  
+  const message = `Coupon ${id} has been deleted.`;
+  const err = `Coupon ${id} could not be found.`;
+
+  if (result) {
+    res.send({ message: message});
+    console.log(message);
+  } else {
+    res.status(404).send({ message: err});
+  }
+})
 export default routes;

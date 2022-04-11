@@ -32,7 +32,7 @@ GET http://localhost:3000/promotion
 
 ###
 
-GET http://localhost:3000/promotion/a896a483
+GET http://localhost:3000/promotion/146cf423
 
 ###
 
@@ -58,3 +58,5 @@ Content-Type: application/json
     "discount": 0.1
 }
 
+###
+DELETE http://localhost:3000/promotion/b254e2c9

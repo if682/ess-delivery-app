@@ -41,5 +41,15 @@ export class PromotionService {
   get() : Coupon[] {
     return this.coupons;
   }
+
+  delete(couponId: string) : Coupon {
+    var result: Coupon = this.getById(couponId);
+    var couponIndex = this.coupons.findIndex((result) => result.id == couponId);
+    
+    if (result) {
+      this.coupons.splice(couponIndex, 1);
+    }
+    return result;
+  }
   
 }
