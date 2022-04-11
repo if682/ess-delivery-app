@@ -1,0 +1,72 @@
+<table>
+   <tr>
+      <td><label>Nome do Restaurante </label></td>
+      <td><input id="nome_restaurante-input" [(ngModel)]="restaurante.nome_restaurante"></td>
+      <td><button id="registrar_restaurante" (click)="createRestaurante(restaurante)">Adicionar</button></td>
+   </tr>
+   <tr>
+      <td><label>CNPJ </label></td>
+      <td><input id="cnpj-input" [ngModel]="restaurante.cnpj" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cnpj, 18)" (ngModelChange) = "formatCNPJ($event)"></td>
+   </tr>
+   <tr>
+      <td><label>CEP </label></td>
+      <td><input id="cep-input" [ngModel]="restaurante.cep" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cep, 9)" (ngModelChange) = "formatCEP($event)"></td>
+   </tr>
+   <tr>
+      <td><label>Rua </label></td>
+      <td><input id="rua-input" [(ngModel)]="restaurante.rua"></td>
+   </tr>
+   <tr>
+      <td><label>Número </label></td>
+      <td><input id="numero-input" type="text" [(ngModel)]="restaurante.numero" (keypress) = "onlyNumbersKeyPress($event)" ></td>
+   </tr>
+   <tr>
+      <td><label>Cidade </label></td>
+      <td><input id="cidade-input" [(ngModel)]="restaurante.cidade"></td>
+   </tr>
+   <tr>
+      <td><label>Complemento </label></td>
+      <td><input id="complemento-input" [(ngModel)]="restaurante.complemento"></td>
+   </tr>
+   <tr>
+      <td><label>Hora de Abrir </label></td>
+      <td><input id="hora_inicial-input" type = "text" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_inicio"></td>
+   </tr>
+   <tr>
+      <td><label>Hora de Fechar </label></td>
+      <td><input id="hora_final-input" type = "text" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_fim"></td>
+   </tr>
+   <tr>
+      <td><label>Nome do Responsável </label></td>
+      <td><input id="nome_responsavel-input" [(ngModel)]="restaurante.nome_responsavel"></td>
+   </tr>
+   <tr>
+      <td><label>Telefone do Responsável </label></td>
+      <td><input id="telefone_responsavel-input" [ngModel]="restaurante.telefone_responsavel" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.telefone_responsavel, 15)" (ngModelChange) = "formatTel($event)"></td>
+   </tr>
+   <tr>
+      <td><label>Senha </label></td>
+      <td><input id="senha-input" type="password" [(ngModel)]="restaurante.senha"></td>
+   </tr>
+</table>
+
+<script>document.write(restaurante)</script>
+
+<table>
+   <tr *ngIf="restaurantes.length > 0">
+      <th>Nome</th>
+      <th>CNPJ</th>
+      <th>Cidade</th>
+      <th>Rua</th>
+      <th>Hora de Abrir</th>
+      <th>Hora de Fechar</th>
+   </tr>
+   <tr *ngFor="let rest of restaurantes">
+      <td id="rest-{{rest.cnpj}}">{{rest.nome_restaurante}}</td>
+      <td>{{rest.cnpj}}</td>
+      <td>{{rest.cidade}}</td>
+      <td>{{rest.rua}}</td>
+      <td>{{rest.horario_inicio}}</td>
+      <td>{{rest.horario_fim}}</td>
+   </tr>
+</table>

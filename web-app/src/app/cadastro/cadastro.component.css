@@ -1,0 +1,11 @@
+table {
+    margin-top: 70px;
+    margin-left: 20px;
+}
+
+#hora_inicial-input{
+    width: 110px;
+}
+#hora_final-input{
+    width: 110px;
+}

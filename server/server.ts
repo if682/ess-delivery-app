@@ -1,8 +1,8 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import { CarService } from './src/cars-service';
-import { Car } from './src/car';
+import { RestaurantesService } from './src/restaurantes-service';
+import { Restaurante } from './src/restaurante';
 
 var app = express();
 
@@ -16,31 +16,32 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
-var carService: CarService = new CarService();
+var restauranteService: RestaurantesService = new RestaurantesService();
 
-app.get('/cars', function(req, res){
-  const cars = carService.get();
-  res.send(JSON.stringify(cars));
+app.get('/restaurant', function(req, res){
+  const restaurantes = restauranteService.get();
+  res.send(JSON.stringify(restaurantes));
 });
 
-app.get('/cars/:id', function(req, res){
-  const id = req.params.id;
-  const car = carService.getById(id);
-  if (car) {
-    res.send(car);
+app.get('/restaurant/:cnpj', function(req, res){
+  const cnpj = req.params.cnpj;
+  const restaurante = restauranteService.getById(cnpj);
+  if (restaurante) {
+    res.send(restaurante);
   } else {
-    res.status(404).send({ message: `Car ${id} could not be found`});
+    res.status(404).send({ message: `Restaurante ${cnpj} could not be found`});
   }
 });
 
-app.post('/cars', function(req: express.Request, res: express.Response){
-  const car: Car = <Car> req.body;
+app.post('/restaurant', function(req: express.Request, res: express.Response){
+  const restaurante: Restaurante = <Restaurante> req.body;
   try {
-    const result = carService.add(car);
+    const result = restauranteService.add(restaurante);
     if (result) {
       res.status(201).send(result);
+      console.log(restaurante);
     } else {
-      res.status(403).send({ message: "Car list is full"});
+      res.status(403).send({ message: "Restaurante list is full"});
     }
   } catch (err) {
     const {message} = err;
@@ -48,13 +49,13 @@ app.post('/cars', function(req: express.Request, res: express.Response){
   }
 });
 
-app.put('/cars', function (req: express.Request, res: express.Response) {
-  const car: Car = <Car> req.body;
-  const result = carService.update(car);
+app.put('/restaurant', function (req: express.Request, res: express.Response) {
+  const restaurante: Restaurante = <Restaurante> req.body;
+  const result = restauranteService.update(restaurante);
   if (result) {
     res.send(result);
   } else {
-    res.status(404).send({ message: `Car ${car.id} could not be found.`});
+    res.status(404).send({ message: `Restaurante ${restaurante.cnpj} could not be found.`});
   }
 })
 
