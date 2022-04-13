@@ -1,11 +1,9 @@
 import { Router } from 'express';
-import { Car } from './src/car';
-import { CarService } from './src/cars-service';
 import { Coupon } from './src/coupon';
 import { PromotionService } from './src/promotion-service';
 import * as fs from 'fs';
 import { restaurant, restaurants } from './restaurants';
-
+import { users } from './users';
 const routes = Router();
 
 var adminService: PromotionService = new PromotionService();
@@ -159,6 +157,7 @@ routes.post('/promotion/restaurants/:rest', function(req, res){
   }
 });
 
+
 routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
   const { rest, id } = req.params;
   const coupon: Coupon = <Coupon> req.body;
@@ -192,5 +191,12 @@ routes.delete('/promotion/restaurants/:rest/:id', function (req, res){
     res.status(404).send({ message: err});
   }
 })
+
+//clientes
+//adicionar cupon no pedido
+//remover cupom do pedido 
+// 
+
+routes.post('/user')
 
 export default routes;
