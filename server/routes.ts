@@ -159,38 +159,38 @@ routes.post('/promotion/restaurants/:rest', function(req, res){
   }
 });
 
-// routes.put('/promotion/restaurants/:id', function (req, res) {
-//   const id = req.params.id;
-//   const coupon: Coupon = <Coupon> req.body;
-//   const result = restaurantsService[restName].update(id, coupon);
+routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
+  const { rest, id } = req.params;
+  const coupon: Coupon = <Coupon> req.body;
+  const result = restaurantsService[rest].update(id, coupon);
+  const index = restaurants.findIndex((result) => result.name == rest)
+  restaurants[index].coupons = restaurantsService[rest].coupons;
+  const err = `Coupon ${id} could not be found.`;
+  const message = `Coupon ${id} has been updated.`;
+  if (result) {
+    res.send({ message: message});
+    updateRestaurantsFile();
+    console.log(message);
+  } else {
+    res.status(404).send({ message: err});
+  }
 
-//   const message = `Coupon ${id} has been updated.`;
-//   const err = `Coupon ${id} could not be found.`;
+});
 
-//   if (result) {
-//     res.send({ message: message});
-//     restaurantsService[restName].updateFile("restaurants-coupons.json");
-//     console.log(message);
-//   } else {
-//     res.status(404).send({ message: err});
-//   }
-  
-// });
-
-// routes.delete('/promotion/restaurants/:id', function (req, res){
-//   const id = req.params.id;
-//   const result = restaurantsService[restName].delete(id);
-  
-//   const message = `Coupon ${id} has been deleted.`;
-//   const err = `Coupon ${id} could not be found.`;
-
-//   if (result) {
-//     res.send({ message: message});
-//     restaurantsService[restName].updateFile("restaurants-coupons.json");
-//     console.log(message);
-//   } else {
-//     res.status(404).send({ message: err});
-//   }
-// })
+routes.delete('/promotion/restaurants/:rest/:id', function (req, res){
+  const { rest, id } = req.params;
+  const result = restaurantsService[rest].delete(id);
+  const index = restaurants.findIndex((result) => result.name == rest)
+  restaurants[index].coupons = restaurantsService[rest].coupons;
+  const message = `Coupon ${id} has been deleted.`;
+  const err = `Coupon ${id} could not be found.`;
+  if (result) {
+    res.send({ message: message});
+    updateRestaurantsFile();
+    console.log(message);
+  } else {
+    res.status(404).send({ message: err});
+  }
+})
 
 export default routes;

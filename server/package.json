@@ -7,7 +7,6 @@
     "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json",
     "tsc": "tsc",
     "start": "npm run tsc && nodemon --exec 'ts-node server.ts' -e ts"
-    
   },
   "author": "Daniel Bastos",
   "license": "MIT",

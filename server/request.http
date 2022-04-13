@@ -28,7 +28,7 @@ Content-Type: application/json
 {
     "name": "2BIGMEQUIPOR1",
     "adm": false,
-    "product": "Big Méqui",
+    "product": "picole",
     "discount": 0.5,
     "status": "Inativo",
     "begin": "21:00-02/04/2022",
@@ -61,7 +61,7 @@ GET http://localhost:3000/promotion/restaurants
 
 ###
 
-GET http://localhost:3000/promotion/restaurants/BK
+GET http://localhost:3000/promotion/restaurants/Mequi
 
 ###
 
@@ -93,3 +93,15 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/promotion/b254e2c9
+
+###
+PUT http://localhost:3000/promotion/restaurants/Mequi/f9e62837
+Content-Type: application/json
+
+{
+    "name": "picolinho",
+    "product": "chupe-chupe"
+}
+
+### 
+DELETE http://localhost:3000/promotion/restaurants/Mequi/f9e62837
