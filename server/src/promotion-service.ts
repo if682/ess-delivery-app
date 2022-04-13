@@ -2,6 +2,8 @@ import { Coupon } from "./coupon";
 
 import crypto = require('crypto');
 
+import * as fs from 'fs';
+
 export class PromotionService {
   coupons: Coupon[] = [];
   
@@ -50,6 +52,16 @@ export class PromotionService {
       this.coupons.splice(couponIndex, 1);
     }
     return result;
+  }
+
+  updateFile(fileName: string){
+    fs.writeFile(fileName, JSON.stringify(this.coupons), (err) => {
+      if(err){
+        console.log(err);
+      }else{
+        console.log(`Arquivo ${fileName} atualizado!`);
+      }
+    })
   }
   
 }
