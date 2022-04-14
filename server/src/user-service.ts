@@ -1,59 +1,80 @@
-import { users, User , Order} from "../users";
-
+import { users, User , Order} from "./users";
+import { Coupon } from "./coupon";
 import crypto = require('crypto');
 import * as fs from 'fs';
-// ainda tem que fazer tudo.
-export class userService {
+
+export class UserService {
   users: User[] = [];
   
-  add(user: User): User {
-    const idCount = crypto.randomBytes(4).toString('HEX'); 
-    //serve para ele gerar 4 bytes de caracteres aleatórios e depois transformar tudo em uma sting no formato hexadecimal
-
-    const newOrder = new Order(<Order> { id: idCount, ...order });
-    // if (newuser.price <= 0) {
-    //   throw Error("Price can't equal or less than zero")
-    // }
-    console.log(newuser);
-
-    this.users.push(newuser);
-    return newuser;
-  
+  // retorna indice do usuario
+  getUserIndex(userId: string){
+    return this.users.findIndex(u => u.id == userId);
   }
   
-  getById(userId: string) : user {
+  // retorna usuario
+  getUserById(userId: string) : User {
     return this.users.find(({ id }) => id == userId);
   }
 
-  update(userId: string, user: user) : user {
-    var result: user = this.getById(userId);
-    var userIndex = this.users.findIndex((result) => result.id == userId); // retorna o índice do cupom no array
-
-    if (result) {
-      this.users[userIndex] = <user> { 
-        ...this.users[userIndex],  // preserva tudo que já tem no cupom 
-        ...user                      // altera apenas o que é necessário
-      }      
-    }
-
-    return result;
+  getOrderById(userId: string, orderId: string) : Order {
+    var index = this.getUserIndex(userId);
+    return this.users[index].orders.find(({ id }) => orderId == id);
   }
 
-  get() : user[] {
+  // retorna todos os usuarios
+  getUsers() : User[] {
     return this.users;
   }
 
-  delete(userId: string) : user {
-    var result: user = this.getById(userId);
-    var userIndex = this.users.findIndex((result) => result.id == userId);
-    
-    if (result) {
-      this.users.splice(userIndex, 1);
-    }
-    return result;
+  // retorna todos os pedidos de um determiando usuario
+  getOrders(user: User) : Order[] {
+    var index = this.getUserIndex(user.id);
+    return this.users[index].orders;
   }
 
-  updateFile(fileName: string){
+  // ------------------------------------------------------------------
+  
+  // adiciona um pedido ao usuário (após a finalização)
+  addOrder(user: User, order: Order): User {
+    const idOrder = crypto.randomBytes(4).toString('HEX'); 
+
+    const newOrder = <Order> { id: idOrder , ...order};
+    // achar o usuario em users
+    var userIndex = this.getUserIndex(user.id); // retorna o índice do cupom no array
+    
+    this.users[userIndex].orders.push(newOrder);
+ 
+    console.log(this.users[userIndex].orders);
+
+    return this.users[userIndex];
+  }
+
+  // atualiza o valor do pedido (após aplicar o cupom)
+  applyCouponInOrder(order: Order, coupon: Coupon) : Order {
+    // ** vo ver se o carinha ja usou esse cupom outra vez (pqp) => tem que salvar os cupons (FUTURO!!!!)
+    // ver se o amount do pedido é >= valor minimo do cupom
+    if(order.amount >= coupon.minValue){
+      // se tudo der certo => aplica o cupom
+      order.coupon = coupon; 
+      order.amount = order.amount * (1 - coupon.discount); // por enquanto, é apenas porcentagem
+    }
+    
+    return order;
+  }
+
+  // remove o cupom do pedido
+  removeCoupon(order: Order) : Order {
+    var discount = order.coupon.discount;
+    order.amount = order.amount / (1 - discount); // por enquanto, é apenas porcentagem
+    order.coupon = undefined; 
+    
+    return order;
+  }
+
+  // ------------------------------------------------------------------
+  
+  updateFile(){
+    var fileName = "users.json";
     fs.writeFile(fileName, JSON.stringify(this.users), (err) => {
       if(err){
         console.log(err);
@@ -62,5 +83,4 @@ export class userService {
       }
     })
   }
-  
 }

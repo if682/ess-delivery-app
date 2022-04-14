@@ -105,3 +105,15 @@ Content-Type: application/json
 
 ### 
 DELETE http://localhost:3000/promotion/restaurants/Mequi/f9e62837
+
+### exemplo post cupom no pedido 
+
+# {
+#     "couponName": "picolinho",
+#     "order": {
+#         "id": "fjwoeijf",
+#         "products": [],
+#         "restaurant": "Mequi",
+#         "coupon": "2por1"
+#     }
+# }

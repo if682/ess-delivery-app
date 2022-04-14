@@ -1,37 +1,58 @@
 import { Router } from 'express';
 import { Coupon } from './src/coupon';
+import { restaurant, restaurants } from './src/restaurants';
 import { PromotionService } from './src/promotion-service';
+import { UserService } from './src/user-service';
+import { readFiles } from './src/readFiles';
 import * as fs from 'fs';
-import { restaurant, restaurants } from './restaurants';
-import { users } from './users';
+import { Order, users } from './src/users';
 const routes = Router();
 
+// Inicialização
 var adminService: PromotionService = new PromotionService();
 var restaurantsService: PromotionService[] = [];
+var usersService: UserService = new UserService();
 
-// inicializando os restaurantes
 for(var r of restaurants){
     restaurantsService[r.name] = new PromotionService();
 }
 
-fs.readFile("admin-coupons.json", "utf-8", (err, data) => {
-  if(err){
-    console.log(err);
-  }else{
-    adminService.coupons = JSON.parse(data);
-  }
-})
+// ----------------------------------------------------------------
 
-fs.readFile("restaurants-coupons.json", "utf-8", (err, data) => {
-  if(err){
-    console.log(err);
-  }else{
-    var json = JSON.parse(data);
-    for(var j of json){
-      restaurantsService[j.name].coupons = j.coupons;
-    }
-  }
-})
+// Lendo dos arquivos
+readFiles(adminService, usersService, restaurantsService);
+
+// ----------------------------------------------------------------
+
+// // Lendo dos arquivos
+// fs.readFile("admin-coupons.json", "utf-8", (err, data) => {
+//   if(err){
+//     console.log(err);
+//   }else{
+//     adminService.coupons = JSON.parse(data);
+//   }
+// })
+
+// fs.readFile("users.json", "utf-8", (err, data) => {
+//   if(err){
+//     console.log(err);
+//   }else{
+//     usersService.users = JSON.parse(data);
+//   }
+// })
+
+// fs.readFile("restaurants-coupons.json", "utf-8", (err, data) => {
+//   if(err){
+//     console.log(err);
+//   }else{
+//     var json = JSON.parse(data);
+//     for(var j of json){
+//       restaurantsService[j.name].coupons = j.coupons;
+//     }
+//   }
+// })
+
+// ----------------------------------------------------------------
 
 function updateRestaurantsFile(){
   fs.writeFile("restaurants-coupons.json", JSON.stringify(restaurants), (err) => {
@@ -43,13 +64,17 @@ function updateRestaurantsFile(){
   })
 }
 
-routes.get('/promotion/admin', (req, res) => {
-    const promotions = adminService.get();
-    res.send(JSON.stringify(promotions));
-});
+// ----------------------------------------------------------------
 
 routes.get('/payment', (req, res) => {
     return res.send('Pagina de pagamento');
+});
+
+// ----------------------------------------------------------------
+// ROTAS DE ADMIN
+routes.get('/promotion/admin', (req, res) => {
+    const promotions = adminService.get();
+    res.send(JSON.stringify(promotions));
 });
 
 routes.get('/promotion/admin/:id', function(req, res){
@@ -113,7 +138,8 @@ routes.delete('/promotion/admin/:id', function (req, res){
   }
 })
 
-/// RESTAURANTES
+// ----------------------------------------------------------------
+/// ROTAS DE RESTAURANTES
 
 routes.get('/promotion/restaurants', (req, res) => {
   res.send(JSON.stringify(restaurants));
@@ -143,7 +169,9 @@ routes.post('/promotion/restaurants/:rest', function(req, res){
   try {
     const result = restaurantsService[restName].add(coupon);
     console.log(restaurantsService[restName].coupons);
+
     restaurants[index].coupons = restaurantsService[restName].coupons;
+
     if (result) {
       res.status(201).send(result);
       updateRestaurantsFile();
@@ -151,8 +179,9 @@ routes.post('/promotion/restaurants/:rest', function(req, res){
     } else {
       res.status(403).send({ message: "Cannot access"});
     }
+    
   } catch (err) {
-    const {message} = err;
+    const { message } = err;
     res.status(400).send({ message })
   }
 });
@@ -162,10 +191,13 @@ routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
   const { rest, id } = req.params;
   const coupon: Coupon = <Coupon> req.body;
   const result = restaurantsService[rest].update(id, coupon);
+  
   const index = restaurants.findIndex((result) => result.name == rest)
   restaurants[index].coupons = restaurantsService[rest].coupons;
+  
   const err = `Coupon ${id} could not be found.`;
   const message = `Coupon ${id} has been updated.`;
+  
   if (result) {
     res.send({ message: message});
     updateRestaurantsFile();
@@ -179,10 +211,13 @@ routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
 routes.delete('/promotion/restaurants/:rest/:id', function (req, res){
   const { rest, id } = req.params;
   const result = restaurantsService[rest].delete(id);
+
   const index = restaurants.findIndex((result) => result.name == rest)
   restaurants[index].coupons = restaurantsService[rest].coupons;
-  const message = `Coupon ${id} has been deleted.`;
+
   const err = `Coupon ${id} could not be found.`;
+  const message = `Coupon ${id} has been deleted.`;
+  
   if (result) {
     res.send({ message: message});
     updateRestaurantsFile();
@@ -190,13 +225,94 @@ routes.delete('/promotion/restaurants/:rest/:id', function (req, res){
   } else {
     res.status(404).send({ message: err});
   }
-})
+});
 
-//clientes
-//adicionar cupon no pedido
-//remover cupom do pedido 
-// 
+// ----------------------------------------------------------------
+/// ROTAS DE USUÁRIOS
 
-routes.post('/user')
+// Retorna os pedidos de um usuário
+routes.get('/user/:userId/orders', function(req, res){
+  const userId = req.params.id;
+  const index = usersService.getUserIndex(userId);
+  res.send(JSON.stringify(usersService.users[index].orders));
+});
+
+// Adiciona cupom ao pedido
+routes.post('/user/:userId/orders', function(req, res){
+  // recebo o nome do cupom e o pedido
+  const couponName: string = <string> req.body.couponName;
+  var order: Order = <Order> req.body.order;
+  // vo ver se esse cupom é do restaurante ou se eh de admin
+  // se nao existir: foi mal tas quereno dar GOLPE
+  // se existir:
+    // 1. vo ver se o amount do pedido é >= valor minimo do cupom
+    // 2. vo ver se o carinha ja usou esse cupom outra vez (pqp) => tem que salvar os cupons
+    // 3. se tudo der certo => aplica o cupom
+  var coupon: Coupon = restaurantsService[order.restaurant].getById(couponName);
+
+  if(coupon){
+    order = usersService.applyCouponInOrder(order, coupon);
+
+    if(order.coupon == undefined){
+      res.status(403).send({ message: `Valor mínimo de ${coupon.minValue} do cupom não foi atingido`});
+    }
+
+    res.status(201).send(order);
+  }else{
+    coupon = adminService[order.restaurant].getById(couponName);
+    if(coupon){
+      usersService.applyCouponInOrder(order, coupon);
+    }else{
+      res.status(403).send({ message: "foi mal tas quereno dar GOLPE"});
+    }
+  }
+  
+  
+  
+    // try {
+  //   const result = (coupon);
+  //   if (result) {
+  //     res.status(201).send(result);
+  //     adminService.updateFile("admin-coupons.json");
+  //     console.log(result);
+  //   } else {
+  //     res.status(403).send({ message: "Cannot access"});
+  //   }
+  // } catch (err) {
+  //   const {message} = err;
+  //   res.status(400).send({ message })
+  // }
+});
+
+
+routes.delete('/user/:userId/order/:orderId', function (req, res){
+  const { user, iduser } = req.params;
+  const result = restaurantsService[rest].delete(id);
+
+  const index = restaurants.findIndex((result) => result.name == rest)
+  restaurants[index].coupons = restaurantsService[rest].coupons;
+
+  const err = `Coupon ${id} could not be found.`;
+  const message = `Coupon ${id} has been deleted.`;
+  
+  if (result) {
+    res.send({ message: message});
+    updateRestaurantsFile();
+    console.log(message);
+  } else {
+    res.status(404).send({ message: err });
+  }
+});
 
 export default routes;
+
+// Login
+// - [ ]  Checagem de ID pra ver se é realmente um cliente ou adm ou restaurante
+
+// User
+// - [ ]  Pedido não alcançou o valor mínimo do cupom
+// - [ ]  Cupom não pode ter um desconto maior que o valor do produto
+// - [ ]  Não pode ter mais de um cupom em um pedido
+// - [ ]  Verificar se o cupom está válido na hora da compra
+// - [ ]  Cupom de primeira compra do app existe vitalício e só pode ser usado uma vez por cliente
+// - [ ]  Todo cupom só pode ser utilizado 1 vez por cliente

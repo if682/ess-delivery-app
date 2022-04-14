@@ -1,4 +1,4 @@
-import { Coupon } from "./src/coupon";
+import { Coupon } from "./coupon";
 import { product } from "./restaurants";
 
 export interface Order {
@@ -6,6 +6,7 @@ export interface Order {
     products: product[];
     amount: number;
     coupon: Coupon;
+    restaurant: string;
 }
 
 export interface User {
