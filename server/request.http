@@ -1,9 +1,10 @@
-POST http://localhost:3000/promotion
+POST http://localhost:3000/promotion/restaurants/Mequi
 Content-Type: application/json
 
 {
     "name": "2BIGMEQUIPOR1",
     "adm": false,
+    "minValue": 15,
     "product": "Big Méqui",
     "discount": 0.5,
     "status": "Inativo",
@@ -11,61 +12,15 @@ Content-Type: application/json
     "end":"21:00-06/04/2022"
 }
 
-###
-
-GET http://localhost:3000/promotion/restaurants/Mequi/e50b999a
-Content-Type: application/json
 
 ###
 
 GET http://localhost:3000/promotion/restaurants/Mequi
 Content-Type: application/json
-
-###
-POST http://localhost:3000/promotion/restaurants/Mequi
-Content-Type: application/json
-
-{
-    "name": "2BIGMEQUIPOR1",
-    "adm": false,
-    "product": "picole",
-    "discount": 0.5,
-    "status": "Inativo",
-    "begin": "21:00-02/04/2022",
-    "end":"21:00-06/04/2022"
-}
-
-
-###
-
-POST http://localhost:3000/promotion
-Content-Type: application/json
-
-{
-    "name": "COXINHA2",
-    "adm": false,
-    "product": "Coxinha de Charque com Chernopiry",
-    "discount": 2,
-    "status": "Ativo",
-    "begin": "21:00-12/03/2022",
-    "end": "21:00-26/03/2022"
-}
-
-###
-
-GET http://localhost:3000/promotion
 
 ###
 
 GET http://localhost:3000/promotion/restaurants
-
-###
-
-GET http://localhost:3000/promotion/restaurants/Mequi
-
-###
-
-GET http://localhost:3000/promotion/146cf423
 
 ###
 
@@ -75,6 +30,7 @@ Content-Type: application/json
 {
     "name": "50%OFF",
     "adm": true,
+    "minValue" : 10000,
     "discount": 0.5,
     "status": "Inativo",
     "begin": "21:00-02/05/2022",
@@ -82,38 +38,108 @@ Content-Type: application/json
 }
 
 ###
-
-PUT http://localhost:3000/promotion/7af0b3f8
+PUT http://localhost:3000/promotion/restaurants/Mequi/217a29f4
 Content-Type: application/json
 
 {
-    "name": "COXINHA10%",
-    "discount": 0.1
+    "minValue" : 90000000
 }
 
 ###
-DELETE http://localhost:3000/promotion/b254e2c9
-
-###
-PUT http://localhost:3000/promotion/restaurants/Mequi/f9e62837
+PUT http://localhost:3000/promotion/admin/ceb04ad1
 Content-Type: application/json
 
 {
-    "name": "picolinho",
-    "product": "chupe-chupe"
+    "minValue" : 80000000
 }
 
 ### 
-DELETE http://localhost:3000/promotion/restaurants/Mequi/f9e62837
-
+DELETE http://localhost:3000/promotion/admin/69324513
 ### exemplo post cupom no pedido 
 
-# {
-#     "couponName": "picolinho",
-#     "order": {
-#         "id": "fjwoeijf",
-#         "products": [],
-#         "restaurant": "Mequi",
-#         "coupon": "2por1"
-#     }
-# }
+GET http://localhost:3000/user/11a84677/orders
+
+###
+
+GET http://localhost:3000/promotion/admin
+
+###
+POST http://localhost:3000/user/11a84677/order
+Content-Type: application/json
+
+{
+    "couponName" : "2BIGMEQUIPOR1",
+    "order" : 
+    {
+        "products": [
+            {
+                "name": "Big Méqui",
+                "price": 15
+            },
+            {
+                "name": "Big Méqui",
+                "price": 15
+            },
+            {
+                "name": "Cheddar Méquimelt",
+                "price": 12
+            }
+        ],
+        "amount": 27,
+        "restaurant": "Mequi"
+    }
+}
+
+###
+POST http://localhost:3000/user/11a84677/order
+Content-Type: application/json
+
+{
+    "couponName" : "mileto",
+    "order" : 
+    {
+        "products": [
+            {
+                "name": "Big Méqui",
+                "price": 15
+            },
+            {
+                "name": "Big Méqui",
+                "price": 15
+            },
+            {
+                "name": "Cheddar Méquimelt",
+                "price": 12
+            }
+        ],
+        "amount": 27,
+        "restaurant": "Mequi"
+    }
+}
+
+###
+DELETE http://localhost:3000/user/11a84677/order
+Content-Type: application/json
+
+{
+    "couponName" : "2BIGMEQUIPOR1",
+    "order" : 
+    {
+        "products": [
+            {
+                "name": "Big Méqui",
+                "price": 15
+            },
+            {
+                "name": "Big Méqui",
+                "price": 15
+            },
+            {
+                "name": "Cheddar Méquimelt",
+                "price": 12
+            }
+        ],
+        "amount": 21,
+        "restaurant": "Mequi"
+    }
+}

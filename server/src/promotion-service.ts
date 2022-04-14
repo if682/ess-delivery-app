@@ -22,13 +22,13 @@ export class PromotionService {
   
   }
   
-  getById(couponId: string) : Coupon {
-    return this.coupons.find(({ id }) => id == couponId);
+  getByName(couponName: string) : Coupon {
+    return this.coupons.find(({ name }) => name == couponName);
   }
 
-  update(couponId: string, coupon: Coupon) : Coupon {
-    var result: Coupon = this.getById(couponId);
-    var couponIndex = this.coupons.findIndex((result) => result.id == couponId); // retorna o índice do cupom no array
+  update(couponName: string, coupon: Coupon) : Coupon {
+    var result: Coupon = this.getByName(couponName);
+    var couponIndex = this.coupons.findIndex((result) => result.id == couponName); // retorna o índice do cupom no array
 
     if (result) {
       this.coupons[couponIndex] = <Coupon> { 
@@ -44,9 +44,9 @@ export class PromotionService {
     return this.coupons;
   }
 
-  delete(couponId: string) : Coupon {
-    var result: Coupon = this.getById(couponId);
-    var couponIndex = this.coupons.findIndex((result) => result.id == couponId);
+  delete(couponName: string) : Coupon {
+    var result: Coupon = this.getByName(couponName);
+    var couponIndex = this.coupons.findIndex((result) => result.id == couponName);
     
     if (result) {
       this.coupons.splice(couponIndex, 1);

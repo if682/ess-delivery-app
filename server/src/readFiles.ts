@@ -2,8 +2,11 @@ import * as fs from 'fs';
 
 import { PromotionService } from './promotion-service';
 import { UserService } from './user-service';
+import { restaurant } from './restaurants';
 
-export function readFiles(adminService: PromotionService, usersService: UserService, restaurantsService: PromotionService[]){
+export var restaurants: restaurant[] = [];
+
+export function readFiles(adminService: PromotionService, usersService: UserService, restaurantsService: PromotionService[]) : [PromotionService, UserService, PromotionService[]] {
     // Lendo dos arquivos
     fs.readFile("admin-coupons.json", "utf-8", (err, data) => {
         if(err){
@@ -26,9 +29,12 @@ export function readFiles(adminService: PromotionService, usersService: UserServ
             console.log(err);
         }else{
             var json = JSON.parse(data);
-            for(var j of json){
-                restaurantsService[j.name].coupons = j.coupons;
+            restaurants = json;
+            for(var r of restaurants){
+                restaurantsService[r.name] = new PromotionService();
+                restaurantsService[r.name].coupons = r.coupons;
             }
         }
     })
+    return [adminService, usersService, restaurantsService];
 }

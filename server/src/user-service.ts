@@ -1,4 +1,4 @@
-import { users, User , Order} from "./users";
+import { User , Order} from "./users";
 import { Coupon } from "./coupon";
 import crypto = require('crypto');
 import * as fs from 'fs';
@@ -8,7 +8,8 @@ export class UserService {
   
   // retorna indice do usuario
   getUserIndex(userId: string){
-    return this.users.findIndex(u => u.id == userId);
+    var result = this.users.findIndex(({ id }) => id == userId);
+    return result;
   }
   
   // retorna usuario
