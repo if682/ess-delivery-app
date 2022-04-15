@@ -96,10 +96,10 @@ routes.post('/promotion/admin', function(req, res){
       console.log(result);
       res.status(201).send(result);
     } else {
-      res.status(403).send({ message: "Cannot access"});
+      res.status(403).send({ message: "Cupom não pode ser adicionado"});
     }
   } catch (err) {
-    const {message} = err;
+    const { message } = err;
     res.status(400).send({ message })
   }
 });
@@ -178,7 +178,7 @@ routes.post('/promotion/restaurants/:rest', function(req, res){
       updateRestaurantsFile();
       console.log(result);
     } else {
-      res.status(403).send({ message: "Cannot access"});
+      res.status(403).send({ message: "Cupom não pode ser adicionado"});
     }
     
   } catch (err) {
@@ -204,7 +204,11 @@ routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
     updateRestaurantsFile();
     console.log(message);
   } else {
-    res.status(404).send({ message: err});
+    if(result == undefined){
+      res.status(404).send({ message: "Valor de desconto inválido"});
+    }else{
+      res.status(404).send({ message: err});
+    }
   }
 
 });
