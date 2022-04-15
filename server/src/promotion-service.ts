@@ -50,29 +50,29 @@ export class PromotionService {
   
 
   update(couponName: string, coupon: Coupon) : Coupon {
-    var result: Coupon = this.getByName(couponName);
-    var couponIndex = this.coupons.findIndex((result) => result.id == couponName); // retorna o índice do cupom no array
-
-    if (result) {
-      var couponAux = <Coupon> { 
+    var couponIndex = this.coupons.findIndex(({ name }) => name == couponName); // retorna o índice do cupom no array
+    var couponAux = <Coupon> {};
+    
+    if (couponIndex != -1) {
+      couponAux = <Coupon> { 
         ...this.coupons[couponIndex],  // preserva tudo que já tem no cupom 
         ...coupon                      // altera apenas o que é necessário
       }
       // se for de admin ou passar no valid ele altera
       if (this.isAValidCoupon(couponAux)){
-        this.coupons[couponIndex] = couponAux;
+        this.coupons[couponIndex] = couponAux; 
+        return this.coupons[couponIndex];
       } else{
-        result = undefined;
+        return undefined;
       }
     }
-
-    return result;
+    return undefined;
   }
 
 
   delete(couponName: string) : Coupon {
     var result: Coupon = this.getByName(couponName);
-    var couponIndex = this.coupons.findIndex((result) => result.id == couponName);
+    var couponIndex = this.coupons.findIndex(({ name }) => name == couponName);
     
     if (result) {
       this.coupons.splice(couponIndex, 1);

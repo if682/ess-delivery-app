@@ -104,13 +104,13 @@ routes.post('/promotion/admin', function(req, res){
   }
 });
 
-routes.put('/promotion/admin/:id', function (req, res) {
-  const id = req.params.id;
+routes.put('/promotion/admin/:name', function (req, res) {
+  const name = req.params.name;
   const coupon: Coupon = <Coupon> req.body;
-  const result = adminService.update(id, coupon);
-
-  const message = `Coupon ${id} has been updated.`;
-  const err = `Coupon ${id} could not be found.`;
+  const result = adminService.update(name, coupon);
+  //console.log(result);
+  const message = `Coupon ${name} has been updated.`;
+  const err = `Coupon ${name} could not be found.`;
 
   if (result) {
     res.send({ message: message});
@@ -123,12 +123,12 @@ routes.put('/promotion/admin/:id', function (req, res) {
 });
 
 
-routes.delete('/promotion/admin/:id', function (req, res){
-  const id = req.params.id;
-  const result = adminService.delete(id);
+routes.delete('/promotion/admin/:name', function (req, res){
+  const name = req.params.name;
+  const result = adminService.delete(name);
   
-  const message = `Coupon ${id} has been deleted.`;
-  const err = `Coupon ${id} could not be found.`;
+  const message = `Coupon ${name} has been deleted.`;
+  const err = `Coupon ${name} could not be found.`;
 
   if (result) {
     res.send({ message: message});
@@ -308,6 +308,35 @@ routes.delete('/user/:id/order', function (req, res){
   }
 });
 
+// ADICIONAR UM PEDIDO AO ARRAY DE PEDIDOS DO USUÁRIO
+routes.post('/user/:id/orders', function(req, res){
+  var order: Order = <Order> req.body;
+  const userId: string = req.params.id;
+  const index = usersService.getUserIndex(userId);
+  var result = undefined;
+  try {
+    if(order.amount >= order.coupon.minValue && order.coupon.status == "Ativo"){
+      result = usersService.addOrder(index, order);
+      if (result) {
+        res.status(201).send(result);
+        usersService.updateFile();
+        console.log("Pedido foi finalizado com sucesso");
+      }else {
+        res.status(403).send({ message: "Pedido não foi finalizado"});
+      }
+    }else{
+      result = usersService.removeCoupon(order);
+      if (result) {
+        res.status(403).send({ message: "Cupom inválido", result });
+      }
+    }
+    
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message })
+  }
+});
+
 export default routes;
 
 // Login
@@ -315,8 +344,9 @@ export default routes;
 
 // User
 // - [x]  Pedido não alcançou o valor mínimo do cupom
-// - [ ]  Cupom não pode ter um desconto maior que o valor do produto
+// - [x]  Cupom não pode ter um desconto maior que o valor do produto
 // - [ ]  Não pode ter mais de um cupom em um pedido
-// - [ ]  Verificar se o cupom está válido na hora da compra
+// - [x]  Verificar se o cupom está válido na hora da compra -> checar o status
+// - [ ]  Perguntar se realmente é necessário checagem de data ou só o status do cupom já basta
 // - [ ]  Cupom de primeira compra do app existe vitalício e só pode ser usado uma vez por cliente
 // - [ ]  Todo cupom só pode ser utilizado 1 vez por cliente

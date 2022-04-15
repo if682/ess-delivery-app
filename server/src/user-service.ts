@@ -36,13 +36,11 @@ export class UserService {
   // ------------------------------------------------------------------
   
   // adiciona um pedido ao usuário (após a finalização)
-  addOrder(user: User, order: Order): User {
+  addOrder(userIndex: number, order: Order): User {
     const idOrder = crypto.randomBytes(4).toString('HEX'); 
 
     const newOrder = <Order> { id: idOrder , ...order};
-    // achar o usuario em users
-    var userIndex = this.getUserIndex(user.id); // retorna o índice do cupom no array
-    
+   
     this.users[userIndex].orders.push(newOrder);
  
     console.log(this.users[userIndex].orders);
@@ -54,7 +52,7 @@ export class UserService {
   applyCouponInOrder(order: Order, coupon: Coupon) : Order {
     // ** vo ver se o carinha ja usou esse cupom outra vez (pqp) => tem que salvar os cupons (FUTURO!!!!)
     // ver se o amount do pedido é >= valor minimo do cupom
-    if(order.amount >= coupon.minValue){
+    if(order.amount >= coupon.minValue && order.coupon==undefined && coupon.status=="Ativo"){
       // se tudo der certo => aplica o cupom
       order.coupon = coupon; 
       order.amount = order.amount * (1 - coupon.discount); // por enquanto, é apenas porcentagem
