@@ -69,12 +69,7 @@
         And Tiguinho will be notified that his order is ready
 
         Given that Comida de Mainha has accepted the request
-        When Comida de Mainha confirm in the application that the order is ready
-        Then the DB should update order status to ready
-        And Tiguinho will be notified that his order is ready
-
-        Given that Comida de Mainha has accepted the request
-        When Comida de Mainha has'n confirmed in the application that the order is ready
+        When Comida de Mainha hasn't confirmed in the application that the order is ready
         Then the DB can't update the order status to ready
         And Tiguinho won't be notified
 
@@ -91,6 +86,3 @@
         And will arrive after 5min
         And a service will be executed to re-send the notification
 
-                |state   |
-                |ready   |
-                |accepted|
