@@ -6,8 +6,6 @@ export class Coupon {
     product: string;
     discount: number;
     status: string;
-    begin: string;
-    end: string;
 
   constructor(coupon: Coupon) {
       this.id = coupon.id;
@@ -17,8 +15,6 @@ export class Coupon {
       this.product = coupon.product;
       this.discount = coupon.discount;
       this.status = coupon.status;
-      this.begin = coupon.begin;
-      this.end = coupon.end;
   }
 
   update(coupon: Coupon): void {
@@ -27,7 +23,5 @@ export class Coupon {
       this.minValue = coupon.minValue;
       this.discount = coupon.discount;
       this.status = coupon.status;
-      this.begin = coupon.begin;
-      this.end = coupon.end;
   }
 }

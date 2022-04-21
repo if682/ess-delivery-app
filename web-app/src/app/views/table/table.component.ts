@@ -3,6 +3,10 @@ import {MatTable} from '@angular/material/table';
 
 import { coupons, COUPONS, RESTAURANTS } from '../../bd';
 
+import { Coupon } from 'src/app/admin/coupon';
+import { AdminService } from 'src/app/admin/admin.service';
+// import { RestaurantService } from 'src/app/restaurant/restaurant.service';
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -11,27 +15,32 @@ import { coupons, COUPONS, RESTAURANTS } from '../../bd';
 
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['ID', 'Nome', 'Produto', 'Desconto', 'Valor Mínimo', 'Status', 'Editar' ,'Deletar'];
+  coupons: Coupon[] = [];
 
-  ngOnInit() {
+  constructor(private service: AdminService) {}
+
+  ngOnInit(): void {
+    this.service.getCoupons()
+        .then(coupons => this.coupons = coupons)
+        .catch(erro => alert(erro));
   }
-
-  displayedColumns: string[] = ['Código', 'Produto', 'Desconto', 'Início', 'Fim', 'Status'];
-  dataCoupons = COUPONS;
 
   @ViewChild(MatTable) table: MatTable<coupons>;
 
-  addData() {
-    const randomElementIndex = Math.floor(Math.random() * COUPONS.length);
-    this.dataCoupons.push(COUPONS[randomElementIndex]);
+  addData(coupon: Coupon) {
+    this.service.create(coupon)
+        .then(coupon => this.coupons.push(coupon))
+        .catch(erro => alert(erro));
     this.table.renderRows();
   }
 
-  removeData(cod) {
-    // let index = this.dataCoupons.indexOf(cod);
-    // this.dataCoupons.splice(index, 1);
-    this.dataCoupons.pop();
+  removeData(coupon: Coupon) {
+    var index = this.coupons.indexOf(coupon);
+
+    this.service.remove(coupon)
+        .then(coupon => this.coupons.splice(index, 1))
+        .catch(erro => alert(erro));
     this.table.renderRows();
   }
-
 }

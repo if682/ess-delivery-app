@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,6 +14,9 @@ import { PromotionComponent } from './promotion/promotion.component';
 import { PromotionService } from './promotion/promotion.service';
 import { TableComponent } from './views/table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminComponent } from './admin/admin.component';
+import { AdminService } from './admin/admin.service';
+import { FormsComponent, FormsComponentDialog } from './views/forms/forms.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     CarsComponent,
     PromotionComponent,
-    TableComponent
+    TableComponent,
+    AdminComponent,
+    FormsComponent,
+    FormsComponentDialog
   ],
   imports: [
     BrowserModule,
@@ -29,13 +35,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpModule,
     MatTableModule,
+    MatDialogModule,
     RouterModule.forRoot([
       {
-        path: '',
+        path: 'home',
         component: NavbarComponent
       },
       {
-        path: 'cliente',
+        path: 'user',
         component: CarsComponent
       },
       {
@@ -43,17 +50,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         component: PromotionComponent
       },
       {
-        path: 'restaurante',
+        path: 'promotion/restaurant',
         component: TableComponent
       },
       {
-        path: 'adm',
-        component: TableComponent
+        path: 'promotion/admin',
+        component: AdminComponent
       }
     ]),
     BrowserAnimationsModule
   ],
-  providers: [CarService, PromotionService],
+  entryComponents: [FormsComponentDialog],
+  providers: [CarService, PromotionService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,24 +1,30 @@
 <div class="container">
-<table mat-table [dataSource]="dataCoupons" class="demo-table">
-
-  <div matColumnDef="Código">
-    <th class="column-name" mat-header-cell *matHeaderCellDef>
-      <label>Código</label>
+<table mat-table [dataSource]="coupons" class="demo-table">
+  <div matColumnDef="ID">
+    <th class="column-name" id="first" mat-header-cell *matHeaderCellDef>
+      <label>ID</label>
     </th>
     <td class="column-value" *matCellDef="let coupon"> 
-      <div class="coupon-container">
-        {{coupon.code}}
-        <img alt="Ícone de lixeira" src="/assets/icons/trash.svg" (click)="removeData(coupon.code)"/>
-      </div>
+        {{coupon.id}}
+    </td>
+  </div>
+
+  <div matColumnDef="Nome">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Nome</label>
+    </th>
+    <td class="column-value" *matCellDef="let coupon"> 
+        {{coupon.name}}
     </td>
   </div>
   <div matColumnDef="Produto">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Produto</label>
     </th>
-    <td class="column-value" *matCellDef="let coupon"> 
-      {{coupon.product}}
-     </td>
+    <td class="column-value" *matCellDef="let coupon">
+      <ng-template [ngIf]="coupon.adm">Nenhum</ng-template>
+      <ng-template [ngIf]="!coupon.adm">{{coupon.product}}</ng-template>
+    </td>
   </div>
 
   <div matColumnDef="Desconto">
@@ -26,30 +32,41 @@
       <label>Desconto</label>
     </th>
     <td class="column-value" *matCellDef="let coupon"> 
-      {{coupon.discount}}
+      {{coupon.discount | percent}}
     </td>
   </div>
 
-  <div matColumnDef="Início">
+  <div matColumnDef="Valor Mínimo">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
-      <label>Início</label>
+      <label>Valor Mínimo</label>
     </th>
-    <td class="column-value" *matCellDef="let coupon"> {{coupon.begin}} </td>
-  </div>
-
-  <div matColumnDef="Fim">
-    <th class="column-name" mat-header-cell *matHeaderCellDef>
-      <label>Fim</label>
-    </th>
-    <td class="column-value" *matCellDef="let coupon"> {{coupon.end}} </td>
+    <td class="column-value" *matCellDef="let coupon"> 
+      {{coupon.minValue | currency: 'BRL'}}
+    </td>
   </div>
 
   <div matColumnDef="Status">
     <th class="column-name" mat-header-cell *matHeaderCellDef>
       <label>Status</label>
     </th>
+    <td class="column-value" *matCellDef="let coupon"> 
+      <span class="{{coupon.status}}">{{coupon.status}}</span>
+    </td>
+  </div>
+  <div matColumnDef="Editar">
+    <th class="column-name" mat-header-cell *matHeaderCellDef>
+      <label>Editar</label>
+    </th>
+    <td class="column-value"  *matCellDef="let coupon"> 
+      <img alt="Ícone de Lápis no Papel" src="/assets/icons/edit_color.svg" (click)="editData(coupon)"/>
+    </td>
+  </div>
+  <div matColumnDef="Deletar">
+    <th id="last" mat-header-cell *matHeaderCellDef>
+      <label>Deletar</label>
+    </th>
     <td *matCellDef="let coupon"> 
-      {{coupon.status}}
+      <img class="trash" alt="Ícone de lixeira" src="/assets/icons/trash.svg" (click)="removeData(coupon)"/>
     </td>
   </div>
 
@@ -57,27 +74,15 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<h2>Adicionar ou editar um cupom:</h2>
+<!-- <h2>Adicionar ou editar um cupom:</h2>
 <div class="input-block table">
   <input placeholder="Código">
   <input placeholder="Produto">
   <input placeholder="Desconto">
-  <input placeholder="Início">
-  <input placeholder="Fim">
+  <input placeholder="Valor Mínimo">
   <input placeholder="Status">
-</div>
+</div> -->
 
-</div>
-
-<div class="buttons-container">
-  <a class="add-link" alt="Botão de Editar Cupom">
-    <img alt="Ícone de Lápis" src="/assets/icons/edit.svg"/>
-    Editar Cupom
-  </a>
-  <a class="add-link" alt="Botão de Adicionar Cupom">
-    <img alt="Ícone de soma" src="/assets/icons/plus.svg"/>
-    Adicionar Cupom
-  </a>
 </div>
 <!--
 <div>

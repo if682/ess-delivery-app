@@ -39,9 +39,7 @@
                 "minValue": 10,
                 "product": "Mequi Quarteirao",
                 "discount": 0.5,
-                "status": "Inativo",
-                "begin": "21:00-02/04/2022",
-                "end": "21:00-06/04/2022"
+                "status": "Inativo"
             },
             {
                 "id": "dbccdcd9",
@@ -50,9 +48,7 @@
                 "minValue": 10,
                 "product": "picanha",
                 "discount": 0.5,
-                "status": "Inativo",
-                "begin": "21:00-02/04/2022",
-                "end": "21:00-06/04/2022"
+                "status": "Inativo"
             },
             {
                 "id": "5e9551e1",
@@ -61,9 +57,7 @@
                 "minValue": 10,
                 "product": "lasanha",
                 "discount": 0.5,
-                "status": "Inativo",
-                "begin": "21:00-02/04/2022",
-                "end": "21:00-06/04/2022"
+                "status": "Inativo"
             },
             {
                 "id": "217a29f4",
@@ -72,9 +66,7 @@
                 "minValue": 93821382793,
                 "product": "Big Méqui",
                 "discount": 0.5,
-                "status": "Inativo",
-                "begin": "21:00-02/04/2022",
-                "end": "21:00-06/04/2022"
+                "status": "Inativo"
             },
             {
                 "id": "388ac565",
@@ -83,9 +75,7 @@
                 "minValue": 15,
                 "product": "Big Méqui",
                 "discount": 0.6,
-                "status": "Inativo",
-                "begin": "21:00-02/04/2022",
-                "end": "21:00-06/04/2022"
+                "status": "Inativo"
             }
         ]
     },

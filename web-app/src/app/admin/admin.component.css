@@ -1,0 +1,26 @@
+h2 {
+    text-align: left;
+    margin-left: 5rem;
+}
+
+.bar {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+
+@media (min-width: 1000px){ 
+    .bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 2rem;
+    } 
+}
+
+/* @media (max-width: 1000px){
+    .bar {
+        display: grid;
+    }
+} */
