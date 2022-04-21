@@ -11,20 +11,13 @@ export class PromotionService {
 
   constructor(private http: Http) { }
 
-    create(coupon: Coupon): Promise<Coupon> {
-    return this.http.post(this.taURL + "/promotion",JSON.stringify(coupon), {headers: this.headers})
+    createCoupon(coupon: Coupon): Promise<Coupon> {
+    return this.http.post(this.taURL + "/promotion/admin",JSON.stringify(coupon), {headers: this.headers})
       .toPromise()
       .then(res => {
         if (res.status === 201) {return coupon;} else {return null;}
       })
       .catch(this.catch);
-  }
-  // ! o erro do JSON não formatado corretamente é aqui !!!!!!!!
-  getCoupons(): Promise<Coupon[]> {
-    return this.http.get(this.taURL + "/promotion")
-             .toPromise()
-             .then(res => res.json() as Coupon[])
-             .catch(this.catch);
   }
 
   private catch(erro: any): Promise<any>{

@@ -108,7 +108,7 @@ input[type=checkbox]:before {
 input[type=checkbox]:checked:before {
     content: "";
     position: absolute;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary-light);
     background-image: url(../assets/icons/check.svg);
 }
 
@@ -129,19 +129,6 @@ input[type=checkbox]:checked:before {
 
 .logo-container img {
     width: 50vh;
-}
-
-.buttons-container a.confirm-link {
-    background: var(--color-secondary);
-}
-
-.buttons-container a.confirm-link img {
-    margin-right: 2.5rem;
-}
-
-.buttons-container a.confirm-link:hover {
-    background: var(--color-secondary-dark);
-    transition: background 0.2s;
 }
 
 .header-home {

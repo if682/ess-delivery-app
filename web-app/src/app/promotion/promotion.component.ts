@@ -17,7 +17,7 @@ export class PromotionComponent implements OnInit {
     coupons: Coupon[] = [];
 
     createCoupon(c: Coupon): void {
-        this.promotionService.create(c)
+        this.promotionService.createCoupon(c)
         .then(result => {
               if (result) {
                 this.coupons.push(<Coupon> result);
@@ -28,9 +28,7 @@ export class PromotionComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.promotionService.getCoupons()
-          .then(coupons => this.coupons = coupons)
-          .catch(erro => alert(erro));
+        
     }
 
 }

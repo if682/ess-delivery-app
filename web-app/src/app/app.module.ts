@@ -8,8 +8,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CarsComponent } from './cars/cars.component';
-import { CarService } from './cars/cars.service';
 import { PromotionComponent } from './promotion/promotion.component';
 import { PromotionService } from './promotion/promotion.service';
 import { TableComponent } from './views/table/table.component';
@@ -22,7 +20,6 @@ import { FormsComponent, FormsComponentDialog } from './views/forms/forms.compon
   declarations: [
     AppComponent,
     NavbarComponent,
-    CarsComponent,
     PromotionComponent,
     TableComponent,
     AdminComponent,
@@ -42,26 +39,22 @@ import { FormsComponent, FormsComponentDialog } from './views/forms/forms.compon
         component: NavbarComponent
       },
       {
-        path: 'user',
-        component: CarsComponent
-      },
-      {
-        path: 'promotion',
-        component: PromotionComponent
-      },
-      {
         path: 'promotion/restaurant',
         component: TableComponent
       },
       {
         path: 'promotion/admin',
         component: AdminComponent
+      },
+      {
+        path: 'promotion/admin/add-coupon',
+        component: PromotionComponent
       }
     ]),
     BrowserAnimationsModule
   ],
   entryComponents: [FormsComponentDialog],
-  providers: [CarService, PromotionService, AdminService],
+  providers: [PromotionService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

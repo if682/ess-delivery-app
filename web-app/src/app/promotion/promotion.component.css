@@ -1,0 +1,66 @@
+.block {
+    border-radius: 0.8rem;
+    background-color: var(--color-primary-dark);
+    padding: 2rem 3rem 1.5rem 3rem;
+    box-shadow: 2px 2px 6px var(--color-primary-darker);
+}
+
+.buttons-container a.confirm-link {
+    margin-top: 2rem;
+    background: var(--color-secondary);
+}
+
+.buttons-container a.confirm-link img {
+    margin-right: 2.5rem;
+}
+
+.buttons-container a.confirm-link:hover {
+    background: var(--color-secondary-dark);
+    transition: background 0.2s;
+}
+
+h2 {
+    color: white;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.status {
+    border-radius: 0.8rem;
+    background-color: var(--color-primary-darker);
+    padding: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.status label{
+    color: white;
+}
+
+.buttons-container {
+    display: grid;
+}
+
+.confirm-link img {
+    width: 5rem;
+}
+
+.back-link {
+    margin-top: 1.5rem;
+    width: 16rem;
+    height: 5rem;
+    background-color: var(--color-primary-darker);
+    font-size: 2rem;
+    justify-content: space-between;
+    padding: 2rem 3rem 2rem 3rem;
+}
+
+.buttons-container a.back-link:hover {
+    background: var(--color-all-dark);
+    transition: background 0.2s;
+}
