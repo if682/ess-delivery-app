@@ -35,7 +35,7 @@ export class PromotionComponent implements OnInit {
         this.coupon = new Coupon();
       }
     })
-    .catch(erro => alert(erro));
+    .catch(erro => alert("Dados inválidos"));
   }
 
   ngOnInit(): void {

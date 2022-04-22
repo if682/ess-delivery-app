@@ -15,7 +15,7 @@
          <input placeholder="Desconto" type="number" max="1" [(ngModel)]="coupon.discount" required>
       </div>
       <div class="input-block">
-         <input placeholder="Valor Mínimo" [(ngModel)]="coupon.minValue" required>
+         <input placeholder="Valor Mínimo" type="number" [(ngModel)]="coupon.minValue" required>
       </div>
       <div class="buttons-container">
          <a class="confirm-link" (click)="createCoupon(coupon)">

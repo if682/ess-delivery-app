@@ -44,8 +44,10 @@ export class PromotionService {
       .toPromise()
       .then(res => {
         if (res.status === 201) {
+          alert("Cupom cadastrado com sucesso");
           return coupon;
         } else {
+          // alert("Cupom não pode ser adicionado");
           return null;
         }
       })
@@ -53,7 +55,8 @@ export class PromotionService {
   }
 
   private catch(erro: any): Promise<any> {
-    console.error('Oops, something went wrong', erro);
+    // alert("Cupom não pode ser adicionado");
+    // console.error('Oops, something went wrong', erro);
     return Promise.reject(erro.message || erro);
   }
 }
