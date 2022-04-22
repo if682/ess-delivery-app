@@ -248,36 +248,31 @@ routes.get('/user/:id/orders', function(req, res){
 routes.post('/user/:id/order', function(req, res){
   var couponName: string = <string> req.body.couponName; // isso daqui pode mudar, order.coupon pode virar string
   var order: Order = <Order> req.body.order;
+  var userId = req.params.id;
   
+  var err;
+  
+  // se o cupom é de restaurante
   var coupon: Coupon = restaurantsService[order.restaurant].getByName(couponName);
-
-  var err2: string = "Cupom não existe";                                             // ok 
-  var err3: string = "Cupom já foi utilizado";
-  var err4: string = "Cupom expirado";
-
   if(coupon){
-    order = usersService.applyCouponInOrder(order, coupon);
-
-    if(order.coupon == undefined){
-      res.status(403).send({ err: `Valor mínimo de ${coupon.minValue} do cupom não foi atingido` });
-    }else{
-      res.status(201).send(order);
-    }
-
+    applyCoupon();
   }else{
+    // se não for, é de adm
     coupon = adminService.getByName(couponName);
-
     if(coupon){
-      order = usersService.applyCouponInOrder(order, coupon);
-
-      if(order.coupon == undefined){
-        res.status(403).send({ err: `Valor mínimo de ${coupon.minValue} do cupom não foi atingido` });
-      }else{
-        res.status(201).send(order);
-      }
-
+      applyCoupon();
     }else{
-      res.status(403).send({ err2 });
+      res.status(403).send("O cupom não existe");
+    }
+  }
+
+  function applyCoupon() {
+    [order, err] = usersService.applyCouponInOrder(userId, order, coupon);
+
+    if (order.coupon == undefined) {
+      res.status(403).send(err);
+    } else {
+      res.status(201).send(order);
     }
   }
 // OBS: a gente ta perdendo informação do cupom!
@@ -347,6 +342,7 @@ export default routes;
 // - [x]  Cupom não pode ter um desconto maior que o valor do produto
 // - [ ]  Não pode ter mais de um cupom em um pedido
 // - [x]  Verificar se o cupom está válido na hora da compra -> checar o status
-// - [ ]  Perguntar se realmente é necessário checagem de data ou só o status do cupom já basta
-// - [ ]  Cupom de primeira compra do app existe vitalício e só pode ser usado uma vez por cliente
+// - [x]  Perguntar se realmente é necessário checagem de data ou só o status do cupom já basta => não precisa checar data
+// - [x]  Cupom de primeira compra do app existe vitalício e só pode ser usado uma vez por cliente => só criar um exemplo
 // - [ ]  Todo cupom só pode ser utilizado 1 vez por cliente
+// Checar se o cupom a ser inserido tem todos os campos preenchidos => exceto id

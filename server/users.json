@@ -9,22 +9,7 @@
 }, {
     "name": "Zenio",
     "id": "11a84677",
-    "orders": [{
-        "id": "11b15658",
-        "products": [{
-            "name": "Big Méqui",
-            "price": 15
-        }, {
-            "name": "Big Méqui",
-            "price": 15
-        }, {
-            "name": "Cheddar Méquimelt",
-            "price": 12
-        }],
-        "amount": 27,
-        "coupon": "2BIGMEQUIPOR1",
-        "restaurant": "Mequi"
-    }, {
+    "orders": [ {
         "id": "2787c166",
         "products": [{
             "name": "Big Méqui",
@@ -70,5 +55,16 @@
             "discount": 0.6,
             "status": "Ativo"
         }
-    }]
+    }],
+    "coupons": [
+        {
+            "id": "388ac565",
+            "name": "2BIGMEQUIPOR9",
+            "adm": false,
+            "minValue": 15,
+            "product": "Big Méqui",
+            "discount": 0.6,
+            "status": "Inativo"
+        }
+    ]
 }]

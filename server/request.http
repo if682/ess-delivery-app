@@ -49,7 +49,6 @@ POST http://localhost:3000/promotion/admin
 Content-Type: application/json
 
 {
-    "name": "50%OFF",
     "adm": true,
     "minValue" : 10000,
     "discount": 0.5,

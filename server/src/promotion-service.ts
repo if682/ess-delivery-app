@@ -21,11 +21,15 @@ export class PromotionService {
   isAValidCoupon(coupon: Coupon){
     // // 1. procurar o produto do cupom em restaurante
     // // 2. ver se price < coupon.minValue
-    if (coupon.minValue < 0 || coupon.discount < 0 || coupon.discount > 1){
+    if (coupon.minValue < 0 || coupon.discount < 0 || coupon.discount >= 1){
       return false;
     }else{
       return true;
     }
+  }
+
+  isCoupon(coupon: Coupon){
+    return (coupon.discount != undefined && coupon.minValue != undefined && coupon.name != undefined && coupon.status != undefined);
   }
 
   add(coupon: Coupon): Coupon {
@@ -35,11 +39,12 @@ export class PromotionService {
     // if (newCoupon.price <= 0) {
     //   throw Error("Price can't equal or less than zero")
     // }
+
     var c = this.getByName(newCoupon.name);
     
-    if (this.isAValidCoupon(newCoupon) && (c == undefined)){
+    if (this.isAValidCoupon(newCoupon) && (c == undefined) && this.isCoupon(newCoupon)){
       this.coupons.push(newCoupon);
-      console.log(newCoupon);
+      // console.log(newCoupon);
     }else{
       return undefined;
     }

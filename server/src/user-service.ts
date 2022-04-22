@@ -47,18 +47,37 @@ export class UserService {
 
     return this.users[userIndex];
   }
+  
+  couponCanBeApplied(userId: string, order: Order, coupon: Coupon) : string{
+    // ver se o amount do pedido é >= valor minimo do cupom
+    var userIndex = this.getUserIndex(userId);
+    // verificar se o cupom já foi utilizado pelo usuário anteriormente
+    var couponIndex = this.users[userIndex].orders.findIndex( o => o.coupon.id == coupon.id);
+    if (order.amount < coupon.minValue) {
+      return "O valor mínimo não foi atingido";
+    }
+    if (coupon.status != "Ativo" ) {
+      return "O cupom não está ativo no momento";
+    }
+    if (couponIndex != -1) {
+      return "Este cupom já foi utilizado";
+    }
+    // return order.amount >= coupon.minValue && order.coupon == undefined && coupon.status == "Ativo" && couponIndex == -1;
+    if (order.coupon != undefined) {
+      return "Já existe um cupom aplicado ao pedido";
+    }
+    return "OK"
+  }
 
   // atualiza o valor do pedido (após aplicar o cupom)
-  applyCouponInOrder(order: Order, coupon: Coupon) : Order {
-    // ** vo ver se o carinha ja usou esse cupom outra vez (pqp) => tem que salvar os cupons (FUTURO!!!!)
-    // ver se o amount do pedido é >= valor minimo do cupom
-    if(order.amount >= coupon.minValue && order.coupon==undefined && coupon.status=="Ativo"){
+  applyCouponInOrder(userId: string, order: Order, coupon: Coupon) : [Order, string] {
+    var msg = this.couponCanBeApplied(userId, order, coupon); 
+    if(msg == "OK"){
       // se tudo der certo => aplica o cupom
       order.coupon = coupon; 
       order.amount = order.amount * (1 - coupon.discount); // por enquanto, é apenas porcentagem
     }
-    
-    return order;
+    return [order, msg];
   }
 
   // remove o cupom do pedido
@@ -69,6 +88,7 @@ export class UserService {
     
     return order;
   }
+  //aqui colocar add coupon
 
   // ------------------------------------------------------------------
   
@@ -82,4 +102,6 @@ export class UserService {
       }
     })
   }
+  
 }
+
