@@ -25,9 +25,7 @@ export class PromotionService {
     this.currentURL = window.location.pathname.replace("/add-coupon", "");
   }
 
-
-  createCoupon(coupon: Coupon): Promise<Coupon> { 
-
+  setAttributes(coupon){
     if(this.currentURL == ADMIN){
       coupon.adm = true;
       coupon.product = "Nenhum";
@@ -36,6 +34,11 @@ export class PromotionService {
         coupon.adm = false;
       }
     }
+  }
+
+  createCoupon(coupon: Coupon): Promise<Coupon> { 
+
+    this.setAttributes(coupon);
 
     return this.http.post(this.taURL + this.currentURL, JSON.stringify(coupon), { headers: this.headers })
       .toPromise()

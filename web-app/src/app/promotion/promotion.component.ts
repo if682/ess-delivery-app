@@ -12,14 +12,13 @@ import { PromotionService } from './promotion.service';
 export class PromotionComponent implements OnInit {
 
   coupon: Coupon = new Coupon();
-  coupons: Coupon[] = [];
   public status: string;
 
   constructor(private promotionService: PromotionService) {
     this.status = "Inativo";
   }
   
-  activate(): void{
+  activate(): void {
     if(this.status == "Inativo"){
       this.status = "Ativo";
     }else{
@@ -32,12 +31,11 @@ export class PromotionComponent implements OnInit {
 
     this.promotionService.createCoupon(newCoupon)
     .then(result => {
-          if (result) {
-            this.coupons.push(<Coupon> result);
-            this.coupon = new Coupon();
-          }
-      })
-      .catch(erro => alert(erro));
+      if (result) {
+        this.coupon = new Coupon();
+      }
+    })
+    .catch(erro => alert(erro));
   }
 
   ngOnInit(): void {

@@ -15,7 +15,9 @@ export class AdminService {
 
   coupon: Coupon = new Coupon();
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.currentURL = window.location.pathname;
+  }
   
   removeCoupon(couponName: string): Promise<Coupon[]> {
     return this.http.delete(this.taURL + this.currentURL + "/" + couponName)
@@ -25,9 +27,7 @@ export class AdminService {
   }
   
   getCoupons(): Promise<Coupon[]> {
-    this.currentURL = window.location.pathname;
-
-    return this.http.get(this.taURL + "/promotion/admin")
+    return this.http.get(this.taURL + this.currentURL)
              .toPromise()
              .then(res => res.json() as Coupon[])
              .catch(this.catch);
