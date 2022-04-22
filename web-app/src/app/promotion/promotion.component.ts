@@ -11,24 +11,37 @@ import { PromotionService } from './promotion.service';
 })
 export class PromotionComponent implements OnInit {
 
-  constructor(private promotionService: PromotionService) {}
+  coupon: Coupon = new Coupon();
+  coupons: Coupon[] = [];
+  public status: string;
 
-    coupon: Coupon = new Coupon();
-    coupons: Coupon[] = [];
-
-    createCoupon(c: Coupon): void {
-        this.promotionService.createCoupon(c)
-        .then(result => {
-              if (result) {
-                this.coupons.push(<Coupon> result);
-                this.coupon = new Coupon();
-              }
-          })
-          .catch(erro => alert(erro));
+  constructor(private promotionService: PromotionService) {
+    this.status = "Inativo";
+  }
+  
+  activate(): void{
+    if(this.status == "Inativo"){
+      this.status = "Ativo";
+    }else{
+      this.status = "Inativo";
     }
+  }
 
-    ngOnInit(): void {
-        
-    }
+  createCoupon(newCoupon: Coupon): void {
+    newCoupon.status = this.status;
+
+    this.promotionService.createCoupon(newCoupon)
+    .then(result => {
+          if (result) {
+            this.coupons.push(<Coupon> result);
+            this.coupon = new Coupon();
+          }
+      })
+      .catch(erro => alert(erro));
+  }
+
+  ngOnInit(): void {
+      
+  }
 
 }

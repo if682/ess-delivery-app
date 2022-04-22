@@ -27,7 +27,7 @@ a img {
     align-items: center;
 }
 
-
+/* 
 @media (min-width: 1000px){ 
     .bar {
         position: fixed;
@@ -35,15 +35,13 @@ a img {
         left: 0;
         margin: 2rem;
     } 
-}
+} */
 
 
 .add {
     justify-content: space-between;
 }
 
-/* @media (max-width: 1000px){
-    .bar {
-        display: grid;
-    }
-} */
+.back {
+    justify-content: left;
+}

@@ -28,19 +28,25 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<coupons>;
 
-  addData(coupon: Coupon) {
-    this.service.create(coupon)
-        .then(coupon => this.coupons.push(coupon))
-        .catch(erro => alert(erro));
-    this.table.renderRows();
-  }
+  // imgClick() {
+  //   document.querySelectorAll("img").forEach( function(img) {
+    
+  //     img.addEventListener("click", function(event) {
+  //       const el = event.target;
+  //       const id = el.id;
+  //       console.log(id);
+  //     });
+      
+  //   });
+  // }
 
-  removeData(coupon: Coupon) {
-    var index = this.coupons.indexOf(coupon);
+  // removeData() {
+  //   var couponName = document.getElementById()
+  //   var index = this.coupons.findIndex(c => c.name == couponName);
 
-    this.service.remove(coupon)
-        .then(coupon => this.coupons.splice(index, 1))
-        .catch(erro => alert(erro));
-    this.table.renderRows();
-  }
+  //   this.service.removeCoupon(couponName)
+  //       .then(coupon => this.coupons.splice(index, 1))
+  //       .catch(erro => alert(erro));
+  //   this.table.renderRows();
+  // }
 }

@@ -1,27 +1,56 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 import { Coupon } from './coupon';
 
+const ADMIN = "/promotion/admin";
+const RESTAURANT = "/promotion/restaurant";
+
 @Injectable()
 export class PromotionService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({ 'Content-Type': 'application/json' });
   private taURL = 'http://localhost:3000';
+  private _currentURL: string;
+  
+  public get currentURL(): string {
+    return this._currentURL;
+  }
 
-  constructor(private http: Http) { }
+  public set currentURL(value: string) {
+    this._currentURL = value;
+  }
 
-    createCoupon(coupon: Coupon): Promise<Coupon> {
-    return this.http.post(this.taURL + "/promotion/admin",JSON.stringify(coupon), {headers: this.headers})
+  constructor(private http: Http) {
+    this.currentURL = window.location.pathname.replace("/add-coupon", "");
+  }
+
+
+  createCoupon(coupon: Coupon): Promise<Coupon> { 
+
+    if(this.currentURL == ADMIN){
+      coupon.adm = true;
+      coupon.product = "Nenhum";
+    }else{
+      if(this.currentURL == RESTAURANT){
+        coupon.adm = false;
+      }
+    }
+
+    return this.http.post(this.taURL + this.currentURL, JSON.stringify(coupon), { headers: this.headers })
       .toPromise()
       .then(res => {
-        if (res.status === 201) {return coupon;} else {return null;}
+        if (res.status === 201) {
+          return coupon;
+        } else {
+          return null;
+        }
       })
       .catch(this.catch);
   }
 
-  private catch(erro: any): Promise<any>{
-    console.error('Oops, something went wrong',erro);
+  private catch(erro: any): Promise<any> {
+    console.error('Oops, something went wrong', erro);
     return Promise.reject(erro.message || erro);
   }
 }

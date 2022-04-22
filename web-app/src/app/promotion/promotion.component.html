@@ -7,12 +7,8 @@
       <div class="status">
          <h3>Status:</h3>
          <div class="checkbox">
-            <input type="checkbox">
-            <label>Ativo</label>
-         </div>
-         <div class="checkbox">
-            <input type="checkbox">
-            <label>Inativo</label>
+            <input id="status" type="checkbox" (click)="activate()">
+            <label>{{status}}</label>
          </div>
       </div>
       <div class="input-block">

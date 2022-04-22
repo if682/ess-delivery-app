@@ -1,8 +1,1 @@
-[{
-    "id": "61f4083a",
-    "name": "20%OFF",
-    "adm": true,
-    "minValue": 10,
-    "discount": 0.2,
-    "status": "Inativo"
-}]
+[{"id":"61f4083a","name":"20%OFF","adm":true,"product":"Nenhum","minValue":10,"discount":0.2,"status":"Inativo"},{"id":"27ee9314","name":"50%OFF","adm":true,"product":"Nenhum","minValue":"50","discount":0.5,"status":"Ativo"},{"id":"e3727fb4","name":"10%OFF","adm":true,"minValue":"10","product":"Nenhum","discount":0.5,"status":"Ativo"},{"id":"640d4795","name":"5%OFF","adm":true,"minValue":"10","product":"Nenhum","discount":0.05,"status":"Inativo"},{"id":"49ca3e95","adm":true,"product":"Nenhum","status":"Inativo"},{"id":"961a1371","name":"mileto","adm":true,"minValue":"10","product":"Nenhum","discount":0.3,"status":"Ativo"},{"id":"dee335b5","name":"malu","adm":true,"minValue":"10","product":"Nenhum","discount":0.7,"status":"Inativo"}]

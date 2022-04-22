@@ -142,6 +142,22 @@ label::selection {
     color: var(--color-all-dark);
 }
 
+
+.buttons-container a.back-link {
+    margin-top: 1.5rem;
+    width: 16rem;
+    height: 5rem;
+    background-color: var(--color-primary-darker);
+    font-size: 2rem;
+    justify-content: space-between;
+    padding: 2rem 3rem 2rem 3rem;
+}
+
+.buttons-container a.back-link:hover {
+    background: var(--color-all-dark);
+    transition: background 0.2s;
+}
+
 @media (max-width: 600px) {
 
     .buttons-container {

@@ -9,35 +9,25 @@ export class AdminService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
+  private currentURL: string;
 
   public dialog: MatDialog;
 
   coupon: Coupon = new Coupon();
 
-  constructor(private http: Http) { }
-
-    create(coupon: Coupon): Promise<Coupon> {
-    return this.http.post(this.taURL + "/promotion/admin",JSON.stringify(coupon), {headers: this.headers})
-      .toPromise()
-      .then(res => {
-        if (res.status === 201) {
-          return coupon;
-        }else{
-          return null;
-        }
-      })
-      .catch(this.catch);
-  }
-  // ! o erro do JSON não formatado corretamente é aqui !!!!!!!!
-  getCoupons(): Promise<Coupon[]> {
-    return this.http.get(this.taURL + "/promotion/admin")
+  constructor(private http: Http) {}
+  
+  removeCoupon(couponName: string): Promise<Coupon[]> {
+    return this.http.delete(this.taURL + this.currentURL + "/" + couponName)
              .toPromise()
              .then(res => res.json() as Coupon[])
              .catch(this.catch);
   }
+  
+  getCoupons(): Promise<Coupon[]> {
+    this.currentURL = window.location.pathname;
 
-  remove(coupon: Coupon): Promise<Coupon[]> {
-    return this.http.delete(this.taURL + "/promotion/admin/" + coupon.name)
+    return this.http.get(this.taURL + "/promotion/admin")
              .toPromise()
              .then(res => res.json() as Coupon[])
              .catch(this.catch);

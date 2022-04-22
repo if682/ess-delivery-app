@@ -1,5 +1,5 @@
 <div class="bar">
-  <div mat-button class="logo-container" name="home" routerLink="/home">
+  <div mat-button class="logo-container" name="home">
     <img alt="Logo" src="/assets/images/logo.svg"/>
   </div>
   <h2>É bom te ver de volta!</h2>
@@ -12,6 +12,11 @@
   </a>
 </div>
 <app-table></app-table>
-
+<div class="buttons-container back">
+  <a class="back-link" alt="Botão de Sair" routerLink="/home">
+    <img alt="Ícone de seta para a esquerda" src="/assets/icons/arrow-left.svg"/>
+    Sair
+  </a>
+</div>
 
 <!-- <app-card [dataSource]="coupons" *ngFor="let coupons of coupons" [coupons]="coupons"></app-card> -->

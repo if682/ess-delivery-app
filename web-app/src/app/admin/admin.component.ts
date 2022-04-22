@@ -8,9 +8,11 @@ import { AdminService } from './admin.service';
 })
 
 export class AdminComponent implements OnInit {
+  private _current_url: string;
 
   constructor(private service: AdminService) {}
 
   ngOnInit(): void {}
+
 
 }

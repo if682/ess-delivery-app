@@ -80,7 +80,7 @@ img {
 .Ativo {
     background-color: var(--color-secondary);
     color: white;
-    padding: .3rem 1rem;
+    padding: .5rem 1.83rem;
     border-radius: 0.3rem;
     font-weight: bold;
 }
