@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
-import { Coupon } from './coupon';
+import { Coupon } from '../admin/coupon';
 
 const ADMIN = "/promotion/admin";
 const RESTAURANT = "/promotion/restaurant";

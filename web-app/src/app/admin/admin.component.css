@@ -27,21 +27,17 @@ a img {
     align-items: center;
 }
 
-/* 
-@media (min-width: 1000px){ 
-    .bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        margin: 2rem;
-    } 
-} */
-
-
 .add {
     justify-content: space-between;
 }
 
 .back {
     justify-content: left;
+    margin: 0;
+    margin-top: 0;
+    margin-left: 1.6rem;
+}
+
+a.back-link {
+    margin-top: 0;
 }

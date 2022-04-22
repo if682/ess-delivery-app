@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Coupon } from './coupon';
+import { Coupon } from '../admin/coupon';
 import { PromotionService } from './promotion.service';
 
 @Component({

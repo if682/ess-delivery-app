@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTable} from '@angular/material/table';
 
-import { coupons, COUPONS, RESTAURANTS } from '../../bd';
-
 import { Coupon } from 'src/app/admin/coupon';
 import { AdminService } from 'src/app/admin/admin.service';
 // import { RestaurantService } from 'src/app/restaurant/restaurant.service';
@@ -26,7 +24,7 @@ export class TableComponent implements OnInit {
         .catch(erro => alert(erro));
   }
 
-  @ViewChild(MatTable) table: MatTable<coupons>;
+  @ViewChild(MatTable) table: MatTable<Coupon>;
 
   // imgClick() {
   //   document.querySelectorAll("img").forEach( function(img) {
