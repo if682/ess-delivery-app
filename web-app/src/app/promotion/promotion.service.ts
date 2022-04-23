@@ -13,6 +13,8 @@ export class PromotionService {
   private taURL = 'http://localhost:3000';
   private _currentURL: string;
   
+  public coupon: Coupon;
+  
   public get currentURL(): string {
     return this._currentURL;
   }
@@ -22,7 +24,16 @@ export class PromotionService {
   }
 
   constructor(private http: Http) {
-    this.currentURL = window.location.pathname.replace("/add-coupon", "");
+    this.coupon = new Coupon();
+
+    var path = window.location.pathname;
+    var act = path.replace("/promotion/admin/", "");
+
+    if(act == "add-coupon"){
+      this.currentURL = path.replace("/add-coupon", "");
+    }else{
+      this.currentURL = path.replace("/edit-coupon", "");
+    }
   }
 
   setAttributes(coupon){
@@ -52,6 +63,14 @@ export class PromotionService {
         }
       })
       .catch(this.catch);
+  }
+
+  editCoupon(couponName: string, coupon: Coupon): Promise<Coupon[]> {
+  
+    return this.http.put(this.taURL + this.currentURL + "/" + couponName, JSON.stringify(coupon))
+             .toPromise()
+             .then(res => res.json() as Coupon[])
+             .catch(this.catch);
   }
 
   private catch(erro: any): Promise<any> {

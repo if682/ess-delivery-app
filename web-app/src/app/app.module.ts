@@ -49,6 +49,10 @@ import { FormsComponent, FormsComponentDialog } from './views/forms/forms.compon
       {
         path: 'promotion/admin/add-coupon',
         component: PromotionComponent
+      },
+      {
+        path: 'promotion/admin/edit-coupon',
+        component: PromotionComponent
       }
     ]),
     BrowserAnimationsModule

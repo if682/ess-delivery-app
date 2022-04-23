@@ -58,7 +58,7 @@
         <label>Editar</label>
       </th>
       <td class="column-value"  *matCellDef="let coupon"> 
-        <img id="edit-{{coupon.name}}" alt="Ícone de Lápis no Papel" src="/assets/icons/edit_color.svg" (click)="editData"/>
+        <img alt="Ícone de Lápis no Papel" src="/assets/icons/edit_color.svg" routerLink="/promotion/admin/edit-coupon" (click)="sendData(coupon)" />
       </td>
     </div>
     <div matColumnDef="Deletar">
@@ -66,7 +66,7 @@
         <label>Deletar</label>
       </th>
       <td *matCellDef="let coupon"> 
-        <img data-name="delete-{{coupon.name}}" class="trash" alt="Ícone de lixeira" src="/assets/icons/trash.svg" (click)="removeData()"/>
+        <img class="trash" alt="Ícone de lixeira" src="/assets/icons/trash.svg" (click)="removeData(coupon.name)"/>
       </td>
     </div>
 

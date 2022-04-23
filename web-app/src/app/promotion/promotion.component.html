@@ -1,8 +1,8 @@
 <div class="block">
-   <h2>Adicionar Novo Cupom</h2>
+   <h2>{{action}}</h2>
    <div class="forms-block">
       <div class="input-block" >
-         <input placeholder="Nome/Código" id="cardNumber" [(ngModel)]="coupon.name" required>
+         <input value="{{coupon.name}}" placeholder="Nome/Código" [(ngModel)]="coupon.name" required>
       </div>
       <div class="status">
          <h3>Status:</h3>

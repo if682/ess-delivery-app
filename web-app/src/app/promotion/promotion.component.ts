@@ -13,6 +13,7 @@ export class PromotionComponent implements OnInit {
 
   coupon: Coupon = new Coupon();
   public status: string;
+  public action: string;
 
   constructor(private promotionService: PromotionService) {
     this.status = "Inativo";
@@ -39,7 +40,14 @@ export class PromotionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      
+    var path = window.location.pathname;
+    var act = path.replace("/promotion/admin/", "");
+
+    if(act == "add-coupon"){
+      this.action = "Adicionar um novo cupom";
+    }else{
+      this.action = "Editar cupom";
+    }
   }
 
 }

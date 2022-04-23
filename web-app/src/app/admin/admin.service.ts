@@ -13,7 +13,14 @@ export class AdminService {
 
   public dialog: MatDialog;
 
-  coupon: Coupon = new Coupon();
+  private _coupon: Coupon = new Coupon();
+
+  public get coupon(): Coupon {
+    return this._coupon;
+  }
+  public set coupon(value: Coupon) {
+    this._coupon = value;
+  }
 
   constructor(private http: Http) {
     this.currentURL = window.location.pathname;
@@ -33,13 +40,6 @@ export class AdminService {
              .catch(this.catch);
   }
 
-  editCoupon(couponName: string, coupon: Coupon): Promise<Coupon[]> {
-    return this.http.put(this.taURL + this.currentURL + "/" + couponName, JSON.stringify(coupon))
-             .toPromise()
-             .then(res => res.json() as Coupon[])
-             .catch(this.catch);
-  }
-  
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);
     return Promise.reject(erro.message || erro);

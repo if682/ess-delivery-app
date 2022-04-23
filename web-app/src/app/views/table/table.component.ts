@@ -4,9 +4,7 @@ import {MatTable} from '@angular/material/table';
 import { Coupon } from 'src/app/admin/coupon';
 import { AdminService } from 'src/app/admin/admin.service';
 // import { RestaurantService } from 'src/app/restaurant/restaurant.service';
-import * as $ from 'jquery';
-
-var couponName: string;
+import { PromotionService } from 'src/app/promotion/promotion.service';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +16,7 @@ export class TableComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Nome', 'Produto', 'Desconto', 'Valor Mínimo', 'Status', 'Editar' ,'Deletar'];
   coupons: Coupon[] = [];
 
-  constructor(private service: AdminService) {}
+  constructor(private service: AdminService, private editService: PromotionService) {}
 
   ngOnInit(): void {
     this.service.getCoupons()
@@ -28,40 +26,24 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<Coupon>;
 
-  removeData() {
-    couponName.replace("delete-", "");
-
-    alert(couponName);
+  removeData(couponName: string) {
 
     var index = this.coupons.findIndex(c => c.name == couponName);
+    var couponCopy = this.coupons[index];
+
+    this.coupons.splice(index, 1)
+    this.table.renderRows();
 
     this.service.removeCoupon(couponName)
-        .then(coupon => this.coupons.splice(index, 1))
-        .catch(erro => alert(erro));
-    this.table.renderRows();
+          .catch(erro => {
+            alert(erro);
+            this.coupons.push(couponCopy);
+            this.table.renderRows();
+          });
   }
 
-  // removeData(couponName: string) {
-  //   var index = this.coupons.findIndex(c => c.name == couponName);
-
-  //   this.service.removeCoupon(couponName)
-  //       .then(coupon => this.coupons.splice(index, 1))
-  //       .catch(erro => alert(erro));
-  //   this.table.renderRows();
-  // }
-
-  // editData() {
-  //   var name: string;
-  //   this.service.removeCoupon(name)
-  //       .then(coupon => this.coupons.splice(index, 1))
-  //       .catch(erro => alert(erro));
-  //   this.table.renderRows();
-  // }
+  sendData(coupon: Coupon){
+    this.editService.coupon = coupon;
+  }
+  
 }
-$(function() {
-  $(document).on('click', '.trash', function(e) {
-      e.preventDefault;
-      couponName = $(this).closest('tr').find('td[data-name]').data('name');
-      alert(couponName);
-  });
-});
