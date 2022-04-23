@@ -32,6 +32,13 @@ export class AdminService {
              .then(res => res.json() as Coupon[])
              .catch(this.catch);
   }
+
+  editCoupon(couponName: string, coupon: Coupon): Promise<Coupon[]> {
+    return this.http.put(this.taURL + this.currentURL + "/" + couponName, JSON.stringify(coupon))
+             .toPromise()
+             .then(res => res.json() as Coupon[])
+             .catch(this.catch);
+  }
   
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);
