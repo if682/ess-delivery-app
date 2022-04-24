@@ -89,6 +89,8 @@ h2 {
     text-decoration: none; /*tira a linha embaixo do link clicával => tem porque é uma tag a*/
 
     cursor: pointer;
+
+    box-shadow: 1px 1px 3px var(--color-primary-darker);
 }
 
 input[type=checkbox] {

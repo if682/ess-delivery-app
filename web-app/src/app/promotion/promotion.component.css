@@ -49,3 +49,8 @@ h3{
 .confirm-link img {
     width: 5rem;
 }
+
+.confirm-link,
+.back-link {
+    justify-self: center;
+}

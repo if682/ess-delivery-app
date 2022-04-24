@@ -6,25 +6,25 @@ import { HttpModule } from '@angular/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxCurrencyModule } from "ngx-currency";
+
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { PromotionService } from './promotion/promotion.service';
 import { TableComponent } from './views/table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
 import { AdminService } from './admin/admin.service';
-import { FormsComponent, FormsComponentDialog } from './views/forms/forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    HomeComponent,
     PromotionComponent,
     TableComponent,
     AdminComponent,
-    FormsComponent,
-    FormsComponentDialog
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +33,11 @@ import { FormsComponent, FormsComponentDialog } from './views/forms/forms.compon
     HttpModule,
     MatTableModule,
     MatDialogModule,
+    NgxCurrencyModule,
     RouterModule.forRoot([
       {
         path: 'home',
-        component: NavbarComponent
+        component: HomeComponent
       },
       {
         path: 'promotion/restaurant',
@@ -57,7 +58,6 @@ import { FormsComponent, FormsComponentDialog } from './views/forms/forms.compon
     ]),
     BrowserAnimationsModule
   ],
-  entryComponents: [FormsComponentDialog],
   providers: [PromotionService, AdminService],
   bootstrap: [AppComponent]
 })

@@ -11,38 +11,6 @@
 .image-container img {
     width: 50vh; 
 }
-/*
-.buttons-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-
- animação do botão 
-.btn:link,
-.btn:visited {
-    text-decoration: none;
-    display: inline-block;
-
-    transition: all .2s;
-}
-
-.btn::selection,
-.buttons-container a img::selection {
-    background: none;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgb(0, 0, 0,.2)
-}
-
-.btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgb(0, 0, 0,.2)
-} */
-
 
 .buttons-container a img {
     width: 3.5rem;

@@ -1,10 +1,22 @@
-<div class="container">
-  <div class="bar">
-    <div mat-button class="logo-container" name="home">
-      <img alt="Logo" src="/assets/images/logo.svg"/>
-    </div>
-    <h2>É bom te ver de volta!</h2>
+<div class="bar">
+  <div mat-button class="logo-container" name="home">
+    <img alt="Logo" src="/assets/images/logo.svg"/>
   </div>
+  <!-- <div>
+    <h2>É bom te ver de volta!</h2> 
+  </div>   -->
+  <div class="profile">
+    <div class="info">
+      <label>Mileto</label>  <!-- {{name}}-->
+      <span>ID#2342dc</span> <!-- ID#{{id}}-->
+    </div>
+    <div class="image"  name="profile">
+      <img alt="Admin Profile" src="/assets/images/admin-profile.png"/> <!-- src="/assets/images/{{img}}""-->
+    </div>
+  </div>
+
+</div>
+<div class="container">
   <div class="buttons-container add">
     <h2 class="header-home">Lista de cupons</h2>
     <a class="add-link" alt="Botão de Adicionar Cupom" routerLink="/promotion/admin/add-coupon">
