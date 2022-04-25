@@ -52,3 +52,36 @@
         And put the password "12345678" on the confirmation modal
         Then a success message shows up
         And the profile appears with the new profile picture on it
+
+    Scenario: Client add a payment method successfully
+        Given Eduardo is the restaurant system admin
+        And the password of the account is "12345678"
+        And is on the "Edit restaurant" screen
+        When Eduardo add the payment method "pix" for the restaurant
+        And try to finish the restaurant data update
+        And put the password "12345678" on the confirmation modal
+        Then a success message shows up
+        And the payment method "pix" shows up in the payment metod area
+        
+    Scenario: Restaurant change the opening hours successfully
+        Given Eduardo is the restaurant system admin
+        And the password of the account is "12345678"
+        And is on the "Edit restaurant" screen
+        When Eduardo change the opening hour in "segunda-feira" for "08:00"
+        And change the close hour in "segunda-feira" for "18:00"
+        And try to finish the restaurant data update
+        And put the password "12345678" on the confirmation modal
+        Then a success message shows up
+        And the opening hour in the "segunda-feira" in "08:00 às 18:00"
+
+    Scenario: Restaurant try to add a invalid opening hours
+        Given Eduardo is the restaurant system admin
+        And the password of the account is "12345678"
+        And is on the "Edit restaurant" screen
+        When Eduardo change the opening hour in "segunda-feira" for "09:00"
+        And change the close hour in "segunda-feira" for "08:00"
+        And try to finish the restaurant data update
+        And put the password "12345678" on the confirmation modal
+        Then a error message shows up
+        And the opening hour in the "segunda-feira" is the same as before
+    
