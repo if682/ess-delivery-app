@@ -11,7 +11,7 @@ export class CadastroService {
 
   constructor(private http: Http) { }
 
-    create(restaurante: Restaurante): Promise<Restaurante> {
+  create(restaurante: Restaurante): Promise<Restaurante> {
     return this.http.post(this.taURL + "/restaurant",JSON.stringify(restaurante), {headers: this.headers})
       .toPromise()
       .then(res => {
