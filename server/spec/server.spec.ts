@@ -12,7 +12,7 @@ describe("O servidor", () => {
 
   afterAll(() => {server.closeServer()});
 
-  it("inicialmente retorna uma lista de alunos vazia", () => {
+  it("inicialmente retorna uma lista de restaurantes vazia", () => {
     return request.get(carsUrl).then(body => expect(body).toBe("[]")).catch(e => expect(e).toEqual(null));
   })
 

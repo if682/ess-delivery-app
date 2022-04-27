@@ -15,6 +15,7 @@ export class CadastroComponent implements OnInit {
    restaurante: Restaurante = new Restaurante();
    restaurantes: Restaurante[] = [];
    error = undefined;
+   success = false;
 
    createRestaurante(r: Restaurante): void {
       this.cadastroService.create(r)
@@ -22,6 +23,8 @@ export class CadastroComponent implements OnInit {
             if (result) {
                this.restaurantes.push(<Restaurante> result);
                this.restaurante = new Restaurante();
+
+               this.success = true;
             }
          })
          .catch(erro => this.catch(erro));

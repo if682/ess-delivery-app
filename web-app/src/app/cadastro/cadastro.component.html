@@ -3,56 +3,56 @@
 <table>
    <tr>
       <td><label>Nome do Restaurante </label></td>
-      <td><input id="nome_restaurante-input" [(ngModel)]="restaurante.nome_restaurante" [disabled]="this.error"></td>
+      <td><input id="nome_restaurante-input" name="Nome do Restaurante" [(ngModel)]="restaurante.nome_restaurante" [disabled]="this.error"></td>
       <td><button id="registrar_restaurante" (click)="createRestaurante(restaurante)" [disabled]="this.error">Adicionar</button></td>
    </tr>
    <tr>
       <td><label>CNPJ </label></td>
-      <td><input id="cnpj-input" [ngModel]="restaurante.cnpj" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cnpj, 18)" (ngModelChange) = "formatCNPJ($event)" [disabled]="this.error"></td>
+      <td><input id="cnpj-input" name="CNPJ" [ngModel]="restaurante.cnpj" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cnpj, 18)" (ngModelChange) = "formatCNPJ($event)" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>CEP </label></td>
-      <td><input id="cep-input" [ngModel]="restaurante.cep" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cep, 9)" (ngModelChange) = "formatCEP($event)" [disabled]="this.error"></td>
+      <td><input id="cep-input" name="CEP" [ngModel]="restaurante.cep" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.cep, 9)" (ngModelChange) = "formatCEP($event)" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Rua </label></td>
-      <td><input id="rua-input" [(ngModel)]="restaurante.rua" [disabled]="this.error"></td>
+      <td><input id="rua-input" name="Rua" [(ngModel)]="restaurante.rua" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Número </label></td>
-      <td><input id="numero-input" type="text" [(ngModel)]="restaurante.numero" (keypress) = "onlyNumbersKeyPress($event)" [disabled]="this.error"></td>
+      <td><input id="numero-input" type="text" name="Número" [(ngModel)]="restaurante.numero" (keypress) = "onlyNumbersKeyPress($event)" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Cidade </label></td>
-      <td><input id="cidade-input" [(ngModel)]="restaurante.cidade" [disabled]="this.error"></td>
+      <td><input id="cidade-input" name="Cidade" [(ngModel)]="restaurante.cidade" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Complemento </label></td>
-      <td><input id="complemento-input" [(ngModel)]="restaurante.complemento" [disabled]="this.error"></td>
+      <td><input id="complemento-input" name="Complemento" [(ngModel)]="restaurante.complemento" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Hora de Abrir </label></td>
-      <td><input id="hora_inicial-input" type = "text" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_inicio" [disabled]="this.error"></td>
+      <td><input id="hora_inicial-input" type = "text" name="Hora de Abrir" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_inicio" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Hora de Fechar </label></td>
-      <td><input id="hora_final-input" type = "text" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_fim" [disabled]="this.error"></td>
+      <td><input id="hora_final-input" type = "text" name="Hora de Fechar" placeholder = "HH:mm A/PM" onfocus = "this.type='time'" [(ngModel)]="restaurante.horario_fim" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Nome do Responsável </label></td>
-      <td><input id="nome_responsavel-input" [(ngModel)]="restaurante.nome_responsavel" [disabled]="this.error"></td>
+      <td><input id="nome_responsavel-input" name="Nome do Responsável" [(ngModel)]="restaurante.nome_responsavel" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Telefone do Responsável </label></td>
-      <td><input id="telefone_responsavel-input" [ngModel]="restaurante.telefone_responsavel" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.telefone_responsavel, 15)" (ngModelChange) = "formatTel($event)" [disabled]="this.error"></td>
+      <td><input id="telefone_responsavel-input" name="Telefone do Responsável" [ngModel]="restaurante.telefone_responsavel" (keypress) = "onlyNumbersLimitedKeyPress($event, restaurante.telefone_responsavel, 15)" (ngModelChange) = "formatTel($event)" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>E-mail para Contato </label></td>
-      <td><input id="email-input" type = "email" [(ngModel)]="restaurante.email" [disabled]="this.error"></td>
+      <td><input id="email-input" type = "email" name="E-mail para Contato" [(ngModel)]="restaurante.email" [disabled]="this.error"></td>
    </tr>
    <tr>
       <td><label>Senha </label></td>
-      <td><input id="senha-input" type="password" [(ngModel)]="restaurante.senha" [disabled]="this.error"></td>
+      <td><input id="senha-input" type="password" name="Senha" [(ngModel)]="restaurante.senha" [disabled]="this.error"></td>
    </tr>
 </table>
 
@@ -77,7 +77,7 @@
    </tr>
 </table>
 
-<div id="error_popup" *ngIf='this.error'>
+<div class="popup" *ngIf='this.error'>
    <div class = "default_error" *ngIf = 'this.error.status != 401'>
       <div class = "error_text">{{this.error.message}}</div>
       <button class="back_button" (click) = "resetError()">Voltar</button>
@@ -88,5 +88,11 @@
          <button class="back_button" (click) = "resetError()">Voltar</button>
          <button class="goLogin_button" routerLink="/">Login</button>
       </div>
+   </div>
+</div>
+<div class="popup" *ngIf='this.success'>
+   <div class = "success_popup">
+      <div class = "success_text">Cadastro realizado com sucesso</div>
+      <button class="goLogin_button" routerLink="/">Continuar</button>
    </div>
 </div>

@@ -2,30 +2,44 @@ import { Restaurante } from "./restaurante";
 
 export class RestaurantesService {
   restaurantes: Restaurante[] = [];
+
+  campos: {[index:string]:string} = {"nome_restaurante": "Nome do Restaurante",
+                                     "cnpj": "CNPJ",
+                                     "cep": "CEP",
+                                     "rua": "Rua",
+                                     "numero": "Número",
+                                     "cidade": "Cidade",
+                                     "complemento": "Complemento",
+                                     "horario_inicio": "Hora de Abrir",
+                                     "horario_fim": "Hora de Fechar",
+                                     "nome_responsavel": "Nome do Responsável",
+                                     "telefone_responsavel": "Telefone do Responsável",
+                                     "email": "E-mail para Contato",
+                                     "senha": "Senha"}
   
   add(restaurante: Restaurante): Restaurante {
     if (this.restaurantes.length >= 10) return null;
     for (var key in restaurante)
       if (!restaurante[key])
-        throw Error(`O campo de ${key} não foi preenchido`);
+        throw Error(`O campo de ${this.campos[key]} não foi preenchido`);
 
     if(!restaurante.cnpj.match(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/))
-      throw Error('O campo de cnpj está mal formatado ou incompleto');
+      throw Error('O campo de CNPJ está mal formatado ou incompleto');
 
     if(!restaurante.cep.match(/^\d{5}\-\d{3}$/))
-      throw Error('O campo de cep está mal formatado ou incompleto');
+      throw Error('O campo de CEP está mal formatado ou incompleto');
 
     if(!restaurante.horario_inicio.match(/^\d{2}\:\d{2}$/))
-      throw Error('O campo de horario inicial está mal formatado ou incompleto');
+      throw Error('O campo de Hora de Abrir está mal formatado ou incompleto');
 
     if(!restaurante.horario_fim.match(/^\d{2}\:\d{2}$/))
-      throw Error('O campo de horario final está mal formatado ou incompleto');
+      throw Error('O campo de Hora de Fechar está mal formatado ou incompleto');
 
     if(!restaurante.telefone_responsavel.match(/^\(\d{2}\)\ \d{4,5}\-\d{4}$/))
-      throw Error('O campo de telefone está mal formatado ou incompleto');
+      throw Error('O campo de Telefone do Responsável está mal formatado ou incompleto');
 
-    if(!restaurante.email.match(/^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/))
-      throw Error('O campo de e-mail está mal formatado ou incompleto');
+    if(!restaurante.email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+      throw Error('O campo de E-mail para Contato está mal formatado ou incompleto');
 
     const newRestaurante = new Restaurante(<Restaurante> { ...restaurante });
 

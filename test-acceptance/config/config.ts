@@ -7,14 +7,14 @@ export let config: Config = {
     SELENIUM_PROMISE_MANAGER: false,
 
     capabilities: {
-        browserName: 'chrome'
+        browserName: 'firefox'
     },
 
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
     specs: [
-        '../../features/*.feature'
+        '../../features/cadastro_restaurante.feature'
     ],
 
     onPrepare: () => {
@@ -27,6 +27,6 @@ export let config: Config = {
         compiler: "ts:ts-node/register",
         strict: true,
         format: ['pretty'],
-        require: ['../../stepdefinitions/*.ts'],
+        require: ['../../stepdefinitions/cadastro_restaurante.ts'],
     }
 };
