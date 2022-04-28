@@ -41,26 +41,13 @@
 
     Scenario Outline: client is notified that the order is ready
 
-        Given that Comida de Mainha has accepted the request
-        When Comida de Mainha confirm in the application that the order is ready
-        Then the DB should update order status to ready
-        And Tiguinho will be notified that his order is ready
+        Given that <Restaurant-name> has <Restaurant-decision> the <Client-order> order
+        When <Restaurant-name> <Restaurant-confirmation> in the application that the order is <Client-order-status>
+        Then the DB <Pre-hook> the <Client-order> to <Client-order-status>
+        And <Post-hook>
 
-        Given that Comida de Mainha has accepted the request
-        When Comida de Mainha hasn't confirmed in the application that the order is ready
-        Then the DB can't update the order status to ready
-        And Tiguinho won't be notified
-
-    Scenario Outline: test if notifications are sent and received in under 5 min
-
-        Given that Tiguinho has made a order
-        When Comida da Mainha confirms the order as <state>
-        Then A notification should be sent to Tiguinho
-        And must arrive at most 5min later
-
-        Given that Tiguinho has made a order
-        When Comida da Mainha confirms the order as <state>
-        Then A notification should be sent to Tiguinho
-        And will arrive after 5min
-        And a service will be executed to re-send the notification
-
+        Examples:
+        | Client-name | Restaurant-status | Restaurant-name      | Restaurant-confirmation | Pre-hook    | Restaurant-decision | Client-order     | Client-order-status | Post-hook             |
+        | Tiguinho    | Open              | Comida de Mainha     | confirm                 | update      | accept              | Fritas de Mainha | ready               | notify <Client-name>  |
+        | Maria       | Open              | Fritas do Zé         | wont-confirm            | wont-update | accept              | Happy Potato     | wont-ready          | !notify <Client-name> |
+        | Cleber      | Closed            | Quentinha do Geraldo | wont-confirm            | wont-update | !accept             | Lasanha          | wont-accept         | notify <Client-name>  |
