@@ -17,17 +17,29 @@ export class PromotionService {
     return this.coupons.find(({ name }) => name == couponName);
   }
 
+  isAlphaNumeric(couponName : string){
+    var regEx = /^[0-9a-zA-Z]+$/;
+    if (couponName.match(regEx)) {
+      return true;
+    }
+    else {
+      alert("O cupom deve conter apenas letras e números");
+      return false;
+    }
+  }
+
   // o valor minimo do cupom é maior do valor do produto (restaurante)
   isAValidCoupon(coupon: Coupon){
     // // 1. procurar o produto do cupom em restaurante
     // // 2. ver se price < coupon.minValue
-    if (coupon.minValue < 0 || coupon.discount < 0 || coupon.discount >= 1){
+    if (coupon.minValue < 0 || coupon.discount < 0 || coupon.discount >= 1 || this.isAlphaNumeric(coupon.name)){
       return false;
     }else{
       return true;
     }
   }
 
+  // checa se existem campos vazios no cupom
   isCoupon(coupon: Coupon){
     return (coupon.discount != undefined && coupon.minValue != undefined && coupon.name != undefined && coupon.status != undefined);
   }
