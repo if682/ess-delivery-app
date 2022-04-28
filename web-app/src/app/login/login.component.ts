@@ -20,9 +20,13 @@ export class LoginComponent implements OnInit {
   // usuario é id
   id: string;
   type: string;
-  
+  navToadmin(): void {
+    console.log(this.id);
+    let ret = this.route.navigate(['/admin'], {queryParams:{data:this.id, car: JSON.stringify(this.)}})
+  }
+
   if(this.type == "admin"){
-    navToadmin():void 
+    navToadmin();
 
   }
   navToEmail(): void {

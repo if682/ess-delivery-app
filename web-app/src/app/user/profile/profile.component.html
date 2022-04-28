@@ -1,0 +1,29 @@
+<app-bar></app-bar>
+<div class="container">
+  <h2 class="header-home" >O que você deseja fazer?</h2>
+  <div class="buttons-container">
+    <a mat-button class="btn pink-link" name="user" routerLink="/user/payment">
+        <img alt="user" src="/assets/icons/credit-card.svg"/>
+        Ver Métodos de Pagamento
+    </a>
+    <a mat-button class="btn dark-link" name="restaurant" routerLink="/user/current-order">
+        <img alt="shopping cart" src="/assets/icons/shopping-cart.svg"/>
+        Fazer um Pedido
+    </a>
+  </div>
+
+  <div class="buttons-container">
+    <a mat-button class="btn leaked-link" name="admin" routerLink="/user/orders">
+        <img class="tiny-icon" alt="lock" src="/assets/icons/list.svg"/>
+        Ver Pedidos
+    </a>
+  </div>
+</div>
+
+<div class="buttons-container back">
+  <a class="back-link" alt="Botão de Sair" routerLink="/home">
+    <img alt="Ícone de seta para a esquerda" src="/assets/icons/arrow-left.svg"/>
+    Sair
+  </a>
+</div>
+
