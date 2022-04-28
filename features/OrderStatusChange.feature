@@ -25,31 +25,19 @@
 
     Scenario Outline: receives a new order request
 
-        Given that Comida de Mainha is open
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha will be notified of the order
-        And Comida de Mainha accept's the order
-        And the DB will updated Fritas de Mainha entry to accepted
-        And Tiguinho will be notified that the request was accepted by Comida de Mainha
+        Given that <Restaurant-name> is <Restaurant-status>
+        When <Client-name> orders <Client-order>
+        Then <Restaurant-name> will be <Restaurant-notification> of the order
+        And <Restaurant-name> <Restaurant-decision> the order
+        And the DB <Pre-hook> the <Client-order> to <Client-order-status>
+        And <Post-hook>
 
-        Given that Comida de Mainha is open
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha will be notified of the order
-        And Comida de Mainha accept's the order
-        And the DB can't update Fritas de Mainha entry to accepted
-        And a internal service will be executed re-try the DB update
-
-        Given that Comida de Mainha is open
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha will be notified of the order
-        And Comida de Mainha won't accept the order
-        And the DB will not update Fritas de Mainha status to accepted
-        And Tiguinho will be notified that the request wasn't accepted by Comida de Mainha
-
-        Given that Comida de Mainha is closed
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha won't be notified of the order
-        And the DB musn't add the order as an entry
+        Examples:
+          | Client-name | Restaurant-status | Restaurant-name      | Restaurant-notification | Pre-hook    | Restaurant-decision | Client-order     | Client-order-status | Post-hook            |
+          | Tiguinho    | Open              | Comida de Mainha     | notify                  | update      | accept              | Fritas de Mainha | accept              | notify <Client-name> |
+          | Maria       | Open              | Fritas do Zé         | notify                  | fail-update | accept              | Happy Potato     | fail-accept         | re-try service       |
+          | Cleber      | Closed            | Quentinha do Geraldo | !notify                 | wont-update | !accept             | Lasanha          | wont-accept         | notify <Client-name> |
+          |             |                   |                      |                         |             |                     |                  |                     |                      |
 
     Scenario Outline: client is notified that the order is ready
 
