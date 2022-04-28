@@ -17,6 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
 import { AdminService } from './admin/admin.service';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { BarComponent } from './views/bar/bar.component';
+import { OrdersComponent } from './user/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { LoginComponent } from './login/login.component';
     TableComponent,
     AdminComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    BarComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,22 @@ import { LoginComponent } from './login/login.component';
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'user/profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'user/current-order',
+        component: ProfileComponent
+      },
+      {
+        path: 'user/orders',
+        component: OrdersComponent
+      },
+      {
+        path: 'user/payment',
+        component: ProfileComponent
       }
     ]),
     BrowserAnimationsModule
