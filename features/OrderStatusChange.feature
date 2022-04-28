@@ -8,30 +8,20 @@
     after preparation the system shoud notify the client that it's ready for delivery, notice that the delivery person
     is not involved.
 
-    Background:
-
-        Given a business named "Comida de Mainha"
-        And a customer named "Tiguinho"
-        And a order named "Fritas de Mainha"
-
     Scenario Outline: making a new order
 
-        Given Tiguinho business is open
-        When Tiguinho orders Fritas de Mainha
-        Then Tiguinho order is validated
-        And the DB adds a new order and update it status to made
+        Given <Restaurant-name> is <Restaurant-status>
+        When <Client-name> orders <Client-order>
+        And <Client-name> order is <validation-status>
+        Then the DB <Pre-hook> the <Client-order> order to <Client-order-status>
+        And <Post-hook>
 
-        Given Tiguinho business is open
-        When Tiguinho orders Fritas de Mainha
-        Then Tiguinho order is validated
-        And the DB fails to add a new entry with status made
-        And a service is executed to re-try the insertion
-
-        Given Tiguinho business is closed
-        When Tiguinho orders Fritas de Mainha
-        Then Tiguinho order isn't validated
-        And the DB won't add a new order
-        And a error message will appear
+        Examples:
+          | Client-name | Restaurant-status | Restaurant-name      | Pre-hook    | Client-order     | Validation-status | Client-order-status | Post-hook             |
+          | Tiguinho    | Open              | Comida de Mainha     | update      | Fritas de Mainha | validated         | made                | notify <Client-name>  |
+          | Maria       | Open              | Fritas do Zé         | fail-update | Happy Potato     | validated         | fail-made           | re-try service        |
+          | Cleber      | Closed            | Quentinha do Geraldo | wont-update | Lasanha          | !validated        | wont-made           | !notify <Client-name> |
+          |             |                   |                      |             |                  |                   |                     |                       |
 
     Scenario Outline: receives a new order request
 
