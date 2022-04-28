@@ -14,3 +14,9 @@ export interface User {
     id: string;
     orders: Order[];
 }
+
+export interface Admin {
+    name: string;
+    id: string;
+}
+

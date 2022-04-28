@@ -1,0 +1,14 @@
+<div mat-button class="logo-container" name="home" routerLink="/home">
+  <img alt="Logo" src="/assets/images/logo.svg"/>
+</div>
+<h2 class="header-home">Insira seu ID</h2>
+<div class="forms-block">
+  <div class="input-block" >
+     <input placeholder="ID" id="id" [(ngModel)]="clientId">
+  </div>
+  <div class="buttons-container">
+     <a routerLink ="/{{type}}/{{id}}" class="confirm-link" (click)="addMetodo(metodo)">
+        Log in
+     </a>
+  </div>
+</div>

@@ -5,20 +5,29 @@ import { PromotionService } from './src/promotion-service';
 import { UserService } from './src/user-service';
 import { readFiles, restaurants } from './src/readFiles';
 import * as fs from 'fs';
-import { Order } from './src/users';
+import { Order, Admin } from './src/users';
 const routes = Router();
 
 // Inicialização
 var adminService: PromotionService = new PromotionService();
 var restaurantsService: PromotionService[] = [];
 var usersService: UserService = new UserService();
+var admins: Admin[] = [];
 
 // for(var r of restaurants){
 //     restaurantsService[r.name] = new PromotionService();
 // }
 
 // ----------------------------------------------------------------
-
+fs.readFile("admin.json", "utf-8", (err,data)=> {
+  if(err){
+      console.log(err);
+  }
+  else{
+      admins = JSON.parse(data);
+      //console.log(admins);
+  }
+});
 // Lendo dos arquivos
 [adminService, usersService, restaurantsService] = readFiles(adminService, usersService, restaurantsService);
 
@@ -71,7 +80,20 @@ routes.get('/payment', (req, res) => {
 });
 
 // ----------------------------------------------------------------
+
 // ROTAS DE ADMIN
+
+routes.get('/promotion/admin/login/:id', function(req, res){
+  const id = req.params.id;
+  const admin = admins.find((result) => result.id == id);
+  console.log(admin);
+  if (admin) {
+    res.send(admin);
+  } else {
+    res.status(404).send({ message: ` Administrador ${id} não foi encontrado`});
+  }
+});
+
 routes.get('/promotion/admin', (req, res) => {
     const promotions = adminService.get();
     res.send(JSON.stringify(promotions));
@@ -332,6 +354,9 @@ routes.post('/user/:id/orders', function(req, res){
   }
 });
 
+
+
+
 export default routes;
 
 // Login
@@ -340,9 +365,9 @@ export default routes;
 // User
 // - [x]  Pedido não alcançou o valor mínimo do cupom
 // - [x]  Cupom não pode ter um desconto maior que o valor do produto
-// - [ ]  Não pode ter mais de um cupom em um pedido
+// - [x]  Não pode ter mais de um cupom em um pedido
 // - [x]  Verificar se o cupom está válido na hora da compra -> checar o status
 // - [x]  Perguntar se realmente é necessário checagem de data ou só o status do cupom já basta => não precisa checar data
 // - [x]  Cupom de primeira compra do app existe vitalício e só pode ser usado uma vez por cliente => só criar um exemplo
-// - [ ]  Todo cupom só pode ser utilizado 1 vez por cliente
+// - [x]  Todo cupom só pode ser utilizado 1 vez por cliente
 // Checar se o cupom a ser inserido tem todos os campos preenchidos => exceto id

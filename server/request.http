@@ -42,6 +42,9 @@ Content-Type: application/json
 GET  http://localhost:3000/promotion/admin
 
 ###
+GET  http://localhost:3000/promotion/admin/login/578dbdea
+
+###
 //ADICIONA UM CUPOM DO ADMIN
 POST http://localhost:3000/promotion/admin
 Content-Type: application/json
@@ -51,7 +54,7 @@ Content-Type: application/json
     "adm": true,
     "minValue" : 10000,
     "discount": 0.5,
-    "status": "Inativo",
+    "status": "Inativo"
 }
 
 
@@ -250,3 +253,4 @@ Content-Type: application/json
         "end": "21:00-06/04/2022"
     }
 }
+

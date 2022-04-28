@@ -20,11 +20,11 @@ export class PromotionService {
   isAlphaNumeric(couponName : string){
     var regEx = /^[0-9a-zA-Z]+$/;
     if (couponName.match(regEx)) {
-      return true;
+      return false;
     }
     else {
       alert("O cupom deve conter apenas letras e números");
-      return false;
+      return true;
     }
   }
 
