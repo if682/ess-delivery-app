@@ -7,6 +7,7 @@ export interface Order {
     amount: number;
     coupon: Coupon;
     restaurant: string;
+    address: string
 }
 
 export interface User {
