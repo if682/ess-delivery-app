@@ -16,6 +16,9 @@ import { TableComponent } from './views/table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
 import { AdminService } from './admin/admin.service';
+import { ProfileComponent } from './user/profile/profile.component';
+import { BarComponent } from './views/bar/bar.component';
+import { OrdersComponent } from './user/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { AdminService } from './admin/admin.service';
     PromotionComponent,
     TableComponent,
     AdminComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent,
+    BarComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,22 @@ import { AdminService } from './admin/admin.service';
       {
         path: 'promotion/admin/edit-coupon',
         component: PromotionComponent
+      },
+      {
+        path: 'user/profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'user/current-order',
+        component: ProfileComponent
+      },
+      {
+        path: 'user/orders',
+        component: OrdersComponent
+      },
+      {
+        path: 'user/payment',
+        component: ProfileComponent
       }
     ]),
     BrowserAnimationsModule
