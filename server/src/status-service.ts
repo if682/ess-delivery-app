@@ -43,4 +43,7 @@ export class Status_service {
 
         }
     }
+    returnStatusList(): Status[] {
+        return this.statusList;
+    }
 }
