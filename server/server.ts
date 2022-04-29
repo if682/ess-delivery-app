@@ -91,6 +91,21 @@ app.get('/restaurant/status', function (req, res) {
     res.status(400).send({ message });
   }
 });
+app.post('/restaurant/status/add', function (req, res) {
+  const status:Status = <Status> req.body;
+  try {
+    const result = statusService.addStatus(status);
+    if (result) {
+      res.status(200).send(result);
+    }
+    else {
+      res.status(406).send(`Id already present`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
