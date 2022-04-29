@@ -5,6 +5,9 @@ import { Coupon } from 'src/app/admin/coupon';
 import { AdminService } from 'src/app/admin/admin.service';
 // import { RestaurantService } from 'src/app/restaurant/restaurant.service';
 import { PromotionService } from 'src/app/promotion/promotion.service';
+import { Restaurant } from 'src/app/admin/restaurant';
+import { Admin } from 'src/app/admin/admin';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -14,16 +17,24 @@ import { PromotionService } from 'src/app/promotion/promotion.service';
 export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['ID', 'Nome', 'Produto', 'Desconto', 'Valor Mínimo', 'Status', 'Editar' ,'Deletar'];
-  public coupons: Coupon[] = [];
+  restaurant: Restaurant;
+  admin: Admin;
+  coupons: Coupon[];
+  type: string;
+
   @ViewChild(MatTable) table: MatTable<Coupon>;
 
-  constructor(private service: AdminService, private editService: PromotionService) {}
+  constructor(private service: AdminService, private editService: PromotionService, private acRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    // this.service.getCoupons()
-    //     .then(coupons => this.coupons = coupons)
-    //     .catch(erro => alert(erro));
-    this.coupons = window.history.state.coupons;
+    this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
+    if(this.type == "admin"){
+      this.admin = window.history.state.data;
+      this.coupons = window.history.state.coupons;
+    }else{
+      this.restaurant = window.history.state.data;
+      this.coupons = this.restaurant.coupons;
+    }
   }
 
 

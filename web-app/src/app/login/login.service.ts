@@ -30,6 +30,7 @@ export class LoginService {
   }
 
   private catch(erro: any): Promise<any>{
+    alert("ID não existe");
     console.error('Oops, something went wrong',erro);
     return Promise.reject(erro.message || erro);
   }

@@ -132,10 +132,10 @@ routes.delete('/promotion/admin/:name', function (req, res){
 
 // Retorna o restaurante pelo nome
 routes.get('/restaurant/:restName', (req, res) => {
-  const restName = req.params.rest;
-  const rest = restaurants.find((e) => e.name = restName);
+  const restName = req.params.restName;
+  const rest = restaurants.find((e) => e.name == restName);
 
-  const msg = console.log(`Restaurant ${rest.name} found`);
+  const msg = console.log(`Restaurant ${restName} found`);
   const err = `Restaurant ${restName} not found`;
   if(rest) {
     console.log(msg)

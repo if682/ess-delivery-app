@@ -22,16 +22,16 @@ export class LoginComponent implements OnInit {
   
   checkType(id:string): void {
     if(this.type=="admin"){
-      this.service.getAdmin("admin/"+id)
-        .then(data => this.route.navigate(["promotion/admin/"], { state: { admin: data[0], coupons: data[1]} }))
+      this.service.getAdmin("admin/" + id)
+        .then(data => this.route.navigate(["promotion/", this.type], { state: { data: data[0], coupons: data[1]} }))
     }
     else if(this.type=="user"){
-      this.service.getUser("user/"+id)
-        .then(user => this.route.navigate(["user/"+id+"/profile"], { state: {user: user} }))
+      this.service.getUser("users/" + id)
+        .then(user => this.route.navigate(["user/" + id + "/profile"], { state: {data: user} }))
     }
     else{
-      this.service.getRestaurant("restaurant/"+id)
-        .then(rest => this.route.navigate(["promotion/restaurant/"+id], { state: {rest: rest} }))
+      this.service.getRestaurant("restaurant/" + id)
+        .then(rest => this.route.navigate(["promotion/" + this.type + "/" + id], { state: {data: rest} }))
     }
   }
 }

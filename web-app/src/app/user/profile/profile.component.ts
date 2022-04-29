@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from 'src/app/admin/user';
 
 @Component({
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.data = JSON.parse(window.history.state.user);
+    this.data = window.history.state.data;
   }
 
 }

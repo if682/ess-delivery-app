@@ -52,7 +52,7 @@ import { LogoComponent } from './views/logo/logo.component';
       },
       {
         path: 'promotion/restaurant/:id',
-        component: TableComponent
+        component: AdminComponent
       },
       {
         path: 'promotion/admin',
