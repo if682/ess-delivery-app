@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ###
 //MOSTRA TODOS OS CUPONS DE ADMIN 
-GET  http://localhost:3000/promotion/admin
+GET  http://localhost:3000/admin/ceb04ad1
 
 ###
 GET  http://localhost:3000/promotion/admin/login/578dbdea

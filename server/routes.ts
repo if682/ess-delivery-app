@@ -83,7 +83,7 @@ routes.get('/payment', (req, res) => {
 
 // ROTAS DE ADMIN
 
-routes.get('/promotion/admin/login/:id', function(req, res){
+routes.get('/admin/:id', function(req, res){
   const id = req.params.id;
   const admin = admins.find((result) => result.id == id);
   console.log(admin);

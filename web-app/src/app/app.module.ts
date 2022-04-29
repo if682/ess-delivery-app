@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { BarComponent } from './views/bar/bar.component';
 import { OrdersComponent } from './user/orders/orders.component';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -48,11 +49,11 @@ import { OrdersComponent } from './user/orders/orders.component';
         component: HomeComponent
       },
       {
-        path: 'promotion/restaurant',
+        path: 'promotion/restaurant/:id',
         component: TableComponent
       },
       {
-        path: 'promotion/admin',
+        path: 'promotion/admin/:id',
         component: AdminComponent
       },
       {
@@ -64,29 +65,29 @@ import { OrdersComponent } from './user/orders/orders.component';
         component: PromotionComponent
       },
       {
-        path: 'login',
+        path: 'login/:type',
         component: LoginComponent
       },
       {
-        path: 'user/profile',
+        path: 'user/:id/profile',
         component: ProfileComponent
       },
       {
-        path: 'user/current-order',
+        path: 'user/:id/current-order',
         component: ProfileComponent
       },
       {
-        path: 'user/orders',
+        path: 'user/:id/orders',
         component: OrdersComponent
       },
       {
-        path: 'user/payment',
+        path: 'user/:id/payment',
         component: ProfileComponent
       }
     ]),
     BrowserAnimationsModule
   ],
-  providers: [PromotionService, AdminService],
+  providers: [PromotionService, AdminService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
