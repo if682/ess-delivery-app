@@ -4,6 +4,8 @@ import bodyParser = require("body-parser");
 import { RestaurantesService } from './src/restaurantes-service';
 import { Restaurante } from './src/restaurante';
 
+import { Status } from './src/status';
+import { Status_service } from './src/status-service';
 var app = express();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
