@@ -13,4 +13,12 @@ export class Status_service {
      }
     return status_state;
     }
+    removeStatus(order: Status): Status {
+        let status_state = new Status();
+        if(this.isUniqueID){
+            let status_state = order;
+            this.statusList.filter(testID => testID.id != order.id);
+        }
+        return status_state;
+    }
 }
