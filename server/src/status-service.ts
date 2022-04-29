@@ -30,4 +30,17 @@ export class Status_service {
         }
         return status_state;
     }
+    sendSignal(code: string) {
+        let success_status;
+        switch(code){
+                case "NOTIFY":
+                // call notifyByEmail()
+                break;
+
+                case "TRYAGAIN":
+                // TODO call something here
+                break;
+
+        }
+    }
 }
