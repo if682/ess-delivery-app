@@ -77,6 +77,20 @@ app.put('/restaurante/status', function (req, res) {
     res.status(400).send({ message });
   }
 });
+app.get('/restaurant/status', function (req, res) {
+  try {
+    const result = statusService.returnStatusList();
+    if (result) {
+      res.status(200).send(result);
+    }
+    else {
+      res.status(410).send(`empty Status list`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
