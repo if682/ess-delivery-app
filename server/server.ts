@@ -62,6 +62,21 @@ app.put('/restaurant', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.put('/restaurante/status', function (req, res) {
+  const status: Status = <Status>req.body;
+  try {
+    const result = statusService.updateStatus(status);
+    if (result) {
+      res.status(201).send(`Status list updated`);
+    }
+    else {
+      res.status(409).send(`Status Id already in list`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
