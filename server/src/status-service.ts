@@ -2,9 +2,11 @@ import {Status} from "./status"
 
 export class Status_service {
     statusList: Status[] = [];
+
     isUniqueID(targetID: number): boolean {
         return this.statusList.some(testID => testID.id == targetID);
     }
+
     addStatus(order: Status): Status {
     let status_state = new Status();
      if(this.isUniqueID){
@@ -13,6 +15,7 @@ export class Status_service {
      }
     return status_state;
     }
+
     removeStatus(order: Status): Status {
         let status_state = new Status();
         if(this.isUniqueID){
@@ -21,6 +24,7 @@ export class Status_service {
         }
         return status_state;
     }
+
     updateStatus(order: Status): Status {
         let status_state = new Status();
         if(this.isUniqueID){ // statusVal == MADE, ACCEPT and READY
@@ -30,6 +34,7 @@ export class Status_service {
         }
         return status_state;
     }
+
     sendSignal(code: string) {
         let success_status;
         switch(code){
@@ -43,6 +48,7 @@ export class Status_service {
 
         }
     }
+
     returnStatusList(): Status[] {
         return this.statusList;
     }
