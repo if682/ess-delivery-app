@@ -51,7 +51,7 @@ import { LogoComponent } from './views/logo/logo.component';
         component: HomeComponent
       },
       {
-        path: 'promotion/restaurant/:id',
+        path: 'promotion/:type/:id',
         component: AdminComponent
       },
       {

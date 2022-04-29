@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-bar',
@@ -9,8 +10,9 @@ export class BarComponent implements OnInit {
 
   public name: string;
   public id: string;
+  type: string;
 
-  constructor() { }
+  constructor(private acRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.name = window.history.state.data.name;

@@ -51,10 +51,10 @@ routes.get('/payment', (req, res) => {
 routes.get('/admin/:id', function(req, res){
   const id = req.params.id;
   const admin = admins.find((result) => result.id == id);
-  const coupons = adminService.get();
+  // const coupons = adminService.get();
   console.log(admin);
   if (admin) {
-    res.status(201).send([admin, coupons]);
+    res.status(201).send(admin);
   } else {
     res.status(404).send({ message: ` Administrador ${id} não foi encontrado`});
   }

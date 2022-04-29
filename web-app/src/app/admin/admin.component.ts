@@ -20,15 +20,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private service: AdminService, private acRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
-    if(this.type == "admin"){
-      this.admin = window.history.state.data;
-      this.coupons = window.history.state.coupons;
-    }else{
-      this.restaurant = window.history.state.data;
-    }
-  }
+  ngOnInit(): void {}
 
 
 }

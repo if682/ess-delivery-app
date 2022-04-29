@@ -19,22 +19,34 @@ export class TableComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Nome', 'Produto', 'Desconto', 'Valor Mínimo', 'Status', 'Editar' ,'Deletar'];
   restaurant: Restaurant;
   admin: Admin;
-  coupons: Coupon[];
+  public coupons: Coupon[] = [];
   type: string;
 
   @ViewChild(MatTable) table: MatTable<Coupon>;
 
-  constructor(private service: AdminService, private editService: PromotionService, private acRoute: ActivatedRoute) {}
-
-  ngOnInit() {
-    this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
-    if(this.type == "admin"){
-      this.admin = window.history.state.data;
-      this.coupons = window.history.state.coupons;
-    }else{
+  constructor(private service: AdminService, private editService: PromotionService, private acRoute: ActivatedRoute) {
+    this.acRoute.params.subscribe(params => this.type = params['type']);
+    this.setCoupons();
+    alert("kkk " + this.type);
+  }
+  
+  ngOnInit(): void {
+  }
+  
+  setCoupons(){
+    if(this.type == "restaurants"){
       this.restaurant = window.history.state.data;
       this.coupons = this.restaurant.coupons;
+    }else{
+      this.admin = window.history.state.data;
+      this.getAdminCoupons();
     }
+  }
+
+  getAdminCoupons() {
+    this.service.getCoupons()
+      .then(coupons => this.coupons = coupons)
+      .catch(erro => alert(erro));
   }
 
 
