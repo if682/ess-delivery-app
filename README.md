@@ -27,7 +27,7 @@ sudo npm install -g @angular/cli
 ### Modificando a versão do Node
 ```
 sudo npm install -g n
-n 14.15
+n 8.2
 ```
 
 ### Iniciando o projeto
