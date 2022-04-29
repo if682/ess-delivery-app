@@ -106,6 +106,21 @@ app.post('/restaurant/status/add', function (req, res) {
     res.status(400).send({ message });
   }
 });
+app.post('/restaurant/status/remove', function (req, res) {
+  const status:Status = <Status> req.body;
+  try {
+    const result = statusService.removeStatus(status);
+    if (result) {
+      res.status(200).send(result);
+    }
+    else {
+      res.status(410).send(`Id not found`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
