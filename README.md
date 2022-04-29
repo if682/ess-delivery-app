@@ -34,6 +34,7 @@ n 14.15
 ```
 cd web-app
 sudo npm install
+npm rebuild node-sass
 cd ..
 cd server
 sudo npm install
