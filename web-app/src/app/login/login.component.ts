@@ -15,23 +15,23 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
   constructor(private route: Router, private acRoute: ActivatedRoute, private service: LoginService) {}
   type:string;
-  url:string;
+
   ngOnInit(): void {
     this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
   }
   
   checkType(id:string): void {
     if(this.type=="admin"){
-      var admin = this.service.getAdmin("admin/"+id);
-      this.route.navigate(["promotion/admin/"+id, admin]);
+      this.service.getAdmin("admin/"+id)
+        .then(data => this.route.navigate(["promotion/admin/"], { state: { admin: data[0], coupons: data[1]} }))
     }
     else if(this.type=="user"){
-      var user = this.service.getUser("user/"+id);
-      this.route.navigate(["user/"+id+"/profile", user]);
+      this.service.getUser("user/"+id)
+        .then(user => this.route.navigate(["user/"+id+"/profile"], { state: {user: user} }))
     }
     else{
-      var rest = this.service.getRestaurant("restaurant/"+id);
-      this.route.navigate(["promotion/restaurant/"+id, rest]);
+      this.service.getRestaurant("restaurant/"+id)
+        .then(rest => this.route.navigate(["promotion/restaurant/"+id], { state: {rest: rest} }))
     }
   }
 }

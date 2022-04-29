@@ -1,8 +1,10 @@
 import { Component, Injectable, Inject }    from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Admin } from '../admin/admin';
+import { Coupon } from '../admin/coupon';
 import { Restaurant } from '../admin/restaurant';
 import { User } from '../admin/user';
+
 @Injectable()
 export class LoginService {
   constructor(private http:Http){}
@@ -11,7 +13,7 @@ export class LoginService {
   getAdmin(url:string): Promise<Admin[]> {
     return this.http.get(this.taURL + url)
              .toPromise()
-             .then(res => res.json() as Admin[])
+             .then(res => res.json() as [Admin[], Coupon[]])
              .catch(this.catch);
   }
   getUser(url:string): Promise<User[]> {

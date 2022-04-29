@@ -14,17 +14,18 @@ import { PromotionService } from 'src/app/promotion/promotion.service';
 export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['ID', 'Nome', 'Produto', 'Desconto', 'Valor Mínimo', 'Status', 'Editar' ,'Deletar'];
-  coupons: Coupon[] = [];
+  public coupons: Coupon[] = [];
+  @ViewChild(MatTable) table: MatTable<Coupon>;
 
   constructor(private service: AdminService, private editService: PromotionService) {}
 
-  ngOnInit(): void {
-    this.service.getCoupons()
-        .then(coupons => this.coupons = coupons)
-        .catch(erro => alert(erro));
+  ngOnInit() {
+    // this.service.getCoupons()
+    //     .then(coupons => this.coupons = coupons)
+    //     .catch(erro => alert(erro));
+    this.coupons = window.history.state.coupons;
   }
 
-  @ViewChild(MatTable) table: MatTable<Coupon>;
 
   removeData(couponName: string) {
 

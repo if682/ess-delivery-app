@@ -1,0 +1,42 @@
+.logo-container img {
+    width: 60vh;
+}
+
+.logo-container, .image-container {
+    text-align: center;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.image-container img {
+    width: 50vh; 
+}
+
+@media (max-width: 860px){
+
+    .logo-container img {
+        width: 50vh;
+        margin: 0;
+    }
+    
+    .image-container img {
+        width: 40vh; 
+        margin: 0;
+    }
+}
+
+@media (max-width: 600px){
+    
+    .logo-container img {
+        width: 43vh;
+    }
+    
+    .image-container img {
+        width: 33vh; 
+    }
+
+    .buttons-container a.adm-link {
+        width: 17rem;
+        height: 5.6rem;
+    }
+}

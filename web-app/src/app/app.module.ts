@@ -21,6 +21,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { BarComponent } from './views/bar/bar.component';
 import { OrdersComponent } from './user/orders/orders.component';
 import { LoginService } from './login/login.service';
+import { LogoComponent } from './views/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoginService } from './login/login.service';
     LoginComponent,
     ProfileComponent,
     BarComponent,
-    OrdersComponent
+    OrdersComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import { LoginService } from './login/login.service';
         component: TableComponent
       },
       {
-        path: 'promotion/admin/:id',
+        path: 'promotion/admin',
         component: AdminComponent
       },
       {

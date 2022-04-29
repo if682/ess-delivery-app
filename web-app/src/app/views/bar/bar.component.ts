@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarComponent implements OnInit {
 
+  public name: string;
+  public id: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.name = window.history.state.data.name;
+    this.id = window.history.state.data.id;
   }
 
 }
