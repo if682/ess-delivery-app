@@ -21,4 +21,13 @@ export class Status_service {
         }
         return status_state;
     }
+    updateStatus(order: Status): Status {
+        let status_state = new Status();
+        if(this.isUniqueID){ // statusVal == MADE, ACCEPT and READY
+            let index = this.statusList.findIndex(testID => (testID.id == order.id));
+            this.statusList[index].statusVal++;
+            status_state = this.statusList[index];
+        }
+        return status_state;
+    }
 }
