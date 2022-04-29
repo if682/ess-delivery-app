@@ -19,6 +19,7 @@ app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
 var restauranteService: RestaurantesService = new RestaurantesService();
+var statusService: Status_service = new Status_service();
 
 app.get('/restaurant', function(req, res){
   const restaurantes = restauranteService.get();
