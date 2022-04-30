@@ -27,6 +27,7 @@ export class AdminService {
   }
   
   removeCoupon(couponName: string): Promise<Coupon[]> {
+    this.currentURL = window.location.pathname;
     return this.http.delete(this.taURL + this.currentURL + "/" + couponName)
              .toPromise()
              .then(res => res.json() as Coupon[])
@@ -34,6 +35,7 @@ export class AdminService {
   }
   
   getCoupons(): Promise<Coupon[]> {
+    this.currentURL = window.location.pathname;
     return this.http.get(this.taURL + this.currentURL)
              .toPromise()
              .then(res => res.json() as Coupon[])

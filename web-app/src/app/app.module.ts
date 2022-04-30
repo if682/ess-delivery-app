@@ -34,7 +34,6 @@ import { LogoComponent } from './views/logo/logo.component';
     LoginComponent,
     ProfileComponent,
     BarComponent,
-    OrdersComponent
     OrdersComponent,
     LogoComponent
   ],

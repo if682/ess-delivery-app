@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from './login.service';
-//-> pegar o tipo e mandar as informações do objeto desse tipo
 
 
 @Component({
@@ -23,15 +22,24 @@ export class LoginComponent implements OnInit {
   checkType(id:string): void {
     if(this.type=="admin"){
       this.service.getAdmin("admin/" + id)
-        .then(data => this.route.navigate(["promotion/" + this.type], { state: { data: data } }))
+      .then(data => {
+        window.history.replaceState({}, '', "promotion/" + this.type)
+        this.route.navigate(["promotion/" + this.type], { state: { data: data } })        
+      })
     }
     else if(this.type=="user"){
       this.service.getUser("users/" + id)
-        .then(user => this.route.navigate(["user/" + id + "/profile"], { state: { data: user } }))
+        .then(user => {
+          window.history.replaceState({}, '', "user/" + id + "/profile")
+          this.route.navigate(["user/" + id + "/profile"], { state: { data: user } })
+        })
     }
     else{
       this.service.getRestaurant("restaurant/" + id)
-        .then(rest => this.route.navigate(["promotion/", this.type, id ], { state: { data: rest } }))
+        .then(rest => {
+          window.history.replaceState({}, '', "promotion/" + this.type + id)
+          this.route.navigate(["promotion/", this.type, id ], { state: { data: rest } })
+        })
     }
   }
 }

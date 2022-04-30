@@ -32,7 +32,7 @@ export class AdminComponent implements OnInit {
     }
     else{
       this.admin = window.history.state.data; // recebe quem é o admin
-      this.route.navigate(["promotion/", this.type, action], { state: { data: this.admin } })
+      this.route.navigate(["promotion/", "admin", action], { state: { data: this.admin } })
     }
   }
 }
