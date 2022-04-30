@@ -86,13 +86,13 @@
       <div class = "error_text">{{this.error.message}}</div>
       <div class = "buttons">
          <button class="back_button" (click) = "resetError()">Voltar</button>
-         <button class="goLogin_button" routerLink="/">Login</button>
+         <button class="goLogin_button" routerLink="/login">Login</button>
       </div>
    </div>
 </div>
 <div class="popup" *ngIf='this.success'>
    <div class = "success_popup">
       <div class = "success_text">Cadastro realizado com sucesso</div>
-      <button class="goLogin_button" routerLink="/">Continuar</button>
+      <button class="goLogin_button" routerLink="/login">Continuar</button>
    </div>
 </div>

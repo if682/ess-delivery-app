@@ -42,7 +42,7 @@ app.post('/restaurant', function(req: express.Request, res: express.Response){
     const result = restauranteService.add(restaurante);
     if (result) {
       res.status(201).send(result);
-      console.log(restaurante);
+      console.log(result);
     } else {
       res.status(403).send({ message: "Restaurante list is full"});
     }
