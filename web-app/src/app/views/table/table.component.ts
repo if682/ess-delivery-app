@@ -27,7 +27,6 @@ export class TableComponent implements OnInit {
   constructor(private service: AdminService, private editService: PromotionService, private acRoute: ActivatedRoute) {
     this.acRoute.params.subscribe(params => this.type = params['type']);
     this.setCoupons();
-    alert("kkk " + this.type);
   }
   
   ngOnInit(): void {

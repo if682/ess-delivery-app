@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxCurrencyModule } from "ngx-currency";
-
+import { MatSelectModule } from '@angular/material/select';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PromotionComponent } from './promotion/promotion.component';
@@ -45,6 +45,7 @@ import { LogoComponent } from './views/logo/logo.component';
     MatTableModule,
     MatDialogModule,
     NgxCurrencyModule,
+    MatSelectModule,
     RouterModule.forRoot([
       {
         path: 'home',
@@ -59,11 +60,11 @@ import { LogoComponent } from './views/logo/logo.component';
         component: AdminComponent
       },
       {
-        path: 'promotion/admin/add-coupon',
+        path: 'promotion/:type/:action',
         component: PromotionComponent
       },
       {
-        path: 'promotion/admin/edit-coupon',
+        path: 'promotion/:type/:id/:action',
         component: PromotionComponent
       },
       {

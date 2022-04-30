@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-
+import { ActivatedRoute, Params, Route } from '@angular/router';
 import { Coupon } from '../admin/coupon';
+import { Restaurant, Product } from '../admin/restaurant';
 import { PromotionService } from './promotion.service';
 
 @Component({
@@ -13,10 +14,15 @@ export class PromotionComponent implements OnInit {
 
   coupon: Coupon = new Coupon();
   public status: string;
+  public title: string;
   public action: string;
+  public type: string;
+  public restaurant: Restaurant;
+  productname: string;
 
-  constructor(private promotionService: PromotionService) {
+  constructor(private promotionService: PromotionService, private acRoute: ActivatedRoute) {
     this.status = "Inativo";
+    this.restaurant = window.history.state.data;
   }
   
   activate(): void {
@@ -28,7 +34,11 @@ export class PromotionComponent implements OnInit {
   }
 
   createCoupon(newCoupon: Coupon): void {
+    newCoupon.product = this.productname;
+    
     newCoupon.status = this.status;
+
+    alert(newCoupon.product);
 
     this.promotionService.createCoupon(newCoupon)
     .then(result => {
@@ -40,14 +50,15 @@ export class PromotionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var path = window.location.pathname;
-    var act = path.replace("/promotion/admin/", "");
-
-    if(act == "add-coupon"){
-      this.action = "Adicionar um novo cupom";
+    this.acRoute.params.subscribe((params: Params) => [this.action, this.type] = [params['action'], params['type']]);
+    this.promotionService.type = this.type;
+    this.promotionService.id = this.restaurant.name;
+    if(this.action == "add-coupon"){
+      this.title = "Adicionar um novo cupom";
     }else{
-      this.action = "Editar cupom";
+      this.title = "Editar cupom";
     }
   }
 
 }
+

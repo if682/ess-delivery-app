@@ -1,5 +1,5 @@
 <div class="block">
-   <h2>{{action}}</h2>
+   <h2>{{title}}</h2>
    <div class="forms-block">
       <div class="input-block" >
          <input value="{{coupon.name}}" placeholder="Nome/Código" [(ngModel)]="coupon.name" oninput="this.value = this.value.toUpperCase()" required>
@@ -11,6 +11,18 @@
             <label>Ativo</label>
          </div>
       </div>
+      <ng-template [ngIf]="type=='restaurants'">
+         <div class="selection"> 
+            <h3>Produto:</h3>
+            <div>
+               <select class="options" [(ngModel)]="productname" disableRipple>
+                  <option *ngFor="let product of restaurant.products" [value]="product.name">
+                    {{product.name}}
+                  </option>
+               </select>
+            </div>   
+         </div>
+      </ng-template> 
       <div class="input-block">
          <input placeholder="Desconto" type="number" step="0.05" min="0" max="1" [(ngModel)]="coupon.discount" required>
       </div>
