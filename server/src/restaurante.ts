@@ -10,6 +10,7 @@ export class Restaurante {
   horario_fim: string;
   nome_responsavel: string;
   telefone_responsavel: string;
+  email: string;
   senha: string;
 
   constructor(restaurante: Restaurante) {
@@ -24,6 +25,7 @@ export class Restaurante {
     this.horario_fim = restaurante.horario_fim;
     this.nome_responsavel = restaurante.nome_responsavel;
     this.telefone_responsavel = restaurante.telefone_responsavel;
+    this.email = restaurante.email;
     this.senha = restaurante.senha;
   }
 
@@ -39,6 +41,7 @@ export class Restaurante {
     this.horario_fim = restaurante.horario_fim;
     this.nome_responsavel = restaurante.nome_responsavel;
     this.telefone_responsavel = restaurante.telefone_responsavel;
+    this.email = restaurante.email;
     this.senha = restaurante.senha;
   }
 }

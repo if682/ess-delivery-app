@@ -14,6 +14,8 @@ export class CadastroComponent implements OnInit {
 
    restaurante: Restaurante = new Restaurante();
    restaurantes: Restaurante[] = [];
+   error = undefined;
+   success = false;
 
    createRestaurante(r: Restaurante): void {
       this.cadastroService.create(r)
@@ -21,9 +23,11 @@ export class CadastroComponent implements OnInit {
             if (result) {
                this.restaurantes.push(<Restaurante> result);
                this.restaurante = new Restaurante();
+
+               this.success = true;
             }
          })
-         .catch(erro => alert(erro));
+         .catch(erro => this.catch(erro));
    }
 
    onlyNumbersKeyPress(e:any): void {
@@ -100,6 +104,15 @@ export class CadastroComponent implements OnInit {
          .replace(/(\d{4})(\d)/, '$1-$2')
          .replace(/(:\d{4})\d+?$/, '$1')
       }
+   }
+
+   private catch(erro: any): void{
+      var message = JSON.parse(erro._body).message;
+      this.error = {status: erro.status, message: message};
+   }
+
+   resetError(): void{
+      this.error = undefined;
    }
 
    ngOnInit(): void {

@@ -48,7 +48,9 @@ app.post('/restaurant', function(req: express.Request, res: express.Response){
     }
   } catch (err) {
     const {message} = err;
-    res.status(400).send({ message })
+    if(message == 'Um restaurante já foi cadastrado com esse CNPJ')
+      res.status(401).send({ message });
+    res.status(400).send({ message });
   }
 });
 
