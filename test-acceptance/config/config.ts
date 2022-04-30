@@ -14,7 +14,7 @@ export let config: Config = {
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
     specs: [
-        '../../features/cadastro_restaurante.feature'
+        '../../features/*.feature'
     ],
 
     onPrepare: () => {
@@ -27,6 +27,6 @@ export let config: Config = {
         compiler: "ts:ts-node/register",
         strict: true,
         format: ['pretty'],
-        require: ['../../stepdefinitions/cadastro_restaurante.ts'],
+        require: ['../../stepdefinitions/*.ts'],
     }
 };

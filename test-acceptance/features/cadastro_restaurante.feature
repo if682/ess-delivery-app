@@ -74,4 +74,4 @@ Feature: As a represetante de um restaurante
 		When eu preencho o campo de "E-mail para Contato" com "jpc@mail.com"
 		When eu preencho o campo de "Senha" com "potato"
 		When eu seleciono a opção cadastrar
-		Then eu vejo uma mensagem de que o campo "CNPJ" não foi preenchido corretamente, logo o cadastro não foi realizadoS
+		Then eu vejo uma mensagem de que o campo "CNPJ" não foi preenchido corretamente, logo o cadastro não foi realizado
