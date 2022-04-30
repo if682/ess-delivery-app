@@ -1,14 +1,17 @@
-<div mat-button class="logo-container" name="home" routerLink="/home">
-  <img alt="Logo" src="/assets/images/logo.svg"/>
-</div>
+<app-logo></app-logo>
 <h2 class="header-home">Insira seu ID</h2>
 <div class="forms-block">
   <div class="input-block" >
      <input placeholder="ID" id="id" [(ngModel)]="clientId">
   </div>
   <div class="buttons-container">
-     <a routerLink ="/{{type}}/{{id}}" class="confirm-link" (click)="addMetodo(metodo)">
+     <a class="pink-link" (click)="checkType(clientId)">
         Log in
      </a>
   </div>
+</div>
+<div class="buttons-container">
+   <a class="back-link" routerLink="/home">
+      Voltar
+   </a>
 </div>

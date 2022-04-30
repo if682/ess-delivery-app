@@ -1,8 +1,9 @@
+<router-outlet></router-outlet>
 <app-bar></app-bar>
 <div class="container">
   <div class="buttons-container add">
     <h2 class="header-home">Lista de cupons</h2>
-    <a class="add-link" alt="Botão de Adicionar Cupom" routerLink="/promotion/admin/add-coupon">
+    <a class="add-link" alt="Botão de Adicionar Cupom" (click)="checkType('add-coupon')">
       <img alt="Ícone de soma" src="/assets/icons/plus.svg"/>
       Adicionar Cupom
     </a>

@@ -14,10 +14,6 @@ var restaurantsService: PromotionService[] = [];
 var usersService: UserService = new UserService();
 var admins: Admin[] = [];
 
-// for(var r of restaurants){
-//     restaurantsService[r.name] = new PromotionService();
-// }
-
 // ----------------------------------------------------------------
 fs.readFile("admin.json", "utf-8", (err,data)=> {
   if(err){
@@ -31,37 +27,6 @@ fs.readFile("admin.json", "utf-8", (err,data)=> {
 // Lendo dos arquivos
 [adminService, usersService, restaurantsService] = readFiles(adminService, usersService, restaurantsService);
 
-// ----------------------------------------------------------------
-
-// // Lendo dos arquivos
-// fs.readFile("admin-coupons.json", "utf-8", (err, data) => {
-//   if(err){
-//     console.log(err);
-//   }else{
-//     adminService.coupons = JSON.parse(data);
-//   }
-// })
-
-// fs.readFile("users.json", "utf-8", (err, data) => {
-//   if(err){
-//     console.log(err);
-//   }else{
-//     usersService.users = JSON.parse(data);
-//   }
-// })
-
-// fs.readFile("restaurants-coupons.json", "utf-8", (err, data) => {
-//   if(err){
-//     console.log(err);
-//   }else{
-//     var json = JSON.parse(data);
-//     for(var j of json){
-//       restaurantsService[j.name].coupons = j.coupons;
-//     }
-//   }
-// })
-
-// ----------------------------------------------------------------
 
 function updateRestaurantsFile(){
   fs.writeFile("restaurants-coupons.json", JSON.stringify(restaurants), (err) => {
@@ -83,12 +48,13 @@ routes.get('/payment', (req, res) => {
 
 // ROTAS DE ADMIN
 
-routes.get('/promotion/admin/login/:id', function(req, res){
+routes.get('/admin/:id', function(req, res){
   const id = req.params.id;
   const admin = admins.find((result) => result.id == id);
+  // const coupons = adminService.get();
   console.log(admin);
   if (admin) {
-    res.send(admin);
+    res.status(201).send(admin);
   } else {
     res.status(404).send({ message: ` Administrador ${id} não foi encontrado`});
   }
@@ -163,6 +129,22 @@ routes.delete('/promotion/admin/:name', function (req, res){
 
 // ----------------------------------------------------------------
 /// ROTAS DE RESTAURANTES
+
+// Retorna o restaurante pelo nome
+routes.get('/restaurant/:restName', (req, res) => {
+  const restName = req.params.restName;
+  const rest = restaurants.find((e) => e.name == restName);
+
+  const msg = console.log(`Restaurant ${restName} found`);
+  const err = `Restaurant ${restName} not found`;
+  if(rest) {
+    console.log(msg)
+    res.status(200).send(rest);
+  } else {
+    console.log(err);
+    res.status(404).send({message: err});
+  }
+});
 
 routes.get('/promotion/restaurants', (req, res) => {
   res.send(JSON.stringify(restaurants));
@@ -256,6 +238,22 @@ routes.delete('/promotion/restaurants/:rest/:id', function (req, res){
 
 // ----------------------------------------------------------------
 /// ROTAS DE USUÁRIOS
+
+// Retorna o usuário pelo ID
+routes.get('/users/:id', (req, res) => {
+  let id = req.params.id;
+  const user = usersService.getUserById(id);
+
+  const msg = `user found ${user.id}`;
+  const err = `user not found`;
+  if(user) {
+    console.log(msg);
+    res.status(200).send(user);
+  } else {
+    console.log(err);
+    res.send(404).send({message: err});
+  }
+});
 
 // Retorna os pedidos de um usuário
 routes.get('/user/:id/orders', function(req, res){

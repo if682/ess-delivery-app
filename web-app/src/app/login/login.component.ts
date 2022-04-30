@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { query } from '@angular/animations';
 import { NgModule } from '@angular/core';
-import { Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
+import { LoginService } from './login.service';
 //-> pegar o tipo e mandar as informações do objeto desse tipo
 
 
@@ -13,28 +13,32 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private route: Router, private acRoute: ActivatedRoute) {}
+  constructor(private route: Router, private acRoute: ActivatedRoute, private service: LoginService) {}
+  type: string;
+
+  ngOnInit(): void {
+    this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
+  }
+  
+  checkType(id:string): void {
+    if(this.type=="admin"){
+      this.service.getAdmin("admin/" + id)
+        .then(data => this.route.navigate(["promotion/" + this.type], { state: { data: data } }))
+    }
+    else if(this.type=="user"){
+      this.service.getUser("users/" + id)
+        .then(user => this.route.navigate(["user/" + id + "/profile"], { state: { data: user } }))
+    }
+    else{
+      this.service.getRestaurant("restaurant/" + id)
+        .then(rest => this.route.navigate(["promotion/", this.type, id ], { state: { data: rest } }))
+    }
+  }
+}
 
   // temos que fazer um if para cada tipo admin(id)
   // restaurante é o nome 
   // usuario é id
-  id: string;
-  type: string;
-  
-  if(this.type == "admin"){
-    navToadmin():void 
-
-  }
-  navToEmail(): void {
-    console.log(this.name);
-    let ret = this.route.navigate([l'/emai'], {queryParams:{data:this.name, car: JSON.stringify(this.car)}})
-  }
-
-  ngOnInit(): void {
-     
-  }
-
-}
 
 
 

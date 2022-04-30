@@ -54,3 +54,37 @@ h3{
 .back-link {
     justify-self: center;
 }
+
+.selection {
+    display: flex;
+    justify-items: center;
+    text-align: center;
+    align-items: center;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.options {
+    position: relative;
+    cursor: pointer;
+    width: 20.5rem;
+    height: 6rem;
+    font-size: 1.7rem;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    border-radius: 0.8rem;
+    margin-left: 1rem;
+    align-items: center;
+    text-align: center;
+    color: var(--color-primary-darker);
+    background-color: var(--color-line-in-white);
+    border: none;
+}
+
+option:hover {
+    background-color: var(--color-primary-lighter);
+}
+
+option:checked {
+    display: none;  
+}

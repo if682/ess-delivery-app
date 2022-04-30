@@ -1,25 +1,18 @@
-<div class="grid-container">
-  <div class="logo-container">
-      <img alt="Logo" src="/assets/images/logo.svg"/>
-  </div>
-  <div class="image-container">
-      <img alt="iFood" src="/assets/images/delivery.svg"/>
-  </div>
-</div>
+<app-logo></app-logo>
 <h2 class="header-home" >Como você deseja entrar?</h2>
 <div class="buttons-container">
-  <a mat-button class="btn pink-link" name="user" routerLink="/user/profile">
+  <a mat-button class="btn pink-link" name="user" (click)="navigateLogin('user')">
       <img alt="user" src="/assets/icons/user.svg"/>
       Cliente
   </a>
-  <a mat-button class="btn dark-link" name="restaurant" routerLink="/promotion/restaurant">
+  <a mat-button class="btn dark-link" name="restaurant" (click)="navigateLogin('restaurants')">
       <img alt="fork-and-knife" src="/assets/icons/rest-2.png"/>
       Restaurante
   </a>
 </div>
 
 <div class="buttons-container">
-  <a mat-button class="btn leaked-link" name="admin" routerLink="/promotion/admin">
+  <a mat-button class="btn leaked-link" name="admin" (click)="navigateLogin('admin')">
       <img class="tiny-icon" alt="lock" src="/assets/icons/lock.svg"/>
       Administrador
   </a>

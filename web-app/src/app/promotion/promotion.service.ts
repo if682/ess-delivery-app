@@ -12,6 +12,8 @@ export class PromotionService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private taURL = 'http://localhost:3000';
   private _currentURL: string;
+  public type: string;
+  public id: string;
   
   public coupon: Coupon;
   
@@ -24,16 +26,22 @@ export class PromotionService {
   }
 
   constructor(private http: Http) {
-    this.coupon = new Coupon();
+    this.init();
+  }
 
+  init(){
     var path = window.location.pathname;
-    var act = path.replace("/promotion/admin/", "");
-
-    if(act == "add-coupon"){
+    if(this.type != "restaurants"){
+      this.id = "";
+    }
+    var act = path.replace("/promotion/" + this.type + "/" + this.id , "");
+    
+    if(act == "/add-coupon"){
       this.currentURL = path.replace("/add-coupon", "");
     }else{
       this.currentURL = path.replace("/edit-coupon", "");
     }
+    alert(this.currentURL);
   }
 
   setAttributes(coupon){
@@ -48,9 +56,9 @@ export class PromotionService {
   }
 
   createCoupon(coupon: Coupon): Promise<Coupon> { 
-
+    this.init();
     this.setAttributes(coupon);
-
+    alert(this.currentURL);
     return this.http.post(this.taURL + this.currentURL, JSON.stringify(coupon), { headers: this.headers })
       .toPromise()
       .then(res => {
