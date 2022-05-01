@@ -3,11 +3,6 @@ import { Http, Headers } from '@angular/http';
 
 import { Coupon } from '../../admin/coupon';
 
-var couponzi: Coupon = {
-  name:"MILETO",
-  discount : 0.1
-}
-
 @Injectable()
 export class EditService {
 

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from './login.service';
+import { LocalStorageService } from 'src/app/local-storage.service';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(private route: Router, private acRoute: ActivatedRoute, private service: LoginService) {}
   type: string;
 
+  localStorage = new LocalStorageService();
+  
   ngOnInit(): void {
     this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
   }
@@ -30,8 +33,9 @@ export class LoginComponent implements OnInit {
     else if(this.type=="user"){
       this.service.getUser("users/" + id)
         .then(user => {
-          window.history.replaceState({}, '', "user/" + id + "/profile")
-          this.route.navigate(["user/" + id + "/profile"], { state: { data: user } })
+          this.localStorage.set('user', user);
+          //window.history.replaceState({}, '', "user/" + id + "/profile")
+          this.route.navigate(["user/" + id + "/profile"])
         })
     }
     else{

@@ -2,18 +2,18 @@
 <div class="container">
   <h2 class="header-home" >O que você deseja fazer?</h2>
   <div class="buttons-container">
-    <a mat-button class="btn pink-link" name="user" routerLink="/user/payment">
+    <a mat-button class="btn pink-link" name="payment methods" (click)="toPayment()">
         <img alt="user" src="/assets/icons/credit-card.svg"/>
         Ver Métodos de Pagamento
     </a>
-    <a mat-button class="btn dark-link" name="restaurant" routerLink="/user/current-order">
+    <a mat-button class="btn dark-link" name="make order" (click)="toCurrentOrder()">
         <img alt="shopping cart" src="/assets/icons/shopping-cart.svg"/>
         Fazer um Pedido
     </a>
   </div>
 
   <div class="buttons-container">
-    <a mat-button class="btn leaked-link" name="admin" routerLink="/user/orders">
+    <a mat-button class="btn leaked-link" name="list orders" routerLink="/user/{{user.id}}/orders" >
         <img class="tiny-icon" alt="lock" src="/assets/icons/list.svg"/>
         Ver Pedidos
     </a>

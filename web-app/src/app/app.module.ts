@@ -24,6 +24,7 @@ import { LoginService } from './login/login.service';
 import { LogoComponent } from './views/logo/logo.component';
 import { EditComponent } from './promotion/edit/edit.component';
 import { EditService } from './promotion/edit/edit.service';
+import { LocalStorageService } from './local-storage.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { EditService } from './promotion/edit/edit.service';
     BarComponent,
     OrdersComponent,
     LogoComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +102,7 @@ import { EditService } from './promotion/edit/edit.service';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [PromotionService, AdminService, LoginService, EditService],
+  providers: [PromotionService, AdminService, LoginService, EditService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

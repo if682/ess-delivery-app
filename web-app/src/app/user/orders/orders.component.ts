@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http } from '@angular/http'; 
 import { MatTable } from '@angular/material/table';               
+import { User } from 'src/app/admin/user';
+import { LocalStorageService } from 'src/app/local-storage.service';
 import { Order } from './order';
 
 
@@ -12,7 +14,8 @@ import { Order } from './order';
 export class OrdersComponent implements OnInit {
 
   displayedColumns: string[] = ['ID', 'Restaurante', 'Valor', 'Cupom', 'Comprovante via E-mail' ,'Comprovante via Download'];
-  orders: Promise<Order[]>;
+  user: User;
+  localStorage = new LocalStorageService();
 
   private taURL = 'http://localhost:3000';
   private currentURL: string;
@@ -21,11 +24,10 @@ export class OrdersComponent implements OnInit {
     this.currentURL = window.location.pathname;
   }
 
-  ngOnInit(): void {
-    this.orders = this.http.get(this.taURL + this.currentURL)
-                    .toPromise()
-                    .then(res => res.json() as Order[])
-                    .catch(this.catch);
+  ngOnInit(): void {  
+    this.user = this.localStorage.get('user');
+    var order: Order[] = this.user.orders;
+    console.log(order);
   }
 
   @ViewChild(MatTable) table: MatTable<Order>;
