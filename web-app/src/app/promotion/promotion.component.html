@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 <div class="block">
-   <h2>{{title}}</h2>
+   <h2>Adicionar um novo cupom</h2>
    <div class="forms-block">
       <div class="input-block" >
          <input value="{{coupon.name}}" placeholder="Nome/Código" [(ngModel)]="coupon.name" oninput="this.value = this.value.toUpperCase()" required>
@@ -12,12 +12,12 @@
             <label>Ativo</label>
          </div>
       </div>
-      <ng-template [ngIf]="type=='restaurants'">
+      <ng-template [ngIf]="type=='rest'">
          <div class="selection"> 
             <h3>Produto:</h3>
             <div>
                <select class="options" [(ngModel)]="productname" disableRipple>
-                  <option *ngFor="let product of restaurant.products" [value]="product.name">
+                  <option *ngFor="let product of data.products" [value]="product.name">
                     {{product.name}}
                   </option>
                </select>

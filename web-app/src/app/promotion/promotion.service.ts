@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 import { Coupon } from '../admin/coupon';
+import { LocalStorageService } from '../local-storage.service';
 
 const ADMIN = "/promotion/admin";
 const RESTAURANT = "/promotion/restaurant";
@@ -12,10 +13,11 @@ export class PromotionService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private taURL = 'http://localhost:3000';
   private _currentURL: string;
-  public type: string;
-  public id: string;
   
+  public type: string;
   public coupon: Coupon;
+  
+  localStorage = new LocalStorageService();
   
   public get currentURL(): string {
     return this._currentURL;
@@ -31,16 +33,9 @@ export class PromotionService {
 
   init(){
     var path = window.location.pathname;
-    if(this.type != "restaurants"){
-      this.id = "";
-    }
-    var act = path.replace("/promotion/" + this.type + "/" + this.id , "");
-    
-    if(act == "/add-coupon"){
-      this.currentURL = path.replace("/add-coupon", "");
-    }else{
-      this.currentURL = path.replace("/edit-coupon", "");
-    }
+    this.type = this.localStorage.get('type');
+    this.currentURL = path.replace("add-coupon", "");
+    this.currentURL = this.currentURL.replace("rest", "restaurants");
     alert(this.currentURL);
   }
 

@@ -17,32 +17,34 @@ export class LoginComponent implements OnInit {
   type: string;
 
   localStorage = new LocalStorageService();
-  
+
   ngOnInit(): void {
-    this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
+    this.type = this.localStorage.get('type');
+    // this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
   }
   
-  checkType(id:string): void {
+  checkType(id: string): void {
     if(this.type=="admin"){
       this.service.getAdmin("admin/" + id)
-      .then(data => {
-        window.history.replaceState({}, '', "promotion/" + this.type)
-        this.route.navigate(["promotion/" + this.type], { state: { data: data } })        
+      .then(admin => {
+        this.localStorage.set('admin', admin);
+        this.localStorage.set('coupons', this.service.getAdminCoupons('promotion/admin'));
+        this.route.navigate(["promotion/" + this.type]);        
       })
     }
     else if(this.type=="user"){
       this.service.getUser("users/" + id)
         .then(user => {
           this.localStorage.set('user', user);
-          //window.history.replaceState({}, '', "user/" + id + "/profile")
-          this.route.navigate(["user/" + id + "/profile"])
+          this.route.navigate(["user/" + id + "/profile"]);
         })
     }
     else{
       this.service.getRestaurant("restaurant/" + id)
         .then(rest => {
-          window.history.replaceState({}, '', "promotion/" + this.type + "/" + id)
-          this.route.navigate(["promotion/", this.type, id ], { state: { data: rest } })
+          this.localStorage.set('rest', rest);
+          this.localStorage.set('coupons', rest.coupons);
+          this.route.navigate(["promotion/", this.type, id ]);
         })
     }
   }

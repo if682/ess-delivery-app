@@ -7,7 +7,8 @@ import { AdminService } from 'src/app/admin/admin.service';
 import { PromotionService } from 'src/app/promotion/promotion.service';
 import { Restaurant } from 'src/app/admin/restaurant';
 import { Admin } from 'src/app/admin/admin';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/local-storage.service';
 
 @Component({
   selector: 'app-table',
@@ -17,10 +18,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['ID', 'Nome', 'Produto', 'Desconto', 'Valor Mínimo', 'Status', 'Editar' ,'Deletar'];
-  restaurant: Restaurant;
-  admin: Admin;
+  // restaurant: Restaurant;
+  // admin: Admin;
+  data: any;
   public coupons: Coupon[] = [];
   type: string;
+  localStorage = new LocalStorageService();
 
   @ViewChild(MatTable) table: MatTable<Coupon>;
 
@@ -28,25 +31,29 @@ export class TableComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.acRoute.params.subscribe(params => this.type = params['type']);
-    this.setCoupons();
+    this.type = this.localStorage.get('type');
+    // this.acRoute.params.subscribe(params => this.type = params['type']);
+    this.data = this.localStorage.get(this.type);
+    this.coupons = this.localStorage.get('coupons');
+    // this.setCoupons();
   }
   
-  setCoupons(){
-    if(this.type == "restaurants"){
-      this.restaurant = window.history.state.data;
-      this.coupons = this.restaurant.coupons;
-    }else{
-      this.admin = window.history.state.data;
-      this.getAdminCoupons();
-    }
-  }
+  // setCoupons(){
+  //   //this.restaurant = window.history.state.data;
+  //   //this.admin = window.history.state.data;
+  //   if(this.type == "rest"){
+  //   }else{
+  //     // this.admin = this.localStorage.get('admin');
+  //     this.getAdminCoupons();
+  //     this.localStorage.set('coupons', this.coupons);
+  //   }
+  // }
 
-  getAdminCoupons() {
-    this.service.getCoupons()
-      .then(coupons => this.coupons = coupons)
-      .catch(erro => alert(erro));
-  }
+  // getAdminCoupons() {
+  //   this.service.getCoupons()
+  //     .then(coupons => this.coupons = coupons)
+  //     .catch(erro => alert(erro));
+  // }
 
 
   removeData(couponName: string) {
@@ -66,10 +73,11 @@ export class TableComponent implements OnInit {
   }
 
   editData(coupon: Coupon){
+    this.localStorage.set('coupon', coupon);
     if(this.type == 'restaurants'){ 
-      this.route.navigate(["promotion/restaurants/edit", this.restaurant.name, coupon.name], { state: { data: this.restaurant, coupon: coupon, type: "rest" }});
+      this.route.navigate(["promotion/restaurants/edit", this.data.name, coupon.name]);
     }else{
-      this.route.navigate(["promotion/admin/edit", coupon.name], { state: { data: this.admin, coupon: coupon, type: "admin"}});
+      this.route.navigate(["promotion/admin/edit", coupon.name]);
     }
   }
   

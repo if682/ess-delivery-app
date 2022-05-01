@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LocalStorageService } from '../local-storage.service';
 import { Admin } from './admin';
 import { AdminService } from './admin.service';
 import { Coupon } from './coupon';
@@ -15,29 +16,31 @@ export class AdminComponent implements OnInit {
 
   restaurant: Restaurant;
   admin: Admin;
-  coupons: Coupon[];
+  localStorage = new LocalStorageService();
+  // coupons: Coupon[];
   type: string;
 
   constructor(private service: AdminService, private acRoute: ActivatedRoute, private route: Router) {}
 
   ngOnInit(): void {
-    this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
-    alert("eu nao sei que alerta eh esse" + window.history.state.data);
+    this.type = this.localStorage.get('type');
+    // this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
+    // alert("eu nao sei que alerta eh esse" + window.history.state.data);
   }
 
   // checa se a ação foi realizada por admin ou restaurante e redireciona para a rota da ação
   checkType(): void {
-    this.route.navigateByUrl("promotion/admin/add-coupon", {state: {data: window.history.state.data}})
-    /*alert(this.type); 
-    if(this.type == "restaurants"){
-      this.restaurant = window.history.state.data; // recebe quem é o restaurante
-      this.route.navigate(["promotion/", this.type, this.restaurant.name, action], { state: { data: this.restaurant } })
+    // this.route.navigateByUrl("promotion/admin/add-coupon");
+    // alert(this.type); 
+    if(this.type == "rest"){
+      this.restaurant = this.localStorage.get('rest'); // recebe quem é o restaurante
+      this.route.navigate(["promotion/", this.type, this.restaurant.name, 'add-coupon']);
     }
     else{
-      this.admin = window.history.state.data; // recebe quem é o admin
-      alert(this.admin.name);
-      this.route.navigate(["/promotion/admin/add-coupon"])
-    }*/
+      this.admin = this.localStorage.get('admin');
+      // alert(this.admin.name);
+      this.route.navigate(["/promotion/admin/add-coupon"]);
+    }
   }
 
 

@@ -10,14 +10,16 @@ import { LocalStorageService } from 'src/app/local-storage.service';
 })
 export class BarComponent implements OnInit {
 
-  data: User;
+  data: any;
   localStorage = new LocalStorageService();
   type: string;
 
   constructor(private acRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.data = this.localStorage.get('user');
+    this.type = this.localStorage.get('type');
+    this.data = this.localStorage.get(this.type);
+    alert(this.data.name)
   }
 
 }

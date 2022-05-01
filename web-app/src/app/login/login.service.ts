@@ -22,11 +22,18 @@ export class LoginService {
              .then(res => res.json() as User[])
              .catch(this.catch);
   }
-  getRestaurant(url:string): Promise<Restaurant[]> {
+  getRestaurant(url:string): Promise<Restaurant> {
     return this.http.get(this.taURL + url)
              .toPromise()
-             .then(res => res.json() as Restaurant[])
+             .then(res => res.json() as Restaurant)
              .catch(this.catch);
+  }
+
+  getAdminCoupons(url:string) {
+      return this.http.get(this.taURL + url)
+               .toPromise()
+               .then(res => res.json() as Coupon[])
+               .catch(this.catch);
   }
 
   private catch(erro: any): Promise<any>{
