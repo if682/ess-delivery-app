@@ -199,7 +199,7 @@ routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
   
   const index = restaurants.findIndex((result) => result.name == rest)
   restaurants[index].coupons = restaurantsService[rest].coupons;
-  
+  console.log("FIZ O PUT HEIN");
   const err = `Coupon ${id} could not be found.`;
   const message = `Coupon ${id} has been updated.`;
   

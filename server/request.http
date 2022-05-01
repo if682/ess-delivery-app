@@ -25,11 +25,11 @@ Content-Type: application/json
 
 // ATUALIZA CUPOM DO RESTAURANTE
 ###
-PUT http://localhost:3000/promotion/restaurants/Mequi/2BIGMEQUIPOR5
+PUT http://localhost:3000/promotion/restaurants/BK/DEDE
 Content-Type: application/json
 
 {
-    "name":"2BIGMEQUIPOR9",
+    "name":"DUDU",
     "discount" : 0.6
 }
 
