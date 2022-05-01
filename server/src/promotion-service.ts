@@ -39,9 +39,17 @@ export class PromotionService {
     }
   }
 
+  private hasProduct(coupon: Coupon){
+    if (coupon.adm){
+      return true;
+    } else {
+      return coupon.product != undefined;
+    }
+  }
+
   // checa se existem campos vazios no cupom
   isCoupon(coupon: Coupon){
-    return (coupon.discount != undefined && coupon.minValue != undefined && coupon.name != undefined && coupon.status != undefined);
+    return (coupon.discount != undefined && coupon.minValue != undefined && coupon.name != undefined && coupon.status != undefined && this.hasProduct(coupon));
   }
 
   add(coupon: Coupon): Coupon {
