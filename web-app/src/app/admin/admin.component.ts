@@ -22,18 +22,22 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.acRoute.params.subscribe((params: Params) => this.type = params['type']);
+    alert("eu nao sei que alerta eh esse" + window.history.state.data);
   }
 
   // checa se a ação foi realizada por admin ou restaurante e redireciona para a rota da ação
-  checkType(action:string): void {
-    if(this.type=="restaurants"){
+  checkType(): void {
+    this.route.navigateByUrl("promotion/admin/add-coupon", {state: {data: window.history.state.data}})
+    /*alert(this.type); 
+    if(this.type == "restaurants"){
       this.restaurant = window.history.state.data; // recebe quem é o restaurante
       this.route.navigate(["promotion/", this.type, this.restaurant.name, action], { state: { data: this.restaurant } })
     }
     else{
       this.admin = window.history.state.data; // recebe quem é o admin
-      this.route.navigate(["promotion/admin", action], { state: { data: this.admin } })
-    }
+      alert(this.admin.name);
+      this.route.navigate(["/promotion/admin/add-coupon"])
+    }*/
   }
 
 

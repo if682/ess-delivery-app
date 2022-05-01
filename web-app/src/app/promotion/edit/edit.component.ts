@@ -14,18 +14,19 @@ export class EditComponent implements OnInit {
 
   couponName: string;
   coupon: Coupon = new Coupon();
-  newCoupon: Coupon;
+  newCoupon: Coupon = new Coupon();
   restaurant: Restaurant; 
+  status: string;
   admin: Admin;
   type: string;
 
   constructor(private service: EditService, private route: Router, private acRoute: ActivatedRoute) {
-    this.coupon.status = "Inativo";
   }
   
   ngOnInit(){
     this.acRoute.params.subscribe((params: Params) => this.couponName = params['id']);
     this.coupon = window.history.state.coupon;
+    this.status = this.coupon.status;
     this.type = window.history.state.type;
     if(this.type == "admin"){
       this.admin = window.history.state.data;
@@ -35,15 +36,15 @@ export class EditComponent implements OnInit {
   }
 
   activate(): void {
-    if(this.coupon.status == "Inativo"){
-      this.coupon.status = "Ativo";
+    if(this.status == "Inativo"){
+      this.status = "Ativo";
     }else{
-      this.coupon.status = "Inativo";
+      this.status = "Inativo";
     }
   }
 
   editCoupon(){
-    alert(this.newCoupon);
+    this.newCoupon.status = this.status;
     this.service.editCoupon(this.newCoupon)
       .then(result => {
         if (result) {

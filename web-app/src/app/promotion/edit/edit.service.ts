@@ -3,14 +3,17 @@ import { Http, Headers } from '@angular/http';
 
 import { Coupon } from '../../admin/coupon';
 
+var couponzi: Coupon = {
+  name:"MILETO",
+  discount : 0.1
+}
+
 @Injectable()
 export class EditService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private taURL = 'http://localhost:3000';
   private _currentURL: string;
-  
-  public coupon: Coupon;
   
   public get currentURL(): string {
     return this._currentURL;
@@ -31,9 +34,9 @@ export class EditService {
     alert(this.currentURL);
   }
 
-  editCoupon(coupon: Coupon): Promise<Coupon[]> {
+  editCoupon(couponNew: Coupon): Promise<Coupon[]> {
     this.init();
-    return this.http.put(this.taURL + this.currentURL, JSON.stringify(coupon))
+    return this.http.put(this.taURL + this.currentURL, JSON.stringify(couponNew), { headers: this.headers })
              .toPromise()
              .then(res => res.json() as Coupon[])
              .catch(this.catch);

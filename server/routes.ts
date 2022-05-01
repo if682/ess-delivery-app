@@ -196,14 +196,14 @@ routes.put('/promotion/restaurants/:rest/:id', function (req, res) {
   const { rest, id } = req.params;
   const coupon: Coupon = <Coupon> req.body;
   const result = restaurantsService[rest].update(id, coupon);
-  
+  console.log(coupon);
   const index = restaurants.findIndex((result) => result.name == rest)
   restaurants[index].coupons = restaurantsService[rest].coupons;
-  console.log("FIZ O PUT HEIN");
   const err = `Coupon ${id} could not be found.`;
   const message = `Coupon ${id} has been updated.`;
   
   if (result) {
+    console.log(restaurants[index].coupons);
     res.send({ message: message});
     updateRestaurantsFile();
     console.log(message);
