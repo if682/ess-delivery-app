@@ -22,6 +22,8 @@ import { BarComponent } from './views/bar/bar.component';
 import { OrdersComponent } from './user/orders/orders.component';
 import { LoginService } from './login/login.service';
 import { LogoComponent } from './views/logo/logo.component';
+import { EditComponent } from './promotion/edit/edit.component';
+import { EditService } from './promotion/edit/edit.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { LogoComponent } from './views/logo/logo.component';
     ProfileComponent,
     BarComponent,
     OrdersComponent,
-    LogoComponent
+    LogoComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +63,16 @@ import { LogoComponent } from './views/logo/logo.component';
         component: AdminComponent
       },
       {
-        path: 'promotion/:type/:action',
+        path: 'promotion/admin/add-coupon',
         component: PromotionComponent
+      },
+      {
+        path: 'promotion/admin/edit/:id',
+        component: EditComponent
+      },
+      {
+        path: 'promotion/restaurants/edit/:name/:id',
+        component: EditComponent
       },
       {
         path: 'promotion/:type/:id/:action',
@@ -90,7 +101,7 @@ import { LogoComponent } from './views/logo/logo.component';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [PromotionService, AdminService, LoginService],
+  providers: [PromotionService, AdminService, LoginService, EditService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

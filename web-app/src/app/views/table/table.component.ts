@@ -7,7 +7,7 @@ import { AdminService } from 'src/app/admin/admin.service';
 import { PromotionService } from 'src/app/promotion/promotion.service';
 import { Restaurant } from 'src/app/admin/restaurant';
 import { Admin } from 'src/app/admin/admin';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -24,12 +24,12 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<Coupon>;
 
-  constructor(private service: AdminService, private editService: PromotionService, private acRoute: ActivatedRoute) {
-    this.acRoute.params.subscribe(params => this.type = params['type']);
-    this.setCoupons();
+  constructor(private service: AdminService, private editService: PromotionService, private acRoute: ActivatedRoute, private route: Router) {
   }
   
   ngOnInit(): void {
+    this.acRoute.params.subscribe(params => this.type = params['type']);
+    this.setCoupons();
   }
   
   setCoupons(){
@@ -65,8 +65,12 @@ export class TableComponent implements OnInit {
           });
   }
 
-  sendData(coupon: Coupon){
-    this.editService.coupon = coupon;
+  editData(coupon: Coupon){
+    if(this.type == 'restaurants'){ 
+      this.route.navigate(["promotion/restaurants/edit", this.restaurant.name, coupon.name], { state: { data: this.restaurant, coupon: coupon, type: "rest" }});
+    }else{
+      this.route.navigate(["promotion/admin/edit", coupon.name], { state: { data: this.admin, coupon: coupon, type: "admin"}});
+    }
   }
   
 }

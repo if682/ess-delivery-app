@@ -25,9 +25,20 @@ export class AdminService {
   constructor(private http: Http) {
     this.currentURL = window.location.pathname;
   }
+
+  init(){
+    var path = window.location.pathname;
+    var act = path.includes("add");
+
+    if(act){
+      this.currentURL = path.replace("/add-coupon", "");
+    }else{
+      this.currentURL = path.replace("/edit-coupon", "");
+    }
+  }
   
   removeCoupon(couponName: string): Promise<Coupon[]> {
-    this.currentURL = window.location.pathname;
+    this.init();
     return this.http.delete(this.taURL + this.currentURL + "/" + couponName)
              .toPromise()
              .then(res => res.json() as Coupon[])
@@ -35,7 +46,8 @@ export class AdminService {
   }
   
   getCoupons(): Promise<Coupon[]> {
-    this.currentURL = window.location.pathname;
+    this.init();
+    alert("entrou no get");
     return this.http.get(this.taURL + this.currentURL)
              .toPromise()
              .then(res => res.json() as Coupon[])

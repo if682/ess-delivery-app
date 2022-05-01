@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     else{
       this.service.getRestaurant("restaurant/" + id)
         .then(rest => {
-          window.history.replaceState({}, '', "promotion/" + this.type + id)
+          window.history.replaceState({}, '', "promotion/" + this.type + "/" + id)
           this.route.navigate(["promotion/", this.type, id ], { state: { data: rest } })
         })
     }

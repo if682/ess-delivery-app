@@ -58,7 +58,7 @@
         <label>Editar</label>
       </th>
       <td class="column-value"  *matCellDef="let coupon"> 
-        <img alt="Ícone de Lápis no Papel" src="/assets/icons/edit_color.svg" routerLink="/promotion/admin/edit-coupon" (click)="sendData(coupon)" />
+        <img alt="Ícone de Lápis no Papel" src="/assets/icons/edit_color.svg" (click)="editData(coupon)" />
       </td>
     </div>
     <div matColumnDef="Deletar">
