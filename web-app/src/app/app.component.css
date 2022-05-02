@@ -1,0 +1,22 @@
+#page-landing {
+    background: var(--color-primary);
+}
+
+#page-landing #container {
+    color: var(--color-text-in-primary);
+}
+
+/* serve para indicar que tudo que está aqui dentro somente deverá ser aplicado se a largura minima da tela for 1100px */
+@media (min-width: 1100px){ 
+    #page-landing #container {
+        max-width: 1100px;
+        display: contents;
+        /*grid-template-columns: 2fr 1fr; quer dizer que a primeira coluna é o dobro da primeira
+        grid-template-rows: 350px 1fr;
+        grid-template-areas: aqui estou escolhendo nomes para posicionar cada item nos grids
+            "image image" na primeira linha 
+            "button"; na segunda linha 
+        column-gap: 87px;
+        row-gap: 86px;*/
+    }
+}

@@ -1,0 +1,31 @@
+.container {
+    margin-top: 6rem;
+}
+
+h2 {
+    text-align: left;
+    margin-left: 4rem;
+}
+
+a.add-link {
+    background: var(--color-secondary);
+    box-shadow: 1px 1px 2px var(--color-secondary-dark);
+    font-size: 2rem;
+    width: 26rem;
+    height: 6rem;
+}
+
+a.add-link:hover {
+    background: var(--color-secondary-dark);
+    transition: background 0.2s;
+}
+
+a img {
+    width: 2.5rem;
+    margin-right: 1.8rem;
+}
+
+
+.add {
+    justify-content: space-between;
+}

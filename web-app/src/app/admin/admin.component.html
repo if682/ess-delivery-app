@@ -1,0 +1,19 @@
+<!-- <router-outlet></router-outlet> -->
+<app-bar></app-bar>
+<div class="container">
+  <div class="buttons-container add">
+    <h2 class="header-home">Lista de cupons</h2>
+    <a class="add-link" alt="Botão de Adicionar Cupom" (click)="checkType()">
+      <img alt="Ícone de soma" src="/assets/icons/plus.svg"/>
+      Adicionar Cupom
+    </a>
+  </div>
+  <app-table></app-table>
+  <div class="buttons-container back">
+    <a class="back-link" alt="Botão de Sair" routerLink="/home">
+      <img alt="Ícone de seta para a esquerda" src="/assets/icons/arrow-left.svg"/>
+      Sair
+    </a>
+  </div>
+</div>
+<!-- <app-card [dataSource]="coupons" *ngFor="let coupons of coupons" [coupons]="coupons"></app-card> -->
