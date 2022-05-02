@@ -16,7 +16,7 @@
            <h3>Produto:</h3>
            <div>
               <select class="options" [(ngModel)]="newCoupon.product" disableRipple>
-                 <option *ngFor="let product of restaurant.products" [value]="product.name">
+                 <option *ngFor="let product of data.products" [value]="product.name">
                    {{product.name}}
                  </option>
               </select>
@@ -34,7 +34,7 @@
            <img alt="Ícone de cartão de crédito" src="/assets/images/coupon1.png"/>
            Salvar
         </a>
-        <a class="back-link" routerLink="/home">
+        <a class="back-link" (click)="back()">
            <img alt="Ícone de cartão de crédito" src="/assets/icons/arrow-left.svg"/>
            Voltar
         </a>

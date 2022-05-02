@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Admin } from 'src/app/admin/admin';
 import { Coupon } from 'src/app/admin/coupon';
 import { Restaurant } from 'src/app/admin/restaurant';
+import { LocalStorageService } from 'src/app/local-storage.service';
 import { EditService } from './edit.service';
 
 @Component({
@@ -15,24 +16,20 @@ export class EditComponent implements OnInit {
   couponName: string;
   coupon: Coupon = new Coupon();
   newCoupon: Coupon = new Coupon();
-  restaurant: Restaurant; 
+  data: any;
   status: string;
-  admin: Admin;
   type: string;
+  localStorage = new LocalStorageService();
 
   constructor(private service: EditService, private route: Router, private acRoute: ActivatedRoute) {
   }
   
   ngOnInit(){
-    this.acRoute.params.subscribe((params: Params) => this.couponName = params['id']);
-    this.coupon = window.history.state.coupon;
+    this.coupon = this.localStorage.get('coupon');
     this.status = this.coupon.status;
-    this.type = window.history.state.type;
-    if(this.type == "admin"){
-      this.admin = window.history.state.data;
-    } else {
-      this.restaurant = window.history.state.data;
-    }
+    this.type = this.localStorage.get('type');
+    this.data = this.localStorage.get(this.type);
+    this.newCoupon.product=this.coupon.product;
   }
 
   activate(): void {
@@ -48,20 +45,31 @@ export class EditComponent implements OnInit {
     this.service.editCoupon(this.newCoupon)
       .then(result => {
         if (result) {
-          this.coupon = new Coupon();
+          this.localStorage.set('coupons', result);
+          this.newCoupon = new Coupon();
         }
       })
       .catch(erro => alert("Dados inválidos"));
   }
+/*
+  updateLocalStorage(newCoupon: Coupon) {
+    var coupons: Coupon[] = this.localStorage.get('coupons');
+    this.localStorage.remove('coupons');
+    coupons.forEach(e => console.log("fe", e.id, this.coupon.id));
+    var index = coupons.findIndex(e => e.id == this.coupon.id);
+    //console.log(index);
+    coupons[index] = newCoupon;
 
-  // ele manda o id pra mim pq eh oq tem na url ok
-  // eu preciso do cupom inteiro => como descubro? -> passando por state ok
-  // tendo o cupom inteiro:
-  // exibe o cupom na tela, permitindo alterações
-  // depois de alterado o put (qnd clica no botão) => isso já ta chamando
-  // 
-
-  
-
+    this.localStorage.set('coupons', coupons);
+    //console.log(this.localStorage.get('coupons'));
+  }
+*/
+  back(){
+    if(this.type == 'rest'){
+      this.route.navigate(["promotion", this.type, this.data.name]);
+    }else{
+      this.route.navigate(["promotion", this.type]);
+    }
+  }
 
 }

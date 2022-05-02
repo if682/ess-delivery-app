@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.localStorage.get('user');
-    alert(JSON.stringify(this.user));
+    // alert(JSON.stringify(this.user));
     // alert(userid);
     //this.user = window.history.state.data;
     //this.acRoute.params.subscribe((params: Params) => this.id = params['id']);
