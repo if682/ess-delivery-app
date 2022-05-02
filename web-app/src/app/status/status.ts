@@ -11,4 +11,10 @@ export class Status implements Pedido  {
       this.id = -1;
       this.statusVal = -1; // validation is implicit
     }
+    update(order: Status){
+      this.cpf = order.cpf;
+      this.cnpj = order.cnpj;
+      this.id = order.id;
+      this.statusVal = order.statusVal;
+    }
 }
