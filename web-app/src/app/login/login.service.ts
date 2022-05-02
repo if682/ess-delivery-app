@@ -10,18 +10,20 @@ export class LoginService {
   constructor(private http:Http){}
   private taURL = 'http://localhost:3000/';
   
-  getAdmin(url:string): Promise<Admin[]> {
+  getAdmin(url:string): Promise<Admin> {
     return this.http.get(this.taURL + url)
              .toPromise()
-             .then(res => res.json() as [Admin[], Coupon[]])
+             .then(res => res.json() as Admin)
              .catch(this.catch);
   }
-  getUser(url:string): Promise<User[]> {
+
+  getUser(url:string): Promise<User> {
     return this.http.get(this.taURL + url)
              .toPromise()
-             .then(res => res.json() as User[])
+             .then(res => res.json() as User)
              .catch(this.catch);
   }
+
   getRestaurant(url:string): Promise<Restaurant> {
     return this.http.get(this.taURL + url)
              .toPromise()
@@ -29,10 +31,12 @@ export class LoginService {
              .catch(this.catch);
   }
 
-  getAdminCoupons(url:string) {
+  getAdminCoupons(url:string): Promise<Coupon[]> {
       return this.http.get(this.taURL + url)
                .toPromise()
-               .then(res => res.json() as Coupon[])
+               .then(res => {
+                  return res.json() as Coupon[];
+                })
                .catch(this.catch);
   }
 

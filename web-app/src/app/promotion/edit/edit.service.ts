@@ -25,8 +25,8 @@ export class EditService {
   init(){
     var path = window.location.pathname;
     this.currentURL = path.replace("/edit", "");
-    
-    alert(this.currentURL);
+    this.currentURL = this.currentURL.replace("rest", "restaurants");
+    // alert(this.currentURL);
   }
 
   editCoupon(couponNew: Coupon): Promise<Coupon[]> {

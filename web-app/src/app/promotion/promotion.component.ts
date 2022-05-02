@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { ActivatedRoute, Params, Route } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Coupon } from '../admin/coupon';
 import { Restaurant, Product } from '../admin/restaurant';
 import { LocalStorageService } from '../local-storage.service';
@@ -20,16 +20,17 @@ export class PromotionComponent implements OnInit {
   productname: string;
   localStorage = new LocalStorageService();
   
-  constructor(private promotionService: PromotionService, private acRoute: ActivatedRoute) {
+  constructor(private promotionService: PromotionService, private route: Router) {
     this.status = "Inativo";
-    this.type = this.localStorage.get('type');
-    this.data = this.localStorage.get(this.type);
+    // this.type = this.localStorage.get('type');
+    // this.data = this.localStorage.get(this.type);
   }
   
   ngOnInit(): void {
     //this.acRoute.params.subscribe((params: Params) => [this.action, this.type] = [params['action'], params['type']]);
-    this.promotionService.type = this.localStorage.get('type');
-    this.data = this.localStorage.get('rest');
+    // this.promotionService.type = this.localStorage.get('type');
+    this.type = this.localStorage.get('type');
+    this.data = this.localStorage.get(this.type);
     //if(this.action == "add-coupon"){
     //  this.title = "Adicionar um novo cupom";
 
@@ -44,28 +45,47 @@ export class PromotionComponent implements OnInit {
   }
 
   createCoupon(newCoupon: Coupon): void {
+
     newCoupon.product = this.productname;
     
     newCoupon.status = this.status;
 
-    alert(newCoupon.product);
+    // alert(newCoupon.product);
 
     this.promotionService.createCoupon(newCoupon)
-    .then(coupon => {
-      if (coupon) {
+    .then(couponCreated => {
+      if (couponCreated) {
+        var currentCoupons: Coupon[] = this.localStorage.get('coupons');
+        
+        if(currentCoupons.length > 0) {
+          currentCoupons.push(couponCreated);
+        } else {
+          currentCoupons = [couponCreated];
+        }
+        this.localStorage.set('coupons', currentCoupons);
         this.coupon = new Coupon();
-        this.updateLocalStorage(coupon);
       }
     })
     .catch(erro => alert("Dados inválidos"));
   }
 
-  updateLocalStorage(newCoupon: Coupon) {
-    var coupons = this.localStorage.get('coupons');
-    coupons.push(newCoupon);
-    this.localStorage.set(this.type, coupons);
-  }
 
+  // updateLocalStorage(newCoupon: Coupon) {
+  //   var coupons = this.localStorage.get('coupons');
+  //   this.localStorage.remove('coupons');
+  //   // var coupons = this.promotionService.getCoupons();
+  //   coupons.push(newCoupon);
+  //   console.log(coupons);
+  //   this.localStorage.set('coupons', coupons);
+  // }
+
+  back(){
+    if(this.type == 'rest'){
+      this.route.navigate(["promotion", this.type, this.data.name]);
+    }else{
+      this.route.navigate(["promotion", this.type]);
+    }
+  }
 
 }
 

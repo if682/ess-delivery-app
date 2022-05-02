@@ -67,7 +67,7 @@ import { EmailService } from './email/email.service';
         component: AdminComponent
       },
       {
-        path: 'promotion/admin/add-coupon',
+        path: 'admin/add',
         component: PromotionComponent
       },
       {
@@ -75,7 +75,7 @@ import { EmailService } from './email/email.service';
         component: EditComponent
       },
       {
-        path: 'promotion/restaurants/edit/:name/:id',
+        path: 'promotion/rest/edit/:name/:id',
         component: EditComponent
       },
       {

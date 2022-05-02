@@ -1,5 +1,5 @@
 <div class="container">
-  <table mat-table [dataSource]="coupons" class="demo-table">
+  <table *ngIf="coupons.length > 0" mat-table [dataSource]="coupons" class="demo-table">
     <div matColumnDef="ID">
       <th class="column-name" id="first" mat-header-cell *matHeaderCellDef>
         <label>ID</label>
@@ -73,5 +73,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
 </div>

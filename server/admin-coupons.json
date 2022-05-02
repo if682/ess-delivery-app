@@ -1,1 +1,110 @@
-[{"id":"5686d666","name":"PRIMEIRASEILA","adm":true,"minValue":10,"product":"Nenhum","discount":0.25,"status":"Ativo"}]
+[
+    {
+        "id": "323c0ae0",
+        "name": "AAAAA",
+        "adm": true,
+        "minValue": 10,
+        "product": "Nenhum",
+        "discount": 0.2,
+        "status": "Ativo"
+    },
+    {
+        "id": "0432fecb",
+        "name": "OI",
+        "adm": true,
+        "minValue": 10,
+        "product": "Nenhum",
+        "discount": 0.15,
+        "status": "Ativo"
+    },
+    {
+        "id": "1cd364d1",
+        "name": "SA",
+        "adm": true,
+        "minValue": 0.01,
+        "product": "Nenhum",
+        "discount": 0.6,
+        "status": "Inativo"
+    },
+    {
+        "id": "c36b8a7a",
+        "name": "L",
+        "adm": true,
+        "minValue": 0.1,
+        "product": "Nenhum",
+        "discount": 0.6,
+        "status": "Ativo"
+    },
+    {
+        "id": "81603f44",
+        "name": "JHJH",
+        "adm": true,
+        "minValue": 1,
+        "product": "Nenhum",
+        "discount": 0.5,
+        "status": "Ativo"
+    },
+    {
+        "id": "8a18a1ff",
+        "name": "AA",
+        "adm": true,
+        "minValue": 1,
+        "product": "Nenhum",
+        "discount": 0.5,
+        "status": "Ativo"
+    },
+    {
+        "id": "54e67b64",
+        "name": "SS",
+        "adm": true,
+        "minValue": 1,
+        "product": "Nenhum",
+        "discount": 0.9,
+        "status": "Ativo"
+    },
+    {
+        "id": "4a5a2e8e",
+        "name": "AAA",
+        "adm": true,
+        "minValue": 0.01,
+        "product": "Nenhum",
+        "discount": 0.5,
+        "status": "Ativo"
+    },
+    {
+        "id": "83112768",
+        "name": "ASASAS",
+        "adm": true,
+        "minValue": 0.04,
+        "product": "Nenhum",
+        "discount": 0.6,
+        "status": "Ativo"
+    },
+    {
+        "id": "821738b6",
+        "name": "A",
+        "adm": true,
+        "minValue": 0.01,
+        "product": "Nenhum",
+        "discount": 0.05,
+        "status": "Ativo"
+    },
+    {
+        "id": "410d0925",
+        "name": "BBBB",
+        "adm": true,
+        "minValue": 0.11,
+        "product": "Nenhum",
+        "discount": 0.2,
+        "status": "Ativo"
+    },
+    {
+        "id": "20ef4b4c",
+        "name": "KA",
+        "adm": true,
+        "minValue": 0.01,
+        "product": "Nenhum",
+        "discount": 0.5,
+        "status": "Ativo"
+    }
+]

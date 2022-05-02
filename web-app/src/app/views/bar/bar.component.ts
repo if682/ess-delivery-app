@@ -19,7 +19,7 @@ export class BarComponent implements OnInit {
   ngOnInit() {
     this.type = this.localStorage.get('type');
     this.data = this.localStorage.get(this.type);
-    alert(this.data.name)
+    // alert(this.data.name)
   }
 
 }
