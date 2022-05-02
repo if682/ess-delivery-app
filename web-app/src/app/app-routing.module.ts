@@ -8,9 +8,13 @@ import { StatusComponent } from './status/status.component';
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: LoginComponent, // mude isso para ter acesso a rota principal
+  children: [
   { path: 'login', component: LoginComponent },
-  { path: 'cadastro', component: CadastroComponent}];
+  { path: 'cadastro', component: CadastroComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]}]
+  }
+  ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
