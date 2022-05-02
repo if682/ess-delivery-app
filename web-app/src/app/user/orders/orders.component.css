@@ -1,0 +1,81 @@
+.container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    border-radius: 0.8rem;
+    border: none;
+    box-shadow: 2px 2px 6px var(--color-primary-darker);
+}
+
+.container h2 {
+    text-align: start;
+    margin-top: 2rem;
+    font-weight: bold;
+}
+
+td {
+    color: var(--color-primary-darker);
+}
+
+.column-name {
+    border-color: var(--color-line-in-white);
+    background-color: var(--color-primary-darker);
+}
+
+#first {
+    border-radius: 0.8rem 0 0 0;
+}
+
+#last {
+    border-radius: 0 0.8rem 0 0;
+    background-color: var(--color-primary-darker);
+}
+
+
+.input-block.table {
+    display: grid;
+    grid-template-columns: 1.8fr 3fr 1.3fr 1.6fr 1.6fr 1fr;
+    margin: 1rem;
+    text-align: center;
+}
+
+.input-block.table input {
+    width: 95%;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+.demo-table {
+    text-align: center;
+    font: 1.6rem 'DM Sans';
+    background-color: white;
+    border-radius: 0.8rem;
+}
+
+.demo-table th,
+.demo-table td {
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+}
+
+.coupon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coupon-container img {
+    width: 2rem;
+    margin: 0 0 .5rem 1rem;
+    cursor: pointer;
+}
+
+label {
+    padding: 0 1rem 0 1rem;
+    color: white;
+}
+
+img {
+    cursor: pointer;
+}

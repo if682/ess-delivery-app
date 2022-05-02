@@ -1,0 +1,61 @@
+.bar {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 12rem;
+    right: 12rem;
+}
+
+.profile {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin-left: 5rem;
+}
+
+.profile img {
+    width: 5.5rem;
+}
+
+
+.profile .image {
+    background-color: var(--color-primary-darker);
+    padding: .8rem;
+    border: 3px solid var(--color-primary-darker);
+    border-radius: 5rem;
+    box-shadow: 1px 1px 3px var(--color-primary-darker);
+}
+
+.profile label,
+.info span {
+    font-family: "DM Sans";
+    justify-self: center;
+}
+
+.profile label {
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 0;
+    color: white;
+    margin-right: .8rem;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: var(--color-primary-dark);
+    padding: .7rem 3.5rem .7rem 2rem;
+    margin-right: -3rem;
+    border: 3px solid var(--color-primary-darker);
+    border-radius: .8rem;
+    box-shadow: 1px 1px 3px var(--color-primary-darker);
+}
+
+.info span {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--color-line-in-white);
+}

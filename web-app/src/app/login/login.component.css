@@ -1,0 +1,14 @@
+.input-block {
+    align-items: center;
+    text-align: center;
+}
+
+.input-block input {
+    width: 32rem;
+}
+
+a.pink-link {
+    width: 15rem;
+    height: 6rem;
+    margin-top: 1.8rem;
+}

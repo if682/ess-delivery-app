@@ -1,0 +1,76 @@
+<div class="container">
+  <table *ngIf="coupons.length > 0" mat-table [dataSource]="coupons" class="demo-table">
+    <div matColumnDef="ID">
+      <th class="column-name" id="first" mat-header-cell *matHeaderCellDef>
+        <label>ID</label>
+      </th>
+      <td class="column-value" *matCellDef="let coupon"> 
+          {{coupon.id}}
+      </td>
+    </div>
+
+    <div matColumnDef="Nome">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Nome</label>
+      </th>
+      <td class="column-value" *matCellDef="let coupon"> 
+          {{coupon.name}}
+      </td>
+    </div>
+    <div matColumnDef="Produto">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Produto</label>
+      </th>
+      <td class="column-value" *matCellDef="let coupon">
+        <!-- <ng-template [ngIf]="coupon.adm">Nenhum</ng-template> -->
+        {{coupon.product}}
+      </td>
+    </div>
+
+    <div matColumnDef="Desconto">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Desconto</label>
+      </th>
+      <td class="column-value" *matCellDef="let coupon"> 
+        {{coupon.discount | percent}}
+      </td>
+    </div>
+
+    <div matColumnDef="Valor Mínimo">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Valor Mínimo</label>
+      </th>
+      <td class="column-value" *matCellDef="let coupon"> 
+        {{coupon.minValue | currency: 'BRL'}}
+      </td>
+    </div>
+
+    <div matColumnDef="Status">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Status</label>
+      </th>
+      <td class="column-value" *matCellDef="let coupon"> 
+        <span class="{{coupon.status}}">{{coupon.status}}</span>
+      </td>
+    </div>
+    <div matColumnDef="Editar">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Editar</label>
+      </th>
+      <td class="column-value"  *matCellDef="let coupon"> 
+        <img alt="Ícone de Lápis no Papel" src="/assets/icons/edit_color.svg" (click)="editData(coupon)" />
+      </td>
+    </div>
+    <div matColumnDef="Deletar">
+      <th id="last" mat-header-cell *matHeaderCellDef>
+        <label>Deletar</label>
+      </th>
+      <td *matCellDef="let coupon"> 
+        <img class="trash" alt="Ícone de lixeira" src="/assets/icons/trash.svg" (click)="removeData(coupon.name)"/>
+      </td>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

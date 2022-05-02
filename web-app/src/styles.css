@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+:root { /*root é a raíz do nosso css, a base*/
+    /* criando variáveis para utilizar mais fácil as cores*/
+    /*tamanho da fonte padrão é 16px = 100% = 1rem
+    design responsivo => capacidade de se adaptar a diversos dispositivos diferentes
+    controle de medida do rem*/
+
+    --color-background: #F0F0F7;
+    --color-primary-lighter: #c0b6ff;
+    --color-primary-light: #a89eff;
+    --color-primary: #6e71ff ;
+    --color-primary-dark: #5d5ed0;
+    --color-primary-darker: #4c4ba2;
+    --color-secondary-light: #FFA7E4;
+    --color-secondary: #FF66C4;
+    --color-secondary-dark: #dc44a5;
+    --color-title-in-primary: #F0F0F7;
+    --color-text-in-primary: #c0b6ff;
+    --color-text-title: #32264D;
+    --color-text-complement: #d6ceff;
+    --color-text-base: #a79fd0;
+    --color-line-in-white: #E6E6F0;
+    --color-input-background: #F8F8FC;
+    --color-button-text: #FFFFFF;
+    --color-box-base: #FFFFFF;
+    --color-box-footer: #fcfbfa;
+    --color-small-info: #C1BCCC;
+    --color-all-dark: #29174d;
+
+    font-size: 60%;
+}  
+
+/*
+* {
+    margin: 40px 10px; -> margem FORA da caixa
+    padding: 10px 40px 60px 2px;; -> o quanto eu vou utilizar de DENTRO da caixa
+    -->margin e padding 
+        caso eu queira vertical e horizontal igual so preciso colocar uma medida
+        se eu quiser vertical uma e horizontal outra medida, coloco 2
+        caso queira editar tudo coloco nesta ordem = CIMA DIREITA BAIXO ESQUERDA<--
+    box-sizing: border-box; -> indica a partir de onde eu começo a indicar as medidas da caixa  
+                            -> toda caixa tem tamanho(w,h), preenchimento(padding), borda(border), espaçamento(margin) e display
+                            -> o comportamento padrão das caixas no css é medir de acordo com o padding, o conteúdo da caixa. então, se eu
+                               indico width e height sem indicar o box-sizing, ele levará em conta o conteúdo, não a borda da caixa em si. 
+    border: 1px solid var(--color-background);
+}
+
+
+body{
+    background-color: var(--color-background); => como eu chamo minhas variáveis
+}
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::selection {
+    background: none;
+}
+
+html, 
+body {
+    height: 100vh; /* view port height => a partir da altura da tela*/
+}
+
+body {
+    background: var(--color-primary);
+    display: flex; /*tudo dentro da caixa é flexível, muda o comportamento padrão, layout */
+    align-items: center; /* alinha os itens exatamente no centro da caixa*/
+    justify-content: center; /*só funciona em conjunto com o display: flex*/
+}
+
+body,
+input,
+button,
+textarea {
+    font-weight: 500;
+    font-size: 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--color-button-text);
+}
+
+#container {
+    width: 90vw; /* view port width => a partir da largura da tela*/
+    max-width: 700px; /* quer dizer que quando ele passar dessa largura, ele vai centralizar o conteúdo, não vai mais usar a width de 90wh.*/
+}
+/*quando ele passar de 700px de largura, ele vai aumentar a fonte*/
+@media (min-width: 700px){
+    :root {
+        font-size: 62.5%; /* cada 1rem equivale a 10px */
+    }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

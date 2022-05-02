@@ -1,0 +1,8 @@
+
+@media (max-width: 600px){
+
+    .buttons-container a.adm-link {
+        width: 17rem;
+        height: 5.6rem;
+    }
+}

@@ -1,0 +1,65 @@
+<app-bar></app-bar>
+<div class="container">
+  <table mat-table [dataSource]="user.orders" class="demo-table">
+    <div matColumnDef="ID">
+      <th class="column-name" id="first" mat-header-cell *matHeaderCellDef>
+        <label>ID</label>
+      </th>
+      <td class="column-value" *matCellDef="let order"> 
+          {{order.id}}
+      </td>
+    </div>
+    <div matColumnDef="Restaurante">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Restaurante</label>
+      </th>
+      <td class="column-value" *matCellDef="let order"> 
+          {{order.restaurant}}
+      </td>
+    </div>
+    <div matColumnDef="Valor">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Valor</label>
+      </th>
+      <td class="column-value" *matCellDef="let order">
+        {{order.amount | currency: 'BRL'}}
+      </td>
+    </div>
+    <div matColumnDef="Cupom">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Cupom</label>
+      </th>
+      <td class="column-value" *matCellDef="let order">
+        {{order.coupon.name}}
+      </td>
+    </div>    
+
+    <div matColumnDef="Comprovante via E-mail">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Comprovante via E-mail</label>
+      </th>
+      <td class="column-value" *matCellDef="let order"> 
+        <img src="/assets/icons/externalLink.svg" alt="external-link" (click)="sendEmail(order)">
+      </td>
+    </div>
+
+    <div matColumnDef="Comprovante via Download">
+      <th class="column-name" mat-header-cell *matHeaderCellDef>
+        <label>Comprovante via Download</label>
+      </th>
+      <td class="column-value" *matCellDef="let order"> 
+        <img src="/assets/icons/download.svg" alt="download">
+      </td>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+<div class="buttons-container back">
+  <a class="back-link" alt="Botão de Sair" routerLink="/user/{{user.id}}/profile">
+    <img alt="Ícone de seta para a esquerda" src="/assets/icons/arrow-left.svg"/>
+    Voltar
+  </a>
+</div>
