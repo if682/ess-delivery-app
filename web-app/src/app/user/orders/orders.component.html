@@ -39,7 +39,7 @@
         <label>Comprovante via E-mail</label>
       </th>
       <td class="column-value" *matCellDef="let order"> 
-        <img src="/web-app/src/assets/icons/external-link.svg" alt="external-link">
+        <img src="/web-app/src/assets/icons/external-link.svg" alt="external-link" (click)="sendEmail(order)">
       </td>
     </div>
 
