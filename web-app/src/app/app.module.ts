@@ -11,6 +11,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { StatusComponent } from './status/status.component';
+import { StatusService } from './status/status.service';
 
 @NgModule({
   declarations: [
