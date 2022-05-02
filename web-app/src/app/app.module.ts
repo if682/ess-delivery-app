@@ -11,6 +11,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { StatusComponent } from './status/status.component';
+import { StatusService } from './status/status.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { RouterModule } from '@angular/router';
     NavbarComponent,
     LoginComponent,
     CadastroComponent,
-    HomeComponent
+    HomeComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { RouterModule } from '@angular/router';
     HttpModule,
     RouterModule
   ],
-  providers: [CadastroService],
+  providers: [CadastroService, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
