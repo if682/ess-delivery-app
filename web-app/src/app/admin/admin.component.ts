@@ -28,18 +28,17 @@ export class AdminComponent implements OnInit {
     // alert("eu nao sei que alerta eh esse" + window.history.state.data);
   }
 
-  // checa se a ação foi realizada por admin ou restaurante e redireciona para a rota da ação
   checkType(): void {
     // this.route.navigateByUrl("promotion/admin/add-coupon");
-    // alert(this.type); 
+    // alert(this.type);
     if(this.type == "rest"){
       this.restaurant = this.localStorage.get('rest'); // recebe quem é o restaurante
       this.route.navigate(["promotion/", this.type, this.restaurant.name, 'add-coupon']);
     }
     else{
       this.admin = this.localStorage.get('admin');
-      // alert(this.admin.name);
-      this.route.navigate(["/promotion/admin/add-coupon"]);
+      alert(this.admin.name);
+      this.route.navigate(["admin/add"]);
     }
   }
 

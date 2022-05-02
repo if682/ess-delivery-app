@@ -1,6 +1,7 @@
 import { Component, Injectable, Inject }    from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { LocalStorageService } from '../local-storage.service';
 
 import { Coupon } from './coupon';
 
@@ -10,11 +11,13 @@ export class AdminService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
   private currentURL: string;
+  private type: string;
+  localStorage = new LocalStorageService();
 
   public dialog: MatDialog;
 
   private _coupon: Coupon = new Coupon();
-
+  
   public get coupon(): Coupon {
     return this._coupon;
   }
@@ -24,6 +27,7 @@ export class AdminService {
 
   constructor(private http: Http) {
     this.currentURL = window.location.pathname;
+    this.type = this.localStorage.get('type');
   }
 
   init(){
@@ -31,7 +35,7 @@ export class AdminService {
     var act = path.includes("add");
 
     if(act){
-      this.currentURL = path.replace("/add-coupon", "");
+      this.currentURL = path.replace("/add-coupon", "");  
     }else{
       this.currentURL = path.replace("/edit-coupon", "");
     }
@@ -39,16 +43,11 @@ export class AdminService {
   
   removeCoupon(couponName: string): Promise<Coupon[]> {
     this.init();
+    if(this.type == "rest"){
+      this.currentURL = this.currentURL.replace("rest", "restaurants");
+    }
+    //console.log('rota delete', this.currentURL);
     return this.http.delete(this.taURL + this.currentURL + "/" + couponName)
-             .toPromise()
-             .then(res => res.json() as Coupon[])
-             .catch(this.catch);
-  }
-  
-  getCoupons(): Promise<Coupon[]> {
-    this.init();
-    alert("entrou no get");
-    return this.http.get(this.taURL + this.currentURL)
              .toPromise()
              .then(res => res.json() as Coupon[])
              .catch(this.catch);

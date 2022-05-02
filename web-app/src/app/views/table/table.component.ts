@@ -32,10 +32,10 @@ export class TableComponent implements OnInit {
   
   ngOnInit(): void {
     this.type = this.localStorage.get('type');
-    // this.acRoute.params.subscribe(params => this.type = params['type']);
     this.data = this.localStorage.get(this.type);
     this.coupons = this.localStorage.get('coupons');
-    // this.setCoupons();
+    console.log(this.coupons.length);
+    // this.table.renderRows();
   }
   
   // setCoupons(){
@@ -65,17 +65,27 @@ export class TableComponent implements OnInit {
     this.table.renderRows();
 
     this.service.removeCoupon(couponName)
-          .catch(erro => {
-            alert(erro);
-            this.coupons.push(couponCopy);
-            this.table.renderRows();
-          });
+    .then(updatedCoupons => {
+      this.localStorage.set('coupons', updatedCoupons);
+    })
+    .catch(erro => {
+      alert(erro);
+      this.coupons.push(couponCopy);
+      this.table.renderRows();
+    });
+    
+   
+  }
+
+  updateLocalStorage() {
+    this.localStorage.remove('coupons');
+    this.localStorage.set('coupons', this.coupons);
   }
 
   editData(coupon: Coupon){
     this.localStorage.set('coupon', coupon);
-    if(this.type == 'restaurants'){ 
-      this.route.navigate(["promotion/restaurants/edit", this.data.name, coupon.name]);
+    if(this.type == 'rest'){ 
+      this.route.navigate(["promotion/rest/edit", this.data.name, coupon.name]);
     }else{
       this.route.navigate(["promotion/admin/edit", coupon.name]);
     }
