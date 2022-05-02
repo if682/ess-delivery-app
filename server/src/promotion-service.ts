@@ -74,7 +74,7 @@ export class PromotionService {
   }
   
 
-  update(couponName: string, coupon: Coupon) : Coupon {
+  update(couponName: string, coupon: Coupon) : Coupon[] {
     var couponIndex = this.coupons.findIndex(({ name }) => name == couponName); // retorna o índice do cupom no array
     var couponAux = <Coupon> {};
     
@@ -86,7 +86,7 @@ export class PromotionService {
       // se for de admin ou passar no valid ele altera
       if (this.isAValidCoupon(couponAux)){
         this.coupons[couponIndex] = couponAux; 
-        return this.coupons[couponIndex];
+        return this.coupons;
       } else{
         return undefined;
       }

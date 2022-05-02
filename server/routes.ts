@@ -101,7 +101,7 @@ routes.put('/promotion/admin/:name', function (req, res) {
   const err = `Coupon ${name} could not be found.`;
 
   if (result) {
-    res.send({ message: message});
+    res.send(result);
     adminService.updateFile("admin-coupons.json");
     console.log(message);
   } else {
@@ -227,7 +227,7 @@ routes.delete('/promotion/restaurants/:rest/:id', function (req, res){
   const message = `Coupon ${id} has been deleted.`;
   
   if (result) {
-    res.send({ message: message});
+    res.send(restaurants[index].coupons);
     updateRestaurantsFile();
     console.log(message);
   } else {
