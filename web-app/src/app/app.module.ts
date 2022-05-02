@@ -29,7 +29,7 @@ import { StatusService } from './status/status.service';
     HttpModule,
     RouterModule
   ],
-  providers: [CadastroService],
+  providers: [CadastroService, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
