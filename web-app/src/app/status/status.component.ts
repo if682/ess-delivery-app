@@ -13,4 +13,7 @@ import { StatusService } from './status.service'
   styleUrls: ['./status.component.css']
 })
 export class StatusComponent implements OnInit {
+  ngOnInit(): void{
+
+  }
 }
