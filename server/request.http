@@ -19,7 +19,7 @@ Content-Type: application/json
     "adm": false,
     "minValue": 15,
     "discount": 0.1,
-    "status": "Inativo"
+    "status": "Inativo" 
 }
 
 // ATUALIZA CUPOM DO RESTAURANTE
