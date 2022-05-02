@@ -20,7 +20,8 @@ import { StatusService } from './status/status.service';
     NavbarComponent,
     LoginComponent,
     CadastroComponent,
-    HomeComponent
+    HomeComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
