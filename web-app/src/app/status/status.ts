@@ -5,4 +5,10 @@ export class Status implements Pedido  {
     cnpj: string;
     id: number;
     statusVal: number = 0;
+    constructor(){
+      this.cpf = "";
+      this.cnpj = "";
+      this.id = -1;
+      this.statusVal = -1; // validation is implicit
+    }
 }
