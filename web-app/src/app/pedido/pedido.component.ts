@@ -37,7 +37,11 @@ export class PedidoComponent {
     };
 
     this.http.post(this.serverUrl, JSON.stringify(pedido), {headers: this.headers}).toPromise().then(data => {
-      this.response = data.text()
+      if (data.ok == true && data.status === 200) {
+        this.response = data.text()
+      } else {
+        this.response = "Erro ao tentar enviar o pedido."
+      }
     });
   }
 
