@@ -1,0 +1,25 @@
+<div class="container">
+  <pre></pre>
+  <h1>App do Pedido</h1>
+  <form #pedido="ngForm" (ngSubmit)="submit(pedido)">
+    <div class="form-group">
+      <label for="produto">Produto</label>
+      <input required type="text" name="produto" value="Coxinha" class="form-control" ngModel>
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <label for="quantidade">Quantidade</label>
+      <input required type="number" name="quantidade" value="2" class="form-control" ngModel>
+    </div>
+    <pre></pre>
+    <div [formGroup]="form">
+      <label for="Restaurante">Restaurante</label>
+      <select required formControlName="restaurante" class="form-control">
+        <option [ngValue]="null" disabled>Selecione o Restaurante</option>
+        <option *ngFor="let restaurante of restaurantes" [ngValue]="restaurante">{{ restaurante }}</option >
+      </select>
+    </div>
+    <pre></pre>
+    <button class="btn btn-submit" type="submit">Submit</button>
+  </form>
+</div>

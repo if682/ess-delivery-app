@@ -1,5 +1,6 @@
 import express = require('express');
 import bodyParser = require("body-parser");
+import nodemailer = require("nodemailer")
 
 import { RestaurantesService } from './src/restaurantes-service';
 import { Restaurante } from './src/restaurante';
@@ -122,6 +123,27 @@ app.post('/restaurant/status/remove', function (req, res) {
     const { message } = err;
     res.status(400).send({ message });
   }
+});
+app.post('/pedido', function (req, res) {
+  const pedido = req.body
+
+  const transport = nodemailer.createTransport({
+    host: process.env.MAILHOG_HOST,
+    port: 1025,
+    auth: null
+  });
+  
+  transport.sendMail({
+    from: 'Cliente <cliente@cliente.com.br>',
+    to: 'Restaurante <restaurante@restaurante.com.br>',
+    subject: `Novo pedido para ${pedido.restaurante}`,
+    html: `<h1>Novo Pedido</h1><br>
+           <h2>Produto: ${pedido.produto}</h2><br>
+           <h2>Quantidade: ${pedido.quantidade}</h2><br>
+           `
+  })
+
+  res.status(200).send('Ok');
 });
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
