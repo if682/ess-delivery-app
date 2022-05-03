@@ -360,7 +360,6 @@ routes.post('/payment/confirm/:userid', async (req, res) => {
   let userid = req.params.userid;
   let order: Order = <Order> req.body;
   
-  console.log(userid)
   try {
     const user = usersService.getUserById(userid);
     console.log(user);
