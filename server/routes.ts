@@ -360,7 +360,6 @@ routes.post('/payment/confirm/:userid', async (req, res) => {
   let userid = req.params.userid;
   let order: Order = <Order> req.body;
   
-  console.log(userid)
   try {
     const user = usersService.getUserById(userid);
     console.log(user);
@@ -374,6 +373,8 @@ routes.post('/payment/confirm/:userid', async (req, res) => {
       if(info.accepted) {
         res.status(201).send({message: '201 Order confirmed', msg});
       }
+    } else {
+      throw "User not found"
     }
   } catch (err) {
     msg = err;
