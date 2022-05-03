@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   restaurantes: Restaurante[] = [];
 
   tab: number = 0;
+  editMode: boolean = false;
 
   ngOnInit(): void {
     this.cadastroService.getRestaurantes()
@@ -23,6 +24,10 @@ export class ProfileComponent implements OnInit {
 
   switchTab(newTab): void {
     this.tab = newTab;
+  }
+
+  setEditMode(newEditMode) {
+    this.editMode = newEditMode;
   }
 }
 
