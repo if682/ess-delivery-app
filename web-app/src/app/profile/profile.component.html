@@ -2,30 +2,30 @@
     <button type="button" class="btn btn-outline-primary btn-sm"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</button>
     <div class="profile-header d-flex flex-row">
         <img src="https://cdn.iconscout.com/icon/free/png-256/restaurant-1495593-1267764.png" class="header-image img-thumbnail" >
-        <h2 class="restaurant-name">{{ restaurantName }}</h2>
+        <h2 class="restaurant-name">{{restaurantes[0].nome_restaurante}}</h2>
     </div>
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Sobre</a>
+        <a class="nav-link {{tab === 0 ? 'active':''}}" aria-current="page">Sobre</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Horários</a>
+        <a class="nav-link {{tab === 1 ? 'active':''}}">Horários</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pagamento</a>
+        <a class="nav-link {{tab === 2 ? 'active':''}}">Pagamento</a>
       </li>
     </ul>
 
-    <form>
+    <form id="about" *ngIf="tab === 0">
       <div class="form-row">
         <div class="form-group col-md-7">
           <label for="inputName">Nome do Restaurante</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Nome" required>
+          <input type="text" class="form-control" id="inputName" placeholder="Nome" value="{{restaurantes[0].nome_restaurante}}" required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCNPJ">CNPJ</label>
-          <input type="text" class="form-control" id="inputCNPJ" placeholder="CNPJ" required>
+          <input type="text" class="form-control" id="inputCNPJ" placeholder="CNPJ" value="{{restaurantes[0].cnpj}}" required>
         </div>
       </div>
       <div class="form-group">
@@ -36,31 +36,38 @@
       <div class="form-row">
         <div class="form-group col-md-5">
           <label for="inputAddress">Rua</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="Rua" required>
+          <input type="text" class="form-control" id="inputAddress" placeholder="Rua" value="{{restaurantes[0].rua}}" required>
         </div>
         <div class="form-group col-md-1">
           <label for="inputNumber">Número</label>
-          <input type="number" class="form-control" id="inputNumber" placeholder="Num" required>
+          <input type="number" class="form-control" id="inputNumber" placeholder="Num" value="{{restaurantes[0].numero}}" required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Cidade</label>
-          <input type="text" class="form-control" id="inputCity" placeholder="Cidade" required>
+          <input type="text" class="form-control" id="inputCity" placeholder="Cidade" value="{{restaurantes[0].cidade}}" required>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-7">
           <label for="inputComplement">Complemento</label>
-          <input type="text" class="form-control" id="inputComplement" placeholder="Complemento" required>
+          <input type="text" class="form-control" id="inputComplement" placeholder="Complemento" value="{{restaurantes[0].complemento}}" required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCEP">CEP</label>
-          <input type="text" class="form-control" id="inputCEP" placeholder="CEP" required>
+          <input type="text" class="form-control" id="inputCEP" placeholder="CEP" value="{{restaurantes[0].cep}}" required>
         </div>
       </div>
 
       <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
     
+    <form id="time" *ngIf="tab === 1">
+      tempo
+    </form>
+
+    <form id="payment" *ngIf="tab === 2">
+      pagamento
+    </form>
 </div>
 
 
