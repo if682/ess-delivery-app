@@ -51,6 +51,46 @@ describe("O servico de email", () => {
 		});
         
     });
+
+    it("Envia email incorretamente", () => {
+        const user = {
+            name: "Mileto",
+            id: "343422",
+            email: "miletinho@arrocha.lo.fi",
+            orders: [ {
+                id: "2787c166",
+                products: [{
+                    name: "Big Méqui",
+                    price: 15,
+                    quantity: 2
+                }, {
+                    name: "Cheddar Méquimelt",
+                    price: 12,
+                    quantity: 1
+                }],
+                amount: 16.8,
+                restaurant: "Mequi",
+                coupon: {
+                    id: "388ac565",
+                    name: "2BIGMEQUIPOR9",
+                    adm: false,
+                    minValue: 15,
+                    product: "Big Méqui",
+                    discount: 0.6,
+                    status: "Inativo"
+                }
+            }]
+        }
+
+        const body = user.orders[0];
+        const userid = user.id;
+        const uri = emailUrl+userid;
+        console.log(uri)
+        const options = {method: 'POST', uri:uri, body, json:true};
+        return request(options).catch(({ statusCode }) => {
+			expect(statusCode).toBe(400);
+		});    
+    });
 });
 
 
