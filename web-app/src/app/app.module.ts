@@ -23,7 +23,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     LoginComponent,
     CadastroComponent,
     HomeComponent,
-    StatusComponent
+    StatusComponent,
     PedidoComponent
   ],
   imports: [
