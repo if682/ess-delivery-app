@@ -7,13 +7,13 @@
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link {{tab === 0 ? 'active':''}}" aria-current="page">Sobre</a>
+        <a class="nav-link {{tab === 0 ? 'active':''}}" (click)="switchTab(0)" aria-current="page">Sobre</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{tab === 1 ? 'active':''}}">Horários</a>
+        <a class="nav-link {{tab === 1 ? 'active':''}}" (click)="switchTab(1)">Horários</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{tab === 2 ? 'active':''}}">Pagamento</a>
+        <a class="nav-link {{tab === 2 ? 'active':''}}" (click)="switchTab(2)">Pagamento</a>
       </li>
     </ul>
 
@@ -58,11 +58,28 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Salvar</button>
+      <div class="buttons-wrapper">
+        <button type="button" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
     </form>
     
     <form id="time" *ngIf="tab === 1">
-      tempo
+      <div class="form-row col-md-6">
+        <div class="form-group col-md-5">
+          <label for="inputStartTime">Horário de início</label>
+          <input type="time" class="form-control" id="inputStartTime" placeholder="19:00h" value="{{restaurantes[0].horario_inicio}}" required>
+        </div>
+        <div class="form-group col-md-5">
+          <label for="inputEndtTime">Horário de fim</label>
+          <input type="time" class="form-control" id="inputEndtTime" placeholder="19:00h" value="{{restaurantes[0].horario_fim}}" required>
+        </div>
+      </div>
+
+      <div class="buttons-wrapper">
+        <button type="button" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
     </form>
 
     <form id="payment" *ngIf="tab === 2">

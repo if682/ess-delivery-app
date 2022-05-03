@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
          .catch(erro => alert(erro));
   }
 
-  
+  switchTab(newTab): void {
+    this.tab = newTab;
+  }
 }
 
