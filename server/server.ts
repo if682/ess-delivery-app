@@ -1,8 +1,11 @@
 import express = require('express');
 import bodyParser = require("body-parser");
+import nodemailer = require("nodemailer")
 
 import { RestaurantesService } from './src/restaurantes-service';
 import { Restaurante } from './src/restaurante';
+
+import { EmailService } from './src/email-service';
 
 import { Status } from './src/status';
 import { Status_service } from './src/status-service';
@@ -20,6 +23,7 @@ app.use(bodyParser.json());
 
 var restauranteService: RestaurantesService = new RestaurantesService();
 var statusService: Status_service = new Status_service();
+const emailService: EmailService = new EmailService();
 
 app.get('/restaurant', function(req, res){
   const restaurantes = restauranteService.get();
@@ -122,6 +126,17 @@ app.post('/restaurant/status/remove', function (req, res) {
     const { message } = err;
     res.status(400).send({ message });
   }
+});
+app.post('/pedido', function (req, res) {
+  const order = { ...req.body };
+  emailService.sendNewOrder(order);
+  res.status(200).send(`Pedido de número ${order.id} enviado!`);
+});
+app.get('/pedido/notificacao', function (req, res) {
+  const order = { ...req.query }
+  const msg = (order.msg === "Confirmação") ? "Seu pedido foi confirmado!" : "Infelizmente seu pedido foi cancelado.";
+  emailService.sendNotification(order, msg);
+  res.sendStatus(200)
 });
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

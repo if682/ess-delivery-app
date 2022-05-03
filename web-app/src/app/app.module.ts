@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { StatusComponent } from './status/status.component';
 import { StatusService } from './status/status.service';
+import { PedidoComponent } from './pedido/pedido.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { StatusService } from './status/status.service';
     CadastroComponent,
     HomeComponent,
     StatusComponent
+    PedidoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
   ],
   providers: [CadastroService, StatusService],
   bootstrap: [AppComponent]
