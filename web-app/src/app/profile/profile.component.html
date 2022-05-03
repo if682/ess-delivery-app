@@ -83,35 +83,42 @@
     </form>
 
     <form id="payment" *ngIf="tab === 2">
+      <label class="title-label">Métodos de pagamento</label>
+
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="creditCard">
+        <input [disabled]="!editMode" class="form-check-input" type="checkbox" value="" id="creditCard">
         <label class="form-check-label" for="creditCard">
           Cartão de crédito
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="debitCard">
+        <input [disabled]="!editMode" class="form-check-input" type="checkbox" value="" id="debitCard">
         <label class="form-check-label" for="debitCard">
           Cartão de débito
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="pix">
+        <input [disabled]="!editMode" class="form-check-input" type="checkbox" value="" id="pix">
         <label class="form-check-label" for="pix">
           PIX
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="cash">
+        <input [disabled]="!editMode" class="form-check-input" type="checkbox" value="" id="cash">
         <label class="form-check-label" for="cash">
           Dinheiro
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="foodTicket">
+        <input [disabled]="!editMode" class="form-check-input" type="checkbox" value="" id="foodTicket">
         <label class="form-check-label" for="foodTicket">
           Ticket de alimentação
         </label>
+      </div>
+
+      <div class="buttons-wrapper" *ngIf="editMode">
+        <button type="button" (click)="setEditMode(false)" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
       </div>
     </form>
 
