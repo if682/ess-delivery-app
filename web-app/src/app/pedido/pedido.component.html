@@ -3,23 +3,34 @@
   <h1>App do Pedido</h1>
   <form #pedido="ngForm" (ngSubmit)="submit(pedido)">
     <div class="form-group">
+      <label for="nome">Nome</label>
+      <input required type="text" name="nome" value="" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input required type="text" name="email" value="" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
       <label for="produto">Produto</label>
       <input required type="text" name="produto" value="Coxinha" class="form-control" ngModel>
     </div>
     <pre></pre>
     <div class="form-group">
       <label for="quantidade">Quantidade</label>
-      <input required type="number" name="quantidade" value="2" class="form-control" ngModel>
+      <input required min="0" max="10" type="number" name="quantidade" value="0" class="form-control" ngModel>
     </div>
     <pre></pre>
     <div [formGroup]="form">
       <label for="Restaurante">Restaurante</label>
       <select required formControlName="restaurante" class="form-control">
-        <option [ngValue]="null" disabled>Selecione o Restaurante</option>
-        <option *ngFor="let restaurante of restaurantes" [ngValue]="restaurante">{{ restaurante }}</option >
+        <option value="" disabled>Selecione o Restaurante</option>
+        <option *ngFor="let restaurante of restaurantes" [ngValue]="restaurante">{{ restaurante.nome_restaurante }}</option >
       </select>
     </div>
     <pre></pre>
     <button class="btn btn-submit" type="submit">Submit</button>
   </form>
+  <br>
+  <h2>Status do Pedido</h2>
+  <p>{{ response }}</p>
 </div>
