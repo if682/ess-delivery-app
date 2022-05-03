@@ -1,19 +1,31 @@
 .profile-wrapper {
     padding: 50px;
-}
 
-.profile-header {
-    margin: 30px 0 50px 0;
-
-    .header-image {
-        height: 120px;
-        width: 120px;
-        border-radius: 50%;
+    .profile-header {
+        margin: 30px 0 50px 0;
+    
+        .header-image {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+        }
+    
+        .restaurant-name {
+            align-self: center;
+            margin-left: 30px;
+        }
     }
 
-    .restaurant-name {
-        align-self: center;
-        margin-left: 30px;
+    form {
+        width: 80%;
+    }
+    
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
     }
 }
+
+
 

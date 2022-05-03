@@ -2,20 +2,65 @@
     <button type="button" class="btn btn-outline-primary btn-sm"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</button>
     <div class="profile-header d-flex flex-row">
         <img src="https://cdn.iconscout.com/icon/free/png-256/restaurant-1495593-1267764.png" class="header-image img-thumbnail" >
-        <h2 class="restaurant-name">Restaurant name</h2>
+        <h2 class="restaurant-name">{{ restaurantName }}</h2>
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Sobre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Horários</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pagamento</a>
-        </li>
-      </ul>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Sobre</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Horários</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pagamento</a>
+      </li>
+    </ul>
+
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-7">
+          <label for="inputName">Nome do Restaurante</label>
+          <input type="text" class="form-control" id="inputName" placeholder="Nome" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCNPJ">CNPJ</label>
+          <input type="text" class="form-control" id="inputCNPJ" placeholder="CNPJ" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDescription">Descrição</label>
+        <input type="text" class="form-control" id="inputDescription" placeholder="Descrição" required>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="inputAddress">Rua</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="Rua" required>
+        </div>
+        <div class="form-group col-md-1">
+          <label for="inputNumber">Número</label>
+          <input type="number" class="form-control" id="inputNumber" placeholder="Num" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">Cidade</label>
+          <input type="text" class="form-control" id="inputCity" placeholder="Cidade" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-7">
+          <label for="inputComplement">Complemento</label>
+          <input type="text" class="form-control" id="inputComplement" placeholder="Complemento" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCEP">CEP</label>
+          <input type="text" class="form-control" id="inputCEP" placeholder="CEP" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+    
 </div>
 
 
