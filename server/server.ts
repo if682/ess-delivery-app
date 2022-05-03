@@ -48,7 +48,7 @@ app.post('/restaurant', function(req: express.Request, res: express.Response){
     const result = restauranteService.add(restaurante);
     if (result) {
       res.status(201).send(result);
-      console.log(result);
+      // console.log(result);
     } else {
       res.status(403).send({ message: "Restaurante list is full"});
     }
@@ -56,7 +56,8 @@ app.post('/restaurant', function(req: express.Request, res: express.Response){
     const {message} = err;
     if(message == 'Um restaurante já foi cadastrado com esse CNPJ')
       res.status(401).send({ message });
-    res.status(400).send({ message });
+    else
+      res.status(400).send({ message });
   }
 });
 
@@ -164,4 +165,8 @@ function closeServer(): void {
   server.close();
 }
 
-export { app, server, closeServer }
+function resetServer(): void {
+  restauranteService.restaurantes = [];
+}
+
+export { app, server, closeServer, resetServer }
