@@ -9,9 +9,9 @@ import { StatusComponent } from './status/status.component';
 import { PedidoComponent } from './pedido/pedido.component';
 
 const routes: Routes = [
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'cadastro', component: CadastroComponent },
   // { path: 'status', component: StatusComponent },
   { path: 'pedido', component: PedidoComponent }];

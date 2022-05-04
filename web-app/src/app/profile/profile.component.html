@@ -2,12 +2,12 @@
     <button type="button" class="btn btn-outline-primary btn-sm"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar</button>
     <div class="profile-header d-flex flex-row">
         <img src="https://cdn.iconscout.com/icon/free/png-256/restaurant-1495593-1267764.png" class="header-image img-thumbnail" >
-        <h2 class="restaurant-name">{{restaurantes[0].nome_restaurante}}</h2>
+        <h2 class="restaurant-name">{{restaurante.nome_restaurante}}</h2>
     </div>
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link {{tab === 0 ? 'active':''}}" (click)="switchTab(0)" aria-current="page">Sobre</a>
+        <a class="nav-link {{tab === 0 ? 'active':''}}" (click)="switchTab(0)">Sobre</a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{tab === 1 ? 'active':''}}" (click)="switchTab(1)">Horários</a>
@@ -21,11 +21,11 @@
       <div class="form-row">
         <div class="form-group col-md-7">
           <label for="inputName">Nome do Restaurante</label>
-          <input [disabled]="!editMode" type="text" class="form-control" id="inputName" placeholder="Nome" value="{{restaurantes[0].nome_restaurante}}" required>
+          <input [disabled]="!editMode" type="text" class="form-control" id="inputName" placeholder="Nome" value="{{restaurante.nome_restaurante}}" required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCNPJ">CNPJ</label>
-          <input [disabled]="!editMode" type="text" class="form-control" id="inputCNPJ" placeholder="CNPJ" value="{{restaurantes[0].cnpj}}" required>
+          <input [disabled]="!editMode" type="text" class="form-control" id="inputCNPJ" placeholder="CNPJ" value="{{restaurante.cnpj}}" required>
         </div>
       </div>
       <div class="form-group">
@@ -36,25 +36,25 @@
       <div class="form-row">
         <div class="form-group col-md-5">
           <label for="inputAddress">Rua</label>
-          <input [disabled]="!editMode" type="text" class="form-control" id="inputAddress" placeholder="Rua" value="{{restaurantes[0].rua}}" required>
+          <input [disabled]="!editMode" type="text" class="form-control" id="inputAddress" placeholder="Rua" value="{{restaurante.rua}}" required>
         </div>
         <div class="form-group col-md-1">
           <label for="inputNumber">Número</label>
-          <input [disabled]="!editMode" type="number" class="form-control" id="inputNumber" placeholder="Num" value="{{restaurantes[0].numero}}" required>
+          <input [disabled]="!editMode" type="number" class="form-control" id="inputNumber" placeholder="Num" value="{{restaurante.numero}}" required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Cidade</label>
-          <input [disabled]="!editMode" type="text" class="form-control" id="inputCity" placeholder="Cidade" value="{{restaurantes[0].cidade}}" required>
+          <input [disabled]="!editMode" type="text" class="form-control" id="inputCity" placeholder="Cidade" value="{{restaurante.cidade}}" required>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-7">
           <label for="inputComplement">Complemento</label>
-          <input [disabled]="!editMode" type="text" class="form-control" id="inputComplement" placeholder="Complemento" value="{{restaurantes[0].complemento}}" required>
+          <input [disabled]="!editMode" type="text" class="form-control" id="inputComplement" placeholder="Complemento" value="{{restaurante.complemento}}" required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputCEP">CEP</label>
-          <input [disabled]="!editMode" type="text" class="form-control" id="inputCEP" placeholder="CEP" value="{{restaurantes[0].cep}}" required>
+          <input [disabled]="!editMode" type="text" class="form-control" id="inputCEP" placeholder="CEP" value="{{restaurante.cep}}" required>
         </div>
       </div>
 
@@ -68,11 +68,11 @@
       <div class="form-row col-md-6">
         <div class="form-group col-md-5">
           <label for="inputStartTime">Horário de início</label>
-          <input [disabled]="!editMode" type="time" class="form-control" id="inputStartTime" placeholder="19:00h" value="{{restaurantes[0].horario_inicio}}" required>
+          <input [disabled]="!editMode" type="time" class="form-control" id="inputStartTime" placeholder="19:00h" value="{{restaurante.horario_inicio}}" required>
         </div>
         <div class="form-group col-md-5">
           <label for="inputEndtTime">Horário de fim</label>
-          <input [disabled]="!editMode" type="time" class="form-control" id="inputEndtTime" placeholder="19:00h" value="{{restaurantes[0].horario_fim}}" required>
+          <input [disabled]="!editMode" type="time" class="form-control" id="inputEndtTime" placeholder="19:00h" value="{{restaurante.horario_fim}}" required>
         </div>
       </div>
 
@@ -124,7 +124,7 @@
 
     <div class="buttons-wrapper" *ngIf="!editMode">
       <button type="button" (click)="setEditMode(true)" class="btn btn-primary">Editar</button>
-      <button type="submit" class="btn btn-danger">Apagar</button>
+      <button type="button" (click)="deleteRestaurant()" class="btn btn-danger">Apagar</button>
     </div>
 </div>
 

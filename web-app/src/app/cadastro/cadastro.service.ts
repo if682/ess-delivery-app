@@ -27,6 +27,19 @@ export class CadastroService {
              .catch(this.catch);
   }
 
+  delete(cnpj: String, action: Function): Promise<Restaurante> {
+    console.log(cnpj);
+    return this.http.delete(this.taURL + `/restaurant/${cnpj}`)
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) {
+          action();
+        }
+        return;
+      })
+      .catch(this.catch);
+  }
+
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);
     return Promise.reject(erro.message || erro);

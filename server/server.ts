@@ -42,6 +42,17 @@ app.get('/restaurant/:cnpj', function(req, res){
   }
 });
 
+app.delete('/restaurant/:cnpj', function(req, res){
+  const cnpj = req.params.cnpj;
+  console.log(cnpj);
+  const restaurante = restauranteService.delete(cnpj);
+  if (restaurante) {
+    res.send(restaurante);
+  } else {
+    res.status(404).send({ message: `Restaurante ${cnpj} could not be found`});
+  }
+});
+
 app.post('/restaurant', function(req: express.Request, res: express.Response){
   const restaurante: Restaurante = <Restaurante> req.body;
   try {
