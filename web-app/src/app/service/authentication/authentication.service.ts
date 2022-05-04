@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SingInData } from 'src/app/model/signInData';
 import { Http, Headers } from '@angular/http';
+import { Restaurante } from 'src/app/cadastro/restaurante';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AuthenticationService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
+  restaurante: Restaurante = undefined;
   isAuthenticated = false;
 
   constructor(private router: Router, private http: Http) { }
@@ -34,6 +36,7 @@ export class AuthenticationService {
       .toPromise()
       .then((ans) => {
         if(ans.status == 201){
+          this.restaurante = ans.json() as Restaurante;
           return true;
         }
         else{
@@ -51,6 +54,7 @@ export class AuthenticationService {
   }
 
   logout(){
+    this.restaurante = undefined;
     this.isAuthenticated = false;
     this.router.navigate(['']);
   }

@@ -1,6 +1,5 @@
 import 'jasmine';
 import request = require("request-promise");
-import { closeServer } from '../server';
 
 const baseUrl = "http://localhost:3000";
 const restUrl = `${baseUrl}/restaurant`;
@@ -10,7 +9,9 @@ describe("O servidor", () => {
 
   beforeAll(() => {server = require('../server')});
 
-  afterAll(() => {closeServer()});
+  afterAll(() => {server.closeServer()});
+
+  afterEach(() => {server.resetServer()});
 
   it("inicialmente retorna uma lista de restaurantes vazia", () => {
     return request.get(restUrl).then(body => expect(body).toBe("[]")).catch(e => expect(e).toEqual(null));
@@ -203,7 +204,7 @@ describe("O servidor", () => {
   it("não cadastra restaurantes com cnpj já existente", () => {
     const rest1 = {
       nome_restaurante: "Barraca do Jó",
-      cnpj: "98.765.432/0001-98",
+      cnpj: "98.765.432/0001-99",
       cep: "23332-233",
       rua: "Governador Schumacher",
       numero: "1",
@@ -219,7 +220,7 @@ describe("O servidor", () => {
 
     const rest2 = {
       nome_restaurante: "Bar da Júlia",
-      cnpj: "98.765.432/0001-98",
+      cnpj: "98.765.432/0001-99",
       cep: "12345-678",
       rua: "Governador Rubinho",
       numero: "2",
