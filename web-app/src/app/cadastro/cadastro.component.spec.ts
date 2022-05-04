@@ -19,7 +19,11 @@ describe('CadastroComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deveria ser criado corretamente', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('deveria começar com um restaurante sem campos', () => {
+    expect(component.restaurante).toBe({});
   });
 });

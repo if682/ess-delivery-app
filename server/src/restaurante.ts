@@ -14,7 +14,7 @@ export class Restaurante {
   senha: string;
 
   constructor(restaurante: Restaurante) {
-    this.nome_restaurante = restaurante.nome_responsavel;
+    this.nome_restaurante = restaurante.nome_restaurante;
     this.cnpj = restaurante.cnpj;
     this.cep = restaurante.cep;
     this.rua = restaurante.rua;

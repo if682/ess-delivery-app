@@ -1,0 +1,34 @@
+div {
+    text-align: center;
+}
+
+label {
+    text-align: left;
+}
+
+input {
+    width: 50%;
+    position: relative;
+    left: calc(27% - 10px);
+}
+
+option {
+    width: 50%;
+    position: relative;
+    left: calc(27% - 10px);
+}
+
+select {
+    width: 50%;
+    position: relative;
+    left: calc(27% - 10px);
+    -webkit-appearance: listbox !important
+}
+
+button {
+    border: 3px solid blue;
+}
+
+button:hover {
+    background-color: silver;
+}
