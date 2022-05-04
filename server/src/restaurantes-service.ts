@@ -1,4 +1,6 @@
 import { Restaurante } from "./restaurante";
+import { SingInData } from "./signInData";
+
 
 export class RestaurantesService {
   restaurantes: Restaurante[] = [];
@@ -65,5 +67,12 @@ export class RestaurantesService {
   
   getById(restCnpj: string) : Restaurante {
     return this.restaurantes.find(({ cnpj }) => cnpj == restCnpj);
+  }
+
+  authenticate(signInData:SingInData) : Restaurante{
+    console.log(signInData.getEmail(), signInData.getPassword(), signInData)
+    return this.restaurantes.find(({email, senha}) => 
+      signInData.getEmail() === email && signInData.getPassword() === senha
+    )
   }
 }

@@ -2,6 +2,7 @@ import express = require('express');
 import bodyParser = require("body-parser");
 import nodemailer = require("nodemailer")
 
+
 import { RestaurantesService } from './src/restaurantes-service';
 import { Restaurante } from './src/restaurante';
 
@@ -9,6 +10,7 @@ import { EmailService } from './src/email-service';
 
 import { Status } from './src/status';
 import { Status_service } from './src/status-service';
+import { SingInData } from './src/signInData';
 var app = express();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
@@ -132,6 +134,22 @@ app.post('/pedido', function (req, res) {
   emailService.sendNewOrder(order);
   res.status(200).send(`Pedido de número ${order.id} enviado!`);
 });
+
+app.post('/restaurant/login', function(req: express.Request, res: express.Response){
+  var signInData:SingInData = new SingInData(req.body.email, req.body.password);
+  try {
+    const result = restauranteService.authenticate(signInData);
+    if (result){
+      res.status(201).send(result);
+    } else{
+      res.status(401).send({message: "Falha no login. Senha ou email incorretos."})
+    }
+  } catch(err){
+    const {message} = err;
+    res.status(404).send({message});
+  }
+});
+
 app.get('/pedido/notificacao', function (req, res) {
   const order = { ...req.query }
   const msg = (order.msg === "Confirmação") ? "Seu pedido foi confirmado!" : "Infelizmente seu pedido foi cancelado.";
