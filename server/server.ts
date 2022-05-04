@@ -4,6 +4,8 @@ import bodyParser = require("body-parser");
 import { RestaurantesService } from './src/restaurantes-service';
 import { Restaurante } from './src/restaurante';
 
+import { Status } from './src/status';
+import { Status_service } from './src/status-service';
 var app = express();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
@@ -17,6 +19,7 @@ app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
 var restauranteService: RestaurantesService = new RestaurantesService();
+var statusService: Status_service = new Status_service();
 
 app.get('/restaurant', function(req, res){
   const restaurantes = restauranteService.get();
@@ -45,7 +48,9 @@ app.post('/restaurant', function(req: express.Request, res: express.Response){
     }
   } catch (err) {
     const {message} = err;
-    res.status(400).send({ message })
+    if(message == 'Um restaurante já foi cadastrado com esse CNPJ')
+      res.status(401).send({ message });
+    res.status(400).send({ message });
   }
 });
 
@@ -59,6 +64,65 @@ app.put('/restaurant', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.put('/restaurante/status', function (req, res) {
+  const status: Status = <Status>req.body;
+  try {
+    const result = statusService.updateStatus(status);
+    if (result) {
+      res.status(201).send(`Status list updated`);
+    }
+    else {
+      res.status(409).send(`Status Id already in list`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+app.get('/restaurant/status', function (req, res) {
+  try {
+    const result = statusService.returnStatusList();
+    if (result) {
+      res.status(200).send(result);
+    }
+    else {
+      res.status(410).send(`empty Status list`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+app.post('/restaurant/status/add', function (req, res) {
+  const status:Status = <Status> req.body;
+  try {
+    const result = statusService.addStatus(status);
+    if (result) {
+      res.status(200).send(result);
+    }
+    else {
+      res.status(406).send(`Id already present`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
+app.post('/restaurant/status/remove', function (req, res) {
+  const status:Status = <Status> req.body;
+  try {
+    const result = statusService.removeStatus(status);
+    if (result) {
+      res.status(200).send(result);
+    }
+    else {
+      res.status(410).send(`Id not found`);
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message });
+  }
+});
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })

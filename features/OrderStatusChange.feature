@@ -8,89 +8,46 @@
     after preparation the system shoud notify the client that it's ready for delivery, notice that the delivery person
     is not involved.
 
-    Background:
-
-        Given a business named "Comida de Mainha"
-        And a customer named "Tiguinho"
-        And a order named "Fritas de Mainha"
-
     Scenario Outline: making a new order
 
-        Given Tiguinho business is open
-        When Tiguinho orders Fritas de Mainha
-        Then Tiguinho order is validated
-        And the DB adds a new order and update it status to made
+        Given <Restaurant-name> is <Restaurant-status>
+        When <Client-name> orders <Client-order>
+        And <Client-name> order is <validation-status>
+        Then the DB <Pre-hook> the <Client-order> order to <Client-order-status>
+        And <Post-hook>
 
-        Given Tiguinho business is open
-        When Tiguinho orders Fritas de Mainha
-        Then Tiguinho order is validated
-        And the DB fails to add a new entry with status made
-        And a service is executed to re-try the insertion
-
-        Given Tiguinho business is closed
-        When Tiguinho orders Fritas de Mainha
-        Then Tiguinho order isn't validated
-        And the DB won't add a new order
-        And a error message will appear
+        Examples:
+          | Client-name | Restaurant-status | Restaurant-name      | Pre-hook    | Client-order     | Validation-status | Client-order-status | Post-hook             |
+          | Tiguinho    | Open              | Comida de Mainha     | update      | Fritas de Mainha | validated         | made                | notify <Client-name>  |
+          | Maria       | Open              | Fritas do Zé         | fail-update | Happy Potato     | validated         | fail-made           | re-try service        |
+          | Cleber      | Closed            | Quentinha do Geraldo | wont-update | Lasanha          | !validated        | wont-made           | !notify <Client-name> |
+          |             |                   |                      |             |                  |                   |                     |                       |
 
     Scenario Outline: receives a new order request
 
-        Given that Comida de Mainha is open
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha will be notified of the order
-        And Comida de Mainha accept's the order
-        And the DB will updated Fritas de Mainha entry to accepted
-        And Tiguinho will be notified that the request was accepted by Comida de Mainha
+        Given that <Restaurant-name> is <Restaurant-status>
+        When <Client-name> orders <Client-order>
+        Then <Restaurant-name> will be <Restaurant-notification> of the order
+        And <Restaurant-name> <Restaurant-decision> the order
+        And the DB <Pre-hook> the <Client-order> to <Client-order-status>
+        And <Post-hook>
 
-        Given that Comida de Mainha is open
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha will be notified of the order
-        And Comida de Mainha accept's the order
-        And the DB can't update Fritas de Mainha entry to accepted
-        And a internal service will be executed re-try the DB update
-
-        Given that Comida de Mainha is open
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha will be notified of the order
-        And Comida de Mainha won't accept the order
-        And the DB will not update Fritas de Mainha status to accepted
-        And Tiguinho will be notified that the request wasn't accepted by Comida de Mainha
-
-        Given that Comida de Mainha is closed
-        When Tiguinho orders Fritas de Mainha
-        Then Comida de Mainha won't be notified of the order
-        And the DB musn't add the order as an entry
+        Examples:
+          | Client-name | Restaurant-status | Restaurant-name      | Restaurant-notification | Pre-hook    | Restaurant-decision | Client-order     | Client-order-status | Post-hook            |
+          | Tiguinho    | Open              | Comida de Mainha     | notify                  | update      | accept              | Fritas de Mainha | accept              | notify <Client-name> |
+          | Maria       | Open              | Fritas do Zé         | notify                  | fail-update | accept              | Happy Potato     | fail-accept         | re-try service       |
+          | Cleber      | Closed            | Quentinha do Geraldo | !notify                 | wont-update | !accept             | Lasanha          | wont-accept         | notify <Client-name> |
+          |             |                   |                      |                         |             |                     |                  |                     |                      |
 
     Scenario Outline: client is notified that the order is ready
 
-        Given that Comida de Mainha has accepted the request
-        When Comida de Mainha confirm in the application that the order is ready
-        Then the DB should update order status to ready
-        And Tiguinho will be notified that his order is ready
+        Given that <Restaurant-name> has <Restaurant-decision> the <Client-order> order
+        When <Restaurant-name> <Restaurant-confirmation> in the application that the order is <Client-order-status>
+        Then the DB <Pre-hook> the <Client-order> to <Client-order-status>
+        And <Post-hook>
 
-        Given that Comida de Mainha has accepted the request
-        When Comida de Mainha confirm in the application that the order is ready
-        Then the DB should update order status to ready
-        And Tiguinho will be notified that his order is ready
-
-        Given that Comida de Mainha has accepted the request
-        When Comida de Mainha has'n confirmed in the application that the order is ready
-        Then the DB can't update the order status to ready
-        And Tiguinho won't be notified
-
-    Scenario Outline: test if notifications are sent and received in under 5 min
-
-        Given that Tiguinho has made a order
-        When Comida da Mainha confirms the order as <state>
-        Then A notification should be sent to Tiguinho
-        And must arrive at most 5min later
-
-        Given that Tiguinho has made a order
-        When Comida da Mainha confirms the order as <state>
-        Then A notification should be sent to Tiguinho
-        And will arrive after 5min
-        And a service will be executed to re-send the notification
-
-                |state   |
-                |ready   |
-                |accepted|
+        Examples:
+        | Client-name | Restaurant-status | Restaurant-name      | Restaurant-confirmation | Pre-hook    | Restaurant-decision | Client-order     | Client-order-status | Post-hook             |
+        | Tiguinho    | Open              | Comida de Mainha     | confirm                 | update      | accept              | Fritas de Mainha | ready               | notify <Client-name>  |
+        | Maria       | Open              | Fritas do Zé         | wont-confirm            | wont-update | accept              | Happy Potato     | wont-ready          | !notify <Client-name> |
+        | Cleber      | Closed            | Quentinha do Geraldo | wont-confirm            | wont-update | !accept             | Lasanha          | wont-accept         | notify <Client-name>  |

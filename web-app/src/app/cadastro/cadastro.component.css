@@ -9,3 +9,90 @@ table {
 #hora_final-input{
     width: 110px;
 }
+
+#gray_screen{
+    position: fixed;
+    width: 100%;
+    height: 200%;
+    background-color: #00000013;
+    z-index: 1;
+}
+
+.popup{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    border: 2px solid #000000;
+    background-color: white;
+    padding: 20px 10px;
+    z-index: 9;
+    border-radius: 20px;
+    box-shadow: 0 0 2em lightgray;
+}
+
+.popup .error_text{
+
+    text-align: center;
+    color: crimson;
+    padding-top: 10%;
+}
+
+.popup .success_text{
+
+    text-align: center;
+    color:olivedrab;
+    padding-top: 10%;
+}
+
+button{
+    border: 1px solid #000;
+    border-radius: .25rem;
+    padding: 2px 5px;
+}
+
+.back_button{
+    background: rgb(236, 236, 236);
+    color: rgb(0, 0, 0);
+}
+
+.back_button:hover{
+    background: rgb(207, 207, 207);
+    color: rgb(0, 0, 0);
+}
+
+.default_error .back_button{
+    position:absolute;
+    left:50%;
+    top:85%;
+    transform: translate(-50%, -50%);
+}
+
+.success_popup .goLogin_button{
+    position:absolute;
+    left:50%;
+    top:85%;
+    transform: translate(-50%, -50%);
+}
+
+.repeatedCnpj_error .buttons{
+    position:absolute;
+    left:50%;
+    top:85%;
+    transform: translate(-50%, -50%);
+}
+
+.repeatedCnpj_error .back_button{
+    margin-right: 30px;
+}
+
+.goLogin_button{
+    background: #000;
+    color: #fff;
+}
+.goLogin_button:hover{
+    background: rgb(65, 65, 65);
+    color: #fff;
+}

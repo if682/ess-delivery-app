@@ -11,7 +11,7 @@ export class CadastroService {
 
   constructor(private http: Http) { }
 
-    create(restaurante: Restaurante): Promise<Restaurante> {
+  create(restaurante: Restaurante): Promise<Restaurante> {
     return this.http.post(this.taURL + "/restaurant",JSON.stringify(restaurante), {headers: this.headers})
       .toPromise()
       .then(res => {
@@ -26,6 +26,16 @@ export class CadastroService {
              .then(res => res.json() as Restaurante[])
              .catch(this.catch);
   }
+
+  updateRestaurant(restaurante: Restaurante): Promise<Restaurante> {
+    return this.http.put(this.taURL + "/restaurant",JSON.stringify(restaurante), {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.status === 201) {return restaurante;} else {return null;}
+      })
+      .catch(this.catch);
+  }
+
 
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);
