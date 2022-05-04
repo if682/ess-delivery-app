@@ -32,7 +32,8 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteRestaurant() {
-    this.cadastroService.delete(this.restaurante.cnpj, () => this.router.navigateByUrl('/login'))
+    this.cadastroService.delete(this.restaurante.email)
+         .then(() => this.router.navigateByUrl('/login'))
          .catch(erro => alert(erro));
   }
 }

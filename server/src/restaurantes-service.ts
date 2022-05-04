@@ -76,8 +76,8 @@ export class RestaurantesService {
     )
   }
   
-  delete(restCnpj: string) : Restaurante {
-    const restaurante = this.restaurantes.find(({ cnpj }) => cnpj == restCnpj);
+  delete(restEmail: string) : Restaurante {
+    const restaurante = this.restaurantes.find(({ email }) => email == restEmail);
     this.restaurantes.splice(this.restaurantes.indexOf(restaurante), 1);
     return restaurante;
   }

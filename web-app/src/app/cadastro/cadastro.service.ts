@@ -27,16 +27,10 @@ export class CadastroService {
              .catch(this.catch);
   }
 
-  delete(cnpj: String, action: Function): Promise<Restaurante> {
+  delete(cnpj: String): Promise<Restaurante> {
     console.log(cnpj);
     return this.http.delete(this.taURL + `/restaurant/${cnpj}`)
       .toPromise()
-      .then(res => {
-        if (res.status === 201) {
-          action();
-        }
-        return;
-      })
       .catch(this.catch);
   }
 

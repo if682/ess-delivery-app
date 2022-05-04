@@ -42,14 +42,14 @@ app.get('/restaurant/:cnpj', function(req, res){
   }
 });
 
-app.delete('/restaurant/:cnpj', function(req, res){
-  const cnpj = req.params.cnpj;
-  console.log(cnpj);
-  const restaurante = restauranteService.delete(cnpj);
+app.delete('/restaurant/:email', function(req, res){
+  const email = req.params.email;
+  console.log(email);
+  const restaurante = restauranteService.delete(email);
   if (restaurante) {
     res.send(restaurante);
   } else {
-    res.status(404).send({ message: `Restaurante ${cnpj} could not be found`});
+    res.status(404).send({ message: `Restaurante ${email} could not be found`});
   }
 });
 
