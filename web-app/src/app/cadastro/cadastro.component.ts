@@ -18,7 +18,6 @@ export class CadastroComponent implements OnInit {
    success = false;
 
    createRestaurante(r: Restaurante): void {
-      r.descricao = "";
       this.cadastroService.create(r)
       .then(result => {
             if (result) {

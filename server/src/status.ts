@@ -1,23 +1,47 @@
 import {Pedido} from './pedido';
 
 export class Status implements Pedido {
+    public static statusList: Status[] = [];
     cpf: string; // Suppose that order has being unpacked in cpf, cnpj and id
     cnpj: string;
     id: number;
-    statusVal: number = 0;
+    state: number = 0;
 
     constructor() {
         this.cpf = "";
         this.cnpj ="";
         this.id = -1;
-        this.statusVal = 0; //validation is implicit
+        this.state = 0; //validation is implicit
     }
 
-    update(order: Status){
-        this.cpf = order.cpf;
-        this.cnpj = order.cnpj;
-        this.id = order.id;
-        this.statusVal=0;
+    clone(order: Status){
+        this.cpf = <string> order.cpf;
+        this.cnpj = <string> order.cnpj;
+        this.id = <number> order.id;
+        this.state= <number> order.state;
+    }
+
+    pushStatus(): void{
+        Status.statusList.push(Object.assign({},this));
+    }
+
+    removeStatus(): void{
+        Status.statusList = Status.statusList.filter(testStatus => (testStatus.id  != this.id));
+    }
+
+    modStatus(status_state: Status): Status{
+        let index = Status.statusList.findIndex(testStatus => (testStatus.id  == this.id));
+        if(Status.statusList[index].state<2)
+            status_state.state = ++Status.statusList[index].state;
+        return status_state;
+    }
+
+    returnStatus(): Status[]{
+        return Status.statusList;
+    }
+
+    isUniqueID(): boolean {
+        return !Status.statusList.some(testID => (testID.id == this.id));
     }
 
 }

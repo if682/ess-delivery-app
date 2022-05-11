@@ -47,12 +47,6 @@ table {
     padding-top: 10%;
 }
 
-button{
-    border: 1px solid #000;
-    border-radius: .25rem;
-    padding: 2px 5px;
-}
-
 .back_button{
     background: rgb(236, 236, 236);
     color: rgb(0, 0, 0);
@@ -95,4 +89,15 @@ button{
 .goLogin_button:hover{
     background: rgb(65, 65, 65);
     color: #fff;
+}
+
+#registration {
+    padding: 50px;
+    width: 80%;
+}
+
+#registration .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
 }

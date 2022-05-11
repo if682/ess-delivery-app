@@ -1,9 +1,11 @@
 import { Restaurante } from "./restaurante";
+import { SingInData } from "./signInData";
+
 
 export class RestaurantesService {
   restaurantes: Restaurante[] = [];
 
-  campos: {[index:string]:string} = {"nome_restaurante": "Nome do Restaurante",
+  titulo_campos: {[index:string]:string} = {"nome_restaurante": "Nome do Restaurante",
                                      "cnpj": "CNPJ",
                                      "cep": "CEP",
                                      "rua": "Rua",
@@ -15,16 +17,15 @@ export class RestaurantesService {
                                      "nome_responsavel": "Nome do Responsável",
                                      "telefone_responsavel": "Telefone do Responsável",
                                      "email": "E-mail para Contato",
-                                     "senha": "Senha",
-                                     "descricao": "descricao do restaurante"
-                                    }
+                                     "senha": "Senha"}
+
+  campos_req: string[] = ["nome_restaurante", "cnpj", "cep", "rua", "numero", "cidade", "complemento", "horario_inicio", "horario_fim", "nome_responsavel", "telefone_responsavel", "email", "senha"]
   
   add(restaurante: Restaurante): Restaurante {
-    restaurante.descricao = "preencha a sua descricao";
-    if (this.restaurantes.length >= 10) return null;
-    for (var key in restaurante)
+    if (this.restaurantes.length >= 1000000) return null;
+    for (var key of this.campos_req)
       if (!restaurante[key])
-        throw Error(`O campo de ${this.campos[key]} não foi preenchido`);
+        throw Error(`O campo de ${this.titulo_campos[key]} não foi preenchido`);
 
     if(!restaurante.cnpj.match(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/))
       throw Error('O campo de CNPJ está mal formatado ou incompleto');
@@ -66,5 +67,17 @@ export class RestaurantesService {
   
   getById(restCnpj: string) : Restaurante {
     return this.restaurantes.find(({ cnpj }) => cnpj == restCnpj);
+  }
+
+  authenticate(signInData:SingInData) : Restaurante{
+    return this.restaurantes.find(({email, senha}) => 
+      signInData.getEmail() === email && signInData.getPassword() === senha
+    )
+  }
+  
+  delete(restEmail: string) : Restaurante {
+    const restaurante = this.restaurantes.find(({ email }) => email == restEmail);
+    this.restaurantes.splice(this.restaurantes.indexOf(restaurante), 1);
+    return restaurante;
   }
 }

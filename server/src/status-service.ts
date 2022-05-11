@@ -1,37 +1,36 @@
 import {Status} from "./status"
 
 export class Status_service {
-    statusList: Status[] = [];
+    tempStatus: Status = new Status();
 
-    isUniqueID(targetID: number): boolean {
-        return this.statusList.some(testID => testID.id == targetID);
-    }
 
     addStatus(order: Status): Status {
     let status_state = new Status();
-     if(this.isUniqueID){
-        let status_state = order;
-         this.statusList.push(status_state);
+        this.tempStatus.clone(order);
+        if(this.tempStatus.isUniqueID()){
+        status_state = this.tempStatus;
+         this.tempStatus.pushStatus();
      }
     return status_state;
     }
 
     removeStatus(order: Status): Status {
         let status_state = new Status();
-        if(this.isUniqueID){
-            let status_state = order;
-            this.statusList.filter(testID => testID.id != order.id);
+        this.tempStatus.clone(order);
+        if(!this.tempStatus.isUniqueID()){
+            status_state = this.tempStatus;
+            this.tempStatus.removeStatus();
         }
         return status_state;
     }
 
     updateStatus(order: Status): Status {
         let status_state = new Status();
-        if(this.isUniqueID){ // statusVal == MADE, ACCEPT and READY
-            let index = this.statusList.findIndex(testID => (testID.id == order.id));
-            this.statusList[index].statusVal++;
-            status_state = this.statusList[index];
+        this.tempStatus.clone(order);
+        if(!this.tempStatus.isUniqueID()){ // statusVal == MADE, ACCEPT and READY
+            status_state = this.tempStatus.modStatus(this.tempStatus);
         }
+
         return status_state;
     }
 
@@ -50,6 +49,6 @@ export class Status_service {
     }
 
     returnStatusList(): Status[] {
-        return this.statusList;
+        return Status.statusList;
     }
 }

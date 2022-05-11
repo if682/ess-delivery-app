@@ -2,25 +2,33 @@ Feature: Pesquisa de Restaurantes
 As a visitante
 I want to pesquisar um restaurante existente
 
-Scenario: Pesquisa bem sucedida de apenas um restaurante
+Scenario: Pesquisa rápida de nome bem sucedida de apenas um restaurante
     Given que o visitante esteja na página home do sistema
-    When o visitante preencha o campo de pesquisa o nome "Comida da"
+    When o visitante preencha o campo de pesquisar com o nome "Comida da"
     And exista um restaurante cadastrado com o nome "Comida da tia"
-    And seja selecionada a opção Pesquisar
-    Then aparece campo com resultado da pesquisa
-    And informando que foi encontrado um restaurante
+    Then aparece campos de Listas de Restaurantes filtrados
+    And apenas restaurante de nome "Comida da tia" aparece 
 
-Scenario: Pesquisa bem sucedida de vários restaurantes
+Scenario: Pesquisa rápida de nome bem sucedida de vários restaurantes
     Given que o visitante esteja na página home do sistema
-    When o visitante preencha o campo de pesquisa o nome "Comida"
+    When o visitante preencha o campo de pesquisar com o nome "Comida"
     And exista dois ou mais restaurantes cadastrados com "Comida" em seu nome
-    And seja selecionada a opção Pesquisar
-    Then aparece campo com resultado da pesquisa
-    And informando que foram encontrados dois ou mais restaurantes
+    Then campos de Listas de Restaurantes são filtrados
+    And restaurantes com nome "Comida" em nomes aparecem
 
-Scenario: Pesquisa mal sucedida de restaurante
+Scenario: Pesquisa rápida de nome mal sucedida de restaurante
     Given que o visitante esteja na página home do sistema
-    When o visitante preencha o campo de pesquisa o nome "Cinfood"
+    When o visitante preencha o campo de pesquisar com o nome "Cinfood"
     And não exista um restaurante cadastrado com "Cinfood" em seu nome
-    And seja selecionada a opção Pesquisar
-    Then aparece campo informando que não foi encontrado restaurante com esse nome
+    Then aparece campos filtrados de Listas de Restaurantes com nenhum restaurante
+
+Scenario: Pesquisa rápida de todos os restaurantes
+    Given que o visitante esteja na página home do sistema
+    And o campo pesquisar está vazio
+    Then aparece todos os restaurantes em Listas de Restaurantes
+
+
+Scenario: Pesquisa rápida de todos os restaurantes após pesquisa
+    Given que o visitante esteja na página home do sistema
+    And o visitante apaga nome pesquisado no campo de pesquisar
+    Then aparece todos os restaurantes em Listas de Restaurantes

@@ -34,7 +34,7 @@ n 8.2
 ```
 cd web-app
 sudo npm install
-npm rebuild node-sass
+sudo npm rebuild node-sass
 cd ..
 cd server
 sudo npm install

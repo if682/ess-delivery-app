@@ -1,0 +1,26 @@
+<form #f="ngForm">
+  <p>CPF</p><br>
+  <input name="cpf" ngModel required>
+  <p>CNPJ</p><br>
+  <input name="cnpj" ngModel required>
+  <p>ID</p><br>
+  <input name="id" ngModel required><br>
+
+  <button (click)="addSubmit(f)">ADD</button><br>
+  <button (click)="removeSubmit(f)">REMOVE</button><br>
+  <button (click)="updateSubmit(f)">UPDATE</button><br>
+</form>
+<table>
+    <tr>
+        <th>CPF</th>
+        <th>CNPJ</th>
+        <th>ID</th>
+        <th>ORDER_STATUS</th>
+    </tr>
+      <tr *ngFor="let s of statusList">
+        <td>{{s.cpf}}</td>
+        <td>{{s.cnpj}}</td>
+        <td>{{s.id}}</td>
+        <td>{{s.state}}</td>
+    </tr>
+</table>

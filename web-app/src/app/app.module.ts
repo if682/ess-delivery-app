@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,9 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { StatusComponent } from './status/status.component';
+import { StatusService } from './status/status.service';
+import { PedidoComponent } from './pedido/pedido.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,9 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     CadastroComponent,
     HomeComponent,
+    ProfileComponent,
+    StatusComponent,
+    PedidoComponent,
     ProfileComponent
   ],
   imports: [
@@ -27,9 +34,10 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
   ],
-  providers: [CadastroService],
+  providers: [CadastroService, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

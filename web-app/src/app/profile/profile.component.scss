@@ -17,6 +17,11 @@
         }
     }
 
+    .header-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .form-row {
         display: flex;
         justify-content: space-between;
@@ -51,8 +56,6 @@
     z-index: 9;
     border-radius: 20px;
     box-shadow: 0 0 2em lightgray;
-    text-align: center;
-
 }
 
 .popup .error_text{
@@ -70,9 +73,38 @@
 }
 
 .back_button{
-    margin-top: 10px;
     background: rgb(236, 236, 236);
     color: rgb(0, 0, 0);
+}
+
+.back_button:hover{
+    background: rgb(207, 207, 207);
+    color: rgb(0, 0, 0);
+}
+
+.default_error .back_button{
+    position:absolute;
+    left:50%;
+    top:85%;
+    transform: translate(-50%, -50%);
+}
+
+.success_popup .goLogin_button{
+    position:absolute;
+    left:50%;
+    top:85%;
+    transform: translate(-50%, -50%);
+}
+
+.repeatedCnpj_error .buttons{
+    position:absolute;
+    left:50%;
+    top:85%;
+    transform: translate(-50%, -50%);
+}
+
+.repeatedCnpj_error .back_button{
+    margin-right: 30px;
 }
 
 

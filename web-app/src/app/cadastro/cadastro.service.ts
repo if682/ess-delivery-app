@@ -20,14 +20,7 @@ export class CadastroService {
       .catch(this.catch);
   }
 
-  getRestaurantes(): Promise<Restaurante[]> {
-    return this.http.get(this.taURL + "/restaurant")
-             .toPromise()
-             .then(res => res.json() as Restaurante[])
-             .catch(this.catch);
-  }
-
-  updateRestaurant(restaurante: Restaurante): Promise<Restaurante> {
+  update(restaurante: Restaurante): Promise<Restaurante> {
     return this.http.put(this.taURL + "/restaurant",JSON.stringify(restaurante), {headers: this.headers})
       .toPromise()
       .then(res => {
@@ -36,6 +29,19 @@ export class CadastroService {
       .catch(this.catch);
   }
 
+  getRestaurantes(): Promise<Restaurante[]> {
+    return this.http.get(this.taURL + "/restaurant")
+             .toPromise()
+             .then(res => res.json() as Restaurante[])
+             .catch(this.catch);
+  }
+
+  delete(cnpj: String): Promise<Restaurante> {
+    console.log(cnpj);
+    return this.http.delete(this.taURL + `/restaurant/${cnpj}`)
+      .toPromise()
+      .catch(this.catch);
+  }
 
   private catch(erro: any): Promise<any>{
     console.error('Oops, something went wrong',erro);

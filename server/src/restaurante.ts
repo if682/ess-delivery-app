@@ -13,6 +13,8 @@ export class Restaurante {
   email: string;
   senha: string;
   descricao: string;
+  metodo_pagamento: any[];
+
 
   constructor(restaurante: Restaurante) {
     this.nome_restaurante = restaurante.nome_restaurante;
@@ -29,6 +31,9 @@ export class Restaurante {
     this.email = restaurante.email;
     this.senha = restaurante.senha;
     this.descricao = restaurante.descricao;
+    this.metodo_pagamento = restaurante.metodo_pagamento;
+
+
   }
 
   update(restaurante: Restaurante): void {
@@ -46,5 +51,9 @@ export class Restaurante {
     this.email = restaurante.email;
     this.senha = restaurante.senha;
     this.descricao = restaurante.descricao;
+    this.metodo_pagamento = restaurante.metodo_pagamento;
+
+
+    
   }
 }

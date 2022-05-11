@@ -1,6 +1,45 @@
-<main role="main" class="container">
+<main onload=getRestaurantes() role="main" class="container">
     <div class=" jumbotron">
-        <h1>home</h1>
-        <p class="lead">text</p>
+        <div class="container">
+          </div> 
+        <div class="card w-100 my-5">
+            <div class="card-body">
+                <h1 class="card-title text-center">Lista de Restaurantes</h1>
+                <div class="restaurants-list-header">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">🔎</span>
+                      </div>
+                      <input type="search" id="search-box" #searchBox class="form-control" (input)="getRestaurantsByName(searchBox.value)" placeholder="Pesquisar..." id="pesquisa" />
+                    </div>
+                  </div>
+                    <button class="btn btn-success mb-4 float-ent" routerLink="/cadastro">Cadastrar Novo</button>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CEP</th>
+                            <th>Cidade</th>
+                            <th>Hora de abertura</th>
+                            <th>Hora de fechamento</th>
+                            <th>Endereço</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let rest of resultadoFilter">
+                            <td id="rest-{{rest.cnpj}}">{{rest.nome_restaurante}}</td>
+                            <td>{{rest.cep}}</td>
+                            <td>{{rest.cidade}}</td>
+                            <td>{{rest.horario_inicio}}</td>
+                            <td>{{rest.horario_fim}}</td>
+                            <td>{{rest.rua}}, nº {{rest.numero}}, {{ rest.complemento }}</td>
+                         </tr>
+                        
+                    </tbody>            
+                </table>
+            </div>
+        </div>
     </div>
 </main>
