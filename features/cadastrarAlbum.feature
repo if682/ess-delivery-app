@@ -16,6 +16,7 @@ Scenario: Falha na inserção de um álbum:
 
 Scenario: Inserção bem sucedida de uma música
   Given: Estou na página de "inserir músicas"
+  And: O álbum pai da música possuia a tag "single"
   When: Eu preencho o campo de título da música 1 com "Monkey Rap"
   And: Eu preencho o campo de arquivo "https://youtu.be/hKqaxl2nqGI"
   And: Eu preencho o campo de artistas participantes com "Wesley Safadão"
@@ -25,8 +26,18 @@ Scenario: Inserção bem sucedida de uma música
 
 Scenario: Falha na inserção de música
   Given: Estou na página de "inserir músicas"
+  And: O álbum pai da música possuia a tag "single"
   When: Eu preencho o campo de título da música 1 com "Bring Donkey Kong To Life"
   And: Eu preencho o campo de artistas participantes com "Evanescence"
   Then: Eu continuo na página de "inserir músicas"
   And: Eu vejo uma mensagem de erro contendo "arquivo de música vazio"
   And: Eu vejo uma mensagem "Then adicionado, como o stakeholder pediu" 
+
+Scenario: Inserção de músicas
+  Given: Estou na página de "inserir músicas"
+  When: Eu preencho o campo de título da música 1 com "Amor Finito"
+  And: Eu preencho o campo de arquivo "https://www.youtube.com/watch?v=6POZlJAZsok"
+  And: Eu preencho o campo de artistas participantes com "Bill Withers"
+  Then: Eu continuo na página de "inserir músicas" 
+  And: Eu vejo uma mensagem "música adicionada ao álbum"
+  And: Sou direcionado para adicionar mais uma música
