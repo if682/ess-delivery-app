@@ -28,4 +28,5 @@ Scenario: Falha na inserção de música
   When: Eu preencho o campo de título da música 1 com "Bring Donkey Kong To Life"
   And: Eu preencho o campo de artistas participantes com "Evanescence"
   Then: Eu continuo na página de "inserir músicas"
-  And: Eu vejo uma mensagem de erro contendo "arquivo de música vazio" 
+  And: Eu vejo uma mensagem de erro contendo "arquivo de música vazio"
+  And: Eu vejo uma mensagem "Then adicionado, como o stakeholder pediu" 
