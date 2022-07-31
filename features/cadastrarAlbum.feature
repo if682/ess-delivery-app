@@ -1,7 +1,7 @@
 Feature: Criar álbum
-As um artista
-I want to preencher as informações sobre um novo álbum
-So that possa ser lançado meu novo álbum no sistema
+  As um artista
+  I want to preencher as informações sobre um novo álbum
+  So that possa ser lançado meu novo álbum no sistema
 
 Scenario: Inserção bem sucedida de um álbum:
   Given: Estou logado como artista "Dua Lipa"
@@ -13,6 +13,7 @@ Scenario: Inserção bem sucedida de um álbum:
 
 Scenario: Falha na inserção de um álbum:
   Given: Estou logado como artista "Dua Lipa"
+  And: Existe um álbum de nome "Future Nostalgia"
   When: Eu preencho o campo de nome do álbum com "Future Nostalgia"
   And: Eu preencho o campo de foto do álbum com "https://i.scdn.co/image/ab67616d00001e02ef12a4e8cdb297684e197cc4"
   Then: Eu continuo na página de "inserção de álbum"
@@ -21,6 +22,7 @@ Scenario: Falha na inserção de um álbum:
 Scenario: Inserção bem sucedida de uma música
   Given: Estou na página de "inserir músicas"
   And: O álbum pai da música possuia a tag "single"
+  And: Eu preencho o campo de artistas participantes com "Wesley Safadão"
   When: Eu preencho o campo de título da música 1 com "Monkey Rap"
   And: Eu preencho o campo de arquivo "https://youtu.be/hKqaxl2nqGI"
   And: Eu preencho o campo de artistas participantes com "Wesley Safadão"
@@ -30,6 +32,7 @@ Scenario: Inserção bem sucedida de uma música
 
 Scenario: Falha na inserção de música
   Given: Estou na página de "inserir músicas"
+  And: existe um artista no sistema com o nome "Evanescence"
   And: O álbum pai da música possuia a tag "single"
   When: Eu preencho o campo de título da música 1 com "Bring Donkey Kong To Life"
   And: Eu preencho o campo de artistas participantes com "Evanescence"
@@ -39,6 +42,7 @@ Scenario: Falha na inserção de música
 
 Scenario: Inserção de músicas
   Given: Estou na página de "inserir músicas"
+  And: existe um artista no sistema com o nome "Bill Withers"
   When: Eu preencho o campo de título da música 1 com "Amor Finito"
   And: Eu preencho o campo de arquivo "https://www.youtube.com/watch?v=6POZlJAZsok"
   And: Eu preencho o campo de artistas participantes com "Bill Withers"
