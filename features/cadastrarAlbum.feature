@@ -1,3 +1,7 @@
+Feature: Criar álbum
+As um artista
+I want to preencher as informações sobre um novo álbum
+So that possa ser lançado meu novo álbum no sistema
 
 Scenario: Inserção bem sucedida de um álbum:
   Given: Estou logado como artista "Dua Lipa"
