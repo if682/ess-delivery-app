@@ -41,3 +41,11 @@ Scenario: Inserção de músicas
   Then: Eu continuo na página de "inserir músicas" 
   And: Eu vejo uma mensagem "música adicionada ao álbum"
   And: Sou direcionado para adicionar mais uma música
+
+Scenario: Falha na inserção de música
+  Given: Estou na página de "inserir músicas"
+  When: Eu preencho o campo de título da música 1 com "Banjo Boy"
+  And: Eu preencho o campo de arquivo "https://youtu.be/2C3m5Lno_20"
+  And: Eu preencho o campo de artistas participantes com "Aduleibe"
+  Then: Eu continuo na página de "inserir músicas"
+  And: Eu vejo uma mensagem de erro contendo "Artista participante não está cadastrado" 
