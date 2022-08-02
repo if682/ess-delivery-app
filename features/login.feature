@@ -22,7 +22,7 @@ Feature: Login no sistema
     Then o login não é realizado no sistema
     And eu vejo uma mensagem na tela informando "Credenciais inválidas"
 
-  Scenario: Login mal sucedido por email inválido
+  Scenario: Login mal sucedido por email incorreto
     Given estou na tela de "login"
     And existe um usuário com o campo "EMAIL" com valor "email@test.com" e o campo "SENHA" com valor "123456"
     When eu preencho no campo "email" o valor "emailincorreto@test.com"
@@ -45,4 +45,10 @@ Feature: Login no sistema
     Then o login não é realizado no sistema
     And eu vejo uma mensagem na tela informando "Preencha todos os campos"
 
-# mudança na branch principal
+  Scenario: Login mal sucedido por email inválido
+    Given estou na tela de "login"
+    When eu preencho no campo "email" o valor "emailincorreto"
+    And eu preencho no campo "senha" o valor "123456"
+    And eu seleciono a opção "Entrar"
+    Then o login não é realizado no sistema
+    And eu vejo uma mensagem na tela informando "Insira um email válido"
