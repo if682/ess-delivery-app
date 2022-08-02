@@ -52,8 +52,3 @@ Feature: Login no sistema
     And eu seleciono a opção "Entrar"
     Then o login não é realizado no sistema
     And eu vejo uma mensagem na tela informando "Insira um email válido"
-
-
-# nice commit 1 na main
-# nice commit 1 em desenvolvimento
-# nice commit 2 em desenvolvimento
