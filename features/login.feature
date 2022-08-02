@@ -56,3 +56,4 @@ Feature: Login no sistema
 
 # nice commit 1 na main
 # nice commit 1 em desenvolvimento
+# nice commit 2 em desenvolvimento
