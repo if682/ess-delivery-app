@@ -4,7 +4,7 @@ Feature: Adding artists to the database and users
     So that I can reach more people
 
     Scenario: Adding a new artist
-        Given I go to the register page
+        Given I am at the register page
         When I fill in "Nome" with "Juninho da Silva Sauro"
         And I fill in "Email" with "emailvalido@gmail.com"
         And I fill in "País" with "Brasil"
