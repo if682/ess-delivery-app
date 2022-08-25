@@ -35,3 +35,13 @@ Scenario: Falha na edição de album por salvar album sem musica
   And Eu pressiono o botão de "salvar"  
   Then Eu continuo na pagina "editar álbum"
   And Vejo uma mensagem de erro contendo "Album vazio. Adicione musicas ao álbum"
+
+Scenario: Falha na edição de album por salvar album sem foto
+  Given Estou logado como artista "Juninho da Silva"
+  And Estou na pagina do album "A feiura da fruta"
+  And Pressiono o botão de "editar"
+  And Sou redirecionado para a pagina "editar album"
+  When Eu removo a foto no campo "foto do album"
+  And Eu pressiono o botão de "salvar"  
+  Then Eu continuo na pagina "editar álbum"
+  And Vejo uma mensagem de erro contendo "Album sem foto. Adicione uma foto ao álbum"
