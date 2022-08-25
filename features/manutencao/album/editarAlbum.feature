@@ -38,7 +38,7 @@ Scenario: Falha na edição de album por salvar album sem musica
 
 Scenario: Falha na edição de album por salvar album sem foto
   Given Estou logado como artista "Juninho da Silva"
-  And Estou na pagina do album "A feiura da fruta"
+  And Estou na pagina do album "Feira da fruta"
   And Pressiono o botão de "editar"
   And Sou redirecionado para a pagina "editar album"
   When Eu removo a foto no campo "foto do album"
