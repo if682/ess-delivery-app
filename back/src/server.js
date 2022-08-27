@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import { artistsRouter } from './controllers/artists.js';
+import { albumsRouter } from './controllers/albums.js';
+import { songsRouter } from './controllers/songs.js';
+import { loginRouter } from './controllers/login.js';
 
 // const { v4: uuid } = require('uuid');
 
@@ -14,5 +17,8 @@ app.get("/", (request, response) => {
 });
 
 app.use('/artists', artistsRouter);
+app.use('/albums', albumsRouter);
+app.use('/songs', songsRouter);
+app.use('/login', loginRouter);
 
 export default app;
