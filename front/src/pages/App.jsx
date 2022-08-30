@@ -1,19 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Artist from "../artist";
-import Login from "../login";
-import SignIn from "../signIn";
-import EditArtist from "../editArtist";
-import Album from "../album";
-import CreateAlbum from "../createAlbum";
-import EditAlbum from "../editAlbum";
-import CreateMusic from "../createMusic";
+import Artist from "../Artist/artist";
+import Login from "../Login/login";
+import Register from "../Register/register";
+import EditArtist from "../EditArtist/editArtist";
+import Album from "../Album/album";
+import CreateAlbum from "../CreateAlbum/createAlbum";
+import EditAlbum from "../EditAlbum/editAlbum";
+import CreateMusic from "../CreateMusic/createMusic";
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
               <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/signIn" element={<SignIn />} />   
+                <Route path="/register" element={<Register />} />   
                 <Route path="/login" element={<Login />} />
                 <Route path="/artist" element={<Artist />} />
                 <Route path="/editArtist" element={<EditArtist />} />
