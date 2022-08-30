@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 import { Artist } from '../models/artist.js';
 
@@ -21,9 +21,9 @@ loginRouter.post('', async (request, response) => {
 
   artist.password = undefined;
 
-  const token = jwt.sign({id: artist.id}, process.env.JWT_HASH, {
+  const token = jwt.sign({ id: artist.id }, process.env.JWT_HASH_SECRET, {
     expiresIn: 86400
-  })
+  });
 
   response.send({ artist, token });
 });
