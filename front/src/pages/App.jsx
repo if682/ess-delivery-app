@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Artist from "../Artist/artist";
-import Login from "../Login/login";
-import Register from "../Register/register";
-import EditArtist from "../EditArtist/editArtist";
-import Album from "../Album/album";
-import CreateAlbum from "../CreateAlbum/createAlbum";
-import EditAlbum from "../EditAlbum/editAlbum";
-import CreateMusic from "../CreateMusic/createMusic";
+import Artist from "./Artist";
+import Login from "./Login";
+import Register from "./Register";
+import EditArtist from "./EditArtist";
+import Album from "./Album";
+import CreateAlbum from "./CreateAlbum";
+import EditAlbum from "./EditAlbum";
+import CreateMusic from "./CreateMusic";
 function App() {
   return (
     <div className="App">
