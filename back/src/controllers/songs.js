@@ -14,6 +14,7 @@ songsRouter.post('',async (request, response) => {
             if(!participations||await Artist.findOne({ 'name' : participations })){
                 const song = await Song.create(request.body);
                 return response.send({ song });
+                
             }
             else return response.status(400).send({ error: 'Featuring artist does not exist'});
             
