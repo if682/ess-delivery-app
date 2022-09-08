@@ -16,6 +16,16 @@ const SongSchema = new mongoose.Schema({
   explicit: {
     type: Boolean
   },
+  artist: {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'Artist',
+    require : true,
+  },
+  album : {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'Album',
+    require : true,
+  },
   createdAt: {
     type: Date,
     default: Date.now()
