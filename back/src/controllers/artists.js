@@ -1,7 +1,6 @@
 import express from 'express';
 import { authorizationMiddleware } from '../middlewares/authorization.js';
 import { Artist } from '../models/artist.js';
-import { Song } from '../models/song.js';
 
 export const artistsRouter = express.Router();
 
@@ -14,7 +13,6 @@ artistsRouter.post('', async (request, response) => {
       return response.status(400).send({ error: 'User already exists' });
 
     const artist = await Artist.create(request.body);
-
     artist.password = undefined;
 
     return response.status(201).send({ artist });
@@ -26,7 +24,7 @@ artistsRouter.post('', async (request, response) => {
 // Get artist information
 artistsRouter.get('/:artistId', async (request, response) => {
   try{
-    const artist = await Artist.find({"_id": request.params.artistId});
+    const artist = await Artist.findOne({"_id": request.params.artistId});
     if (artist) response.send(artist);
     else throw "Artist doesn't exist in the database";
   }catch(error){
