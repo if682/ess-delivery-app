@@ -1,4 +1,5 @@
 import express from 'express';
+import { authorizationMiddleware } from '../middlewares/authorization.js';
 import { Artist } from '../models/artist.js';
 import { Song } from '../models/song.js';
 
@@ -23,9 +24,9 @@ artistsRouter.post('', async (request, response) => {
 });
 
 // Get artist information
-artistsRouter.get('/:name', async (request, response) => {
+artistsRouter.get('/:artistId', async (request, response) => {
   try{
-    const artist = await Artist.find({"name": request.params.name});
+    const artist = await Artist.find({"_id": request.params.artistId});
     if (artist) response.send(artist);
     else throw "Artist doesn't exist in the database";
   }catch(error){
@@ -33,31 +34,16 @@ artistsRouter.get('/:name', async (request, response) => {
   }
 })
 
-// Get artist musics
-artistsRouter.get('/:name/songs', async (request, response) => {
-  try{
-    const artist = await Artist.find({"name": request.params.name});
-    const songs = await Song.find({"participations": request.params.name});
-    if (artist && songs) response.send(songs);
-    else if (!artist) throw "Artist doesn't exist in the database";
-    else if (!songs) response.send({});
-  }catch(error){
-    return response.status(404).json({message: "Could not find any music with the artist", error});
-  }
-})
-
 // Edit artist informations
-artistsRouter.put('/:name', async (request, response) => {
+artistsRouter.put('/', authorizationMiddleware, async (request, response) => {
   try{
-    if (await Artist.findOne({"name": request.params.name})) {
-      // Criar uma nova tabela para atualizar
-      var new_user = {};
-      for (let values in request.body) { 
-        new_user[values] = request.body[values];
-      }
-      //
-      await Artist.updateOne({"name": request.params.name}, new_user);
-      const artist =  await Artist.find(new_user);
+    if (await Artist.findOne({"_id": request.userId})) {
+      const body = request.body;
+      delete body.password;
+      delete body.createdAt;
+      delete body._id;
+      await Artist.updateOne({"_id": request.userId}, body);
+      const artist =  await Artist.find({"_id": request.userId});
       
       return response.send(artist);
     }
