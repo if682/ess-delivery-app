@@ -22,9 +22,8 @@ artistsRouter.post('', async (request, response) => {
 });
 
 // Get artist information
-artistsRouter.get('/:artistId?', async (request, response) => {
+artistsRouter.get('/:artistId', async (request, response) => {
   try{
-    if (!request.params.artistId) return response.status(400).json({message: "ArtistId is missing."});
     const artist = await Artist.findOne({"_id": request.params.artistId});
     if (artist) return response.send(artist);
     else return response.status(404).json({message: "Could not find the artist"});
