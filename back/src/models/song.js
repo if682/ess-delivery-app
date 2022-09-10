@@ -11,10 +11,20 @@ const SongSchema = new mongoose.Schema({
     required: true,
   },
   participations: {
-    data: String,
+    type: String,
   },
   explicit: {
     type: Boolean
+  },
+  artist: {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'Artist',
+    require : true,
+  },
+  album : {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'Album',
+    require : true,
   },
   createdAt: {
     type: Date,
