@@ -22,13 +22,14 @@ artistsRouter.post('', async (request, response) => {
 });
 
 // Get artist information
-artistsRouter.get('/:artistId', async (request, response) => {
+artistsRouter.get('/:artistId?', async (request, response) => {
   try{
+    if (!request.params.artistId) return response.status(400).json({message: "ArtistId is missing."});
     const artist = await Artist.findOne({"_id": request.params.artistId});
-    if (artist) response.send(artist);
-    else throw "Artist doesn't exist in the database";
+    if (artist) return response.send(artist);
+    else return response.status(404).json({message: "Could not find the artist"});
   }catch(error){
-    return response.status(404).json({message: "Could not find the artist", error});
+    return response.status(500).json({message: "Something went wrong with the server", error});
   }
 })
 
@@ -41,13 +42,12 @@ artistsRouter.put('/', authorizationMiddleware, async (request, response) => {
       delete body.createdAt;
       delete body._id;
       await Artist.updateOne({"_id": request.userId}, body);
-      const artist =  await Artist.find({"_id": request.userId});
+      const artist =  await Artist.findOne({"_id": request.userId});
       
       return response.send(artist);
     }
-    else throw "Artist doesn't exist in the database";
+    else return response.status(404).json({message: "Could not find the artist"});
   }catch(error){
-    console.log(error);
-    return response.status(404).json({message: "Could not find the artist", error});
+    return response.status(500).json({message: "Something went wrong with the server", error});
   }
 })
