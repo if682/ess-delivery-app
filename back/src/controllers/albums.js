@@ -5,11 +5,16 @@ import { Song } from '../models/song.js';
 export const albumsRouter = express.Router();
 
 albumsRouter.post('',async (request, response) => {
-    const {name,image,year,createdAt,songs} = request.body;
-    try {   
-        if(await Album.findOne({ name })) return response.status(400).send({ error: 'Album already exists' });
-        //if(image&&!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(image)) return response.status(400).send({ error: 'Image format is not valid' });
-        const album = await Album.create({name, image, year, createdAt, artist : request.userId});
+    const {name,image,year,songs} = request.body;
+    try {
+        const userId = request.userId;
+        const same = await Album.findOne({ name });   
+        if(same && same.artist == userId) return response.status(400).send({ error: 'Album already exists' });
+        if(!songs.length) return response.status(400).send({ error: 'A album needs a song' });
+        /*if(!songs.every((song)=>{
+            return song.name && song.url;
+        })) return response.status(400).send({ error: 'A song is missing required an argument' });*/
+        const album = await Album.create({name, image, year, artist : userId});
         await Promise.all(songs.map(async song =>{
             const albumSong = new Song({...song, album: album._id}); 
             
@@ -21,7 +26,9 @@ albumsRouter.post('',async (request, response) => {
         await album.save();
 
         return response.send({ album });
+        //return response.send(`po`);
     } catch (error) {
         return response.status(400).send({ error: 'Register failed' });
+        
     }
 });
