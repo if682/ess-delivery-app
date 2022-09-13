@@ -28,9 +28,8 @@ albumsRouter.post('',async (request, response) => {
         await album.save();
 
         return response.send({ album });
-        //return response.send(`po`);
     } catch (error) {
-        return response.status(400).send({ error: 'Register failed' });
+        return response.status(500).send({ error});
         
     }
 });
