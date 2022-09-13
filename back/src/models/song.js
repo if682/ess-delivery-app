@@ -19,12 +19,12 @@ const SongSchema = new mongoose.Schema({
   artist: {
     type : mongoose.Schema.Types.ObjectId,
     ref : 'Artist',
-    require : true,
+    required : true,
   },
   album : {
     type : mongoose.Schema.Types.ObjectId,
     ref : 'Album',
-    require : true,
+    required : true,
   },
   createdAt: {
     type: Date,
