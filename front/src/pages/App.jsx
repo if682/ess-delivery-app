@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Redirect, Navigate } from "react-router-dom";
 import Artist from "./Artist";
 import Login from "./Login";
 import Register from "./Register";
@@ -14,7 +14,6 @@ function App() {
     <AppProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/artist" element={<Artist />} />
@@ -23,6 +22,10 @@ function App() {
           <Route path="/createAlbum" element={<CreateAlbum />} />
           <Route path="/editAlbum" element={<EditAlbum />} />
           <Route path="/createMusic" element={<CreateMusic />} />
+          <Route
+            path="*"
+            element={<Navigate to="/login" replace />}
+          />
         </Routes>
       </BrowserRouter>
     </AppProvider>
