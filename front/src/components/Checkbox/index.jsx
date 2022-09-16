@@ -1,18 +1,18 @@
 import { useState } from "react";
 import './styles.css'
-const Checkbox = ({ label, checked}) => {
-    const defaultChecked = checked ? checked : true;
+const Checkbox = ({ label, checked,...props}) => {
+    const defaultChecked = checked ? checked : false;
     const [isChecked, setIsChecked] = useState(defaultChecked);
     return (
-        <label className="checkbox-wrapper">
-            <div className="checkbox">
+        <label className="Checkbox">
+            <div className="Checkbox-Box">
                <input
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => setIsChecked((prev) => !prev)}
                 /> 
             </div>        
-            <span className="label">{label}</span>
+            <span className="Checkbox-Label">{label}</span>
         </label>
     );
   };

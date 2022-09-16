@@ -1,4 +1,4 @@
-.checkbox-wrapper{
+.Checkbox{
     display: flex;
     flex-direction: row;
     width: fit-content;
@@ -21,7 +21,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
     display: block;
   }
-.checkbox{
+.Checkbox-Box{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,10 +32,10 @@ input[type="checkbox"]:checked {
     border-radius: 2px;
     position: relative;
 }
-.checkbox-wrapper:hover .checkbox{    
+.Checkbox:hover .Checkbox-Box{    
     box-shadow: 0 0 10px var(--Primary_Light);
 }
-.label{
+.Checkbox-Label{
     margin-left: 8px;
     color: var(--White);
     width: 32px;
@@ -45,4 +45,3 @@ input[type="checkbox"]:checked {
     font-size: 12px;
     line-height: 18px;
 }
-
