@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './styles.css'
-const Checkbox = ({ label, checked,...props}) => {
+const Checkbox = ({ children, checked,...props}) => {
     const defaultChecked = checked ? checked : false;
     const [isChecked, setIsChecked] = useState(defaultChecked);
     return (
@@ -10,9 +10,10 @@ const Checkbox = ({ label, checked,...props}) => {
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => setIsChecked((prev) => !prev)}
+                    {...props}
                 /> 
             </div>        
-            <span className="Checkbox-Label">{label}</span>
+            <span className="Checkbox-Label">{children}</span>
         </label>
     );
   };
