@@ -1,8 +1,10 @@
+import { useLogin } from '../../contexts/Login';
 
 const Artist = () => {
-    return(
+    const { userData } = useLogin();
+    return (
         <div>
-            Artist
+            {userData?.name ?? "Carregando!"}
         </div>
     );
 };
