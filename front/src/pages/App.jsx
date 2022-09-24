@@ -11,8 +11,8 @@ import AppProvider from '../contexts/index.jsx';
 
 function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AppProvider>
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -27,8 +27,8 @@ function App() {
             element={<Navigate to="/login" replace />}
           />
         </Routes>
-      </BrowserRouter>
-    </AppProvider>
+      </AppProvider>
+    </BrowserRouter>
   );
 }
 
