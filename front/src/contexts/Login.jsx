@@ -14,17 +14,18 @@ export const LoginProvider = ({ children }) => {
     const validateLogin = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (token) {
-          const response = await api.post('/auth/validate-token', undefined, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-          const { userId } = response.data;
-          setLoggedUserId(userId);
-        }
+        if (!token) throw new Error("Sai daqui meo");
+        const response = await api.post('/auth/validate-token', undefined, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const { userId } = response.data;
+        setLoggedUserId(userId);
+
       } catch (error) {
         localStorage.clear();
+        setLoggedUserId("");
         navigate("/login");
       }
     };
