@@ -7,27 +7,22 @@ import { api, setAuthToken } from '../services/api';
 const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  const [userData, setUserData] = useState();
+  const [loggedUserId, setLoggedUserId] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const validateLogin = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!token) throw new Error("Sai daqui meo");
-        const response = await api.post('/auth/validate-token', undefined, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { userId } = response.data;
-        try {
-          const reponse2 = await api.get(`/artists/${userId}`);
-          setUserData(reponse2.data);
-        } catch (error) {
-          alert('Erro ao pegar dados de usuário');
+        if (token) {
+          const response = await api.post('/auth/validate-token', undefined, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          const { userId } = response.data;
+          setLoggedUserId(userId);
         }
-
       } catch (error) {
         localStorage.clear();
         navigate("/login");
@@ -41,8 +36,8 @@ export const LoginProvider = ({ children }) => {
       const body = { email, password };
       const response = await api.post('/auth/login', body);
       const { artist, token } = response.data;
-      setUserData(artist);
       localStorage.setItem('token', token);
+      setLoggedUserId(artist._id);
       setAuthToken(token);
       alert("Login bem sucedido");
       navigate("/artist");
@@ -52,10 +47,10 @@ export const LoginProvider = ({ children }) => {
   }, [navigate]);
 
   const value = useMemo(() => ({
-    userData,
-    setUserData,
+    loggedUserId,
+    setLoggedUserId,
     handleLogin
-  }), [handleLogin, userData]);
+  }), [handleLogin, loggedUserId]);
 
   return (
     <LoginContext.Provider value={value}>
