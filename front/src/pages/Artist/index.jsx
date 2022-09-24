@@ -3,7 +3,7 @@ import { useLogin } from '../../contexts/Login';
 import { api } from '../../services/api';
 
 const Artist = () => {
-  const { loggedUserId } = useLogin();
+  const { loggedUserId, handleLogout } = useLogin();
   const [userData, setUserData] = useState();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Artist = () => {
   return (
     <div>
       {userData.name}
+      <button onClick={() => handleLogout()}>sair</button>
     </div>
   );
 };

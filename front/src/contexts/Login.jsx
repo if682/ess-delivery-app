@@ -10,11 +10,17 @@ export const LoginProvider = ({ children }) => {
   const [loggedUserId, setLoggedUserId] = useState("");
   const navigate = useNavigate();
 
+  const handleLogout = useCallback(() => {
+    localStorage.clear();
+    setLoggedUserId("");
+    navigate("/login");
+  }, [navigate]);
+
   useEffect(() => {
     const validateLogin = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!token) throw new Error("Sai daqui meo");
+        if (!token) handleLogout();
         const response = await api.post('/auth/validate-token', undefined, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -24,13 +30,11 @@ export const LoginProvider = ({ children }) => {
         setLoggedUserId(userId);
 
       } catch (error) {
-        localStorage.clear();
-        setLoggedUserId("");
-        navigate("/login");
+        handleLogout();
       }
     };
     validateLogin();
-  }, [navigate]);
+  }, [handleLogout, navigate]);
 
   const handleLogin = useCallback(async (email, password) => {
     try {
@@ -50,8 +54,9 @@ export const LoginProvider = ({ children }) => {
   const value = useMemo(() => ({
     loggedUserId,
     setLoggedUserId,
-    handleLogin
-  }), [handleLogin, loggedUserId]);
+    handleLogin,
+    handleLogout
+  }), [handleLogin, handleLogout, loggedUserId]);
 
   return (
     <LoginContext.Provider value={value}>
