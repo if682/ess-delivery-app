@@ -21,6 +21,6 @@
     color: var(--White);
 }
 .InputBox::placeholder{
-    color: var(--White);
+    color: var(--Gray_Light);
 }
 
