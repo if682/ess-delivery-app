@@ -1,0 +1,24 @@
+.CreateMusic{
+    background-color: var(--Gray_Dark);
+    display: flex;
+    flex-direction: column;
+    height: 1080px;
+    width: 100%;
+    color: var(--White);
+    align-items: center;
+}
+.title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    width: 476px;
+    height: 60px;
+    margin-top: 140px;
+    margin-bottom: 80px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
