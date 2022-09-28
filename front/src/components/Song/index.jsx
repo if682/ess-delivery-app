@@ -1,4 +1,5 @@
 import './styles.css'
+import Icon from '../Icon';
 const Song = ({name,duration,participations,number,handleDelete,handlePlay,...props}) => {
     return(
         <div className='Song-Wrapper' onClick={handlePlay}>
@@ -7,11 +8,7 @@ const Song = ({name,duration,participations,number,handleDelete,handlePlay,...pr
             <label className='SongParticipations'>{participations} </label>
             <label className='SongDuration'>{duration} </label>
             {handleDelete&&!handlePlay?
-            <div className='DeleteSong-Wrapper' onClick={handleDelete}{...props}>
-                <div className='DeleteSong-Circle'>
-                    <div className='DeleteSong-Bar'></div>
-                </div>
-            </div>:""}
+            <Icon iconType="Remove" className="Remove" onClick={handleDelete}/>:""}
         </div>
     );
 };
