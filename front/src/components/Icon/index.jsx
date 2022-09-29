@@ -4,9 +4,9 @@ import { ReactComponent as ImgBox } from "../../assets/Img_box_light.svg";
 import { ReactComponent as Remove } from "../../assets/Remove_light.svg";
 import { ReactComponent as SignOut } from "../../assets/Sign_out.svg";
 import './styles.css'
-const Icon = ({iconType,...props}) =>{
+const Icon = ({iconType, className, ...props}) =>{
     return (
-        <div className="Icon" {...props}>
+        <button className={`Icon ${className}`} {...props}>
             {
                 (iconType==="Edit")?<Edit/>
                 :(iconType==="Remove")?<Remove/>
@@ -15,7 +15,7 @@ const Icon = ({iconType,...props}) =>{
                 :""
                 
             }   
-        </div>
+        </button>
     );
 };
 
