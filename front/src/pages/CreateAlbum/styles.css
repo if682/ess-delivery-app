@@ -1,5 +1,46 @@
-.test{
+.CreateAlbum{
+    background-color: var(--Gray_Dark);
+    display: flex;
+    flex-direction: column;
+    height: 1080px;
     width: 100%;
-    background-color: var(--Black);
     color: var(--White);
+}
+.CreateAlbum-Body{
+    display: flex; 
+    align-items: center;
+}
+.title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    width: 476px;
+    height: 60px;
+    margin-top: 140px;
+    margin-bottom: 80px;
+    align-self: center;
+}
+.Form-Album{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+#SaveAlbum{
+    margin-left: auto;
+    justify-self:flex-end;
+}
+#ImgAlbum{
+    margin: auto;
+}
+.AddSongs-Button{
+    color: var(--Primary);
+    font-size: 20px;
+    cursor: pointer;
+    justify-self: center;
+    margin: auto;
+}
+.AddSongs-Button:hover{
+    color: var(--Primary_Light);
 }

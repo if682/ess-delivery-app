@@ -26,9 +26,11 @@ const CreateMusic = () => {
     }
     const handleSubmit = () => {
         if(name&&link){
-            
+            alert("ayooo");
         }
-
+        else{
+            alert("*Campo obrigatório não pode ser deixado vazio*");
+        }
     }
     return(
         <div className="CreateMusic">
@@ -38,7 +40,7 @@ const CreateMusic = () => {
             <Input placeholder="Link" id="link" onChange = {(e) => handleInputChange(e)}>Link da música*</Input>
             <Input placeholder="Participação" id="participation" onChange = {(e) => handleInputChange(e)}>Participação</Input>
             <Checkbox id="explicit" >Explícito</Checkbox>
-            <Button type="submit" onClick={()=>handleSubmit()}>Salvar</Button>
+            <Button onClick={()=>{handleSubmit()}}>Salvar</Button>
             </form>
 
         </div>
