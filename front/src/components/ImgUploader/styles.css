@@ -1,0 +1,37 @@
+.ImgUploader{
+    width: 120px;
+    height: 120px;
+    background-color: var(--Gray);
+    border: 4px dashed var(--Gray_Light);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.ImgUploader:hover{
+    border: 4px dashed var(--Primary_Light);
+}
+.Uploader-Placeholder{
+    width: 36px;
+    height: 36px;
+}
+.Uploader-Label{
+    width: 58px;
+    height: 24px;
+    color: var(--White);
+    font-size: 16px;
+    align-items: center;
+    text-align: center;
+}
+
+.fileSelector{
+    display: none;
+}
+.FileSelector-Clicker{
+    position:absolute;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+}

@@ -5,6 +5,17 @@
   box-sizing: border-box;
 }
 
+:root{
+  --Black : #000000;
+  --Gray_Dark : #121212;
+  --Gray : #333333;
+  --Primary_Light : #0d99ff;
+  --Primary : #1e60d7;
+  --White : #ffffff;
+  --Gray_Light : #757575;
+  --Red : #e74c3c;
+}
+
 body {
   font-family: Poppins;
   -webkit-font-smoothing: antialiased !important;

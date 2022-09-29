@@ -1,0 +1,24 @@
+.Album{
+    display: flex;
+    flex-direction: column;
+    width: 217px;
+    height: 275px;
+}
+.Album:hover .AlbumImg{
+    
+    border: solid 5px var(--Primary_Light);
+}
+.AlbumImg{
+    background-color: var(--Gray_Light);
+    width: 217px;
+    height: 213px;
+}
+.Album-Label{
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--White);
+}
