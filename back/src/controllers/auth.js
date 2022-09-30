@@ -3,10 +3,11 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import { Artist } from '../models/artist.js';
+import { authorizationMiddleware } from '../middlewares/authorization.js';
 
-export const loginRouter = express.Router();
+export const authRouter = express.Router();
 
-loginRouter.post('', async (request, response) => {
+authRouter.post('/login', async (request, response) => {
   const { email, password } = request.body;
 
   const artist = await Artist.findOne({ email }).select('+password');
@@ -26,4 +27,8 @@ loginRouter.post('', async (request, response) => {
   });
 
   response.send({ artist, token });
+});
+
+authRouter.post('/validate-token', authorizationMiddleware, (request, response) => {
+  return response.json({ userId: request.userId });
 });

@@ -1,0 +1,55 @@
+.Song-Wrapper{
+    display:flex;
+    width: 100%;
+    height: 40px;
+    border: 3px solid var(--Primary);
+    border-radius: 4px;
+    color: var(--White);
+    align-items: center;
+    gap: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+    justify-items: flex-end;
+}
+.Song-Wrapper:hover{
+    border-color: var(--Primary_Light);
+}
+.SongNumber{
+    justify-self: flex-start;
+}
+.SongName{
+    justify-self: flex-start;
+    margin-right: auto;
+}
+.SongParticipations{
+    margin-left: auto;
+}
+.Remove{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+.Remove:hover circle{
+    stroke: var(--Red);
+}
+.Remove:hover path{
+    stroke: var(--Red);
+}
+.DeleteSong-Circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--Gray_Light);
+    border-radius: 8px;
+}
+.DeleteSong-Bar{
+    position: absolute;
+    width: 9px;
+    border: 1px solid var(--Gray_Light);
+}
+

@@ -1,0 +1,44 @@
+.AddAlbum{
+    display: flex;
+    flex-direction: column;
+    width: 217px;
+    height: 275px;
+}
+.Button-AddAlbum{
+    display: flex;
+    width: 217px;
+    height: 213px;
+    background: none;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px dashed var(--White);
+    border-radius: 4px;
+}
+.AddAlbum:hover .Button-AddAlbum{
+    border: 2px dashed var(--Primary_Light);
+    border-radius: 4px;
+}
+.AddAlbum:hover .Cross{
+    color: var(--Primary_Light);
+}
+.Cross{
+    width: 28px;
+    height: 48px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: var(--White);
+}
+.AddAlbum-Label{
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--White);
+}

@@ -1,0 +1,26 @@
+.LabelInput{
+    color: var(--White);
+    font-size: 12px;
+    margin-bottom: 16px;
+
+}
+.Input-Wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 416px;
+    height: 69px;
+    
+}
+.InputBox{
+    width: 416px;
+    height: 40px;
+    border: 0px;
+    border-radius: 4px;
+    background-color: var(--Gray);
+    color: var(--White);
+}
+.InputBox::placeholder{
+    color: var(--Gray_Light);
+}
+
