@@ -1,6 +1,6 @@
 import {React, useState} from "react";
+import { ReactComponent as ImgBox } from "../../assets/Img_box_light.svg";
 import './styles.css'
-import axios from 'axios';
 
 const ImgUploader = ({src,...props}) =>{
     
@@ -16,12 +16,12 @@ const ImgUploader = ({src,...props}) =>{
             <label className="FileSelector-Clicker" for="arquive"></label>
             <input name="arquive" id="arquive" className="fileSelector" type="file" onChange={changeHandler}/>             
             {isFilePicked?            
-            <img src={selectedFile} alt="Uploaded File" height="100%" width="100%"/>
-            :
-            <>            
-            <img className="Uploader-Placeholder" onChange={changeHandler} src={require("./imgIcon.png") }></img>
-            <label className="Uploader-Label">Upload</label>
-            </>
+                <img src={selectedFile} alt="Uploaded File" height="100%" width="100%"/>
+                :
+                <>            
+                    <ImgBox/>
+                    <label className="Uploader-Label">Upload</label>
+                </>
             }    
         </div>
     );

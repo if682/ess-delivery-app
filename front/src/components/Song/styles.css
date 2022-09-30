@@ -24,18 +24,18 @@
 .SongParticipations{
     margin-left: auto;
 }
-.DeleteSong-Wrapper{
+.Remove{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 24px;
     height: 24px;
 }
-.DeleteSong-Wrapper:hover .DeleteSong-Circle{
-    border-color: var(--Red);
+.Remove:hover circle{
+    stroke: var(--Red);
 }
-.DeleteSong-Wrapper:hover .DeleteSong-Bar{
-    border-color: var(--Red);
+.Remove:hover path{
+    stroke: var(--Red);
 }
 .DeleteSong-Circle{
     display: flex;
