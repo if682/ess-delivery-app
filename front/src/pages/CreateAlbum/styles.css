@@ -34,12 +34,15 @@
 #ImgAlbum{
     margin: auto;
 }
+.SongsAdded{
+    justify-self: center;
+    margin: auto;
+}
 .AddSongs-Button{
     color: var(--Primary);
     font-size: 20px;
     cursor: pointer;
-    justify-self: center;
-    margin: auto;
+    
 }
 .AddSongs-Button:hover{
     color: var(--Primary_Light);

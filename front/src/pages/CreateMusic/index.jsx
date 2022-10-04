@@ -5,25 +5,31 @@ import Button from "../../components/Button"
 import React,{useState, useCallback} from "react";
 import { useNavigate } from "react-router-dom";
 import { api} from '../../services/api';
+import { useLocation } from 'react-router-dom';
+
 const CreateMusic = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const [name, setName] = useState(null);
     const [url, setUrl] = useState(null);
     const [participations, setParticipations] = useState(null);
-    const [explicit, setExplicit] = useState(null);
-
+    const [explicit, setExplicit] = useState(false);
+    let songs = location.state;
+    
+    //const [album, setAlbum] = useState("id");
     const onSubmit = async(e) => {
-        alert(explicit);
+        //const body = {name,url,participations,explicit,album};
         e.preventDefault();
-        if(name&&url){
-            const body = {name,url,participations,explicit};            
-            try {
+        if(name&&url){                        
+            /*try {
                 const response = await api.post('/songs',body);
                 console.log(response);
             } catch (error) {
                 alert("ayooo");
-            }
+            }*/
             
+            songs.push({name:name,url:url,participations:participations,explicit:explicit});
+            navigate("/createAlbum",{state:songs});
         }
         else{
             alert("*Campo obrigatório não pode ser deixado vazio*");
