@@ -7,6 +7,7 @@ import ImgUploader from "../../components/ImgUploader"
 import Input from "../../components/Input"
 import Song from "../../components/Song"
 import "./styles.css"
+
 const CreateAlbum = () => {
     return(
         <div className="teste">

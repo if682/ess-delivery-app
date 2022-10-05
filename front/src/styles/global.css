@@ -21,8 +21,9 @@ body {
   -webkit-font-smoothing: antialiased !important;
 }
 
-body html #root {
-  height: 100%;
+body, html, #root {
+  background-color: var(--Gray_Dark);
+  height: 100vh;
 }
 .App {
   display: flex;
