@@ -1,0 +1,39 @@
+.Back{
+    /* background-color: black; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 60px;
+
+    height: 100%
+}
+
+.Formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.Titulo{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 60px;
+    /* identical to box height */
+
+    color: var(--White);
+}
+
+.Button-Submit{
+    margin-top: 12px;
+    width: 100%;
+}
+
+.Checkbox{
+    align-self: flex-start;
+}
