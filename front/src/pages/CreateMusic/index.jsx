@@ -14,7 +14,7 @@ const CreateMusic = () => {
     const [url, setUrl] = useState(null);
     const [participations, setParticipations] = useState(null);
     const [explicit, setExplicit] = useState(false);
-    let songs = location.state;
+    const songs = location.state.album.songs;
     
     //const [album, setAlbum] = useState("id");
     const onSubmit = async(e) => {
@@ -28,8 +28,9 @@ const CreateMusic = () => {
                 alert("ayooo");
             }*/
             
-            songs.push({name:name,url:url,participations:participations,explicit:explicit});
-            navigate("/createAlbum",{state:songs});
+            const newSong = {name:name,url:url,participations:participations,explicit:explicit}
+            const newSongs = [...songs, newSong]
+            navigate("/createAlbum",{state:{album:{name:location.state.album.name, image:location.state.album.image, year:location.state.album.year, songs:newSongs}}});
         }
         else{
             alert("*Campo obrigatório não pode ser deixado vazio*");

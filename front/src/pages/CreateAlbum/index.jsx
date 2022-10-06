@@ -14,12 +14,17 @@ const CreateAlbum = () => {
     const [name, setName] = useState(null);
     const [image, setImage] = useState("");
     const [year, setYear] = useState(null);
-    const [songs,setSongs] =  useState(location.state?location.state:[]);
+    const [songs,setSongs] =  useState(location.state?location.state.album.songs:[]);
+
+  useEffect(() => {
+    navigate(".", { replace: true }); // <-- redirect to current path w/o state
+  }, [navigate]);
+
     const deleteSong = (index,songs) => {
-        let songsAux = songs;
-        songsAux.splice(index);
+        const songsAux = [...songs];
+        songsAux.splice(index,1);
+        alert(JSON.stringify(songsAux));
         setSongs(songsAux);
-        alert(JSON.stringify(songs));
         
     }
     /*const ShowSongs = ()=>{
@@ -41,7 +46,7 @@ const CreateAlbum = () => {
     }*/
 
     const addSong = () => {
-        navigate("/createMusic",{state:songs});
+        navigate("/createMusic",{state:{album:{name:name,image:image,year:year,songs:songs}}});
     }
     const onSubmit = async(e) => {
         /*e.preventDefault();
@@ -74,7 +79,7 @@ const CreateAlbum = () => {
                     songs.map((song,index,songs)=> {
                         return <Song number={index+1} name={song.name} participations={song.participations?song.participations:""} 
                         handleDelete={()=>deleteSong(index,songs)}
-                        
+                        key={song.name}
                         
                         /> 
                     })
