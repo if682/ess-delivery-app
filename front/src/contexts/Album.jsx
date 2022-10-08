@@ -35,7 +35,7 @@ export const AlbumProvider = ({ children }) => {
     name,setName,
     image,setImage,
     year,setYear,
-    songs,handleAddSong,resetAlbumContext,
+    songs,setSongs,handleAddSong,resetAlbumContext,
 
   }), [name, image, year, songs]);
 
