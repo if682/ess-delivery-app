@@ -14,7 +14,6 @@ const CreateAlbum = () => {
     const deleteSong = (index,songs) => {
         const songsAux = [...songs];
         songsAux.splice(index,1);
-        alert(JSON.stringify(songsAux));
         setSongs(songsAux);
         
     }
@@ -37,6 +36,7 @@ const CreateAlbum = () => {
     }*/
 
     const addSong = () => {
+        console.log(image);
         navigate("/createMusic");
     }
     const onSubmit = async(e) => {
@@ -60,7 +60,7 @@ const CreateAlbum = () => {
             <h1 className="title">Cadastrar novo álbum</h1>
             <div className="CreateAlbum-Body">
                 <form className="Form-Album" >                
-                    <ImgUploader id="ImgAlbum" onChange={e => setImage(e.target.getAttribute('file'))}></ImgUploader>
+                    <ImgUploader id="ImgAlbum" value={image} onChange={e => setImage(e.target.files[0])}></ImgUploader>
                     <Input placeholder="Nome" value={name} id="inputAlbum" onChange={e => setName(e.target.value)}>Nome*</Input>
                     <Input placeholder="aaaa" value={year} id="inputAlbum" onChange={e => setYear(e.target.value)}>Ano*</Input>
                 </form>
