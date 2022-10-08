@@ -6,6 +6,7 @@ import React,{useState, useCallback} from "react";
 import { useNavigate } from "react-router-dom";
 import { api} from '../../services/api';
 import { useLocation } from 'react-router-dom';
+import { useAlbum } from "../../contexts/Album";
 
 const CreateMusic = () => {
     const location = useLocation();
@@ -14,27 +15,11 @@ const CreateMusic = () => {
     const [url, setUrl] = useState(null);
     const [participations, setParticipations] = useState(null);
     const [explicit, setExplicit] = useState(false);
-    const songs = location.state.album.songs;
-    
-    //const [album, setAlbum] = useState("id");
+    const {handleAddSong} = useAlbum();
+
     const onSubmit = async(e) => {
-        //const body = {name,url,participations,explicit,album};
         e.preventDefault();
-        if(name&&url){                        
-            /*try {
-                const response = await api.post('/songs',body);
-                console.log(response);
-            } catch (error) {
-                alert("ayooo");
-            }*/
-            
-            const newSong = {name:name,url:url,participations:participations,explicit:explicit}
-            const newSongs = [...songs, newSong]
-            navigate("/createAlbum",{state:{album:{name:location.state.album.name, image:location.state.album.image, year:location.state.album.year, songs:newSongs}}});
-        }
-        else{
-            alert("*Campo obrigatório não pode ser deixado vazio*");
-        }
+        handleAddSong(name,url,participations,explicit);   
     };
     return(
         <div className="CreateMusic">

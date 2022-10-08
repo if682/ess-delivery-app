@@ -5,21 +5,12 @@ import Input from "../../components/Input"
 import Button from "../../components/Button"
 import Song from "../../components/Song"
 import React,{useState, useEffect} from "react";
+import { useAlbum } from "../../contexts/Album";
 import { api} from '../../services/api';
 import { useNavigate } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
 const CreateAlbum = () => {
-    const location = useLocation();
     const navigate = useNavigate();
-    const [name, setName] = useState(null);
-    const [image, setImage] = useState("");
-    const [year, setYear] = useState(null);
-    const [songs,setSongs] =  useState(location.state?location.state.album.songs:[]);
-
-  useEffect(() => {
-    navigate(".", { replace: true }); // <-- redirect to current path w/o state
-  }, [navigate]);
-
+    const {name,setName,image,setImage,year,setYear,songs,setSongs} = useAlbum();
     const deleteSong = (index,songs) => {
         const songsAux = [...songs];
         songsAux.splice(index,1);
@@ -46,7 +37,7 @@ const CreateAlbum = () => {
     }*/
 
     const addSong = () => {
-        navigate("/createMusic",{state:{album:{name:name,image:image,year:year,songs:songs}}});
+        navigate("/createMusic");
     }
     const onSubmit = async(e) => {
         /*e.preventDefault();
@@ -70,8 +61,8 @@ const CreateAlbum = () => {
             <div className="CreateAlbum-Body">
                 <form className="Form-Album" >                
                     <ImgUploader id="ImgAlbum" onChange={e => setImage(e.target.getAttribute('file'))}></ImgUploader>
-                    <Input placeholder="Nome" id="inputAlbum" onChange={e => setName(e.target.value)}>Nome*</Input>
-                    <Input placeholder="aaaa" id="inputAlbum" onChange={e => setYear(e.target.value)}>Ano*</Input>
+                    <Input placeholder="Nome" value={name} id="inputAlbum" onChange={e => setName(e.target.value)}>Nome*</Input>
+                    <Input placeholder="aaaa" value={year} id="inputAlbum" onChange={e => setYear(e.target.value)}>Ano*</Input>
                 </form>
                 <div className="SongsAdded">
                     {songs?

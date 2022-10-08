@@ -15,7 +15,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      {!!loggedUserId && (
+      {(
         <>
           <Route path="/artist" element={<Artist />} />
           <Route path="/editArtist" element={<EditArtist />} />
