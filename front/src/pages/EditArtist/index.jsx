@@ -10,9 +10,9 @@ const EditArtist = () => {
             <p className="Titulo">Editar suas informações</p>
             <form className = "Formulario" action="">
                 <ImgUploader></ImgUploader>
-                <Input children={"Nome"}/>
-                <Input children={"País"}/>
-                <Input children={"Estilo Musical"}/>
+                <Input className="EditInputs" children={"Nome"}/>
+                <Input className="EditInputs" children={"País"}/>
+                <Input className="EditInputs" children={"Estilo Musical"}/>
                 <Button children={"Salvar"}></Button>
             </form>
         </div>
