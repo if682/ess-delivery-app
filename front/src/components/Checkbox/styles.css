@@ -38,7 +38,7 @@ input[type="checkbox"]:checked {
 .Checkbox-Label{
     margin-left: 8px;
     color: var(--White);
-    width: 32px;
+    width: 100%;
     height: 18px;
     font-style: normal;
     font-weight: 400;

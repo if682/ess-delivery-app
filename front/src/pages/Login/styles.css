@@ -4,8 +4,6 @@
   height: 100vh;
 }
 
-
-
 .LoginContainer {
   display: flex;
   flex-direction: column;
@@ -30,6 +28,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.FormContainer .Checkbox {
+  width: 100%;
 }
 
 .Title {
