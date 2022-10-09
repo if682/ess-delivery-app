@@ -5,12 +5,33 @@ import { api } from "../../services/api";
 import "./styles.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLogin } from "../../contexts/Login";
 
 const EditArtist = () => {
     const [nome, setNome] = useState('');
     const [pais, setPais] = useState('');
     const [genero, setGenero] = useState('');
     const navigate = useNavigate();
+    const { loggedUserId } = useLogin();
+
+    
+    useEffect(() =>{
+        const getData = async (string) =>{
+            const response = await api.get(string);
+            const body = response.data;
+            setNome(body.name);
+            setPais(body.country);
+            setGenero(body.genre);
+        }
+
+        try{            
+            const string = "/artists/" + loggedUserId;
+            getData(string);
+        }catch(erorr){
+            alert("Server problema");
+        };
+    }, [loggedUserId]);
 
 
     const onSubmit = async (event) =>{
