@@ -2,21 +2,18 @@ import {React, useState} from "react";
 import { ReactComponent as ImgBox } from "../../assets/Img_box_light.svg";
 import './styles.css'
 
-const ImgUploader = ({src,...props}) =>{
-    
-	const [selectedFile, setSelectedFile] = useState();
-	const [isFilePicked, setIsFilePicked] = useState(false);
+const ImgUploader = ({value,...props}) =>{
+	const [selectedFile, setSelectedFile] = useState(value);
     const changeHandler = (event) => {
-		setSelectedFile(URL.createObjectURL(event.target.files[0]));
-		setIsFilePicked(true);
+		setSelectedFile(event.target.files[0]);
 	};
     return (
         
-        <div className="ImgUploader" file={selectedFile} {...props}>
+        <div className="ImgUploader"{...props}>
             <label className="FileSelector-Clicker" for="arquive"></label>
-            <input name="arquive" id="arquive" className="fileSelector" type="file" onChange={changeHandler}/>             
-            {isFilePicked?            
-                <img src={selectedFile} alt="Uploaded File" height="100%" width="100%"/>
+            <input name="arquive" id="arquive" className="fileSelector" value={undefined} type="file" onChange={changeHandler} />             
+            {selectedFile?            
+                <img src={URL.createObjectURL(selectedFile)} alt={URL.createObjectURL(selectedFile)} height="100%" width="100%" />
                 :
                 <>            
                     <ImgBox/>

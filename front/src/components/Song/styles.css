@@ -37,19 +37,3 @@
 .Remove:hover path{
     stroke: var(--Red);
 }
-.DeleteSong-Circle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 18px;
-    height: 18px;
-    border: 1px solid var(--Gray_Light);
-    border-radius: 8px;
-}
-.DeleteSong-Bar{
-    position: absolute;
-    width: 9px;
-    border: 1px solid var(--Gray_Light);
-}
-

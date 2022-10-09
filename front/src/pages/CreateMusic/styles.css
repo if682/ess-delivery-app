@@ -1,39 +1,24 @@
-.Back{
-    /* background-color: black; */
-
+.CreateMusic{
+    background-color: var(--Gray_Dark);
     display: flex;
     flex-direction: column;
+    height: 1080px;
+    width: 100%;
+    color: var(--White);
     align-items: center;
-    justify-content: center;
-
-    gap: 60px;
-
-    height: 100%
 }
-
-.Formulario{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.Titulo{
+.title{
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
-    line-height: 60px;
-    /* identical to box height */
-
-    color: var(--White);
+    width: 476px;
+    height: 60px;
+    margin-top: 140px;
+    margin-bottom: 80px;
 }
-
-.Button-Submit{
-    margin-top: 12px;
-    width: 100%;
-}
-
-.Checkbox{
-    align-self: flex-start;
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }

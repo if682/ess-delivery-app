@@ -15,12 +15,12 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-          <Route path="/artist" element={<Artist />} />
-          <Route path="/editArtist" element={<EditArtist />} />
-          <Route path="/album" element={<Album />} />
-          <Route path="/createAlbum" element={<CreateAlbum />} />
-          <Route path="/editAlbum" element={<EditAlbum />} />
-          <Route path="/createMusic" element={<CreateMusic />} />
+      <Route path="/artist" element={<Artist />} />
+      <Route path="/editArtist" element={<EditArtist />} />
+      <Route path="/album" element={<Album />} />
+      <Route path="/createAlbum" element={<CreateAlbum />} />
+      <Route path="/editAlbum" element={<EditAlbum />} />
+      <Route path="/createMusic" element={<CreateMusic />} />
       <Route
         path="*"
         element={<Navigate to="/login" replace />}
