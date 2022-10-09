@@ -28,6 +28,24 @@ songsRouter.post('',async (request, response) => {
         return response.send({ song });           
                    
     } catch (error) {
-        return response.status(500).send({ error });
+        return response.status(500).send({message: "Something went wrong with the server", error});
     }
 });
+
+songsRouter.get('',async (request, response) => {
+    try {
+        const songs = await Song.find();
+        return response.send({songs});
+    } catch (error) {
+        return response.status(500).send({ message: 'Error loading songs',error });
+    }
+});
+songsRouter.get('/:songId', async (request, response) => {
+    try{
+      const song = await Song.findOne({"_id": request.params.songId});
+      if (song) return response.send(song);
+      else return response.status(404).json({message: "Could not find the song"});
+    }catch(error){
+      return response.status(500).json({message: "Something went wrong with the server", error});
+    }
+})

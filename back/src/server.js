@@ -18,8 +18,8 @@ app.get("/", (request, response) => {
 });
 
 app.use('/artists', artistsRouter);
-app.use('/albums', authorizationMiddleware, albumsRouter);
-app.use('/songs', authorizationMiddleware, songsRouter);
+app.use('/albums', albumsRouter);
+app.use('/songs', songsRouter);
 app.use('/auth', authRouter);
 
 export default app;

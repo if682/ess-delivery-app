@@ -8,6 +8,7 @@ const AlbumSchema = new mongoose.Schema({
   year: {
     type: Number,
     required: true,
+    unique: false,
   },
   image: {
     data: Buffer,

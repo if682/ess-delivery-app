@@ -10,49 +10,20 @@ import { api} from '../../services/api';
 import { useNavigate } from "react-router-dom";
 const CreateAlbum = () => {
     const navigate = useNavigate();
-    const {name,setName,image,setImage,year,setYear,songs,setSongs} = useAlbum();
+    const {name,setName,image,setImage,year,setYear,songs,setSongs,handleAddAlbum} = useAlbum();
     const deleteSong = (index,songs) => {
         const songsAux = [...songs];
         songsAux.splice(index,1);
         setSongs(songsAux);
         
     }
-    /*const ShowSongs = ()=>{
-        songs?songs.map((song,index,songs)=>{
-        alert(JSON.stringify(song));
-            return(
-                    
-                    <Song number={index+1} name={song.name} participations={song.participations?song.participations:""} 
-                        handleDelete={()=>{
-                            //songs.splice(index);
-                            let songsAux = songs;
-                            songsAux.splice(index);
-                            setSongs(songsAux);
-                        }
-                    }></Song>
-                    
-            );
-        }):"a"
-    }*/
-
     const addSong = () => {
-        console.log(image);
+        console.log(name,image,year,songs);
         navigate("/createMusic");
     }
     const onSubmit = async(e) => {
-        /*e.preventDefault();
-        if(name&&year){
-            const body = {name,image,year,songs};            
-            try {
-                const response = await api.post('/album',body);
-                console.log(response);
-            } catch (error) {
-                alert("ayooo");
-            }            
-        }
-        else{
-            alert("*Campo obrigatório não pode ser deixado vazio*");
-        }*/
+        e.preventDefault();
+        handleAddAlbum();
     };
     
     return(
@@ -78,7 +49,7 @@ const CreateAlbum = () => {
                     <div className="AddSongs-Button" onClick={()=>{addSong()}}>+ Adicionar Músicas</div>
                 </div>
             </div>
-            <Button id="SaveAlbum" type="submit">Salvar</Button>
+            <Button id="SaveAlbum" type="submit" onClick={onSubmit}>Salvar</Button>
         </div>
         
     );
