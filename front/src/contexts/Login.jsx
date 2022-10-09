@@ -12,6 +12,7 @@ export const LoginProvider = ({ children }) => {
 
   const handleLogout = useCallback(() => {
     localStorage.clear();
+    setAuthToken();
     setLoggedUserId("");
     navigate("/login");
   }, [navigate]);

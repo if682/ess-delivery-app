@@ -18,11 +18,13 @@ export const authorizationMiddleware = async (request, response, next) => {
   if (!/^Bearer$/i.test(scheme)) {
     return response.status(401).json({ error: "Invalid token" });
   }
-
-  jwt.verify(token, process.env.JWT_HASH_SECRET, (err, decoded) => {
-    if (err) return response.status(401).json({ error: "Invalid token" });
-    request.userId = decoded.id;
-  });
+  
+  try{
+    const decoded  = await jwt.verify(token, process.env.JWT_HASH_SECRET);
+    request.userId = decoded.id;}
+  catch(error){
+    return response.status(401).json({ error: "Invalid token" });
+  };
 
   return next();
 };
