@@ -3,6 +3,8 @@
     flex-direction: column;
     width: 217px;
     height: 275px;
+
+    cursor: pointer;
 }
 .Button-AddAlbum{
     display: flex;

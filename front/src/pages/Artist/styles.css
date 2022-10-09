@@ -1,8 +1,4 @@
-.teste{
-    background-color: black;
-    color: white;
-}
-
-.Nome{
-    color: white;
+.IconButton {
+    all: unset;
+    cursor: pointer;
 }
