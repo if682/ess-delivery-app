@@ -30,13 +30,15 @@ export const LoginProvider = ({ children }) => {
         const { userId } = response.data;
         setAuthToken(token);
         setLoggedUserId(userId);
+        setAuthToken(token);
 
       } catch (error) {
         handleLogout();
       }
     };
     validateLogin();
-  }, [handleLogout, navigate]);
+  }, []);
+
 
   const handleLogin = useCallback(async (email, password) => {
     try {

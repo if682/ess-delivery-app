@@ -29,3 +29,11 @@ body, html, #root {
   display: flex;
   flex-direction: row;
 }
+
+p {
+  color: var(--White);
+}
+
+button {
+  cursor: pointer;
+}
