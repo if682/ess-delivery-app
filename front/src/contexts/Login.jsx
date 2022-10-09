@@ -28,6 +28,7 @@ export const LoginProvider = ({ children }) => {
           }
         });
         const { userId } = response.data;
+        setAuthToken(token);
         setLoggedUserId(userId);
 
       } catch (error) {

@@ -2,7 +2,6 @@
     color: var(--White);
     font-size: 12px;
     margin-bottom: 16px;
-
 }
 .Input-Wrapper{
     display: flex;
@@ -10,7 +9,7 @@
     align-items: flex-start;
     width: 416px;
     height: 69px;
-    
+
 }
 .InputBox{
     width: 416px;
@@ -19,6 +18,8 @@
     border-radius: 4px;
     background-color: var(--Gray);
     color: var(--White);
+    padding-left: 10px;
+
 }
 .InputBox::placeholder{
     color: var(--Gray_Light);
