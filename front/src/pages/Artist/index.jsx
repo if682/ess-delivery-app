@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLogin } from '../../contexts/Login';
 import { api } from '../../services/api';
+import "./styles.css"
 
 const Artist = () => {
   const { loggedUserId, handleLogout } = useLogin();
@@ -21,7 +22,7 @@ const Artist = () => {
   if (!userData) return "Carregando!";
   return (
     <div>
-      {userData.name}
+      <p className='Nome'>{userData.name}</p>
       <button onClick={() => handleLogout()}>sair</button>
     </div>
   );

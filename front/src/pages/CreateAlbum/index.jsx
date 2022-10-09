@@ -1,4 +1,3 @@
-
 import "./styles.css"
 import ImgUploader from "../../components/ImgUploader";
 import Input from "../../components/Input"

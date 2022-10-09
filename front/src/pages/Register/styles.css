@@ -1,0 +1,12 @@
+.back{
+    background-color: black;
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+:root{
+    background-color: black;
+    color: white;
+}
