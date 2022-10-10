@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { createContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { api, setAuthToken } from '../services/api';
+import { toBase64} from '../services/base64';
 
 const AlbumContext = createContext();
 
@@ -15,7 +16,7 @@ export const AlbumProvider = ({ children }) => {
 
   const handleAddAlbum = async() =>{
     if(name&&year){
-      const body = {name,image,year,songs};            
+      const body = {name,image:await toBase64(image),year,songs};            
       try {
           const response = await api.post('/albums',body,{
             headers:{
@@ -24,7 +25,7 @@ export const AlbumProvider = ({ children }) => {
           });
           console.log(response);
           resetAlbumContext();
-          //navigate("/album");
+          navigate("/artist");
       } catch (error) {
           console.log(error);
       }            
@@ -94,6 +95,6 @@ export const AlbumProvider = ({ children }) => {
 
 export const useAlbum = () => {
   const context = useContext(AlbumContext);
-  if (!context) throw new Error("Album must be used within a LoginProvider");
+  if (!context) throw new Error("Album must be used within a AlbumProvider");
   return context;
 };

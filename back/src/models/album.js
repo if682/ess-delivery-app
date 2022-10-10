@@ -11,8 +11,7 @@ const AlbumSchema = new mongoose.Schema({
     unique: false,
   },
   image: {
-    data: Buffer,
-    contentType: String
+    type: String,
   },
   artist: {
     type : mongoose.Schema.Types.ObjectId,

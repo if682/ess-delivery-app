@@ -44,7 +44,7 @@ const CreateAlbum = () => {
                         
                         /> 
                     })
-                    :"ay"}
+                    :""}
                     <div className="AddSongs-Button" onClick={()=>{addSong()}}>+ Adicionar Músicas</div>
                 </div>
             </div>
