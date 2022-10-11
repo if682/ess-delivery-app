@@ -53,4 +53,13 @@ albumsRouter.get('/:albumId', async (request, response) => {
     }catch(error){
       return response.status(500).json({message: "Something went wrong with the server", error});
     }
-})
+});
+albumsRouter.get('/fromArtist/:artistId', async (request, response) => {
+    try{
+      const albums = await Album.find({"artist": request.params.artistId});
+      if (albums) return response.send(albums);
+      else return response.status(404).json({message: "Artist does not exist or does not have any albums"});
+    }catch(error){
+      return response.status(500).json({message: "Something went wrong with the server", error});
+    }
+});
