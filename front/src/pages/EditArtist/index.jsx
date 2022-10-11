@@ -59,7 +59,7 @@ const EditArtist = () => {
                 <Input  value = {nome}   onChange={e => setNome(e.target.value)}   children={"Nome"}/>
                 <Input  value = {pais}   onChange={e => setPais(e.target.value)}   children={"País"}/>
                 <Input  value = {genero} onChange={e => setGenero(e.target.value)} children={"Estilo Musical"}/>
-                <Button type = "submit" children={"Salvar"}></Button>
+                <Button id = "Edit-Salvar" type = "submit" children={"Salvar"}></Button>
             </form>
         </div>
     );

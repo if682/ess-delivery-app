@@ -37,3 +37,13 @@
 .EditInputs{
     padding-left: 10px;
 }
+
+#Banner.ImgUploader{
+    width: 50vw;
+    height: 25vh;
+}
+
+.FileSelector-Clicker{
+    width: 50vw;
+    height: 25vh;
+}
