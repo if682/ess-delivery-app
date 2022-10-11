@@ -1,28 +1,40 @@
 import "./styles.css"
-import ImgUploader from "../../components/ImgUploader";
-import Input from "../../components/Input"
-import Button from "../../components/Button"
 import Song from "../../components/Song"
+import {useParams} from "react-router-dom"
 import React,{useState, useEffect} from "react";
-import { useAlbum } from "../../contexts/Album";
 import { api} from '../../services/api';
-import { useNavigate } from "react-router-dom";
 import Play from "../../components/PlayMusic"
+import { Routes } from "react-router";
 
 const Songs = () => {
+    const [songs, setSongs] = useState([]);
+    const params = useParams();
+
+    useEffect(() =>{
+     const getData = async () => {
+      try {
+        const response = await api.get('/songs/fromAlbum/' + params.albumId)
+        setSongs(response.data)
+      } catch (error) {
+        alert("error")
+      }
+     } 
+     getData()
+    }, []);
+  
     let rows = []
-    for (let i = 0; i < 5; i++) {
-      rows.push(<div className="song">
-        <Song number={i+1} name={"Música Teste"} handlePlay={false} handleDelete={true} participations={'MD e convidados'} duration={3}/>
-        </div>)
-    }
+    console.log("oiie", songs)
     return(
         <div className="Song">
             <div className="Banner">
               <h1>Album teste haha</h1>
             </div>
             <div className="Songs">
-                {rows}
+                {songs.map((song, index) => (
+                  <div className="song" key={index}>
+                    <Song number={index+1} name={song.name} handlePlay={false} handleDelete={false} participations={song.participations}/>
+                  </div>)
+                )}
             </div>
             <div className="Play">
               <Play name={'you broke me first'}/>
