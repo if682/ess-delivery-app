@@ -37,7 +37,7 @@ const Songs = () => {
                 )}
             </div>
             <div className="Play">
-              <Play name={'you broke me first'}/>
+              <Play songs={songs}/>
             </div>
         </div>
         
