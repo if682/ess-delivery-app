@@ -1,0 +1,49 @@
+.Play-Wrapper{
+    display:flex;
+    width: 100%;
+    height: 100%;
+    background-color: var(--Primary);
+    border: 3px solid var(--Primary);
+    border-radius: 4px;
+    color: var(--White);
+    align-items: center;
+    gap: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+    justify-items: flex-end;
+    justify-content: space-between;
+}
+.PlayNumber{
+    justify-self: flex-start;
+}
+.PlayName{
+    color: black; 
+    font-weight: bold;
+    font-size: 20px; 
+    line-height: 1.6em;
+    justify-self: flex-start;
+    margin-right: auto;
+}
+.PlayParticipations{
+    margin-left: auto;
+}
+.control {
+    display: flex;
+}
+.control .Play {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.Download{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+.Download:hover circle{
+    stroke: var(--Red);
+}
+.Download:hover path{
+    stroke: var(--Red);
+}
