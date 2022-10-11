@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import { ReactComponent as ImgBox } from "../../assets/Img_box_light.svg";
 import './styles.css'
 
@@ -7,6 +7,9 @@ const ImgUploader = ({value,...props}) =>{
     const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
 	};
+
+    useEffect(()=>{setSelectedFile(value)}, [value])
+
     return (
         
         <div className="ImgUploader"{...props}>
