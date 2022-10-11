@@ -48,4 +48,26 @@ songsRouter.get('/:songId', async (request, response) => {
     }catch(error){
       return response.status(500).json({message: "Something went wrong with the server", error});
     }
+});
+songsRouter.get('/fromAlbum/:albumId', async (request, response) => {
+    try{
+      const songs = await Song.find({"album": request.params.albumId});
+      if (songs){
+        return response.send(songs);
+     }
+      else return response.status(404).json({message: "Album does not exist or album has no songs"});
+    }catch(error){
+      return response.status(500).json({message: "Something went wrong with the server", error});
+    }
+});
+songsRouter.delete('/:songId',async (request, response) => {
+    try{
+      const song = await Song.findByIdAndDelete({"_id": request.params.songId});
+      if (song){
+        return response.send(song);
+     }
+      else return response.status(404).json({message: "Song does not exist"});
+    }catch(error){
+      return response.status(500).json({message: "Something went wrong with the server", error});
+    }
 })
