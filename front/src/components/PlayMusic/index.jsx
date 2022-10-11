@@ -7,9 +7,15 @@ const Play = ({name,handleDownload,handlePlay,...props}) => {
                 <label className='PlayName'>{name} </label>
             </div>
             <div className='control'>
-                <Icon iconType="Start" className="Start"/>
-                <Icon iconType="Play" className="Play" onClick={handlePlay}/>
-                <Icon iconType="End" className="End"/>
+                <button className='IconButton'>
+                    <Icon iconType="Start" className="Start"/>
+                </button>
+                <button className='IconButton'>
+                    <Icon iconType="Play" className="Play" onClick={handlePlay}/>
+                </button>
+                <button className='IconButton'>
+                    <Icon iconType="End" className="End"/>
+                </button>
             </div>
             <div className='download'>
                 <Icon iconType="Download" className="Download" onClick={handleDownload}/>
