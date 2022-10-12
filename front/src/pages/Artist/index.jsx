@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import { useLogin } from '../../contexts/Login';
 import { api } from '../../services/api';
 
-import Icon from '../../components/Icon'
-import AddAlbum from '../../components/AddAlbum'
+import Icon from '../../components/Icon';
+import AddAlbum from '../../components/AddAlbum';
+import Album from '../../components/Album';
 
-import "./styles.css"
+import "./styles.css";
 import { useNavigate } from 'react-router';
 
 const Artist = () => {
   const { loggedUserId, handleLogout } = useLogin();
   const [userData, setUserData] = useState();
-  const navigate = useNavigate()
+  const [albums, setAlbums] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUserData = async () => {
@@ -22,16 +24,52 @@ const Artist = () => {
         alert("Erro ao pegar informações do artista");
       }
     };
-    if (loggedUserId) getUserData();
+    const getAlbums = async () => {
+      try {
+        const response = await api.get(`/albums/fromArtist/${loggedUserId}`);
+        setAlbums(response.data);
+      } catch (error) {
+        alert("Erro ao pegar informaç~eos dos álbums");
+      }
+    };
+    if (loggedUserId) {
+      getUserData();
+      getAlbums();
+    }
   }, [loggedUserId]);
+
+  const handleNavigateAlbum = () => {
+    // TODO ASKAJSKAJS
+    navigate('/editAlbum')
+  }
 
   if (!userData) return "Carregando!";
   return (
     <div>
-      <p className='Nome'>{userData.name}</p>
-      <button className='IconButton' onClick={() => navigate('/editArtist')}><Icon iconType="Edit"/></button>
-      <button className='IconButton' onClick={() => handleLogout()}><Icon iconType="SignOut"/></button>
-      <AddAlbum onClick={() => navigate("/createAlbum")}/>
+      <div className="banner">
+        <img src={userData.image} alt="" className="banner-cover" />
+        <div className="banner-content">
+          <p className='Nome'>{userData.name}</p>
+          <button className='IconButton' onClick={() => navigate('/editArtist')}>
+            <Icon iconType="Edit" />
+          </button>
+        </div>
+        <button className='IconButton LogoutButton' onClick={() => handleLogout()}>
+          <Icon iconType="SignOut" />
+          <p>Sair</p>
+        </button>
+      </div>
+      <main className='MainContent'>
+        {albums.map((album,i) => (
+          <Album
+            key={i}
+            children={album.name}
+            src={album.image}
+            onClick={() => navigate("/album/" + album._id)}
+          />
+        ))}
+        <AddAlbum onClick={() => navigate("/createAlbum")} />
+      </main>
     </div>
   );
 };
