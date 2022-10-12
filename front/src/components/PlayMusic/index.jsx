@@ -1,6 +1,6 @@
+import React,{useState} from "react";
 import './styles.css'
 import Icon from '../Icon';
-import React,{useState} from "react";
 
 const Play = ({songs,...props}) => {
     const [playIndex, setPlayIndex] = useState(0);
@@ -11,8 +11,7 @@ const Play = ({songs,...props}) => {
     const nextSongs = () => {
         if(playIndex < songs.length-1) setPlayIndex(playIndex+1)
     }
-    // console.log("olha aqui aaa",playIndex)
-    // console.log(songs[playIndex].name)
+
 
     return(
         <div className='Play-Wrapper'{...props}>
