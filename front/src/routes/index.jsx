@@ -7,6 +7,7 @@ import Album from "../pages/Album";
 import CreateAlbum from "../pages/CreateAlbum";
 import EditAlbum from "../pages/EditAlbum";
 import CreateMusic from "../pages/CreateMusic";
+import Song from "../pages/Song"
 // import { useLogin } from '../contexts/Login';
 
 const AppRoutes = () => {
@@ -17,7 +18,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/artist" element={<Artist />} />
       <Route path="/editArtist" element={<EditArtist />} />
-      <Route path="/album" element={<Album />} />
+      <Route path="/album/:albumId" element={<Song />} />
       <Route path="/createAlbum" element={<CreateAlbum />} />
       <Route path="/editAlbum" element={<EditAlbum />} />
       <Route path="/createMusic" element={<CreateMusic />} />
