@@ -7,6 +7,7 @@ import { ReactComponent as Download } from "../../assets/download.svg";
 import { ReactComponent as Play } from "../../assets/play.svg";
 import { ReactComponent as Start } from "../../assets/control-start.svg";
 import { ReactComponent as End } from "../../assets/control-end.svg";
+import { ReactComponent as Pause } from "../../assets/pause.svg";
 import './styles.css'
 const Icon = ({iconType, className, ...props}) =>{
     return (
@@ -20,9 +21,9 @@ const Icon = ({iconType, className, ...props}) =>{
                 :(iconType==="Play")?<Play/>
                 :(iconType==="Start")?<Start/>
                 :(iconType==="End")?<End/>
+                :(iconType==="Pause")? <Pause/>
                 :""
-                
-            }   
+            }
         </button>
     );
 };

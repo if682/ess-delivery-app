@@ -9,6 +9,7 @@ import { Routes, useNavigate } from "react-router";
 const Songs = () => {
   const navigate = useNavigate()
   const [songs, setSongs] = useState([]);
+  const [playIndex, setPlayIndex] = useState(0);
   const params = useParams();
 
   useEffect(() => {
@@ -32,14 +33,18 @@ const Songs = () => {
       <div className="Songs">
         {songs.map((song, index) => (
           <div className="song" key={index}>
-            <Song number={index + 1} name={song.name} handlePlay={false} handleDelete={false} participations={song.participations} />
+            <Song number={index + 1} name={song.name} handlePlay={() => setPlayIndex(index)}  participations={song.participations} />
           </div>)
         )}
       </div>
       {
         songs.length > 0 && (
           <div className="Play">
-            <Play songs={songs} />
+            <Play
+              songs={songs}
+              playIndex={playIndex}
+              setPlayIndex={setPlayIndex}
+            />
           </div>
         )
       }

@@ -1,15 +1,21 @@
 import React,{useState} from "react";
+import ReactPlayer from 'react-player'
 import './styles.css'
 import Icon from '../Icon';
 
-const Play = ({songs,...props}) => {
-    const [playIndex, setPlayIndex] = useState(0);
+const Play = ({songs,playIndex, setPlayIndex,...props}) => {
+    const [playing, setPlaying] = useState(false);
 
     const previousSongs = () => {
         if(playIndex > 0) setPlayIndex(playIndex-1)
     }
+
     const nextSongs = () => {
         if(playIndex < songs.length-1) setPlayIndex(playIndex+1)
+    }
+    
+    const playPause = () => {
+        setPlaying(p => !p)
     }
 
 
@@ -23,15 +29,23 @@ const Play = ({songs,...props}) => {
                     <Icon iconType="Start" className="Start"/>
                 </button>
                 <button className='IconButton'>
-                    <Icon iconType="Play" className="Play"/>
+                    <Icon iconType={playing? "Pause" : "Play"} onClick={playPause} className="Play"/>
                 </button>
                 <button className='IconButton' onClick={nextSongs}>
                     <Icon iconType="End" className="End"/>
                 </button>
             </div>
             <button className='download IconButton'>
-                <Icon iconType="Download" className="Download"/>
+                {/* <Icon iconType="Download" className="Download"/> */}
             </button>
+            <div className='ReactPlayer'>
+                <ReactPlayer
+                    height={0}
+                    width={0}
+                    url={songs[playIndex].url}
+                    playing={playing}
+                />
+            </div>
         </div>
     );
 };

@@ -47,3 +47,7 @@
 .Download:hover path{
     stroke: var(--Red);
 }
+
+.ReactPlayer {
+    display: none;
+}
