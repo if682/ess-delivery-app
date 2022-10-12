@@ -51,3 +51,8 @@
 .ReactPlayer {
     display: none;
 }
+
+.Duration p {
+    color: var(--Black);
+    font-weight: 600;
+}

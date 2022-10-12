@@ -5,6 +5,8 @@ import Icon from '../Icon';
 
 const Play = ({songs,playIndex, setPlayIndex,...props}) => {
     const [playing, setPlaying] = useState(false);
+    const [duration, setDuration] = useState(0);
+    const [progress, setProgress] = useState(0);
 
     const previousSongs = () => {
         if(playIndex > 0) setPlayIndex(playIndex-1)
@@ -16,6 +18,18 @@ const Play = ({songs,playIndex, setPlayIndex,...props}) => {
     
     const playPause = () => {
         setPlaying(p => !p)
+    }
+
+    const displayTime = (durationInSeconds) => {
+        return `${
+            Math.floor(durationInSeconds/60) < 10 ? "0" + Math.floor(durationInSeconds/60) : Math.floor(durationInSeconds/60)
+        }:${
+            durationInSeconds%60 < 10 ? "0" + durationInSeconds%60 : durationInSeconds%60
+        }`
+    }
+
+    const onProgress = ({playedSeconds}) => {
+        setProgress(Math.floor(playedSeconds))
     }
 
 
@@ -35,8 +49,8 @@ const Play = ({songs,playIndex, setPlayIndex,...props}) => {
                     <Icon iconType="End" className="End"/>
                 </button>
             </div>
-            <button className='download IconButton'>
-                {/* <Icon iconType="Download" className="Download"/> */}
+            <button className='Duration IconButton'>
+                <p>{displayTime(progress)}/{displayTime(duration)}</p>
             </button>
             <div className='ReactPlayer'>
                 <ReactPlayer
@@ -44,6 +58,8 @@ const Play = ({songs,playIndex, setPlayIndex,...props}) => {
                     width={0}
                     url={songs[playIndex].url}
                     playing={playing}
+                    onDuration={setDuration}
+                    onProgress={onProgress}
                 />
             </div>
         </div>
