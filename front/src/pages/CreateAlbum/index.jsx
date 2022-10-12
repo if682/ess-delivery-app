@@ -14,7 +14,6 @@ const CreateAlbum = () => {
         const songsAux = [...songs];
         songsAux.splice(index,1);
         setSongs(songsAux);
-        
     }
     const addSong = () => {
         console.log(name,image,year,songs);
