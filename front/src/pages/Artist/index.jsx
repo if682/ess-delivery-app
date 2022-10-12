@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router';
 const Artist = () => {
   const { loggedUserId, handleLogout } = useLogin();
   const [userData, setUserData] = useState();
-  const [albums, setAlbums] = useState([]);
+  const [albums, setAlbums] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,11 +38,6 @@ const Artist = () => {
     }
   }, [loggedUserId]);
 
-  const handleNavigateAlbum = () => {
-    // TODO ASKAJSKAJS
-    navigate('/editAlbum')
-  }
-
   if (!userData) return "Carregando!";
   return (
     <div>
@@ -60,14 +55,16 @@ const Artist = () => {
         </button>
       </div>
       <main className='MainContent'>
-        {albums.map((album,i) => (
+        {albums ? albums.map((album,i) => (
           <Album
             key={i}
             children={album.name}
             src={album.image}
             onClick={() => navigate("/album/" + album._id)}
           />
-        ))}
+        )) : (
+          <p>Carregando...</p>
+        )}
         <AddAlbum onClick={() => navigate("/createAlbum")} />
       </main>
     </div>
