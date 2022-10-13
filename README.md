@@ -33,5 +33,5 @@ Repositório do projeto de ESS
 | name           | string   | *            |
 | writers        | [string] | *            |
 | link           | string   | *            |
-| participations | [string] |              |
+| participation | [string] |              |
 | release        | date     |              |

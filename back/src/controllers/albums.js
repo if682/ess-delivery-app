@@ -72,7 +72,8 @@ albumsRouter.put('/:albumId', authorizationMiddleware, async (request, response)
         delete body.artist;
         const same = await Album.findOne({ "name":body.name });   
         if(same && same._id != request.params.albumId) return response.status(400).send({ error: 'Album name already exists' });
-        if(!body.songs.length) return response.status(400).send({ error: 'A album needs a song' });
+        console.log(body);
+        if(!body.songs) return response.status(400).send({ error: 'A album needs a song' });
         await Album.updateOne({"_id": request.params.albumId}, body);
         const album =  await Album.findOne({"_id": request.params.albumId});
         

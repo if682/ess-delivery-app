@@ -11,9 +11,74 @@ export const AlbumProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState(undefined);
   const [year, setYear] = useState(null);
-  const [songs,setSongs] =  useState([]);
+  const [songs,setSongs] =  useState();
+  const [album,setAlbum] =  useState();
   const navigate = useNavigate();
 
+  const postNewSongs = async () =>{
+    const newSongs = songs.filter(song=>!song._id);
+    try {
+      newSongs.forEach(async song=>{
+      const body = {name:song.name,url:song.url,participation:song.participation,explicit:song.explicit,album:album._id}  
+      const responseNewSong = await api.post('/songs',body);
+      console.log(responseNewSong.data);
+      });
+    } catch (error) {
+        console.log(error);
+    }
+  }
+  const deleteOldSongs = async (oldSongs) =>{
+    const songsToBeRemoved = oldSongs.filter(oldSong=>!songs.includes(oldSong));
+    console.log(oldSongs,songs,songsToBeRemoved)
+    try {
+      songsToBeRemoved.forEach(async song=>{
+        const responseDeleteSong = await api.delete(`/songs/${song._id}`);
+        console.log(responseDeleteSong.data);
+       });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const putAlbum = async ()=>{
+    try {
+      const responseSongs = await api.get(`/songs/fromAlbum/${album._id}`);
+      const putSongsId = responseSongs.data.map(song=>{return song._id});
+      console.log(responseSongs,putSongsId)
+      const body = {name,image:await toBase64(image),year, songs:putSongsId};
+        const responseAlbum = await api.put(`/albums/${album._id}`,body);
+        console.log(responseAlbum);
+    
+    } catch (error) {
+        console.log(error);
+    }
+  }
+  const handleEditAlbum = async(oldSongs) => {
+    if(name&&year){
+      try {
+          const responseAlbums = await api.get(`/albums/fromArtist/${album.artist}`);
+          const albumsDB = responseAlbums.data;
+          if(albumsDB.some(albumDB=>(albumDB.name === name &&
+              albumDB._id !== album._id))){
+              alert("Já existe um álbum com este nome");
+          }
+          else{
+            await postNewSongs();
+            await deleteOldSongs(oldSongs);                          
+            await putAlbum();     
+            resetAlbumContext();
+            navigate(`/album/${album._id}`);
+          }
+      } catch (error) {
+          console.log(error);
+      }            
+    }
+    else if(!songs){
+        alert("*Album precisa conter uma música*");
+    }
+    else{
+        alert("*Campo obrigatório não pode ser deixado vazio*");
+    }
+  }
   const handleAddAlbum = async() =>{
     if(name&&year){
       const body = {name,image:await toBase64(image),year,songs};            
@@ -52,7 +117,7 @@ export const AlbumProvider = ({ children }) => {
               const newSong = {name, url, participation, explicit}
               const newSongs = [...songs, newSong]
               setSongs(newSongs);
-              navigate("/createAlbum");
+              navigate(-1);
             }
             else{
               alert("url não é válido");
@@ -63,7 +128,7 @@ export const AlbumProvider = ({ children }) => {
           }
       } catch (error) {
           alert(error);
-          navigate("/createAlbum");
+          navigate(-1);
       }    
         
     }
@@ -76,15 +141,19 @@ export const AlbumProvider = ({ children }) => {
     setImage(undefined);
     setYear(null);
     setSongs([]);
+    setAlbum({});
   }
   
   const value = useMemo(() => ({
     name,setName,
     image,setImage,
     year,setYear,
-    songs,setSongs,handleAddSong,handleAddAlbum,resetAlbumContext,
+    songs,setSongs,
+    album,setAlbum,
+    handleAddSong,handleAddAlbum,
+    handleEditAlbum,resetAlbumContext,
 
-  }), [name, image, year, songs]);
+  }), [name, image, year, songs,album]);
 
   return (
     <AlbumContext.Provider value={value}>
