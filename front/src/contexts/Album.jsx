@@ -28,7 +28,7 @@ export const AlbumProvider = ({ children }) => {
     }
   }
   const deleteOldSongs = async (oldSongs) =>{
-    const songsToBeRemoved = oldSongs.filter(oldSong=>!songs.includes(oldSong));
+    const songsToBeRemoved = oldSongs.filter(oldSong=>(!songs.map(song=>{return song.name}).includes(oldSong.name)));
     console.log(oldSongs,songs,songsToBeRemoved)
     try {
       await Promise.all(songsToBeRemoved.map(async song=>{
