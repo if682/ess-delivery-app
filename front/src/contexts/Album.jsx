@@ -18,11 +18,11 @@ export const AlbumProvider = ({ children }) => {
   const postNewSongs = async () =>{
     const newSongs = songs.filter(song=>!song._id);
     try {
-      newSongs.forEach(async song=>{
-      const body = {name:song.name,url:song.url,participation:song.participation,explicit:song.explicit,album:album._id}  
-      const responseNewSong = await api.post('/songs',body);
-      console.log(responseNewSong.data);
-      });
+      await Promise.all(newSongs.map(async song=>{
+        const body = {name:song.name,url:song.url,participation:song.participation,explicit:song.explicit,album:album._id}  
+        const responseNewSong = await api.post('/songs',body);
+        console.log(responseNewSong.data);
+        }))
     } catch (error) {
         console.log(error);
     }
@@ -31,10 +31,10 @@ export const AlbumProvider = ({ children }) => {
     const songsToBeRemoved = oldSongs.filter(oldSong=>!songs.includes(oldSong));
     console.log(oldSongs,songs,songsToBeRemoved)
     try {
-      songsToBeRemoved.forEach(async song=>{
+      await Promise.all(songsToBeRemoved.map(async song=>{
         const responseDeleteSong = await api.delete(`/songs/${song._id}`);
         console.log(responseDeleteSong.data);
-       });
+       }))
     } catch (error) {
       console.log(error);
     }
