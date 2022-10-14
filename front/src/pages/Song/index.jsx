@@ -56,7 +56,7 @@ const Songs = () => {
       <div className="Songs">
         {songs.map((song, index) => (
           <div className="song" key={index}>
-            <Song number={index + 1} name={song.name} handlePlay={() => setPlayIndex(index)}  participations={song.participations} />
+            <Song number={index + 1} name={song.name} handlePlay={() => setPlayIndex(index)}  participation={song.participation} />
           </div>)
         )}
       </div>

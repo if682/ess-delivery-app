@@ -10,7 +10,7 @@ const SongSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  participations: {
+  participation: {
     type: String,
   },
   explicit: {

@@ -37,7 +37,7 @@ const CreateAlbum = () => {
                     {songs?
                     
                     songs.map((song,index,songs)=> {
-                        return <Song number={index+1} name={song.name} participations={song.participations?song.participations:""} 
+                        return <Song number={index+1} name={song.name} participation={song.participation?song.participation:""} 
                         handleDelete={()=>deleteSong(index,songs)}
                         key={song.name}
                         
