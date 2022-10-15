@@ -14,15 +14,13 @@ const EditAlbum = () => {
     const [oldSongs,setOldSongs] = useState();
     const {name,setName,image,setImage,year,setYear,songs,setSongs,handleEditAlbum,album,setAlbum} = useAlbum();
     useEffect(() => {
-      if(location.state.album) setAlbum(location.state.album);
       if(location.state.songs) setOldSongs(location.state.songs);
-      if(!songs) setSongs(location.state.songs);
-      if(!name) setName(location.state.album.name);
-      if(!image) {
-        const teste = base64toFile(location.state.album.image, "test.png", 'image/type')
-        setImage(teste);
-    }
-      if(!year) setYear(location.state.album.year);
+      if(location.state.album.name) setName(location.state.album.name);
+      if(location.state.album.image) {
+          const teste = base64toFile(location.state.album.image, "test.png", 'image/type')
+          setImage(teste);
+        }
+        if(!year) setYear(location.state.album.year);
   }, []);
     const deleteSong = (index,songs) => {
         const songsAux = [...songs];
@@ -37,8 +35,11 @@ const EditAlbum = () => {
         e.preventDefault();
         handleEditAlbum(oldSongs);
     };
-    if (!songs ||!album ) return <p>Carregando...</p>;
     return(
+        !(name&&year&&songs)?
+        <p>Carregando...</p>
+        
+        :
         <div className="CreateAlbum">
             <h1 className="title">Editar álbum</h1>
             <div className="CreateAlbum-Body">
@@ -62,8 +63,7 @@ const EditAlbum = () => {
                 </div>
             </div>
             <Button id="SaveAlbum" type="submit" onClick={onSubmit}>Salvar</Button>
-        </div>
-        
+        </div>        
     );
 };
 export default EditAlbum;
