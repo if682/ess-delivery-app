@@ -17,7 +17,7 @@
     width: 36px;
     height: 36px;
 }
-.Uploader-Label{
+.ImgUploader .Uploader-Label{
     width: 58px;
     height: 24px;
     color: var(--White);
@@ -26,12 +26,12 @@
     text-align: center;
 }
 
-.fileSelector{
+.ImgUploader .fileSelector{
     display: none;
 }
-.FileSelector-Clicker{
+.ImgUploader .FileSelector-Clicker{
     position:absolute;
-    width: 120px;
-    height: 120px;
+    width: inherit;
+    height: inherit;
     cursor: pointer;
 }
