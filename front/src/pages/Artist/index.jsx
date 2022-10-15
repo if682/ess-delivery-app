@@ -8,11 +8,13 @@ import Album from '../../components/Album';
 
 import "./styles.css";
 import { useNavigate } from 'react-router';
+import { useAlbum } from '../../contexts/Album';
 
 const Artist = () => {
   const { loggedUserId, handleLogout } = useLogin();
   const [userData, setUserData] = useState();
   const [albums, setAlbums] = useState();
+  const {resetAlbumContext} = useAlbum();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const Artist = () => {
             key={i}
             children={album.name}
             src={album.image}
-            onClick={() => navigate("/album/" + album._id)}
+            onClick={() => { resetAlbumContext();navigate("/album/" + album._id)}}
           />
         )) : (
           <p>Carregando...</p>
