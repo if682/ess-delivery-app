@@ -15,15 +15,16 @@ describe('AUTH', () => {
 
     beforeAll(async () => {
       mockedArtist.password = await bcrypt.hash(mockedArtistPassword, 10);
-      mockingoose(Artist).toReturn(mockedArtist, 'findOne');
     })
 
-    afterAll(() => {
+    afterEach(() => {
       mockingoose.resetAll();
     });
 
 
-    test("Should login when pass valid credentials", async () => {
+    test("Login bem sucedido", async () => {
+      mockingoose(Artist).toReturn(mockedArtist, 'findOne');
+
       const results = await supertest(app).post('/auth/login').send({
         email: mockedArtist.email,
         password: mockedArtistPassword
@@ -35,9 +36,23 @@ describe('AUTH', () => {
     });
 
     test("Login mal sucedido por senha inválida", async () => {
+      mockingoose(Artist).toReturn(mockedArtist, 'findOne');
+
       const results = await supertest(app).post('/auth/login').send({
         email: mockedArtist.email,
         password: "invalidpassword"
+      });
+
+      expect(results.statusCode).toBe(400);
+      expect(results.body.error).toBe("Invalid credentials");
+    });
+
+    test("Login mal sucedido por email incorreto", async () => {
+      mockingoose(Artist).toReturn(null, 'findOne');
+
+      const results = await supertest(app).post('/auth/login').send({
+        email:"emailinvalido@email.com",
+        password: mockedArtistPassword
       });
 
       expect(results.statusCode).toBe(400);
