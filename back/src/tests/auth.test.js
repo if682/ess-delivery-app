@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import mockingoose from 'mockingoose'
 import supertest from 'supertest'
 import { Artist } from '../models/artist';
