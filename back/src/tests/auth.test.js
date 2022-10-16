@@ -58,5 +58,20 @@ describe('AUTH', () => {
       expect(results.statusCode).toBe(400);
       expect(results.body.error).toBe("Invalid credentials");
     });
+
+    test.each([
+      {email: "", password: "123456", reason: "email vazio"},
+      {email: mockedArtist.email, password: "",reason: "senha vazia"}
+    ])("Login mal sucedido por $reason",async ({email,password}) => {
+      // mockingoose(Artist).toReturn(null, 'findOne');
+
+      const results = await supertest(app).post('/auth/login').send({
+        email,
+        password
+      });
+
+      expect(results.statusCode).toBe(400);
+      expect(results.body.error).toBe("Invalid credentials");
+    })
   });
 });
