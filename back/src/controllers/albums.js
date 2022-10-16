@@ -17,7 +17,6 @@ albumsRouter.post('',authorizationMiddleware,async (request, response) => {
         })) return response.status(400).send({ error: 'A song is missing required an argument' });
     
     try {        
-        console.log({name, image, year, artist : userId});
         const album = await Album.create({name, image, year, artist : userId});
         await Promise.all(songs.map(async song =>{
             const albumSong = new Song({...song, album: album._id,artist:userId}); 
@@ -31,7 +30,7 @@ albumsRouter.post('',authorizationMiddleware,async (request, response) => {
 
         return response.send({ album });
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
         return response.status(500).send({message: "Something went wrong with the server", error});
         
     }
