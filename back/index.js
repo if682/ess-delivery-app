@@ -1,9 +1,6 @@
-import dotenv from 'dotenv';
-
+import './dotenv.config.js'
 import { connectDB } from './src/database/index.js';
 import app from './src/server.js';
-
-dotenv.config();
 
 (async function () {
   try {
