@@ -5,13 +5,13 @@ import bcrypt from 'bcrypt';
 import app from '../server';
 
 describe('auth', () => {
-  test("Should login", async () => {
+  test("Should login when pass valid credentials", async () => {
     const fakePassword = "123456"
     const encryptedPassword = await bcrypt.hash(fakePassword, 10)
 
     const _doc = {
       _id: '507f191e810c19729de860ea',
-      name: 'name',
+      name: 'Nome do cara',
       email: 'name@email.com',
       password: encryptedPassword,
     };
@@ -24,6 +24,8 @@ describe('auth', () => {
     })
 
     expect(results.statusCode).toBe(200);
+    expect(results.body.token).toBeTruthy()
+    expect(results.body.artist.name).toBe('Nome do cara')
   })
 
 });
