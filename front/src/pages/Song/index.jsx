@@ -6,11 +6,12 @@ import { api } from '../../services/api';
 import Play from "../../components/PlayMusic";
 import { Routes, useNavigate } from "react-router";
 import Icon from '../../components/Icon';
-import { useAlbum } from "../../contexts/Album";
+import Album from '../../components/Album';
 
 const Songs = () => {
   const navigate = useNavigate()
-  const {songs, setSongs,album, setAlbum} = useAlbum();
+  const [songs, setSongs] = useState([]);
+  const [album, setAlbum] = useState({});
   const [playIndex, setPlayIndex] = useState(0);
   const params = useParams();
 
@@ -47,16 +48,29 @@ const Songs = () => {
   return (
     <div className="Song">
       <div className="Banner">
-        <h1>{album.name ?? "Carregando..."}</h1>
-        <button className='IconButton' onClick={handleNavigateEditAlbum}>
-          <Icon iconType="Edit" />
-        </button>
-        <button onClick={() => navigate(-1)}>voltar</button>
+        <div className="name">
+          <div className="album">
+            <Album
+              src={album.image}
+              onClick={() => navigate("/album/" + album._id)}
+            />
+          </div>
+          <h1>{album.name ?? "Carregando..."}</h1>
+          <button className='IconButton' onClick={handleNavigateEditAlbum}>
+            <Icon iconType="Edit" />
+          </button>
+        </div>
+        <div>
+          <button className='IconButton LogoutButton' onClick={() => navigate(-1)}>
+            <Icon iconType="Back" />
+            <p>Voltar</p>
+          </button>
+        </div>
       </div>
       <div className="Songs">
         {songs.map((song, index) => (
           <div className="song" key={index}>
-            <Song number={index + 1} name={song.name} handlePlay={() => setPlayIndex(index)}  participation={song.participation} />
+            <Song number={index + 1} name={song.name} handlePlay={() => setPlayIndex(index)}  participations={song.participations} />
           </div>)
         )}
       </div>

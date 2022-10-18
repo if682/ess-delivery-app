@@ -8,6 +8,7 @@
 }
 
 .Banner {
+    display: flex;
     min-height: 33%;
     background-color: transparent;
     background-image:  linear-gradient( to bottom, #0d99ff, #1e60d7, #121212)
@@ -28,4 +29,17 @@
 
 .song {
     margin-bottom: 1%;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+}
+
+.name h1 {
+    margin-right: 10px;
+}
+
+.album {
+    margin: 10px;
 }
