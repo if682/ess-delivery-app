@@ -3,4 +3,5 @@ export default {
   setupFiles: [
     './dotenv.config.js'
 ],
+testTimeout : 90000,
 }

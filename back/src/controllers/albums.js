@@ -17,7 +17,6 @@ albumsRouter.post('',authorizationMiddleware,async (request, response) => {
         })) return response.status(400).send({ error: 'A song is missing required an argument' });
     
     try {        
-        console.log({name, image, year, artist : userId});
         const album = await Album.create({name, image, year, artist : userId});
         await Promise.all(songs.map(async song =>{
             const albumSong = new Song({...song, album: album._id,artist:userId}); 
@@ -31,7 +30,7 @@ albumsRouter.post('',authorizationMiddleware,async (request, response) => {
 
         return response.send({ album });
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
         return response.status(500).send({message: "Something went wrong with the server", error});
         
     }
@@ -49,18 +48,18 @@ albumsRouter.get('/:albumId', async (request, response) => {
     try{
       const album = await Album.findOne({"_id": request.params.albumId});
       if (album) return response.send(album);
-      else return response.status(404).json({message: "Could not find the album"});
+      else return response.status(404).send({message: "Could not find the album"});
     }catch(error){
-      return response.status(500).json({message: "Something went wrong with the server", error});
+      return response.status(500).send({message: "Something went wrong with the server", error});
     }
 });
 albumsRouter.get('/fromArtist/:artistId', async (request, response) => {
     try{
       const albums = await Album.find({"artist": request.params.artistId});
       if (albums) return response.send(albums);
-      else return response.status(404).json({message: "Artist does not exist or does not have any albums"});
+      else return response.status(404).send({message: "Artist does not exist or does not have any albums"});
     }catch(error){
-      return response.status(500).json({message: "Something went wrong with the server", error});
+      return response.status(500).send({message: "Something went wrong with the server", error});
     }
 });
 albumsRouter.put('/:albumId', authorizationMiddleware, async (request, response) => {
@@ -72,18 +71,14 @@ albumsRouter.put('/:albumId', authorizationMiddleware, async (request, response)
         delete body.artist;
         const same = await Album.findOne({ "name":body.name });   
         if(same && same._id != request.params.albumId) return response.status(400).send({ error: 'Album name already exists' });
-        console.log(body);
-        if(!body.songs) return response.status(400).send({ error: 'A album needs a song' });
-        await Album.updateOne({"_id": request.params.albumId}, body);
-        const album =  await Album.findOne({"_id": request.params.albumId});
-        
+        if(!body.songs.length) return response.status(400).send({ error: 'A album needs a song' });
+        const album = await Album.updateOne({"_id": request.params.albumId}, body);        
         return response.send(album);
       }
       else { 
-        console.log(request.params.albumId); 
-        return response.status(404).json({message: "Could not find the album"});}
+        return response.status(404).send({message: "Could not find the album"});}
     }catch(error){
-      return response.status(500).json({message: "Something went wrong with the server", error});
+      return response.status(500).send({message: "Something went wrong with the server", error});
     }
   })
   
