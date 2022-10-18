@@ -67,7 +67,7 @@ const Artist = () => {
         )) : (
           <p>Carregando...</p>
         )}
-        <AddAlbum onClick={() => navigate("/createAlbum")} />
+        <AddAlbum onClick={() => {resetAlbumContext();navigate("/createAlbum")}} />
       </main>
     </div>
   );

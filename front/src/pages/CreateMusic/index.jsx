@@ -2,15 +2,10 @@ import "./styles.css"
 import Input from "../../components/Input"
 import Checkbox from "../../components/Checkbox"
 import Button from "../../components/Button"
-import React,{useState, useCallback} from "react";
-import { useNavigate } from "react-router-dom";
-import { api} from '../../services/api';
-import { useLocation } from 'react-router-dom';
+import React,{useState} from "react";
 import { useAlbum } from "../../contexts/Album";
 
 const CreateMusic = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
     const [name, setName] = useState(null);
     const [url, setUrl] = useState(null);
     const [participation, setparticipation] = useState(null);

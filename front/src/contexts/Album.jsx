@@ -1,8 +1,7 @@
-import { useContext, useEffect, useMemo } from 'react';
-import { useCallback } from 'react';
+import { useContext, useMemo } from 'react';
 import { createContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { api, setAuthToken } from '../services/api';
+import { api} from '../services/api';
 import { toBase64} from '../services/base64';
 
 const AlbumContext = createContext();
@@ -11,7 +10,7 @@ export const AlbumProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState(undefined);
   const [year, setYear] = useState(null);
-  const [songs,setSongs] =  useState();
+  const [songs,setSongs] =  useState([]);
   const [album,setAlbum] =  useState();
   const navigate = useNavigate();
 
@@ -80,23 +79,25 @@ export const AlbumProvider = ({ children }) => {
     }
   }
   const handleAddAlbum = async() =>{
-    if(name&&year){
-      const body = {name,image:await toBase64(image),year,songs};            
-      try {
-          const response = await api.post('/albums',body,{
-            headers:{
-              Authorization:`Bearer ${localStorage.getItem('token')}`
-            }
-          });
-          console.log(response);
-          resetAlbumContext();
-          navigate("/artist");
-      } catch (error) {
-          console.log(error);
-      }            
-    }
-    else if(!songs){
+    if(name&&year){      
+      if(!(songs&&songs.length)){
         alert("*Album precisa conter uma música*");
+      }
+      else{
+        const body = {name,image:await toBase64(image),year,songs};            
+        try {
+            const response = await api.post('/albums',body,{
+              headers:{
+                Authorization:`Bearer ${localStorage.getItem('token')}`
+              }
+            });
+            console.log(response);
+            resetAlbumContext();
+            navigate("/artist");
+        } catch (error) {
+            console.log(error);
+        }  
+      }          
     }
     else{
         alert("*Campo obrigatório não pode ser deixado vazio*");
@@ -107,7 +108,6 @@ export const AlbumProvider = ({ children }) => {
         try {
           const response = await api.get('/songs');
           const songsDB = response.data.songs;
-          //console.log(songsDB);
           if(!songsDB.some(song=>(song.name === name)||(song.url === url))
           &&!songs.some(song=>(song.name === name)||(song.url === url))){
             
@@ -117,6 +117,7 @@ export const AlbumProvider = ({ children }) => {
               const newSong = {name, url, participation, explicit}
               const newSongs = [...songs, newSong]
               setSongs(newSongs);
+              alert("música inserida com sucesso");
               navigate(-1);
             }
             else{

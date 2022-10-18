@@ -16,7 +16,6 @@ const CreateAlbum = () => {
         setSongs(songsAux);
     }
     const addSong = () => {
-        console.log(name,image,year,songs);
         navigate("/createMusic");
     }
     const onSubmit = async(e) => {
@@ -34,7 +33,7 @@ const CreateAlbum = () => {
                     <Input placeholder="aaaa" value={year} id="inputAlbum" onChange={e => setYear(e.target.value)}>Ano*</Input>
                 </form>
                 <div className="SongsAdded">
-                    {songs?
+                    {(songs&&songs.length)?
                     
                     songs.map((song,index,songs)=> {
                         return <Song number={index+1} name={song.name} participation={song.participation?song.participation:""} 
