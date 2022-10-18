@@ -1,12 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import { artistsRouter } from './controllers/artists.js';
-import { albumsRouter } from './controllers/albums.js';
-import { songsRouter } from './controllers/songs.js';
-import { authRouter } from './controllers/auth.js';
-import { authorizationMiddleware } from './middlewares/authorization.js';
-
-// const { v4: uuid } = require('uuid');
+import { artistsRouter } from './routes/artists.js';
+import { albumsRouter } from './routes/albums.js';
+import { songsRouter } from './routes/songs.js';
+import { authRouter } from './routes/auth.js';
 
 const app = express();
 
