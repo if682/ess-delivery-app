@@ -7,6 +7,7 @@
 .Album:hover .AlbumImg{
     
     border: solid 5px var(--Primary_Light);
+    cursor: pointer;
 }
 .AlbumImg{
     background-color: var(--Gray_Light);
