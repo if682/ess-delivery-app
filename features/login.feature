@@ -10,3 +10,13 @@ And existe uma conta com o “username” “Fulaninho de Tal” e “password�
 When eu preencho o “username” com “Fulaninho de Tal”
 And eu preencho a “password” com “123456”
 Then eu sou redirecionada a página “meu perfil”
+
+Scenario Login mal-sucedido: senha incorreta
+Given estou na página de “login” 
+And não estou logada em nenhuma conta
+And existe uma conta com o “username” “Fulaninho de Tal” e “password” “123456”
+When eu preencho o “username” com “Fulaninho de Tal”
+And eu preencho a “password” com “654321”
+Then eu recebo uma mensagem de erro “senha incorreta”
+And eu continuo na página de “login”
+
