@@ -1,6 +1,6 @@
 # Especificações do projeto
 
-O projeto tem o objetivo de implementar duas features comumente vistas em apps/sites de delivery (IFood, Rappi, etc.): Ger de clientes e itens de cardápio
+O projeto tem o objetivo de implementar duas features comumente vistas em apps/sites de delivery (IFood, Rappi, etc.): Gerência de clientes e itens de cardápio
 
 # Estrutura do projeto a ser utilizado na disciplina de ESS
 
