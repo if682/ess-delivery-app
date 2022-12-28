@@ -29,3 +29,10 @@ So that eu possa ter acesso a minha conta e às features que necessitem de auten
     Then eu recebo uma mensagem de erro “usuário não encontrado”
     And eu continuo na página de “login”
 
+    Scenario: Login mal-sucedido: senha vazia
+    Given estou na página de “login” 
+    And não estou logada em nenhuma conta
+    When eu preencho o “username” com “Fulaninho de Tal”
+    And eu preencho a “password” com “”
+    Then eu recebo uma mensagem de erro “senha vazia”
+    And eu continuo na página de “login”
