@@ -58,3 +58,13 @@ Scenario: Erro ao Cadastrar um novo Usuário, senha com menos de 8 dígitos
     And Escrevo “Casa” em “Complemento”
     And Clico em “Cadastrar”
     Then Eu recebo uma mensagem de Erro do cadastro  
+
+Scenario: Erro ao Administrador colocar sua senha ao querer promover um usuário a administrador
+    Given Eu estou na página de “Painel Admin”
+    And Eu estou logado com a conta de administrador default de email  “admin@hotmail.com” e senha  “adminadmin”
+    And Vejo uma tabela com os usuários do sistema
+    And Eu vejo o usuário de “nome”  “Guilherme Maciel de Melo”, “123.456.789-10” em “CPF”, “gmm7@cin.ufpe.br” em “e-mail”
+    When Eu clico no botão “Admin” no usuário “Guilherme Maciel de Melo”
+    And Escrevo  “admin” em “Senha”
+    And Clico em “confirmar”
+    Then Eu recebo uma mensagem de que a senha está incorreta
