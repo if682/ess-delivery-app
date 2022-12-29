@@ -43,3 +43,6 @@ When eu acessar a página “auto-avaliações discrepantes”
 Scenario: Cancelar pedido logado porém sem digitar senha de confirmação.
 Ideia: Irá requisitar senha no campo requisitado
 
+Scenario: Cancelar pedido logado porém digitando senha errada
+Ideia: Irá avisar que a senha está errada
+
