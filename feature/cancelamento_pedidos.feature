@@ -55,3 +55,6 @@ Then verá página confirmada.
 
 Scenario: Cancelar pedido logado e digitando senha com caracteres especiais.
 Ideia: Irá avisar que não aceita caracteres especiais.
+Reparo
+Reparo
+Reparo
