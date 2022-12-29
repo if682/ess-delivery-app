@@ -25,16 +25,6 @@ Feature: Gerenciar itens do cardápio
 	And aparecerá uma mensagem de confirmação dizendo ""Hambúrguer" foi excluído."
 	And o item de nome "Hambúrguer" não aparecerá mais na página "Cardápio"
 
-	Scenario: Cancelar a remoção de um item
-	Given estou logado como “Admin” com o login “abdf”
-	And estou na página “Cardápio”
-	And existe um item de nome "Hambúrguer"
-	When eu clicar no botão "Remover" do item de nome "Hambúrguer"
-	Then surgirá uma página de confirmação de exclusão
-	When eu clicar no botão "Cancelar" 
-	Then eu retornarei à página "Cardápio"
-	And o item de nome "Hambúrguer" existirá na página "Cardápio"
-
 	Scenario: Editar um item
 	Given estou logado como “Admin” com o login “abdf”
 	And estou na página “Cardápio”
@@ -90,3 +80,13 @@ Feature: Gerenciar itens do cardápio
 	And eu clicar no botão “Editar”
 	Then aparecerá uma mensagem de erro dizendo “Todos os campos devem ser preenchidos.”
 	And surgirão as caixas de entrada “Nome”, “Preço” e “Descrição” auto-preenchidas com “Torta”, “12” e “Uma torta gostosa”
+
+	Scenario: Cancelar a remoção de um item
+	Given estou logado como “Admin” com o login “abdf”
+	And estou na página “Cardápio”
+	And existe um item de nome "Hambúrguer"
+	When eu clicar no botão "Remover" do item de nome "Hambúrguer"
+	Then surgirá uma página de confirmação de exclusão
+	When eu clicar no botão "Cancelar" 
+	Then eu retornarei à página "Cardápio"
+	And o item de nome "Hambúrguer" existirá na página "Cardápio"
