@@ -16,3 +16,14 @@ And estou na página "auto-avaliação"
 When eu peço ao sistema para enviar minha auto-avaliação
 Then permaneço na página de "auto-avaliação"
 And vejo um modal com uma mensagem de erro
+
+
+Cenário: Aluno envia sua auto-avaliação
+
+Given que eu sou a aluna “Fulano x”
+And não realizei a minha auto-avaliação 
+And estou na página "auto-avaliação"
+Whe eu atribuir os conceitos “MA, MPA, MANA” para as metas (Entender conceitos de requisitos, Especificar requisitos com qualidade, Entender conceitos de gerência de configuração, etc.)
+e pedir ao sistema para enviar minha auto-avaliação
+Then ainda permaneço na página de "auto-avaliação"
+And vejo um modal com uma mensagem de confirmação 
