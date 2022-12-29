@@ -28,3 +28,10 @@ e pedir ao sistema para enviar minha auto-avaliação
 Then ainda permaneço na página de "auto-avaliação"
 And vejo um modal com uma mensagem de confirmação 
 And novo passo
+
+
+Cenário: Novo Cenário
+
+Given que esse é um novo Cenário
+When eu atribuir novo a alguma coisa
+Then ainda permaneço na página que estou e vejo algo bom
