@@ -40,3 +40,6 @@ And O aluno “Pedro” possui 1 auto-avaliação discrepantes em relação ao t
 When eu acessar a página “auto-avaliações discrepantes”
 	Then a “Quantidade de alunos discrepantes” será 1, a “Procentagem de alunos discrepantes” será 33,3% e a “Lista de alunos discrepantes” estará apenas com o aluno “Marcos”.
 
+Scenario: Cancelar pedido logado porém sem digitar senha de confirmação.
+Ideia: Irá requisitar senha no campo requisitado
+
