@@ -88,7 +88,7 @@ Scenario: Erro ao Cadastrar um novo Usuário, e-mail já utilizado
 
 Scenario: Administrador default deseja remover outro administrador do sistema
     Given Eu estou na página de "Painel Admin"
-    And Eu estou logado com a conta de administrador default de email  "admin@hotmail.com" e senha  "adminadmin"
+    And Eu estou logado com a conta de administrador default de email  "admin@hotmail.com" e senha "adminadmin"
     And Vejo uma tabela com os usuários do sistema
     And Eu vejo o usuário de "nome"  "Guilherme Maciel de Melo", "123.456.789-10” em “CPF", "gmm7@cin.ufpe.br" em "e-mail"
     And Eu vejo que esse usuário já é um administrador
@@ -96,3 +96,4 @@ Scenario: Administrador default deseja remover outro administrador do sistema
     And Escrevo  "adminadmin" em "Senha"
     And Clico em "confirmar"
     Then Eu recebo uma mensagem de que o usuário foi removido do sisema
+    And Eu permaneço na página de "Painel Admin"
