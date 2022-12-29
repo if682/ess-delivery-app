@@ -18,6 +18,7 @@ Then permaneço na página de "auto-avaliação"
 And vejo um modal com uma mensagem de erro
 
 
+
 Cenário: Aluno envia sua auto-avaliação
 
 Given que eu sou a aluna “Fulano x”
@@ -30,8 +31,12 @@ And vejo um modal com uma mensagem de confirmação
 And novo passo
 
 
-Cenário: Novo Cenário
+Cenário: Aluno não consegue enviar a sua auto-avaliação pois deixou de preencher um conceito
 
-Given que esse é um novo Cenário
-When eu atribuir novo a alguma coisa
-Then ainda permaneço na página que estou e vejo algo bom
+Given que eu sou a aluna “Fulano x”
+And não realizei a minha auto-avaliação 
+And atribui "MA" para todas as metas avaliadas
+And estou na página "auto-avaliação"
+When eu peço ao sistema para enviar minha auto-avaliação
+Then permaneço na página de "auto-avaliação"
+And vejo um modal com uma mensagem de que devido à um erro no sistema não será possivel enviar a autoavaliação
