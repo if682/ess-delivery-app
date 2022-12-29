@@ -46,3 +46,10 @@ Ideia: Irá requisitar senha no campo requisitado
 Scenario: Cancelar pedido logado porém digitando senha errada
 Ideia: Irá avisar que a senha está errada
 
+Scenario: Cancelar pedido sem estar logado.
+Ideia: não irá funcionar, precisando fazer o login
+
+Scenario: Cancelar pedido logado e digitando senha de confirmação certa.
+Ideia: Irá avisar que o pedido foi cancelado com sucesso.
+Then verá página confirmada.
+
