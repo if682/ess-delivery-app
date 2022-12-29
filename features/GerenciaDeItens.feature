@@ -25,6 +25,16 @@ Feature: Gerenciar itens do cardápio
 	And aparecerá uma mensagem de confirmação dizendo ""Hambúrguer" foi excluído."
 	And o item de nome "Hambúrguer" não aparecerá mais na página "Cardápio"
 
+	Scenario: Cancelar a remoção de um item
+	Given estou logado como “Admin” com o login “abdf”
+	And estou na página “Cardápio”
+	And existe um item de nome "Hambúrguer"
+	When eu clicar no botão "Remover" do item de nome "Hambúrguer"
+	Then surgirá uma página de confirmação de exclusão
+	When eu clicar no botão "Cancelar" 
+	Then eu retornarei à página "Cardápio"
+	And o item de nome "Hambúrguer" existirá na página "Cardápio"
+
 	Scenario: Editar um item
 	Given estou logado como “Admin” com o login “abdf”
 	And estou na página “Cardápio”
