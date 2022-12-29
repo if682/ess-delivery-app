@@ -51,3 +51,7 @@ Ideia: não irá funcionar, precisando fazer o login
 
 Scenario: Cancelar pedido logado e digitando senha de confirmação certa.
 Ideia: Irá avisar que o pedido foi cancelado com sucesso.
+
+Scenario: Cancelar pedido logado e digitando senha com caracteres especiais.
+Ideia: Irá avisar que não aceita caracteres especiais.
+
