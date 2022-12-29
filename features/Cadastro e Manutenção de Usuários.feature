@@ -68,3 +68,4 @@ Scenario: Erro ao Administrador colocar sua senha ao querer promover um usuário
     And Escrevo  “admin” em “Senha”
     And Clico em “confirmar”
     Then Eu recebo uma mensagem de que a senha está incorreta
+    And Eu continuo na página de escrever a senha
