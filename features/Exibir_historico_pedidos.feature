@@ -64,4 +64,4 @@ Recurso: visualizar histórico de pedidos
 		When uso a interface fornecida no aplicativo para me direcionar aos detalhes específicos do pedido de "id" = "1234"
 		Then a página vai ser recarregada
 		And consigo visualizar apenas o item com o "id" = "1234"
-		And com o campo "endereço de entrega" na visualização
+		And vai ser mostrado de forma completa os detalhes do pedido
