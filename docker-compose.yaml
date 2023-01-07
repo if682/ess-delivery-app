@@ -1,26 +1,36 @@
 version: '3.9'
 services:
   database:
-    image: mongo
-    container_name: mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: toor
+    image: postgres
+    container_name: database
+    env_file:
+      - ./env/database.env
+    volumes:
+      - database_vol:/var/lib/postgresql/data
   backend:
     build: ./backend
+    container_name: backend
     restart: always
     depends_on:
       - database
     ports:
       - 8080:8080
+      - 5555:5555 #prisma studio port
+    env_file:
+      - ./env/backend.env
     volumes:
       - ./backend:/app
   frontend:
     build: ./frontend
+    container_name: frontend
     restart: always
     depends_on:
       - backend
     ports:
       - 3000:3000
+    env_file:
+      - ./env/frontend.env
     volumes:
       - ./frontend:/app
+volumes:
+  database_vol:

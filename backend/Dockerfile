@@ -9,5 +9,6 @@ RUN npm install
 COPY . .
 
 EXPOSE 8080
+EXPOSE 5555
 
-CMD ["npm", "run", "start:dev"]
+CMD npx prisma studio & npm run start:dev
