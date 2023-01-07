@@ -13,7 +13,7 @@ export class UserController {
 
   @Get(':userId')
   async getUserById(@Param('userId') userId: string) {
-    return this.userRepository.getUser(userId);
+    return this.userRepository.getUserById(userId);
   }
 
   @Post()
