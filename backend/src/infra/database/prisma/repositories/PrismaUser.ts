@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import {
-  UserResponseDTO,
-  UserCreationDTO,
-} from '../../interfaces/user.interface';
+import { UserCreationDTO } from '../../interfaces/user.interface';
 import UserRepository from '../../repositories/UserRepository';
 import { PrismaService } from '../prisma.service';
 
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class PrismaUser implements UserRepository {
@@ -15,7 +13,7 @@ export class PrismaUser implements UserRepository {
     private encryptService: EncryptService,
   ) {}
 
-  async getUserById(id: string): Promise<UserResponseDTO> {
+  async getUserById(id: string): Promise<User> {
     const user = await this.prisma.user.findFirst({
       where: {
         id,
@@ -26,19 +24,10 @@ export class PrismaUser implements UserRepository {
       throw new Error('User does not exists');
     }
 
-    const { email, name, cpf } = user;
-
-    const userReturn: UserResponseDTO = {
-      id,
-      email,
-      cpf,
-      name,
-    };
-
-    return userReturn;
+    return user;
   }
 
-  async getUserByEmail(email: string): Promise<UserResponseDTO> {
+  async getUserByEmail(email: string): Promise<User> {
     const user = await this.prisma.user.findFirst({
       where: {
         email,
@@ -49,17 +38,7 @@ export class PrismaUser implements UserRepository {
       throw new Error('User does not exists');
     }
 
-    const { id, name, cpf, password } = user;
-
-    const userReturn: UserResponseDTO = {
-      id,
-      email,
-      cpf,
-      name,
-      password,
-    };
-
-    return userReturn;
+    return user;
   }
 
   async createUser({
@@ -82,16 +61,7 @@ export class PrismaUser implements UserRepository {
     });
   }
 
-  async getUsers(): Promise<UserResponseDTO[]> {
-    const usersReturn = (await this.prisma.user.findMany({})).map(
-      ({ id, name, cpf, email }) => ({
-        id,
-        name,
-        email,
-        cpf,
-      }),
-    );
-
-    return usersReturn;
+  async getUsers(): Promise<User[]> {
+    return await this.prisma.user.findMany({});
   }
 }
