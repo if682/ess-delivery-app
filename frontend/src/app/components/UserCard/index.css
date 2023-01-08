@@ -1,7 +1,8 @@
-.App {
-  text-align: center;
+.user-card {
+  text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
   background-color: #efefef;
+  padding: 24px;
 }
