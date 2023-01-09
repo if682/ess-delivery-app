@@ -37,8 +37,7 @@ Recurso: visualizar histórico de pedidos
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:35", "estabelecimento" = "Mc Donalds", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1235", "id do pedido" = "2345", "detalhes do pedido" = "x burguer", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When filtro minha busca pelo endereço de entrega "endereço de entrega" = "1235"
 		Then a página vai ser recarregada 
-		And consigo visualizar apenas o item com o "id" = "2345"
-		And sem o campo "endereço de entrega" na visualização	
+		And consigo visualizar apenas o item com o "id" = "2345"	
 		
 	Scenario: Pedir ajuda dizendo que teve problema no pedido
 		Given que estou na página de "histórico de pedidos"
