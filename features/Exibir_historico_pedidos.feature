@@ -28,6 +28,16 @@ Recurso: visualizar histórico de pedidos
 		When filtro minha busca pela data do pedido "data" = "29/12/2022"
 		Then a página vai ser recarregada 
 		And consigo visualizar apenas o item com o "id" = "1234"
+		And sem o campo "endereço de entrega" na visualização
+		
+	Scenario: Ver histórico de pedidos feitos em um local específico
+		Given que estou na página de "histórico de pedidos"
+		And a visualização do histórico não é filtrada
+		And existe um pedido com "data" = "29/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
+		And existe um pedido com "data" = "27/12/2022", "hora" = "12:35", "estabelecimento" = "Mc Donalds", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1235", "id do pedido" = "2345", "detalhes do pedido" = "x burguer", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
+		When filtro minha busca pelo endereço de entrega "endereço de entrega" = "1235"
+		Then a página vai ser recarregada 
+		And consigo visualizar apenas o item com o "id" = "2345"
 		And sem o campo "endereço de entrega" na visualização	
 		
 	Scenario: Pedir ajuda dizendo que teve problema no pedido
@@ -57,6 +67,7 @@ Recurso: visualizar histórico de pedidos
 		And o campo "escrita da descrição" está em branco
 		When apertar o botâo "enviar descrição do problema no pagamento" 
 		Then aparecerá uma mensagem de erro dizendo "é preciso escrever no campo escrita da descrição para enviar a solicitação de ajuda" 
+		
 		
 	Scenario: Mostrar detalhes do pedido
 		Given que estou na página de "histórico de pedidos"
