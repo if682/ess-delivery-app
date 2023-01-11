@@ -67,7 +67,6 @@ Recurso: visualizar histórico de pedidos
 		When apertar o botâo "enviar descrição do problema no pagamento" 
 		Then aparecerá uma mensagem de erro dizendo "é preciso escrever no campo escrita da descrição para enviar a solicitação de ajuda" 
 		
-		
 	Scenario: Mostrar detalhes do pedido
 		Given que estou na página de "histórico de pedidos"
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
