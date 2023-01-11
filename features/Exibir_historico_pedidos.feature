@@ -21,6 +21,7 @@ Recurso: visualizar histórico de pedidos
 		And consigo visualizar apenas o item com o "id" = "2345"
 		And sem o campo "endereço de entrega" na visualização
 		
+		
 	Scenario: Ver histórico de pedidos feitos em um dia específico
 		Given que estou na página de "histórico de pedidos"
 		And a visualização do histórico não é filtrada
