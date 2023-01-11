@@ -10,6 +10,7 @@ Recurso: visualizar histórico de pedidos
 		Then consigo visualizar apenas o item com o "id" = "1234"
 		And sem o campo "endereço de entrega" na visualização
 		
+		
 	Scenario: Ver histórico de pedidos feitos em um restaurante específico
 		Given que estou na página de "histórico de pedidos"
 		And a visualização do histórico não é filtrada
