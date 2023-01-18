@@ -11,3 +11,6 @@ ideia geral: Ao tentar fazer a avaliação de um filme sem ter um conta na plata
 
 Cenário: Avaliar filme como visitante(cenário de fracasso)
 ideia geral: Ao tentar fazer a avaliação de um filme sem ter uma conta na plataforma, usuário não forneceu todos os dados essenciais para o êxito do processo, por conta disso, irá aparecer um alerta de erro avisando-o o que faltou e será preciso preencher todas as informações novamente.
+
+Cenário: Avaliação de um filme como usuário(cenário de fracasso)
+Ideia geral: Ao avaliar um filme como um usuário cadastrado na plataforma, caso ocorra algum erro ao registrar a avaliação, o usuário irá receber um alerta avisando que sua opinião não foi registrada.
