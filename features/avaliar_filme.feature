@@ -8,3 +8,6 @@ ideia geral: Ao tentar fazer a re-avaliação de um filme, usuário receberá um
 
 Cenário: Avaliar filme como visitante (cenário de sucesso)
 ideia geral: Ao tentar fazer a avaliação de um filme sem ter um conta na plataforma, usuário irá precisar fornecer algumas informações, após preencher todos os dados necessários, sua crítica poderá ser registrada.
+
+Cenário: Avaliar filme como visitante(cenário de fracasso)
+ideia geral: Ao tentar fazer a avaliação de um filme sem ter uma conta na plataforma, usuário não forneceu todos os dados essenciais para o êxito do processo, por conta disso, irá aparecer um alerta de erro avisando-o o que faltou e será preciso preencher todas as informações novamente.
