@@ -21,3 +21,20 @@ So that eu possa aumentar o catálogo de filmes do sistema.
     Then eu recebo um alerta que o filme "Harry Potter e a pedra filosofal" já foi cadastrado no sistema e não pode ser colocado novamente
     And o formulário é limpo.
 
+    Scenario: Cadastrar filme sem preencher corretamente algum campo obrigatório do formulário
+    Given eu estou logado com o usuário "fulano123" no formato "usuario-comum"
+    And eu estou no "formulário de cadastro de filmes"
+    When eu preencho as informações de data de lançamento: "1998", Descrição do filme: "Descrição"
+    And não preencho o campo de "Nome" do filme
+    And eu submeto o formulário
+    Then eu recebo um alerta informando o campo em questão não preenchido.
+    And o formulário é recarregado com as informações salvas até o momento.
+
+    Scenario: O usuário fechou o cadastro de filmes antes de submeter as informações
+    Given eu estou logado com o usuário "fulano123" no formato "usuario-comum"
+    And eu estou no "formulário de cadastro de filmes"
+    When eu preencho as informações de nome: "Harry Potter", data de lançamento: "1998", Descrição do filme: "Descrição"
+    And eu saio do formulário de cadastro de filmes
+    Then as informações até então digitadas não ficam salvas
+    And eu preciso voltar para o "O formulário de cadastro de filmes"
+    And escrever as informações de "Nome", "Data de lançamento" e "Descrição" novamente.
