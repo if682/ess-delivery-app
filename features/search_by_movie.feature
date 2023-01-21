@@ -16,3 +16,10 @@ Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 	(When) Quando eu pesquiso por “Clube”,
 	(Then) Eu continuo na página “Lista de Filmes”,
 	(And) E apenas os filmes “Clube da Luta” e “Clube dos Cinco” são exibidos.
+
+	Cenário: pesquisar filme inexistente (cenário malsucedido)
+	(Given) Dado que estou na página “Lista de Filmes”,
+	(And) E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
+	(When) Quando eu pesquiso por “O Iluminado”,
+	(Then) Eu continuo na página “Lista de Filmes”,
+	(And) E nenhum filme é exibido.
