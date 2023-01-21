@@ -10,6 +10,13 @@ Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 	(Then) Eu continuo na página “Lista de Filmes”,
 	(And) E apenas o filme “Clube da Luta” é exibido.
 
+	Cenário: pesquisar filme existente de título igual a outro (cenário bem-sucedido)
+	(Given) Dado que estou na página “Lista de Filmes”,
+	(And) E somente os filmes “A Órfã”, “Os Vingadores” e “Os Vingadores” estão na lista de filmes,
+	(When) Quando eu pesquiso por “Os Vingadores”,
+	(Then) Eu continuo na página “Lista de Filmes”,
+	(And) E apenas os filmes “Os Vingadores” e “Os Vingadores” são exibidos.
+
 	Cenário: pesquisar filme por título parcial (cenário bem-sucedido)
 	(Given) Dado que estou na página “Lista de Filmes”,
 	(And) E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
