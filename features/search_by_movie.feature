@@ -23,3 +23,11 @@ Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 	(When) Quando eu pesquiso por “O Iluminado”,
 	(Then) Eu continuo na página “Lista de Filmes”,
 	(And) E nenhum filme é exibido.
+
+	Cenário: pesquisar filme com campo de pesquisa vazio (cenário malsucedido)
+	(Given) Dado que estou na página “Lista de Filmes”,
+	(And) E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
+	(When) Quando eu pesquiso sem preencher o campo de pesquisa,
+	(Then) Eu consigo ver uma mensagem de erro,
+	(And) E Eu continuo na página “Lista de Filmes”,
+	(And) E todos os filmes da lista são exibidos.
