@@ -31,3 +31,4 @@ Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 	(Then) Eu consigo ver uma mensagem de erro,
 	(And) E Eu continuo na página “Lista de Filmes”,
 	(And) E todos os filmes da lista são exibidos.
+	(Then) Algo acontece.
