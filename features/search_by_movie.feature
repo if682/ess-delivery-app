@@ -41,7 +41,7 @@ Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 
 	Cenário: pesquisar filme sem estar logado (cenário malsucedido)
 	(Given) Dado que estou na página “Lista de Filmes”,
-    (And) Eu não estou logado em nenhuma conta,
+	(And) Eu não estou logado em nenhuma conta,
 	(When) Quando eu pesquiso por “O Iluminado”,
 	(Then) Eu consigo ver uma mensagem de erro,
 	(And) E Eu sou redirecionado para a página de “Login”.
