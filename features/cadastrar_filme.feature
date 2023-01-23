@@ -52,7 +52,7 @@ So that eu possa aumentar o catálogo de filmes do sistema.
     Given eu não estou logado no sistema
     And eu estou no "formulário de cadastro de filmes"
     When eu preencho as informações de nome: "Harry Potter", data de lançamento: "1998", Descrição do filme: "Descrição"
-    And eu submeto o formulário
+    And eu submeto o formulário.
     Then eu recebo um alerta que não foi possível submeter o cadastro pois o usuário não está logado.
     And o formulário é limpo.
     And eu sou direcionado para a tela de login.
