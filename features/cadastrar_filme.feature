@@ -38,3 +38,4 @@ So that eu possa aumentar o catálogo de filmes do sistema.
     Then as informações até então digitadas não ficam salvas
     And eu preciso voltar para o "O formulário de cadastro de filmes"
     And escrever as informações de "Nome", "Data de lançamento" e "Descrição" novamente.
+    Then subemter o formulário novamente.
