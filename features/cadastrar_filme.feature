@@ -39,3 +39,20 @@ So that eu possa aumentar o catálogo de filmes do sistema.
     And eu preciso voltar para o "O formulário de cadastro de filmes"
     And escrever as informações de "Nome", "Data de lançamento" e "Descrição" novamente.
     Then subemter o formulário novamente.
+
+    Scenario: O usuário inseriu um valor não permitido em um campo do formulário de submissão
+    Given eu estou logado com o usuário "fulano123" no formato "usuario-comum"
+    And eu estou no "formulário de cadastro de filmes"
+    When eu preencho as informações de nome: "Harry Potter", data de lançamento: "antigo", Descrição do filme: "Descrição"
+    And eu tento submeter o formulário
+    Then eu recebo um alerta que o campo de "data de lançamento" possui um valor inválido.
+    And não consigo submeter o cadastro.
+
+    Scenario: O usuário tenta cadastrar um filme sem estar logado.
+    Given eu não estou logado no sistema
+    And eu estou no "formulário de cadastro de filmes"
+    When eu preencho as informações de nome: "Harry Potter", data de lançamento: "1998", Descrição do filme: "Descrição"
+    And eu submeto o formulário
+    Then eu recebo um alerta que não foi possível submeter o cadastro pois o usuário não está logado.
+    And o formulário é limpo.
+    And eu sou direcionado para a tela de login.
