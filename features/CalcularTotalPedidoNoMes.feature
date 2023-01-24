@@ -3,7 +3,7 @@ Scenario: Cannot load purchase history
 Scenario: User wants to visualize this month's total but hasn't made any purchasess
 Then I should see a message indicating no purchases were made yet
 
-Scenario: Visualize this month's total
+Scenario: Visualize this month's total value in orders for each restaurant
 	Given I am logged in with a customer account
 	And I am at the home page
 	And the account has made orders in this month in restaurants "Tonho" and "Almir"
