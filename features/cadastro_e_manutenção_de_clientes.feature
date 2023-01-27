@@ -88,3 +88,28 @@ Quando eu clico na opção “Sim”
 Então minha conta é desativada
 
 E eu sou redirecionada para a página inicial do aplicativo
+
+
+Cenário: Cadastrar um cliente que já possui email vinculado
+
+Dado que já possuo conta no aplicativo vinculada ao email “cliente@hotmail.com”
+
+E não estou logado nessa conta
+
+E que meu nome e meu email principal são “Cliente” e “cliente@hotmail.com”
+
+E que estou na página inicial do aplicativo
+
+Quando eu clico na opção “Cadastre-se”
+
+Então sou direcionado para a página de cadastro
+
+E aparecerão os campos de nome, email e senha para serem preenchidos
+
+Quando eu preencho os campos, respectivamente, com “Cliente”, “cliente@hotmail.com” e “cliente123”
+
+E clico na opção “Criar conta”
+
+Então irá aparecer a mensagem “Esse email já está sendo utilizado”
+
+E voltarei a página de cadastro com os campos ainda preenchidos e o campo do email em vermelho com um asterisco ao lado
