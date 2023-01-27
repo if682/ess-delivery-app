@@ -171,3 +171,45 @@ Então a mensagem de erro "Senha incorreta" é exposta
 
 E sou redirecionado para a página "Minha conta"
 
+--------
+
+Cenário: Alterar o email cadastrado pelo cliente
+
+Dado que estou logado com nome de usuário “Cliente”, email “cliente@hotmail.com” e senha "cliente123"
+
+E estou na página “Minha conta”
+
+E nessa página são exibidos os campos de nome e email preenchidos com “Cliente” e “cliente@hotmail.com” e o campo de senha com “**********”
+
+Quando eu clico na opção “Alterar dados”
+
+Então minha senha é requisitada
+
+E eu preencho a caixa de entrada com “cliente123”
+
+Quando eu clico na opção “Avançar”
+
+Então os campos dados dos campos nome, senha e email estarão expostos
+
+E poderão ser alterados
+
+Então eu modifico o meu email para "cliente@hotmail.com" para "cliente1@hotmail.com"
+
+E clico na opção "Mandar email de confirmação"
+
+Quando eu recebo o email de confirmação em "cliente1@hotmail.com"
+
+E aperto no botão "confirmar email"
+
+Então a opção "salvar alterações" é liberada
+
+Quando eu clico na opção "salvar alterações"
+
+Então irá aparecer a mensagem "Email alterado com sucesso"
+
+E serei redirecionado para a página "Minha conta"
+
+E o dado exibido no campo de email será "cliente1@hotmail.com"
+
+
+
