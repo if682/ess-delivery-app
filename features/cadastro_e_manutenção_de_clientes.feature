@@ -3,7 +3,6 @@ Como um usuário do app de delivery
 Eu quero poder criar uma conta no app, alterar informações fornecidas durante o cadastro e excluir a conta que criei
 Para que assim eu possa ter uma identificação única, atualizada e a opção de cancelá-la
 
----------------------------------------------------------------
 Cenário: Cadastrar um cliente que não possui email vinculado
 
 Dado que não possuo conta no aplicativo
