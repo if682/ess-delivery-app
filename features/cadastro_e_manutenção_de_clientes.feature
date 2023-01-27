@@ -113,3 +113,24 @@ E clico na opção “Criar conta”
 Então irá aparecer a mensagem “Esse email já está sendo utilizado”
 
 E voltarei a página de cadastro com os campos ainda preenchidos e o campo do email em vermelho com um asterisco ao lado
+
+Cenário: Alterar o nome cadastrado pelo cliente que esqueceu a senha
+
+Dado que estou logado com nome de usuário “Cliente”, email “cliente@hotmail.com” e senha "cliente123"
+
+E estou na página “Minha conta”
+
+E nessa página são exibidos os campos de nome e email preenchidos com “Cliente” e “cliente@hotmail.com” e o campo de senha com “**********”
+
+Quando eu clico na opção “Alterar dados”
+
+Então minha senha é requisitada
+
+E eu preencho a caixa de entrada com “123”
+
+Quando eu clico na opção “Avançar”
+
+Então a mensagem de erro "Senha incorreta" é exposta
+
+E sou redirecionado para a página "Minha conta"
+
