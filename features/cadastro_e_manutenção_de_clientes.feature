@@ -210,7 +210,7 @@ Então irá aparecer a mensagem "Email alterado com sucesso"
 
 E serei redirecionado para a página "Minha conta"
 
-E o dado exibido no campo de email será "cliente1@hotmail.com"
+E o dado exibido no campo de email, de nome e senha será "cliente1@hotmail.com", "Cliente" e “**********”
 
 
 
