@@ -90,4 +90,4 @@ Feature: Gerenciar itens do cardápio
 	And eu clicar no botão “Editar”
 	Then aparecerá uma mensagem de erro dizendo “Todos os campos devem ser preenchidos.”
 	And surgirão as caixas de entrada “Nome”, “Preço” e “Descrição” auto-preenchidas com “Torta”, “12” e “Uma torta gostosa”
-	And ainda existirá um item com “Nome” = “Torta”, “Preço” = “12” e “Descrição” = “Uma torta gostosa” na página "Cardápio"
+	And ainda existirá um item com “Nome” = “Torta”, “Preço” = “12” e “Descrição” = “Uma torta gostosa” na página "Cardápio" 
