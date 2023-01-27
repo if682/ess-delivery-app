@@ -23,9 +23,11 @@ E clico na opção “Criar conta”
 
 Então irá aparecer a mensagem “Conta criada com sucesso”
 
+
+
 Cenário: Remover a conta de um cliente
 
-Dado que estou logado com nome de usuário “Cliente” e email “cliente@hotmail.com”
+Dado que estou logado com nome de usuário “Cliente”, email “cliente@hotmail.com” e senha "cliente123"
 
 E estou na página “Minha conta”
 
@@ -43,7 +45,7 @@ E eu sou redirecionada para a página inicial do aplicativo
 
 Cenário: Alterar o nome cadastrado pelo cliente
 
-Dado que estou logado com nome de usuário “Cliente” e email “cliente@hotmail.com”
+Dado que estou logado com nome de usuário “Cliente”, email “cliente@hotmail.com” e senha "cliente123"
 
 E estou na página “Minha conta”
 
