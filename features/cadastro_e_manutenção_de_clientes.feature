@@ -134,3 +134,5 @@ Então a mensagem de erro "Senha incorreta" é exposta
 
 E sou redirecionado para a página "Minha conta"
 
+E percebo que o nome "Cliente" permanece inalterado
+
