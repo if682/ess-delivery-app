@@ -50,3 +50,4 @@ When eu digito "Nome do Produto Inválido" no campo de pesquisa "Nome do Produto
 And eu clico no botão "Pesquisar"
 Then a lista de pedidos não deve ser filtrada
 And eu deveria ver a mensagem "Nenhum pedido encontrado"
+Then o campo de pesquisa "Nome do Produto" deve ser limpo e pronto para uma nova pesquisa.
