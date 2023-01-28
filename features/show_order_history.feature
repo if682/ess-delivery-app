@@ -65,3 +65,4 @@ When eu tenho filtros aplicados
 And eu clico no botão "Limpar Filtros"
 Then a lista de pedidos não deve ser limpa
 And eu deveria ver a mensagem "Erro ao limpar filtros"
+
