@@ -43,3 +43,10 @@ When eu digito "numero_invalido_de_pedido" no campo de filtro "Número do Pedido
 And eu clico no botão "Aplicar Filtros"
 Then a lista de pedidos não deve ser filtrada
 And eu deveria ver a mensagem "Nenhum pedido encontrado"
+
+Scenario: Buscar histórico de pedidos por nome do produto - Falha
+Given que eu estou na página de histórico de pedidos
+When eu digito "Nome do Produto Inválido" no campo de pesquisa "Nome do Produto"
+And eu clico no botão "Pesquisar"
+Then a lista de pedidos não deve ser filtrada
+And eu deveria ver a mensagem "Nenhum pedido encontrado"
