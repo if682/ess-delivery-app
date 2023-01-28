@@ -50,3 +50,10 @@ When eu digito "Nome do Produto Inválido" no campo de pesquisa "Nome do Produto
 And eu clico no botão "Pesquisar"
 Then a lista de pedidos não deve ser filtrada
 And eu deveria ver a mensagem "Nenhum pedido encontrado"
+
+Scenario: FFiltrar histórico de pedidos por data - Falha
+Given que eu estou na página de histórico de pedidos
+When eu seleciono "Data inválida" no campo de filtro "Data"
+And eu clico no botão "Aplicar Filtros"
+Then a lista de pedidos não deve ser filtrada
+And eu deveria ver a mensagem "Nenhum pedido encontrado"
