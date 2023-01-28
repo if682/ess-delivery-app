@@ -23,3 +23,4 @@ Feature: Login
     And "senhaTeste" não foi encontrado no sistema 
     When O usuário clica em "Esqueceu a senha?"
     Then O usuário é alertado que instruções para redifinir a senha foram enviadas para "emailTeste"
+    And O usuário é levado para a página do "emailTeste"
