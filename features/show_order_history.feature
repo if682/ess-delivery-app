@@ -36,3 +36,10 @@ And eu tenho filtros aplicados
 When eu clico no botão "Limpar Filtros"
 Then a lista de pedidos deve mostrar todos os pedidos
 And os campos de filtro devem ser redefinidos para seus valores padrão.
+
+Scenario: Filtrar histórico de pedidos por número de pedido - Falha
+Given que eu estou na página de histórico de pedidos
+When eu digito "numero_invalido_de_pedido" no campo de filtro "Número do Pedido"
+And eu clico no botão "Aplicar Filtros"
+Then a lista de pedidos não deve ser filtrada
+And eu deveria ver a mensagem "Nenhum pedido encontrado"
