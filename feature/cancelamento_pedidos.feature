@@ -55,3 +55,4 @@ Ideia: Irá avisar que o pedido foi cancelado com sucesso.
 Scenario: Cancelar pedido logado e digitando senha com caracteres especiais.
 Ideia: Irá avisar que não aceita caracteres especiais.
 
+novo commit 1 desenvolvimento
