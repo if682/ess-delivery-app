@@ -51,3 +51,17 @@ And eu clico no botão "Pesquisar"
 Then a lista de pedidos não deve ser filtrada
 And eu deveria ver a mensagem "Nenhum pedido encontrado"
 Then o campo de pesquisa "Nome do Produto" deve ser limpo e pronto para uma nova pesquisa.
+
+Scenario: FFiltrar histórico de pedidos por data - Falha
+Given que eu estou na página de histórico de pedidos
+When eu seleciono "Data inválida" no campo de filtro "Data"
+And eu clico no botão "Aplicar Filtros"
+Then a lista de pedidos não deve ser filtrada
+And eu deveria ver a mensagem "Nenhum pedido encontrado"
+
+Scenario: Falha ao limpar filtros
+Given que estou na página de histórico de pedidos
+When eu tenho filtros aplicados
+And eu clico no botão "Limpar Filtros"
+Then a lista de pedidos não deve ser limpa
+And eu deveria ver a mensagem "Erro ao limpar filtros"
