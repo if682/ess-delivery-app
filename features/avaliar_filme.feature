@@ -15,3 +15,9 @@ ideia geral: Ao tentar fazer a avaliação de um filme sem ter uma conta na plat
 Cenário: Avaliação de um filme como usuário(cenário de fracasso)
 Ideia geral: Ao avaliar um filme como um usuário cadastrado na plataforma, caso ocorra algum erro ao registrar a avaliação, o usuário irá receber um alerta avisando que sua opinião não foi registrada.
 Then solicitado pelos stakeholders
+
+
+Cenário: teste
+
+Cénario: mais um novo teste para a lista
+
