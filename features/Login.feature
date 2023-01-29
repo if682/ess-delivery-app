@@ -33,4 +33,4 @@ Feature: Login
         And O usuário usa o email "emailTeste" e senha "senhaTeste" e ambos estão propriamente armazenados
         When O usuário loga com email "emailTeste" e senha "senhaTeste"
         Then O usuário avança da página de "Login"
-        And O usuário sempre será redirecionado para a próxima página nas próximas tentativas de login
+        And O sistema sempre direcionará o usuário para o "Menu"
