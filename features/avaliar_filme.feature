@@ -16,3 +16,5 @@ Cenário: Avaliação de um filme como usuário(cenário de fracasso)
 Ideia geral: Ao avaliar um filme como um usuário cadastrado na plataforma, caso ocorra algum erro ao registrar a avaliação, o usuário irá receber um alerta avisando que sua opinião não foi registrada.
 
 Cenário: teste
+
+Cénario: mais um novo teste para a lista
