@@ -108,22 +108,6 @@ E retornarei para a página “Minha conta”
 
 E o dado exibido no campo da senha será “***********”
 
--------
-Cenário: Remover a conta de um cliente
-
-Dado que estou logado com nome de usuário “Cliente” e email “cliente@hotmail.com”
-
-E estou na página “Minha conta”
-
-Quando eu clico na opção “desativar conta”
-
-Então surgirá a pergunta de confirmação “Você tem certeza que quer desativar a sua conta ?” e as opções “Sim” e “Não”
-
-Quando eu clico na opção “Sim”
-
-Então minha conta é desativada
-
-E eu sou redirecionada para a página inicial do aplicativo
 
 --------
 Cenário: Cadastrar um cliente que já possui email vinculado
