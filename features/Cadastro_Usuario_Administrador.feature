@@ -10,7 +10,7 @@ Feature: Cadastro de um usuário do tipo admnistrador
     Given eu estou na página "Cadastrar novo administrador"
     When eu tento cadastrar um usuário administrador
     And ao menos um dos campos marcados como obrigatórios não esta(ão) preenchido(s)
-    Then eu recebo uma mensagem de erro
+    Then eu recebo uma mensagem de erro de cadastro
     And eu vejo na mensagem quais campos não foram preenchidos
     And eu continuo na pagina "Cadastrar novo administrador"
 
@@ -26,7 +26,7 @@ Feature: Cadastro de um usuário do tipo admnistrador
     Given eu estou na página "Cadastrar novo administrador"
     When eu tento cadastrar um usuário administrador
     And esse usuário já está cadastrado no sistema
-    Then eu recebo uma mensagem de erro
+    Then eu recebo uma mensagem de erro de cadastro
     And eu vejo na mensagem que o usuário já está cadastrado no sistema como um usuário administrador
     And eu continuo na pagina "Cadastrar novo administrador"
 
@@ -34,6 +34,6 @@ Feature: Cadastro de um usuário do tipo admnistrador
     Given eu estou na página "Cadastrar novo administrador"
     When eu tento cadastrar um usuário administrador
     And eu preencho o campo de email com um email inválido
-    Then eu recebo uma mensagem de erro
+    Then eu recebo uma mensagem de erro de cadastro
     And eu vejo na mensagem que o email digitado é inválido
     And eu continuo na pagina "Cadastrar novo administrador"
