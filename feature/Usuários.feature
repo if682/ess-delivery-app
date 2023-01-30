@@ -21,3 +21,4 @@ When I go to new book chapter page
 And I use the webpage to create the book chapter "Next Generation Software Product Line Engineering" with file name "Ngs.pdf"
 Then the book chapter "Next Generation Software Product Line Engineering" was stored by the system
 And it is shown in the book chapter list with title "Next Generation Software Product Line Engineering"
+And adicao teste de mudanca no final do arquivo
