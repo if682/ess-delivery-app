@@ -17,7 +17,7 @@ So that I can see reviews about movies
     (Then) Eu continuo na página do Filme,
     (And) E uma lista com as reviews registradas por todos os usuários é exibida em ordem cronológica.
 
-    Listar review de filme ainda não possui reviews de usuários (malsucedido)
+    Cenário: Listar review de filme ainda não possui reviews de usuários (malsucedido)
     (Given) Dado que estou na página do filme “Hereditário”,
     (And) E não há nenhuma review registrada por nenhum usuário no sistema,
     (When) Quando eu clico em “Listar Reviews”,
