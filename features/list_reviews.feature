@@ -26,7 +26,7 @@ So that I can see reviews about movies
     
     Cenário: Listar reviews de usuário sem reviews (mal-sucedido)
     (Given) Dado que estou na página “Perfil do Usuário”,
-    (And) E o usuário “Joaozinho” não possui nenhuma review registrada em sua conta,
+    (And) E o usuário “João” não possui nenhuma review registrada em sua conta,
     (When) Quando eu clico em “Listar Reviews”,
     (Then) Eu continuo na página “Perfil do Usuário”,
     (And) Nenhuma review é exibida.
