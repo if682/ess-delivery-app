@@ -18,9 +18,16 @@ Scenario: Cadastrar um usuario com sucesso
     Then eu vejo uma mensagem de sucesso
     And eu vou para a pagina de "Login"
 
-Scenario: Tentar cadastrar um usuario que ja esta cadastrado
+Scenario: Tentar cadastrar um usuario cujo email ja esta cadastrado
     Given eu estou na pagina "Cadastrar Usuário" para usuarios comuns
     When eu preencho todos os dados obrigatorios corretamente
-    And o nome de usuario digitado ja esta cadastrado
+    And o email digitado ja esta cadastrado
+    Then eu vejo uma mensagem de erro
+    And eu ainda estou na pagina "Cadastrar usuário" para usuarios comuns
+
+Scenario: Tentar cadastrar um usuario com um email invalido
+    Given eu estou na pagina "Cadastrar Usuário" para usuarios comuns
+    When eu preencho todos os dados obrigatorios
+    And o email digitado é invalido
     Then eu vejo uma mensagem de erro
     And eu ainda estou na pagina "Cadastrar usuário" para usuarios comuns
