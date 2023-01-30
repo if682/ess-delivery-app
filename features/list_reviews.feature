@@ -6,9 +6,9 @@ So that I can see reviews about movies
 
     Cenário: Listar reviews do usuário (bem-sucedido)
     (Given) Dado que estou na página do usuário,
-    (And) E o usuário registrou reviews dos filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” 
+    (And) E o usuário registrou reviews dos filmes “Fallen Angels”, “Clube da Luta” e “Clube dos Cinco” 
     (When) Quando eu acesso “Lista de reviews”,
-    (Then) São exibidas as reviews dos filmes  “A Órfã”, “Clube da Luta” e “Clube dos Cinco” 
+    (Then) São exibidas as reviews dos filmes  “Fallen Angels", “Clube da Luta” e “Clube dos Cinco” 
 
     Cenário: Listar reviews do filme (bem-sucedido)
     (Given) Dado que estou na página do Filme “O Bebê de Rosemary”,
