@@ -21,3 +21,4 @@ And preencho os dados
 And a reserva já foi realizada por outro usuário
 Then eu continuo na tela de "Reversa"
 And eu posso ver uma mensagem de fracasso sinalizando que a reserva já foi feita por outro usuário
+Cenário 4
