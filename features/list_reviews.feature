@@ -30,4 +30,5 @@ So that I can see reviews about movies
     (When) Quando eu clico em “Listar Reviews”,
     (Then) Eu continuo na página “Perfil do Usuário”,
     (And) Nenhuma review é exibida.
-
+    (And) Alguma coisa é exibida
+    (Then) Alguma outra coisa acontece
