@@ -24,6 +24,7 @@ Scenario: Acesso ao "Dashboard" sem realizar um "Login bem sucedido na aplicaç�
     And eu não realizei um "Login bem sucedido na aplicação"
     When eu insiro corretamente o caminho para a rota "Dashboard" diretamenta na URL
     Then eu sou redirecionado para a página "Login Usuário"
+    And eu vejo um erro genérico na tela escrito "Credênciais Inválidas ou Usuário Inexistente"
 
 Scenario: Login Administrativo mal sucedido com credênciais de Usuário
     Given o usuário "lucas" de senha "nsin" está corretamente registrado no sistema com permissões de "user"
