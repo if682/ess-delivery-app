@@ -33,3 +33,11 @@ Scenario: Login Administrativo mal sucedido com credênciais de Usuário
     When eu envio as credênciais para o servidor
     Then eu sou redirecionado para a rota "Login Administrativo"
     And eu vejo um erro genérico na tela escrito "Credênciais Inválidas ou Usuário não existente"
+
+Scenario: Login Administrativo bem sucedido na aplicação
+	Given o administrador "souza" de senha "nnsi" está corretamente registrado no sistema com permissões de "admin"
+    And eu estou na página "Login Administrativo" da aplicação
+    And eu insiro corretamente os dados do campo "administrador" como "souza", "senha" como "nnsi"
+    When eu envio as credênciais para o servidor
+    Then eu sou redirecionado para a rota "Dashboard"
+    And eu consigo acessar as features de "playlist" e de "Configurações de Usuário" com permissões de "admin".
