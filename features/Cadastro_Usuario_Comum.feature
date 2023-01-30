@@ -31,3 +31,5 @@ Scenario: Tentar cadastrar um usuario com um email invalido
     And o email digitado é invalido
     Then eu vejo uma mensagem de erro
     And eu ainda estou na pagina "Cadastrar usuário" para usuarios comuns
+
+alteração*
