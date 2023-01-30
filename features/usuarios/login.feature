@@ -17,10 +17,11 @@ Scenario: Login mal sucedido na aplicação
     And eu insiro incorretamente os dados do campo "usuário" como "lucas", "senha" como "Passw0rd"
     When eu envio as credênciais para o servidor
     Then eu sou redirecionado para a rota "Login"
-    And eu vejo um erro genérico na tela escrito "Credênciais Inválidas"
+    And eu vejo um erro genérico na tela escrito "Credênciais Inválidas ou Usuário Inexistente"
 
 Scenario: Acesso ao Dashboard sem credênciais válidas
     Given eu estou na página "Login" da aplicação
     And eu não possuiu credênciais válidas
     When eu insiro corretamente o caminho para a rota "Dashboard" diretamenta na URL
     Then eu sou redirecionado para a página "Login"
+    And eu vejo um erro genérico na tela escrito "Credênciais Inválidas ou Usuário Inexistente"
