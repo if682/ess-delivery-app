@@ -31,3 +31,10 @@ Scenario: Tentar cadastrar um usuario com um email invalido
     And o email digitado é invalido
     Then eu vejo uma mensagem de erro
     And eu ainda estou na pagina "Cadastrar usuário" para usuarios comuns
+
+Scenario: Tentar cadastrar um usuario cujo nome é apenas uma letra
+    Given eu estou na pagina "Cadastrar Usuário" para usuarios comuns
+    When eu preencho todos os dados obrigatorios
+    And o nome de usuário digitado é muito curto
+    Then eu vejo uma mensagem de erro
+    And eu ainda estou na pagina "Cadastrar usuário" para usuarios comuns
