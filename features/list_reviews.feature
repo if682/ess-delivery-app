@@ -41,7 +41,7 @@ So that I can see reviews about movies
 
     Cenário: Listar reviews de um usuário banido (malsucedido)
     (Given) Dado que estou na página "Perfil do Usuário",
-    (And) E o usuário "Joaozinho" teve sua conta desativada ou banida,
+    (And) E o usuário "Joaozinho" teve sua conta banida,
     (When) Quando eu clico em "Listar Reviews",
     (Then) Eu continuo na página "Perfil do Usuário",
     (And) Não é possível acessar ou listar as revisões deste usuário.
