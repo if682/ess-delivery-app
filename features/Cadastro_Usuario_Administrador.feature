@@ -35,5 +35,5 @@ Feature: Cadastro de um usuário do tipo admnistrador
     When eu tento cadastrar um usuário administrador
     And eu preencho o campo de email com um email inválido
     Then eu recebo uma mensagem de erro
-    And eu vejo na mensagem que o email é inválido
+    And eu vejo na mensagem que o email digitado é inválido
     And eu continuo na pagina "Cadastrar novo administrador"
