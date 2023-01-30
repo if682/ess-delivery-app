@@ -30,10 +30,10 @@ Feature: Cadastro de um usuário do tipo admnistrador
     And eu vejo na mensagem que o usuário já está cadastrado no sistema
     And eu continuo na pagina "Cadastrar novo administrador"
 
-  Scenario: feature experimental
+  Scenario: cadastro de um usuário administrador com email inválido
     Given eu estou na página "Cadastrar novo administrador"
     When eu tento cadastrar um usuário administrador
-    And esse usuário já está cadastrado no sistema
+    And eu preencho o campo de email com um email inválido
     Then eu recebo uma mensagem de erro
-    And eu vejo na mensagem que o usuário já está cadastrado no sistema
+    And eu vejo na mensagem que o email é inválido
     And eu continuo na pagina "Cadastrar novo administrador"
