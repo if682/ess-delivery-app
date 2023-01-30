@@ -16,3 +16,18 @@ So that I can see reviews about movies
     (When) Quando eu clico em “Listar Reviews”,
     (Then) Eu continuo na página do Filme,
     (And) E uma lista com as reviews registradas por todos os usuários é exibida em ordem cronológica.
+
+    Listar review de filme ainda não possui reviews de usuários (malsucedido)
+    (Given) Dado que estou na página do filme “Hereditário”,
+    (And) E não há nenhuma review registrada por nenhum usuário no sistema,
+    (When) Quando eu clico em “Listar Reviews”,
+    (Then) Eu continuo na página “Detalhes do Filme”,
+    (And) Nenhuma review é exibida.
+    
+    Cenário: Listar reviews de usuário sem reviews (mal-sucedido)
+    (Given) Dado que estou na página “Perfil do Usuário”,
+    (And) E o usuário “Joaozinho” não possui nenhuma review registrada em sua conta,
+    (When) Quando eu clico em “Listar Reviews”,
+    (Then) Eu continuo na página “Perfil do Usuário”,
+    (And) Nenhuma review é exibida.
+
