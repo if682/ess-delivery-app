@@ -39,5 +39,5 @@ Scenario: Login Administrativo bem sucedido na aplicação
     And eu estou na página "Login Administrativo" da aplicação
     And eu insiro corretamente os dados do campo "administrador" como "souza", "senha" como "nnsi"
     When eu envio as credênciais para o servidor
-    Then eu sou redirecionado para a rota "Dashboard"
+    Then eu sou redirecionado para a rota "Dashboard Administrativo"
     And eu consigo acessar as features de "playlist" e de "Configurações de Usuário" com permissões de "admin".
