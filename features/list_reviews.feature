@@ -31,3 +31,9 @@ So that I can see reviews about movies
     (Then) Eu continuo na página “Perfil do Usuário”,
     (And) Nenhuma review é exibida.
 
+    Cenário: Listar reviews de filme não cadastrado (malsucedido)
+    (Given) Dado o filme “O Bebê de Rosemary” não está registrado no sistema
+    (When) Quando o usuário solicitar a lista de reviews do filme 
+    (Then) O sistema deve mostrar uma mensagem de erro
+    (And) E não exibir nenhuma review
+
