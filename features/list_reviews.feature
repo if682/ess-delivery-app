@@ -32,3 +32,17 @@ So that I can see reviews about movies
     (And) Nenhuma review é exibida.
     (And) Alguma coisa é exibida
     (Then) Alguma outra coisa acontece
+    
+    Cenário: Listar reviews de filme não cadastrado (malsucedido)
+    (Given) Dado o filme “O Bebê de Rosemary” não está registrado no sistema
+    (When) Quando o usuário solicitar a lista de reviews do filme 
+    (Then) O sistema deve mostrar uma mensagem de erro
+    (And) E não exibir nenhuma review
+
+    Cenário: Listar reviews de um usuário banido (malsucedido)
+    (Given) Dado que estou na página "Perfil do Usuário",
+    (And) E o usuário "Joaozinho" teve sua conta desativada ou banida,
+    (When) Quando eu clico em "Listar Reviews",
+    (Then) Eu continuo na página "Perfil do Usuário",
+    (And) Não é possível acessar ou listar as revisões deste usuário.
+
