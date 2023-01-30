@@ -19,5 +19,5 @@ Then solicitado pelos stakeholders
 
 Cenário: teste
 
-Cénario: mais um novo teste para a lista
+Cénario: questão 8 letra ABC
 
