@@ -1,7 +1,7 @@
 Feature: Register User
 As como um usuário
-I want to me cadastrar no sistema, utilizando nome, sobrenome, informacoes pessoais, email e uma senha criada
-So that eu possa ter ao sistema usando email e senha, além de ter minhas informacoes salvas para uso futuro
+I want to me cadastrar no sistema, utilizando nome, sobrenome, email e uma senha criada
+So that eu possa ter ao sistema usando email/usuario e senha, além de ter minhas informacoes salvas para uso futuro
 
     Scenario: Registro bem-sucedido
     Given estou na página de "registro" 
