@@ -16,4 +16,4 @@ Scenario: Cadastrar um usuario com sucesso
     Given eu estou na pagina "Cadastrar Usuário" para usuarios comuns
     When eu preencho todos os dados obrigatorios corretamente
     Then eu vejo uma mensagem de sucesso
-    And eu vou para a pagina de "Login"
+    And eu vou para a pagina de "Login"a
