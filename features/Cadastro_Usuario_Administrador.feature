@@ -29,3 +29,11 @@ Feature: Cadastro de um usuário do tipo admnistrador
     Then eu recebo uma mensagem de erro
     And eu vejo na mensagem que o usuário já está cadastrado no sistema
     And eu continuo na pagina "Cadastrar novo administrador"
+
+  Scenario: feature experimental
+    Given eu estou na página "Cadastrar novo administrador"
+    When eu tento cadastrar um usuário administrador
+    And esse usuário já está cadastrado no sistema
+    Then eu recebo uma mensagem de erro
+    And eu vejo na mensagem que o usuário já está cadastrado no sistema
+    And eu continuo na pagina "Cadastrar novo administrador"
