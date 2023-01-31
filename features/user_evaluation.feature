@@ -6,6 +6,7 @@ Scenario: teste de commit
     then 
 
 Scenario : Scenario 2 
+            ajuste na master para q14
 
 Scenario : Scenario 3
             ajuste no cenario
