@@ -5,3 +5,6 @@ Feature: As a customer
 Scenario: teste de commit
     then 
 
+Scenario 2:
+
+Outro Scenario: Scenario 3
