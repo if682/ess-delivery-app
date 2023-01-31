@@ -38,5 +38,12 @@ So that eu possa ter ao sistema usando email/usuario e senha, além de ter minha
     Given estou na página de “registro”
     And ainda não tenho uma conta
     When eu não preencho o email ou senha
-    Then eu recebo uma mensagem de erro "uma ou mais informacao obrigatoria não foi preenchida”
+    Then eu recebo uma mensagem de erro “alguma informacao obrigatoria não foi preenchida”
+    And eu continuo na página de “registro”
+
+    Scenario: Registro mal-sucedido: email inválido
+    Given estou na página de “registro” 
+    And ainda não tenho conta
+    When eu preencho o email com "fulano.com"
+    Then eu recebo uma mensagem de erro “o email inserido é inválido”
     And eu continuo na página de “registro”
