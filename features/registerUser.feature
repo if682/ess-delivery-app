@@ -24,7 +24,7 @@ So that eu possa ter ao sistema usando email/usuario e senha, além de ter minha
     Given estou na página de “registro” 
     And existe uma conta com o username “fulano”
     When eu preencho o username com "fulano"
-    Then eu recebo uma mensagem de erro “já existe uma conta com esse username”
+    Then eu recebo uma mensagem de erro “já existe uma conta com esse username.”
     And eu continuo na página de “registro”
 
     Scenario: Registro mal-sucedido: senha tem menos de 6 caracteres
