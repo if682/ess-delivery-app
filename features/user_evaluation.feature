@@ -8,3 +8,4 @@ Scenario: teste de commit
 Scenario : Scenario 2 
 
 Scenario : Scenario 3
+            ajuste no cenario
