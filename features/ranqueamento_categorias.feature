@@ -12,3 +12,8 @@ Scenario: Ranquear podcast;
 Given que eu estou na tela de podcast
 When eu clicar no botão de ranquear
 Then o podcast será ranqueado
+
+Scenario: Ranquear artista;
+Given que eu estou na tela de artista
+When eu clicar no botão de ranquear
+Then o artista será ranqueado
