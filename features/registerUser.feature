@@ -17,7 +17,7 @@ So that eu possa ter ao sistema usando email/usuario e senha, além de ter minha
     Given estou na página de “registro” 
     And existe uma conta com o email “fulano@email.com”
     When eu preencho o email com "fulano@emal.com"
-    Then eu recebo uma mensagem de erro “já existe uma conta com esse email”
+    Then eu recebo uma mensagem de erro “já existe uma conta com esse email.”
     And eu continuo na página de “registro”
 
     Scenario: Registro mal-sucedido: username já cadastrado
