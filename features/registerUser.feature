@@ -10,7 +10,7 @@ So that eu possa ter ao sistema usando email/usuario e senha, além de ter minha
     When eu preencho os campo de email com "fulano@emal.com" e user com "fulaninho"
     And eu preencho os campos de “Nome” com “Fulaninho” e sobrenome com "de Tal"
     And eu preencho a “password” com “123456”
-    Then eu recebo a mensagem "Registro efetuado com sucesso"
+    Then eu recebo a mensagem "Registro efetuado com sucesso."
     And eu sou redirecionada a página “login”
 
     Scenario: Registro mal-sucedido: email já cadastrado
