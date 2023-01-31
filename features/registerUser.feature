@@ -45,5 +45,5 @@ So that eu possa ter ao sistema usando email/usuario e senha, além de ter minha
     Given estou na página de “registro” 
     And ainda não tenho conta
     When eu preencho o email com "fulano.com"
-    Then eu recebo uma mensagem de erro “o email inserido é inválido”
+    Then eu recebo uma mensagem de erro “O email inserido é inválido.”
     And eu continuo na página de “registro”
