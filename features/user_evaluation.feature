@@ -3,4 +3,5 @@ Feature: As a customer
          So other customers can see if it is worth to make the same order 
 
 Scenario: teste de commit
+    then 
 
