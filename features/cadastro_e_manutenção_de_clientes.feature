@@ -102,37 +102,22 @@ Then irá aparecer a mensagem "Email alterado com sucesso"
 And serei redirecionado para a página "Minha conta"
 And o dado exibido no campo de email, de nome e senha será "cliente1@hotmail.com", "Cliente" e “**********”
 
-Cenário: Alterar a senha cadastrada pelo cliente quando a nova senha não é replicada corretamente
-
-Dado que estou logado com nome de usuário “Cliente”, email “cliente@hotmail.com” e senha "cliente123"
-
-E estou na página “Minha conta”
-
-E nessa página são exibidos os campos de nome e email preenchidos com “Cliente” e “cliente@hotmail.com” e o campo de senha com “**********”
-
-Quando eu clico na opção “Alterar dados”
-
-Então minha senha é requisitada
-
-E eu preencho a caixa de entrada com “cliente123”
-
-Quando eu clico na opção “Avançar”
-
-Então os campos dados dos campos nome, senha e email estarão expostos
-
-E poderão ser alterados
-
-Então eu modifico a minha senha de “cliente123” para “cliente7777”
-
-E aparecerá o campo de confirmação para repetir a senha
-
-Quando eu insiro "cliente77" na caixa de entrada
-
-E clico na opção “salvar alterações”
-
-Então irá aparecer uma mensagem de erro “As senhas são diferentes”
-
-E retornarei para a página de alteração de senha
+Scenario: Alterar a senha cadastrada pelo cliente quando a nova senha não é replicada corretamente
+Given que estou logado com nome de usuário “Cliente”, email “cliente@hotmail.com” e senha "cliente123"
+And estou na página “Minha conta”
+And nessa página são exibidos os campos de nome e email preenchidos com “Cliente” e “cliente@hotmail.com” e o campo de senha com “**********”
+When eu clico na opção “Alterar dados”
+Then minha senha é requisitada
+And eu preencho a caixa de entrada com “cliente123”
+When eu clico na opção “Avançar”
+Then os campos dados dos campos nome, senha e email estarão expostos
+And poderão ser alterados
+Then eu modifico a minha senha de “cliente123” para “cliente7777”
+And aparecerá o campo de confirmação para repetir a senha
+When eu insiro "cliente77" na caixa de entrada
+And clico na opção “salvar alterações”
+Then irá aparecer uma mensagem de erro “As senhas são diferentes”
+And retornarei para a página de alteração de senha
 
 
 
