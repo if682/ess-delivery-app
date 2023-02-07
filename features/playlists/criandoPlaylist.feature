@@ -29,4 +29,4 @@ Dado que estou logado como "RomuloDaniell"
 E eu estou na página da playlist "Músicas favoritas"
 E eu quero compartilhar a playlist
 Quando eu clico no botão de compartilhar
-Então é mostrada a opção de link
+Então é mostrada a opção de link para compartilhar a playlist
