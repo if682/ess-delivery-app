@@ -6,7 +6,7 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 	# Cenários de sucesso
 	Scenario: Visualizar o valor total de compras desse mês para cada restaurante
 		Given estou logado como usuário "cliente"
-		And minha conta fez pedidos nos restaurantes "Tonho" e "Almir"
+		And minha conta fez pedidos nos restaurantes "Tonho" e "Almir" neste mês
 		When eu abro a página "total de pedidos do mês"
 		Then eu devo ver o valor total de pedidos nos restaurantes "Tonho" e "Almir" separadamente
 		
