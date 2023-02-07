@@ -36,3 +36,9 @@ Dado que estou logado como "DanielSoares"
 E eu quero procurar uma música na minha playlist "Músicas favoritas"
 Quando eu clico para buscar a música
 Então é exibida uma mensagem de erro pois a música não existe na playlist
+
+Cenário de falha 2;
+Dado que estou logado como "PedroFelipe"
+E eu desejo adcionar uma música na minha playlist
+Quando eu clico em adicionar música
+Então é exibida uma mensagem de erro pois a música já se encontra na playlist
