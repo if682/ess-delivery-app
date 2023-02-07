@@ -30,3 +30,9 @@ E eu estou na página da playlist "Músicas favoritas"
 E eu quero compartilhar a playlist
 Quando eu clico no botão de compartilhar
 Então é mostrada a opção de link para compartilhar a playlist
+
+Cenários de falhas:
+Dado que estou logado como "DanielSoares"
+E eu quero procurar uma música na minha playlist "Músicas favoritas"
+Quando eu clico para buscar a música
+Então é exibida uma mensagem de erro pois a música não existe na playlist
