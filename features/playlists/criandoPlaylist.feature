@@ -48,3 +48,9 @@ Dado que estou logado como "JuliaQueiroz"
 E eu quero adicionar uma nova música
 Quando eu clico para adicionar uma nova música
 Então a música estará na minha playlist
+
+Novo cenário
+Cenário: Baixar a playlist
+Dado que eu estou na página da playlist "Musicas favoritas"
+Quando eu clico para baixar a playlist
+Então a playlist será baixada
