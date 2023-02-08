@@ -42,3 +42,9 @@ Dado que estou logado como "PedroFelipe"
 E eu desejo adcionar uma música na minha playlist
 Quando eu clico em adicionar música
 Então é exibida uma mensagem de erro pois a música já se encontra na playlist
+
+Novo cenário de teste:
+Dado que estou logado como "JuliaQueiroz"
+E eu quero adicionar uma nova música
+Quando eu clico para adicionar uma nova música
+Então a música estará na minha playlist
