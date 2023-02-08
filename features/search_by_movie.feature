@@ -3,14 +3,7 @@ Sendo um usuário comum,
 Eu quero poder pesquisar pelo título, diretor ou elenco do filme,
 Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 
-	Cenário: pesquisar filme existente (cenário bem-sucedido)
-	(Given) Dado que estou na página “Lista de Filmes”,
-	(And) E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
-	(When) Quando eu pesquiso por “Clube da Luta”,
-	(Then) Eu continuo na página “Lista de Filmes”,
-	(And) E apenas o filme “Clube da Luta” é exibido.
-
-	Cenário: pesquisar filme existente de título igual a outro (cenário bem-sucedido)
+	Cenário: pesquisar por título de filme(s) existente(s) (cenário bem-sucedido)
 	(Given) Dado que estou na página “Lista de Filmes”,
 	(And) E somente os filmes “A Órfã”, “Os Vingadores” e “Os Vingadores” estão na lista de filmes,
 	(When) Quando eu pesquiso por “Os Vingadores”,
