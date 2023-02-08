@@ -1,6 +1,6 @@
 Feature: Procurar por filme (search by movie)
 Sendo um usuário comum,
-Eu quero poder pesquisar pelo nome do filme,
+Eu quero poder pesquisar pelo título, diretor ou elenco do filme,
 Para assim poder encontrar um filme específico mais rapidamente em uma lista.
 
 	Cenário: pesquisar filme existente (cenário bem-sucedido)
