@@ -42,19 +42,16 @@ Dado que estou logado como "PedroFelipe"
 E eu desejo adcionar uma música na minha playlist
 Quando eu clico em adicionar música
 Então é exibida uma mensagem de erro pois a música já se encontra na playlist
-<<<<<<< HEAD
+
 Então eu posso move-la na minha playlist
-=======
 
 Novo cenário de teste:
 Dado que estou logado como "JuliaQueiroz"
 E eu quero adicionar uma nova música
 Quando eu clico para adicionar uma nova música
 Então a música estará na minha playlist
-
 Novo cenário
 Cenário: Baixar a playlist
 Dado que eu estou na página da playlist "Musicas favoritas"
 Quando eu clico para baixar a playlist
 Então a playlist será baixada
->>>>>>> desenvolvimento
