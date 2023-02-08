@@ -42,3 +42,4 @@ Dado que estou logado como "PedroFelipe"
 E eu desejo adcionar uma música na minha playlist
 Quando eu clico em adicionar música
 Então é exibida uma mensagem de erro pois a música já se encontra na playlist
+Então eu posso move-la na minha playlist
