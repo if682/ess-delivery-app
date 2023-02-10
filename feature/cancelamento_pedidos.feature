@@ -1,4 +1,53 @@
 Cenário de GUI
+
+
+Feature: Cancelamento de pedidos
+In order to Eu possa gerenciar melhor meus pedidos
+As an Usuário/Cliente
+Eu preciso poder cancelar meus pedidos
+
+
+
+
+Scenario: Cancelar pedido sem estar logado.
+Given Eu estou na página “Ecommerce- Home Page” porém ainda não logado.
+When Eu clico no campo “Histórico de pedidos”
+Then o usuário é redirecionado para página de login”
+
+
+Scenario: Cancelar pedido logado porém sem digitar senha de confirmação.
+Given Eu estou na página “Meus pedidos” logado como usuário “Kennedy” e visualizando meu “Histórico de pedidos”
+When Eu clico no campo “cancelar” do pedido “camisa polo”
+And deixo em branco o campo de senha e clico no campo “confirmar”
+Then aparece a mensagem de erro “Você precisa preencher o campo com sua senha”.
+
+Scenario: Cancelar pedido logado porém digitando senha errada
+Given Eu estou na página “Meus pedidos” logado como usuário “Kennedy” e visualizando meu “Histórico de pedidos”
+When Eu clico no campo “cancelar” do pedido “camisa polo”
+And digito “Eu odeio ESS” no campo de senha e clico no campo “confirmar”
+Then aparece a mensagem de erro “Senha errada”.
+
+Scenario: Cancelar pedido logado porém digitando senha certa
+Given Eu estou na página “Meus pedidos” logado como usuário “Kennedy” e visualizando meu “Histórico de pedidos”
+When Eu clico no campo “cancelar” do pedido “camisa polo”
+And digito “Eu odeio ESS” no campo de senha e clico no campo “confirmar”
+Then o pedido “camisa polo” será excluída da Histórico de pedidos
+And Aparece a mensagem de confirmação “Senha correta. camisa polo cancelada de seu Histórico de pedidos com sucesso.”
+
+
+
+
+
+
+
+
+
+
+IGNORAR PARTE DE BAIXO
+
+
+
+
 Scenario: Preenchimento de aluno com sucesso
 	Given estou na página “Avaliação” logado como “aluno” nomeado “Kennedy”
 	When eu preencho todos os campos “Avaliação Aluno” e confirmo
