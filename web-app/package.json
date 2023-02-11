@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "NODE_ENV=${env} ng serve --configuration=${dev}",
+    "build": "NODE_ENV=${env} ng build --configuration=${env}",
+    "watch": "NODE_ENV=${env} ng build --watch --configuration=${env}",
+    "test": "NODE_ENV=${env} ng test --watch --configuration=${env}"
   },
   "private": true,
   "dependencies": {
@@ -23,10 +23,12 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^15.0.0",
     "@angular-devkit/build-angular": "^15.1.5",
     "@angular/cli": "~15.1.5",
     "@angular/compiler-cli": "^15.1.0",
     "@types/jasmine": "~4.3.0",
+    "dotenv-webpack": "^8.0.1",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
