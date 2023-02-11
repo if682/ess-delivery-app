@@ -1,8 +1,14 @@
-import { Express } from "express"
-import UserController from "../controllers/user.controller"
+import { Express, Router } from 'express';
+import UserController from '../controllers/user.controller';
+import { di } from '../di';
+import UserService from '../services/user.service';
 
-export default (app: Express ) => {
+const router = Router();
+const prefix = '/api';
 
-app.use('/api', new UserController().router);
-
-}
+export default (app: Express) => {
+  app.use(
+    prefix,
+    new UserController(router, di.getService(UserService)).router
+  );
+};
