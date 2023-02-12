@@ -119,8 +119,3 @@ And a opção "Salvar" irá surgir ao lado de "Voltar"
 When eu preencho a primeira caixa com "randinho12345678" e a segunda com "randinho1234567"
 And clico em salvar
 Then a mensagem "As senhas digitadas não coincidem" irá aparecer em vermelho abaixo do campo "Confirme a senha"
-
-
-
-
-
