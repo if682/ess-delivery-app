@@ -48,5 +48,9 @@ Scenario: Register new User with already registered email
     Then I get a Registration Error message "email already registered"
 
 
-Scenario: Register new User with password less than 6 digits.
-
+Scenario: Register new User with password less than 6 digits
+    Given I am on the "New User Registration" page
+    When I write "Drielle" in "Name"
+    And I write "dddd@cin.ufpe.br" in "email"
+    And I write "00000" in "Password"
+    Then I get a Registration Error message "password less than 6 digits"
