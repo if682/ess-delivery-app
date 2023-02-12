@@ -1,94 +1,50 @@
 Feature: Criação de categorias de itens
-    As a administrador
-    I want criar categorias de itens
-    So that categorizar os itens do meu restaurante
+    As a usuaria do sistema
+    I want to acessar a tela de categorias de itens
+    So that eu posso facilitar a busca de itens por categorias
 
-    Scenario: Acessar página de categorias de itens
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página do restaurante
-        When clico em "Categorias de itens"
-        Then vejo a página "Categorias de itens"
-        And vejo o botão "Criar categoria"
-
-    Scenario: Criar categoria de itens
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página "Categorias de itens"
-        And não vejo a categoria "Pizzas"
-        When clico em "Criar categoria"
-        Then vejo a janela "Criar categoria"
-        And vejo o campo "Nome" e o botão "Criar"
-        When preencho o campo "Nome" com "Pizzas"
-        And clico em "Criar"
-        Then vejo a página "Categorias de itens"
-        And vejo a categoria "Pizzas"
-        And vejo os botões "Adicionar itens" e "Remover categoria" 
-
-    Scenario: Criar categoria de itens com nome já existente
-        Given eu sou administrador do restaurante "James Pizzas"
-        And a categoria "Pizzas" já existe
-        And estou na página "Categorias de itens"
-        When clico em "Criar categoria"
-        Then vejo a janela "Criar categoria"
-        And vejo o campo "Nome" e o botão "Criar"
-        When preencho o campo "Nome" com "Pizzas"
-        And clico em "Criar"
-        Then vejo a janela "Criar categoria"
-        And vejo a mensagem "Nome já está em uso" ao lado do botão "Criar"
-
-    Scenario: Criar categoria de itens com nome vazio
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página "Categorias de itens"
-        When clico em "Criar categoria"
-        Then vejo a janela "Criar categoria"
-        And vejo o campo "Nome" e o botão "Criar"
-        When clico em "Criar"
-        Then vejo a janela "Criar categoria"
-        And vejo a mensagem "Nome não pode ficar em branco" ao lado do botão "Criar"
+    Scenario: Acessar a tela de categorias de itens
+        Given que eu sou um usuário do sistema
+        And que eu estou na página inicial
+        When eu clico no botão "Categorias de itens"
+        Then eu devo ser redirecionada para a página "Categorias de itens"
+        And eu vejo a lista com todas as categorias de itens cadastradas no sistema
     
-    Scenario: Remover categoria de itens
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página "Categorias de itens"
-        And vejo as categorias "Pizzas", "Bebidas" e "Sobremesas"
-        When clico em "Remover categoria" da categoria "Pizzas"
-        Then vejo a página "Categorias de itens"
-        And vejo as categorias "Bebidas" e "Sobremesas"
-        And não vejo a categoria "Pizzas"
+    Scenario: Acessar uma categoria de itens
+        Given que eu sou um usuário do sistema
+        And que eu estou na página "Categorias de itens"
+        And que eu vejo a lista com todas as categorias de itens cadastradas no sistema
+        When eu clico na categoria "Pratos"
+        Then eu devo ser redirecionado para a página "Pratos"
+        And eu vejo a lista com todos os itens da categoria "Pratos"
+    
+    Scenario: Acessar a página de itens de uma categoria
+        Given que eu sou um usuário do sistema
+        And que eu estou na página "Pratos"
+        And que eu vejo a lista com todos os itens da categoria "Pratos"
+        When eu clico no item "Macarrão"
+        Then eu devo ser redirecionado para a página "Macarrão"
+        And eu vejo uma lista com todos os itens "Macarrão" cadastrados no sistema
+        And eu vejo o restaurante que oferece cada item "Macarrão"
 
-    Scenario: Adicionar itens a uma categoria
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página "Categorias de itens"
-        When clico em "Adicionar itens" da categoria "Pizzas"
-        Then vejo a janela "Adicionar itens"
-        And vejo todos os itens do restaurante
-        When seleciono o item "Pizza de Calabresa"
-        And clico em "Adicionar"
-        Then vejo a página "Categorias de itens"
-        And vejo a categoria "Pizzas"
-        And vejo os itens da categoria "Pizzas"
-        And vejo o item "Pizza de Calabresa"
-        And vejo o botão "Remover item" ao lado do item "Pizza de Calabresa"
+    Scenario: Acessar a página de um restaurante pela página de um item
+        Given que eu sou um usuário do sistema
+        And que eu estou na página "Macarrão"
+        And que eu vejo a lista com todos os itens "Macarrão" cadastrados no sistema
+        When eu clico no item "Macarrão com molho de tomate"
+        And eu vejo o restaurante "Massas e Cia" que oferece o item "Macarrão com molho de tomate"
+        Then eu devo ser redirecionado para a página "Massas e Cia"
+        And eu vejo o item "Macarrão com molho de tomate" em evidencia na página do restaurante
+        And eu vejo o preço do item
+        And eu vejo a descrição do item
     
-    Scenario: Adicionar itens repetidos a uma categoria
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página "Categorias de itens"
-        And vejo a categoria "Pizzas"
-        And vejo o item "Pizza de Calabresa"
-        When clico em "Adicionar itens" da categoria "Pizzas"
-        Then vejo a janela "Adicionar itens"
-        And vejo todos os itens do restaurante
-        When seleciono o item "Pizza de Calabresa"
-        And clico em "Adicionar"
-        Then vejo a janela "Adicionar itens"
-        And vejo a mensagem "Item já está na categoria" ao lado do botão "Adicionar"
-    
-    Scenario: Remover itens de uma categoria
-        Given eu sou administrador do restaurante "James Pizzas"
-        And estou na página "Categorias de itens"
-        And vejo a categoria "Pizzas"
-        And vejo o item "Pizza de Calabresa", "Pizza de Frango" e "Pizza de Mussarela"
-        When clico em "Remover item" ao lado do item "Pizza de Calabresa"
-        Then vejo a página "Categorias de itens"
-        And vejo a categoria "Pizzas"
-        And vejo os itens da categoria "Pizzas"
-        And não vejo o item "Pizza de Calabresa"
-    
+    Scenario: Acessar uma categoria de itens sem item
+        Given que eu sou um usuário do sistema
+        And que eu estou na página "Categorias de itens"
+        And que eu vejo a lista com todas as categorias de itens cadastradas no sistema
+        When eu clico na categoria "Bebidas"
+        Then eu devo ser redirecionado para a página "Bebidas"
+        And eu vejo a mensagem "Não há itens cadastrados nessa categoria"
+        And eu vejo o botão "Voltar"
+        When eu clico no botão "Voltar"
+        Then eu devo ser redirecionado para a página "Categorias de itens"
