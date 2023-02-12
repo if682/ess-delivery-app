@@ -6,10 +6,10 @@ So that eu possa ter acesso ao sistema usando email/usuario e senha, além de te
     Scenario: Registro bem-sucedido
     Given estou na página de "registro" 
     And não tenho uma conta
-    And não existe uma conta com o nome completo “fulaninho” ou o email "fulano@email.com"
+    And não existe uma conta com o email "fulano@email.com"
     And na não existe uma conta com a data de nascimento "01/01/2000" e com o nome completo "Fulano da Silva Júnior"
     When eu preencho os campo de email com "fulano@emal.com" e user com "fulaninho"
-    And eu preencho os campos de “Nome Completo” com “Fulano da Silva Júnior"
+    And eu preencho os campos de “Nome Completo” com “Fulano da Silva Júnior" e data de nascimento com "01/01/2000"
     And eu preencho a “password” com “Aa#45678”
     Then eu recebo a mensagem "Registro efetuado com sucesso."
     And eu sou redirecionada a página “login”
@@ -17,7 +17,7 @@ So that eu possa ter acesso ao sistema usando email/usuario e senha, além de te
     Scenario: Registro mal-sucedido: email já cadastrado
     Given estou na página de “registro” 
     And existe uma conta com o email “fulano@email.com”
-    When eu preencho o email com "fulano@emal.com"
+    When eu preencho o campo de email com "fulano@emal.com"
     Then eu recebo uma mensagem de erro “já existe uma conta com esse email.”
     And eu continuo na página de “registro”
 
@@ -26,6 +26,13 @@ So that eu possa ter acesso ao sistema usando email/usuario e senha, além de te
     And existe uma conta com o nome completo “Fulano da Silva Júnior”
     When eu preencho o nome completo com "Fulano da Silva Júnior"
     Then eu recebo uma mensagem de erro “já existe uma conta com esse nome.”
+    And eu continuo na página de “registro”
+
+    Scenario: Registro mal-sucedido: Data de nascimento já cadastrada
+    Given estou na página de “registro” 
+    And existe uma conta com a data de nascimento "01/01/2000"
+    When eu preencho o campo de "data de nascimento" com "01/01/2000"
+    Then eu recebo uma mensagem de erro “já existe uma conta com essa data de nascimento.”
     And eu continuo na página de “registro”
 
     Scenario: Registro mal-sucedido: senha tem menos de 8 caracteres
