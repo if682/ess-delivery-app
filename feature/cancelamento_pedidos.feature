@@ -12,7 +12,7 @@ Given Eu estou na página “Meus pedidos” logado como usuário “Kennedy” 
 And o pedido "143" existe no “Histórico de pedidos”
 When Eu tento cancelar o pedido “143”
 And eu não preencho o a senha e tento confirmar o cancelamento
-Then aparece a mensagem de erro “Você precisa preencher o campo com sua senha”.
+Then aparece a mensagem de erro “Você precisa preencher o campo com sua senha. Tente Novamente!”.
 And a senha é requisitada
 
 
@@ -21,7 +21,7 @@ Given Eu estou na página “Meus pedidos” logado como usuário “Kennedy” 
 And o pedido "143" existe no “Histórico de pedidos”
 When Eu tento cancelar o pedido “143”
 And preencho com a senha “Eu odeio ESS” e tento confirmar o cancelamento
-Then aparece a mensagem de erro “Senha errada”.
+Then aparece a mensagem de erro “Senha errada. Tente Novamente!”.
 And a senha é requisitada
 
 
