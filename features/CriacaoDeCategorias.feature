@@ -33,8 +33,10 @@ Feature: Criação de categorias de itens
     Scenario: Acessar uma categoria de itens sem item
         Given que eu sou um usuário do sistema
         And que eu estou na página "Categorias de itens"
+        And não existe nenhum item cadastrado na categoria "Fast-food"
         When eu clico na categoria "Fast-food"
-        Then eu vejo a mensagem "Não há itens cadastrados nessa categoria"
+        Then eu devo ser redirecionado para a página "Fast-food"
+        And eu vejo a mensagem "Não há itens cadastrados nessa categoria"
         And vejo o botão "voltar"
         When eu clico no botão "voltar"
         Then eu devo ser redirecionado para a página "Categorias de itens"
