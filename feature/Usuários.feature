@@ -31,7 +31,14 @@ Scenario: Logged in user wants to delete his account
     And I am logged out on the "New User Registration" page
 
 Scenario: Administrator wants to remove a User from the system
-
+    Given I am logged in with and admin account with email "admin@dizer.com" and password "admin"
+    And I'm on the "Admin Dashboard" page
+    And I see a list of system users
+    And I see the "e-mail" user "pcsb@cin.ufpe.br"
+    When I click on the "Remove User" button on the "e-mail" user "pcsb@cin.ufpe.br"
+    And I click "confirm"
+    Then I get a message that the user has been deleted
+    And I check that the "e-mail" user "pcsb@cin.ufpe.br" is no longer on the list of system users
 
 Scenario: Cadastrar novo Usuário com e-mail já cadastrado
 
