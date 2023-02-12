@@ -6,7 +6,7 @@
   "scripts": {
     "start": "env-cmd -f .env.${env} tsc --watch & nodemon dist/src/index.js",
     "build": "env-cmd -f .env.${env} tsc",
-    "deploy": "env-cmd -f .env.${env} npm run build && vercel",
+    "deploy": "env-cmd -f .env.${env} npm run build && vercel --prod",
     "test": "env-cmd -f .env.${env} jest --verbose --coverage ./tests/**/*.spec.ts",
     "prettier": "prettier --write 'src/**/*.{ts,js}'",
     "lint": "eslint '**/*.ts'"
