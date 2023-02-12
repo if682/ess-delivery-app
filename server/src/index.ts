@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import Env from './env';
 import logger from './logger';
 import setupRoutes from './routes/index';
@@ -7,6 +8,12 @@ import { FailureResult } from './utils/result';
 
 const app: express.Express = express();
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 setupRoutes(app);
 

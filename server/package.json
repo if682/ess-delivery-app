@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f .env.${env} tsc --watch & nodemon dist/index.js",
+    "start": "env-cmd -f .env.${env} tsc --watch & nodemon dist/src/index.js",
     "build": "env-cmd -f .env.${env} tsc",
     "test": "env-cmd -f .env.${env} jest --verbose --coverage ./tests/**/*.spec.ts",
     "prettier": "prettier --write 'src/**/*.{ts,js}'",
@@ -15,12 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
+    "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
     "typescript": "^4.9.5",
     "winston": "^3.8.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.4.0",
     "@types/prettier": "^2.7.2",
