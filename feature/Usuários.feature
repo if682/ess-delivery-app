@@ -6,8 +6,6 @@ Feature: Registration and maintenance of Users (insert, remove, update)
 	SO THAT users could login at the "Dizer"
     AND users could update theirs information at the "Dizer"
 
-Funcionalidades Normais:
-
 Scenario: Registering new users
     Given I am on the "New User Registration" page
     When I write "Pedro Basilio" in "Name"
@@ -16,13 +14,18 @@ Scenario: Registering new users
     And I click on "Register"
     Then I see a registration completed message
 
-Scenario: Usuário logado quer mudar sua senha.
+Scenario: User logged in wants to change his password.
+    Given I am on the "User Profile" page
+    And I am logged in with email "pcsb@cin.ufpe.br" and password "000000"
+    When I click on "Change Password" option
+    And I write "000000" in "Current Password"
+    And I write "00pcsb" in "New Password"
+    And I click on "Confirm"
+    Then I see a password changed successfully message
 
 Scenario: Usuario logado quer deletar a sua conta.
 
 Scenario: Administrador deseja remover um Usuário do sistema
-
-Erros: 
 
 Scenario: Cadastrar novo Usuário com e-mail já cadastrado.
 
