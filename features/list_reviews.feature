@@ -20,7 +20,7 @@ So that I can see reviews about movies
     Cenário: Listar review de filme ainda não possui reviews de usuários (malsucedido)
         Given que estou na página do filme “Scream”,
         And e não há nenhuma review registrada por nenhum usuário no sistema,
-        When eu clico em "Reviews”,
+        When eu clico em “Reviews”,
         Then eu continuo na página “Detalhes do Filme”,
         And nenhuma review é exibida,
         And é exibida uma mensagem que o filme ainda não possui reviews.
@@ -41,7 +41,7 @@ So that I can see reviews about movies
 
     Cenário: Listar reviews de um usuário banido (malsucedido)
         Given que estou na página "Perfil do Usuário",
-        And o usuário "Joaozinho" teve sua conta banida,
+        And o usuário “Joaozinho” teve sua conta banida,
         When eu clico em "Reviews",
         Then Eu continuo na página "Perfil do Usuário",
         And Não é possível acessar ou listar as revisões deste usuário.
