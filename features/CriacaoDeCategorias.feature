@@ -31,9 +31,9 @@ Feature: Criação de categorias de itens
         Given que eu sou um usuário do sistema
         And que eu estou na página "Macarrão"
         And que eu vejo a lista com todos os itens "Macarrão" cadastrados no sistema
+        And eu vejo o item "Macarrão com molho de tomate" do restaurante "Massas e Cia"
         When eu clico no item "Macarrão com molho de tomate"
-        And eu vejo o restaurante "Massas e Cia" que oferece o item "Macarrão com molho de tomate"
-        Then eu devo ser redirecionado para a página "Massas e Cia"
+        Then eu devo ser redirecionado para a página do restaurante "Massas e Cia"
         And eu vejo o item "Macarrão com molho de tomate" em evidencia na página do restaurante
         And eu vejo o preço do item
         And eu vejo a descrição do item
