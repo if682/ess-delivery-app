@@ -6,6 +6,7 @@
   "scripts": {
     "start": "env-cmd -f .env.${env} tsc --watch & nodemon dist/src/index.js",
     "build": "env-cmd -f .env.${env} tsc",
+    "deploy": "env-cmd -f .env.${env} npm run build && vercel",
     "test": "env-cmd -f .env.${env} jest --verbose --coverage ./tests/**/*.spec.ts",
     "prettier": "prettier --write 'src/**/*.{ts,js}'",
     "lint": "eslint '**/*.ts'"
@@ -14,12 +15,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
-    "typescript": "^4.9.5",
-    "winston": "^3.8.2"
+    "pino": "^8.10.0",
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
