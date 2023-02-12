@@ -38,4 +38,4 @@ So that eu possa corrigir possíveis informações erradas no meu perfil
     When eu altero o campo de "SOBRENOME" de "fulano" para "NovoFulano"
     And fecho o formulário de alteração de informações
     Then eu retorno para a aba de "Meu perfil"
-    And as alterações não feitas.
+    And as alterações não são feitas.
