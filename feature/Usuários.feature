@@ -14,7 +14,7 @@ Scenario: Registering new users
     And I click on "Register"
     Then I see a registration completed message
 
-Scenario: User logged in wants to change his password.
+Scenario: User logged in wants to change his password
     Given I am on the "User Profile" page
     And I am logged in with email "pcsb@cin.ufpe.br" and password "000000"
     When I click on "Change Password" option
@@ -23,10 +23,16 @@ Scenario: User logged in wants to change his password.
     And I click on "Confirm"
     Then I see a password changed successfully message
 
-Scenario: Usuario logado quer deletar a sua conta.
+Scenario: Logged in user wants to delete his account
+    Given I am on the "User Profile" page
+    And I am logged in with email "pcsb@cin.ufpe.br" and password "00pcsb"
+    When I click on "Delete Account" option
+    Then I get a message that the user "pcsb@cin.ufpe.br" has been deleted
+    And I am logged out on the "New User Registration" page
 
-Scenario: Administrador deseja remover um Usuário do sistema
+Scenario: Administrator wants to remove a User from the system
 
-Scenario: Cadastrar novo Usuário com e-mail já cadastrado.
+
+Scenario: Cadastrar novo Usuário com e-mail já cadastrado
 
 Scenario: Cadastrar novo Usuário com senha menor que 6 dígitos.
