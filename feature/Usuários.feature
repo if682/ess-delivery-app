@@ -10,9 +10,9 @@ Funcionalidades Normais:
 
 Scenario: Cadastrar novos Usuários
 
-Scenario: Usuário quer mudar sua senha.
+Scenario: Usuário logado quer mudar sua senha.
 
-Scenario: Usuario quer deletar a sua conta.
+Scenario: Usuario logado quer deletar a sua conta.
 
 Scenario: Administrador deseja remover um Usuário do sistema
 
