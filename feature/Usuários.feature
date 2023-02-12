@@ -40,6 +40,13 @@ Scenario: Administrator wants to remove a User from the system
     Then I get a message that the user has been deleted
     And I check that the "e-mail" user "pcsb@cin.ufpe.br" is no longer on the list of system users
 
-Scenario: Cadastrar novo Usuário com e-mail já cadastrado
+Scenario: Register new User with already registered email
+    Given I am on the "New User Registration" page
+    When I write "Pedro Basilio" in "Name"
+    And I write "pcsb@cin.ufpe.br" in "email"
+    And I write "000000" in "Password"
+    Then I get a Registration Error message "email already registered"
 
-Scenario: Cadastrar novo Usuário com senha menor que 6 dígitos.
+
+Scenario: Register new User with password less than 6 digits.
+
