@@ -22,4 +22,13 @@ export class UserService extends BaseService {
       catchError(this.handleError<UserModel[]>('getUsers', []))
     );
   }
+
+  createUser(data: UserModel) {
+    let jsonData = JSON.stringify(data);
+
+    return this.httpService.post(this.prefix, jsonData).pipe(
+      map((response: Response) => new UserModel(response?.data)),
+      catchError(this.handleError<UserModel>('createUser', new UserModel()))
+    );
+  }
 }

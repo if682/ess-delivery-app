@@ -18,9 +18,14 @@ class UserRepository {
 
   public createUser(user: UserModel): UserModel {
     try {
-      this.users.push(user);
+      let formattedUser = new UserModel({
+        ...user,
+        id: (this.users.length + 1).toString(),
+      });
 
-      return user;
+      this.users.push(formattedUser);
+
+      return formattedUser;
     } catch (e) {
       throw new InternalServerError();
     }

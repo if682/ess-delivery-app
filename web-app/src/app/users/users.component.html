@@ -1,10 +1,16 @@
 <body>
+  <h1>Users</h1>
+  <form [formGroup]="userFormGroup" (ngSubmit)="addUser()">
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" />
+    <button type="submit">Create User</button>
+  </form>
   <pre>
     <code>
-      <h1>Users</h1>
+      <br/>
       <ul>
         <li *ngFor="let user of users">
-          <p>{{user.id}} - {{user.name}}</p>
+          {{user.id}} - {{user.name}}
         </li>
       </ul>
     </code>
