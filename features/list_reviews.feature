@@ -6,7 +6,7 @@ So that I can see reviews about movies
 
     Cenário: Listar reviews do usuário (bem-sucedido)
         Given estou na página do usuário,
-        And o usuário registrou reviews dos filmes “Fallen Angels” e “Perfect Blue” 
+        And o usuário registrou reviews dos filmes “Fallen Angels” e “Perfect Blue”,
         When eu acesso “Reviews”,
         Then são exibidas as reviews dos filmes  “Fallen Angels" e "Perfect Blue” 
 
@@ -22,22 +22,22 @@ So that I can see reviews about movies
         And e não há nenhuma review registrada por nenhum usuário no sistema,
         When eu clico em "Reviews”,
         Then eu continuo na página “Detalhes do Filme”,
-        And nenhuma review é exibida
-        And é exibida uma mensagem que o filme ainda não possui reviews
+        And nenhuma review é exibida,
+        And é exibida uma mensagem que o filme ainda não possui reviews.
         
     Cenário: Listar reviews de usuário sem reviews (mal-sucedido)
         Given que estou na página do usuário,
         And o usuário “Mia Goth” não possui nenhuma review registrada em sua conta,
         When eu clico em “Reviews”,
         Then eu continuo na página “Perfil do Usuário”,
-        And nenhuma review é exibida
-        And é exibida uma mensagem que o filme ainda não possui reviews
+        And nenhuma review é exibida,
+        And é exibida uma mensagem que o filme ainda não possui reviews.
 
     Cenário: Listar reviews de filme não cadastrado (malsucedido)
-        Given o filme “O Bebê de Rosemary” não está registrado no sistema
-        When o usuário solicitar a lista de reviews do filme 
-        Then o sistema deve mostrar uma mensagem de erro
-        And não exibir nenhuma review
+        Given o filme “O Bebê de Rosemary” não está registrado no sistema,
+        When o usuário solicitar a lista de reviews do filme, 
+        Then o sistema deve mostrar uma mensagem de erro,
+        And não exibir nenhuma review.
 
     Cenário: Listar reviews de um usuário banido (malsucedido)
         Given que estou na página "Perfil do Usuário",
