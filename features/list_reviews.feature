@@ -30,10 +30,9 @@ So that I can see reviews about movies
         And o usuário “Mia Goth” não possui nenhuma review registrada em sua conta,
         When eu clico em “Reviews”,
         Then eu continuo na página “Perfil do Usuário”,
-        And Nenhuma review é exibida.
-        And Alguma coisa é exibida
-        Then Alguma outra coisa acontece
-    
+        And nenhuma review é exibida
+        And é exibida uma mensagem que o filme ainda não possui reviews
+
     Cenário: Listar reviews de filme não cadastrado (malsucedido)
         Given o filme “O Bebê de Rosemary” não está registrado no sistema
         When o usuário solicitar a lista de reviews do filme 
