@@ -1,4 +1,4 @@
-Recurso: visualizar histórico de pedidos
+Feature: visualizar histórico de pedidos
 	As a "usuário" cadastrado no app de delivery
 	I want filtrar por determinados atributos de meus pedidos, ver seus detalhes e pedir ajuda para possíveis problemas com o pedido
 	So that to poder visualizar o histórico de pedidos
