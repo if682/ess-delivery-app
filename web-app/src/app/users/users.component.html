@@ -1,0 +1,14 @@
+<body>
+  <pre>
+    <code>
+      <h1>Users</h1>
+      <ul>
+        <li *ngFor="let user of users">
+          <p>{{user.id}} - {{user.name}}</p>
+        </li>
+      </ul>
+    </code>
+  </pre>
+</body>
+
+<router-outlet></router-outlet>
