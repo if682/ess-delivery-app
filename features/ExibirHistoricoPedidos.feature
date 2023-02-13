@@ -38,7 +38,7 @@ Feature: visualizar histórico de pedidos
 		And a visualização do histórico não é filtrada
 		And existe um pedido com "data" = "29/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:35", "estabelecimento" = "Mc Donalds", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1235", "id do pedido" = "2345", "detalhes do pedido" = "x burguer", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
-		When filtro minha busca pelo endereço de entrega "endereço de entrega" = "1235"
+		When filtro minha busca pelo endereço de entrega "endereço de entrega" = "Rua 1235"
 		Then a página vai ser recarregada 
 		And consigo visualizar apenas o item com o "id" = "2345"	
 		
@@ -48,7 +48,7 @@ Feature: visualizar histórico de pedidos
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When apertar o botâo "ajuda" no item de "id" = "1234"
 		And apertar o botâo de "tenho problema com pedido"
-		Then poderei ver uma tela com campos para descrever o meu problema que tive com pedido de "id" = "1234"
+		Then poderei ver uma tela com os campos "assunto da mensagem" e "mensagem"  para descrever o meu problema que tive com pedido de "id" = "1234"
 	
 	Scenario: Pedir ajuda dizendo que teve problema com pagamento
 		Given que estou na página de "histórico de pedidos"
@@ -56,7 +56,7 @@ Feature: visualizar histórico de pedidos
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When apertar o botâo "ajuda" no item de "id" = "1234"
 		And apertar o botâo de "tenho problema com pagamento"
-		Then poderei ver uma tela com campos para descrever o meu problema que tive com o pagamento do pedido de "id" = "1234"
+		Then poderei ver uma tela com os campos "assunto da mensagem" e "mensagem" para descrever o meu problema que tive com o pagamento do pedido de "id" = "1234"
 		
 	Scenario: Tentando enviar descrição do pedido de ajuda com problema no pedido em branco
 		Given que estou na página de "descrição de problema de pagamento"
