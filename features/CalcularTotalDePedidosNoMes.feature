@@ -29,7 +29,6 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 	Scenario: Usuário quer ver o valor total de pedidos do mês mas não fez nenhuma compra neste mês
 		Given estou logado como usuário "cliente"
 		And minha conta não fez nenhum pedido nesse mês
-		And minha conta fez pedidos em meses anteriores
 		When eu abro a página "total de pedidos do mês"
 		Then eu devo ver uma mensagem indicando "nada foi comprado nesse mês"
 		
