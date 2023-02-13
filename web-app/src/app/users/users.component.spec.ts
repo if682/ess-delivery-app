@@ -1,3 +1,3 @@
-describe('AppComponent', () => {
+describe('UsersComponent', () => {
   it('should create', () => {});
 });
