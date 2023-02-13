@@ -1,5 +1,5 @@
 Feature: Realização de reserva
-As a usuário comum do sistema
+As a usuário do sistema
 I want to realizar uma reserva no sistema
 So that eu possa utilizar a acomodação
 
