@@ -1,7 +1,7 @@
-Feature: Atualizando uma playlist
+Feature: Gerenciando itens de uma playlist
 	As a usuário da plataforma
 	I want to poder adicionar ou remover músicas de uma playlist
-	So that elas se mantenham atualizadas
+	So that a playlist esteja de meu agrado
 	
 Scenario: Adicionando uma nova música na minha playlist
 	Given Eu estou logado como o usuário “aliceSaless”

@@ -1,7 +1,7 @@
 Feature: Criação de uma playlist
 	As a usuário da plataforma
 	I want to poder criar várias playlists
-	So that eu possa adicionar novas músicas
+	So that eu possa utilizá-las
 
 Scenario: Criando minha primeira playlist
 	Given Eu estou logado como “icaroGeovany”

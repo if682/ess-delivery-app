@@ -1,5 +1,5 @@
 Feature: Adicionar uma nova música na plataforma
-	As a funcionário da plataforma
+	As a usuário administrador
 	I want to adicionar novas músicas de determinados artistas
 	So that a plataforma se mantenha atualizada e o catálogo dos artistas 
 	completos
