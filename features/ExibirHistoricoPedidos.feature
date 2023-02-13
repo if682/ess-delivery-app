@@ -5,6 +5,7 @@ Feature: visualizar histórico de pedidos
 	
 	Scenario: Ver histórico de pedidos sem nenhum filtro
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And não aplico nenhum filtro de pesquisa
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When visualizo o histórico 
@@ -14,6 +15,7 @@ Feature: visualizar histórico de pedidos
 		
 	Scenario: Ver histórico de pedidos feitos em um restaurante específico
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And a visualização do histórico não é filtrada
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:35", "estabelecimento" = "Mc Donalds", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "2345", "detalhes do pedido" = "x burguer", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
@@ -25,6 +27,7 @@ Feature: visualizar histórico de pedidos
 		
 	Scenario: Ver histórico de pedidos feitos em um dia específico
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And a visualização do histórico não é filtrada
 		And existe um pedido com "data" = "29/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:35", "estabelecimento" = "Mc Donalds", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "2345", "detalhes do pedido" = "x burguer", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
@@ -35,6 +38,7 @@ Feature: visualizar histórico de pedidos
 		
 	Scenario: Ver histórico de pedidos feitos em um local específico
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And a visualização do histórico não é filtrada
 		And existe um pedido com "data" = "29/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:35", "estabelecimento" = "Mc Donalds", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1235", "id do pedido" = "2345", "detalhes do pedido" = "x burguer", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
@@ -44,6 +48,7 @@ Feature: visualizar histórico de pedidos
 		
 	Scenario: Pedir ajuda dizendo que teve problema no pedido
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And a visualização do histórico não é filtrada
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When apertar o botâo "ajuda" no item de "id" = "1234"
@@ -52,6 +57,7 @@ Feature: visualizar histórico de pedidos
 	
 	Scenario: Pedir ajuda dizendo que teve problema com pagamento
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And a visualização do histórico não é filtrada
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When apertar o botâo "ajuda" no item de "id" = "1234"
@@ -60,18 +66,21 @@ Feature: visualizar histórico de pedidos
 		
 	Scenario: Tentando enviar descrição do pedido de ajuda com problema no pedido em branco
 		Given que estou na página de "descrição de problema de pagamento"
+		And que estou logado como "cliente" com o login "1234"
 		And o campo "escrita da descrição" está em branco
 		When apertar o botâo "enviar descrição do problema no pedido" 
 		Then aparecerá uma mensagem de erro dizendo "é preciso escrever no campo escrita da descrição para enviar a solicitação de ajuda" 
 	
 	Scenario: Tentando enviar descrição do pedido de ajuda com problema no pagamento em branco
 		Given que estou na página de "descrição de problema de pagamento"
+		And que estou logado como "cliente" com o login "1234"
 		And o campo "escrita da descrição" está em branco
 		When apertar o botâo "enviar descrição do problema no pagamento" 
 		Then aparecerá uma mensagem de erro dizendo "é preciso escrever no campo escrita da descrição para enviar a solicitação de ajuda" 
 		
 	Scenario: Mostrar detalhes do pedido
 		Given que estou na página de "histórico de pedidos"
+		And que estou logado como "cliente" com o login "1234"
 		And existe um pedido com "data" = "27/12/2022", "hora" = "12:34", "estabelecimento" = "Raul Burguer", "avaliação do pedido" = "5", "status do pedido" = "Entregue", "endereço de entrega" = "Rua 1234", "id do pedido" = "1234", "detalhes do pedido" = "hamburguer sem salada", "valor do pedido" = "R$ 12,34", "entregador" = "João", "método de pagamento" = "Pix", "desconto" = "0%"
 		When uso a interface fornecida no aplicativo para me direcionar aos detalhes específicos do pedido de "id" = "1234"
 		Then a página vai ser recarregada
