@@ -58,8 +58,8 @@ Feature: Gerência de Clientes
         When eu clico no campo "Nome"
         Then eu vou para a página "Nome"
         And nela há o campo "Nome" preenchido com "Random" e a opção "Voltar"
-        When eu clico nesse campo
-        Then eu posso alterar o seu conteúdo
+        When eu clico no campo "Nome"
+        Then eu posso alterar o seu conteúdo do campo "Nome"
         And a opção "Salvar" irá aparecer ao lado da opção "Voltar"
         When eu insiro "Randinho" no campo "Nome"
         And clico em "Salvar"
@@ -76,7 +76,7 @@ Feature: Gerência de Clientes
         Then eu vou para a página "E-mail"
         And nela há o campo "E-mail" preenchido com "random@hotmail.com" e a opção "Voltar"
         When eu clico no campo "E-mail"
-        Then eu posso alterar o seu conteúdo
+        Then eu posso alterar o conteúdo do campo "E-mail"
         And a opção "Salvar" irá aparecer ao lado da opção "Voltar"
         When eu insiro "randinho@hotmail.com" no campo "E-mail"
         And clico na opção "Salvar"
@@ -97,10 +97,10 @@ Feature: Gerência de Clientes
         When eu clico no campo "Senha"
         Then eu vou para a página "Senha"
         And nela há o campo "Senha" preenchido com "**********" e a opção "Voltar"
-        When eu clico nesse campo
+        When eu clico no campo "Senha"
         Then os campos "Senha" e "Confirme a senha" irão aparecer vazias
         And a opção "Salvar" irá surgir ao lado de "Voltar"
-        When eu preencho ambos os campos com "randinho12345678"
+        When eu preencho os campos "Senha" e "Confirme a senha" com "randinho12345678" e "randinho12345678"
         And clico em "Salvar"
         Then a opção "Salvar" irá desaparecer e a o valor exposto no campo "Senha" será "****************"
 
@@ -114,7 +114,7 @@ Feature: Gerência de Clientes
         When eu clico no campo "Senha"
         Then eu vou para a página "Senha"
         And nela há o campo "Senha" preenchido com "**********" e a opção "Voltar"
-        When eu clico nesse campo
+        When eu clico no campo "Senha"
         Then os campos "Senha" e "Confirme a senha" irão aparecer vazias
         And a opção "Salvar" irá surgir ao lado de "Voltar"
         When eu preencho o campo "Senha" com "randinho12345678" e a o campo "Confirme sua senha" com "randinho1234567"
