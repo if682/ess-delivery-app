@@ -20,9 +20,12 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 	Scenario: Visualizar o item mais pedido no mês de um restaurante
 		Given estou logado como usuário "cliente"
 		And minha conta pediu no restaurante "Tonho" neste mês os itens "5 pastel, 2 guaraná, 1 X-burger"
+		And "pastel" custa "R$4,00"
+		And "guaraná" custa "R$3,00"
+		And "X-burger" custa "R$8,00"
 		When eu abro a página "total de pedidos do mês"
 		And clico no restaurante "Tonho"
-		Then eu devo ver o valor total de pedidos nos restaurantes "Tonho"
+		Then eu devo ver o valor total do restaurante "Tonho" com o valor "R$34,00"
 		And eu devo ver como item mais pedido "pastel"
 		
 	Scenario: Visualizar o item mais pedido no mês de um restaurante quando há dois com mesma quantia
