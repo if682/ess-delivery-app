@@ -56,4 +56,8 @@ Dado que eu estou na página da playlist "Musicas favoritas"
 Quando eu clico para baixar a playlist
 Então a playlist será baixada
 
+<<<<<<< HEAD
 Mudança na master para a 13.
+=======
+Mudança para a questão 13.
+>>>>>>> 7fadee7 (Mudança para a Q13)
