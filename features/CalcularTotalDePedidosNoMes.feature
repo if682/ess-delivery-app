@@ -1,7 +1,7 @@
 Feature: Calcular o valor total de pedidos no mês por restaurante
     As a usuário "cliente"
     I want to ver e limpar o valor total de pedidos no mês atual
-    So that eu possa cuidar das minhas finanças
+    So that eu possa cuidar melhor das minhas finanças
 
 	# Cenários de sucesso
 	Scenario: Visualizar o valor total de compras desse mês para cada restaurante
@@ -12,6 +12,7 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 		And minha conta fez pediu no restaurante "Almir" neste mês os itens "4 parmegiana, 1 feijoada"
 		And "parmegiana" custa "R$11,00"
 		And "feijoada" custa "R$11,00"
+    And estou na página "Pedidos"
 		When eu abro a página "total de pedidos do mês"
 		Then eu devo ver o valor total de pedidos nos restaurantes neste mês
 		And "Tonho" tem o valor total "R$18,00"
@@ -23,6 +24,7 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 		And "pastel" custa "R$4,00"
 		And "guaraná" custa "R$3,00"
 		And "X-burger" custa "R$8,00"
+    And estou na página "Pedidos"
 		When eu abro a página "total de pedidos do mês"
 		And clico no restaurante "Tonho"
 		Then eu devo ver o valor total do restaurante "Tonho" com o valor "R$34,00"
@@ -34,6 +36,7 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 		And "parmegiana" custa "R$11,00"
 		And "cajuína" custa "R$3,50"
 		And "feijoada" custa "R$11,00"
+    And estou na página "Pedidos"
 		When eu abro a página "total de pedidos do mês"
 		And clico no restaurante "Almir"
 		Then eu devo ver o valor total do restaurante "Tonho" com o valor "R$69,00"
@@ -42,12 +45,14 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 	Scenario: Usuário quer ver o valor total de pedidos do mês mas não fez nenhuma compra neste mês
 		Given estou logado como usuário "cliente"
 		And minha conta não fez nenhum pedido nesse mês
+    And estou na página "Pedidos"
 		When eu abro a página "total de pedidos do mês"
 		Then eu devo ver uma mensagem indicando "nada foi comprado nesse mês"
 		
 	# Cénarios de falha
 	Scenario: Usuário quer ver o valor total de pedidos do mês mas não foi possível carregar histórico de pedidos
-		Given estou logado como usuário "cliente"
+		Given estou logado como usuário "cliente" com o login "dal"
+		And estou na página "Pedidos"
 		When eu abro a página "total de pedidos do mês"
-		And não foi possível carregar o histórico de compras
-		Then eu devo ver uma mensagem indicando erro ao carregar histórico
+		And o sistema não conseguiu carregar o histórico de compras
+		Then eu devo ver uma mensagem indicando "Erro ao carregar histórico!"
