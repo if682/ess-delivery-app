@@ -3,10 +3,10 @@ As a usuário do sistema
 I want ser capaz de realizar uma busca nos anúncios cadastrados
 So that eu possa ter melhores condições de escolher a melhor acomodação para a minha situação
 
-Cenário 1 - Item encontrado
+Cenário 1 - Reserva encontrada
 Given estou na página "Home"
 And existem os anúncios "Chalet - Barra Grande" e "Cabana - Jericoacoara"
-When eu digito na barra de pesquisa "Cabana"
+When eu digito na barra de pesquisa "Jericoacoara"
 And pressiono o botão para pesquisar
 Then uma lista contendo apenas o anúncio "Cabana - Jericoacoara" é mostrada para mim
 
