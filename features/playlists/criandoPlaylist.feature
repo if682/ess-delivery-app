@@ -55,3 +55,5 @@ Cenário: Baixar a playlist
 Dado que eu estou na página da playlist "Musicas favoritas"
 Quando eu clico para baixar a playlist
 Então a playlist será baixada
+
+Mudança na master para a 13.
