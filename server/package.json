@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f .env.${env} tsc --watch & nodemon dist/src/index.js",
-    "build": "env-cmd -f .env.${env} tsc",
+    "start": "concurrently \"npm run build:watch\" \"npm run watch:data\"",
+    "build:watch": "env-cmd -f .env.${env} tsc-watch --onSuccess \"node dist/src/index.js\"",
+    "copy:json": "copyfiles -u 1 ./src/data/*.json ./dist/src",
+    "watch:data": "if [ ! -f \"./dist/src/data/products.json\" ]; then npm run copy:json; fi && onchange 'src/data/*.json' -- npm run copy:json",
+    "build": "env-cmd -f .env.${env} tsc && npm run copy:json",
     "deploy": "env-cmd -f .env.${env} npm run build && vercel --prod",
     "test": "env-cmd -f .env.${env} jest --verbose --coverage ./tests/**/*.spec.ts",
     "prettier": "prettier --write 'src/**/*.{ts,js}'",
@@ -19,16 +22,22 @@
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
     "pino": "^8.10.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.4.0",
     "@types/prettier": "^2.7.2",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/parser": "^5.51.0",
+    "concurrently": "^7.6.0",
+    "copyfiles": "^2.4.1",
     "eslint-plugin-no-unused-expressions": "^0.1.0",
     "nodemon": "^2.0.20",
-    "prettier": "^2.8.4"
+    "onchange": "^7.1.0",
+    "prettier": "^2.8.4",
+    "tsc-watch": "^6.0.0"
   }
 }

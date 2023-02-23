@@ -1,6 +1,6 @@
 import BaseModel from './base.model';
 
-class UserModel extends BaseModel {
+export default class ProductCategoryModel extends BaseModel {
   name: string;
 
   constructor({ id, name }: { id: string; name: string }) {
@@ -8,5 +8,3 @@ class UserModel extends BaseModel {
     this.name = name;
   }
 }
-
-export default UserModel;
