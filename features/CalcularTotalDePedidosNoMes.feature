@@ -1,7 +1,7 @@
 Feature: Calcular o valor total de pedidos no mês por restaurante
     As a usuário "cliente"
     I want to ver e limpar o valor total de pedidos no mês atual
-    So that eu possa cuidar das minhas finanças
+    So that eu possa cuidar melhor das minhas finanças
 
 	# Cenários de sucesso
 	Scenario: Visualizar o valor total de compras desse mês para cada restaurante
@@ -41,7 +41,8 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 		
 	# Cénarios de falha
 	Scenario: Usuário quer ver o valor total de pedidos do mês mas não foi possível carregar histórico de pedidos
-		Given estou logado como usuário "cliente"
+		Given estou logado como usuário "cliente" com o login "dal"
+		And estou na página "Pedidos"
 		When eu abro a página "total de pedidos do mês"
-		And não foi possível carregar o histórico de compras
-		Then eu devo ver uma mensagem indicando erro ao carregar histórico
+		And o sistema não conseguiu carregar o histórico de compras
+		Then eu devo ver uma mensagem indicando "Erro ao carregar histórico!"
