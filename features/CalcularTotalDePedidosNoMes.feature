@@ -45,6 +45,14 @@ Feature: Calcular o valor total de pedidos no mês por restaurante
 		When eu abro a página "total de pedidos do mês"
 		Then eu devo ver uma mensagem indicando "nada foi comprado nesse mês"
 		
+	Scenario: Visualizar valor total de pedidos de um mês anterior
+		Given estou logado como usuário "pedidosEmVariosMeses"
+		When eu abro a página "total de pedidos do mês"
+		And eu seleciono o mês "Janeiro"
+		Then eu devo ver o valor total de pedidos nos restaurantes neste mês
+		And "Tonho" tem o valor total "R$42,00"
+		And "Almir" tem o valor total "R$73,00"
+		
 	# Cénarios de falha
 	Scenario: Usuário quer ver o valor total de pedidos do mês mas não foi possível carregar histórico de pedidos
 		Given estou logado como usuário "cliente"
