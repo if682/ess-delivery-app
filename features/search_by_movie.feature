@@ -22,7 +22,7 @@ Feature: Procurar por filme (search by movie)
 		And E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
 		When Quando eu pesquiso por “O Iluminado”,
 		Then Eu continuo na página “Lista de Filmes”,
-		And E nenhum filme é exibido.
+		And E uma mensagem "Nenhum filme encontrado" é exibida.
 
 	Cenário: pesquisar com campo de pesquisa vazio (cenário malsucedido)
 		Given Dado que estou na página “Lista de Filmes”,
@@ -51,7 +51,7 @@ Feature: Procurar por filme (search by movie)
 		And E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
 		When Quando eu pesquiso por “Quentin Tarantino”,
 		Then Eu continuo na página “Lista de Filmes”,
-		And E nenhum filme é exibido.
+		And E uma mensagem "Nenhum filme encontrado" é exibida.
 
 	Cenário: pesquisar por elenco de filme(s) existente(s) (cenário bem-sucedido)
 		Given Dado que estou na página “Lista de Filmes”,
@@ -65,4 +65,4 @@ Feature: Procurar por filme (search by movie)
 		And E somente os filmes “A Órfã”, “Clube da Luta” e “Clube dos Cinco” estão na lista de filmes,
 		When Quando eu pesquiso por “Jenna Ortega”,
 		Then Eu continuo na página “Lista de Filmes”,
-		And E nenhum filme é exibido.
+		And E uma mensagem "Nenhum filme encontrado" é exibida.
