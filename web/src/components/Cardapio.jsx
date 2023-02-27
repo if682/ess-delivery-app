@@ -10,7 +10,7 @@ export default function Cardapio() {
 
     useEffect (() => {
         if (itens.length > 0) {
-            setItensCopia(itens)
+            setItensCopia([...itens])
         }
         else {
             setItensCopia([])
