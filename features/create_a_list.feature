@@ -32,7 +32,7 @@ Feature: Criar uma lista de filmes (create a list)
 		Then Uma janela abre para que eu possa inserir o nome da lista,
 		And E eu preencho o campo “Nome” com “%&@”,
 		And E eu clico no botão “Criar Lista”,
-		Then Eu consigo ver uma mensagem de erro informando que o nome da lista é inválido,
+		Then Eu consigo ver uma mensagem de erro informando que o nome da lista contém caracteres inválidos,
 		And E a lista não é criada,
 		And E eu sou redirecionado para a página do meu perfil.
 
@@ -43,6 +43,6 @@ Feature: Criar uma lista de filmes (create a list)
 		Then Uma janela abre para que eu possa inserir o nome da lista,
 		And E eu preencho o campo “Nome” com “Filmes de Terror que eu quero assistir antes de morrer”,
 		And E eu clico no botão “Criar Lista”,
-		Then Eu consigo ver uma mensagem de erro informando que o nome da lista é inválido,
+		Then Eu consigo ver uma mensagem de erro informando que o nome da lista contém mais de 30 caracteres,
 		And E a lista não é criada,
 		And E eu sou redirecionado para a página do meu perfil.
