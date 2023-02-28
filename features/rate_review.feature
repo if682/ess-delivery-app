@@ -28,7 +28,7 @@ Feature: Avaliar reviews (rate reviews)
 		And E eu não estou logado em minha conta,
 		And E eu vejo uma review com o título “Melhor filme de terror de todos os tempos”,
 		And E o número de curtidas da review é 25,
-		When Quando eu clico para avaliar a review,
+		When Quando eu clico para curtir a review,
 		Then Eu consigo ver uma mensagem de erro,
 		And E Eu sou redirecionado para a página de “Login”,
 		And E o número de curtidas da review continua sendo 25.
