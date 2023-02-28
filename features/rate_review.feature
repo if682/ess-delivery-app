@@ -8,26 +8,30 @@ Feature: Avaliar reviews (rate reviews)
 		And E eu estou logado em minha conta,
 		And E eu vejo uma review com o título “Melhor filme de terror de todos os tempos”,
 		And E eu ainda não avaliei essa review,
-		When Quando eu clico no botão de coração,
+		And E o número de likes da review é 25,
+		When Quando eu clico para avaliar a review,
 		Then A review é avaliada positivamente,
-		And E o número de likes é incrementado em 1.
+		And E o número de likes da review passa a ser 26.
 
 	Cenário: desfazer avaliação de review
 		Given Dado que estou na página do filme “Psicose”,
 		And E eu estou logado em minha conta,
 		And E eu vejo uma review com o título “Melhor filme de terror de todos os tempos”,
 		And E eu já avaliei essa review,
-		When Quando eu clico no botão de coração,
+		And E o número de likes da review é 25,
+		When Quando eu clico para desfazer a avaliação da review,
 		Then A minha avaliação é retirada,
-		And E o número de likes é decrementado em 1.
+		And E o número de likes da review passa a ser 24.
 
 	Cenário: avaliar review sem estar logado (cenário malsucedido)
 		Given Dado que estou na página do filme “Psicose”,
 		And E eu não estou logado em minha conta,
 		And E eu vejo uma review com o título “Melhor filme de terror de todos os tempos”,
-		When Quando eu clico no botão de coração,
+		And E o número de likes da review é 25,
+		When Quando eu clico para avaliar a review,
 		Then Eu consigo ver uma mensagem de erro,
-		And E Eu sou redirecionado para a página de “Login”.
+		And E Eu sou redirecionado para a página de “Login”,
+		And E o número de likes da review continua sendo 25.
 
 	Cenário: avaliar review de filme que não existe (cenário malsucedido)
 		Given Dado que estou na página do filme “Psicose”,
