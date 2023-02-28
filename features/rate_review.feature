@@ -33,16 +33,6 @@ Feature: Avaliar reviews (rate reviews)
 		And E Eu sou redirecionado para a página de “Login”,
 		And E o número de likes da review continua sendo 25.
 
-	Cenário: avaliar review de filme que não existe (cenário malsucedido)
-		Given Dado que estou na página do filme “Psicose”,
-		And E eu estou logado em minha conta,
-		And E eu vejo uma review com o título “Melhor filme de terror de todos os tempos”,
-		And E eu ainda não avaliei essa review,
-		And E o filme “Psicose” foi removido,
-		When Quando eu clico no botão de coração,
-		Then Eu consigo ver uma mensagem de erro,
-		And E Eu sou redirecionado para a página inicial.
-
 	Cenário: comentar review (cenário bem-sucedido)
 		Given Dado que estou na página do filme “Psicose”,
 		And E eu estou logado em minha conta,
@@ -70,15 +60,6 @@ Feature: Avaliar reviews (rate reviews)
 		When Quando eu clico no botão de comentário,
 		Then Eu consigo ver uma mensagem de erro,
 		And E Eu sou redirecionado para a página de “Login”.
-
-	Cenário: comentar review de filme que não existe (cenário malsucedido)
-		Given Dado que estou na página do filme “Psicose”,
-		And E eu estou logado em minha conta,
-		And E eu vejo uma review com o título “Melhor filme de terror de todos os tempos”,
-		And E o filme “Psicose” foi removido,
-		When Quando eu clico no botão de comentário,
-		Then Eu consigo ver uma mensagem de erro,
-		And E Eu sou redirecionado para a página inicial.
 
 	Cenário: comentar review com comentário vazio (cenário malsucedido)
 		Given Dado que estou na página do filme “Psicose”,
