@@ -5,6 +5,8 @@ services:
     container_name: database
     env_file:
       - ./env/database.env
+    ports:
+      - 5432:5432
     volumes:
       - database_vol:/var/lib/postgresql/data
   backend:
@@ -20,6 +22,7 @@ services:
       - ./env/backend.env
     volumes:
       - ./backend:/app
+      - ./backend/node_modules:/app/node_modules
   frontend:
     build: ./frontend
     container_name: frontend
@@ -32,5 +35,6 @@ services:
       - ./env/frontend.env
     volumes:
       - ./frontend:/app
+      - ./frontend/node_modules:/app/node_modules
 volumes:
   database_vol:
