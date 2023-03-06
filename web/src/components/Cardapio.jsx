@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 let itens = []
 
 export default function Cardapio() {
-    const [show, setShow] = useState(false);
+    const [popupAdicionar, setPopupAdicionar] = useState(false);
     const [itensCopia, setItensCopia] = useState([]);
 
     useEffect (() => {
@@ -18,33 +18,29 @@ export default function Cardapio() {
     })
     return (
         <div className="App">
-            <button onClick={() => setShow(true)}>
+            <button onClick={() => setPopupAdicionar(true)}>
                 Adicionar
             </button>
-            <PopupAdicionarItem show={show} onHide={() => setShow(false)}/>
+            <PopupAdicionarItem show={popupAdicionar} onHide={() => setPopupAdicionar(false)}/>
             
             {itensCopia.map((item) => (
                 <div id={item.nomeItem} key={item.nome}>
                     <li>{item.nomeItem}</li>
                     <li>{item.descricaoItem}</li>
                     <li>{item.precoItem}</li>
-                    <button onClick={() => RemoveItem(item.nomeItem)}>Remover</button>
+                    <button onClick={() => removerItem(item.nomeItem)}>Remover</button>
                 </div>
             ))}
         </div>
     );
 }
 
-function addItem(item) {
+function adicionarItem(item) {
     itens.push(item)
-
-    console.log(itens)
 }
 
-function RemoveItem(item) {
+function removerItem(item) {
     itens = itens.filter(e => e.nomeItem !== item);
-    
-    console.log(itens)
 }
 
 function PopupAdicionarItem (props) {
@@ -89,7 +85,7 @@ function PopupAdicionarItem (props) {
         </Modal.Body>
         <Modal.Footer>
             <Button onClick={props.onHide}>Cancelar</Button>
-            <Button onClick={() => {addItem({nomeItem:nome, descricaoItem: descricao, precoItem: preco})}}>Adicionar</Button>
+            <Button onClick={() => {adicionarItem({nomeItem:nome, descricaoItem: descricao, precoItem: preco})}}>Adicionar</Button>
         </Modal.Footer>
         </Modal>
     );
