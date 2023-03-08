@@ -1,6 +1,10 @@
-<html>
-    <body>
-        <nav-bar></nav-bar>
-        <router-outlet></router-outlet>
-    </body>
-</html>
+<header>
+  <nav>
+    <a routerLink="/" routerLinkActive="active">Home</a>
+    <a routerLink="/users" routerLinkActive="active">Users</a>
+  </nav>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer></footer>
