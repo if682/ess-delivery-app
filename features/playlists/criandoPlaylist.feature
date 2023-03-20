@@ -1,67 +1,26 @@
-Criando uma playlist.
-Cenário 1: Criando uma playlist
-Neste cenário, estarei na página das minhas playlists, e poderei criar uma nova.
-Dado que eu estou logado como "RomuloDaniell"
-E eu estou na página "Minhas playlists"
-Quando eu tento criar uma nova playlist com o nome "Músicas 2023"
-Então eu sou redirecionado para uma página nova da minha minha nova playlist
+Feature: Criação de uma playlist
+	Como um usuário da plataforma
+	Eu quero poder criar várias playlists
+	Para que eu possa adicionar novas músicas
 
+Scenario: Criando nova playlist
+	Given Eu estou logado como “icaroGeovany”
+	And Eu estou na página “Minhas Playlists”
+	When Eu clico na opção “Criar uma nova playlist”
+	And O sistema exibe uma tela para adicionar o nome, descrição e privacidade
+	And Preencho todos os campos com respectivamente “Playlist de Natal”, “Playlist das músicas natalinas” e seleciona opção “Pública”
+	And Eu clico em “Criar Playlist”
+	Then Eu estou na página da playlist “Playlist de Natal”
 
-Cenário 2:
-Neste cenário, estarei navegando na minha playlist, e irei pesquisar alguma música na mesma.
-Dado que estou logado como "RomuloDaniell"
-E eu estou na playlist "Musicas do Ano Novo"
-E eu quero escutar a música "Feliz Ano Novo"
-Quando eu pesquiso "Feliz.."
-Então a música é exibida na tela
-
-Cenário 3:
-Neste cenário, estarei ouvindo uma música, e irei adicioná-la a uma das minhas playlists.
-Dado que estou logado como "RomuloDaniell"
-E eu estou ouvindo uma música
-E eu quero adiciona-la em uma das minhas playlists
-Quando eu clico para adiociona-la
-Então eu recebo uma mensagem de confirmação de que a música foi adicionada a minha playlist
-
-Cenário 4:
-Neste cenário, eu irei compartilhar a minha playlist através de um link.
-Dado que estou logado como "RomuloDaniell"
-E eu estou na página da playlist "Músicas favoritas"
-E eu quero compartilhar a playlist
-Quando eu clico no botão de compartilhar
-Então é mostrada a opção de link para compartilhar a playlist
-
-Cenários de falhas:
-Dado que estou logado como "DanielSoares"
-E eu quero procurar uma música na minha playlist "Músicas favoritas"
-Quando eu clico para buscar a música
-Então é exibida uma mensagem de erro pois a música não existe na playlist
-
-Cenário de falha 2;
-Dado que estou logado como "PedroFelipe"
-E eu desejo adcionar uma música na minha playlist
-Quando eu clico em adicionar música
-Então é exibida uma mensagem de erro pois a música já se encontra na playlist
-
-Então eu posso move-la na minha playlist
-
-Novo cenário de teste:
-Dado que estou logado como "JuliaQueiroz"
-E eu quero adicionar uma nova música
-Quando eu clico para adicionar uma nova música
-Então a música estará na minha playlist
-Novo cenário
-Cenário: Baixar a playlist
-Dado que eu estou na página da playlist "Musicas favoritas"
-Quando eu clico para baixar a playlist
-Então a playlist será baixada
-
-
-Mudança na master para a 13.
-
-Mudança para a questão 13.
-7fadee7 (Mudança para a Q13)
-
-Mudança para a questão 13.
-Segunda mudança para a Q13.
-596b2c9 (Segunda mudança para a Q13)
+Cenário 2: Erro na criação de uma nova playlist
+	Given: Eu estou logado como o usuário “jv_soares”
+	And: Eu estou na página “Minhas Playlists”
+	When: Eu clico na opção “Criar uma nova playlist”
+	And: O sistema exibe uma tela para adicionar “nome”, “descrição” e 
+	“privacidade”
+	And: Eu escrevo “Músicas do barcelona” em “nome”
+	And: Eu escrevo “Músicas do melhor time do mundo” em “descrição”
+	And: Eu não seleciono o tipo de privacidade em “privacidade”
+	And: Eu clico em “Criar Playlist”
+	Then: Eu recebo uma mensagem de erro “Um ou mais campos 
+	obrigatórios não preenchidos”
