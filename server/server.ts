@@ -1,8 +1,8 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import { CarService } from './src/cars-service';
-import { Car } from './src/car';
+import { MusicaService } from './src/musicas-service';
+import { Musica } from './src/musica';
 
 var app = express();
 
@@ -16,31 +16,31 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
-var carService: CarService = new CarService();
+var musicaService: MusicaService = new MusicaService();
 
-app.get('/cars', function(req, res){
-  const cars = carService.get();
-  res.send(JSON.stringify(cars));
+app.get('/musicas', function(req, res){
+  const musicas = musicaService.get();
+  res.send(JSON.stringify(musicas));
 });
 
-app.get('/cars/:id', function(req, res){
+app.get('/musicas/:id', function(req, res){
   const id = req.params.id;
-  const car = carService.getById(id);
-  if (car) {
-    res.send(car);
+  const musica = musicaService.getById(id);
+  if (musica) {
+    res.send(musica);
   } else {
-    res.status(404).send({ message: `Car ${id} could not be found`});
+    res.status(404).send({ message: `Musica ${id} could not be found`});
   }
 });
 
-app.post('/cars', function(req: express.Request, res: express.Response){
-  const car: Car = <Car> req.body;
+app.post('/musicas', function(req: express.Request, res: express.Response){
+  const musica: Musica = <Musica> req.body;
   try {
-    const result = carService.add(car);
+    const result = musicaService.add(musica);
     if (result) {
       res.status(201).send(result);
     } else {
-      res.status(403).send({ message: "Car list is full"});
+      res.status(403).send({ message: "Musica list is full"});
     }
   } catch (err) {
     const {message} = err;
@@ -48,13 +48,13 @@ app.post('/cars', function(req: express.Request, res: express.Response){
   }
 });
 
-app.put('/cars', function (req: express.Request, res: express.Response) {
-  const car: Car = <Car> req.body;
-  const result = carService.update(car);
+app.put('/musicas', function (req: express.Request, res: express.Response) {
+  const musica: Musica = <Musica> req.body;
+  const result = musicaService.update(musica);
   if (result) {
     res.send(result);
   } else {
-    res.status(404).send({ message: `Car ${car.id} could not be found.`});
+    res.status(404).send({ message: `Musica ${musica.id} could not be found.`});
   }
 })
 
