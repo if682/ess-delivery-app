@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { RestaurantMenu } from './components/RestaurantMenu/RestaurantMenu';

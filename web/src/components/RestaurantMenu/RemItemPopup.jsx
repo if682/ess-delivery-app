@@ -1,13 +1,11 @@
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import Button from 'react-bootstrap/Button'
 
 export const RemItemPopup = (props) => {
     async function RemItem () {
         await fetch(`http://localhost:3001/items/${props.item}`, {
             method: "DELETE"
         })
-        .catch(error => console.log(error));
     }
 
     return (
@@ -26,11 +24,11 @@ export const RemItemPopup = (props) => {
             Tem certeza que deseja remover esse item do cardápio? A ação é permanente.
         </Modal.Body>
         <Modal.Footer>
-            <Button className='btn-danger' onClick={props.onHide}>Cancelar</Button>
-            <Button onClick={() => {
+            <Button className='btn-default' onClick={props.onHide}>Cancelar</Button>
+            <Button className='btn-danger' onClick={() => {
                 RemItem()
                 props.onHide()
-            }}>Adicionar</Button>
+            }}>Excluir</Button>
         </Modal.Footer>
         </Modal>
     );
