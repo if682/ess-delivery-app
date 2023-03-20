@@ -6,15 +6,19 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CarsComponent } from './cars/cars.component';
-import { CarService } from './cars/cars.service';
+import { MusicasComponent } from './musicas/musicas.component';
+import { MusicaService } from './musicas/musicas.service';
+import { IndexComponent } from './index/index.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { ListaMusicasComponent } from './lista-musicas/lista-musicas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    CarsComponent
+    IndexComponent,
+    MusicasComponent,
+    AdminPageComponent,
+    ListaMusicasComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,12 +27,24 @@ import { CarService } from './cars/cars.service';
     HttpModule,
     RouterModule.forRoot([
       {
-        path: 'cars',
-        component: CarsComponent
+        path:'',
+        component: IndexComponent
+      },
+      {
+        path: 'musicas',
+        component: MusicasComponent
+      },
+      {
+        path: 'lista-musicas',
+        component: ListaMusicasComponent
+      },
+      {
+        path: "admin",
+        component: AdminPageComponent
       }
     ])
   ],
-  providers: [CarService],
+  providers: [MusicaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

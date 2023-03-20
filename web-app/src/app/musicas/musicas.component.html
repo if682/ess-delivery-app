@@ -1,0 +1,17 @@
+<h1>Cadastrar nova música</h1>
+
+<table>
+<tr>
+   <td><label>Nome </label></td>
+   <td><input id="what" [(ngModel)]="musica.nome" ></td>
+   <td><button id="register-musica" (click)="createMusica(musica)">Adicionar</button></td>
+</tr>
+<tr>
+   <td><label>Artista/Banda </label></td>
+   <td><input id="musica-artista_banda-input" [(ngModel)]="musica.artista_banda" ></td>
+</tr>
+<tr>
+   <td><label>Ano lançamento </label></td>
+   <td><input id="musica-ano_lancamento-input" type="number" min="1900" max="2099" [(ngModel)]="musica.ano_lancamento" ></td>
+</tr>
+</table>

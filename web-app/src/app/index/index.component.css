@@ -1,0 +1,89 @@
+div.container-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-image: url('../../assets/boy.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+div.container-home-content {
+    width: 100%;
+}
+
+div.container-home-content h1 {
+    font-size: 5rem;
+    text-shadow: 3px 2px 10px #9039D4;
+}
+
+div.container-home-content h3 {
+    font-size: 2rem;
+    text-shadow: 3px 2px 10px #9039D4;
+}
+
+div.container-home-content {
+    display: flex;
+}
+
+div.container-home-content div.titles {
+    width: 90%;
+    height: 80vh;
+    cursor: default;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+div.container-home-content div.titles div.time ul {
+    list-style: none;
+}
+
+div.container-home-content div.titles div.time ul li:first-child {
+    margin-top: 1rem;
+}
+
+div.container-home-content div.img-logo-cinza {
+    width: 10%;
+}
+
+div.container-home-content div.img-logo-cinza img {
+    width: 100%;
+    height: 10%;
+}
+
+div.container-home-buttons {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.container-home-buttons button {
+    box-shadow: 0px 0px 7px 0px #3c2a71;
+	background:linear-gradient(to bottom, #865bcc 5%, #3c2a71 100%);
+	background-color:#865bcc;
+	border-radius: 50px;
+	border:transparent;
+	cursor:pointer;
+	color:#ffffff;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    width: 10rem;
+    height: 3rem;
+	padding: 10px 15px;
+    transition: all 1s;
+}
+
+div.container-home-buttons button + button {
+    margin-left: 5rem;
+}
+
+div.container-home-buttons button:hover {
+	background:linear-gradient(to bottom, #3c2a71 5%, #865bcc 100%);
+	background-color:#3c2a71;
+}
