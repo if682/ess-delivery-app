@@ -1,22 +1,10 @@
 {
   "items": [
     {
-      "name": "ahnOXe",
-      "description": "haahha",
-      "price": "15",
-      "id": 1679103819818
-    },
-    {
-      "name": "kikolindo",
-      "description": "kikoo",
-      "price": "223.50",
-      "id": 1679103833524
-    },
-    {
-      "id": 1679103996138,
-      "name": "capimcobanow",
-      "description": "AA",
-      "price": "18"
+      "name": "Teste semi-purinho",
+      "description": "descricao",
+      "price": "10,50",
+      "id": 1679358757831
     }
   ],
   "categories": []

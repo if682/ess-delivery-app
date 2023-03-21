@@ -15,7 +15,7 @@ export const RemItemPopup = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton {...props}>
             <Modal.Title id="contained-modal-title-vcenter">
             Remover item
             </Modal.Title>
@@ -24,7 +24,7 @@ export const RemItemPopup = (props) => {
             Tem certeza que deseja remover esse item do cardápio? A ação é permanente.
         </Modal.Body>
         <Modal.Footer>
-            <Button className='btn-default' onClick={props.onHide}>Cancelar</Button>
+            <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
             <Button className='btn-danger' onClick={() => {
                 RemItem()
                 props.onHide()

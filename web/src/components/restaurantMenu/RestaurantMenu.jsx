@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { AddItemPopup } from "./AddItemPopup";
-import { RemItemPopup } from "./RemItemPopup";
-import { EdiItemPopup } from "./EdiItemPopup";
+import { AddItemPopup } from "./itemsComponents/AddItemPopup";
+import { RemItemPopup } from "./itemsComponents/RemItemPopup";
+import { EdiItemPopup } from "./itemsComponents/EdiItemPopup";
 
 export const RestaurantMenu = () => {
     const [items, setItems] = useState([]);

@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { RestaurantMenu } from './components/RestaurantMenu/RestaurantMenu';
+import { RestaurantMenu } from './components/restaurantMenu/RestaurantMenu';
 
 function App() {
 
