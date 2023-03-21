@@ -5,7 +5,7 @@ Feature: Adicionar uma nova música na plataforma
 	completos
 
 
-Cenário: Adicionando uma nova música
+Cenário 1: Adicionando uma nova música
 		Given: Estou logado como “admin” com email "admin@dizer.com" e 
 		senha "admin"
 		And: Estou na página do single “Cenário Louco”
@@ -22,7 +22,7 @@ Cenário: Adicionando uma nova música
 
 
 
-	Cenário: Adicionando um novo single
+	Cenário 2: Adicionando um novo single
 		Given: Estou logado como “admin” com email "admin@dizer.com" e 
 		senha "admin"
 		And: Estou na página de singles do artista “Bruno Miranda” 
@@ -35,7 +35,7 @@ Cenário: Adicionando uma nova música
 		And: O single “Cenário Louco” aparece disponível na página de singles 
 		do artista “Bruno Miranda”
 
-	Cenário: Erro ao adicionar um novo single
+	Cenário 3: Erro ao adicionar um novo single
 		Given: Estou logado como “admin” com email "admin@dizer.com" e 
 		senha "admin"
 		And: Estou na página de singles do artista “Local Natives” 
@@ -49,7 +49,7 @@ Cenário: Adicionando uma nova música
 		Then: Uma mensagem de “Informações Incompletas” é exibida na tela, 
 		e eu volto para a página para adicionar as informações
 
-	Cenário: Removendo uma música de um single
+	Cenário 4: Removendo uma música de um single
 		Given: Estou logado como “admin” com email "admin@dizer.com" e 
 		senha "admin"
 		And: Estou na página do single ‘Only Girl” da artista “Rihanna” 
@@ -64,7 +64,7 @@ Cenário: Adicionando uma nova música
 		And: A página do single é exibida novamente sem a música
 
 	
-Cenário: Atualizando um single
+Cenário 5: Atualizando um single
 		Given: Estou logado como “admin” com email "admin@dizer.com" e 
 		senha "admin"
 		And: Estou na página do single “When Am I Gonna Lose You” do artista  
