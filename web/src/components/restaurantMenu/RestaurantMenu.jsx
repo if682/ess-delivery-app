@@ -15,7 +15,7 @@ export const RestaurantMenu = () => {
           .then(data => {
             setItems(data)});
     }, []);
-
+    console.log('a')
     return (
         <div className="App">
             <AddItemPopup show={addItemToggle} onHide={() => setAddItemToggle(false)}/>

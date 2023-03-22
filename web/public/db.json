@@ -5,6 +5,12 @@
       "description": "descricao",
       "price": "10,50",
       "id": 1679358757831
+    },
+    {
+      "id": 1679493070358,
+      "name": "1",
+      "description": "1",
+      "price": "1,25"
     }
   ],
   "categories": []
