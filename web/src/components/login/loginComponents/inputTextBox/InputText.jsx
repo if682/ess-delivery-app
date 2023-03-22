@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import './Input.css'
+import './InputText.css'
 
-export const InputFieldText = (props) => {
+export const InputTextBox= (props) => {
     
 
     const alterVal = (val) => {
