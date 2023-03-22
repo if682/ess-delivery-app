@@ -1,19 +1,29 @@
 {
   "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Servidor",
+  "main": "server.ts",
   "scripts": {
-    "start": "node index.js",
-    "devStart": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json",
+    "tsc": "tsc",
+    "start": "npm run tsc && node typeScript/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Daniel Bastos",
+  "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "nodemon": "^2.0.20"
+    "@types/body-parser": "^1.16.5",
+    "@types/express": "^4.0.37",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.4",
+    "request": "^2.34",
+    "nodemailer": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.9",
+    "@types/request-promise": "^4.1.38",
+    "jasmine": "^2.8.0",
+    "jasmine-promises": "^0.4.1",
+    "request-promise": "^4.2.2",
+    "typescript": "^3.3.3333"
   }
 }
