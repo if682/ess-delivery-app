@@ -1,12 +1,11 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Cardapio from './components/Cardapio';
+import { RestaurantMenu } from './components/restaurantMenu/RestaurantMenu';
 
 function App() {
-  var itens = [{"flamengo":"arrascaeta"}, {"flamengo":"bittencourt"}]
 
   return (
-    <Cardapio/>
+    <RestaurantMenu/>
   );
 }
 
