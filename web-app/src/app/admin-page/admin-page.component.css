@@ -51,8 +51,11 @@ li {
 
 table {
   width: 80%;
+  border-spacing: 0px;
 }
-
+tbody{
+  border-radius: 10px;
+}
 td {
   text-align: center;
 }
@@ -72,10 +75,16 @@ tr{
 td img{
   height: 3rem;
   width: 3rem;
+  
 }
 
 td.album-capa {
+  padding: 0.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+td.album-capa img{
+  border-radius: 50%;
 }
