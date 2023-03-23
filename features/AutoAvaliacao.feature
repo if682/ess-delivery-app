@@ -28,6 +28,7 @@ Whe eu atribuir os conceitos “MA, MPA, MANA” para as metas (Entender conceit
 e pedir ao sistema para enviar minha auto-avaliação
 Then ainda permaneço na página de "auto-avaliação"
 And vejo um modal com uma mensagem de confirmação 
+And novo passo
 
 
 Cenário: Aluno não consegue enviar a sua auto-avaliação pois deixou de preencher um conceito
