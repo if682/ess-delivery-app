@@ -7,5 +7,12 @@
       "id": 1679358757831
     }
   ],
-  "categories": []
+  "categories": [],
+  "clientes": [
+    {
+      "name": "cliente",
+      "email": "cliente@hotmail.com",
+      "password": "12345"
+    }
+  ]
 }
