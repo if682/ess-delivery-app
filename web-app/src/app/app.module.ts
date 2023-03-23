@@ -31,7 +31,7 @@ import { ListaMusicasComponent } from './lista-musicas/lista-musicas.component';
         component: IndexComponent
       },
       {
-        path: 'musicas',
+        path: 'cadastrar-musicas',
         component: MusicasComponent
       },
       {

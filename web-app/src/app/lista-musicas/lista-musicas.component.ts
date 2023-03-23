@@ -10,12 +10,18 @@ import { MusicaService } from '../musicas/musicas.service';
 
 export class ListaMusicasComponent implements OnInit {
 
-  musica: Musica
+  musicas: Musica[];
 
   constructor(private musicaService: MusicaService) {}
 
   ngOnInit() {
     this.musicaService.getMusicas()
+      .then((musicas) => {
+        this.musicas = musicas;
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
   }
 
 }
