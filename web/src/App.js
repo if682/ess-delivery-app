@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Cardapio from './components/Cardapio';
 import PrimaryButton from './components/atoms/primary-button/PrimaryButton'
+import SecondaryButton from './components/atoms/secondary-button/SecondaryButton'
+import CloseButtonItem from './components/atoms/close-button/CloseButtonItem'
+import Sidemenu from './components/atoms/sidemenu/Sidemenu'
 
 function App() {
   var itens = [{"flamengo":"arrascaeta"}, {"flamengo":"bittencourt"}]
@@ -10,9 +13,11 @@ function App() {
   return (
     <div>
       <PrimaryButton buttonContent="Clique aqui"/>
-      <p>aksdhkajshdkjsdksdjh</p>
-      <PrimaryButton buttonContent="Desativar"/>
+      <SecondaryButton buttonContent="Desativar"/>
       <Cardapio/>
+      <CloseButtonItem/>
+      <Sidemenu/>
+      <p>aaaaaaaaaaaaa</p>
     </div>
   );
 }
