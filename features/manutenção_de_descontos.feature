@@ -27,4 +27,4 @@ Scenario: Obter informações de “horário” e “contato”
     And eu vejo uma elipse branca com um “i” em todos os descontos da página
     When eu passo o cursor em cima dessa elipse
     Then eu vejo informações do “horário” daquela atração com desconto
-    And informações sobre o “contato” para aquela atração
+    And informações sobre o “contato” para aquela atração em um bloco branco
