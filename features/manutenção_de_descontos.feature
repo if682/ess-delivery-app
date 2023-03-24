@@ -28,3 +28,7 @@ Scenario: Obter informações de “horário” e “contato”
     When eu passo o cursor em cima dessa elipse
     Then eu vejo informações do “horário” daquela atração com desconto
     And informações sobre o “contato” para aquela atração em um bloco branco
+
+#branch fixdesenvolvimento criada pra auxiliar
+
+
