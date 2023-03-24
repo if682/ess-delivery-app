@@ -3,7 +3,7 @@ Scenario: Visualizar a página de ofertas
     I quero acessar a página “Descontos”
     So that eu posso pagar menos por uma atração
 
-Scenario: escolher maior oferta da lista 
+Scenario: escolher maior oferta da lista
     Given  eu estou na página "Descontos"
     and vejo as opções de descontos oferecidos na página
     and eu olho para o início da página, onde as maiores ofertas residem
