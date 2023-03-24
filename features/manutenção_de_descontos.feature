@@ -1,6 +1,4 @@
 Scenario: Visualizar a página de ofertas
-    segundo teste do commit da letra a
-    primeiro teste do commit da letra a
     As um cliente
     I quero acessar a página “Descontos”
     So that eu posso pagar menos por uma atração
