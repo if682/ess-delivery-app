@@ -29,6 +29,6 @@ Scenario: Obter informações de “horário” e “contato”
     Then eu vejo informações do “horário” daquela atração com desconto
     And informações sobre o “contato” para aquela atração em um bloco branco
 
-#branch fixdesenvolvimento criada pra auxiliar
+//commit um da questão 13 na branch master
 
 
