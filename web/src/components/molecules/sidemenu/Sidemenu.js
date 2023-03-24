@@ -1,33 +1,35 @@
 import { Button } from 'react-bootstrap';
 import './Sidemenu.css'
 import * as Icon from 'react-bootstrap-icons';
+import logo from '../../../assets/img/logo.svg'
 
 function Sidemenu(props) {
   return (
-    <div>
+    <div className='sidemenu'>
+      <img src={logo} alt={"logo"}/> 
       <Button className='sidemenu-item'>
         <Icon.House/><p>Início</p>
       </Button>
-      <Button className='sidemenu-item'>
-        <Icon.House/><p>Restaurantes</p>
+      <Button className='sidemenu-item client'>
+        <Icon.Shop/><p>Restaurantes</p>
       </Button>
-      <Button className='sidemenu-item'>
-        <Icon.House/><p>Categorias</p>
-      </Button>
-      <Button className='sidemenu-item restaurant'>
-        <Icon.House/><p>Perfil</p>
+      <Button className='sidemenu-item client'>
+        <Icon.Postcard/><p>Categorias</p>
       </Button>
       <Button className='sidemenu-item restaurant'>
-        <Icon.House/><p>Cardápio</p>
+        <Icon.Person/><p>Perfil</p>
       </Button>
       <Button className='sidemenu-item restaurant'>
-        <Icon.House/><p>Pedidos</p>
+        <Icon.Postcard/><p>Cardápio</p>
       </Button>
       <Button className='sidemenu-item restaurant'>
-        <Icon.House/><p>Avaliações</p>
+        <Icon.ListCheck/><p>Pedidos</p>
       </Button>
       <Button className='sidemenu-item restaurant'>
-        <Icon.House/><p>Ajuda</p>
+        <Icon.Star/><p>Avaliações</p>
+      </Button>
+      <Button className='sidemenu-item restaurant'>
+        <Icon.QuestionLg/><p>Ajuda</p>
       </Button>
     </div>
   )
