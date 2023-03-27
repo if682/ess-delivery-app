@@ -1,18 +1,18 @@
-import logo from './logo.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Cardapio from './components/Cardapio';
-import PrimaryButton from './components/atoms/primary-button/PrimaryButton'
-import SecondaryButton from './components/atoms/secondary-button/SecondaryButton'
-import CloseButtonItem from './components/atoms/close-button/CloseButtonItem'
-import Sidemenu from './components/molecules/sidemenu/Sidemenu'
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout.js";
+import Login from "./pages/client/login/Login.js";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <Sidemenu/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById("root"));
