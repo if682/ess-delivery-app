@@ -1,18 +1,13 @@
-import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout.js";
-import Login from "./pages/client-login/ClientLogin.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Sidemenu from './components/molecules/sidemenu/Sidemenu'
 
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Login />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Sidemenu/>
+    </div>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
