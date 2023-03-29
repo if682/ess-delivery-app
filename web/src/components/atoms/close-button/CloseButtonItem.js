@@ -1,5 +1,4 @@
 import { CloseButton } from 'react-bootstrap';
-import './CloseButtonItem.css'
 
 function CloseButtonItem() {
   return (
