@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { RestaurantMenu } from './components/restaurantMenu/RestaurantMenu';
+import Sidemenu from './components/molecules/sidemenu/Sidemenu'
 
 function App() {
-
   return (
-    <RestaurantMenu/>
+    <div>
+      <Sidemenu/>
+    </div>
   );
 }
 
