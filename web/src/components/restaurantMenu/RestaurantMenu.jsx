@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { AddItemPopup } from "./itemsComponents/AddItemPopup";
 import { RemItemPopup } from "./itemsComponents/RemItemPopup";
 import { EdiItemPopup } from "./itemsComponents/EdiItemPopup";
+import { Item } from "./itemsComponents/Item";
+import "./RestaurantMenu.scss"
+import Button from 'react-bootstrap/Button';
 
 export const RestaurantMenu = () => {
     const [items, setItems] = useState([]);
@@ -22,21 +25,20 @@ export const RestaurantMenu = () => {
             <RemItemPopup show={remItemToggle[0]} item={remItemToggle[1]} onHide={() => setRemItemToggle(false)}/>
             <EdiItemPopup show={ediItemToggle[0]} item={ediItemToggle[1]} onHide={() => setEdiItemToggle(false)}/>
 
-            <button onClick={() => setAddItemToggle(true)}>
+            <Button variant='primary' onClick={() => setAddItemToggle(true)}>
                 Adicionar
-            </button>
+            </Button>
 
-            {
-            items.map((item) => (
-            <div key={item.id}>
-                <li>{item.name}</li>
-                <li>{item.description}</li>
-                <li>{item.price}</li>
-                <button onClick={() => setRemItemToggle([true, item.id])}>Remover</button>
-                <button onClick={() => setEdiItemToggle([true, item])}>Editar</button>
+            <div className="item-cards">
+                {
+                items.map((item) => (
+                    <Item 
+                        item={item}
+                        onClickEdit={(() => setEdiItemToggle([true, item]))}
+                        onClickRemove={() => setRemItemToggle([true, item.id])}/>
+                ))
+                }  
             </div>
-            ))
-            }  
         </div>
     );
 }
