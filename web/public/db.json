@@ -8,11 +8,18 @@
     }
   ],
   "categories": [],
-  "clientes": [
+  "clients": [
     {
-      "name": "cliente",
-      "email": "cliente@hotmail.com",
-      "password": "12345"
+      "name": "bia",
+      "email": "bia@hotmail.com",
+      "password": "senha",
+      "id": 1
+    },
+    {
+      "name": "teste",
+      "email": "teste@hotmail.com",
+      "password": "teste",
+      "id": 2
     }
   ]
 }

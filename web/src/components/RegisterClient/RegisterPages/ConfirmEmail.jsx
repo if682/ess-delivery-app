@@ -16,7 +16,7 @@ export const ConfirmEmail = () => {
 
     let navigate = useNavigate();
     const {state} = useLocation()
-    const { name, email} = state;
+    const {name, email} = state;
 
     useEffect(() => {
         setWarningMessage(null)

@@ -23,7 +23,7 @@ export const GetClientEmail = () => {
     }, [email])
 
     useEffect(() => {
-        fetch('http://localhost:3001/clientes')
+        fetch('http://localhost:3001/clients')
           .then(response => response.json())
           .then(data => {
             setCurrentClients(data)});
@@ -41,10 +41,10 @@ export const GetClientEmail = () => {
         else if(!validateEmail(email)){
             setWarningMessage('O e-mail fornecido possui um formato inválido')
         }
-        // else if(currentClients.filter(item => item.email === email)){
-        //     //volta para login
-        //     console.log("vai para o login")
-        // }
+        else if(currentClients.filter(item => item.email == email).length == 1){
+            //volta para login
+            console.log("vai para o login")
+        }
         else{
             navigate('/ConfirmacaoEmail', {state: {name: name, email: email}})
         }

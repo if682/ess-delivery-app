@@ -40,16 +40,16 @@ export const GetClientPassword = () => {
         }
         else{
             let item = {"name": name, "email": email, "password": password}
-
-            await fetch('http://localhost:3001/clientes', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(item)
-            })
-            navigate('/Cadastrado')
+            await fetch('http://localhost:3001/clients', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(item),
+                });
+            navigate('/Cadastrado');
         }
+           
     }
 
     return(

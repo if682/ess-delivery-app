@@ -2,11 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import { RestaurantMenu } from './components/restaurantMenu/RestaurantMenu';
-import { GetClientName } from './components/RegisterClient/loginComponents/GetClientName';
-import { GetClientEmail } from './components/RegisterClient/loginComponents/GetClientEmail';
-import { ConfirmEmail } from './components/RegisterClient/loginComponents/ConfirmEmail';
-import { GetClientPassword } from './components/RegisterClient/loginComponents/GetClientPassword';
-import { ClientRegistered } from './components/RegisterClient/loginComponents/ClientRegistered';
+import { GetClientName } from './components/RegisterClient/RegisterPages/GetClientName';
+import { GetClientEmail } from './components/RegisterClient/RegisterPages/GetClientEmail';
+import { ConfirmEmail } from './components/RegisterClient/RegisterPages/ConfirmEmail';
+import { GetClientPassword } from './components/RegisterClient/RegisterPages/GetClientPassword';
+import { ClientRegistered } from './components/RegisterClient/RegisterPages/ClientRegistered';
 
 function App() {
 
