@@ -18,6 +18,19 @@ model User {
   email     String
   phone     String?
   location  String?
+  Review    Review[]
 
   @@map("users")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  movieId   String
+  title     String
+  review    String
+  createdAt DateTime @default(now())
+  likes     Int      @default(0)
+
+  author User   @relation(fields: [userId], references: [id])
+  userId String
 }
