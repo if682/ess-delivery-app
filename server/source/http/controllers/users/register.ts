@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeRegisterUseCase } from "../../use-cases/factories/make-register-usecase";
+import { makeRegisterUseCase } from "../../../use-cases/factories/make-register-usecase";
 
 export async function register (request: FastifyRequest, reply: FastifyReply) {
     const registerBodySchema = z.object({
@@ -8,7 +8,7 @@ export async function register (request: FastifyRequest, reply: FastifyReply) {
         username: z.string(),
         email: z.string().email(),
         password: z.string(),
-        birthdate: z.date(),
+        birthdate: z.string().datetime(),
         phone: z.string().nullable(),
         location: z.string().nullable(),
     });
@@ -22,7 +22,7 @@ export async function register (request: FastifyRequest, reply: FastifyReply) {
             name,
             email,
             username,
-            birthdate,
+            birthdate: new Date(birthdate),
             password,
             location,
             phone,
