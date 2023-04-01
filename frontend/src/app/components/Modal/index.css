@@ -1,0 +1,48 @@
+.Modal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    outline: none;
+    width: 320px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+.Modal__title {
+    font-size: 16px;
+    margin-bottom: -2px;
+    color: #717171;
+    text-align: center;
+}
+
+.Modal__description {
+    font-size: 15px;
+    margin-bottom: 22px;
+    color: #717171;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.Modal__button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Modal__button:hover {
+    background-color: #0069d9;
+}
