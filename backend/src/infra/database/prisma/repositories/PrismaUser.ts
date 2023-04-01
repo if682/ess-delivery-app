@@ -64,4 +64,8 @@ export class PrismaUser implements UserRepository {
   async getUsers(): Promise<User[]> {
     return await this.prisma.user.findMany({});
   }
+
+  async createAdminUser(user: UserCreationDTO): Promise<User> {
+    throw new Error('Method not implemented');
+  }
 }

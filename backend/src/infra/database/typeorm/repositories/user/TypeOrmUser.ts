@@ -49,6 +49,32 @@ export class TypeOrmUserRepository implements UserRepository {
 
     await this.userRepository.save(newUser);
   }
+
+  async createAdminUser({
+    cpf,
+    email,
+    name,
+    password,
+  }: UserCreationDTO): Promise<User> {
+    const userId = this.encryptService.getId();
+    const hashPassword = this.encryptService.getPassword(password).toString();
+
+    const newUser = new User();
+
+    Object.assign(newUser, {
+      id: userId,
+      email,
+      name,
+      password: hashPassword,
+      cpf,
+      role: 'ADMIN',
+    });
+
+    await this.userRepository.save(newUser);
+
+    return newUser;
+  }
+
   getUsers(): Promise<User[]> {
     return this.userRepository.find();
   }
