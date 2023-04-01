@@ -1,18 +1,28 @@
 import { Module } from '@nestjs/common';
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
-import { PrismaService } from './prisma/prisma.service';
-import { PrismaUser } from './prisma/repositories/PrismaUser';
 import UserRepository from './repositories/UserRepository';
+import { databaseProviders } from './typeorm/database.providers';
+import { UserProviders } from './typeorm/providers/userProvider';
+import { TypeOrmUserRepository } from './typeorm/repositories/user/TypeOrmUser';
+import { UserContactProviders } from './typeorm/providers/userContactProvider';
+import UserContactRepository from './repositories/ADMUserContactRepository';
+import { TypeOrmUserContactRepository } from './typeorm/repositories/user/TypeOrmUserContact';
 
 @Module({
   providers: [
-    PrismaService,
+    databaseProviders,
+    ...UserProviders,
+    ...UserContactProviders,
     {
       provide: UserRepository,
-      useClass: PrismaUser,
+      useClass: TypeOrmUserRepository,
+    },
+    {
+      provide: UserContactRepository,
+      useClass: TypeOrmUserContactRepository,
     },
     EncryptService,
   ],
-  exports: [UserRepository],
+  exports: [databaseProviders, UserRepository, UserContactRepository],
 })
 export class DatabaseModule {}
