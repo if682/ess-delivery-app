@@ -31,5 +31,4 @@ export class PrismaUsersRepository implements IUserRepository {
 
         return user;
     }
-
 }

@@ -1,5 +1,8 @@
 import { app } from "./app";
 import { env } from "./env";
+import { register } from "./http/controllers/register";
+
+app.post("/register", register);
 
 app.listen({
     host: "0.0.0.0",
