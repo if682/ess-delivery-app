@@ -11,8 +11,13 @@ datasource db {
 }
 
 model User {
-  id   String @id @default(uuid())
-  name String
+  id        String   @id @default(uuid())
+  name      String
+  username  String
+  birthdate DateTime
+  email     String
+  phone     String?
+  location  String?
 
   @@map("users")
 }
