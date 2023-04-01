@@ -12,6 +12,4 @@ COPY . .
 EXPOSE 8080
 EXPOSE 5555
 
-RUN npx prisma generate
-
-CMD npx prisma studio & npm run start:dev
+CMD npm run start:dev
