@@ -22,13 +22,13 @@ model User {
   location  String?
   Review    Review[]
   Comment   Comment[]
+  Evaluation Evaluation[]
 
   @@map("users")
 }
 
 model Review {
   id        String   @id @default(uuid())
-  movieId   String
   title     String
   review    String
   createdAt DateTime @default(now())
@@ -37,8 +37,16 @@ model Review {
   author User   @relation(fields: [userId], references: [id])
   userId String
 
+  movie Movie @relation(fields: [movieId], references: [id])
+  movieId String
+
+  Evaluation        Evaluation? @relation(fields: [evaluationUserId, evaluationMovieId], references: [userId, movieId])
+  evaluationUserId  String?
+  evaluationMovieId String?
+
   Comment Comment[]
 
+  @@unique([evaluationUserId, evaluationMovieId])
   @@map("reviews")
 }
 
@@ -54,6 +62,29 @@ model Comment {
   userId String
 
   @@map("comments")
+}
+
+model Movie {
+  id  String @id @default(uuid())
+
+  Review     Review[]
+  Evaluation Evaluation[]
+
+  @@map("movies")
+}
+
+model Evaluation{
+  author  User @relation(fields: [userId], references: [id])
+  userId  String
+
+  movie   Movie @relation(fields: [movieId], references: [id])
+  movieId String
+
+  review  Review? 
+  rating  Int
+
+  @@id([userId, movieId])
+  @@map("evaluations")
 }
 
 enum Role {
