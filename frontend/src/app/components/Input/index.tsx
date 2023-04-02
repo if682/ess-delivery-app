@@ -1,9 +1,11 @@
+import { ChangeEvent } from 'react';
 import './index.css'
 
 interface InputProps {
   type?: string;
-  size?: 'LARGE' | 'MEDIUM' | 'SMALL',
-  placeholder?: string
+  size?: 'LARGE' | 'MEDIUM' | 'SMALL';
+  placeholder?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 const mapClass: { [key: string]: string} = {
@@ -12,8 +14,8 @@ const mapClass: { [key: string]: string} = {
   SMALL: 'small'
 }
 
-export function Input({ type, size, placeholder }: InputProps) {
+export function Input({ type, size, placeholder, onChange }: InputProps) {
   return (
-    <input placeholder={placeholder} className={`input ${size ? mapClass[size] : 'large'}`} type={type}/>
+    <input placeholder={placeholder} onChange={onChange} className={`input ${size ? mapClass[size] : 'large'}`} type={type}/>
   )
 }
