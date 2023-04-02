@@ -1,0 +1,11 @@
+.watchlist-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .page-header {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
