@@ -1,0 +1,92 @@
+.AppBar {
+  background-color: #d3cabf;
+  height: 240px;
+  padding: 40px 45px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tittle {
+  font-family: "TrajanusBricks";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  word-spacing: -6px;
+}
+
+.subtitle {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.AppBar_Reservas_Button {
+  all: unset;
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.AppBar_Cadastro_Button {
+  all: unset;
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+  color: rgba(32, 35, 41, 0.58);
+}
+
+.AppBar_Login_Button {
+  all: unset;
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+  background: #2d3138;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.AppBar_Login_Button:hover {
+  background: #15171b;
+}
+
+.AppBar_User_Button {
+  all: unset;
+  font-family: "Nunito Sans";
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+}
+
+.AppBar_User_Button p {
+  color: rgba(32, 35, 41, 0.58);
+  overflow-wrap: break-word;
+  max-width: 100px;
+  margin: 0px 5px 0px 10px;
+}
+
+.AppBar_User_Button svg {
+  fill: black;
+  width: 52px;
+}
