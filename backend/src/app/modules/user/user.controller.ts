@@ -53,8 +53,6 @@ export class UserController {
       cpf,
     });
 
-    console.log('dsaddd->>>>', user.id);
-
     const info = await this.userContactRepository.createContact({
       ...body,
       userId: user.id,

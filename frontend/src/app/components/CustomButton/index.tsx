@@ -5,11 +5,12 @@ import './index.css'
 interface ModalProps {
     onClick: () => void;
     title: string;
+    large?: boolean
 }
 
-function CustomButton({ onClick, title }: ModalProps) {
+function CustomButton({ onClick, title, large }: ModalProps) {
     return (
-        <button className="CustomButton" onClick={onClick}>
+        <button className={`CustomButton ${large ? 'large-btn' : ''}`} onClick={onClick}>
             {title}
         </button>
     );

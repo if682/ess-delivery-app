@@ -18,3 +18,8 @@
 .CustomButton:hover {
     color: #717171;
 }
+
+.large-btn {
+  width: 300px;
+  height: 80px;
+}
