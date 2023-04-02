@@ -1,6 +1,8 @@
-import axios, { AxiosInstance } from "axios";
-import { UserResponse } from "./interfaces";
-import { APIConfig } from "../../configs/api/api.config";
+import axios, { AxiosInstance } from 'axios'
+import { UserResponse } from './interfaces'
+import { APIConfig } from '../../configs/api/api.config'
+import { RegisterADMInterface } from '../../app/pages/AdmRegister'
+
 
 export class APIClient {
   private axiosClient: AxiosInstance;
@@ -33,4 +35,10 @@ export class APIClient {
     );
     return response.data;
   }
+
+  async createAdmUser(userData: RegisterADMInterface) {
+    await this.axiosClient.post('/user/admin', userData)
+    return true
+  }
 }
+

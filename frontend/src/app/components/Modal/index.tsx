@@ -7,11 +7,13 @@ interface ModalProps {
     onRequestClose: () => void;
     title: string;
     description: string;
+    showBlackBackground?: boolean;
 }
 
-function Modal({ isOpen, onRequestClose, title, description }: ModalProps) {
+function Modal({ isOpen, onRequestClose, title, description, showBlackBackground }: ModalProps) {
     return (
-        <ReactModal
+        <div className={`${showBlackBackground ? 'show-black-background' : ''} ${isOpen ? '' : 'disabled'}`}>
+          <ReactModal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Example Modal"
@@ -23,6 +25,7 @@ function Modal({ isOpen, onRequestClose, title, description }: ModalProps) {
             <p className="Modal__description">{description}</p>
             <CustomButton onClick={onRequestClose} title="Confirmar" />
         </ReactModal>
+        </div>
     );
 }
 

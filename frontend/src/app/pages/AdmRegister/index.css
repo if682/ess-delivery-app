@@ -1,0 +1,34 @@
+.adm-screen-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+  width: 100%;
+}
+
+.adm-screen-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-wrapper {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  height: 400px;
+  width: 100%;
+}
+
+.input-wrapper label {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
