@@ -18,7 +18,7 @@ const Watchlist = () => {
   return (
     <div className="watchlist-page">
       <Header />
-      <WatchlistHeader />
+      <WatchlistHeader profile_pic="../../assets/profile-pic.svg" username="Mia Goth" />
       <div className="movies-grid">
         {movies.map((movie, index) => (
           <Movie key={index} poster="../../assets/movie-poster.svg" title={movie.title} year={movie.year} />
