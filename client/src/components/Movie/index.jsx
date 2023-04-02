@@ -10,6 +10,10 @@ const Movie = ({ poster, title, year }) => {
     alert(`Adicionou ${title} à watchlist`);
   };
 
+  const handleMovieClick = () => {
+    alert(`Aqui deve ir para a página do filme ${title}`);
+  };
+
   return (
     <div className="movie-container">
       <div className="button-container">
@@ -22,7 +26,7 @@ const Movie = ({ poster, title, year }) => {
         </button>
       </div>
 
-      <div className="poster-container">
+      <div className="poster-container" onClick={() => handleMovieClick()} >
         <img src={poster} alt="Poster do filme" />
       </div>
 
