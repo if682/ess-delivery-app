@@ -53,6 +53,30 @@ function MyOrders() {
       },
       paymentMethod: "Pix",
     },
+    {
+      id: "098125",
+      place: "Subway",
+      address: "Rua dos Bobos, 0",
+      date: "01/01/2021",
+      itens: [
+        {
+          name: "Subway Melt",
+          quantity: 1,
+          price: 10.0,
+        },
+        {
+          name: "Fanta",
+          quantity: 1,
+          price: 3.0,
+        },
+      ],
+      values: {
+        subtotal: 13.0,
+        deliveryFee: 5.0,
+        total: 18.0,
+      },
+      paymentMethod: "Dinheiro",
+    },
   ];
 
   return (

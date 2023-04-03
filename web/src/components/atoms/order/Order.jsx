@@ -4,6 +4,8 @@ import RedOutlineButton from "../red-outline-button/RedOutlineButton";
 
 import "./Order.css";
 import { ChevronRight } from "react-bootstrap-icons";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import PlaceIcon from "@mui/icons-material/Place";
 
 function Order({
   id,
@@ -20,28 +22,32 @@ function Order({
       <Dropdown.Toggle>
         <Row>
           <Col xs={2}>
-            <div className="d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-start">
               <strong>Pedido ID:</strong>
               <span>#{id}</span>
             </div>
           </Col>
 
           <Col xs={2}>
-            <div className="d-flex flex-column align-items-center">
-              <strong className="active-order-text">Restaurante:</strong>
+            <div className="d-flex flex-column align-items-start">
+              <strong className="active-order-text d-flex align-items-center">
+                <StorefrontIcon /> Restaurante:
+              </strong>
               <span>{place}</span>
             </div>
           </Col>
 
           <Col xs={3}>
-            <div className="d-flex flex-column align-items-center">
-              <strong className="active-order-text">Endereço:</strong>
+            <div className="d-flex flex-column align-items-start">
+              <strong className="active-order-text d-flex align-items-center">
+                <PlaceIcon /> Endereço:
+              </strong>
               <span>{address}</span>
             </div>
           </Col>
 
           <Col xs={2}>
-            <div className="d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-start">
               <strong>Data:</strong>
               <span>{date}</span>
             </div>
