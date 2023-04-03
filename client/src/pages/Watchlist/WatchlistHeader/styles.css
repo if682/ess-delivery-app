@@ -1,11 +1,60 @@
 .watchlist-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .page-header {
-    font-size: 32px;
-    font-weight: bold;
-  }
-  
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.listname-container {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: rgba(244, 164, 164, 0.19);
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #77728D;
+}
+
+.buttons-container, .filter-sort-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.buttons-container button, .filter-sort-icons button {
+  background-color: transparent;
+  margin-right: 10px;
+  border: none;
+  padding: 5px;
+}
+
+.buttons-container button img, .filter-sort-icons button img {
+  width: 24px;
+  height: 24px;
+}
