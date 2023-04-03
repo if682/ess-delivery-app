@@ -10,7 +10,7 @@ const Header = () => {
         <img src="../../assets/logout-icon.svg" alt="Ícone de logout" />
       </button>
 
-      <hr />
+      <hr className="header-hr"/>
 
     </div>
   );

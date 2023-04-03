@@ -1,7 +1,9 @@
+import EditProfileForms from "../../components/EditProfileForms"
+
 const EditProfile = () => {
   return(
     <>
-        <h1>Tela de editar pefil</h1>
+      <EditProfileForms/>
     </>
   );
 }
