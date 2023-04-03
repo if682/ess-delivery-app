@@ -1,6 +1,6 @@
 .profile-section{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 200px;
@@ -8,10 +8,6 @@
     margin-top: 47px;
     margin-right: 40px;
     margin-left: 50px;
-}
-
-.name-description-container{
-    background-color: red;
 }
 
 .info-container{

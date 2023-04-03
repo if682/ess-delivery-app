@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import NameDescription from "./name-description/NameDescription";
 
 const ProfileInfo = () => {
 
@@ -10,9 +11,7 @@ const ProfileInfo = () => {
             <img src="../../assets/avatar-placeholder.svg" alt="Logo do Letterboxcin" />
         </div>
 
-        <div className="name-description-container">
-
-        </div>
+        <NameDescription />
 
         <div className="info-container">
 
