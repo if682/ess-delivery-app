@@ -5,16 +5,16 @@
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 32px;
     color: #77728D;
 }
 
 .name-description-container .user-name{
     padding: 4px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .name-description-container .user-description{
     padding: 4px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }

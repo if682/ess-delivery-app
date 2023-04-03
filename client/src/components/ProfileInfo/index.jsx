@@ -1,22 +1,21 @@
 import React from "react";
 import "./style.css";
-import NameDescription from "./name-description/NameDescription";
+import NameDescription from "./ProfileNameDescription";
+import ProfileNumbers from "./ProfileNumbers";
 
 const ProfileInfo = () => {
 
   return (
-    <section className="profile-section">
+    <article className="profile-section">
         
-        <div className="avatar-container">
+        <section className="avatar-container">
             <img src="../../assets/avatar-placeholder.svg" alt="Logo do Letterboxcin" />
-        </div>
+        </section>
 
         <NameDescription />
 
-        <div className="info-container">
-
-        </div>
-    </section>
+        <ProfileNumbers />
+    </article>
   );
 };
 

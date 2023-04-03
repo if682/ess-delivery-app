@@ -4,12 +4,7 @@
     justify-content: space-between;
     align-items: center;
     height: 200px;
-    background-color: cyan;
     margin-top: 47px;
     margin-right: 40px;
     margin-left: 50px;
-}
-
-.info-container{
-    background-color: purple;
 }
