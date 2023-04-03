@@ -1,12 +1,17 @@
 import React from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const NameDescription = () => {
 
+  let navigate = useNavigate();
+
   const editButtonClick = () =>{
     alert("Clicou para alterar os dados do perfil")
+    let path = `editprofile`;
+    navigate(path)
   }
-
+  
   return (
     <section className="name-description-container">
             <div className="user-name">
