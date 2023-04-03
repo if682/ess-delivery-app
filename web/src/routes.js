@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import MyAccountPage from "./pages/myaccount/myaccount";
+import MyAccountPage from "./pages/myaccount/Myaccount";
 
 const UrlRoutes = () => {
   return (
