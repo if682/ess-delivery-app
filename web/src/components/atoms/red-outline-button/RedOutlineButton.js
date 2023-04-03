@@ -3,7 +3,7 @@ import { ChevronRight } from "react-bootstrap-icons";
 
 import "./RedOutlineButton.css";
 
-function RedOutlineButton({ onClick, children }) {
+function RedOutlineButton({ onClick, children, width, chevron = true }) {
   return (
     <button
       className="red-outline-button"
@@ -11,8 +11,8 @@ function RedOutlineButton({ onClick, children }) {
     >
       {children}
 
-      <span>
-        <ChevronRight size={20} />
+      <span style={width ? { width: width } : {}}>
+        {chevron && <ChevronRight size={20} />}
       </span>
     </button>
   );
