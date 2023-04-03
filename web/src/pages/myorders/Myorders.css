@@ -1,0 +1,10 @@
+.my-orders-page-container strong {
+  color: #272727;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  position: absolute;
+  top: 6rem;
+  left: 5rem;
+}

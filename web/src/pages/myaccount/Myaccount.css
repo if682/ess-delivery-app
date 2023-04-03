@@ -9,6 +9,19 @@
   left: 5rem;
 }
 
+.my-account-page-container .red-outline-button + .red-outline-button {
+  margin-top: 1rem;
+}.my-account-page-container strong {
+  color: #272727;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  position: absolute;
+  top: 6rem;
+  left: 5rem;
+}
+
 .my-account-page-container .red-outline-button {
   display: flex;
   flex-direction: row;
