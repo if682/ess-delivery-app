@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { FormValues } from '../../../services/api/interfaces';
 import './index.css'
+import CreateReservationAPI from '../../hooks/createReservation';
 
 const validationSchema = () => Yup.object({
   location: Yup.string()
@@ -38,7 +39,7 @@ const validationSchema = () => Yup.object({
     .typeError('O número de banheiros deve ser um número'),
   photos: Yup.array()
     .required('O upload de fotos é obrigatório')
-    .min(5,'Deve haver o upload de pelo menos cinco fotos.')
+    .min(3,'Deve haver o upload de pelo menos três fotos.')
     .max(15, 'Você pode enviar no máximo 15 fotos.'),
   additionalInfo: Yup.string()
     .max(500, 'As informações adicionais não podem ter mais de 500 caracteres'),
@@ -59,11 +60,17 @@ const ReservationForm: React.FC = () => {
     photos: [],
   };
 
-  const onSubmit = (values: FormValues, { setSubmitting, setFieldValue }: FormikHelpers<FormValues>) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+  const { createElement, isLoading, isError, isSuccess } = CreateReservationAPI();
+
+  const onSubmit = async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+    try {
+      createElement(values);
+      alert('Reservation created successfully');
+    } catch (error) {
+      alert('Error creating reservation');
+    } finally {
       setSubmitting(false);
-    }, 400);
+    }
   };
 
   return (
@@ -115,7 +122,6 @@ const ReservationForm: React.FC = () => {
               <Field type="date" name="checkOut" />
               <ErrorMessage name="checkOut" component="span" className="error-message" />
 
-              <label htmlFor="photos">Fotos</label>
               <Field
                 type="file"
                 name="photos"
@@ -126,7 +132,7 @@ const ReservationForm: React.FC = () => {
                   }
                 }}
                 multiple
-              />
+             />
               <ErrorMessage name="photos" component="span" className="error-message" />
 
               <label htmlFor="additionalInfo">Informações adicionais</label>
