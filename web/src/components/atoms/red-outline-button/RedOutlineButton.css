@@ -30,3 +30,9 @@
   align-items: center;
   justify-content: center;
 }
+
+
+.red-outline-button:hover {
+  background-color: #eb0029;
+  color: #fff;
+}
