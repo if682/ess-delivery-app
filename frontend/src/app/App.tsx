@@ -17,7 +17,6 @@ function App() {
               userName="Ekistoclecio Lima"
               sideBar={false}
             />
-            <SearchBar />
             <Router />
           </AppTheme>
         </SessionProvider>

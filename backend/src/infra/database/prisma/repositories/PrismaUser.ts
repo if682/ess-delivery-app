@@ -4,7 +4,7 @@ import UserRepository from '../../repositories/UserRepository';
 import { PrismaService } from '../prisma.service';
 
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
-import { User } from '@prisma/client';
+import { User } from '../../typeorm/entities/User.entity';
 
 @Injectable()
 export class PrismaUser implements UserRepository {
