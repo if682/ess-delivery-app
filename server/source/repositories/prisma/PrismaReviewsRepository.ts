@@ -1,4 +1,4 @@
-import { Prisma, Review } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { IReviewsRepository } from "../IReviewsRepository";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
