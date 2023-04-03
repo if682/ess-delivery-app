@@ -10,8 +10,15 @@
 }
 
 .name-description-container .user-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 4px;
     font-size: 1.5rem;
+}
+
+.user-name p{
+    padding-right: 12px;
 }
 
 .name-description-container .user-description{

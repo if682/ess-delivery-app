@@ -3,10 +3,17 @@ import "./style.css";
 
 const NameDescription = () => {
 
+  const editButtonClick = () =>{
+    alert("Clicou para alterar os dados do perfil")
+  }
+
   return (
     <section className="name-description-container">
             <div className="user-name">
                 <p>userName</p>
+                <button className="edit-user-profile" onClick={editButtonClick}>
+                  <img src="../../assets/edit-profile.svg" alt=""/>
+                </button>
             </div>  
 
             <div className="user-description">

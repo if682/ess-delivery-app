@@ -9,7 +9,7 @@ const ProfileInfo = () => {
     <article className="profile-section">
         
         <section className="avatar-container">
-            <img src="../../assets/avatar-placeholder.svg" alt="Logo do Letterboxcin" />
+            <img src="../../assets/avatar-placeholder.svg" alt="Avatar do usuario"/>
         </section>
 
         <NameDescription />
