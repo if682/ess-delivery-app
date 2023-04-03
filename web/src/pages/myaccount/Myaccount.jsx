@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../components/atoms/page-title/PageTitle";
 import RedButton from "../../components/atoms/red-button/RedButton";
 import RedOutlineButton from "../../components/atoms/red-outline-button/RedOutlineButton";
 
@@ -11,7 +12,7 @@ function MyAccountPage() {
 
   return (
     <div className="my-account-page-container position-relative d-flex flex-column align-items-center justify-content-center vh-100 p-4">
-      <strong>Minha conta</strong>
+      <PageTitle>Minha conta</PageTitle>
 
       <RedOutlineButton>Meus dados</RedOutlineButton>
       <RedOutlineButton onClick={goToMyOrders}>Meus pedidos</RedOutlineButton>
