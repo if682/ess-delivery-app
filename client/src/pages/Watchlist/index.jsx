@@ -15,10 +15,12 @@ const Watchlist = () => {
     { title: "Movie 7", year: 2021 }
   ];
 
+  const listName = "Watchlist";
+
   return (
     <div className="watchlist-page">
       <Header />
-      <WatchlistHeader profile_pic="../../assets/profile-pic.svg" username="Mia Goth" />
+      <WatchlistHeader profile_pic="../../assets/profile-pic.svg" username="Mia Goth" listName={listName} />
       <div className="movies-grid">
         {movies.map((movie, index) => (
           <Movie key={index} poster="../../assets/movie-poster.svg" title={movie.title} year={movie.year} />
