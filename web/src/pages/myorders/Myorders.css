@@ -1,0 +1,6 @@
+.my-orders-page-container {
+  padding-top: 10rem;
+  padding-left: 3rem;
+}.my-account-page-container .red-outline-button + .red-outline-button {
+  margin-top: 1rem;
+}
