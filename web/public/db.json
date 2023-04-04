@@ -29,6 +29,12 @@
       "name": "para, por favor",
       "description": "já tem muito de nós",
       "price": "8,99"
+    },
+    {
+      "id": 1680645025666,
+      "name": "pingo",
+      "description": "douro",
+      "price": "1,99"
     }
   ],
   "categories": []

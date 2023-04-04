@@ -20,7 +20,7 @@ export const RestaurantMenu = () => {
     }, []);
 
     return (
-        <div className="App">
+        <div>
             <AddItemPopup show={addItemToggle} onHide={() => setAddItemToggle(false)}/>
             <RemItemPopup show={remItemToggle[0]} item={remItemToggle[1]} onHide={() => setRemItemToggle(false)}/>
             <EdiItemPopup show={ediItemToggle[0]} item={ediItemToggle[1]} onHide={() => setEdiItemToggle(false)}/>
