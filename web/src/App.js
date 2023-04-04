@@ -1,12 +1,14 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Sidemenu from './components/molecules/sidemenu/Sidemenu'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Sidemenu from "./components/molecules/sidemenu/Sidemenu";
+import UrlRoutes from "./routes";
 
 function App() {
   return (
-    <div>
-      <Sidemenu/>
-    </div>
+    <>
+      <Sidemenu />
+      <UrlRoutes />
+    </>
   );
 }
 
