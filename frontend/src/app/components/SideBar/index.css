@@ -9,9 +9,30 @@
   background-color: #e5e5e5;
   width: 260px;
   height: 100%;
+  animation-name: openSideBar;
+  animation-duration: 0.5s;
+}
+
+@keyframes openSideBar {
+  from {
+    transform: translateX(260px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes closeSideBar {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(255px);
+  }
 }
 
 .iconClose {
+  all: unset;
   align-self: flex-end;
   margin: 5px;
 }
