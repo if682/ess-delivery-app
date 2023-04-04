@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export class PrismaReviewsRepository implements IReviewsRepository {
-    async create(data: Prisma.ReviewCreateInput) {
+    async create(data: Prisma.ReviewUncheckedCreateInput) {
         const review = await prisma.review.create({
             data,
         })
