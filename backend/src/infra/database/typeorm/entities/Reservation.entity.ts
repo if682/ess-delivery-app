@@ -8,7 +8,13 @@ export class Reservation {
   id: string;
 
   @Column({ unique: true })
-  location: string;
+  name: string; 
+
+  @Column()
+  street: string;
+
+  @Column()
+  streetNumber: number;
 
   @Column({ unique: true })
   cep: string;

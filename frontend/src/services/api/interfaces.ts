@@ -7,7 +7,9 @@ export interface UserResponse {
 
 
 export interface FormValues {
-  location: string;
+  name: string; 
+  street:string;
+  streetNumber: number;
   cep : string;
   checkIn: string;
   checkOut: string;

@@ -13,7 +13,7 @@ function App() {
         <SessionProvider>
           <AppTheme>
             <AppBar
-              logged={false}
+              logged={true}
               userName="Ekistoclecio Lima"
               sideBar={false}
             />

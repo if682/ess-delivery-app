@@ -2,12 +2,16 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { FormValues } from '../../../services/api/interfaces';
-import './index.css'
+import './index2.css'
 import CreateReservationAPI from '../../hooks/createReservation';
 
 const validationSchema = () => Yup.object({
   location: Yup.string()
     .required('Um nome para a reserva é obrigatório'),
+  street: Yup.string()
+    .required('O nome da rua é obrigatório'),
+  streetNumber: Yup.number()
+    .required("Digite o número do endereço"),
   cep: Yup.string()
     .required('O cep é obrigatório')
     .min(8,'Digite um número válido de CEP')
@@ -46,8 +50,10 @@ const validationSchema = () => Yup.object({
 });
 
 const ReservationForm: React.FC = () => {
-  const initialValues: FormValues = {
-    location: '',
+  const initialValues: FormValues = { 
+    name: '',
+    street: '',
+    streetNumber: 1,
     checkIn: '',
     checkOut: '',
     guests: 1,
@@ -74,8 +80,8 @@ const ReservationForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Faça sua reserva</h1>
+    <div className='page'>
+      <h1 className= "title">Crie sua reserva</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -85,42 +91,56 @@ const ReservationForm: React.FC = () => {
           <Form>
           <div className = 'container'>
             <div className='left'>
-              <label htmlFor="location">Título</label>
-              <Field type="text" name="location" />
-              <ErrorMessage name="location" component="span" className="error-message" />
+              <label htmlFor="name">Título</label>
+              <Field type="text" name="name" />
+              <ErrorMessage name="name" component="div" className="error-message" />
+
+              <label htmlFor="street">Rua</label>
+              <Field type="text" name="street" />
+              <ErrorMessage name="street" component="div" className="error-message" />
+
+              <label htmlFor="streetNumber">Número</label>
+              <Field type="number" name="streetNumber" />
+              <ErrorMessage name="streetNumber" component="div" className="error-message" />
 
               <label htmlFor="cep">CEP</label>
               <Field type="text" name="cep" />
-              <ErrorMessage name="cep" component="span" className="error-message" />
+              <ErrorMessage name="cep" component="div" className="error-message" />
+
+              <label htmlFor="additionalInfo">Informações adicionais</label>
+              <Field type="textarea" name="additionalInfo" />
+              <ErrorMessage name="additionalInfo" component="div" className="error-message" />
+
+            </div>
+            <div className='right'>
 
               <label htmlFor="guests">Número de hóspedes</label>
               <Field type="number" name="guests" />
-              <ErrorMessage name="guests" component="span" className="error-message" />
+              <ErrorMessage name="guests" component="div" className="error-message" />
 
               <label htmlFor="budget">Preço da diária</label>
               <Field type="float" name="budget" />
-              <ErrorMessage name="budget" component="span" className="error-message" />
+              <ErrorMessage name="budget" component="div" className="error-message" />
 
               <label htmlFor="bedrooms">Quartos</label>
               <Field type="number" name="bedrooms" />
-              <ErrorMessage name="bedrooms" component="span" className="error-message" />
+              <ErrorMessage name="bedrooms" component="div" className="error-message" />
 
               <label htmlFor="beds">Camas</label>
               <Field type="number" name="beds" />
-              <ErrorMessage name="beds" component="span" className="error-message" />
+              <ErrorMessage name="beds" component="div" className="error-message" />
 
               <label htmlFor="bathrooms">Banheiros</label>
               <Field type="number" name="bathrooms" />
-              <ErrorMessage name="bathrooms" component="span" className="error-message" />
-            </div>
-            <div className='right'>
+              <ErrorMessage name="bathrooms" component="div" className="error-message" />
+
               <label htmlFor="checkIn">Check-in</label>
               <Field type="date" name="checkIn" />
-              <ErrorMessage name="checkIn" component="span" className="error-message" />
+              <ErrorMessage name="checkIn" component="div" className="error-message" />
 
               <label htmlFor="checkOut">Check-out</label>
               <Field type="date" name="checkOut" />
-              <ErrorMessage name="checkOut" component="span" className="error-message" />
+              <ErrorMessage name="checkOut" component="div" className="error-message" />
 
               <Field
                 type="file"
@@ -133,14 +153,17 @@ const ReservationForm: React.FC = () => {
                 }}
                 multiple
              />
-              <ErrorMessage name="photos" component="span" className="error-message" />
+              <ErrorMessage name="photos" component="div" className="error-message" />
 
-              <label htmlFor="additionalInfo">Informações adicionais</label>
-              <Field type="textarea" name="additionalInfo" />
-              <ErrorMessage name="additionalInfo" component="span" className="error-message" />
+              
+              
+                  
 
+
+              <br/>
               <button type="submit" disabled={isSubmitting}>
                 Enviar
+                
               </button>
             </div>
           </div>

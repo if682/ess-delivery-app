@@ -24,7 +24,9 @@ export class TypeOrmReservationRepository {
   }
 
   async createReservation({
-    location,
+    name,
+    street,
+    streetNumber,
     cep,
     checkIn,
     checkOut,
@@ -35,12 +37,14 @@ export class TypeOrmReservationRepository {
     beds,
     bathrooms,
     photos
-  }:ReservationCreationDTO): Promise<void>{
+  }:ReservationCreationDTO): Promise<void>{ 
 
     const newReservation = new Reservation();
 
     Object.assign(newReservation,{
-        location,
+        name,
+        street,
+        streetNumber,
         cep,
         checkIn,
         checkOut,

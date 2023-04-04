@@ -8,7 +8,6 @@ import { ReservationRepository } from 'src/infra/database/repositories/Reservati
 export class ReservationController {
   constructor(
     private reservationRepository: ReservationRepository,
-    private reservationContactRepository: UserContactRepository,
     private reservationService: ReservationService,
   ) {}
 

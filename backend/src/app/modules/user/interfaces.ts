@@ -8,7 +8,9 @@ export interface UserResponse {
 
 export interface ReservationResponse {
   id: string;
-  location: string;
+  name: string;
+  street: string;
+  streetNumber: number;
   cep : string;
   checkIn: string;
   checkOut: string;

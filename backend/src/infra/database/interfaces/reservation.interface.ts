@@ -1,6 +1,8 @@
 export interface ReservationCreationDTO{
     
-    location: string;
+    name: string;
+    street: string;
+    streetNumber: number;
     cep : string;
     checkIn: string;
     checkOut: string;
@@ -9,6 +11,6 @@ export interface ReservationCreationDTO{
     additionalInfo: string;
     bedrooms: number;
     beds: number;
-    bathrooms: number;
+    bathrooms: number; 
     photos: Array<File>;
 }

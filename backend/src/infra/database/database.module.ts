@@ -30,6 +30,6 @@ import { TypeOrmReservationRepository } from './typeorm/repositories/Reservation
     },
     EncryptService,
   ],
-  exports: [databaseProviders, UserRepository, UserContactRepository],
+  exports: [databaseProviders, UserRepository, UserContactRepository,ReservationRepository], 
 })
 export class DatabaseModule {}

@@ -8,4 +8,4 @@ import { ReservationController } from './reservation.controller';
   imports: [DatabaseModule],
   providers: [ReservationService],
 })
-export class UserModule {}
+export class ReservationModule {}
