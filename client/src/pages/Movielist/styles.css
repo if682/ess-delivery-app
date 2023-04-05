@@ -1,0 +1,49 @@
+.movielist-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF5F5;
+    padding: 20px;
+  }
+  
+  .movies-grid {
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-flow: dense;
+    grid-gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .filter-sort-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  }
+  
+  .filter-sort-icons button {
+    background-color: transparent;
+    margin-right: 10px;
+    border: none;
+    padding: 5px;
+  }
+  
+  .filter-sort-icons button .button-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-sort-icons button p {
+    margin-right: 10px;
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #77728D;
+  }
+  
+  .filter-sort-icons button img {
+    width: 20px;
+    height: 20px;
+  }

@@ -16,7 +16,7 @@
     margin-bottom: 10px;
   }
   
-  .add-to-watchlist-button, .like-button {
+  .add-to-movielist-button, .like-button {
     background-color: #EEE;
     border: none;
     padding: 5px;
@@ -28,6 +28,7 @@
     width: 180px;
     height: 250px;
     border-radius: 5px;
+    cursor: pointer;
   }
   
   .info-container {

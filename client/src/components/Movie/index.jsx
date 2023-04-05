@@ -1,32 +1,25 @@
 import React from "react";
+import {
+  handleAddToMovielistClick,
+  handleLikeClick,
+  handleMovieClick
+} from "../../pages/handleClick.js";
 import "./styles.css";
 
 const Movie = ({ poster, title, year }) => {
-  const handleLikeClick = () => {
-    alert(`Curtiu o filme ${title}`);
-  };
-
-  const handleAddToWatchlistClick = () => {
-    alert(`Adicionou ${title} à watchlist`);
-  };
-
-  const handleMovieClick = () => {
-    alert(`Aqui deve ir para a página do filme ${title}`);
-  };
-
   return (
     <div className="movie-container">
       <div className="button-container">
-        <button className="add-to-watchlist-button" onClick={handleAddToWatchlistClick}>
-          <img src="../../assets/add-list-icon.svg" alt="Ícone de adicionar a watchlist" />
+        <button className="add-to-movielist-button" onClick={() => handleAddToMovielistClick(title)}>
+          <img src="../../assets/add-list-icon.svg" alt="Ícone de adicionar a movielist" />
         </button>
 
-        <button className="like-button" onClick={handleLikeClick}>
+        <button className="like-button" onClick={() => handleLikeClick(title)}>
           <img src="../../assets/like-icon.svg" alt="Ícone de like" />
         </button>
       </div>
 
-      <div className="poster-container" onClick={() => handleMovieClick()} >
+      <div className="poster-container" onClick={() => handleMovieClick(title)} >
         <img src={poster} alt="Poster do filme" />
       </div>
 
