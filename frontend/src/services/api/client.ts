@@ -57,7 +57,7 @@ export class APIClient {
   }
 
   async getReservationByCEP(ReservationCEP:string){
-    const response = await this.axiosClient.get<ReservationResponse>(`/reservation/${ReservationCEP}`)
+    const response = await this.axiosClient.get<ReservationResponse>(`/reservation/cep/${ReservationCEP}`)
     return response.data
   }
  

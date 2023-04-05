@@ -17,9 +17,15 @@ export class ReservationController {
     return reservation.map(this.reservationService.getReservationResponse);
   }
 
-  @Get('Id')
+  @Get(':Id')
   async getReservationById(@Param('Id') Id: string) {
     const reservation = await this.reservationRepository.getReservationById(Id);
+    return this.reservationService.getReservationResponse(reservation);
+  }
+
+  @Get('cep/:cep')
+  async getReservationByCEP(@Param('cep') cep: string) {
+    const reservation = await this.reservationRepository.getReservationById(cep);
     return this.reservationService.getReservationResponse(reservation);
   }
 
@@ -27,4 +33,5 @@ export class ReservationController {
   async createReservation(@Body() createReservationDTO: ReservationCreationDTO) {
     return this.reservationRepository.createReservation(createReservationDTO);
   }
+
 }
