@@ -1,4 +1,4 @@
-.movielist-page {
+  .movielist-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +36,6 @@
   
   .filter-sort-icons button p {
     margin-right: 10px;
-    font-family: 'Lato';
     font-weight: 400;
     font-size: 14px;
     line-height: 19px;
