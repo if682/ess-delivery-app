@@ -2,32 +2,34 @@ import { useState } from "react";
 import "./index.css";
 import { IconUserCircle } from "../../assets/icons";
 import SideBar from "../SideBar";
+import { useSession } from "../../providers/SessionContext";
 
 const pages = ["Home", "Cadastro", "Login"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 interface AppBarProps {
-  logged: boolean;
-  sideBar: boolean;
-  userName?: string;
   subtitle?: string;
+  showLoginRegisterModal: (e: boolean) => void;
 }
 
-function ResponsiveAppBar({
-  logged,
-  sideBar,
-  userName,
-  subtitle,
-}: AppBarProps) {
+function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
+  const [showSideBar, setShowSideBar] = useState(false);
+
+  const { session, setSession } = useSession();
+
+  const isLogged = () => {
+    return session.token ? true : false;
+  };
+
   return (
     <div className="AppBar">
       <div className="header">
         <div className="tittle">CIN VAGO</div>
-        {sideBar ? (
-          <SideBar />
+        {showSideBar ? (
+          <SideBar closeSideBar={() => setShowSideBar(false)} />
         ) : (
           <div className="options">
-            {logged ? (
+            {isLogged() ? (
               <>
                 <button
                   onClick={() => console.log("Reservas")}
@@ -36,10 +38,10 @@ function ResponsiveAppBar({
                   Reservas
                 </button>
                 <button
-                  onClick={() => console.log("User")}
+                  onClick={() => setShowSideBar(true)}
                   className="AppBar_User_Button"
                 >
-                  <p>{userName}</p>
+                  <p>{session.userName}</p>
                   {IconUserCircle}
                 </button>
               </>
@@ -52,13 +54,13 @@ function ResponsiveAppBar({
                   Reservas
                 </button>
                 <button
-                  onClick={() => console.log("Cadastro")}
+                  onClick={() => showLoginRegisterModal(true)}
                   className="AppBar_Cadastro_Button"
                 >
                   Cadastro
                 </button>
                 <button
-                  onClick={() => console.log("Login")}
+                  onClick={() => showLoginRegisterModal(false)}
                   className="AppBar_Login_Button"
                 >
                   Login
