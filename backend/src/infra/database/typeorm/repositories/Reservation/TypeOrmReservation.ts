@@ -15,6 +15,14 @@ export class TypeOrmReservationRepository implements ReservationRepository{
     return this.reservationRepository.find();
   }
 
+  getReservationByCEP(cep: string): Promise<Reservation> {
+    return this.reservationRepository.findOne({
+      where: {
+        cep,
+      },
+    });
+  }
+
   getReservationById(id: string): Promise<Reservation> {
     return this.reservationRepository.findOne({
       where: {

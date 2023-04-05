@@ -70,7 +70,7 @@ const ReservationForm: React.FC = () => {
 
   const onSubmit = async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
     try {
-      createElement(values);
+      await createElement(values);
       alert('Reservation created successfully');
     } catch (error) {
       alert('Error creating reservation');
