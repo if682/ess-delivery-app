@@ -8,6 +8,8 @@ import CreateReservationAPI from '../../hooks/createReservation';
 const validationSchema = () => Yup.object({
   location: Yup.string()
     .required('Um nome para a reserva é obrigatório'),
+  city: Yup.string()
+    .required('A cidade é obrigatória'),
   street: Yup.string()
     .required('O nome da rua é obrigatório'),
   streetNumber: Yup.number()
@@ -46,7 +48,7 @@ const validationSchema = () => Yup.object({
     .min(3,'Deve haver o upload de pelo menos três fotos.')
     .max(15, 'Você pode enviar no máximo 15 fotos.'),
   additionalInfo: Yup.string()
-    .max(500, 'As informações adicionais não podem ter mais de 500 caracteres'),
+    .max(500, 'A Descrição não podem ter mais de 500 caracteres'),
 });
 
 const ReservationForm: React.FC = () => {
@@ -97,7 +99,7 @@ const ReservationForm: React.FC = () => {
               <ErrorMessage name="name" component="div" className="error-message" />
 
 
-              <label htmlFor="name">Cidade</label>
+              <label htmlFor="city">Cidade</label>
               <Field type="text" name="city" />
               <ErrorMessage name="city" component="div" className="error-message" />
 
@@ -113,7 +115,7 @@ const ReservationForm: React.FC = () => {
               <Field type="text" name="cep" />
               <ErrorMessage name="cep" component="div" className="error-message" />
 
-              <label htmlFor="additionalInfo">Informações adicionais</label>
+              <label htmlFor="additionalInfo">Descrição</label>
               <Field type="textarea" name="additionalInfo" />
               <ErrorMessage name="additionalInfo" component="div" className="error-message" />
 
@@ -125,7 +127,7 @@ const ReservationForm: React.FC = () => {
               <ErrorMessage name="guests" component="div" className="error-message" />
 
               <label htmlFor="budget">Preço da diária</label>
-              <Field type="float" name="budget" />
+              <Field type="number" name="budget" />
               <ErrorMessage name="budget" component="div" className="error-message" />
 
               <label htmlFor="bedrooms">Quartos</label>
