@@ -41,23 +41,23 @@
   color: #77728D;
 }
 
-.buttons-container, .filter-sort-icons {
+.buttons-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: relative;
 }
 
-.buttons-container button, .filter-sort-icons button {
+.buttons-container button {
   background-color: transparent;
   margin-right: 10px;
   border: none;
   padding: 5px;
 }
 
-.buttons-container button img, .filter-sort-icons button img {
-  width: 24px;
-  height: 24px;
+.buttons-container button img {
+  width: 20px;
+  height: 20px;
 }
 
 .buttons-container button:hover {

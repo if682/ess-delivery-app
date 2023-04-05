@@ -5,15 +5,16 @@ import {
   handleUserLikedFilmsClick,
   handleUserReviewsClick,
   handleUserMovielistsClick
-} from "../../handleClick.js";
+} from "../../pages/handleClick.js";
+import "./styles.css";
 
-const MovielistsHeader = ({ userAvatar, username }) => {
+const MovielistHeader = ({ userAvatar, username, listName }) => {
   return (
     <div className="movielist-header">
       <div className="listname-container">
           <div className="user-info">
             <img className="user-avatar" src={userAvatar} alt="Avatar do usuário" onClick={() => handleUserAvatarClick(username)} />
-            <h1 className="user-name">{username}'s Lists</h1>
+            <h1 className="user-name">{username}'s {listName}</h1>
           </div>
           <div className="buttons-container">
             <button className="watched-films-button" onClick={() => handleUserWatchedFilmsClick(username)} >
@@ -34,4 +35,4 @@ const MovielistsHeader = ({ userAvatar, username }) => {
   );
 };
 
-export default MovielistsHeader;
+export default MovielistHeader;
