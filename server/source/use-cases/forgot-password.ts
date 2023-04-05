@@ -29,7 +29,8 @@ export class ForgotPasswordUseCase{
             const newDate = new Date(now.getTime() + 5 * 60000); // 5 minutos depois
             
             const token = randomBytes(20).toString('hex');
-
+            await this.usersRepository.updateResetToken(user.id, newDate, token);
+            
             this.mailProvider.sendMailMessage({
                 to: user.email,
                 subject: "Redefinição de Senha",
