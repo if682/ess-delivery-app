@@ -4,7 +4,7 @@ import { ReservationService } from './reservation.service';
 import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 
-@Controller('user')
+@Controller('Reservation')
 export class ReservationController {
   constructor(
     private reservationRepository: ReservationRepository,
