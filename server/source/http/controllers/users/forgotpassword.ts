@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
 import { makeForgotPasswordUseCase } from "../../../use-cases/factories/make-forgotpassword-usecase";
 
-export async function register (request: FastifyRequest, reply: FastifyReply) {
+export async function forgotpassword (request: FastifyRequest, reply: FastifyReply) {
     const forgotpasswordBodySchema = z.object({
         email: z.string().email(),
     });
