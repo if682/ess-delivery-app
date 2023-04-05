@@ -4,31 +4,47 @@ import "./style.css";
 
 const ProfileSections = () => {
 
+  const handleFilmes = () =>{
+    alert("Mostrar filmes");
+  }
+
+  const handleReviews = () => {
+    alert("Mostrar reviews");
+  }
+
+  const handleLikes = () => {
+    alert("Mostrar likes")
+  }
+
+  const handleWatchList = () => {
+    alert("Mostrar WatchList");
+  }
+
   return (
     <section className="profile-sections">
         <div className="films">
-          <button>
+          <button onClick={handleFilmes}>
             <img src="../../assets/movie.svg" alt=""/>
             <span>Films</span>
           </button>
         </div>
 
         <div className="reviews">
-          <button>
+          <button onClick={handleReviews}>
             <img src="../../assets/review.svg" alt=""/>
             <span>Reviews</span>
           </button>
         </div>
 
         <div className="likes">
-          <button>
+          <button onClick={handleLikes}>
             <img src="../../assets/like.svg" alt=""/>
             <span>Likes</span>
           </button>
         </div>
         
         <div className="watchlist">
-            <button>
+            <button onClick={handleWatchList}>
               <img src="../../assets/save.svg" alt=""/>
               <span>Watchlist</span>
             </button>
