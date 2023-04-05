@@ -28,7 +28,6 @@ function App() {
               newUser={newUser}
               onRequestClose={() => setShowLoginRegisterModal(false)}
             />
-            <SearchBar />
             <Router />
           </AppTheme>
         </SessionProvider>
