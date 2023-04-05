@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
-import MovielistsHeader from "./MovielistsHeader";
+import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
 const Movielists = () => {
@@ -18,7 +18,7 @@ const Movielists = () => {
   return (
     <div className="movielists-page">
       <Header />
-      <MovielistsHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" />
+      <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName="Lists" />
       <div className="movielists-list">
         <ul>
           {lists.map((list, index) => (
