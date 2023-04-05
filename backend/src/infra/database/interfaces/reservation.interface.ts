@@ -7,7 +7,7 @@ export interface ReservationCreationDTO{
     checkIn: string;
     checkOut: string;
     guests: number;
-    budget: number | '';
+    budget: number;
     additionalInfo: string;
     bedrooms: number;
     beds: number;

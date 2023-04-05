@@ -2,10 +2,10 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Reservation } from '../../entities/Reservation.entity';
 import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservation.interface';
-
+import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 
 @Injectable()
-export class TypeOrmReservationRepository {
+export class TypeOrmReservationRepository implements ReservationRepository{
   constructor(
     @Inject('RESERVATION_REPOSITORY')
     private reservationRepository: Repository<Reservation>,

@@ -1,10 +1,10 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 type Role = 'USER' | 'ADMIN';
 
 @Entity('Reservation')
 export class Reservation {
-  @PrimaryColumn({ generated : true})
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ unique: true })
