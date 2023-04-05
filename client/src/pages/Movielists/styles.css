@@ -9,7 +9,7 @@
 .movielists-list {
   font-style: normal;
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   line-height: 24px;
   align-items: center;
   text-align: center;
@@ -31,7 +31,6 @@
   border: none;
   border-radius: 5px;
   margin-right: 10px;
-  font-size: 1.0rem;
   color: #77728D;
   background-image: none;
 }
@@ -40,7 +39,6 @@
   width: 80px;
   height: 30px;
   background-color: #6D28D9;
-  font-size: 1.0rem;
   color: #FFFFFF;
   border: none;
   border-radius: 5px;
@@ -58,22 +56,51 @@
   padding: 0;
 }
 
-.movielists-list li {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #FFFFFF;
+.movielists-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
-.movielists-list li:hover {
+.list-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-name {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #FFFFFF;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.list-name:hover {
   transform: translateY(-3px);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.movielists-list li:active {
-  transform: translateY(1px);
+.list-name:active {
+  transform: translateY(0px);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.delete-list {
+  background-color: #FF4136;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color: #FFFFFF;
+  border: none;
+  margin: 10px 10px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-list:hover {
+  background-color: #FF695E;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
@@ -31,11 +31,29 @@ const Movielists = () => {
         setNewListTitle("");
       }
     }
+
     else{
-      alert("Lista com nome vazio...");
+      alert("Lista com nome vazio.");
     }
   };
 
+  const handleDeleteListClick = (event, title) => {
+    // impede que o evento de clique na lista seja disparado
+    event.stopPropagation();
+    
+    // exibe uma janela de diálogo perguntando ao usuário se ele realmente deseja excluir a lista
+    const userConfirmation = window.confirm(`Tem certeza que deseja excluir a lista "${title}"?`);
+    
+    if (userConfirmation) {
+      const newList = lists.filter((list) => list.title !== title);
+      setLists(newList);
+    }
+  };
+
+  useEffect(() => {
+    // atualiza a lista na interface sempre que o estado de listas for atualizado
+  }, [lists]);
+  
   return (
     <div className="movielists-page">
       <Header />
@@ -53,11 +71,14 @@ const Movielists = () => {
         </div>
 
         <ul>
-          {lists.map((list, index) => (
-            <li key={index} onClick={() => handleUserListClick(list)}>
-              {list.title}
-            </li>
-          ))}
+        {lists.map((list) => (
+        <li key={list.title} className="movielists-list-item" onClick={() => handleUserListClick(list)}>
+          <div className="list-name-container">
+            <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.title)}>Delete</button>
+            <span className="list-name">{list.title}</span>
+          </div>
+        </li>
+        ))}
         </ul>
       </div>
     </div>
