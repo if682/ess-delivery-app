@@ -30,11 +30,11 @@ export class ForgotPasswordUseCase{
             
             const token = randomBytes(20).toString('hex');
             await this.usersRepository.updateResetToken(user.id, newDate, token);
-            
+
             this.mailProvider.sendMailMessage({
                 to: user.email,
                 subject: "Redefinição de Senha",
-                body: `Olá, ${user.name}\n\n Utilize o código ${user.id} no LINK para trocar a sua senha.`,
+                body: `Olá, ${user.name}\n\n Utilize o código ${token} no LINK para trocar a sua senha.`,
             })
         }
         

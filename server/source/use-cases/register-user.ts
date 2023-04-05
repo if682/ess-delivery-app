@@ -1,6 +1,7 @@
 import { User } from "@prisma/client";
 import { IUserRepository } from "../repositories/IUsersRepository";
 import { hash } from "bcryptjs";
+import { isValidPassword } from "../utils/checkpassword";
 
 interface IRegisterUserUseCaseRequest {
     name: string
@@ -28,18 +29,24 @@ export class RegisterUserUseCase {
         location,
         phone,
     }: IRegisterUserUseCaseRequest): Promise<IRegisterUserUseCaseReply> {
+        var user;
+        if(!isValidPassword(password)){
+            throw new Error("Unvalid Password.");
+        }
+        else{
+            const password_hash = await hash(password, 6);
 
-        const password_hash = await hash(password, 6);
-
-        const user = await this.usersRepository.create({
-            name,
-            email,
-            username,
-            birthdate,
-            password: password_hash,
-            location,
-            phone,
-        })
+            user = await this.usersRepository.create({
+                name,
+                email,
+                username,
+                birthdate,
+                password: password_hash,
+                location,
+                phone,
+            })
+        }
+        
 
         return {
             user,
