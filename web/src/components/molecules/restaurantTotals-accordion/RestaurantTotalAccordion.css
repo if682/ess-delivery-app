@@ -1,0 +1,24 @@
+.orders-table-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 80%;
+
+  padding: 2rem 1rem;
+
+  overflow: hidden;
+  color: #272727;
+
+  border: 1.5px solid #cacaca;
+  border-radius: 10px;
+}
+
+.totalAccordionHeader {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    background-color: red;
+}
