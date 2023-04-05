@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const WatchlistHeader = ({ userAvatar, username, listName }) => {
+const MovielistHeader = ({ userAvatar, username, listName }) => {
   const handleUserAvatarClick = () => {
     alert(`Aqui deve ir para o perfil de ${username}`);
   };
@@ -18,8 +18,8 @@ const WatchlistHeader = ({ userAvatar, username, listName }) => {
     alert(`Aqui deve ir para as reviews de ${username}`);
   };
 
-  const handleWatchlistClick = () => {
-    alert(`Aqui deve ir para a watchlist de ${username}`);
+  const handleMovielistClick = () => {
+    alert(`Aqui deve ir para as listas de filmes de ${username}`);
   };
 
   const handleFilterByYearClick = () => {
@@ -35,7 +35,7 @@ const WatchlistHeader = ({ userAvatar, username, listName }) => {
   };
 
   return (
-    <div className="watchlist-header">
+    <div className="movielist-header">
       <div className="listname-container">
           <div className="user-info">
             <img className="user-avatar" src={userAvatar} alt="Avatar do usuário" onClick={handleUserAvatarClick} />
@@ -51,8 +51,8 @@ const WatchlistHeader = ({ userAvatar, username, listName }) => {
             <button className="review-button" onClick={handleReviewClick}>
             <img src="../../assets/review-icon.svg" alt="Ícone de review" />
             </button>
-            <button className="watchlist-button" onClick={handleWatchlistClick}>
-            <img src="../../assets/watchlist-icon.svg" alt="Ícone de watchlist" />
+            <button className="movielist-button" onClick={handleMovielistClick}>
+            <img src="../../assets/movielist-icon.svg" alt="Ícone de movielist" />
             </button>
           </div>
       </div>
@@ -71,4 +71,4 @@ const WatchlistHeader = ({ userAvatar, username, listName }) => {
   );
 };
 
-export default WatchlistHeader;
+export default MovielistHeader;

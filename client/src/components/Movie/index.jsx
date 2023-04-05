@@ -6,8 +6,8 @@ const Movie = ({ poster, title, year }) => {
     alert(`Curtiu o filme ${title}`);
   };
 
-  const handleAddToWatchlistClick = () => {
-    alert(`Adicionou ${title} à watchlist`);
+  const handleAddToMovielistClick = () => {
+    alert(`Aqui deve perguntar para qual movielist se deseja adicionar o filme ${title}`);
   };
 
   const handleMovieClick = () => {
@@ -17,8 +17,8 @@ const Movie = ({ poster, title, year }) => {
   return (
     <div className="movie-container">
       <div className="button-container">
-        <button className="add-to-watchlist-button" onClick={handleAddToWatchlistClick}>
-          <img src="../../assets/add-list-icon.svg" alt="Ícone de adicionar a watchlist" />
+        <button className="add-to-movielist-button" onClick={handleAddToMovielistClick}>
+          <img src="../../assets/add-list-icon.svg" alt="Ícone de adicionar a movielist" />
         </button>
 
         <button className="like-button" onClick={handleLikeClick}>

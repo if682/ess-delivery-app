@@ -1,4 +1,4 @@
-.watchlist-header {
+.movielist-header {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,7 @@
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .user-name {
@@ -57,4 +58,12 @@
 .buttons-container button img, .filter-sort-icons button img {
   width: 24px;
   height: 24px;
+}
+
+.buttons-container button:hover {
+  transform: translateY(-2px);
+}
+
+.buttons-container button:active {
+  transform: translateY(1px);
 }

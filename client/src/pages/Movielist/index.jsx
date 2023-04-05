@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "../../components/Header";
-import WatchlistHeader from "./WatchlistHeader";
+import MovielistHeader from "./MovielistHeader";
 import Movie from "../../components/Movie";
 import "./styles.css";
 
-const Watchlist = () => {
+const Movielist = () => {
   const movies = [
     { title: "The Godfather", year: 1972 },
     { title: "Come and See", year: 1985 },
@@ -15,12 +15,12 @@ const Watchlist = () => {
     { title: "Movie 7", year: 2021 }
   ];
 
-  const listName = "Watchlist";
+  const listName = "Movielist";
 
   return (
-    <div className="watchlist-page">
+    <div className="movielist-page">
       <Header />
-      <WatchlistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName={listName} />
+      <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName={listName} />
       <div className="movies-grid">
         {movies.map((movie, index) => (
           <Movie key={index} poster="../../assets/movie-poster.svg" title={movie.title} year={movie.year} />
@@ -30,4 +30,4 @@ const Watchlist = () => {
   );
 };
 
-export default Watchlist;
+export default Movielist;
