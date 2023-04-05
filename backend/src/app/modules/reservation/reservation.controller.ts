@@ -25,7 +25,7 @@ export class ReservationController {
 
   @Get('cep/:cep')
   async getReservationByCEP(@Param('cep') cep: string) {
-    const reservation = await this.reservationRepository.getReservationById(cep);
+    const reservation = await this.reservationRepository.getReservationByCEP(cep);
     return this.reservationService.getReservationResponse(reservation);
   }
 
