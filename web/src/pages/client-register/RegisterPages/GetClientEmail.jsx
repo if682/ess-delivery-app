@@ -46,7 +46,7 @@ export const GetClientEmail = () => {
             console.log("vai para o login")
         }
         else{
-            navigate('/ConfirmacaoEmail', {state: {name: name, email: email}})
+            navigate('/validacao-email', {state: {name: name, email: email}})
         }
     }
 

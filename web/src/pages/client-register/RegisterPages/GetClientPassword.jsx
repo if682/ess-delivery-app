@@ -47,7 +47,7 @@ export const GetClientPassword = () => {
                   },
                   body: JSON.stringify(item),
                 });
-            navigate('/Cadastrado');
+            navigate('/cadastro-finalizado');
         }
            
     }

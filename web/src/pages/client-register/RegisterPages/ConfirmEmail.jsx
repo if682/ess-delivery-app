@@ -30,7 +30,7 @@ export const ConfirmEmail = () => {
             setWarningMessage('Código de verificação incorreto')
         }
         else{
-            navigate('/CadastroSenha', {state: {name: name, email: email}})
+            navigate('/cadastro-senha', {state: {name: name, email: email}})
         }
     }
 

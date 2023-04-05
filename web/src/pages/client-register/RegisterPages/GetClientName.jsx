@@ -22,7 +22,7 @@ export const GetClientName = () => {
         }
         else{
             //passa para a próxima página e envia o nome como parâmetro
-            navigate('/CadastroEmail', {state: {name}})
+            navigate('/cadastro-email', {state: {name}})
         }
     }
 
