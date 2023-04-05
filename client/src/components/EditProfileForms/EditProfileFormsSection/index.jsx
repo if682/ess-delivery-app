@@ -41,20 +41,22 @@ const EditProfileFormsSection = () => {
     <article>
         <form onSubmit={handleSubmit}>
             <div className="input-row">
-                <input className="first-input" type="text" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} />
-                <input className="second-input"type="text" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
+                <input className="first-input" type="text" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required/>
+                <input className="second-input"type="text" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required/>
             </div>
             
             <div className="input-row">
-                <input className="first-input" type="text" value={dateOfBirth} placeholder="Date of birth" onChange={(e) => setdateOfBirth(e.target.value)} />
-                <input className="second-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                <input className="first-input" type="text" value={dateOfBirth} placeholder="Date of birth" onChange={(e) => setdateOfBirth(e.target.value)} required/>
+                <input className="second-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
             </div>
 
             <div className="input-row">
-                <input className="description-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                <input className="description-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
             </div>
 
-            <button className="submit-form" type="submit">Save</button>
+            <div className="submit-button-container">
+                <button className="submit-form" type="submit">Save</button>
+            </div>
         </form>
     </article>
   );
