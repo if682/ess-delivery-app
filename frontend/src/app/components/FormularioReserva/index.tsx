@@ -52,6 +52,7 @@ const validationSchema = () => Yup.object({
 const ReservationForm: React.FC = () => {
   const initialValues: FormValues = { 
     name: '',
+    city: '',
     street: '',
     streetNumber: 1,
     checkIn: '',
@@ -94,6 +95,11 @@ const ReservationForm: React.FC = () => {
               <label htmlFor="name">Título</label>
               <Field type="text" name="name" />
               <ErrorMessage name="name" component="div" className="error-message" />
+
+
+              <label htmlFor="name">Cidade</label>
+              <Field type="text" name="city" />
+              <ErrorMessage name="city" component="div" className="error-message" />
 
               <label htmlFor="street">Rua</label>
               <Field type="text" name="street" />

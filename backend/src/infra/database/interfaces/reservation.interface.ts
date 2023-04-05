@@ -1,6 +1,7 @@
 export interface ReservationCreationDTO{
     
     name: string;
+    city: string;
     street: string;
     streetNumber: number;
     cep : string;

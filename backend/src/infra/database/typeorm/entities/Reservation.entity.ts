@@ -11,6 +11,9 @@ export class Reservation {
   name: string; 
 
   @Column()
+  city: string;
+  
+  @Column()
   street: string;
 
   @Column()

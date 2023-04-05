@@ -14,8 +14,20 @@ export class migrations1680472869447 implements MigrationInterface {
                   isGenerated: true,
                 },
                 {
-                  name: 'location',
+                  name: 'name',
                   type: 'varchar',
+                },
+                {
+                  name: 'city',
+                  type: 'varchar',
+                },
+                {
+                  name:'street',
+                  type:'varchar',
+                },
+                {
+                  name:'streetNumber',
+                  type:'int',
                 },
                 {
                   name: 'cep',

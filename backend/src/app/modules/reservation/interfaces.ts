@@ -1,5 +1,6 @@
 export interface Reservation {
     name: string; 
+    city:string;
     street: string;
     streetNumber: number;
     cep : string;
@@ -17,6 +18,7 @@ export interface Reservation {
 export interface ReservationResponse {
   id: string;
   name: string;
+  city:string;
   street: string;
   streetNumber: number;
   cep : string;

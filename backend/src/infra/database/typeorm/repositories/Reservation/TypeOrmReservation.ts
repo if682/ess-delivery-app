@@ -33,6 +33,7 @@ export class TypeOrmReservationRepository implements ReservationRepository{
 
   async createReservation({
     name,
+    city,
     street,
     streetNumber,
     cep,
@@ -51,6 +52,7 @@ export class TypeOrmReservationRepository implements ReservationRepository{
 
     Object.assign(newReservation,{
         name,
+        city,
         street,
         streetNumber,
         cep,
