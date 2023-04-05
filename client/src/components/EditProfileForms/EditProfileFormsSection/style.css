@@ -28,8 +28,16 @@
 }
 
 .submit-button-container{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
+    text-align: center;
+}
+
+.submit-button-container button{
+    background-color: #F4A4A4;
+    color: white;
+    font-size: 1.25;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 10px;
 }

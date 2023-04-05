@@ -51,10 +51,12 @@ const EditProfileFormsSection = () => {
             </div>
 
             <div className="input-row">
-                <input className="description-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)} required/>
+                <input className="description-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
             </div>
 
-            <button className="submit-form" type="submit">Save</button>
+            <div className="submit-button-container">
+                <button className="submit-form" type="submit">Save</button>
+            </div>
         </form>
     </article>
   );
