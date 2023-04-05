@@ -1,0 +1,10 @@
+.profile-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    margin-top: 47px;
+    margin-right: 40px;
+    margin-left: 50px;
+}

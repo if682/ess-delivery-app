@@ -1,0 +1,28 @@
+.input-row{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 55px;
+    margin-right: 56px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.input-row input{
+    background-image: none;
+    padding-left: 24px;
+}
+.input-row .first-input{
+    margin-left: 0;
+}
+
+.input-row .second-input{
+    margin-right: 0;
+}
+
+.input-row .description-input{
+    margin: 0;
+    background-image: none;
+    width: 100%;
+    display: block;
+}

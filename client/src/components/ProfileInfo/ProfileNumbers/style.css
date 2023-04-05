@@ -1,0 +1,15 @@
+.user-info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    line-height: 20px;
+    color: #77728D;
+    text-align: center;
+}
+
+.user-info-container div{
+    padding: 12px;
+    border-right: 2px solid #F4A4A4;
+}
