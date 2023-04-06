@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
@@ -20,22 +20,54 @@ const Movielists = () => {
   const handleNewListTitleChange = (event) => {
     setNewListTitle(event.target.value);
   };
-
+  
   const handleCreateListClick = () => {
-    if (newListTitle.trim() !== "") {
+    const forbiddenChars = ["&", "%", "$", "@"];
+    const maxLength = 80;
+
+    if (newListTitle.trim() === "") {
+      alert("Lista com nome vazio.");
+    }
+    
+    else if (forbiddenChars.some(char => newListTitle.includes(char))) {
+      alert("O nome da lista não pode conter &,%,$ ou @.");
+    }
+    
+    else if (newListTitle.length > maxLength) {
+      alert(`O nome da lista não pode ter mais de ${maxLength} caracteres.`);
+    }
+    
+    else {
       const existingList = lists.find((list) => list.title.toLowerCase() === newListTitle.trim().toLowerCase());
+      
       if (existingList) {
         alert(`A lista "${newListTitle.trim()}" já existe!`);
-      } else {
+      }
+      
+      else {
         setLists([...lists, { title: newListTitle.trim() }]);
         setNewListTitle("");
       }
     }
-    else{
-      alert("Lista com nome vazio...");
+  };
+
+  const handleDeleteListClick = (event, title) => {
+    // impede que o evento de clique na lista seja disparado
+    event.stopPropagation();
+    
+    // exibe uma janela de diálogo perguntando ao usuário se ele realmente deseja excluir a lista
+    const userConfirmation = window.confirm(`Tem certeza que deseja excluir a lista "${title}"?`);
+    
+    if (userConfirmation) {
+      const newList = lists.filter((list) => list.title !== title);
+      setLists(newList);
     }
   };
 
+  useEffect(() => {
+    // atualiza a lista na interface sempre que o estado de listas for atualizado
+  }, [lists]);
+  
   return (
     <div className="movielists-page">
       <Header />
@@ -53,11 +85,14 @@ const Movielists = () => {
         </div>
 
         <ul>
-          {lists.map((list, index) => (
-            <li key={index} onClick={() => handleUserListClick(list)}>
-              {list.title}
-            </li>
-          ))}
+        {lists.map((list) => (
+        <li key={list.title} className="movielists-list-item" onClick={() => handleUserListClick(list)}>
+          <div className="list-name-container">
+            <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.title)}>Delete</button>
+            <span className="list-name">{list.title}</span>
+          </div>
+        </li>
+        ))}
         </ul>
       </div>
     </div>
