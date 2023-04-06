@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { FormValues } from '../../../services/api/interfaces';
-import './index2.css'
+// import './index2.css'
 import CreateReservationAPI from '../../hooks/createReservation';
 
 const validationSchema = () => Yup.object({
@@ -90,7 +90,7 @@ const ReservationForm: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {({ isSubmitting,setFieldValue }) => (
+        {({ isSubmitting,setFieldValue }: any) => (
           <Form>
           <div className = 'container'>
             <div className='left'>
