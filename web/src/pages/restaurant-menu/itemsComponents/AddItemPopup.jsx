@@ -8,18 +8,10 @@ export const AddItemPopup = (props) => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [warningMessage, setWarningMessage] = useState(null)
-    const [currentItems, setCurrentItems] = useState([])
 
     useEffect(() => {
         setWarningMessage(null)
     }, [props, name, description, price])
-
-    useEffect(() => {
-        fetch('http://localhost:3001/items')
-          .then(response => response.json())
-          .then(data => {
-            setCurrentItems(data)});
-    }, [props])
 
     async function addItem () {
         const priceRegex = /^\d+,\d{2}$/
@@ -30,7 +22,7 @@ export const AddItemPopup = (props) => {
         else if (!priceRegex.test(price)) {
             setWarningMessage("O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.")
         }
-        else if (currentItems.filter(item => item.name === name).length > 0) {
+        else if (props.currentItems.filter(item => item.name === name).length > 0) {
             setWarningMessage("Já existe um item com esse nome!")
         }
         else {
@@ -43,7 +35,7 @@ export const AddItemPopup = (props) => {
                 },
                 body: JSON.stringify(item)
             })
-
+            
             props.onHide()
         }
     }
@@ -51,7 +43,8 @@ export const AddItemPopup = (props) => {
     return (
         <>
             <Modal
-            {...props}
+            show={props.show}
+            onHide={props.onHide}
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -65,30 +58,30 @@ export const AddItemPopup = (props) => {
                 <input
                     onChange={(event) => setName(event.target.value.trim())}
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Nome"
                     />
                 <br></br>
                 <input
                     onChange={(event) => setDescription(event.target.value.trim())}
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Descrição"
                     />
                 <br></br>
                 <input
                     onChange={(event) => setPrice(event.target.value.trim())}
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Preço"
                     />
                 <br></br>
 
-                {warningMessage}
+                {warningMessage && <div>{warningMessage}</div>}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='secondary' onClick={props.onHide}>Cancelar</Button>
-                <Button variant='primary'
+                <Button variant='secondary' onClick={() => (props.onHide())}>Cancelar</Button>
+                <Button variant='primary' data-testid="addButton"
                 onClick={() => addItem()}>Adicionar</Button>
             </Modal.Footer>
             </Modal>
