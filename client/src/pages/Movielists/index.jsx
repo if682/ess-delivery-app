@@ -20,20 +20,34 @@ const Movielists = () => {
   const handleNewListTitleChange = (event) => {
     setNewListTitle(event.target.value);
   };
-
+  
   const handleCreateListClick = () => {
-    if (newListTitle.trim() !== "") {
+    const forbiddenChars = ["&", "%", "$", "@"];
+    const maxLength = 80;
+
+    if (newListTitle.trim() === "") {
+      alert("Lista com nome vazio.");
+    }
+    
+    else if (forbiddenChars.some(char => newListTitle.includes(char))) {
+      alert("O nome da lista não pode conter &,%,$ ou @.");
+    }
+    
+    else if (newListTitle.length > maxLength) {
+      alert(`O nome da lista não pode ter mais de ${maxLength} caracteres.`);
+    }
+    
+    else {
       const existingList = lists.find((list) => list.title.toLowerCase() === newListTitle.trim().toLowerCase());
+      
       if (existingList) {
         alert(`A lista "${newListTitle.trim()}" já existe!`);
-      } else {
+      }
+      
+      else {
         setLists([...lists, { title: newListTitle.trim() }]);
         setNewListTitle("");
       }
-    }
-
-    else{
-      alert("Lista com nome vazio.");
     }
   };
 
