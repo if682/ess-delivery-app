@@ -6,27 +6,49 @@ import "./styles.css";
 
 const Movielist = () => {
   const [sortOption, setSortOption] = useState("select");
+  const [filterOption, setFilterOption] = useState("select");
 
   const [movies, setMovies] = useState([
-    { title: "The Godfather", year: 1972 },
-    { title: "Come and See", year: 1985 },
-    { title: "Movie 3", year: 2021 },
-    { title: "Movie 4", year: 2021 },
-    { title: "Movie 5", year: 2021 },
-    { title: "Movie 6", year: 2021 },
-    { title: "Movie 7", year: 2021 }
+    { title: "The Godfather", year: 1972, genre: ["Crime"] },
+    { title: "Come and See", year: 1985, genre: ["War"] },
+    { title: "Filme", year: 1998, genre: ["Comedy", "Drama"] },
+    { title: "Movie 4", year: 2002, genre: ["Drama"] },
+    { title: "Qualquer um", year: 1950, genre: ["Comedy", "War"] },
+    { title: "Abc", year: 2028, genre: ["Comedy", "Drama"] },
+    { title: "123 Filme", year: 2000, genre: ["Comedy"] },
   ]);
 
   const originalMovies = [...movies];
 
   const listName = "Movielist";
 
-  const handleFilterByYearClick = () => {
-      alert("Aqui deve filtrar os filmes por ano");
-  };
-  
-  const handleFilterByGenreClick = () => {
-    alert("Aqui deve filtrar os filmes por gênero");
+  const handleFilterClick = () => {
+    // o filtro será sempre aplicado sobre a lista de filmes original
+    let filteredMovies = [...originalMovies];
+
+    if(filterOption === "year") {
+      const selYear = prompt("Digite o ano que deseja filtrar:");
+
+      if (/^\d+$/.test(selYear)) {
+        filteredMovies = filteredMovies.filter(movie => movie.year === selYear);
+      }      
+    }
+
+    else if(filterOption === "genre") {
+      const selGenre = prompt("Digite o gênero que deseja filtrar:");
+
+      if(selGenre) {
+        filteredMovies = filteredMovies.filter(movie => movie.genre.includes(selGenre));
+      }
+    }
+
+    else {
+      alert("Selecione uma opção de filtro.");
+      filteredMovies = [...originalMovies];
+    }
+
+    setMovies(filteredMovies);
+    setFilterOption("select");
   };
   
   const handleSortClick = () => {
