@@ -21,7 +21,7 @@ export const RestaurantMenu = () => {
 
     return (
         <div>
-            <AddItemPopup show={addItemToggle} onHide={() => setAddItemToggle(false)}/>
+            <AddItemPopup show={addItemToggle} onHide={() => setAddItemToggle(false)} currentItems={items}/>
             <RemItemPopup show={remItemToggle[0]} item={remItemToggle[1]} onHide={() => setRemItemToggle(false)}/>
             <EdiItemPopup show={ediItemToggle[0]} item={ediItemToggle[1]} onHide={() => setEdiItemToggle(false)}/>
 

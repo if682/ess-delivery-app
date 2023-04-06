@@ -31,10 +31,28 @@
       "price": "8,99"
     },
     {
-      "id": 1680645025666,
-      "name": "pingo",
-      "description": "douro",
-      "price": "1,99"
+      "id": 1680657098702,
+      "name": "luca",
+      "description": "luca2",
+      "price": "325235,00"
+    },
+    {
+      "id": 1680787662445,
+      "name": "barão de mauá",
+      "description": "mauázinho",
+      "price": "10,99"
+    },
+    {
+      "id": 1680788056794,
+      "name": "luquita",
+      "description": "luca pequeno",
+      "price": "2,50"
+    },
+    {
+      "id": 1680789031228,
+      "name": "Leite ninho",
+      "description": "muito bom mesmo",
+      "price": "7,87"
     }
   ],
   "categories": []
