@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor} from '@testing-library/react';
-import { AddItemPopup } from './AddItemPopup';
-import { RestaurantMenu } from '../RestaurantMenu';
+import { AddItemPopup } from '../../itemsComponents/AddItemPopup';
+import { RestaurantMenu } from '../../RestaurantMenu';
 
 describe('AddItemPopup', () => {
     const currentItems = [

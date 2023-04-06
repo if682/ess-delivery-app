@@ -53,6 +53,12 @@
       "name": "Leite ninho",
       "description": "muito bom mesmo",
       "price": "7,87"
+    },
+    {
+      "id": 1680789702308,
+      "name": "Item Teste",
+      "description": "Descrição do item teste.",
+      "price": "10,50"
     }
   ],
   "categories": []
