@@ -5,6 +5,8 @@ import Movie from "../../components/Movie";
 import "./styles.css";
 
 const Movielist = () => {
+  const [sortOption, setSortOption] = useState("select");
+
   const [movies, setMovies] = useState([
     { title: "The Godfather", year: 1972 },
     { title: "Come and See", year: 1985 },
@@ -14,6 +16,8 @@ const Movielist = () => {
     { title: "Movie 6", year: 2021 },
     { title: "Movie 7", year: 2021 }
   ]);
+
+  const originalMovies = [...movies];
 
   const listName = "Movielist";
 
@@ -26,7 +30,26 @@ const Movielist = () => {
   };
   
   const handleSortClick = () => {
-    alert("Aqui deve ordenar a lista de filmes");
+    const sortedMovies = [...movies];
+
+    if(sortOption === "year-asc") {
+      sortedMovies.sort((a, b) => a.year - b.year);
+    }
+
+    else if(sortOption === "year-desc") {
+      sortedMovies.sort((a, b) => b.year - a.year);
+    }
+
+    else if(sortOption === "alfabetical") {
+      sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    else{
+      alert("Selecione uma opção de ordenação.");
+      sortedMovies = originalMovies;
+    }
+
+    setMovies(sortedMovies);
   };
 
   const handleDeleteMovieFromListClick = (event, title) => {
