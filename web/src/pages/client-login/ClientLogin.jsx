@@ -5,12 +5,16 @@ import { RedButtonLogin } from "./loginComponents/RedButton/RedButton";
 import { InputCheckBox } from "./loginComponents/inputCheckBox/InputCheck";
 import Logo from "../../assets/img/logo.svg"
 import { WhiteButtonLogin } from "./loginComponents/whiteButton/WhiteButton";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation} from "react-router-dom";
+
 
 const Login = () => {
     const [input, setInput] = useState("")
     const [check, setCheck] = useState(false)
     const [redirect, setRedirect] = useState("")
+
+    const {state} = useLocation()
+
     const redirectToSignUp = (event) => {
         setRedirect("/signup")
     }
@@ -30,7 +34,7 @@ const Login = () => {
 
                     <div className="login-inputText">
                         <p className="login-inputText-title">E-mail</p>
-                        <InputTextBox set_val={setInput} placeholder={' Insira um email'}></InputTextBox>
+                        <InputTextBox set_val={setInput} placeholder={' Insira um email'} defaultValue={state}></InputTextBox>
                     </div>
                     <div className="login-inputText">
                         <p className="login-inputText-title">Senha</p>

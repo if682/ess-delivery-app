@@ -42,8 +42,7 @@ export const GetClientEmail = () => {
             setWarningMessage('O e-mail fornecido possui um formato inválido')
         }
         else if(currentClients.filter(item => item.email == email).length == 1){
-            //volta para login
-            console.log("vai para o login")
+            navigate('/login', {state: {email: email}})
         }
         else{
             navigate('/validacao-email', {state: {name: name, email: email}})
