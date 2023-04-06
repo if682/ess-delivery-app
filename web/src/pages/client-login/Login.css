@@ -82,6 +82,7 @@
 }
 .login-inputCheck-NoPwd:hover{
     color: #EB0029;
+    cursor: pointer;
 
 }
 
@@ -122,5 +123,6 @@
 }
 
 .login-inputSignUpTextLink:hover{
+    cursor: pointer;
     color: #EB0029;
 }
