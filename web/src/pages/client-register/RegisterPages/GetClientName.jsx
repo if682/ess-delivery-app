@@ -5,16 +5,17 @@ import "../RegisterClient.css"
 import { ReactComponent as Logo } from '../../../shared/assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
 
-
 export const GetClientName = () => {
     const [name, setName] = useState("");
-    const [warningMessage, setWarningMessage] = useState(null);
+    const [warningMessage, setWarningMessage] = useState(null)
 
     let navigate = useNavigate();
 
     useEffect(() => {
         setWarningMessage(null)
     }, [name])
+
+    
 
     const getName = () => {
         if(isInputNull(name)){
@@ -38,14 +39,13 @@ export const GetClientName = () => {
                     <input
                         onChange={(event) => {setName(event.target.value.trim())}}
                         type="text"
-                        class="form-control"
                         placeholder="Nome"
                         className='register_box_input'
                     />
                     <br></br>
                     
-                    <text className='warning_text'>{warningMessage}</text>
-                    <Button onClick={() => getName()} className='register_box_button'>Continuar  ></Button>
+                    <text className='warning_text' id="warning_message">{warningMessage}</text>
+                    <Button onClick={() => getName()} className='register_box_button'>Continuar ></Button>
                 </>
                 
             </div>
