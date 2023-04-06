@@ -22,3 +22,21 @@
     height: 100%;
     background-color: red;
 }
+
+.itemImage {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.restaurantName {
+  color: #eb0029;
+  font-size: 1.7em;
+}
+
+.totalOrdered {
+  color: #eb0029;
+  font-size: 2em;
+}
