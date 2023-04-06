@@ -20,6 +20,8 @@ model User {
   role      Role      @default(USER)
   phone     String?
   location  String?
+  passwordResetToken String?
+  resetTokenExpires DateTime?
   Review    Review[]
   Comment   Comment[]
   Evaluation Evaluation[]

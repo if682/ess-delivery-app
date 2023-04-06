@@ -31,4 +31,39 @@ export class PrismaUsersRepository implements IUserRepository {
 
         return user;
     }
+
+    async findByEmail(email: string) {
+        const user = await prisma.user.findUnique({
+            where: {
+                email
+            }
+        })
+
+        return user;
+    }
+
+    async updateResetToken(id: string, newDate: Date, newToken: string) {
+        const date = newDate.toISOString();
+        await prisma.user.update({
+            where: {
+              id
+            },
+            data: {
+              passwordResetToken: newToken,
+              resetTokenExpires: date
+            }
+          })
+    }
+
+    async changePassword(id: string, newPassword: string) {
+        await prisma.user.update({
+            where: {
+                id
+            },
+            data: {
+                password: newPassword
+            }
+        })
+
+    }
 }
