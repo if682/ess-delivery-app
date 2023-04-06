@@ -1,4 +1,4 @@
-import { Movie, Prisma } from "@prisma/client";
+import { Evaluation, Movie, Prisma } from "@prisma/client";
 import { IMoviesRepository } from "../IMoviesRepository";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
@@ -38,7 +38,28 @@ export class PrismaMoviesRepository implements IMoviesRepository {
                 rating: true
             }
         })
-        
+
         return average._avg.rating;
+    }
+
+    async addEvaluation(userId: string, movieId: string, newRating: number) {
+        const evaluation = await prisma.evaluation.upsert({
+            where: {
+                userId_movieId:{
+                    userId,
+                    movieId
+                }
+            },
+            update: {
+                rating: newRating
+            },
+            create: {
+                userId,
+                movieId,
+                rating: newRating
+            }
+        })
+
+        return evaluation;
     }
 }

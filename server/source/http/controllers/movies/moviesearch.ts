@@ -8,12 +8,18 @@ export async function moviesearch (request: FastifyRequest, reply: FastifyReply)
     })
 
     const { id } = moviesearchParamsSchema.parse(request.params);
+    
 
-    const moviesearchUseCase = makeMovieSearchUseCase();
+    try{
+        const moviesearchUseCase = makeMovieSearchUseCase();
+        await moviesearchUseCase.handle({
+            id,
+        })
+    } catch(err){
+        reply.status(400).send({ err });
+        throw err;
+    }
 
-    const data = await moviesearchUseCase.handle({
-        id,
-    })
 
-    reply.status(200).send(data);
+    reply.status(200).send();
 }
