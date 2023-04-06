@@ -19,7 +19,6 @@ const UrlRoutes = () => {
         <Route path="/cadastro-nome" element={<GetClientName/>}/>
         <Route path="/cadastro-senha" element={<GetClientPassword/>}/>
         <Route path="/cadastro-email" element={<GetClientEmail/>}/>
-        <Route path="/cadastro-nome" element={<GetClientName/>}/>
         <Route path="/cadastro-finalizado" element={<ClientRegistered/>}/>
         <Route path="/validacao-email" element={<ConfirmEmail/>}/>
       </Routes>
