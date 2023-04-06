@@ -3,10 +3,12 @@ import "./index.css";
 import { IconClose } from "../../assets/icons";
 import { ChangeEvent, useState } from "react";
 import { APIClient } from "../../../services/api/client";
+import { useSession } from "../../providers/SessionContext";
 
 interface LoginRegisterModalProps {
   isOpen: boolean;
   newUser: boolean;
+  onRequestClose: () => void;
 }
 
 const API = new APIClient();
@@ -14,7 +16,10 @@ const API = new APIClient();
 export default function LoginRegisterModal({
   isOpen,
   newUser,
+  onRequestClose,
 }: LoginRegisterModalProps) {
+  const { setSession } = useSession();
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -25,6 +30,20 @@ export default function LoginRegisterModal({
     termsAndConditions: false,
     promotions: false,
   });
+
+  const resetData = () => {
+    setData({
+      name: "",
+      email: "",
+      cpf: "",
+      password: "",
+      repeatPassword: "",
+      keepConnected: false,
+      termsAndConditions: false,
+      promotions: false,
+    });
+    onRequestClose();
+  };
 
   const onChangeInputs = (e: ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -41,16 +60,33 @@ export default function LoginRegisterModal({
     });
   };
 
+  const modalLogin = async (data: any) => {
+    const response = await API.sendFormLogin(data);
+    if (data.keepConnected) {
+      window.localStorage.setItem("sessionData", JSON.stringify(response));
+    }
+    setSession(() => response);
+    if (response.token) {
+      resetData();
+    }
+  };
+
+  const modalRegister = async (data: any) => {
+    await API.sendFormRegister(data);
+    resetData();
+  };
+
   return (
     <ReactModal
       isOpen={isOpen}
+      onRequestClose={resetData}
       parentSelector={() => document.querySelector("#root") as HTMLElement}
       className="modalLoginRegister"
       overlayClassName="overlayModalLoginRegister"
     >
       <div className="title">
         <p>{newUser ? "Cadastre-se no Cinvago!" : "Faça Login no Cinvago!"} </p>
-        <button>{IconClose}</button>
+        <button onClick={resetData}>{IconClose}</button>
       </div>
       <div className="formModalLoginRegister">
         {newUser ? (
@@ -146,7 +182,10 @@ export default function LoginRegisterModal({
       </div>
       <button
         className="buttonModalLoginRegister"
-        onClick={() => API.sendForm(data, newUser)}
+        onClick={() => {
+          console.log("testenado 1 2 3...  ", newUser);
+          newUser ? modalRegister(data) : modalLogin(data);
+        }}
       >
         {newUser ? "Criar conta" : "Login"}
       </button>

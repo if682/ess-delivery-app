@@ -1,7 +1,9 @@
+
 import axios, { AxiosInstance } from 'axios'
-import { UserResponse } from './interfaces'
+import { ReservationResponse, UserResponse } from './interfaces'
 import { APIConfig } from '../../configs/api/api.config'
 import { RegisterADMInterface } from '../../app/pages/AdmRegister'
+import { FormValues } from './interfaces'
 
 
 export class APIClient {
@@ -13,13 +15,14 @@ export class APIClient {
     });
   }
 
-  async sendForm(data: any, newUser: boolean) {
-    let response;
-    if (newUser) {
-      response = await this.axiosClient.post("/user", data);
-    } else {
-      response = await this.axiosClient.post("/login", data);
-    }
+  async sendFormRegister(data: any) {
+    const response = await this.axiosClient.post("/user", data);
+    console.log(response);
+    return response.data;
+  }
+
+  async sendFormLogin(data: any) {
+    const response = await this.axiosClient.post("/login", data);
     console.log(response);
     return response.data;
   }
@@ -37,8 +40,28 @@ export class APIClient {
   }
 
   async createAdmUser(userData: RegisterADMInterface) {
-    await this.axiosClient.post('/user/admin', userData)
-    return true
+    await this.axiosClient.post("/user/admin", userData);
+    return true;
   }
-}
 
+  async createReservation(reservation: FormValues) {
+    const response = await this.axiosClient.post<FormValues>('/reservation', reservation)
+    return response.data
+  }
+
+  async getReservations(){
+    const response = await this.axiosClient.get<ReservationResponse>('/reservation');
+    return response.data
+  }
+
+  async getReservationById(ReservationID: string){
+    const response = await this.axiosClient.get<ReservationResponse>(`/reservation/${ReservationID}`)
+    return response.data
+  }
+
+  async getReservationByCEP(ReservationCEP:string){
+    const response = await this.axiosClient.get<ReservationResponse>(`/reservation/cep/${ReservationCEP}`)
+    return response.data
+  }
+ 
+}

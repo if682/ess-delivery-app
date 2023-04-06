@@ -4,6 +4,8 @@ import { Props } from "../../components/ImageCard";
 import ImageCardRow from "../../components/ImageCardRow";
 import UserCard from "../../components/UserCard";
 import GetUsers from "../../hooks/getUsers";
+import ReservationForm from "../../components/FormularioReserva";
+import SearchBar from "../../components/SearchBar";
 
 export default function HomePage() {
 
@@ -70,4 +72,3 @@ export default function HomePage() {
     </AppContainer >
   )
 }
-
