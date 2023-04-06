@@ -52,26 +52,27 @@ const Movielist = () => {
   };
   
   const handleSortClick = () => {
-    const sortedMovies = [...movies];
-
-    if(sortOption === "year-asc") {
+    let sortedMovies = [...originalMovies];
+  
+    if (sortOption === "year-asc") {
       sortedMovies.sort((a, b) => a.year - b.year);
     }
-
-    else if(sortOption === "year-desc") {
+    
+    else if (sortOption === "year-desc") {
       sortedMovies.sort((a, b) => b.year - a.year);
     }
-
-    else if(sortOption === "alfabetical") {
+    
+    else if (sortOption === "alphabetical") {
       sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
     }
-
-    else{
+    
+    else {
       alert("Selecione uma opção de ordenação.");
-      sortedMovies = originalMovies;
+      sortedMovies = [...originalMovies];
     }
-
+  
     setMovies(sortedMovies);
+    setSortOption("select");
   };
 
   const handleDeleteMovieFromListClick = (event, title) => {
