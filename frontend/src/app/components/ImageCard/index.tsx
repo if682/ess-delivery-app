@@ -27,3 +27,14 @@ function ImageCard({ width, alt, src, height, location, price, description }: Im
 }
 
 export default ImageCard;
+
+export interface Props {
+    src: string;
+    alt: string;
+    width: string;
+    height: string;
+    location: string;
+    price: string;
+    description: string;
+}
+
