@@ -6,4 +6,5 @@ export interface IUserRepository {
     findById(id: string): Promise<User | null>;
     findByEmail(email: string): Promise<User | null>;
     updateResetToken(id: string, newDate: Date, newToken: string): Promise<void>;
+    changePassword(id: string, newPassword: string): Promise<void>;
 }

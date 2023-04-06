@@ -46,12 +46,24 @@ export class PrismaUsersRepository implements IUserRepository {
         const date = newDate.toISOString();
         await prisma.user.update({
             where: {
-              id: id
+              id
             },
             data: {
               passwordResetToken: newToken,
               resetTokenExpires: date
             }
           })
+    }
+
+    async changePassword(id: string, newPassword: string) {
+        await prisma.user.update({
+            where: {
+                id
+            },
+            data: {
+                password: newPassword
+            }
+        })
+
     }
 }
