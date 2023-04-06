@@ -8,6 +8,9 @@ import { GetClientEmail } from "./pages/client-register/RegisterPages/GetClientE
 import {ConfirmEmail} from "./pages/client-register/RegisterPages/ConfirmEmail";
 import { GetClientPassword } from "./pages/client-register/RegisterPages/GetClientPassword";
 import {ClientRegistered} from "./pages/client-register/RegisterPages/ClientRegistered";
+import  Login from "./pages/client-login/ClientLogin";
+import ForgetPwd from "./pages/client-login/ForgetPwd/ForgetPwd";
+import { RestaurantMenu } from "./pages/restaurant-menu/RestaurantMenu";
 
 const UrlRoutes = () => {
   return (
@@ -15,12 +18,15 @@ const UrlRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/minha-conta" element={<MyAccountPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgetPwd" element={<ForgetPwd />} />
         <Route path="/meus-pedidos" element={<MyOrders />} />
         <Route path="/cadastro-nome" element={<GetClientName/>}/>
         <Route path="/cadastro-senha" element={<GetClientPassword/>}/>
         <Route path="/cadastro-email" element={<GetClientEmail/>}/>
         <Route path="/cadastro-finalizado" element={<ClientRegistered/>}/>
         <Route path="/validacao-email" element={<ConfirmEmail/>}/>
+        <Route path="/restaurantMenu" element={<RestaurantMenu/>} />
       </Routes>
     </BrowserRouter>
   );
