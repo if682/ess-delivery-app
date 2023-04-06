@@ -3,9 +3,33 @@
 
     width: 444px;
     height: 36px;
-    
-    
+
+
     background: #ECF0FB;
     border: 1px solid #D7D7D7;
     border-radius: 5px;
+}
+
+.inputBox-Error {
+    box-sizing: border-box;
+
+    width: 444px;
+    height: 36px;
+
+
+    background: #ECF0FB;
+    border: 1px solid rgba(235, 0, 41, 1);
+    border-radius: 5px;
+}
+
+.inputBox-ErrorText {
+    display: flex;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+
+    color: #EB0029;
 }
