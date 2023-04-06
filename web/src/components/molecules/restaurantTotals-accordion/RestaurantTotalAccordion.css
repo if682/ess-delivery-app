@@ -1,0 +1,42 @@
+.orders-table-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 80%;
+
+  padding: 2rem 1rem;
+
+  overflow: hidden;
+  color: #272727;
+
+  border: 1.5px solid #cacaca;
+  border-radius: 10px;
+}
+
+.totalAccordionHeader {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    background-color: red;
+}
+
+.itemImage {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.restaurantName {
+  color: #eb0029;
+  font-size: 1.7em;
+}
+
+.totalOrdered {
+  color: #eb0029;
+  font-size: 2em;
+}
