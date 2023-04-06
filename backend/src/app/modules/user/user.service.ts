@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
 import { formatCPF } from './functions/formatData';
 import { UserResponse } from './interfaces';
+import { User } from 'src/infra/database/typeorm/entities/User.entity';
 
 @Injectable()
 export class UserService {

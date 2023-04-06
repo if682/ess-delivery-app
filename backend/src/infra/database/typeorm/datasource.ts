@@ -10,4 +10,5 @@ export const postgreDatasource = new DataSource({
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/**/*{.ts, .js}'],
   synchronize: true,
+  migrationsRun: false,
 });
