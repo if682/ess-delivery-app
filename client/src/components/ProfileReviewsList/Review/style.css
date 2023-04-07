@@ -40,3 +40,12 @@
     margin: 0 0.25rem;
 }
 
+.review-hr{
+    border: 1px solid #F4A4A4;
+    margin: 0;
+    position: absolute;
+    width: 1200px;
+    left: 53px;
+    top: 120px;
+}
+
