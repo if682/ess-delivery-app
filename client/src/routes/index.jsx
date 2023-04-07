@@ -9,8 +9,8 @@ const AppRoutes = () => {
         <Routes>
             <Route path="profile" element={<Profile />} />
             <Route path="profile/editprofile" element={<EditProfile />} />
-            <Route path="movielists" element={<Movielists />} />            {/* todas as listas do usuário */}
-            <Route path="movielists/movielist" element={<Movielist />} />   {/* lista específica */}
+            <Route path="profile/movielists" element={<Movielists />} />            {/* todas as listas do usuário */}
+            <Route path="profile/movielists/movielist" element={<Movielist />} />   {/* lista específica */}
         </Routes>
     );
 };

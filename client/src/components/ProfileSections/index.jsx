@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 
 const ProfileSections = () => {
+
+  let navigate = useNavigate();
 
   const handleFilmes = () =>{
     alert("Mostrar filmes");
@@ -17,7 +20,8 @@ const ProfileSections = () => {
   }
 
   const handleWatchList = () => {
-    alert("Mostrar WatchList");
+    let path = `movielists`;
+    navigate(path)
   }
 
   return (
