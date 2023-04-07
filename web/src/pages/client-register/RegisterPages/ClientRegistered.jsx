@@ -11,7 +11,7 @@ export const ClientRegistered = () => {
     let navigate = useNavigate();
 
     const handleClick = () =>{
-        navigate('/MenuRestaurante')
+        navigate('/')
     }
 
 
@@ -25,7 +25,7 @@ export const ClientRegistered = () => {
                     <text className='register_success'>Conta criada com sucesso!</text>
                     <br></br>
                     
-                    <Button onClick={() => handleClick()} className='order_now_button'>Continuar  ></Button>
+                    <Button onClick={() => handleClick()} className='order_now_button'>Peça já!</Button>
                 </>
                 
             </div>
