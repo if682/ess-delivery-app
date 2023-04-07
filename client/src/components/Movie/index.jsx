@@ -1,12 +1,13 @@
 import React from "react";
-import {
-  handleAddToMovielistClick,
-  handleLikeClick,
-  handleMovieClick
-} from "../../pages/handleClick.js";
+import HandleUserActions from "../../pages/handleUserActions.js";
 import "./styles.css";
 
 const Movie = ({ poster, title, year }) => {
+  const { handleAddToMovielistClick,
+          handleLikeClick,
+          handleMovieClick
+        } = HandleUserActions();
+
   return (
     <div className="movie-container">
       <div className="button-container">
