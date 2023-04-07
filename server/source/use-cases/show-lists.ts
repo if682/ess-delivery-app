@@ -19,6 +19,6 @@ export class ShowListsUseCase{
 
         return {
             lists
-        }
+        };
     }
 }

@@ -1,7 +1,7 @@
-import { List, Movie, MovieList, Prisma } from "@prisma/client";
+import { List, MovieList, Prisma } from "@prisma/client";
 import { IListsRepository } from "../IListsRepository";
 import { PrismaClient } from "@prisma/client";
-import { userRoutes } from "../../http/controllers/users/routes";
+
 const prisma = new PrismaClient();
 
 export class PrismaListsRepository implements IListsRepository {
@@ -16,14 +16,15 @@ export class PrismaListsRepository implements IListsRepository {
         return list;
     }
 
-    async addMovieToList(userId: string, listName: string, movieId: string): Promise<void> {
-        await prisma.movieList.create({
+    async addMovieToList(userId: string, listName: string, movieId: string): Promise<MovieList> {
+        const movielist = await prisma.movieList.create({
             data:{
                 listOwner: userId,
                 listName: listName,
                 movieId: movieId
             }
         })
+        return movielist;
     }
 
     async showLists(userId: string): Promise<List[]> {
