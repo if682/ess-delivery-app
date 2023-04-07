@@ -1,0 +1,7 @@
+.profile-films{
+    display: flex;
+    overflow: scroll;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
