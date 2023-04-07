@@ -1,0 +1,42 @@
+.orders-table-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 80%;
+
+  padding: 2rem 1rem;
+
+  overflow: hidden;
+  color: #272727;
+
+  border: 1.5px solid #cacaca;
+  border-radius: 10px;
+}
+
+.orders-table-container h2 {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.orders-table-container .go-back-btn {
+  align-self: flex-start;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+
+  background: none;
+  border: none;
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: #eb0029;
+
+  display: flex;
+  align-items: center;
+}

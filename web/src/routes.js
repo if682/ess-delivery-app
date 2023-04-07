@@ -11,6 +11,7 @@ import {ClientRegistered} from "./pages/client-register/RegisterPages/ClientRegi
 import  Login from "./pages/client-login/ClientLogin";
 import ForgetPwd from "./pages/client-login/ForgetPwd/ForgetPwd";
 import { RestaurantMenu } from "./pages/restaurant-menu/RestaurantMenu";
+import OrderTotals from "./pages/client-orderTotals/OrderTotals";
 
 const UrlRoutes = () => {
   return (
@@ -27,6 +28,7 @@ const UrlRoutes = () => {
         <Route path="/cadastro-finalizado" element={<ClientRegistered/>}/>
         <Route path="/validacao-email" element={<ConfirmEmail/>}/>
         <Route path="/restaurantMenu" element={<RestaurantMenu/>} />
+		    <Route path="/total-pedidos" element={<OrderTotals />} />
       </Routes>
     </BrowserRouter>
   );
