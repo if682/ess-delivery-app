@@ -1,14 +1,15 @@
 import React from "react";
-import {
-  handleUserAvatarClick,
-  handleUserWatchedFilmsClick,
-  handleUserLikedFilmsClick,
-  handleUserReviewsClick,
-  handleUserMovielistsClick
-} from "../../pages/handleClick.js";
+import HandleUserActions from "../../pages/handleUserActions.js";
 import "./styles.css";
 
 const MovielistHeader = ({ userAvatar, username, listName }) => {
+  const { handleUserAvatarClick,
+          handleUserWatchedFilmsClick,
+          handleUserLikedFilmsClick,
+          handleUserReviewsClick,
+          handleUserMovielistsClick
+        } = HandleUserActions();
+
   return (
     <div className="movielist-header">
       <div className="listname-container">
