@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
 const Movielists = () => {
   const [newListTitle, setNewListTitle] = useState("");
+  const navigate = useNavigate();
 
   const [lists, setLists] = useState([
     { title: "FILMES PRA VER COM A MÃE" },
@@ -15,6 +17,8 @@ const Movielists = () => {
 
   const handleUserListClick = ({ title }) => {
     alert(`Aqui deve ir para a página da lista ${title}`);
+    let path = `/profile/movielists/movielist`;
+    navigate(path);
   };
 
   const handleNewListTitleChange = (event) => {

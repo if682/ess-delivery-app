@@ -11,10 +11,14 @@ const HandleUserActions = () => {
 
   const handleUserWatchedFilmsClick = (username) => {
     alert(`Aqui deve ir para os filmes assistidos de ${username}`);
+    let path = `/profile/watched`;
+    navigate(path);
   };
 
   const handleUserLikedFilmsClick = (username) => {
     alert(`Aqui deve ir para os likes de ${username}`);
+    let path = `/profile/likes`;
+    navigate(path);
   };
 
   const handleUserReviewsClick = (username) => {
