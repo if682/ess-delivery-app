@@ -6,7 +6,8 @@ import Movielists from "../pages/Movielists";
 import Likes from "../pages/Likes";
 import Watched from "../pages/Watched";
 import Login from "../pages/Login";
-import RecoverBox from "../components/Login/RecoverBox";
+import RecoverPassword from "../pages/ForgetPassword";
+import PassChange from "../pages/ForgetPassword/ChangePassword";
 
 const AppRoutes = () => {
     return(
@@ -18,7 +19,8 @@ const AppRoutes = () => {
             <Route path="profile/likes" element={<Likes />} />                      {/* filmes curtidos */}
             <Route path="profile/watched" element={<Watched />} />                  {/* filmes assistidos */}
             <Route path="login" element={<Login/>} />   {/* Login */}
-            <Route path="login/recover" element={<RecoverBox/>} />   {/* Login */}
+            <Route path="login/recover" element={<RecoverPassword/>} />   {/* Recover Password */}
+            <Route path="login/newpassword" element={<PassChange/>} />   {/* Change Password */}
         </Routes>
     );
 };

@@ -28,7 +28,7 @@ const LoginBox = () => {
           <input type="submit" value="Sign In" class="bg-[#F4A4A4] w-1/2 h-1/5 text-white rounded-lg"/>
         </form>
 
-        <a href="test" class="text-white underline underline-offset-1">Forget Password?</a>
+        <a href="recover" class="text-white underline underline-offset-1">Forget Password?</a>
       </div>
 
     </div>
