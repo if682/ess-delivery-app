@@ -43,7 +43,6 @@ describe('LoginTest', () => {
         fireEvent.click(screen.getByText('Enviar'));
         const errorMessage = screen.getByText('*E-mail inválido');
         expect(errorMessage).toBeInTheDocument();
-        screen.debug();  
     });
     it('should render the correct output when using the appropriate email', () => { 
         render(
@@ -57,7 +56,6 @@ describe('LoginTest', () => {
         fireEvent.click(screen.getByText('Enviar'));
         const errorMessage = screen.getByText('Verifique seu e-mail para obter nova senha');
         expect(errorMessage).toBeInTheDocument();
-        screen.debug();  
     });
 
     
