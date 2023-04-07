@@ -7,6 +7,10 @@ import "./styles.css";
 const Movielist = () => {
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
+  const listName = "Movielist";
+
+  // cria uma cópia da lista de filmes original para que ela não seja alterada ao aplicar os filtros e ordenações
+  let originalMovies = [...movies];
 
   const [movies, setMovies] = useState([
     { title: "The Godfather", year: 1972, genre: ["Crime"] },
@@ -18,26 +22,30 @@ const Movielist = () => {
     { title: "123 Filme", year: 2000, genre: ["Comedy"] },
   ]);
 
-  const originalMovies = [...movies];
-
-  const listName = "Movielist";
+  function handleFilterOptionChange(e) {
+    setFilterOption(e.target.value);
+  }
 
   const handleFilterClick = () => {
     // o filtro será sempre aplicado sobre a lista de filmes original
     let filteredMovies = [...originalMovies];
 
-    if(filterOption === "year") {
+    if (filterOption === "year") {
       const selYear = prompt("Digite o ano que deseja filtrar:");
-
+    
       if (/^\d+$/.test(selYear)) {
-        filteredMovies = filteredMovies.filter(movie => movie.year === selYear);
-      }      
+        filteredMovies = filteredMovies.filter(movie => movie.year === parseInt(selYear));
+      }
+      
+      else {
+        alert("Digite um ano válido.");
+      }
     }
-
-    else if(filterOption === "genre") {
+    
+    else if (filterOption === "genre") {
       const selGenre = prompt("Digite o gênero que deseja filtrar:");
-
-      if(selGenre) {
+    
+      if (selGenre) {
         filteredMovies = filteredMovies.filter(movie => movie.genre.includes(selGenre));
       }
     }
@@ -48,9 +56,12 @@ const Movielist = () => {
     }
 
     setMovies(filteredMovies);
-    setFilterOption("select");
   };
   
+  function handleSortOptionChange(e) {
+    setSortOption(e.target.value);
+  }
+
   const handleSortClick = () => {
     let sortedMovies = [...originalMovies];
   
@@ -72,7 +83,6 @@ const Movielist = () => {
     }
   
     setMovies(sortedMovies);
-    setSortOption("select");
   };
 
   const handleDeleteMovieFromListClick = (event, title) => {
@@ -99,24 +109,29 @@ const Movielist = () => {
       <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName={listName} />
       
       <div className="filter-sort-icons">
-          <button className="filter-year-button" onClick={handleFilterByYearClick}>
-            <div className="button-container">
-              <p>Filter by year</p>
-              <img src="../../assets/chev-down-icon.svg" alt="Ícone de filtro por ano" />
-            </div>
-          </button>
-          <button className="filter-genre-button" onClick={handleFilterByGenreClick}>
-            <div className="button-container">
-              <p>Filter by genre</p>
-              <img src="../../assets/chev-down-icon.svg" alt="Ícone de filtro por gênero" />
-            </div>
-          </button>
-          <button className="sort-button" onClick={handleSortClick}>
-            <div className="button-container">
-              <p>Sort by</p>
-              <img src="../../assets/sort-icon.svg" alt="Ícone de sort" />
-            </div>
-          </button>
+        <div className="filter-container">
+          <div className="filter-dropdown">
+            <select onChange = {(e) => handleFilterOptionChange(e)}>
+              <option value="select">Select</option>
+              <option value="year">Filter by year</option>
+              <option value="genre">Filter by genre</option>
+            </select>
+          </div>
+          <button className="filter-button" onClick={() => handleFilterClick()}>Filter</button>
+        </div>
+
+        <div className="sort-container">
+          <div className="sort-dropdown">
+            <select onChange = {(e) => handleSortOptionChange(e)}>
+              <option value="select">Select</option>
+              <option value="alphabetical">Sort by alphabetical order</option>
+              <option value="year-asc">Sort by year - ascending</option>
+              <option value="year-desc">Sort by year - descending</option>
+            </select>
+          </div>
+
+          <button className="sort-button" onClick={() => handleSortClick()}>Sort</button>
+        </div>
       </div>
       
       <div className="movies-grid">
