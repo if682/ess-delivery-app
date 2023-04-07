@@ -5,6 +5,7 @@ import Movielist from "../pages/Movielist";
 import Movielists from "../pages/Movielists";
 import Likes from "../pages/Likes";
 import Watched from "../pages/Watched";
+import Login from "../pages/Login";
 
 const AppRoutes = () => {
     return(
@@ -15,6 +16,7 @@ const AppRoutes = () => {
             <Route path="profile/movielists/movielist" element={<Movielist />} />   {/* lista específica */}
             <Route path="profile/likes" element={<Likes />} />                      {/* filmes curtidos */}
             <Route path="profile/watched" element={<Watched />} />                  {/* filmes assistidos */}
+            <Route path="login" element={<Login/>} />   {/* lista específica */}
         </Routes>
     );
 };
