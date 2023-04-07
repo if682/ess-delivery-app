@@ -4,20 +4,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export class PrismaMoviesRepository implements IMoviesRepository {
-    async createMovie(data: Prisma.MovieCreateInput){
-        const movie = await prisma.movie.create({
-            data,
-        })
-
-        return movie;
-    }
-
-    async findMovie(id: string){
-        const movie = await prisma.movie.findUnique({
-            where :{
+    async createMovie(id: string){
+        const movie = await prisma.movie.upsert({
+            where: {
                 id
-            }
+            },
+            create: {id},
+            update: {id : id}
         })
+
         return movie;
     }
 

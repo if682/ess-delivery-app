@@ -23,7 +23,7 @@ export class AddMovieToListUseCase{
         listName,
         movieId
     }: IAddMovieToListRequest): Promise<IAddMovieToListReply>{
-        await this.moviesRepository.createMovie({id: movieId});
+        await this.moviesRepository.createMovie(movieId);
 
         const movielist = await this.listsRepository.addMovieToList(userId, listName, movieId);
 
