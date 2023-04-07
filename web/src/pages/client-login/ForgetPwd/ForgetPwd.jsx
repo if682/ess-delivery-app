@@ -8,7 +8,7 @@ import { RedButtonLogin } from '../loginComponents/RedButton/RedButton';
 import { Navigate, useNavigate } from 'react-router';
 import emailjs from '@emailjs/browser';
 
-function ForgetPwd() {
+function ForgetPwd (props) {
     const navigate = useNavigate();
     const [items, setItems] = useState([])
     const [input, setInput] = useState("")
@@ -16,6 +16,7 @@ function ForgetPwd() {
     const [handleErrorEmail, setHandleErrorEmail] = useState("")
 
     useEffect(() => {
+      setItems(props.Items || [])
         fetch('http://localhost:3001/clients')
           .then(response => response.json())
           .then(data => {

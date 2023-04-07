@@ -1,6 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route } from 'react-router-dom'; // add this import
+import { MemoryRouter, Route, Routes } from 'react-router-dom'; // add this import
 import ClientLogin from '../../ClientLogin';
+import { GetClientName } from '../../../client-register/RegisterPages/GetClientName';
+import Home from '../../../home/Home';
 
 describe('LoginTest', () => {
 
@@ -28,7 +30,7 @@ describe('LoginTest', () => {
     const onHideMock = jest.fn(() => { });
     const onShowMock = jest.fn(() => { });
 
-    it('should render invalid email error after logging in with incorrect email', () => {
+    it('should render invalid email error after logging in with incorrect email', () => { // This test is for the login page to show an error message when the email is incorrect
         render(
             <MemoryRouter> {/* Wrap ClientLogin with MemoryRouter */}
                 <ClientLogin Items={currentClients} />
@@ -41,7 +43,8 @@ describe('LoginTest', () => {
         const errorMessage = screen.getByText('*E-mail inválido');
         expect(errorMessage).toBeInTheDocument();
     });
-    it('should render invalid password error after logging in with incorrect password', () => {
+
+    it('should render invalid password error after logging in with incorrect password', () => { // This test is for the login page to show an error message when the password is incorrect
         render(
             <MemoryRouter>
                 <ClientLogin Items={currentClients} />
@@ -58,29 +61,48 @@ describe('LoginTest', () => {
         const errorMessage = screen.getByText('*Senha inválida');
         expect(errorMessage).toBeInTheDocument();
     });
-    it('should move to next page after successfully logged in', () => {
+
+    it('should move to next page after successfully logged in', () => { // This test is for the login page to move to the home page after logging in
         render(
-            <MemoryRouter>
-                <Route path="/login">
-                    <ClientLogin Items={currentClients} />
-                </Route>
-                <Route path="/cadastro-nome">
-                    <div>Teste</div>
-                </Route>
-            </MemoryRouter>
+          <MemoryRouter initialEntries={['/login']}>
+            <Routes>
+              <Route path="/login" element={<ClientLogin Items={currentClients} />}>
+              </Route>
+              <Route path="/" element={<Home/>}>
+              </Route>
+            </Routes>
+          </MemoryRouter>
         );
         const emailInput = screen.getByPlaceholderText('Insira um email');
         const passwordInput = screen.getByPlaceholderText('Insira uma senha');
         const loginButton = screen.getByText('Entrar');
-
+      
         fireEvent.change(emailInput, { target: { value: 'pasp@cin.ufpe.br' } });
         fireEvent.change(passwordInput, { target: { value: 'senha1' } });
         fireEvent.click(loginButton);
+      
+        const successfulMessage = screen.getByText('Home');
+        expect(successfulMessage).toBeInTheDocument();
+      });
 
-        screen.debug();
-        //const errorMessage = screen.getByText('*Senha inválida');
-        //expect(errorMessage).toBeInTheDocument();
-        const errorMessage = screen.getByText('*Senha inválida');
-    });
+    it("should move to cadastro-nome after clicking in the 'Ainda não possui o cadastro?'", () => { // This test is for the login page to move to the cadastro-nome page after clicking in the 'Ainda não possui o cadastro?' button
+        render(
+          <MemoryRouter initialEntries={['/login']}>
+            <Routes>
+              <Route path="/login" element={<ClientLogin Items={currentClients} />}>
+              </Route>
+              <Route path="/cadastro-nome" element={<GetClientName/>}>
+              </Route>
+            </Routes>
+          </MemoryRouter>
+        );
+        const loginButton = screen.getByText('Cadastre-se');
+      
+        fireEvent.click(loginButton);
+      
+        const successfulMessage = screen.getByText('Primeiramente, como você gostaria de ser chamade?');
+        expect(successfulMessage).toBeInTheDocument();
+      });
+      
 
 });
