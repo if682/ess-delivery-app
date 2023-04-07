@@ -50,6 +50,8 @@ function ForgetPwd() {
                 console.log("FAILED...", err);
               }
             );
+        }else{
+            setHandleErrorEmail("true");
         }
       };
     
