@@ -53,18 +53,18 @@ describe('LoginTest', () => {
         const emailInput = screen.getByPlaceholderText('Insira um email');
         const passwordInput = screen.getByPlaceholderText('Insira uma senha');
         const loginButton = screen.getByText('Entrar');
-
+        
         fireEvent.change(emailInput, { target: { value: 'pasp@cin.ufpe.br' } });
         fireEvent.change(passwordInput, { target: { value: 'senhaErrada' } });
         fireEvent.click(loginButton);
-
+        
         const errorMessage = screen.getByText('*Senha inválida');
         expect(errorMessage).toBeInTheDocument();
     });
-
+    
     it('should move to next page after successfully logged in', () => { // This test is for the login page to move to the home page after logging in
         render(
-          <MemoryRouter initialEntries={['/login']}>
+            <MemoryRouter initialEntries={['/login']}>
             <Routes>
               <Route path="/login" element={<ClientLogin Items={currentClients} />}>
               </Route>
@@ -76,18 +76,18 @@ describe('LoginTest', () => {
         const emailInput = screen.getByPlaceholderText('Insira um email');
         const passwordInput = screen.getByPlaceholderText('Insira uma senha');
         const loginButton = screen.getByText('Entrar');
-      
+        
         fireEvent.change(emailInput, { target: { value: 'pasp@cin.ufpe.br' } });
         fireEvent.change(passwordInput, { target: { value: 'senha1' } });
         fireEvent.click(loginButton);
-      
+        
         const successfulMessage = screen.getByText('Home');
         expect(successfulMessage).toBeInTheDocument();
-      });
-
-    it("should move to cadastro-nome after clicking in the 'Ainda não possui o cadastro?'", () => { // This test is for the login page to move to the cadastro-nome page after clicking in the 'Ainda não possui o cadastro?' button
+    });
+    
+    it("should move to cadastro-nome after clicking in the 'Cadastre-se'", () => { // This test is for the login page to move to the cadastro-nome page after clicking in the 'Ainda não possui o cadastro?' button
         render(
-          <MemoryRouter initialEntries={['/login']}>
+            <MemoryRouter initialEntries={['/login']}>
             <Routes>
               <Route path="/login" element={<ClientLogin Items={currentClients} />}>
               </Route>
@@ -102,7 +102,30 @@ describe('LoginTest', () => {
       
         const successfulMessage = screen.getByText('Primeiramente, como você gostaria de ser chamade?');
         expect(successfulMessage).toBeInTheDocument();
-      });
+    });
+    it('should remember login after successfully logged in and clicked the checkbox to remember login', () => { 
+        render(
+            <MemoryRouter initialEntries={['/login']}>
+            <Routes>
+              <Route path="/login" element={<ClientLogin Items={currentClients} />}>
+              </Route>
+              <Route path="/" element={<Home/>}>
+              </Route>
+            </Routes>
+          </MemoryRouter>
+        );
+        const emailInput = screen.getByPlaceholderText('Insira um email');
+        const passwordInput = screen.getByPlaceholderText('Insira uma senha');
+        const loginButton = screen.getByText('Entrar');
+        const getCookies = screen.getByText('Lembrar Login');
+        
+        fireEvent.change(emailInput, { target: { value: 'pasp@cin.ufpe.br' } });
+        fireEvent.change(passwordInput, { target: { value: 'senha1' } });
+        fireEvent.click(getCookies);
+        fireEvent.click(loginButton);
+        
+        expect(document.cookie).toBe('token=pasp@cin.ufpe.br');    
+    });
       
-
+    
 });
