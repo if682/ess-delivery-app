@@ -1,6 +1,15 @@
-.my-orders-page-container {
+.order-totals-page-container {
   padding-top: 10rem;
   padding-left: 3rem;
-}.my-account-page-container .red-outline-button + .red-outline-button {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.my-account-page-container .red-outline-button + .red-outline-button {
   margin-top: 1rem;
 }

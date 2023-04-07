@@ -1,33 +1,33 @@
 .restImage {
   display: inline-block;
-  width: 6rem;
-  height: 6rem;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-}
-
-.itemImage {
-  display: inline-block;
   width: 5rem;
   height: 5rem;
   border-radius: 3px;
   border: 1px solid #ddd;
 }
 
+.itemImage {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
 .restaurantName {
   color: #eb0029;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: left;
 }
 
 .totalOrdered {
   color: #eb0029;
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 
 .mostOrdered {
   color: #eb0029;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .mostDescription {
