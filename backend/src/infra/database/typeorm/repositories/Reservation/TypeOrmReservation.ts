@@ -5,13 +5,13 @@ import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservatio
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 
 @Injectable()
-export class TypeOrmReservationRepository implements ReservationRepository{
+export class TypeOrmReservationRepository implements ReservationRepository {
   constructor(
     @Inject('RESERVATION_REPOSITORY')
     private reservationRepository: Repository<Reservation>,
   ) {}
 
-  getReservations():Promise<Reservation[]>{
+  getReservations(): Promise<Reservation[]> {
     return this.reservationRepository.find();
   }
 
@@ -45,27 +45,27 @@ export class TypeOrmReservationRepository implements ReservationRepository{
     bedrooms,
     beds,
     bathrooms,
-    photos
-  }:ReservationCreationDTO): Promise<void>{ 
-
+    photos,
+    owner,
+  }: ReservationCreationDTO): Promise<void> {
     const newReservation = new Reservation();
 
-    Object.assign(newReservation,{
-        name,
-        city,
-        street,
-        streetNumber,
-        cep,
-        checkIn,
-        checkOut,
-        guests,
-        budget,
-        additionalInfo,
-        bedrooms,
-        beds,
-        bathrooms,
-        photos
-        
+    Object.assign(newReservation, {
+      name,
+      city,
+      street,
+      streetNumber,
+      cep,
+      checkIn,
+      checkOut,
+      guests,
+      budget,
+      additionalInfo,
+      bedrooms,
+      beds,
+      bathrooms,
+      photos,
+      owner,
     });
 
     await this.reservationRepository.save(newReservation);
