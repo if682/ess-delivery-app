@@ -31,7 +31,7 @@ describe('LoginTest', () => {
     const onHideMock = jest.fn(() => { });
     const onShowMock = jest.fn(() => { });
 
-    it('should render invalid email error after logging in with incorrect email', () => { // This test is for the login page to show an error message when the email is incorrect
+    it('should render invalid email error after trying to recover password with incorrect email', () => { // This test is for the forgetPwd page to show an error message when the email is incorrect
         render(
             <MemoryRouter> {/* Wrap ClientLogin with MemoryRouter */}
                 <ForgetPwd Items={currentClients} />
@@ -43,6 +43,21 @@ describe('LoginTest', () => {
         fireEvent.click(screen.getByText('Enviar'));
         const errorMessage = screen.getByText('*E-mail inválido');
         expect(errorMessage).toBeInTheDocument();
+        screen.debug();  
+    });
+    it('should render the correct output when using the appropriate email', () => { 
+        render(
+            <MemoryRouter> {/* Wrap ClientLogin with MemoryRouter */}
+                <ForgetPwd Items={currentClients} />
+            </MemoryRouter>
+        );
+
+        fireEvent.change(screen.getByPlaceholderText('Insira um email'), { target: { value: 'pasp@cin.ufpe.br' } });
+
+        fireEvent.click(screen.getByText('Enviar'));
+        const errorMessage = screen.getByText('Verifique seu e-mail para obter nova senha');
+        expect(errorMessage).toBeInTheDocument();
+        screen.debug();  
     });
 
     
