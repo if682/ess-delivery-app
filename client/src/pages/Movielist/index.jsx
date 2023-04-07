@@ -5,13 +5,9 @@ import Movie from "../../components/Movie";
 import "./styles.css";
 
 const Movielist = () => {
+  const listName = "Movielist";
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
-  const listName = "Movielist";
-
-  // cria uma cópia da lista de filmes original para que ela não seja alterada ao aplicar os filtros e ordenações
-  let originalMovies = [...movies];
-
   const [movies, setMovies] = useState([
     { title: "The Godfather", year: 1972, genre: ["Crime"] },
     { title: "Come and See", year: 1985, genre: ["War"] },
@@ -21,6 +17,9 @@ const Movielist = () => {
     { title: "Abc", year: 2028, genre: ["Comedy", "Drama"] },
     { title: "123 Filme", year: 2000, genre: ["Comedy"] },
   ]);
+
+  // cria uma cópia da lista de filmes original para que ela não seja alterada ao aplicar os filtros e ordenações
+  let originalMovies = [...movies];
 
   function handleFilterOptionChange(e) {
     setFilterOption(e.target.value);
@@ -32,7 +31,8 @@ const Movielist = () => {
 
     if (filterOption === "year") {
       const selYear = prompt("Digite o ano que deseja filtrar:");
-    
+      
+      // verifica se o ano digitado é um número
       if (/^\d+$/.test(selYear)) {
         filteredMovies = filteredMovies.filter(movie => movie.year === parseInt(selYear));
       }
@@ -94,6 +94,10 @@ const Movielist = () => {
     if (userConfirmation) {
       // cria um novo array de filmes sem o filme selecionado
       const newMovies = movies.filter(movie => movie.title !== title);
+
+      // atualiza a lista de filmes original com o novo array sem o filme selecionado
+      originalMovies = [...newMovies];
+
       // atualiza o estado dos filmes com o novo array sem o filme selecionado
       setMovies(newMovies);
     }
