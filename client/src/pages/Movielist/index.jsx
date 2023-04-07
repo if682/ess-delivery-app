@@ -19,7 +19,7 @@ const Movielist = () => {
   ]);
 
   // cria uma cópia da lista de filmes original para que ela não seja alterada ao aplicar os filtros e ordenações
-  let originalMovies = [...movies];
+  const [originalMovies, setOriginalMovies] = useState([...movies]);
 
   function handleFilterOptionChange(e) {
     setFilterOption(e.target.value);
@@ -96,7 +96,7 @@ const Movielist = () => {
       const newMovies = movies.filter(movie => movie.title !== title);
 
       // atualiza a lista de filmes original com o novo array sem o filme selecionado
-      originalMovies = [...newMovies];
+      setOriginalMovies([...newMovies]);
 
       // atualiza o estado dos filmes com o novo array sem o filme selecionado
       setMovies(newMovies);
