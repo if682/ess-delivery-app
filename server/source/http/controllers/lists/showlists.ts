@@ -10,7 +10,7 @@ export async function showlists(request: FastifyRequest, reply: FastifyReply) {
     const {userId} = showlistsParamsSchema.parse(request.params);
     var data;
     try{
-        const showlistsUseCase = await makeShowListsUseCase();
+        const showlistsUseCase = makeShowListsUseCase();
 
         data = await showlistsUseCase.handle({userId});
     }

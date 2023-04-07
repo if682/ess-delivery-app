@@ -12,7 +12,7 @@ export async function addmovietolist(request: FastifyRequest, reply: FastifyRepl
     const {userId, listName, movieId} = addmovietolistBodySchema.parse(request.body);
 
     try{
-        const addmovietolistUsecase = await makeAddMovieToListUseCase();
+        const addmovietolistUsecase = makeAddMovieToListUseCase();
 
         await addmovietolistUsecase.handle({userId, listName, movieId});
     }
