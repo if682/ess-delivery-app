@@ -6,6 +6,7 @@ import Movielists from "../pages/Movielists";
 import Likes from "../pages/Likes";
 import Watched from "../pages/Watched";
 import Login from "../pages/Login";
+import RecoverBox from "../components/Login/RecoverBox";
 
 const AppRoutes = () => {
     return(
@@ -16,7 +17,8 @@ const AppRoutes = () => {
             <Route path="profile/movielists/movielist" element={<Movielist />} />   {/* lista específica */}
             <Route path="profile/likes" element={<Likes />} />                      {/* filmes curtidos */}
             <Route path="profile/watched" element={<Watched />} />                  {/* filmes assistidos */}
-            <Route path="login" element={<Login/>} />   {/* lista específica */}
+            <Route path="login" element={<Login/>} />   {/* Login */}
+            <Route path="login/recover" element={<RecoverBox/>} />   {/* Login */}
         </Routes>
     );
 };

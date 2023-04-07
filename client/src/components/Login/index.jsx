@@ -4,8 +4,10 @@ const LoginBox = () => {
 
   return (
     <div class="h-screen flex flex-col justify-center items-center">
-      <img src=".../../assets/logo.svg" alt="Logo"/>
-      <div class="bg-[#77728D] w-1/4 h-4/6 rounded-lg flex flex-col justify-around items-center">
+      <div class="h-48 w-48">
+        <img src=".../../../assets/logo.svg" alt="Logo" class="object-cover h-48 w-48"/>
+      </div>
+      <div class="bg-[#77728D] w-1/4 h-3/6 rounded-lg flex flex-col justify-around items-center">
 
         <div className="flex flex-col items-center">
           <h1 class="text-4xl text-white font-lato">
