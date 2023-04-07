@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 
-const Login = () => {
+const Login = (props) => {
     const navigate = useNavigate();
 
     const [inputEmail, setInputEmail] = useState("")
@@ -19,12 +19,13 @@ const Login = () => {
     const [handleErrorPwd, setHandleErrorPwd] = useState("")
     const [check, setCheck] = useState(false)
     const redirectToSignUp = (event) => {
-        navigate("/signup")
+        navigate("/cadastro-nome")
     }
     const redirectToForgetPwd = (event) => {
         navigate("/forgetPwd")
     }
     useEffect(() => {
+        setItems(props.Items || [])
         fetch('http://localhost:3001/clients')
           .then(response => response.json())
           .then(data => {
@@ -54,16 +55,15 @@ const Login = () => {
             if (check){
                 Cookies.set('token', email, { expires: 7 });
             }
-            navigate("/home")
+            navigate("/")
         }
     }
 
     if (Cookies.get('token') !== undefined) {
-        return <Navigate to="/home" />
+        return <Navigate to="/" />
     }
     return (
         <div className="login-container">
-            
             <div className="login-box">
                 <img className="login-box-icon" src={Logo}></img>
                 <p className="login-box-title">Acesse a sua conta</p>
@@ -71,11 +71,11 @@ const Login = () => {
 
                     <div className="login-inputText">
                         <p className="login-inputText-title">E-mail</p>
-                        <InputTextBox errorText={"*E-mail inválido"} isError={handleErrorEmail} type={"text"} set_val={setInputEmail} placeholder={' Insira um email'}></InputTextBox>
+                        <InputTextBox errorText={"*E-mail inválido"} isError={handleErrorEmail} type={"text"} set_val={setInputEmail} placeholder={'Insira um email'}></InputTextBox>
                     </div>
                     <div className="login-inputText">
                         <p className="login-inputText-title">Senha</p>
-                        <InputTextBox errorText={"*Senha inválida"} isError={handleErrorPwd} type={"password"} set_val={setInputPwd} placeholder={' Insira uma senha'}></InputTextBox>
+                        <InputTextBox errorText={"*Senha inválida"} isError={handleErrorPwd} type={"password"} set_val={setInputPwd} placeholder={'Insira uma senha'}></InputTextBox>
                     </div>
                     <div className="login-inputCheck">
                         <InputCheckBox checked={check} set_val={setCheck} defaultValue={false} textCheck={'Lembrar Login'}></InputCheckBox>
