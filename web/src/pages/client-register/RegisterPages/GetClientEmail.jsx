@@ -7,14 +7,14 @@ import { ReactComponent as Logo } from '../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
 
 
-export const GetClientEmail = () => {
+
+export const GetClientEmail = (props) => {
     const [email, setEmail] = useState("");
     const [warningMessage, setWarningMessage] = useState(null);
     const [currentClients, setCurrentClients] = useState([])
 
     const {state} = useLocation()
-    const {name} = state;
-
+    const {name} = state
 
     let navigate = useNavigate();
 
@@ -26,8 +26,12 @@ export const GetClientEmail = () => {
         fetch('http://localhost:3001/clients')
           .then(response => response.json())
           .then(data => {
-            setCurrentClients(data)});
-            
+            setCurrentClients(data)})
+
+        if(props.teste == true){
+            setCurrentClients(props.currentC)
+        }
+        
     }, [])
 
     function validateEmail(email) {
@@ -63,14 +67,13 @@ export const GetClientEmail = () => {
                     <input
                         onChange={(event) => {setEmail(event.target.value.trim())}}
                         type="text"
-                        class="form-control"
                         placeholder="E-mail"
                         className='register_box_input_email'
                     />
                     <br></br>
                     
-                    <text className='warning_text_email'>{warningMessage}</text>
-                    <Button onClick={() => getEmail()} className='register_box_button_email'>Continuar  ></Button>
+                    <text className='warning_text_email' id="warning_message">{warningMessage}</text>
+                    <Button onClick={() => getEmail()} className='register_box_button_email' data-testid="button-reg-email">Continuar  ></Button>
                 </>
                 
             </div>
