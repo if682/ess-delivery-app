@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React, { useState, useEffect } from "react";
 import './Login.css'
 import { InputTextBox } from "./loginComponents/inputTextBox/InputText";
@@ -5,8 +6,7 @@ import { RedButtonLogin } from "./loginComponents/RedButton/RedButton";
 import { InputCheckBox } from "./loginComponents/inputCheckBox/InputCheck";
 import Logo from "../../assets/img/logo.svg"
 import { WhiteButtonLogin } from "./loginComponents/whiteButton/WhiteButton";
-import { Navigate, useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { Navigate, useLocation, useNavigate} from "react-router-dom";;
 
 
 const Login = (props) => {
@@ -18,6 +18,11 @@ const Login = (props) => {
     const [handleErrorEmail, setHandleErrorEmail] = useState("")
     const [handleErrorPwd, setHandleErrorPwd] = useState("")
     const [check, setCheck] = useState(false)
+
+    const [redirect, setRedirect] = useState("")
+
+    const {state} = useLocation()
+
     const redirectToSignUp = (event) => {
         navigate("/cadastro-nome")
     }
