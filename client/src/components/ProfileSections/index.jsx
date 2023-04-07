@@ -8,11 +8,11 @@ const ProfileSections = () => {
   let navigate = useNavigate();
 
   const handleFilmes = () =>{
-    alert("Mostrar filmes");
+    navigate('/profile?tab=movies');
   }
 
   const handleReviews = () => {
-    alert("Mostrar reviews");
+    navigate('/profile?tab=reviews');
   }
 
   const handleLikes = () => {
