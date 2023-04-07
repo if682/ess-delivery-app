@@ -10,12 +10,16 @@ import { TypeOrmUserContactRepository } from './typeorm/repositories/user/TypeOr
 import { ReservationProviders } from './typeorm/providers/reservationProvider';
 import { ReservationRepository } from './repositories/ReservationRepository';
 import { TypeOrmReservationRepository } from './typeorm/repositories/Reservation/TypeOrmReservation';
+import { ReservationConnectionProvider } from './typeorm/providers/rerservationConnectionProvider';
+import { ReservationConnectionRepository } from './repositories/ReservationConnectionRepository';
+import { TypeOrmReservationConnectionRepository } from './typeorm/repositories/Reservation/TypeOrmReservationConnection';
 @Module({
   providers: [
     databaseProviders,
     ...UserProviders,
     ...UserContactProviders,
     ...ReservationProviders,
+    ...ReservationConnectionProvider,
     {
       provide: UserRepository,
       useClass: TypeOrmUserRepository,
@@ -24,12 +28,22 @@ import { TypeOrmReservationRepository } from './typeorm/repositories/Reservation
       provide: UserContactRepository,
       useClass: TypeOrmUserContactRepository,
     },
-    { 
+    {
       provide: ReservationRepository,
       useClass: TypeOrmReservationRepository,
     },
+    {
+      provide: ReservationConnectionRepository,
+      useClass: TypeOrmReservationConnectionRepository,
+    },
     EncryptService,
   ],
-  exports: [databaseProviders, UserRepository, UserContactRepository,ReservationRepository], 
+  exports: [
+    databaseProviders,
+    UserRepository,
+    UserContactRepository,
+    ReservationRepository,
+    ReservationConnectionRepository,
+  ],
 })
 export class DatabaseModule {}

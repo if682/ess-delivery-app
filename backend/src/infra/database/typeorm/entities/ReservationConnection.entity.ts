@@ -12,6 +12,11 @@ export class ReservationConnection {
   reservationId: string;
 
   @Column({
+    default: 'espera',
+  })
+  accepted?: string;
+
+  @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })

@@ -15,3 +15,13 @@ export interface ReservationCreationDTO {
   photos: Array<File>;
   owner: string;
 }
+
+export interface MakeReservationDTO {
+  userId: string;
+  reservationId: string;
+}
+
+export interface AcceptReservationDTO {
+  id: number;
+  accepted: boolean;
+}

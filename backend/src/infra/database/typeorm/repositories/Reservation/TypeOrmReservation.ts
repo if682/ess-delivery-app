@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Reservation } from '../../entities/Reservation.entity';
 import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
@@ -69,5 +69,21 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     });
 
     await this.reservationRepository.save(newReservation);
+  }
+
+  async getReservationByList(list: string[]): Promise<Reservation[]> {
+    const reservations = [];
+    for (const id of list) {
+      const reservation = await this.reservationRepository.findOne({
+        where: {
+          id,
+        },
+      });
+      reservations.push(reservation);
+    }
+
+    const test = await this.reservationRepository.find();
+    console.log(test);
+    return reservations;
   }
 }
