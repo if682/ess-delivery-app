@@ -14,7 +14,7 @@ function Sidemenu(props) {
   return (
     <div className="sidemenu">
       <img src={logo} alt={"logo"} />
-      <Button className="sidemenu-item">
+      <Button className="sidemenu-item" href="/">
         <Icon.House />
         <p>Início</p>
       </Button>
@@ -22,7 +22,7 @@ function Sidemenu(props) {
         <Icon.Shop />
         <p>Restaurantes</p>
       </Button>
-      <Button className="sidemenu-item client">
+      <Button className="sidemenu-item client" href="/categorias">
         <Icon.Postcard />
         <p>Categorias</p>
       </Button>
