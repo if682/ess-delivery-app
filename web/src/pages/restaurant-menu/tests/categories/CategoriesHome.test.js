@@ -1,8 +1,6 @@
 import React from 'react';
 import { fireEvent, render, } from '@testing-library/react';
-import CategoriesHome from '../../../categories/CategoriesHome.jsx';
-//import fetch from 'jest-fetch-mock'; //important do not remove
-
+import CategoriesHome from '../../categoriesComponents/CategoriesHome';
 
 describe("CategoriesHome", () => {
 

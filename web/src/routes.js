@@ -12,7 +12,7 @@ import  Login from "./pages/client-login/ClientLogin";
 import ForgetPwd from "./pages/client-login/ForgetPwd/ForgetPwd";
 import { RestaurantMenu } from "./pages/restaurant-menu/RestaurantMenu";
 import OrderTotals from "./pages/client-orderTotals/OrderTotals";
-import CategoriesHome from "./pages/categories/CategoriesHome"
+// import CategoriesHome from "./pages/categories/CategoriesHome"
 
 const UrlRoutes = () => {
   return (
@@ -30,7 +30,7 @@ const UrlRoutes = () => {
         <Route path="/validacao-email" element={<ConfirmEmail/>}/>
         <Route path="/restaurantMenu" element={<RestaurantMenu/>} />
 		    <Route path="/total-pedidos" element={<OrderTotals />} />
-        <Route path="/categorias" element={<CategoriesHome />} />
+        {/* <Route path="/categorias" element={<CategoriesHome />} /> */}
       </Routes>
     </BrowserRouter>
   );

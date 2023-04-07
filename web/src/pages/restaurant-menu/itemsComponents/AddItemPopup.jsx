@@ -26,7 +26,7 @@ export const AddItemPopup = (props) => {
             setWarningMessage("Já existe um item com esse nome!")
         }
         else {
-            let item = {"id": Date.now(), "name": name, "description": description, "price": price}
+            let item = {"id": Date.now(), "name": name, "description": description, "price": price, "category": props.category}
 
             await fetch('http://localhost:3001/items', {
                 method: 'POST',
@@ -51,7 +51,7 @@ export const AddItemPopup = (props) => {
             >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                Adicionar item
+                Adicionar item em {props.category}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>

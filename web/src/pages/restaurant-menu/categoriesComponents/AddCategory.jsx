@@ -1,6 +1,6 @@
 import React from "react";
-import { isInputNull } from "../../shared/functions/isInputNull";
-import { isDuplicateCategory } from "../../shared/functions/isDuplicateCategory";
+import { isInputNull } from "../../../shared/functions/isInputNull";
+import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
 
 
 export default function AddCategory() {
@@ -65,6 +65,7 @@ export default function AddCategory() {
                     <label>
                         Category name:
                         <input
+                            placeholder="Nome"
                             type="text"
                             value={newCategory}
                             onChange={handleNewCategoryChange}

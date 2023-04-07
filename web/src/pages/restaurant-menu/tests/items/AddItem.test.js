@@ -4,30 +4,43 @@ import { RestaurantMenu } from '../../RestaurantMenu';
 
 describe('AddItemPopup', () => {
     const currentItems = [
-    { id: 1, name: 'Item 1', description: 'Descrição 1', price: '10,00' },
-    { id: 2, name: 'Item 2', description: 'Descrição 2', price: '20,00' },
+    { id: 1, name: 'Item 1', description: 'Descrição 1', price: '10,00', category: 'teste' },
+    { id: 2, name: 'Item 2', description: 'Descrição 2', price: '20,00', category: 'teste' },
     ];
 
     const onHideMock = jest.fn(() => {});
 
-    it('should render AddItemPopup component when Adicionar button is clicked', () => {
+    it('should render AddItemPopup component when Adicionar Item button is clicked', async () => {
         render(<RestaurantMenu />);
 
-        fireEvent.click(screen.getByText('Adicionar'));
+        // Check that "Adicionar item" button does not appear initially
+        expect(screen.queryByTestId('addItemBtn')).toBeNull();
 
-        expect(screen.getByText('Adicionar item')).toBeInTheDocument();
+        // Add a category
+        fireEvent.click(screen.getByTestId('add-category-button'));
+        fireEvent.change(screen.getByPlaceholderText('Nome'), { target: { value: 'Pizza' } });
+        fireEvent.click(screen.getByTestId('create-category-button'));
+
+        // Check that "Adicionar item" button now appears
+        await waitFor(() => expect(screen.queryAllByTestId('addItemBtn').length).toBeGreaterThanOrEqual(1));
+
+        // Click the "Adicionar item" button
+        fireEvent.click(screen.getAllByTestId('addItemBtn')[0]);
+
+        // Check that the "AddItemPopup" component appears
+        expect(screen.getByTestId('addButton')).toBeInTheDocument();
     });
 
-    it('should close the modal when Cancelar button is clicked', () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems}/>);
+    it('should close the modal when Cancelar button is clicked', async () => {
+        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems} category={'teste'}/>);
 
         fireEvent.click(screen.getByText('Cancelar'));
 
-        expect(onHideMock).toHaveBeenCalled();
+        await waitFor(() => expect(onHideMock).toHaveBeenCalledTimes(1));
     });
 
     it('should show a warning message if any field is left blank', () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems}/>);
+        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems} category={'teste'}/>);
 
         fireEvent.click(screen.getByTestId('addButton'));
 
