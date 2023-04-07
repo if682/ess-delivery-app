@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "./RestaurantTotalAccordion.css";
 import RedOutlineButton from "../../atoms/red-outline-button/RedOutlineButton";
 import Accordion from 'react-bootstrap/Accordion';
