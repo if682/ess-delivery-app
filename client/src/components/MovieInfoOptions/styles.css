@@ -12,7 +12,6 @@
     padding-top: 30px;
     padding-bottom: 30px;
     white-space: nowrap;
-    pointer-events: none;
 }
 
 .liked {
@@ -40,6 +39,10 @@
 .feedbackSvg {
     height: 30px;
     padding-right: 10px;
+}
+
+.feedback button{
+    display: flex;
 }
 
 .rating {

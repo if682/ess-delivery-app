@@ -33,7 +33,7 @@ const ProfileSections = () => {
           </button>
         </div>
 
-        <div className="reviews">
+        <div>
           <button onClick={handleReviews}>
             <img src="../../assets/review.svg" alt=""/>
             <span>Reviews</span>
