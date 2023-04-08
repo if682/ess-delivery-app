@@ -7,7 +7,6 @@ import RemCategoryPopup from "./categoriesComponents/RemCategoryPopup";
 import { Item } from "./itemsComponents/Item";
 import "./RestaurantMenu.scss"
 import Button from 'react-bootstrap/Button';
-import deleteItemsAndCategories from "./tests/RemoveTestData";
 
 export const RestaurantMenu = () => {
     const [items, setItems] = useState([]);
