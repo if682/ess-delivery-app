@@ -78,4 +78,12 @@ export class TypeOrmUserRepository implements UserRepository {
   getUsers(): Promise<User[]> {
     return this.userRepository.find();
   }
+
+  getUserByCPF(cpf: string): Promise<User> {
+    return this.userRepository.findOne({
+      where: {
+        cpf,
+      },
+    });
+  }
 }
