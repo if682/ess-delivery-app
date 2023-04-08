@@ -26,7 +26,7 @@ function Sidemenu(props) {
         <Icon.Postcard />
         <p>Categorias</p>
       </Button>
-      <Button className="sidemenu-item restaurant">
+      <Button className="sidemenu-item restaurant" href="/minha-conta">
         <Icon.Person />
         <p>Perfil</p>
       </Button>
