@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React, { useState, useEffect } from "react";
 import './Login.css'
 import { InputTextBox } from "./loginComponents/inputTextBox/InputText";
@@ -6,7 +7,6 @@ import { InputCheckBox } from "./loginComponents/inputCheckBox/InputCheck";
 import Logo from "../../assets/img/logo.svg"
 import { WhiteButtonLogin } from "./loginComponents/whiteButton/WhiteButton";
 import { Navigate, useLocation, useNavigate} from "react-router-dom";;
-import Cookies from 'js-cookie';
 
 
 const Login = () => {
