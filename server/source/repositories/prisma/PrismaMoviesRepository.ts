@@ -16,6 +16,16 @@ export class PrismaMoviesRepository implements IMoviesRepository {
         return movie;
     }
 
+    async getMovie(id: string) {
+        const movie = await prisma.movie.findUnique({
+            where: {
+                id,
+            }
+        })
+
+        return movie
+    }
+
     async getAverage(id: string){
         const countEvaluations = await prisma.evaluation.count({
             where:{
