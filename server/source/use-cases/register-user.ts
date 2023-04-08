@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import { IUserRepository } from "../repositories/IUsersRepository";
 import { hash } from "bcryptjs";
 import { isValidPassword } from "../utils/checkpassword";
+import { IListsRepository } from "../repositories/IListsRepository";
 
 interface IRegisterUserUseCaseRequest {
     name: string
@@ -18,7 +19,9 @@ interface IRegisterUserUseCaseReply {
 }
 
 export class RegisterUserUseCase {
-    constructor(private usersRepository: IUserRepository) { }
+    constructor(
+        private usersRepository: IUserRepository,
+        private listsRepository: IListsRepository) {}
 
     async handle({
         name,
@@ -45,6 +48,9 @@ export class RegisterUserUseCase {
                 location,
                 phone,
             })
+
+            await this.listsRepository.createList("Historico", user.id);
+            await this.listsRepository.createList("Curtidos", user.id);
         }
         
 

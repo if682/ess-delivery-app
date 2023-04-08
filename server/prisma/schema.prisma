@@ -25,6 +25,7 @@ model User {
   Review    Review[]
   Comment   Comment[]
   Evaluation Evaluation[]
+  List List[]
 
   @@map("users")
 }
@@ -71,6 +72,7 @@ model Movie {
 
   Review     Review[]
   Evaluation Evaluation[]
+  lists MovieList[]
 
   @@map("movies")
 }
@@ -88,6 +90,31 @@ model Evaluation{
   @@id([userId, movieId])
   @@map("evaluations")
 }
+
+model List {
+  name String
+
+  owner User @relation(fields: [userId], references: [id])
+  userId String
+
+  movies MovieList[]
+  @@id([userId, name])
+  @@map("lists")
+}
+
+model MovieList {
+  List List @relation(fields: [listOwner, listName], references: [userId, name])
+  listOwner String
+  listName String
+
+  Movie Movie @relation(fields: [movieId], references: [id])
+  movieId String
+
+  @@id([listOwner, listName, movieId])
+  @@map("movie_lists")
+  
+}
+
 
 enum Role {
   USER
