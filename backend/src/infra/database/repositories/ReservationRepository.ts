@@ -10,4 +10,5 @@ export abstract class ReservationRepository {
   ): Promise<void>;
   abstract getReservationByList(list: string[]): Promise<Reservation[]>;
   abstract getReservationsByOwnerId(id: string): Promise<Reservation[]>;
+  abstract deleteReservation(id: string): Promise<void>;
 }

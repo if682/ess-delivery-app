@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import { ReservationService } from './reservation.service';
 import {
@@ -8,6 +16,7 @@ import {
 } from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
+import UserRepository from 'src/infra/database/repositories/UserRepository';
 
 @Controller('reservation')
 export class ReservationController {
@@ -84,5 +93,10 @@ export class ReservationController {
         createdAd: reservationConnection[index].createdAt,
       };
     });
+  }
+
+  @Delete(':id')
+  async deleteReservation(@Param('id') id: string) {
+    await this.reservationRepository.deleteReservation(id);
   }
 }

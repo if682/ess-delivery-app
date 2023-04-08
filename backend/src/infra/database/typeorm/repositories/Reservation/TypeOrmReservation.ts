@@ -1,14 +1,18 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { In, Repository } from 'typeorm';
+import { EntityManager, In, Repository } from 'typeorm';
 import { Reservation } from '../../entities/Reservation.entity';
 import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
+import { ReservationConnection } from '../../entities/ReservationConnection.entity';
+import { postgreDatasource } from '../../datasource';
 
 @Injectable()
 export class TypeOrmReservationRepository implements ReservationRepository {
   constructor(
     @Inject('RESERVATION_REPOSITORY')
     private reservationRepository: Repository<Reservation>,
+    @Inject('RESERVATION_CONNECTION_REPOSITORY')
+    private reservationConnectionRepository: Repository<ReservationConnection>,
   ) {}
 
   getReservations(): Promise<Reservation[]> {
@@ -93,5 +97,25 @@ export class TypeOrmReservationRepository implements ReservationRepository {
         owner: id,
       },
     });
+  }
+
+  async deleteReservation(id: string): Promise<void> {
+    const manager = new EntityManager(postgreDatasource);
+
+    const connections = await this.reservationConnectionRepository.find({
+      where: {
+        reservationId: id,
+      },
+    });
+
+    await manager.remove(connections);
+
+    const reservation = await this.reservationRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    await manager.remove(reservation);
   }
 }
