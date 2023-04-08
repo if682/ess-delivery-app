@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import ImageCard, { Props as ImageCardProps } from '../ImageCard';
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import ImageCard, { Props as ImageCardProps } from "../ImageCard";
+import EvaluateFild from "../EvaluationField";
 
 interface Props {
-    cards: ImageCardProps[];
+  cards: ImageCardProps[];
 }
 
 const ImageCardRowWrapper = styled.div`
@@ -49,75 +50,78 @@ const ArrowIcon = styled.div`
   padding: 3px;
   transform: rotate(-45deg);
   transition: transform 0.2s ease-in-out;
-  &:first-of-type {
-    transform: rotate(135deg);
-  }
+  transform: rotate(135deg);
 `;
 
 const ImageCardRow = ({ cards }: Props) => {
-    const [showLeftArrow, setShowLeftArrow] = useState(false);
-    const [showRightArrow, setShowRightArrow] = useState(false);
-    const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
+  const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
 
-    const handleScroll = () => {
-        if (!containerRef) return;
+  const [evaluate, setEvaluate] = useState(true);
 
-        const { scrollLeft, scrollWidth, clientWidth } = containerRef;
+  const handleScroll = () => {
+    if (!containerRef) return;
 
-        console.log("Caneta", scrollLeft, scrollWidth, clientWidth, containerRef)
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef;
 
-        if (scrollLeft > 0) {
-            setShowLeftArrow(true);
-        } else {
-            setShowLeftArrow(false);
-        }
+    console.log("Caneta", scrollLeft, scrollWidth, clientWidth, containerRef);
 
-        if (scrollLeft < scrollWidth - clientWidth) {
-            setShowRightArrow(true);
-        } else {
-            setShowRightArrow(false);
-        }
-    };
+    if (scrollLeft > 0) {
+      setShowLeftArrow(true);
+    } else {
+      setShowLeftArrow(false);
+    }
 
-    const handleArrowClick = (direction: 'left' | 'right') => {
-        if (!containerRef) return;
+    if (scrollLeft < scrollWidth - clientWidth) {
+      setShowRightArrow(true);
+    } else {
+      setShowRightArrow(false);
+    }
+  };
 
-        const scrollAmount = direction === 'left' ? -100 : 100;
-        containerRef.scrollTo({
-            left: containerRef.scrollLeft + scrollAmount,
-            behavior: 'smooth',
-        });
-    };
+  const handleArrowClick = (direction: "left" | "right") => {
+    if (!containerRef) return;
 
-    useEffect(() => {
-        console.log("Opa", containerRef)
-        handleScroll();
-    }, [containerRef, handleScroll]);
+    const scrollAmount = direction === "left" ? -100 : 100;
+    containerRef.scrollTo({
+      left: containerRef.scrollLeft + scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
-    useEffect(() => {
-        window.addEventListener('resize', handleScroll);
-        return () => window.removeEventListener('resize', handleScroll);
-    }, [handleScroll]);
+  useEffect(() => {
+    console.log("Opa", containerRef);
+    handleScroll();
+  }, [containerRef, handleScroll]);
 
-    return (
-        <>
-            {showLeftArrow && (
-                <ArrowWrapper onClick={() => handleArrowClick('left')}>
-                    <ArrowIcon />
-                </ArrowWrapper>
-            )}
-            <ImageCardRowWrapper onScroll={handleScroll} ref={setContainerRef}>
-                {cards.map((card) => (
-                    <ImageCard key={card.id} {...card} />
-                ))}
-            </ImageCardRowWrapper>
-            {showRightArrow && (
-                <ArrowWrapper onClick={() => handleArrowClick('right')}>
-                    <ArrowIcon />
-                </ArrowWrapper>
-            )}
-        </>
-    );
+  useEffect(() => {
+    window.addEventListener("resize", handleScroll);
+    return () => window.removeEventListener("resize", handleScroll);
+  }, [handleScroll]);
+
+  return (
+    <>
+      {showLeftArrow && (
+        <ArrowWrapper onClick={() => handleArrowClick("left")}>
+          <ArrowIcon />
+        </ArrowWrapper>
+      )}
+      <ImageCardRowWrapper onScroll={handleScroll} ref={setContainerRef}>
+        {cards.map((card) => (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <ImageCard key={card.id} {...card} />
+            {evaluate && <EvaluateFild />}
+          </div>
+        ))}
+      </ImageCardRowWrapper>
+      {showRightArrow && (
+        <ArrowWrapper onClick={() => handleArrowClick("right")}>
+          <ArrowIcon style={{ transform: "rotate(-45deg)" }} />
+        </ArrowWrapper>
+      )}
+    </>
+  );
 };
 
-export default ImageCardRow
+export default ImageCardRow;
