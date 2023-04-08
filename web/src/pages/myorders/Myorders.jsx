@@ -15,9 +15,10 @@ function MyOrders() {
   }, []);
 
   async function loadOrders() {
-    const response = await fetch(`${process.env.PUBLIC_URL}/orders.json`);
+    const response = await fetch(`${process.env.PUBLIC_URL}/db.json`);
     const data = await response.json();
-    return data;
+    let order = data?.orders["2"];
+    return order;
   }
 
   return (

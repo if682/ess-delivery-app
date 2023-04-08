@@ -70,8 +70,12 @@ function OrdersTable({ orders }) {
           </div>
 
           <div className="orders">
-            {filteredOrders.map((order) => (
-              <Order {...order} selectOrder={() => setSelectedOrder(order)} />
+            {filteredOrders.map((order, i) => (
+              <Order
+                {...order}
+                selectOrder={() => setSelectedOrder(order)}
+                key={i}
+              />
             ))}
           </div>
         </>
