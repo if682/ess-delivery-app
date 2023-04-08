@@ -31,11 +31,30 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
         {IconClose}
       </button>
       <span className="iconUserCircle">{IconUserCircle}</span>
-      <button className="sideBar_Option_Button">Gerenciar reservas</button>
-      <button className="sideBar_Option_Button">Minhas reservas</button>
-      <button className="sideBar_Option_Button">Favoritos</button>
-      <button className="sideBar_Option_Button">Informações pessoais</button>
-      <button className="sideBar_Option_Button">Fale conosco</button>
+      {false ? (
+        <>
+          <button className="sideBar_Option_Button">Gerenciar reservas</button>
+          <button className="sideBar_Option_Button">
+            Informações pessoais
+          </button>
+          <button className="sideBar_Option_Button">
+            Cadastrar novo usuario administrativo
+          </button>
+        </>
+      ) : (
+        <>
+          <button className="sideBar_Option_Button">Gerenciar reservas</button>
+          <button className="sideBar_Option_Button">Minhas reservas</button>
+          <button className="sideBar_Option_Button">Favoritos</button>
+          <button className="sideBar_Option_Button">
+            Historico de reservas
+          </button>
+          <button className="sideBar_Option_Button">
+            Informações pessoais
+          </button>
+          <button className="sideBar_Option_Button">Fale conosco</button>
+        </>
+      )}
       <button className="sideBar_Logout_Button" onClick={() => sessionLogout()}>
         Logout
       </button>
