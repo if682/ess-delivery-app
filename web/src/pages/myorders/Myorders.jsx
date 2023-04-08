@@ -81,7 +81,7 @@ function MyOrders() {
 
   return (
     <div className="my-orders-page-container position-relative d-flex flex-column align-items-center justify-content-center vh-100 p-4">
-      <PageTitle>Meus pedidos</PageTitle>
+      <PageTitle>Minha conta</PageTitle>
 
       <OrdersTable orders={orders} />
     </div>
