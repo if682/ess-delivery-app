@@ -67,4 +67,14 @@ export class PrismaMoviesRepository implements IMoviesRepository {
 
         return evaluation;
     }
+
+    async getUserEvaluations(id: string) {
+        const evaluations = await prisma.evaluation.findMany({
+            where: {
+                userId: id,
+            }
+        })
+
+        return evaluations;
+    }
 }
