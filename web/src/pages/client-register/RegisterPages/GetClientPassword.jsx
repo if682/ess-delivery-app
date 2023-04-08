@@ -5,6 +5,7 @@ import "../RegisterClient.css"
 import "./GetClientPassword.css"
 import { ReactComponent as Logo } from '../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 
@@ -47,6 +48,7 @@ export const GetClientPassword = (props) => {
                   },
                   body: JSON.stringify(item),
                 });
+            Cookies.set('token', email, { expires: 7 });
             navigate('/cadastro-finalizado');
         }
            
