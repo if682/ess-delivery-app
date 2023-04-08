@@ -14,6 +14,12 @@ export class Evaluation {
   @Column()
   star: number;
 
+  @Column()
+  reservationId: string;
+
+  @Column()
+  userId: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date: Date;
 }

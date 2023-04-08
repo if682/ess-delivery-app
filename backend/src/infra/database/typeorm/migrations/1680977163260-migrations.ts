@@ -24,6 +24,14 @@ export class migrations1680977163260 implements MigrationInterface {
             type: 'int',
           },
           {
+            name: 'reservationId',
+            type: 'varchar',
+          },
+          {
+            name: 'userId',
+            type: 'varchar',
+          },
+          {
             name: 'date',
             type: 'timestamp',
             default: 'now()',
