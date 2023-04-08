@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import RecoverPassword from "../pages/ForgetPassword";
 import PassChange from "../pages/ForgetPassword/ChangePassword";
 import MovieInfo from "../pages/MovieInfo";
+import UserRegister from "../pages/UserRegister";
 
 const AppRoutes = () => {
     return(
@@ -23,6 +24,7 @@ const AppRoutes = () => {
             <Route path="login/recover" element={<RecoverPassword/>} />   {/* Recover Password */}
             <Route path="login/newpassword" element={<PassChange/>} />   {/* Change Password */}
             <Route path="movieInfo" element={<MovieInfo/>} />   {/* Informações de um filme  */}
+            <Route path="signup" element={<UserRegister/>} />   {/* Register User */}
         </Routes>
     );
 };
