@@ -5,7 +5,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function RestaurantTotalAccordion() {
+function RestaurantTotalAccordion({
+  restaurantName,
+  totalSpent
+}) 
+{
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
@@ -13,8 +17,8 @@ function RestaurantTotalAccordion() {
           <Container>
             <Row className="align-items-center">
               <Col sm={3}><img class="restImage" src="./sample.jpg" alt="Logo do Restaurante"/></Col>
-              <Col sm><strong class="restaurantName">Restaurant1</strong></Col>
-              <Col sm><div>Total:<strong class="totalOrdered"> R$10,00</strong></div></Col>
+              <Col sm><strong class="restaurantName">{restaurantName}</strong></Col>
+              <Col sm><div>Total:<strong class="totalSpent"> R${totalSpent}</strong></div></Col>
             </Row>  
           </Container>
 		    </Accordion.Header>
