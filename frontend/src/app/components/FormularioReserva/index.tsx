@@ -150,17 +150,7 @@ const ReservationForm: React.FC = () => {
               <Field type="date" name="checkOut" />
               <ErrorMessage name="checkOut" component="div" className="error-message" />
 
-              <Field
-                type="file"
-                name="photos"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  if (event.currentTarget.files) {
-                    const filesArray = Array.from(event.currentTarget.files);
-                    setFieldValue("photos", filesArray);
-                  }
-                }}
-                multiple
-             />
+              <Dropzone onUrlsAdded={(urls:string[]) => setFieldValue('photos', values.photos.concat(urls))} />
               <ErrorMessage name="photos" component="div" className="error-message" />
 
               
