@@ -1,6 +1,6 @@
 .AppBar {
   background-color: #d3cabf;
-  height: 240px;
+  height: 160px;
   padding: 40px 45px;
 }
 
@@ -13,11 +13,13 @@
 }
 
 .tittle {
+  all: unset;
   font-family: "TrajanusBricks";
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
   word-spacing: -6px;
+  cursor: pointer;
 }
 
 .subtitle {
