@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
-
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import PlaceIcon from "@mui/icons-material/Place";
+import CloseIcon from "@mui/icons-material/Close";
+import { Input, InputLabel } from "@mui/material";
+
 import RedOutlineButton from "../../atoms/red-outline-button/RedOutlineButton";
+
+import "./OrderDetails.css";
 
 function OrderDetails({ order }) {
   const [showModal, setShowModal] = useState(false);
@@ -131,7 +135,48 @@ function OrderDetails({ order }) {
         </div>
       </div>
 
-      {showModal && <Modal>oi</Modal>}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <div className="d-flex flex-column align-items-center help-modal-container pt-4 pb-4">
+          <CloseIcon
+            className="position-absolute"
+            style={{
+              right: ".5rem",
+              top: ".5rem",
+              color: "#eb0029",
+              cursor: "pointer",
+            }}
+            onClick={() => setShowModal(false)}
+          />
+
+          <Modal.Title className="mb-4">Como podemos ajudar?</Modal.Title>
+
+          <InputLabel className="mb-2 input-label">
+            Assunto da mensagem
+          </InputLabel>
+          <Input className="textinput" />
+
+          <InputLabel className="mb-2 mt-4 input-label">Mensagem</InputLabel>
+          <Input type="textarea" className="textarea" />
+
+          <div className="buttons d-flex flex-row align-items-center justify-content-evenly mt-3 w-100 ps-3 pe-3">
+            <RedOutlineButton
+              width="35%"
+              chevron={false}
+              onClick={() => setShowModal(false)}
+            >
+              Cancelar
+            </RedOutlineButton>
+
+            <RedOutlineButton
+              width="35%"
+              chevron={false}
+              onClick={() => setShowModal(false)}
+            >
+              Enviar
+            </RedOutlineButton>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

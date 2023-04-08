@@ -1,0 +1,37 @@
+.help-modal-container .textarea {
+    width: 60%;
+    height: 5rem;
+  
+    white-space: pre-wrap;
+  
+    background-color: #ededed;
+  
+    border: 1px solid #888888 !important;
+    border-bottom: 1px solid #888888 !important;
+  
+    border-radius: 5px;
+  }
+  
+  .help-modal-container .textinput {
+    white-space: pre-wrap;
+  
+    background-color: #ededed;
+  
+    border: 1px solid #888888 !important;
+    border-bottom: 1px solid #888888 !important;
+  
+    border-radius: 5px;
+  }
+  
+  .help-modal-container .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  
+    color: #272727;
+  }
+  
+  .help-modal-container .input-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #272727;
+  }
