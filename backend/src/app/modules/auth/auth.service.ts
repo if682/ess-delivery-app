@@ -27,4 +27,8 @@ export class AuthService {
     }
     return { token: this.jwtService.getJWT(id), userName: name };
   }
+
+  async validateTokenAndReturnId(token: string) {
+    return this.jwtService.validateJWT(token);
+  }
 }
