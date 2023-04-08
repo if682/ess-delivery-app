@@ -8,6 +8,10 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { IconBathroomNumber, IconBedroomNumber, IconGuestNumber, IconMinus, IconPlus, IconRangeDate, IconStarUnselected, IconUserCircle } from "../../assets/icons";
 import { Input } from "../../components/Input";
+import CreateBookingTryByUser from "../../hooks/createBookingTryByUser";
+import { BookingTryValues } from "../../../services/api/interfaces";
+import { useSession } from "../../providers/SessionContext";
+import GetUserIdByToken from "../../hooks/getUserIdByToken";
 
 const Container = styled.div`
   display: flex;
@@ -149,10 +153,25 @@ export default function BookingPage() {
     // The selected drink
     const [selectedDrink, setSelectedDrink] = useState<String>();
 
+    const { session } = useSession();
+    const { userId } = GetUserIdByToken({ token: session.token as string })
+
     // This function will be triggered when a radio button is selected
     const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedDrink(event.target.value);
     };
+
+    const { createElement, isLoading, isError, isSuccess } = CreateBookingTryByUser();
+
+    const onSubmit = async (values: BookingTryValues) => {
+        try {
+            await createElement(values);
+            alert('Reservation created successfully');
+        } catch (error) {
+            alert('Error creating reservation');
+        }
+    };
+
 
     return (
         <AppContainer>
@@ -193,9 +212,7 @@ export default function BookingPage() {
                 <Divider />
                 <Row>
                     <DescriptionTitleText>Reserva</DescriptionTitleText>
-                    <CustomButton onClick={function (): void {
-                        throw new Error("Function not implemented.");
-                    }} title={"Reservar"}></CustomButton>
+                    <CustomButton onClick={() => onSubmit({ userId: userId, reservationId: id })} title={"Reservar"}></CustomButton>
                 </Row>
                 <SizedBoxVertical />
                 <SizedBoxVertical />
