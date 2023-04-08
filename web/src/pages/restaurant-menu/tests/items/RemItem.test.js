@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor, getByTestId} from '@testing-library/react';
 import { RestaurantMenu } from '../../RestaurantMenu';
 import deleteItemsAndCategories from '../RemoveTestData';
-import { RemItemPopup } from '../../itemsComponents/RemItemPopup';
 
 describe('RemItemPopup', () => {
     async function createItem () {
