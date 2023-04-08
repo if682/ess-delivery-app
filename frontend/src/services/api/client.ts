@@ -55,7 +55,7 @@ export class APIClient {
   }
 
   async getReservations() {
-    const response = await this.axiosClient.get<ReservationResponse>('/reservation');
+    const response = await this.axiosClient.get<ReservationResponse[]>('/reservation');
     return response.data
   }
 
@@ -73,5 +73,4 @@ export class APIClient {
     const response = await this.axiosClient.get<string>(`login/${token}`);
     return response.data;
   }
-
 }

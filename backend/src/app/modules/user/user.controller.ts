@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { UserCreationDTO } from 'src/infra/database/interfaces/user.interface';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
 import { UserService } from './user.service';
@@ -27,6 +34,20 @@ export class UserController {
 
   @Post()
   async createUser(@Body() createUserDTO: UserCreationDTO) {
+    const userByEmail = await this.userRepository.getUserByEmail(
+      createUserDTO.email,
+    );
+
+    if (userByEmail) {
+      throw new BadRequestException('Email already registered');
+    }
+
+    const userByCPF = await this.userRepository.getUserByCPF(createUserDTO.cpf);
+
+    if (userByCPF) {
+      throw new BadRequestException('CPF already registered');
+    }
+
     return this.userRepository.createUser(createUserDTO);
   }
 
@@ -44,8 +65,21 @@ export class UserController {
   }
 
   @Post('admin')
-  async createAdminUser(@Body() body: ADMUserCreationDTO) {
+  async createAdminUser(@Body() body: ADMUserCreationDTO, response) {
     const { email, password, name, cpf } = body;
+
+    const userByEmail = await this.userRepository.getUserByEmail(body.email);
+
+    if (userByEmail) {
+      throw new BadRequestException('Email already registered');
+    }
+
+    const userByCPF = await this.userRepository.getUserByCPF(cpf);
+
+    if (userByCPF) {
+      throw new BadRequestException('CPF already registered');
+    }
+
     const user = await this.userRepository.createAdminUser({
       email,
       password,

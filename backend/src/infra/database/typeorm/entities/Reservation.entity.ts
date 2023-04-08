@@ -1,18 +1,16 @@
-import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-type Role = 'USER' | 'ADMIN';
-
-@Entity('Reservation')
+@Entity('reservation')
 export class Reservation {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ unique: true })
-  name: string; 
+  name: string;
 
   @Column()
   city: string;
-  
+
   @Column()
   street: string;
 
@@ -47,6 +45,8 @@ export class Reservation {
   bathrooms: number;
 
   @Column({ type: 'jsonb' })
-  photos: Array<File>;
-}
+  photos: Array<string>;
 
+  @Column()
+  owner: string;
+}

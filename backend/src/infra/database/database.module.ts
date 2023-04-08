@@ -10,12 +10,20 @@ import { TypeOrmUserContactRepository } from './typeorm/repositories/user/TypeOr
 import { ReservationProviders } from './typeorm/providers/reservationProvider';
 import { ReservationRepository } from './repositories/ReservationRepository';
 import { TypeOrmReservationRepository } from './typeorm/repositories/Reservation/TypeOrmReservation';
+import { ReservationConnectionProvider } from './typeorm/providers/rerservationConnectionProvider';
+import { ReservationConnectionRepository } from './repositories/ReservationConnectionRepository';
+import { TypeOrmReservationConnectionRepository } from './typeorm/repositories/Reservation/TypeOrmReservationConnection';
+import { FavoritesProviders } from './typeorm/providers/favoritesProvider';
+import FavoritesRepository from './repositories/FavoritesRepository';
+import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeOrmFavorites';
 @Module({
   providers: [
     databaseProviders,
     ...UserProviders,
     ...UserContactProviders,
     ...ReservationProviders,
+    ...ReservationConnectionProvider,
+    ...FavoritesProviders,
     {
       provide: UserRepository,
       useClass: TypeOrmUserRepository,
@@ -24,12 +32,27 @@ import { TypeOrmReservationRepository } from './typeorm/repositories/Reservation
       provide: UserContactRepository,
       useClass: TypeOrmUserContactRepository,
     },
-    { 
+    {
       provide: ReservationRepository,
       useClass: TypeOrmReservationRepository,
     },
+    {
+      provide: ReservationConnectionRepository,
+      useClass: TypeOrmReservationConnectionRepository,
+    },
+    {
+      provide: FavoritesRepository,
+      useClass: TypeormFavoritesRepository,
+    },
     EncryptService,
   ],
-  exports: [databaseProviders, UserRepository, UserContactRepository,ReservationRepository], 
+  exports: [
+    databaseProviders,
+    UserRepository,
+    UserContactRepository,
+    ReservationRepository,
+    ReservationConnectionRepository,
+    FavoritesRepository,
+  ],
 })
 export class DatabaseModule {}

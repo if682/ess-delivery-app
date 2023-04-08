@@ -1,20 +1,55 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import { ReservationService } from './reservation.service';
-import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservation.interface';
+import {
+  AcceptReservationDTO,
+  MakeReservationDTO,
+  ReservationCreationDTO,
+} from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
+import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
+import UserRepository from 'src/infra/database/repositories/UserRepository';
+import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
 
-@Controller('Reservation')
+export interface FilterParams {
+  city?: string;
+  qtd?: number;
+  date?: string;
+}
+
+export interface SetOrUnsetBodyInterface {
+  reservationId: string;
+  userId: string;
+  setted: boolean;
+}
+
+@Controller('reservation')
 export class ReservationController {
   constructor(
     private reservationRepository: ReservationRepository,
     private reservationService: ReservationService,
+    private reservationConnectionRepository: ReservationConnectionRepository,
+    private favoritesRepository: FavoritesRepository,
   ) {}
 
   @Get()
   async getReservations() {
-    const  reservation = await this.reservationRepository.getReservations();
+    const reservation = await this.reservationRepository.getReservations();
     return reservation.map(this.reservationService.getReservationResponse);
+  }
+
+  @Get('/filters')
+  async getReservationsWithFilters(@Query() params: FilterParams) {
+    return this.reservationRepository.getWithParams(params);
   }
 
   @Get(':Id')
@@ -25,13 +60,97 @@ export class ReservationController {
 
   @Get('cep/:cep')
   async getReservationByCEP(@Param('cep') cep: string) {
-    const reservation = await this.reservationRepository.getReservationByCEP(cep);
+    const reservation = await this.reservationRepository.getReservationByCEP(
+      cep,
+    );
     return this.reservationService.getReservationResponse(reservation);
   }
 
   @Post()
-  async createReservation(@Body() createReservationDTO: ReservationCreationDTO) {
+  async createReservation(
+    @Body() createReservationDTO: ReservationCreationDTO,
+  ) {
     return this.reservationRepository.createReservation(createReservationDTO);
   }
 
+  @Post('/make')
+  async makeUserReservation(@Body() makeReservation: MakeReservationDTO) {
+    this.reservationConnectionRepository.createReservationConnection(
+      makeReservation,
+    );
+
+    //TODO colocar aqui também a chamada pro serviço de email
+  }
+
+  @Patch('/accept')
+  async acceptReservation(@Body() acceptReservation: AcceptReservationDTO) {
+    await this.reservationConnectionRepository.updateReservation(
+      acceptReservation.id,
+      acceptReservation.accepted,
+    );
+  }
+
+  @Get('/created/:id')
+  async getCreatedReservations(@Param('id') id: string) {
+    return this.reservationRepository.getReservationsByOwnerId(id);
+  }
+
+  @Get('/user/:id')
+  async getAllUserReservation(@Param('id') id: string) {
+    const reservationConnection =
+      await this.reservationConnectionRepository.getAllReservationByUserId(id);
+
+    const reservationsIds = reservationConnection.map((e) => e.reservationId);
+    const reservations = await this.reservationRepository.getReservationByList(
+      reservationsIds,
+    );
+
+    return reservations.map((e, index) => {
+      return {
+        ...e,
+        accepted: reservationConnection[index].accepted,
+        connectionId: reservationConnection[index].id,
+        createdAd: reservationConnection[index].createdAt,
+      };
+    });
+  }
+
+  @Delete(':id')
+  async deleteReservation(@Param('id') id: string) {
+    await this.reservationRepository.deleteReservation(id);
+  }
+
+  @Patch('/favorite')
+  async setOrUnsetFavorite(
+    @Body() { userId, reservationId, setted }: SetOrUnsetBodyInterface,
+  ) {
+    const alreadyFavorite =
+      await this.favoritesRepository.getByUserAndReservationId(
+        userId,
+        reservationId,
+      );
+
+    if ((setted && alreadyFavorite) || (!setted && !alreadyFavorite)) {
+      return;
+    }
+
+    if (setted) {
+      this.favoritesRepository.create(userId, reservationId);
+    } else {
+      this.favoritesRepository.delete(userId, reservationId);
+    }
+  }
+
+  @Get('/favorites/:userId')
+  async getAllFavoritesReservationByUserId(@Param('userId') id: string) {
+    const reservationIds = (
+      await this.favoritesRepository.getAllByUserId(id)
+    ).map((e) => e.reservationId);
+
+    const reservations = await this.reservationRepository.getReservationByList(
+      reservationIds,
+    );
+
+    return reservations;
+  }
 }
