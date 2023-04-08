@@ -9,6 +9,7 @@ import "./Myaccount.css";
 function MyAccountPage() {
   const navigate = useNavigate();
   const goToMyOrders = () => navigate("/meus-pedidos");
+  const goToTotalOrders = () => navigate("/total-pedidos");
 
   return (
     <div className="my-account-page-container position-relative d-flex flex-column align-items-center justify-content-center vh-100 p-4">
@@ -16,6 +17,7 @@ function MyAccountPage() {
 
       <RedOutlineButton>Meus dados</RedOutlineButton>
       <RedOutlineButton onClick={goToMyOrders}>Meus pedidos</RedOutlineButton>
+      <RedOutlineButton onClick={goToTotalOrders}>Total pedidos</RedOutlineButton>
 
       <RedButton>Desativar conta</RedButton>
     </div>
