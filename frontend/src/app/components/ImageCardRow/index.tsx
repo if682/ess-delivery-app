@@ -64,6 +64,8 @@ const ImageCardRow = ({ cards }: Props) => {
 
         const { scrollLeft, scrollWidth, clientWidth } = containerRef;
 
+        console.log("Caneta", scrollLeft, scrollWidth, clientWidth, containerRef)
+
         if (scrollLeft > 0) {
             setShowLeftArrow(true);
         } else {
@@ -88,13 +90,14 @@ const ImageCardRow = ({ cards }: Props) => {
     };
 
     useEffect(() => {
+        console.log("Opa", containerRef)
         handleScroll();
-    }, [containerRef]);
+    }, [containerRef, handleScroll]);
 
     useEffect(() => {
         window.addEventListener('resize', handleScroll);
         return () => window.removeEventListener('resize', handleScroll);
-    }, []);
+    }, [handleScroll]);
 
     return (
         <>
@@ -105,7 +108,7 @@ const ImageCardRow = ({ cards }: Props) => {
             )}
             <ImageCardRowWrapper onScroll={handleScroll} ref={setContainerRef}>
                 {cards.map((card) => (
-                    <ImageCard key={card.src} {...card} />
+                    <ImageCard key={card.id} {...card} />
                 ))}
             </ImageCardRowWrapper>
             {showRightArrow && (

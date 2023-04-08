@@ -49,19 +49,19 @@ export class APIClient {
     return response.data
   }
 
-  async getReservations(){
-    const response = await this.axiosClient.get<ReservationResponse>('/reservation');
+  async getReservations() {
+    const response = await this.axiosClient.get<ReservationResponse[]>('/reservation');
     return response.data
   }
 
-  async getReservationById(ReservationID: string){
+  async getReservationById(ReservationID: string) {
     const response = await this.axiosClient.get<ReservationResponse>(`/reservation/${ReservationID}`)
     return response.data
   }
 
-  async getReservationByCEP(ReservationCEP:string){
+  async getReservationByCEP(ReservationCEP: string) {
     const response = await this.axiosClient.get<ReservationResponse>(`/reservation/cep/${ReservationCEP}`)
     return response.data
   }
- 
+
 }
