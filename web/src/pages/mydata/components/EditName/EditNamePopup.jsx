@@ -3,25 +3,21 @@ import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
 
-export const EditPasswordPopup = (props) => {
-    const [password, setPassword] = useState("");
-    const [oldPassword, setOldPassword] = useState("")
+export const EditNamePopup = (props) => {
+    const [name, setName] = useState("");
     const [warningMessage, setWarningMessage] = useState(null);
     
     useEffect(() => {
         setWarningMessage(null)
-    }, [password, oldPassword])
+    }, [name])
 
 
-    async function EditPassword () {
-        if(isInputNull(password) || isInputNull(oldPassword)){
-            setWarningMessage('Preencha todos os campos!')
-        }
-        else if(oldPassword != props.currentPassword){
-            setWarningMessage('O valor fornecido para a senha atual está incorreto')
+    async function EditName () {
+        if(isInputNull(name)){
+            setWarningMessage('Esse campo é de preenchimento obrigatório!')
         }
         else {
-            let item = {name: props.name, email: props.email, password: password}
+            let item = {name: name, email: props.email, password: props.password}
 
             await fetch(`http://localhost:3001/clients/${props.client_id}`, {
                 method: 'PUT',
@@ -42,33 +38,23 @@ export const EditPasswordPopup = (props) => {
         >
         <Modal.Header closeButton {...props}>
             <Modal.Title id="contained-modal-title-vcenter">
-            Alterar senha
+            Alterar nome
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <text>
-            Digite sua senha atual e logo em seguida a nova senha
-            </text>
             <br></br>
             <input
-                onChange={(event) => setOldPassword(event.target.value)}
-                type="password"
+                onChange={(event) => setName(event.target.value)}
+                type="text"
                 class="form-control"
-                placeholder="Senha atual"
-            />
-            <br></br>
-            <input
-                onChange={(event) => setPassword(event.target.value)}
-                type="password"
-                class="form-control"
-                placeholder="Nova senha"
+                placeholder="Novo nome"
             />
 
             {warningMessage}
         </Modal.Body>
         <Modal.Footer>
             <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-primary' onClick={() => EditPassword()}>Salvar</Button>
+            <Button className='btn-primary' onClick={() => EditName()}>Salvar</Button>
         </Modal.Footer>
         </Modal>
     );

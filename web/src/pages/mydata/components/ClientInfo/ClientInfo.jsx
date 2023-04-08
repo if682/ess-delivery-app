@@ -6,6 +6,7 @@ import "./ClientInfo.css";
 import { DataField } from "../DataField/DataField";
 import { EditEmailPopup } from "../EditEmail/EditEmailPopup";
 import { EditPasswordPopup } from "../EditPassword/EditPasswordPopup";
+import { EditNamePopup } from "../EditName/EditNamePopup";
 
 function ClientInfo() {
   const [id, setId] = useState("")
@@ -40,6 +41,7 @@ function ClientInfo() {
     <>
     <EditEmailPopup show={showEditEmail} onHide={() => setShowEditEmail(false)} client_id={id} currentClients={currentClients} name={name} password={password}/>
     <EditPasswordPopup show={showEditPassword} onHide={() => setShowEditPassword(false)} client_id={id} name={name} email={email} currentPassword={password}/>
+    <EditNamePopup show={showEditName} onHide={() => setShowEditName(false)} client_id={id} password={password} email={email}/>
     <div className="client-info-container">
       <button className="go-back-btn" onClick={goBack}>
         <ChevronLeft /> Voltar
