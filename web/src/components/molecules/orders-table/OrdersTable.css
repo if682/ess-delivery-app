@@ -9,11 +9,43 @@
 
   padding: 2rem 1rem;
 
-  overflow: hidden;
   color: #272727;
 
   border: 1.5px solid #cacaca;
   border-radius: 10px;
+}
+
+.orders-table-container .orders {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 100%;
+
+  max-height: 45vh;
+  overflow-y: auto;
+}
+
+/* width */
+.orders::-webkit-scrollbar {
+  width: 10px;
+  margin-left: 0.2rem;
+}
+
+/* Track */
+.orders::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.orders::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.orders::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .orders-table-container h2 {
@@ -57,7 +89,7 @@
   color: #eb0029;
 }
 
-.order-data .order-row span,
-.order-data .order-sub-row span {
+.order-row span,
+.order-sub-row span {
   font-size: 0.75rem;
 }

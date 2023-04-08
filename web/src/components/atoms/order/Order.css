@@ -3,11 +3,21 @@
   width: 100%;
 }
 
-.order-container .dropdown-toggle {
+.order-container {
   background-color: #fff;
 
   border: 1.5px solid rgba(242, 201, 76, 0.42);
   border-radius: 10px;
+
+  align-items: flex-start;
+
+  transition-duration: 0.3s;
+}
+
+.order-container .dropdown-toggle {
+  background-color: #fff;
+
+  border: none;
 
   display: flex;
   flex-direction: row;
@@ -27,8 +37,6 @@
 .order-container .dropdown-toggle:active {
   background-color: #fff;
   color: #272727;
-
-  border: 1.5px solid #eb0029;
 }
 
 .order-container + .order-container {
