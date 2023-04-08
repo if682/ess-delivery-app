@@ -9,4 +9,5 @@ export abstract class ReservationRepository {
     reservation: ReservationCreationDTO,
   ): Promise<void>;
   abstract getReservationByList(list: string[]): Promise<Reservation[]>;
+  abstract getReservationsByOwnerId(id: string): Promise<Reservation[]>;
 }

@@ -86,4 +86,12 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     console.log(test);
     return reservations;
   }
+
+  async getReservationsByOwnerId(id: string): Promise<Reservation[]> {
+    return this.reservationRepository.find({
+      where: {
+        owner: id,
+      },
+    });
+  }
 }

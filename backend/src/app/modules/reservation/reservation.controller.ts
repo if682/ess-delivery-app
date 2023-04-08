@@ -61,6 +61,11 @@ export class ReservationController {
     );
   }
 
+  @Get('/created/:id')
+  async getCreatedReservations(@Param('id') id: string) {
+    return this.reservationRepository.getReservationsByOwnerId(id);
+  }
+
   @Get('/user/:id')
   async getAllUserReservation(@Param('id') id: string) {
     const reservationConnection =
