@@ -18,11 +18,18 @@ import {
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
+import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
 
 export interface FilterParams {
   city?: string;
   qtd?: number;
   date?: string;
+}
+
+export interface SetOrUnsetBodyInterface {
+  reservationId: string;
+  userId: string;
+  setted: boolean;
 }
 
 @Controller('reservation')
@@ -31,6 +38,7 @@ export class ReservationController {
     private reservationRepository: ReservationRepository,
     private reservationService: ReservationService,
     private reservationConnectionRepository: ReservationConnectionRepository,
+    private favoritesRepository: FavoritesRepository,
   ) {}
 
   @Get()
@@ -110,5 +118,39 @@ export class ReservationController {
   @Delete(':id')
   async deleteReservation(@Param('id') id: string) {
     await this.reservationRepository.deleteReservation(id);
+  }
+
+  @Patch('/favorite')
+  async setOrUnsetFavorite(
+    @Body() { userId, reservationId, setted }: SetOrUnsetBodyInterface,
+  ) {
+    const alreadyFavorite =
+      await this.favoritesRepository.getByUserAndReservationId(
+        userId,
+        reservationId,
+      );
+
+    if ((setted && alreadyFavorite) || (!setted && !alreadyFavorite)) {
+      return;
+    }
+
+    if (setted) {
+      this.favoritesRepository.create(userId, reservationId);
+    } else {
+      this.favoritesRepository.delete(userId, reservationId);
+    }
+  }
+
+  @Get('/favorites/:userId')
+  async getAllFavoritesReservationByUserId(@Param('userId') id: string) {
+    const reservationIds = (
+      await this.favoritesRepository.getAllByUserId(id)
+    ).map((e) => e.reservationId);
+
+    const reservations = await this.reservationRepository.getReservationByList(
+      reservationIds,
+    );
+
+    return reservations;
   }
 }
