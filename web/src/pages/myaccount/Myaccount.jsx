@@ -9,12 +9,13 @@ import "./Myaccount.css";
 function MyAccountPage() {
   const navigate = useNavigate();
   const goToMyOrders = () => navigate("/meus-pedidos");
+  const goToMyData = () => navigate("/meus-dados")
 
   return (
     <div className="my-account-page-container position-relative d-flex flex-column align-items-center justify-content-center vh-100 p-4">
       <PageTitle>Minha conta</PageTitle>
 
-      <RedOutlineButton>Meus dados</RedOutlineButton>
+      <RedOutlineButton onClick={goToMyData}>Meus dados</RedOutlineButton>
       <RedOutlineButton onClick={goToMyOrders}>Meus pedidos</RedOutlineButton>
 
       <RedButton>Desativar conta</RedButton>

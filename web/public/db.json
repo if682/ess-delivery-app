@@ -140,6 +140,12 @@
       "name": "Beatriz Andrade",
       "email": "baa@cin.ufpe.br",
       "password": "senha3"
+    },
+    {
+      "name": "bia",
+      "email": "biazita@hotmail.com",
+      "password": "bia1",
+      "id": 128294
     }
   ]
 }

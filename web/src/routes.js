@@ -13,6 +13,7 @@ import ForgetPwd from "./pages/client-login/ForgetPwd/ForgetPwd";
 import { RestaurantMenu } from "./pages/restaurant-menu/RestaurantMenu";
 import OrderTotals from "./pages/client-orderTotals/OrderTotals";
 import CategoriesHome from "./pages/categories/CategoriesHome"
+import MyData from "./pages/mydata/Mydata";
 
 const UrlRoutes = () => {
   return (
@@ -31,6 +32,7 @@ const UrlRoutes = () => {
         <Route path="/restaurantMenu" element={<RestaurantMenu/>} />
 		    <Route path="/total-pedidos" element={<OrderTotals />} />
         <Route path="/categorias" element={<CategoriesHome />} />
+        <Route path="/meus-dados" element={<MyData />} />
       </Routes>
     </BrowserRouter>
   );
