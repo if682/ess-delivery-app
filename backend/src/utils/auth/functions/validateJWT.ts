@@ -1,13 +1,17 @@
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 const { API_KEY } = process.env;
 
-export function validateJWT(token: string) {
-  if (!token) {
-    return false;
-  } else {
-    return new Promise(() =>
-      jwt.verify(token, API_KEY, (err, decoded) => (err ? false : decoded)),
-    );
+interface DecodedToken {
+  idUser: string;
+  // Adicione outras informações do token que você queira validar aqui
+}
+
+export async function validateJWT(token: string): Promise<string | null> {
+  try {
+    const decodedToken = (await jwt.verify(token, API_KEY)) as DecodedToken;
+    return decodedToken.idUser;
+  } catch (err) {
+    return null;
   }
 }
