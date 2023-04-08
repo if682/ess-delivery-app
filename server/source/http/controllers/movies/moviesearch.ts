@@ -12,14 +12,14 @@ export async function moviesearch (request: FastifyRequest, reply: FastifyReply)
 
     try{
         const moviesearchUseCase = makeMovieSearchUseCase();
-        await moviesearchUseCase.handle({
+        const movie = await moviesearchUseCase.handle({
             id,
         })
+
+        reply.status(200).send(movie);
     } catch(err){
         reply.status(400).send({ err });
         throw err;
     }
 
-
-    reply.status(200).send();
 }

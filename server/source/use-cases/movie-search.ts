@@ -14,7 +14,11 @@ export class MovieSearchUseCase{
     async handle({
         id
     }: IMovieSearchUseCaseRequest): Promise<IMovieSearchUseCaseReply> {
-        const movie = await this.moviesRepository.createMovie(id);
+        let movie = await this.moviesRepository.getMovie(id);
+
+        if(!movie) {
+            movie = await this.moviesRepository.createMovie(id);
+        }
 
         return {
             movie,
