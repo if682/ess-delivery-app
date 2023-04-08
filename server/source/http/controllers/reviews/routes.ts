@@ -4,5 +4,5 @@ import { listReviews } from "./list-reviews";
 
 export async function reviewRoutes(app: FastifyInstance) {
     app.post("/review", createReview);
-    app.get("/review/:id", listReviews);
+    app.get("/review/:authorId", listReviews);
 }
