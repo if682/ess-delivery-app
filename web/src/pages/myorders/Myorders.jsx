@@ -1,83 +1,24 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import PageTitle from "../../components/atoms/page-title/PageTitle";
 import "./Myorders.css";
 import OrdersTable from "../../components/molecules/orders-table/OrdersTable";
 
 function MyOrders() {
-  const orders = [
-    {
-      id: "098123",
-      place: "McDonald's",
-      address: "Rua dos Bobos, 0",
-      date: "01/01/2021",
-      itens: [
-        {
-          name: "Big Mac",
-          quantity: 1,
-          price: 10.0,
-        },
-        {
-          name: "Coca-Cola",
-          quantity: 1,
-          price: 5.0,
-        },
-      ],
-      values: {
-        subtotal: 15.0,
-        deliveryFee: 5.0,
-        total: 20.0,
-      },
-      paymentMethod: "Cartão de crédito",
-    },
-    {
-      id: "098124",
-      place: "Burger King",
-      address: "Rua dos Bobos, 0",
-      date: "01/01/2021",
-      itens: [
-        {
-          name: "Whopper",
-          quantity: 1,
-          price: 10.0,
-        },
-        {
-          name: "Coca-Cola",
-          quantity: 1,
-          price: 5.0,
-        },
-      ],
-      values: {
-        subtotal: 15.0,
-        deliveryFee: 5.0,
-        total: 20.0,
-      },
-      paymentMethod: "Pix",
-    },
-    {
-      id: "098125",
-      place: "Subway",
-      address: "Rua dos Bobos, 0",
-      date: "01/01/2021",
-      itens: [
-        {
-          name: "Subway Melt",
-          quantity: 1,
-          price: 10.0,
-        },
-        {
-          name: "Fanta",
-          quantity: 1,
-          price: 3.0,
-        },
-      ],
-      values: {
-        subtotal: 13.0,
-        deliveryFee: 5.0,
-        total: 18.0,
-      },
-      paymentMethod: "Dinheiro",
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    (async function fetchData() {
+      const data = await loadOrders();
+      setOrders(data);
+    })();
+  }, []);
+
+  async function loadOrders() {
+    const response = await fetch(`${process.env.PUBLIC_URL}/orders.json`);
+    const data = await response.json();
+    return data;
+  }
 
   return (
     <div className="my-orders-page-container position-relative d-flex flex-column align-items-center justify-content-center vh-100 p-4">

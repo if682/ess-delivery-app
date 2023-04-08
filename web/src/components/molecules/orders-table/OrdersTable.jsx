@@ -13,6 +13,10 @@ function OrdersTable({ orders }) {
 
   const [filter, setFilter] = useState({ name: "", address: "" });
 
+  useEffect(() => {
+    setOrders(orders);
+  }, [orders]);
+
   const navigate = useNavigate();
   const goBack = selectedOrder
     ? () => setSelectedOrder(null)
