@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserAuthDTO } from './interfaces';
 
@@ -12,5 +12,10 @@ export class AuthController {
     console.log('Login response');
     console.log(test);
     return test;
+  }
+
+  @Get(':token')
+  async getUserIdByToken(@Param('token') token: string) {
+    return this.authService.validateTokenAndReturnId(token);
   }
 }

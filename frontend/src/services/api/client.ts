@@ -1,6 +1,6 @@
 
 import axios, { AxiosInstance } from 'axios'
-import { ReservationResponse, UserResponse } from './interfaces'
+import { BookingTryValues, ReservationResponse, UserResponse } from './interfaces'
 import { APIConfig } from '../../configs/api/api.config'
 import { RegisterADMInterface } from '../../app/pages/AdmRegister'
 import { FormValues } from './interfaces'
@@ -49,6 +49,11 @@ export class APIClient {
     return response.data
   }
 
+  async createBookingTry(bookingTry: BookingTryValues) {
+    const response = await this.axiosClient.post<BookingTryValues>('/reservation/make', bookingTry);
+    return response.data;
+  }
+
   async getReservations() {
     const response = await this.axiosClient.get<ReservationResponse[]>('/reservation');
     return response.data
@@ -64,4 +69,8 @@ export class APIClient {
     return response.data
   }
 
+  async getIdByToken(token: string) {
+    const response = await this.axiosClient.get<string>(`login/${token}`);
+    return response.data;
+  }
 }

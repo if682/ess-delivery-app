@@ -6,6 +6,8 @@ import MyReservationsPage from "../pages/MyReservations";
 import ReservationHistoryPage from "../pages/ReservationHistory";
 import Favorites from "../pages/Favorites";
 import UserData from "../pages/UserData";
+import BookingPage from '../pages/BookingPage'
+
 
 export default function Router() {
   return (
@@ -21,6 +23,7 @@ export default function Router() {
         />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/user-data" element={<UserData />} />
+        <Route path="/booking/:id" element={<BookingPage />} />
       </Routes>
     </BrowserRouter>
   );

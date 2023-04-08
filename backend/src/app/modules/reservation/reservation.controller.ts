@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import { ReservationService } from './reservation.service';
 import {
@@ -8,6 +17,22 @@ import {
 } from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
+import UserRepository from 'src/infra/database/repositories/UserRepository';
+import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
+import { EvaluationCreationDTO } from 'src/infra/database/interfaces/evalutation.interface';
+import EvaluationRepository from 'src/infra/database/repositories/EvaluationRepository';
+
+export interface FilterParams {
+  city?: string;
+  qtd?: number;
+  date?: string;
+}
+
+export interface SetOrUnsetBodyInterface {
+  reservationId: string;
+  userId: string;
+  setted: boolean;
+}
 
 @Controller('reservation')
 export class ReservationController {
@@ -15,12 +40,19 @@ export class ReservationController {
     private reservationRepository: ReservationRepository,
     private reservationService: ReservationService,
     private reservationConnectionRepository: ReservationConnectionRepository,
+    private favoritesRepository: FavoritesRepository,
+    private evaluationRepository: EvaluationRepository,
   ) {}
 
   @Get()
   async getReservations() {
     const reservation = await this.reservationRepository.getReservations();
     return reservation.map(this.reservationService.getReservationResponse);
+  }
+
+  @Get('/filters')
+  async getReservationsWithFilters(@Query() params: FilterParams) {
+    return this.reservationRepository.getWithParams(params);
   }
 
   @Get(':Id')
@@ -61,6 +93,11 @@ export class ReservationController {
     );
   }
 
+  @Get('/created/:id')
+  async getCreatedReservations(@Param('id') id: string) {
+    return this.reservationRepository.getReservationsByOwnerId(id);
+  }
+
   @Get('/user/:id')
   async getAllUserReservation(@Param('id') id: string) {
     const reservationConnection =
@@ -79,5 +116,65 @@ export class ReservationController {
         createdAd: reservationConnection[index].createdAt,
       };
     });
+  }
+
+  @Delete(':id')
+  async deleteReservation(@Param('id') id: string) {
+    await this.reservationRepository.deleteReservation(id);
+  }
+
+  @Patch('/favorite')
+  async setOrUnsetFavorite(
+    @Body() { userId, reservationId, setted }: SetOrUnsetBodyInterface,
+  ) {
+    const alreadyFavorite =
+      await this.favoritesRepository.getByUserAndReservationId(
+        userId,
+        reservationId,
+      );
+
+    if ((setted && alreadyFavorite) || (!setted && !alreadyFavorite)) {
+      return;
+    }
+
+    if (setted) {
+      this.favoritesRepository.create(userId, reservationId);
+    } else {
+      this.favoritesRepository.delete(userId, reservationId);
+    }
+  }
+
+  @Get('/favorites/:userId')
+  async getAllFavoritesReservationByUserId(@Param('userId') id: string) {
+    const reservationIds = (
+      await this.favoritesRepository.getAllByUserId(id)
+    ).map((e) => e.reservationId);
+
+    const reservations = await this.reservationRepository.getReservationByList(
+      reservationIds,
+    );
+
+    return reservations;
+  }
+
+  @Post('/evaluation')
+  async createEvaluation(@Body() creationBody: EvaluationCreationDTO) {
+    return this.evaluationRepository.create(creationBody);
+  }
+
+  @Get('/evaluation/:reservationId')
+  async getEvaluationByReservationId(@Param('reservationId') id: string) {
+    return this.evaluationRepository.getAllByReservationId(id);
+  }
+
+  @Get('/evaluation/:reservationId/:userId')
+  async getEvaluationByReservationIdAndUserId(
+    @Param('reservationId') reservationId: string,
+    @Param('userId') userId: string,
+  ) {
+    return this.evaluationRepository.getAllByUserAndReservationId(
+      userId,
+      reservationId,
+    );
   }
 }
