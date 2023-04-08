@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from '../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
 
 
-export const ConfirmEmail = () => {
+export const ConfirmEmail = (props) => {
     const [firstDigit, setFirstDigit] = useState(null);
     const [secDigit, setSecDigit] = useState(null)
     const [thirdDigit, setThirdDigit] = useState(null)
@@ -16,7 +16,7 @@ export const ConfirmEmail = () => {
 
     let navigate = useNavigate();
     const {state} = useLocation()
-    const {name, email} = state;
+    const {name, email} = (state != null) ? state : props.state;
 
     useEffect(() => {
         setWarningMessage(null)
@@ -55,6 +55,7 @@ export const ConfirmEmail = () => {
                         oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                         onChange={(event) => setFirstDigit(event.target.value)}
                         className="email_confirmation_input"
+                        data-testid='first_digit'
                         />
                         <br></br>
                         <input
@@ -63,6 +64,7 @@ export const ConfirmEmail = () => {
                         oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                         onChange={(event) => setSecDigit(event.target.value)}
                         className="email_confirmation_input"
+                        data-testid='second_digit'
                         />
                         <br></br>
                         <input
@@ -71,6 +73,7 @@ export const ConfirmEmail = () => {
                         oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                         onChange={(event) => setThirdDigit(event.target.value)}
                         className="email_confirmation_input"
+                        data-testid='third_digit'
                         />
                         <br></br>
                         <input
@@ -79,11 +82,12 @@ export const ConfirmEmail = () => {
                         oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                         onChange={(event) => setFourthDigit(event.target.value)}
                         className="email_confirmation_input"
+                        data-testid='fourth_digit'
                         />
                     </div>
                     <br></br>
                     
-                    <text className='warning_text'>{warningMessage}</text>
+                    <text className='warning_text' id='warning_message'>{warningMessage}</text>
                     <text className='email_confirmation_text_resend'>Não recebeu o código ? <text className='resend' onClick={handleResend}>Reenviar</text></text>
                     <Button onClick={() => ConfirmEmail()} className='email_confirmation_button'>Verificar  ></Button>
                 </>
