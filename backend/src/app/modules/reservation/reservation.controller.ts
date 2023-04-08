@@ -19,6 +19,8 @@ import { ReservationRepository } from 'src/infra/database/repositories/Reservati
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
 import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
+import { EvaluationCreationDTO } from 'src/infra/database/interfaces/evalutation.interface';
+import EvaluationRepository from 'src/infra/database/repositories/EvaluationRepository';
 
 export interface FilterParams {
   city?: string;
@@ -39,6 +41,7 @@ export class ReservationController {
     private reservationService: ReservationService,
     private reservationConnectionRepository: ReservationConnectionRepository,
     private favoritesRepository: FavoritesRepository,
+    private evaluationRepository: EvaluationRepository,
   ) {}
 
   @Get()
@@ -152,5 +155,26 @@ export class ReservationController {
     );
 
     return reservations;
+  }
+
+  @Post('/evaluation')
+  async createEvaluation(@Body() creationBody: EvaluationCreationDTO) {
+    return this.evaluationRepository.create(creationBody);
+  }
+
+  @Get('/evaluation/:reservationId')
+  async getEvaluationByReservationId(@Param('reservationId') id: string) {
+    return this.evaluationRepository.getAllByReservationId(id);
+  }
+
+  @Get('/evaluation/:reservationId/:userId')
+  async getEvaluationByReservationIdAndUserId(
+    @Param('reservationId') reservationId: string,
+    @Param('userId') userId: string,
+  ) {
+    return this.evaluationRepository.getAllByUserAndReservationId(
+      userId,
+      reservationId,
+    );
   }
 }
