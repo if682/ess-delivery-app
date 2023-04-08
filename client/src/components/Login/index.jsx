@@ -10,12 +10,12 @@ const LoginBox = () => {
       <div class="bg-[#77728D] w-1/4 h-3/6 rounded-lg flex flex-col justify-around items-center">
 
         <div className="flex flex-col items-center">
-          <h1 class="text-4xl text-white font-lato">
+          <h1 class="text-4xl text-white font-lato my-5">
             LOGIN
           </h1>
           
           <h2 class="text-white"
-          >Do not have an account? <a href="test" class="text-[#F4A4A4]"> Sign Up</a>
+          >Do not have an account? <a href="signup" class="text-[#F4A4A4]"> Sign Up</a>
           </h2>
         </div>
 
@@ -28,7 +28,7 @@ const LoginBox = () => {
           <input type="submit" value="Sign In" class="bg-[#F4A4A4] w-1/2 h-1/5 text-white rounded-lg"/>
         </form>
 
-        <a href="recover" class="text-white underline underline-offset-1">Forget Password?</a>
+        <a href="login/recover" class="text-white underline underline-offset-1">Forget Password?</a>
       </div>
 
     </div>

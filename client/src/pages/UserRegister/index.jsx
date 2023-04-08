@@ -2,9 +2,9 @@ const UserRegister = () => {
     return(
     <div>
         <div class="w-full flex justify-end">
-                <button class = "h-8 w-8 mt-4 mr-4">
-                    <img src=".../../../assets/x-icon.png" alt="Profile Placeholder" class="" />
-                </button>
+                <a href="login" class = "h-8 w-8 mt-4 mr-4">
+                    <img src=".../../../assets/x-icon.png" alt="Return" class="" />
+                </a>
         </div>
         <div class = "my-20 flex flex-col items-center">
             <div>
