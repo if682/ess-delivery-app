@@ -177,4 +177,15 @@ export class ReservationController {
       reservationId,
     );
   }
+
+  @Get('/completed/:userId')
+  async getCompletedReservationByUserId(@Param('userId') id: string) {
+    const data =
+      await this.reservationRepository.getCompletedEvaluationByUserId(id);
+    const response = data.map((e) => ({
+      ...e,
+      evaluations: e.evaluations[e.evaluations.length - 1],
+    }));
+    return response;
+  }
 }
