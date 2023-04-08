@@ -4,7 +4,6 @@ import "./styles.css";
 function MovieInfoCard({
   image,
   name,
-  directorList,
   year,
   parentalRating,
   duration,
@@ -16,16 +15,8 @@ function MovieInfoCard({
       <img className="image" src={image} alt={"Movie" + { name }} />
       <div className="secondaryDiv">
         <div className="name">{name}</div>
-        <div className="directorList">
-          Directed by
-          {directorList.map((directorName, index) => {
-            return index < directorList.length - 1
-              ? " " + directorName + ","
-              : " " + directorName;
-          })}
-        </div>
         <div className="infos">
-          {year} - {parentalRating} - {duration}
+          {year} - {duration}
         </div>
         <div className="description">{description}</div>
       </div>
