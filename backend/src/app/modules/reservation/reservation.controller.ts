@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import { ReservationService } from './reservation.service';
 import {
@@ -8,6 +17,13 @@ import {
 } from 'src/infra/database/interfaces/reservation.interface';
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
+import UserRepository from 'src/infra/database/repositories/UserRepository';
+
+export interface FilterParams {
+  city?: string;
+  qtd?: number;
+  date?: string;
+}
 
 @Controller('reservation')
 export class ReservationController {
@@ -21,6 +37,11 @@ export class ReservationController {
   async getReservations() {
     const reservation = await this.reservationRepository.getReservations();
     return reservation.map(this.reservationService.getReservationResponse);
+  }
+
+  @Get('/filters')
+  async getReservationsWithFilters(@Query() params: FilterParams) {
+    return this.reservationRepository.getWithParams(params);
   }
 
   @Get(':Id')
@@ -61,6 +82,11 @@ export class ReservationController {
     );
   }
 
+  @Get('/created/:id')
+  async getCreatedReservations(@Param('id') id: string) {
+    return this.reservationRepository.getReservationsByOwnerId(id);
+  }
+
   @Get('/user/:id')
   async getAllUserReservation(@Param('id') id: string) {
     const reservationConnection =
@@ -79,5 +105,10 @@ export class ReservationController {
         createdAd: reservationConnection[index].createdAt,
       };
     });
+  }
+
+  @Delete(':id')
+  async deleteReservation(@Param('id') id: string) {
+    await this.reservationRepository.deleteReservation(id);
   }
 }
