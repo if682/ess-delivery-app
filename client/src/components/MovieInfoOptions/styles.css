@@ -14,13 +14,17 @@
     white-space: nowrap;
 }
 
-.liked {
+.like {
     display: flex;
 }
 
 .heartSvg {
     height: 30px;
     padding-right: 10px;
+}
+
+.like button{
+    display: flex;
 }
 
 .watchlist {
@@ -30,6 +34,10 @@
 .bookmarkSvg {
     height: 30px;
     padding-right: 10px;
+}
+
+.watchlist button{
+    display: flex;
 }
 
 .feedback {

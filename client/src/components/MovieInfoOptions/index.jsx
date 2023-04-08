@@ -5,8 +5,12 @@ import FeedbackSvg from "../../assets/feedback.svg";
 import StarSvg from "../../assets/star.svg";
 import { useState } from "react";
 import ReviewModal from "../ReviewModal";
+import HandleUserActions from "../../pages/handleUserActions.js";
 
 function MovieInfoOptions(data) {
+  const { handleAddToMovielistClick,
+          handleLikeClick,
+        } = HandleUserActions();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -16,13 +20,17 @@ function MovieInfoOptions(data) {
 
   return (
     <div className="options">
-      <div className="liked">
-        <img className="heartSvg" src={HeartSvg} alt={"Heart icon"} />
-        Liked
+      <div className="like">
+        <button onClick={() => handleLikeClick("movieID")}>
+          <img className="heartSvg" src={HeartSvg} alt="Ícone de like" />
+          Like
+        </button>
       </div>
       <div className="watchlist">
-        <img className="bookmarkSvg" src={BookmarkSvg} alt={"Bookmark icon"} />
-        Watchlist
+        <button onClick={() => handleAddToMovielistClick("movieID")}>
+          <img className="bookmarkSvg" src={BookmarkSvg} alt="Ícone de adicionar a movielist" />
+          Add to movielist
+        </button>
       </div>
       <div className="feedback">
         <button onClick={handleClick}>
