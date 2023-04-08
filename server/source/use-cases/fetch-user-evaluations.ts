@@ -9,7 +9,7 @@ interface IFetchUserEvaluationsUseCaseReply {
     evaluations: Evaluation[]
 }
 
-export class FetchUserReviewsUseCase {
+export class FetchUserEvaluationsUseCase {
     constructor(private moviesRepository: IMoviesRepository) {}
 
     async handle({
