@@ -11,8 +11,8 @@ export const Item = (props) => {
                 <Card.Title>{props.item.name}</Card.Title>
                 <Card.Text>{props.item.description}</Card.Text>
                 <Card.Text>R$ {props.item.price}</Card.Text>
-                <Button style={{ margin:'3px' }} variant="secondary" onClick={props.onClickEdit}>Editar</Button>
-                <Button style={{ margin:'3px' }} variant="danger" onClick={props.onClickRemove}>Excluir</Button>
+                <Button style={{ margin:'3px' }} variant="secondary" data-testid="editItemButton" onClick={props.onClickEdit}>Editar</Button>
+                <Button style={{ margin:'3px' }} variant="danger" data-testid="removeItemButton" onClick={props.onClickRemove}>Excluir</Button>
             </Card.Body>
         </Card>
     )

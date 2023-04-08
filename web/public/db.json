@@ -1,26 +1,6 @@
 {
-  "items": [
-    {
-      "id": 1680894107492,
-      "name": "Luca",
-      "description": "Modric",
-      "price": "1,50",
-      "category": "luca"
-    },
-    {
-      "id": 1680896282543,
-      "name": "tralala",
-      "description": "ronald",
-      "price": "5,65",
-      "category": "modric"
-    }
-  ],
-  "categories": [
-    {
-      "id": 1680893680352,
-      "name": "modric"
-    }
-  ],
+  "items": [],
+  "categories": [],
   "clients": [
     {
       "name": "bia",
