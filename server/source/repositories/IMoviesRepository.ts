@@ -6,4 +6,5 @@ export interface IMoviesRepository{
     getMovie(id: string): Promise<Movie | null>;
     getAverage(id: string): Promise<number | null>;
     addEvaluation(userId: string, movieId: string, newRating: number): Promise<Evaluation>;
+    getUserEvaluations(id: string): Promise<Evaluation[]>;
 }
