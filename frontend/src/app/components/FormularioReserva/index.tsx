@@ -1,9 +1,9 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-import { FormValues } from '../../../services/api/interfaces';
-// import './index2.css'
-import CreateReservationAPI from '../../hooks/createReservation';
+import React from "react";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
+import * as Yup from "yup";
+import { FormValues } from "../../../services/api/interfaces";
+import "./index.css";
+import CreateReservationAPI from "../../hooks/createReservation";
 
 const validationSchema = () => Yup.object({
   name: Yup.string()
@@ -52,120 +52,201 @@ const validationSchema = () => Yup.object({
 });
 
 const ReservationForm: React.FC = () => {
-  const initialValues: FormValues = { 
-    name: '',
-    city: '',
-    street: '',
+  const initialValues: FormValues = {
+    name: "",
+    city: "",
+    street: "",
     streetNumber: 1,
-    checkIn: '',
-    checkOut: '',
+    checkIn: "",
+    checkOut: "",
     guests: 1,
-    cep: '',
-    budget: '',
-    additionalInfo: '',
+    cep: "",
+    budget: "",
+    additionalInfo: "",
     bedrooms: 1,
     beds: 1,
     bathrooms: 1,
     photos: [],
   };
 
-  const { createElement, isLoading, isError, isSuccess } = CreateReservationAPI();
+  const { createElement, isLoading, isError, isSuccess } =
+    CreateReservationAPI();
 
-  const onSubmit = async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+  const onSubmit = async (
+    values: FormValues,
+    { setSubmitting }: FormikHelpers<FormValues>
+  ) => {
     try {
       await createElement(values);
-      alert('Reservation created successfully');
+      alert("Reservation created successfully");
     } catch (error) {
-      alert('Error creating reservation');
+      alert("Error creating reservation");
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <div className='page'>
-      <h1 className= "title">Crie sua reserva</h1>
+    <div className="page">
+      <h1>Crie sua reserva</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {({ isSubmitting,setFieldValue }: any) => (
-          <Form>
-          <div className = 'container'>
-            <div className='left'>
-              <label htmlFor="name">Título</label>
-              <Field type="text" name="name" />
-              <ErrorMessage name="name" component="div" className="error-message" />
-
-
-              <label htmlFor="city">Cidade</label>
-              <Field type="text" name="city" />
-              <ErrorMessage name="city" component="div" className="error-message" />
-
-              <label htmlFor="street">Rua</label>
-              <Field type="text" name="street" />
-              <ErrorMessage name="street" component="div" className="error-message" />
-
-              <label htmlFor="streetNumber">Número</label>
-              <Field type="number" name="streetNumber" />
-              <ErrorMessage name="streetNumber" component="div" className="error-message" />
-
-              <label htmlFor="cep">CEP</label>
-              <Field type="text" name="cep" />
-              <ErrorMessage name="cep" component="div" className="error-message" />
-
-              <label htmlFor="additionalInfo">Descrição</label>
-              <Field type="textarea" name="additionalInfo" />
-              <ErrorMessage name="additionalInfo" component="div" className="error-message" />
-
-            </div>
-            <div className='right'>
-
-              <label htmlFor="guests">Número de hóspedes</label>
-              <Field type="number" name="guests" />
-              <ErrorMessage name="guests" component="div" className="error-message" />
-
-              <label htmlFor="budget">Preço da diária</label>
-              <Field type="number" name="budget" />
-              <ErrorMessage name="budget" component="div" className="error-message" />
-
-              <label htmlFor="bedrooms">Quartos</label>
-              <Field type="number" name="bedrooms" />
-              <ErrorMessage name="bedrooms" component="div" className="error-message" />
-
-              <label htmlFor="beds">Camas</label>
-              <Field type="number" name="beds" />
-              <ErrorMessage name="beds" component="div" className="error-message" />
-
-              <label htmlFor="bathrooms">Banheiros</label>
-              <Field type="number" name="bathrooms" />
-              <ErrorMessage name="bathrooms" component="div" className="error-message" />
-
-              <label htmlFor="checkIn">Check-in</label>
-              <Field type="date" name="checkIn" />
-              <ErrorMessage name="checkIn" component="div" className="error-message" />
-
-              <label htmlFor="checkOut">Check-out</label>
-              <Field type="date" name="checkOut" />
-              <ErrorMessage name="checkOut" component="div" className="error-message" />
-
-              <Dropzone onUrlsAdded={(urls:string[]) => setFieldValue('photos', values.photos.concat(urls))} />
-              <ErrorMessage name="photos" component="div" className="error-message" />
-
-              
-              
-                  
-
-
-              <br/>
-              <button type="submit" disabled={isSubmitting}>
-                Enviar
-                
-              </button>
-            </div>
-          </div>
-          </Form>
+        {({ isSubmitting, setFieldValue }: any) => (
+          <>
+            <Form className="container">
+              <div className="leftPage">
+                <span className="option">
+                  <label htmlFor="name">Título</label>
+                  <Field type="text" name="name" />
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="city">Cidade</label>
+                  <Field type="text" name="city" />
+                  <ErrorMessage
+                    name="city"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="street">Rua</label>
+                  <Field type="text" name="street" />
+                  <ErrorMessage
+                    name="street"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="streetNumber">Número</label>
+                  <Field type="number" name="streetNumber" />
+                  <ErrorMessage
+                    name="streetNumber"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="cep">CEP</label>
+                  <Field type="text" name="cep" />
+                  <ErrorMessage
+                    name="cep"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="additionalInfo" aria-multiline={true}>
+                    Descrição
+                  </label>
+                  <Field type="textarea" as="textarea" name="additionalInfo" />
+                  <ErrorMessage
+                    name="additionalInfo"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="guests" className="titleInput">
+                    Número de hóspedes
+                  </label>
+                  <Field type="number" name="guests" />
+                  <ErrorMessage
+                    name="guests"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+              </div>
+              <div className="rightPage">
+                <span className="option">
+                  <label htmlFor="budget">Preço da diária</label>
+                  <Field type="number" name="budget" />
+                  <ErrorMessage
+                    name="budget"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="bedrooms">Quartos</label>
+                  <Field type="number" name="bedrooms" />
+                  <ErrorMessage
+                    name="bedrooms"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="beds">Camas</label>
+                  <Field type="number" name="beds" />
+                  <ErrorMessage
+                    name="beds"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="bathrooms">Banheiros</label>
+                  <Field type="number" name="bathrooms" />
+                  <ErrorMessage
+                    name="bathrooms"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="checkIn">Check-in</label>
+                  <Field type="date" name="checkIn" />
+                  <ErrorMessage
+                    name="checkIn"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <label htmlFor="checkOut">Check-out</label>
+                  <Field type="date" name="checkOut" />
+                  <ErrorMessage
+                    name="checkOut"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+                <span className="option">
+                  <Field
+                    type="file"
+                    name="photos"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      if (event.currentTarget.files) {
+                        const filesArray = Array.from(
+                          event.currentTarget.files
+                        );
+                        setFieldValue("photos", filesArray);
+                      }
+                    }}
+                    multiple
+                  />
+                  <ErrorMessage
+                    name="photos"
+                    component="div"
+                    className="error-message"
+                  />
+                </span>
+              </div>
+            </Form>
+            <button type="submit" disabled={isSubmitting}>
+              Enviar
+            </button>
+          </>
         )}
       </Formik>
     </div>

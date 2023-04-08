@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
-import { Props } from "../../components/ImageCard";
 import ImageCardRow from "../../components/ImageCardRow";
-import GetUsers from "../../hooks/getUsers";
+import "./index.css";
+import { Props } from "../../components/ImageCard";
 import GetReservations from "../../hooks/getReservations";
 
-export default function HomePage() {
-  const { users } = GetUsers();
-
+export default function FavoritesPage() {
   const { reservations } = GetReservations();
 
-  const [reservationsList, setReservationsList] = useState<Props[]>([]);
-
-  useEffect(() => {
-    if (users?.length) {
-      console.log(users);
-    }
-  }, [users]);
+  const [favoriteReservations, setFavoriteReservations] = useState<Props[]>([]);
 
   useEffect(() => {
     if (reservations?.length) {
@@ -31,19 +23,26 @@ export default function HomePage() {
           location: e.city,
           price: e.budget,
           description: e.additionalInfo,
-          favoritePage: false,
-          descriptionFull: false,
+          favoritePage: true,
+          descriptionFull: true,
         } as unknown as Props;
         return newObject;
       });
 
-      setReservationsList(reservationsList);
+      setFavoriteReservations(reservationsList);
     }
   }, [reservations]);
 
   return (
-    <div>
-      <ImageCardRow cards={reservationsList} />
-    </div>
+    <>
+      {favoriteReservations.length ? (
+        <div>
+          <h1>FAVORITOS</h1>
+          <ImageCardRow cards={favoriteReservations} />
+        </div>
+      ) : (
+        <h1 id="isEmpty">Esta lista está vazia</h1>
+      )}
+    </>
   );
 }

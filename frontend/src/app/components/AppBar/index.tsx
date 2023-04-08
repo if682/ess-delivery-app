@@ -24,7 +24,12 @@ function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
   return (
     <div className="AppBar">
       <div className="header">
-        <div className="tittle">CIN VAGO</div>
+        <button
+          onClick={() => window && (window.location.href = "/")}
+          className="tittle"
+        >
+          CIN VAGO
+        </button>
         {showSideBar ? (
           <SideBar closeSideBar={() => setShowSideBar(false)} />
         ) : (
