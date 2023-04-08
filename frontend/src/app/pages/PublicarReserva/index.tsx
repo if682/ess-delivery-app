@@ -10,9 +10,9 @@ import ReservationForm from '../../components/FormularioReserva';
 const ReservationPage: React.FC = () => {
   return (
     <>
-      <AppContainer>
+      
         <ReservationForm/>
-      </AppContainer>
+      
     </>
   );
 };

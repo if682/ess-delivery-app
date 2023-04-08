@@ -6,7 +6,7 @@ import { FormValues } from '../../../services/api/interfaces';
 import CreateReservationAPI from '../../hooks/createReservation';
 
 const validationSchema = () => Yup.object({
-  location: Yup.string()
+  name: Yup.string()
     .required('Um nome para a reserva é obrigatório'),
   city: Yup.string()
     .required('A cidade é obrigatória'),
@@ -150,17 +150,7 @@ const ReservationForm: React.FC = () => {
               <Field type="date" name="checkOut" />
               <ErrorMessage name="checkOut" component="div" className="error-message" />
 
-              <Field
-                type="file"
-                name="photos"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  if (event.currentTarget.files) {
-                    const filesArray = Array.from(event.currentTarget.files);
-                    setFieldValue("photos", filesArray);
-                  }
-                }}
-                multiple
-             />
+              <Dropzone onUrlsAdded={(urls:string[]) => setFieldValue('photos', values.photos.concat(urls))} />
               <ErrorMessage name="photos" component="div" className="error-message" />
 
               

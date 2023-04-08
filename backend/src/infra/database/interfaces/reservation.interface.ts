@@ -12,7 +12,7 @@ export interface ReservationCreationDTO {
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  photos: Array<File>;
+  photos: Array<string>;
   owner: string;
 }
 

@@ -45,7 +45,7 @@ export class Reservation {
   bathrooms: number;
 
   @Column({ type: 'jsonb' })
-  photos: Array<File>;
+  photos: Array<string>;
 
   @Column()
   owner: string;

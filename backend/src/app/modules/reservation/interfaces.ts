@@ -12,7 +12,7 @@ export interface Reservation {
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  photos: Array<File>;
+  photos: Array<string>;
   owner: string;
 }
 
@@ -31,5 +31,5 @@ export interface ReservationResponse {
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  photos: Array<File>;
+  photos: Array<string>;
 }
