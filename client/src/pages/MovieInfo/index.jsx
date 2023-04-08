@@ -11,7 +11,7 @@ function MovieInfo() {
     name: localStorage.getItem('title'),
     year: localStorage.getItem('year'),
     parentalRating: "14",
-    duration: "2h19min",
+    duration: localStorage.getItem('duration'),
     description:localStorage.getItem('description'),
     rating: "9.5",
   };

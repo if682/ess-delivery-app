@@ -16,7 +16,7 @@ function MovieInfoCard({
       <div className="secondaryDiv">
         <div className="name">{name}</div>
         <div className="infos">
-          {year} - {parentalRating} - {duration}
+          {year} - {duration}
         </div>
         <div className="description">{description}</div>
       </div>

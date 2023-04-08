@@ -17,6 +17,7 @@ const SearchResult = (props) => {
         localStorage.setItem('description', dataJson.overview);
         localStorage.setItem('id', dataJson.id);
         localStorage.setItem('posterPath', posterPath)
+        localStorage.setItem('duration', dataJson.runtime)
         navigate('/movieinfo')
       }
     fetchDetails(`https://api.themoviedb.org/3/movie/${props.id}?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR`)
