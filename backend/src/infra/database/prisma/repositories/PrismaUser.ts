@@ -68,4 +68,8 @@ export class PrismaUser implements UserRepository {
   async createAdminUser(user: UserCreationDTO): Promise<User> {
     throw new Error('Method not implemented');
   }
+
+  async getUserByCPF(cpf: string): Promise<User> {
+    throw new Error('Method not implemented');
+  }
 }
