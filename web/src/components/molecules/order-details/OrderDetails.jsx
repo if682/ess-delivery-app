@@ -49,7 +49,7 @@ function OrderDetails({ order }) {
             <strong>Forma de pagamento</strong>
           </div>
 
-          {order.itens.map((item, index) => (
+          {order.items.map((item, index) => (
             <div className="order-row d-flex flex-row align-items-center justify-content-between mt-2">
               <div className="d-flex align-items-end" style={{ width: "25%" }}>
                 <span className="active-order-text">{item.quantity}x</span>

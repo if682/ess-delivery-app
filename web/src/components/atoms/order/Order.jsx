@@ -13,7 +13,7 @@ function Order({
   place,
   address,
   date,
-  itens,
+  items,
   values,
   paymentMethod,
   selectOrder,
@@ -97,7 +97,7 @@ function Order({
               <strong>Forma de pagamento</strong>
             </div>
 
-            {itens.map((item, index) => (
+            {items.map((item, index) => (
               <>
                 <div className="order-row d-flex flex-row align-items-center justify-content-between mt-2">
                   <div
