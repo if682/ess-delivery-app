@@ -47,7 +47,7 @@ describe('GetClientEmail component', () => {
 
     test('navigates to login page if email is already registered', () => {
     const currentClients = [{id: 1, name: 'teste1', email: 'teste@hotmail.com', password: 'teste'}];
-    const { getByPlaceholderText, getByText, getByTestId} = render(<BrowserRouter><GetClientEmail teste={true} currentC={currentClients}/></BrowserRouter>);
+    const { getByPlaceholderText, getByTestId} = render(<BrowserRouter><GetClientEmail teste={true} currentC={currentClients}/></BrowserRouter>);
     const input = getByPlaceholderText('E-mail');
     fireEvent.change(input, { target: { value: 'teste@hotmail.com' } });
     const button = getByTestId('button-reg-email');
