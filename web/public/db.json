@@ -112,9 +112,7 @@
   "categories": [],
   "clients": [
     {
-      "name": "bia",
-      "email": "bia@hotmail.com",
-      "password": "senha",
+      "email": "bia2@hotmail.com",
       "id": 1
     },
     {
@@ -146,6 +144,12 @@
       "email": "biazita@hotmail.com",
       "password": "bia1",
       "id": 128294
+    },
+    {
+      "name": "teste2",
+      "email": "teste12@hotmail.com",
+      "password": "teste2",
+      "id": 128295
     }
   ]
 }

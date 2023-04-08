@@ -4,10 +4,9 @@ import { ArrowClockwise } from 'react-bootstrap-icons';
 import Button from "react-bootstrap/esm/Button";
 
 export const DataField = (props) => {
-    const [clicked, setClicked] = useState(false)
 
     const handleClick = () => {
-        console.log("here oi")
+        props.setShow(true);
     }
 
     return (
