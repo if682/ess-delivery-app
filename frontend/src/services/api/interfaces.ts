@@ -7,11 +7,11 @@ export interface UserResponse {
 
 
 export interface FormValues {
-  name: string; 
+  name: string;
   city: string;
-  street:string;
+  street: string;
   streetNumber: number;
-  cep : string;
+  cep: string;
   checkIn: string;
   checkOut: string;
   guests: number;
@@ -23,13 +23,18 @@ export interface FormValues {
   photos: Array<File>;
 }
 
-export interface ReservationResponse{
+export interface BookingTryValues {
+  userId: string | undefined;
+  reservationId: string | undefined;
+}
+
+export interface ReservationResponse {
   id: string;
   name: string;
-  city: string; 
-  street:string;
+  city: string;
+  street: string;
   streetNumber: number;
-  cep : string;
+  cep: string;
   checkIn: string;
   checkOut: string;
   guests: number;
@@ -38,5 +43,5 @@ export interface ReservationResponse{
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  photos: Array<{url:string}>;
+  photos: Array<{ url: string }>;
 }
