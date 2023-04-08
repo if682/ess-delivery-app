@@ -1,5 +1,5 @@
 import { render, fireEvent, act } from '@testing-library/react';
-import { GetClientName, warningMessage} from './GetClientName';
+import { GetClientName} from './GetClientName';
 import { BrowserRouter } from 'react-router-dom';
 
 
