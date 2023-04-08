@@ -8,7 +8,7 @@ import { useNavigate, useLocation} from 'react-router-dom';
 
 
 
-export const GetClientPassword = () => {
+export const GetClientPassword = (props) => {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [warningMessage, setWarningMessage] = useState(null);
@@ -16,7 +16,7 @@ export const GetClientPassword = () => {
 
     let navigate = useNavigate();
     const {state} = useLocation()
-    const { name, email} = state;
+    const { name, email} = (state != null) ? state : props.state;
 
     useEffect(() => {
         setWarningMessage(null)
@@ -79,7 +79,7 @@ export const GetClientPassword = () => {
                         className='register_password_input'
                     />
                     </div>
-                    <text className='register_password_warning_text'>{warningMessage}</text>
+                    <text className='register_password_warning_text' id='warning_message'>{warningMessage}</text>
                     <div className='register_checkbox'>
                         <input type='checkbox' checked={checked} onChange={handleOnChange}/>
                         <text className='checkbox_text'>Li e concordo com os <text className='clause_checkbox'>termos e políticas de privacidade</text></text>

@@ -3,7 +3,7 @@ import { ClientRegistered } from './ClientRegistered';
 import { BrowserRouter } from 'react-router-dom';
 
 
-describe('GetClientName component', () => {
+describe('ClientRegistered component', () => {
   test('renders the component', () => {
     const { getByText} = render(<BrowserRouter><ClientRegistered/></BrowserRouter>);
 
