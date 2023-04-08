@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import "./ClientInfo.css";
 import { DataField } from "../DataField/DataField";
 import { EditEmailPopup } from "../EditEmail/EditEmailPopup";
+import { EditPasswordPopup } from "../EditPassword/EditPasswordPopup";
 
 function ClientInfo() {
   const [id, setId] = useState("")
@@ -38,6 +39,7 @@ function ClientInfo() {
   return (
     <>
     <EditEmailPopup show={showEditEmail} onHide={() => setShowEditEmail(false)} client_id={id} currentClients={currentClients} name={name} password={password}/>
+    <EditPasswordPopup show={showEditPassword} onHide={() => setShowEditPassword(false)} client_id={id} name={name} email={email} currentPassword={password}/>
     <div className="client-info-container">
       <button className="go-back-btn" onClick={goBack}>
         <ChevronLeft /> Voltar
