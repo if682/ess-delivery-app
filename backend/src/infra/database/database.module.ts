@@ -16,6 +16,7 @@ import { TypeOrmReservationConnectionRepository } from './typeorm/repositories/R
 import { FavoritesProviders } from './typeorm/providers/favoritesProvider';
 import FavoritesRepository from './repositories/FavoritesRepository';
 import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeOrmFavorites';
+import { EvalutationProvider } from './typeorm/providers/evaluationProvider';
 @Module({
   providers: [
     databaseProviders,
@@ -24,6 +25,7 @@ import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeO
     ...ReservationProviders,
     ...ReservationConnectionProvider,
     ...FavoritesProviders,
+    ...EvalutationProvider,
     {
       provide: UserRepository,
       useClass: TypeOrmUserRepository,
