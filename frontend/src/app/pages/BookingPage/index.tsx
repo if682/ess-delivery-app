@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { IconBathroomNumber, IconBedroomNumber, IconGuestNumber, IconMinus, IconPlus, IconRangeDate, IconStarUnselected } from "../../assets/icons";
+import { IconBathroomNumber, IconBedroomNumber, IconGuestNumber, IconMinus, IconPlus, IconRangeDate, IconStarUnselected, IconUserCircle } from "../../assets/icons";
 import { Input } from "../../components/Input";
 
 const Container = styled.div`
@@ -22,17 +22,22 @@ const MakeReservationContainer = styled.div`
     flex-direction: column;
     min-width: 450px;
     align-items: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 `;
 
 const ClickableIcon = styled.div`
     cursor: pointer;
-    align-items: center;
+    align-self: flex-center;
 `;
 
 const Row = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 20px;
 `;
 
 const IconWidget = styled.div`
@@ -68,6 +73,7 @@ const PriceText = styled.span`
 const DescriptionTitleText = styled.span`
   color: #717171;
   font-size: 30px;
+  align-self: flex-start;
 `;
 
 const DescriptionIconText = styled.span`
@@ -88,6 +94,7 @@ const SizedBoxVertical = styled.hr`
 const DescriptionReservationMakeText = styled.span`
   color: #717171;
   font-size: 20px;
+  align-self: flex-start
 `;
 
 const DescriptionBodyText = styled.span`
@@ -107,10 +114,45 @@ const Divider = styled.hr`
   color: #6E7491;
 `;
 
+const RadioLabel = styled.p`
+    margin-top: -5px;
+    align-self: flex-start
+`;
+
+const RatingContainer = styled.div`
+    max-width: 250px
+`;
+
+const RatingColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width:200px;
+`;
+
+const RatingBodyText = styled.span`
+  color: #27273F;
+  font-size: 18px;
+  align-self: flex-start;
+  text-align: left;
+`;
+
+const RatingTitleText = styled.span`
+  color: #6E7491;
+  font-size: 18px;
+  align-self: flex-start
+`;
+
 export default function BookingPage() {
     const { id } = useParams();
     const { reservation } = GetReservationById({ id: id as string })
     const [guestNumber, setGuestNumber] = useState(0);
+    // The selected drink
+    const [selectedDrink, setSelectedDrink] = useState<String>();
+
+    // This function will be triggered when a radio button is selected
+    const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDrink(event.target.value);
+    };
 
     return (
         <AppContainer>
@@ -129,7 +171,7 @@ export default function BookingPage() {
                     <DescriptionTitleText>Descrição</DescriptionTitleText>
                     <PriceText>R$ {reservation?.budget}</PriceText>
                 </Row>
-                <DescriptionBodyText>Vista deslumbrante, céu iluminado pelas estrelas, vagalumes e pirilampos, os sons e os aromas da Floresta. Pedaço do Paraíso, mágico e reservado. Refúgio de tranquilidade e paz cercado por reservas biológicas, de natureza exuberante, ar puríssimo e águas cristalinas. Ambientações aconchegantes, charmosas e super confortáveis com piscina de água natural.</DescriptionBodyText>
+                <DescriptionBodyText>{reservation?.additionalInfo}</DescriptionBodyText>
                 <Row>
                     <IconWidget>
                         {IconGuestNumber}
@@ -155,38 +197,138 @@ export default function BookingPage() {
                         throw new Error("Function not implemented.");
                     }} title={"Reservar"}></CustomButton>
                 </Row>
+                <SizedBoxVertical />
+                <SizedBoxVertical />
+                <SizedBoxVertical />
                 <Row>
-                    <MakeReservationContainer>
-                        <Row>
-                            <DescriptionReservationMakeText>Hóspedes</DescriptionReservationMakeText>
-                            <ClickableIcon onClick={function (): void {
-                                setGuestNumber(previous => previous + 1)
-                            }}>
-                                {IconPlus}
-                            </ClickableIcon>
-                            <DescriptionReservationMakeText>{guestNumber}</DescriptionReservationMakeText>
-                            <ClickableIcon onClick={function (): void {
-                                setGuestNumber(previous => previous - 1)
-                            }}>
-                                {IconMinus}
-                            </ClickableIcon>
-                        </Row>
-                        <SizedBoxVertical />
-                        <DescriptionReservationMakeText>Forma de Pagamento</DescriptionReservationMakeText>
-                        <DescriptionReservationMakeText>Pix</DescriptionReservationMakeText>
-                        <DescriptionReservationMakeText>Cartão de Crédito</DescriptionReservationMakeText>
-                        <DescriptionReservationMakeText>Cartão de Débito</DescriptionReservationMakeText>
-                        <Row>
-                            <Input size="MEDIUM" placeholder="Número do cartão"></Input>
-                            <SizedBoxHorizontal />
-                            <Input size="SMALL" placeholder="CVV"></Input>
-                        </Row>
-                        <SizedBoxVertical />
-                        <Input size="MEDIUM" placeholder="Validade"></Input>
-                    </MakeReservationContainer>
+                    <fieldset>
+                        <MakeReservationContainer>
+                            <Row>
+                                <DescriptionReservationMakeText>Hóspedes</DescriptionReservationMakeText>
+                                <ClickableIcon onClick={function (): void {
+                                    setGuestNumber(previous => previous + 1)
+                                }}>
+                                    {IconPlus}
+                                </ClickableIcon>
+                                <DescriptionReservationMakeText>{guestNumber}</DescriptionReservationMakeText>
+                                <ClickableIcon onClick={function (): void {
+                                    setGuestNumber(previous => previous - 1)
+                                }}>
+                                    {IconMinus}
+                                </ClickableIcon>
+                            </Row>
+                            <SizedBoxVertical />
+                            <DescriptionReservationMakeText>Forma de Pagamento</DescriptionReservationMakeText>
+                            <SizedBoxVertical />
+                            <RadioLabel>
+                                <input
+                                    type="radio"
+                                    name="drink"
+                                    value="Coffee"
+                                    id="coffee"
+                                    onChange={radioHandler}
+                                />
+                                <DescriptionReservationMakeText>Pix</DescriptionReservationMakeText>
+                            </RadioLabel>
+                            <RadioLabel>
+                                <input
+                                    type="radio"
+                                    name="drink"
+                                    value="Tea"
+                                    id="tea"
+                                    onChange={radioHandler}
+                                />
+                                <DescriptionReservationMakeText>Cartão de Crédito</DescriptionReservationMakeText>
+                            </RadioLabel>
+
+                            <RadioLabel>
+                                <input
+                                    type="radio"
+                                    name="drink"
+                                    value="Pumpkin Juice"
+                                    id="pumpkin"
+                                    onChange={radioHandler}
+                                />
+                                <DescriptionReservationMakeText>Cartão de Débito</DescriptionReservationMakeText>
+                            </RadioLabel>
+
+                            <Row>
+                                <Input size="MEDIUM" placeholder="Número do cartão"></Input>
+                                <SizedBoxHorizontal />
+                                <Input size="SMALL" placeholder="CVV"></Input>
+                            </Row>
+                            <SizedBoxVertical />
+                            <Input size="MEDIUM" placeholder="Validade"></Input>
+                        </MakeReservationContainer>
+                    </fieldset>
                     <Calendar />
                 </Row>
                 <Divider />
+                <DescriptionTitleText>Avaliações</DescriptionTitleText>
+                <SizedBoxVertical />
+                <SizedBoxVertical />
+                <Row>
+                    <RatingContainer>
+                        <Row>
+                            {IconUserCircle}
+                            <RatingColumn>
+                                <RatingTitleText>Sônia Lemos</RatingTitleText>
+                                <RatingTitleText>{reservation?.checkIn}</RatingTitleText>
+                                <Row>
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                </Row>
+                                <RatingBodyText>
+                                    Nossa, o que falar dessa casa que é maravilhosa?A casa fica no topo de uma montanha, com uma vista linda, muito verde, ar puro, clima ameno (quando fomos), até um...
+                                </RatingBodyText>
+                            </RatingColumn>
+
+                        </Row>
+                    </RatingContainer>
+                    <RatingContainer>
+                        <Row>
+                            {IconUserCircle}
+                            <RatingColumn>
+                                <RatingTitleText>Sônia Lemos</RatingTitleText>
+                                <RatingTitleText>{reservation?.checkIn}</RatingTitleText>
+                                <Row>
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                </Row>
+                                <RatingBodyText>
+                                    Nossa, o que falar dessa casa que é maravilhosa?A casa fica no topo de uma montanha, com uma vista linda, muito verde, ar puro, clima ameno (quando fomos), até um...
+                                </RatingBodyText>
+                            </RatingColumn>
+
+                        </Row>
+                    </RatingContainer>
+                    <RatingContainer>
+                        <Row>
+                            {IconUserCircle}
+                            <RatingColumn>
+                                <RatingTitleText>Sônia Lemos</RatingTitleText>
+                                <RatingTitleText>{reservation?.checkIn}</RatingTitleText>
+                                <Row>
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                    {IconStarUnselected}
+                                </Row>
+                                <RatingBodyText>
+                                    Nossa, o que falar dessa casa que é maravilhosa?A casa fica no topo de uma montanha, com uma vista linda, muito verde, ar puro, clima ameno (quando fomos), até um...
+                                </RatingBodyText>
+                            </RatingColumn>
+
+                        </Row>
+                    </RatingContainer>
+                </Row>
             </Container>
         </AppContainer >
     )
