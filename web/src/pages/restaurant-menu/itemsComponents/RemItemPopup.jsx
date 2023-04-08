@@ -25,7 +25,7 @@ export const RemItemPopup = (props) => {
         </Modal.Body>
         <Modal.Footer>
             <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-danger' data-testid='confirmRemoveButton' onClick={() => {
+            <Button className='btn-danger' data-testid='confirmRemoveButton' onClick={async () => {
                 RemItem()
                 props.onHide()
             }}>Excluir</Button>

@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 export const Item = (props) => {
     return (
+        <div data-testid='item-component'>
         <Card style={{ width: '250px', margin:'10px' }}>
             {/* <Card.Img variant="" 
                 style={{ objectFit: 'cover', height: '250px', width: '250px' }}
@@ -15,5 +16,6 @@ export const Item = (props) => {
                 <Button style={{ margin:'3px' }} variant="danger" data-testid="removeItemButton" onClick={props.onClickRemove}>Excluir</Button>
             </Card.Body>
         </Card>
+        </div>
     )
 }

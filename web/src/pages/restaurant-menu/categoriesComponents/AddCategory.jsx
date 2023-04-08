@@ -3,7 +3,7 @@ import { isInputNull } from "../../../shared/functions/isInputNull";
 import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
 
 
-export default function AddCategory() {
+export default function AddCategory(props) {
     const [showForm, setShowForm] = React.useState(false);
     const [newCategory, setNewCategory] = React.useState("");
     const [warningMessage, setWarningMessage] = React.useState(null);
@@ -53,6 +53,7 @@ export default function AddCategory() {
 
             setShowForm(false);
             setNewCategory("");
+            props.onHide()
         }
     }
 

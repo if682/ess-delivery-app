@@ -32,7 +32,7 @@ export const RestaurantMenu = () => {
             .then(response => response.json())
             .then(data => {
                 setCategories(data)});
-    }, []);
+    }, [addItemToggle, remItemToggle, ediItemToggle, addCatToggle, remCatToggle]);
 
     return (
         <div>
@@ -40,8 +40,8 @@ export const RestaurantMenu = () => {
             <RemCategoryPopup show={remCatToggle[0]} category={remCatToggle[1]} onHide={() => setRemCatToggle(false)}/>
 
             <AddItemPopup show={addItemToggle[0]} onHide={() => setAddItemToggle(false)} currentItems={items} category={addItemToggle[1]}/>
-            <RemItemPopup show={remItemToggle[0]} item={remItemToggle[1]} onHide={() => setRemItemToggle(false)}/>
-            <EdiItemPopup show={ediItemToggle[0]} item={ediItemToggle[1]} onHide={() => setEdiItemToggle(false)}/>
+            <RemItemPopup show={remItemToggle[0]} item={remItemToggle[1]} onHide={() => setRemItemToggle([false, null])}/>
+            <EdiItemPopup show={ediItemToggle[0]} item={ediItemToggle[1]} onHide={() => setEdiItemToggle([false, null])}/>
 
             {
             categories.map((category) => (
@@ -54,6 +54,7 @@ export const RestaurantMenu = () => {
                         Adicionar item
                     </Button>
                     
+                    <div data-testid='items-container'>
                     {
                     items.filter((item) => item.category === category.name) // filter items by category name
                         .map((item) => (
@@ -62,7 +63,8 @@ export const RestaurantMenu = () => {
                             onClickEdit={(() => setEdiItemToggle([true, item]))}
                             onClickRemove={() => setRemItemToggle([true, item.id])}/>
                     ))
-                    }  
+                    } 
+                    </div> 
                 </div>
             ))
             }
