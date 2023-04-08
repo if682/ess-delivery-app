@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/checkbox": "^14.0.0",
     "@emailjs/browser": "^3.10.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -32,6 +33,11 @@
     "eject": "react-scripts eject",
     "json-server": "node server.js",
     "test": "react-scripts test"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[jt]sx?$": "babel-jest"
+    }
   },
   "eslintConfig": {
     "extends": [

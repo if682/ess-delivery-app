@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React, { useState, useEffect } from "react";
 import './Login.css'
 import { InputTextBox } from "./loginComponents/inputTextBox/InputText";
@@ -5,8 +6,7 @@ import { RedButtonLogin } from "./loginComponents/RedButton/RedButton";
 import { InputCheckBox } from "./loginComponents/inputCheckBox/InputCheck";
 import Logo from "../../assets/img/logo.svg"
 import { WhiteButtonLogin } from "./loginComponents/whiteButton/WhiteButton";
-import { Navigate, useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { Navigate, useLocation, useNavigate} from "react-router-dom";;
 
 
 const Login = () => {
@@ -18,6 +18,11 @@ const Login = () => {
     const [handleErrorEmail, setHandleErrorEmail] = useState("")
     const [handleErrorPwd, setHandleErrorPwd] = useState("")
     const [check, setCheck] = useState(false)
+
+    const [redirect, setRedirect] = useState("")
+
+    const {state} = useLocation()
+
     const redirectToSignUp = (event) => {
         navigate("/signup")
     }
@@ -71,7 +76,7 @@ const Login = () => {
 
                     <div className="login-inputText">
                         <p className="login-inputText-title">E-mail</p>
-                        <InputTextBox errorText={"*E-mail inválido"} isError={handleErrorEmail} type={"text"} set_val={setInputEmail} placeholder={' Insira um email'}></InputTextBox>
+                        <InputTextBox errorText={"*E-mail inválido"} isError={handleErrorEmail} type={"text"} set_val={setInputEmail} placeholder={' Insira um email'} defaultValue={state}></InputTextBox>
                     </div>
                     <div className="login-inputText">
                         <p className="login-inputText-title">Senha</p>
