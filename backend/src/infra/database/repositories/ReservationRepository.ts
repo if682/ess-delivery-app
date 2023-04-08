@@ -1,3 +1,4 @@
+import { FilterParams } from 'src/app/modules/reservation/reservation.controller';
 import { ReservationCreationDTO } from '../interfaces/reservation.interface';
 import { Reservation } from '../typeorm/entities/Reservation.entity';
 
@@ -11,4 +12,5 @@ export abstract class ReservationRepository {
   abstract getReservationByList(list: string[]): Promise<Reservation[]>;
   abstract getReservationsByOwnerId(id: string): Promise<Reservation[]>;
   abstract deleteReservation(id: string): Promise<void>;
+  abstract getWithParams(filters: FilterParams): Promise<Reservation[]>;
 }

@@ -5,6 +5,7 @@ import { ReservationCreationDTO } from 'src/infra/database/interfaces/reservatio
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnection } from '../../entities/ReservationConnection.entity';
 import { postgreDatasource } from '../../datasource';
+import { FilterParams } from 'src/app/modules/reservation/reservation.controller';
 
 @Injectable()
 export class TypeOrmReservationRepository implements ReservationRepository {
@@ -87,7 +88,6 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     }
 
     const test = await this.reservationRepository.find();
-    console.log(test);
     return reservations;
   }
 
@@ -117,5 +117,29 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     });
 
     await manager.remove(reservation);
+  }
+
+  async getWithParams({ city, date, qtd }: FilterParams) {
+    const query = this.reservationRepository.createQueryBuilder('reservation');
+    if (city) {
+      query.andWhere('reservation.city LIKE :city', {
+        city: `%${decodeURI(city)}%`,
+      });
+    }
+
+    if (date) {
+      const newDate = new Date(date).toISOString();
+      query.andWhere('DATE(reservation.checkIn) >= DATE(:date)', {
+        date: newDate,
+      });
+    }
+
+    if (qtd) {
+      query.andWhere('reservation.guests >= :qtd', { qtd });
+    }
+
+    const result = await query.getMany();
+
+    return result;
   }
 }

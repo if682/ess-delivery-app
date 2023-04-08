@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import { ReservationService } from './reservation.service';
@@ -17,6 +18,12 @@ import {
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
+
+export interface FilterParams {
+  city?: string;
+  qtd?: number;
+  date?: string;
+}
 
 @Controller('reservation')
 export class ReservationController {
@@ -30,6 +37,11 @@ export class ReservationController {
   async getReservations() {
     const reservation = await this.reservationRepository.getReservations();
     return reservation.map(this.reservationService.getReservationResponse);
+  }
+
+  @Get('/filters')
+  async getReservationsWithFilters(@Query() params: FilterParams) {
+    return this.reservationRepository.getWithParams(params);
   }
 
   @Get(':Id')
