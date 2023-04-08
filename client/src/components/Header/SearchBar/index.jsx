@@ -16,7 +16,7 @@ const SearchBar = () => {
       setMovies(dataJson.results)
       console.log(movies)
     }
-    fetchMovies(`https://api.themoviedb.org/3/search/company?api_key=ecfc4f2c404a65285db2275752af4018&query=${key}`)
+    fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR&query=${key}&page=1&include_adult=false`)
   }, [key])
 
   const handleInput =(word) =>{
@@ -43,7 +43,7 @@ const SearchBar = () => {
       <div class="search-result-container">
         {
           movies.map((movie) => (
-            <SearchResult titulo={movie.name} id={movie.id}/>
+            <SearchResult titulo={movie.title} id={movie.id}/>
           ))
         }
       </div>
