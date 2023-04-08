@@ -20,7 +20,7 @@ export interface FormValues {
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  photos: Array<File>;
+  photos: Array<string>;
 }
 
 export interface ReservationResponse{
@@ -38,5 +38,5 @@ export interface ReservationResponse{
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  photos: Array<{url:string}>;
+  photos: Array<string>;
 }

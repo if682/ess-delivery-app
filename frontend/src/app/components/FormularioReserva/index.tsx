@@ -6,7 +6,7 @@ import { FormValues } from '../../../services/api/interfaces';
 import CreateReservationAPI from '../../hooks/createReservation';
 
 const validationSchema = () => Yup.object({
-  location: Yup.string()
+  name: Yup.string()
     .required('Um nome para a reserva é obrigatório'),
   city: Yup.string()
     .required('A cidade é obrigatória'),
