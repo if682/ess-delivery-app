@@ -1,17 +1,23 @@
-import { createContext, useState } from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const SearchResult = (props) => {
+  const navigate = useNavigate()
   const handleSelectedMovie = async () => {
     const fetchDetails = async (url) =>{
         const dataResponse = await fetch(url, {
           method: 'GET'
         })
-        const dataJson = await dataResponse.json();
-        window.selectedMovieTitle = dataJson.title
-        window.selectedMovieDescription = dataJson.overview
-        window.selectedMovieId = dataJson.id
-        window.selectedMovieReleaseDate = dataJson.release_date
+        const dataJson = await dataResponse.json(); 
+        console.log(dataJson)
+        let posterPath = `https://image.tmdb.org/t/p/w500${dataJson.backdrop_path}`
+        console.log(posterPath)
+        localStorage.setItem('title', dataJson.title);
+        localStorage.setItem('year', dataJson.release_date);
+        localStorage.setItem('description', dataJson.overview);
+        localStorage.setItem('id', dataJson.id);
+        localStorage.setItem('posterPath', posterPath)
+        navigate('/movieinfo')
       }
     fetchDetails(`https://api.themoviedb.org/3/movie/${props.id}?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR`)
   }

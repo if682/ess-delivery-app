@@ -7,14 +7,12 @@ import "./styles.css";
 function MovieInfo() {
   const movieInfo = {
     image:
-      "https://upload.wikimedia.org/wikipedia/en/1/1e/Everything_Everywhere_All_at_Once.jpg",
-    name: "Lorem ipsum dolor",
-    directorList: ["José Vinicius", "Mateus Elias"],
-    year: "2022",
+    localStorage.getItem('posterPath'),
+    name: localStorage.getItem('title'),
+    year: localStorage.getItem('year'),
     parentalRating: "14",
     duration: "2h19min",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    description:localStorage.getItem('description'),
     rating: "9.5",
   };
 
