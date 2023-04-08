@@ -6,13 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function RestaurantTotalAccordion({
-  //restaurantID,
+  restaurantID,
+  monthYear,
   restaurantName,
   totalSpent
 }) 
 {
   const navigate = useNavigate();
-  //const seeRestaurantTotals = a Ideia é ir pruma página mostrando o total do restaurante especifico
+  const seeRestaurantTotals = () => navigate("/total-pedidos/" + restaurantID + "/" + monthYear);
   
   return (
     <Accordion>
@@ -33,6 +34,7 @@ function RestaurantTotalAccordion({
               <Col sm><div class="mostDescription">Mais pedido:<br/><strong class="mostOrdered">BigMac<br/></strong>5 unidades</div></Col>
               <Col sm={3}>
                 <RedOutlineButton
+                  onClick={seeRestaurantTotals}
                   chevron={false}
                   width="10rem">
                   Ver todos

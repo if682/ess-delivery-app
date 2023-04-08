@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import PageTitle from "../../components/atoms/page-title/PageTitle";
 import "./OrderTotals.css";
-import RestaurantTotalAccordion from "../../components/molecules/restaurantTotals-accordion/RestaurantTotalAccordion";
 import TotalsTable from "../../components/molecules/restaurantTotals-table/TotalsTable";
+import { useParams } from 'react-router-dom'
 
-function OrderTotals(
-  restaurantID,
-  restaurantName,
-  itemsOrdered
-)
+function OrderTotals()
 {
-
-  const navigate = useNavigate();
-  const goBack = () => navigate("/total-pedidos")
+  // passar esses parametros para TotalsTable
+  const {restaurantID, monthYear} = useParams();
 
   return (
     <div className="order-totals-page-container">

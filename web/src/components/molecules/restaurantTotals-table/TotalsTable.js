@@ -9,7 +9,7 @@ import { Row } from "react-bootstrap";
 
 function TotalsTable() {
   const navigate = useNavigate();
-  const goBack = () => navigate("/minha-conta");
+  const goBack = () => navigate("/total-pedidos");
   const orders = [];
   let currentOrders = [];
 
