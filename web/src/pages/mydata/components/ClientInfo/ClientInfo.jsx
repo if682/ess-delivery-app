@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft } from "react-bootstrap-icons";
 import Cookies from "js-cookie";
 import "./ClientInfo.css";
-import { DataField } from "../DataField/DataField";
+import { DataField } from "../../../../components/atoms/data-field/DataField";
 import { EditEmailPopup } from "../EditEmail/EditEmailPopup";
 import { EditPasswordPopup } from "../EditPassword/EditPasswordPopup";
 import { EditNamePopup } from "../EditName/EditNamePopup";

@@ -37,6 +37,12 @@
       "email": "scr2@hotmail.com",
       "password": "help2",
       "id": 128296
+    },
+    {
+      "name": "diaD",
+      "email": "dia_d@hotmail.com",
+      "password": "senha",
+      "id": 128297
     }
   ]
 }

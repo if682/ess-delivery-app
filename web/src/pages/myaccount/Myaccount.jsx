@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PageTitle from "../../components/atoms/page-title/PageTitle";
 import RedButton from "../../components/atoms/red-button/RedButton";
 import RedOutlineButton from "../../components/atoms/red-outline-button/RedOutlineButton";
-import { DeactivateAccountPopup } from "../../components/molecules/deactivate-account-popup/DeactivateAccountPopup";
+import { DeactivateAccountPopup } from "./deactivate-account-popup/DeactivateAccountPopup";
 
 import "./Myaccount.css";
 
