@@ -20,7 +20,7 @@ const Movie = ({ poster, title, year }) => {
         </button>
       </div>
 
-      <div className="poster-container" onClick={() => handleMovieClick(title)} >
+      <div className="poster-container" onClick={() => handleMovieClick()} >
         <img src={poster} alt="Poster do filme" />
       </div>
 

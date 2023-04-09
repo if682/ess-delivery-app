@@ -3,30 +3,27 @@ import { useNavigate } from "react-router-dom";
 const HandleUserActions = () => {
   const navigate = useNavigate();
 
-  const handleUserAvatarClick = (username) => {
-    alert(`Aqui deve ir para o perfil de ${username}`);
+  const handleUserAvatarClick = () => {
     let path = `/profile`;
     navigate(path);
   };
 
-  const handleUserWatchedFilmsClick = (username) => {
-    alert(`Aqui deve ir para os filmes assistidos de ${username}`);
-    let path = `/profile/watched`;
+  const handleUserHistoryClick = () => {
+    let path = `/profile?tab=movies`;
     navigate(path);
   };
 
-  const handleUserLikedFilmsClick = (username) => {
-    alert(`Aqui deve ir para os likes de ${username}`);
+  const handleUserLikedFilmsClick = () => {
     let path = `/profile/likes`;
     navigate(path);
   };
 
-  const handleUserReviewsClick = (username) => {
-    alert(`Aqui deve ir para as reviews de ${username}`);
+  const handleUserReviewsClick = () => {
+    let path = `/profile?tab=reviews`;
+    navigate(path);
   };
 
-  const handleUserMovielistsClick = (username) => {
-    alert(`Aqui deve ir para as listas de filmes de ${username}`);
+  const handleUserMovielistsClick = () => {
     let path = `/profile/movielists`;
     navigate(path);
   };
@@ -39,13 +36,14 @@ const HandleUserActions = () => {
     alert(`Aqui deve perguntar para qual movielist se deseja adicionar o filme ${title}`);
   };
 
-  const handleMovieClick = (title) => {
-    alert(`Aqui deve ir para a página do filme ${title}`);
+  const handleMovieClick = () => {
+    let path = `/movieinfo`;
+    navigate(path);
   };
 
   return {
     handleUserAvatarClick,
-    handleUserWatchedFilmsClick,
+    handleUserHistoryClick,
     handleUserLikedFilmsClick,
     handleUserReviewsClick,
     handleUserMovielistsClick,
