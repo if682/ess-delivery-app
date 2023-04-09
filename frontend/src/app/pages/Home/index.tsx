@@ -3,6 +3,7 @@ import { Props } from "../../components/ImageCard";
 import ImageCardRow from "../../components/ImageCardRow";
 import GetUsers from "../../hooks/getUsers";
 import GetReservations from "../../hooks/getReservations";
+import SearchBar from "../../components/SearchBar";
 
 export default function HomePage() {
   const { users } = GetUsers();
@@ -42,8 +43,9 @@ export default function HomePage() {
   }, [reservations]);
 
   return (
-    <div>
-      <ImageCardRow cards={reservationsList} />
-    </div>
+    <>
+      <SearchBar handleSearchCards={setReservationsList} />
+      <ImageCardRow evaluate={false} cards={reservationsList} />
+    </>
   );
 }
