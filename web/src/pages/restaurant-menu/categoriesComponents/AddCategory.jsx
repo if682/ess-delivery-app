@@ -1,16 +1,19 @@
 import React from "react";
 import { isInputNull } from "../../../shared/functions/isInputNull";
 import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
-
+import * as Icon from 'react-bootstrap-icons';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import PrimaryButton from "../../../components/atoms/primary-button/PrimaryButton";
 
 export default function AddCategory(props) {
-  const [showForm, setShowForm] = React.useState(false);
+  const [showForm, setShowForm] = React.useState(true);
   const [newCategory, setNewCategory] = React.useState("");
   const [warningMessage, setWarningMessage] = React.useState(null);
   const [currentCategories, setCurrentCategories] = React.useState([]);
+  const url = window.location.href
 
   React.useEffect(() => {
-    fetch("http://localhost:3001/categories")
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         setCurrentCategories(data);
@@ -44,7 +47,7 @@ export default function AddCategory(props) {
     } else {
       let category = { id: Date.now(), name: newCategory };
 
-      await fetch("http://localhost:3001/categories", {
+      await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -79,7 +82,7 @@ export default function AddCategory(props) {
             onChange={handleNewCategoryChange}
             data-testid="add-category-input"
           />
-          <PrimaryButton onClick={handleConfirmClick} buttonContent="Adicionar categoria" type="submit" data-testid="create-category-button">
+          <PrimaryButton buttonContent="Adicionar categoria" type="submit" data-testid="create-category-button">
           </PrimaryButton>
         </form>
       )}
