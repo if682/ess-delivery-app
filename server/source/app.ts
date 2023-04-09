@@ -9,8 +9,6 @@ export const app = fastify();
 
 app.register(cors, {
     origin: true,
-    methods: ["GET", "POST", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type"],
 });
 
 app.register(userRoutes);
