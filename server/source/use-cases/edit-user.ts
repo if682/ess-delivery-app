@@ -3,45 +3,54 @@ import { IUserRepository } from "../repositories/IUsersRepository";
 import { hash } from "bcryptjs";
 import { isValidPassword } from "../utils/checkpassword";
 
-interface IEditUserUseCase {
-    user: User
+interface IEditUserUseCaseRequest {
+    name: string
+    username: string
+    email: string
+    password: string
+    birthdate: Date
+    phone: string | null
+    location: string | null
 }
 
-interface IRegisterUserUseCaseReply {
+interface IEditUserUseCaseReply {
     user: User
 }
 
 export class EditUserUserUseCase {
-    constructor(private usersRepository: IUserRepository) {}
+    constructor(private usersRepository: IUserRepository) { }
 
     async handle({
-        user
-    }: IEditUserUseCase): Promise<IRegisterUserUseCaseReply> {
+        name,
+        email,
+        username,
+        birthdate,
+        password,
+        location,
+        phone,
+    }: IEditUserUseCaseRequest): Promise<IEditUserUseCaseReply> {
 
-        if(!isValidPassword(user.password)){
+        if (!isValidPassword(password)) {
             throw new Error("Unvalid Password.");
         }
 
-        else{
-            const password_hash = await hash(user.password, 6);
+        const password_hash = await hash(password, 6);
 
-            const editedUser: User = {
-                id: user.id,
-                birthdate: user.birthdate,
-                email: user.email,
-                location: user.location,
-                name: user.name,
-                password: password_hash,
-                passwordResetToken: user.passwordResetToken,
-                phone: user.phone,
-                resetTokenExpires: user.resetTokenExpires,
-                role: user.role,
-                username: user.username,
-            }
+        const user = await this.usersRepository.findByUsername(username);
 
-            user = await this.usersRepository.save(editedUser);
+        if (!user) {
+            throw new Error("Bad request.");
         }
-        
+
+        user.name = name;
+        user.email = email;
+        user.username = username;
+        user.birthdate = birthdate;
+        user.password = password_hash;
+        user.location = location;
+        user.phone = phone;
+
+        await this.usersRepository.save(user);
 
         return {
             user,
