@@ -1,5 +1,5 @@
 import { Evaluation, User } from "@prisma/client";
-import { IMoviesRepository } from "../repositories/IMoviesRepository";
+import { IMoviesRepository } from "../../repositories/IMoviesRepository";
 interface IMovieEvaluationUseCaseRequest{
     userId: string,
     movieId: string,

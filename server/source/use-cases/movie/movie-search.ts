@@ -1,5 +1,5 @@
 import { Movie } from "@prisma/client";
-import { IMoviesRepository } from "../repositories/IMoviesRepository";
+import { IMoviesRepository } from "../../repositories/IMoviesRepository";
 interface IMovieSearchUseCaseRequest{
     id: string
 }

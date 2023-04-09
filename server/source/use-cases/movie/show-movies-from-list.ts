@@ -1,4 +1,4 @@
-import { IListsRepository } from "../repositories/IListsRepository";
+import { IListsRepository } from "../../repositories/IListsRepository";
 
 
 interface IShowMoviesFromListUseCaseRequest{
