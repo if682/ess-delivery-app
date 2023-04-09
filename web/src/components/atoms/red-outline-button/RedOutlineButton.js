@@ -8,12 +8,11 @@ function RedOutlineButton({ onClick, children, width, chevron = true }) {
     <button
       className="red-outline-button"
       onClick={onClick ? onClick : () => {}}
+      style={width ? { width: width } : {}}
     >
       {children}
 
-      <span style={width ? { width: width } : {}}>
-        {chevron && <ChevronRight size={20} />}
-      </span>
+      <span>{chevron && <ChevronRight size={20} />}</span>
     </button>
   );
 }
