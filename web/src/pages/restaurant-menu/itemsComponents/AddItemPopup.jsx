@@ -77,12 +77,12 @@ export const AddItemPopup = (props) => {
                     />
                 <br></br>
 
-                {warningMessage && <div>{warningMessage}</div>}
+                {warningMessage}
             </Modal.Body>
             <Modal.Footer>
                 <Button variant='secondary' onClick={() => (props.onHide())}>Cancelar</Button>
                 <Button variant='primary' data-testid="addButton"
-                onClick={async () => addItem()}>Adicionar</Button>
+                onClick={async () => await addItem()}>Adicionar</Button>
             </Modal.Footer>
             </Modal>
         </>
