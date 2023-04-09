@@ -7,13 +7,14 @@ export async function register (request: FastifyRequest, reply: FastifyReply) {
         name: z.string(),
         username: z.string(),
         email: z.string().email(),
+        description: z.string().nullable(),
         password: z.string(),
         birthdate: z.string().datetime(),
         phone: z.string().nullable(),
         location: z.string().nullable(),
     });
 
-    const { name, username, email, password, birthdate, phone, location } = registerBodySchema.parse(request.body);
+    const { name, username, email, description, password, birthdate, phone, location } = registerBodySchema.parse(request.body);
 
     try {
         const registerUseCase = makeRegisterUseCase();
@@ -21,6 +22,7 @@ export async function register (request: FastifyRequest, reply: FastifyReply) {
         await registerUseCase.handle({
             name,
             email,
+            description: description || "",
             username,
             birthdate: new Date(birthdate),
             password,
