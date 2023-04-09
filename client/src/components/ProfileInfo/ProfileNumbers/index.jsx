@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import "./style.css";
 import { useContext, useState } from "react";
  
+const port = 4001;
 
 const ProfileNumbers = () => {
 
@@ -29,7 +30,7 @@ const ProfileNumbers = () => {
               console.log(error);
             }
           }
-          fetchMovies(`http://localhost:4001/list/${userId}/Historico`)
+          fetchMovies(`http://localhost:${port}/list/${userId}/Historico`)
     }, []);
   return (
         <section className="user-info-container">

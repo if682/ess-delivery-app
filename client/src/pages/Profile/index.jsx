@@ -9,14 +9,14 @@ import api from "../../services/api";
 
 const Profile = () => {
 
-  const mockedUserId = "ca22d758-eea5-4ddb-a0a0-437a8d596347"
+  const userId = localStorage.getItem("userId");
 
   const [userReviews, setUserReviews] = useState();
 
   useEffect(() => {
       const fetchUserReviews = async () => {
           try {
-            const response = await api.get(`review/${mockedUserId}`);
+            const response = await api.get(`review/${userId}`);
             setUserReviews(response.data);
           } catch (error) {
             alert("Erro ao pegar reviews do usuário");

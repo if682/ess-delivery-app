@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const port = 4001;
+
 const UserRegister = () => {
 
     const [firstName, setFirstName] = useState("");
@@ -20,7 +22,7 @@ const UserRegister = () => {
         const iso = date.toISOString();
         console.log(iso)
         try{
-            let res = await fetch("http://localhost:4001/register", {
+            let res = await fetch(`http://localhost:${port}/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

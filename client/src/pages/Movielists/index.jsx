@@ -4,9 +4,8 @@ import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
-// ID provisório do usuário para testes
-const userId = "e84ba398-64fe-4929-b9a6-1e065cbdca2b";
-const port = 4002;
+const userId = localStorage.getItem("userId");
+const port = 4001;
 
 const Movielists = () => {
   const [lists, setLists] = useState([]);
@@ -74,7 +73,7 @@ const Movielists = () => {
     }
   };
 
-  const handleDeleteListClick = (event, name) => {
+  const handleDeleteListClick = async (event, name) => {
     // impede que o evento de clique na lista seja disparado
     event.stopPropagation();
     
@@ -82,10 +81,30 @@ const Movielists = () => {
     const userConfirmation = window.confirm(`Tem certeza que deseja excluir a lista "${name}"?`);
     
     if (userConfirmation) {
-      const newList = lists.filter((list) => list.name !== name);
-      setLists(newList);
+      try {
+        let response = await fetch(`http://localhost:${port}/list/${userId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId,
+            listName: name.trim(),
+          }),
+        });
+  
+        if (response.ok) {
+          const newList = lists.filter((list) => list.name !== name);
+          setLists(newList);
+          console.log("DELETE realizado com sucesso.");
+        } else {
+          console.log("Ocorreu um erro no DELETE.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
-  };
+  };  
 
   useEffect(() => {
     console.log(lists);

@@ -16,7 +16,8 @@ const ProfileSections = () => {
   }
 
   const handleLikes = () => {
-    alert("Mostrar likes")
+    let path = `likes`;
+    navigate(path)
   }
 
   const handleWatchList = () => {
@@ -50,7 +51,7 @@ const ProfileSections = () => {
         <div className="watchlist">
             <button onClick={handleWatchList}>
               <img src="../../assets/save.svg" alt=""/>
-              <span>Watchlist</span>
+              <span>Movielists</span>
             </button>
         </div>
     </section>
