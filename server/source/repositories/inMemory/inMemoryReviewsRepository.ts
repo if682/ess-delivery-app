@@ -25,4 +25,9 @@ export class InMemoryReviewsRepository implements IReviewsRepository{
         const reviewsBy = this.reviews.filter((item) => item.userId == id);
         return reviewsBy;
     }
+
+    async findManyByMovieId(id: string): Promise<Review[]> {
+        const movieReviews = this.reviews.filter((item) => item.movieId == id);
+        return movieReviews;
+    }
 }

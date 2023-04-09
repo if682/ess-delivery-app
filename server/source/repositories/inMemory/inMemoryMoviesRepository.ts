@@ -42,4 +42,17 @@ export class InMemoryMoviesRepository implements IMoviesRepository{
         this.evaluations[index] = {userId, movieId, rating: newRating};
         return this.evaluations[index];                            
     }
+
+    async getMovie(id: string): Promise<Movie | null> {
+        const movie = this.movies.find((item) => item.id == id);
+        if(!movie){
+            return null;
+        }
+        return movie
+    }
+
+    async getUserEvaluations(id: string): Promise<Evaluation[]> {
+        const userEvaluations = this.evaluations.filter((item) => item.userId == id);
+        return userEvaluations;
+    }
 }
