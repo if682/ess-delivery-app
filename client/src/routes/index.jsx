@@ -19,7 +19,6 @@ const AppRoutes = () => {
             <Route path="profile/movielists" element={<Movielists />} />            {/* todas as listas do usuário */}
             <Route path="profile/movielists/movielist" element={<Movielist />} />   {/* lista específica */}
             <Route path="profile/likes" element={<Likes />} />                      {/* filmes curtidos */}
-            <Route path="profile/watched" element={<Watched />} />                  {/* filmes assistidos */}
             <Route path="" element={<Login/>} />   {/* Login */}
             <Route path="/recover" element={<RecoverPassword/>} />   {/* Recover Password */}
             <Route path="login/newpassword" element={<PassChange/>} />   {/* Change Password */}
