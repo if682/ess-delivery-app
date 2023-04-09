@@ -30,10 +30,6 @@ function MovieInfoOptions(data) {
           Add a review
         </button>
       </div>
-      <div className="rating">
-        <img className="starSvg" src={StarSvg} alt={"Star icon"} />
-        {data.rating}/10
-      </div>
       {showModal && (
         <ReviewModal onClose={() => setShowModal(false)} />
       )}
