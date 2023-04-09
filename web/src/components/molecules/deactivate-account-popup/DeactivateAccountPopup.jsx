@@ -2,6 +2,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Cookies from 'js-cookie';
 import { useNavigate} from 'react-router-dom';
+import './DeactivateAccountPopup.css'
 
 export const DeactivateAccountPopup = (props) => {
     const navigate = useNavigate();
@@ -22,10 +23,13 @@ export const DeactivateAccountPopup = (props) => {
         <Modal.Header closeButton {...props}>
         </Modal.Header>
         <Modal.Body>
-            <text>Deseja mesmo desativar sua conta?</text>
+            <text className='main-text'>Deseja mesmo desativar sua conta?</text>
             <br/>
-            <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-primary' onClick={() => DeactivateAccount()}>Desativar conta</Button>
+            <div className='buttons-container'>
+                <Button className='btn-primary' onClick={() => DeactivateAccount()}>Confirmar</Button>
+                <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
+            </div>
+            
         </Modal.Body>
         </Modal>
     );
