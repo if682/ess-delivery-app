@@ -5,6 +5,7 @@ import {
 } from "../../assets/icons";
 import "./index.css";
 import { useState } from "react";
+import { PropsEvaluations } from "../EvaluationField";
 
 interface ImageCardProps {
   width: string;
@@ -42,6 +43,8 @@ function ImageCard({
       for (let i = 60; i <= text.length; i++)
         if (text[i] === " " || text[i] === "." || text[i] === ",") {
           return text.slice(0, i - 1) + "...";
+        } else if (i === text.length - 1) {
+          return text;
         }
     } else {
       return text;
@@ -133,4 +136,5 @@ export interface Props {
   favoritePage: boolean;
   descriptionFull: boolean;
   setFavorites?: () => null;
+  evaluations?: PropsEvaluations;
 }
