@@ -1,8 +1,0 @@
-.user-card {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background-color: #efefef;
-  padding: 24px;
-}

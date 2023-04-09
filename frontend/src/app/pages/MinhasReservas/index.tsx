@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AppContainer from '../../components/Container';
 import ReservationList from '../../components/ReservationList';
 import './index.css';
 
@@ -19,7 +18,7 @@ const Reservas: React.FC = () => {
       try {
         //const id = '1d97c5c2-bcdd-4834-bbed-c23efaba06ca';
         //setUserId(id);
-        const response = await axios.get(`http://localhost:8080/reservation/created/1d97c5c2-bcdd-4834-bbed-c23efaba06ca`);
+        const response = await axios.get(`http://localhost:8080/reservation/user/1d97c5c2-bcdd-4834-bbed-c23efaba06ca`);
         setReservations(response.data);
       } catch (error) {
         console.error('Error fetching reservations:', error);

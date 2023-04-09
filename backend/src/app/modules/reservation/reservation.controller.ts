@@ -18,11 +18,20 @@ import {
 import { ReservationRepository } from 'src/infra/database/repositories/ReservationRepository';
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
+import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
+import { EvaluationCreationDTO } from 'src/infra/database/interfaces/evalutation.interface';
+import EvaluationRepository from 'src/infra/database/repositories/EvaluationRepository';
 
 export interface FilterParams {
   city?: string;
   qtd?: number;
   date?: string;
+}
+
+export interface SetOrUnsetBodyInterface {
+  reservationId: string;
+  userId: string;
+  setted: boolean;
 }
 
 @Controller('reservation')
@@ -31,6 +40,8 @@ export class ReservationController {
     private reservationRepository: ReservationRepository,
     private reservationService: ReservationService,
     private reservationConnectionRepository: ReservationConnectionRepository,
+    private favoritesRepository: FavoritesRepository,
+    private evaluationRepository: EvaluationRepository,
   ) {}
 
   @Get()
@@ -110,5 +121,78 @@ export class ReservationController {
   @Delete(':id')
   async deleteReservation(@Param('id') id: string) {
     await this.reservationRepository.deleteReservation(id);
+  }
+
+  @Patch('/favorite')
+  async setOrUnsetFavorite(
+    @Body() { userId, reservationId, setted }: SetOrUnsetBodyInterface,
+  ) {
+    const alreadyFavorite =
+      await this.favoritesRepository.getByUserAndReservationId(
+        userId,
+        reservationId,
+      );
+
+    if ((setted && alreadyFavorite) || (!setted && !alreadyFavorite)) {
+      return;
+    }
+
+    if (setted) {
+      this.favoritesRepository.create(userId, reservationId);
+    } else {
+      this.favoritesRepository.delete(userId, reservationId);
+    }
+  }
+
+  @Get('/favorites/:userId')
+  async getAllFavoritesReservationByUserId(@Param('userId') id: string) {
+    const reservationIds = (
+      await this.favoritesRepository.getAllByUserId(id)
+    ).map((e) => e.reservationId);
+
+    const reservations = await this.reservationRepository.getReservationByList(
+      reservationIds,
+    );
+
+    return reservations;
+  }
+
+  @Post('/evaluation')
+  async createEvaluation(@Body() creationBody: EvaluationCreationDTO) {
+    return this.evaluationRepository.create(creationBody);
+  }
+
+  @Get('/evaluation/:reservationId')
+  async getEvaluationByReservationId(@Param('reservationId') id: string) {
+    return this.evaluationRepository.getAllByReservationId(id);
+  }
+
+  @Get('/evaluation/:reservationId/:userId')
+  async getEvaluationByReservationIdAndUserId(
+    @Param('reservationId') reservationId: string,
+    @Param('userId') userId: string,
+  ) {
+    return this.evaluationRepository.getAllByUserAndReservationId(
+      userId,
+      reservationId,
+    );
+  }
+
+  @Get('/completed/:userId')
+  async getCompletedReservationByUserId(@Param('userId') id: string) {
+    const data =
+      await this.reservationRepository.getCompletedEvaluationByUserId(id);
+    const response = data.map((e) => ({
+      ...e,
+      evaluations: e.evaluations[e.evaluations.length - 1],
+    }));
+    return response;
+  }
+
+  @Get('/solicitations')
+  async getAllReservationSolicitation() {
+    const data =
+      await this.reservationRepository.getAllSolicitationsOfReservations();
+    return data;
   }
 }
