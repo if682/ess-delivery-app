@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
-const { API_KEY } = process.env;
+const API_KEY = process.env.API_KEY || 'API_KEY';
 
 export function generateJWT(idUser: string) {
   return jwt.sign({ idUser }, API_KEY, {
