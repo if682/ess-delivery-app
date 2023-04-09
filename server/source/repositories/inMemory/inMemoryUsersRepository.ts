@@ -18,7 +18,8 @@ export class InMemoryUsersRepository implements IUserRepository{
             birthdate: new Date(),
             email: data.email,
             passwordResetToken: null,
-            resetTokenExpires: null
+            resetTokenExpires: null,
+            photo: null
         }
         this.users.push(user);
 

@@ -15,7 +15,9 @@ export class InMemoryReviewsRepository implements IReviewsRepository{
             createdAt: new Date(),
             likes: 0,
             evaluationMovieId: data.evaluationMovieId? data.evaluationMovieId : null,
-            evaluationUserId: data.evaluationUserId? data.evaluationUserId : null
+            evaluationUserId: data.evaluationUserId? data.evaluationUserId : null,
+            movieCover: data.movieCover? data.movieCover : null ,
+            rating: data.rating? data.rating : null
         })
 
         return this.reviews[this.reviews.length - 1];

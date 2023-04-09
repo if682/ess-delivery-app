@@ -53,4 +53,27 @@ export class PrismaListsRepository implements IListsRepository {
 
         return ret;
     }
+
+    async movieInList(movieId: string, listOwner: string, listName: string): Promise<boolean> {
+        const found = await prisma.movieList.count({
+            where: {
+                movieId,
+                listName,
+                listOwner
+            }
+        })
+
+        return (found ? true: false);
+    }
+
+    async deleteList(userId: string, listName: string): Promise<void> {
+        await prisma.list.delete({
+            where: {
+                userId_name: {
+                    userId,
+                    name: listName
+                }
+            }
+        })
+    }
 }
