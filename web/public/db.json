@@ -1,19 +1,31 @@
 {
-  "items": [],
-  "categories": [],
-  "clients": [
+  "items": [
     {
-      "name": "bia",
-      "email": "bia@hotmail.com",
-      "password": "senha",
-      "id": 1
-    },
-    {
+      "id": 1681066065970,
       "name": "teste",
-      "email": "teste@hotmail.com",
-      "password": "teste",
-      "id": 2
+      "description": "desc test",
+      "price": "20,00",
+      "category": "qsqs"
     },
+    {
+      "id": 1681069461245,
+      "name": "teste 2",
+      "description": "desc test",
+      "price": "100,00",
+      "category": "qsqs"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1681070194747,
+      "name": "a"
+    },
+    {
+      "id": 1681070368674,
+      "name": "aa"
+    }
+  ],
+  "clients": [
     {
       "id": 128291,
       "name": "Pedro",

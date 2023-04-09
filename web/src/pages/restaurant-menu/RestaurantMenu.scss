@@ -1,6 +1,26 @@
 .item-cards {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-    gap: 1rem;
-  }
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.restaurant-menu-root {
+  margin: 25px 70px 0px;
+}
+
+.copy-button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.share-link {
+  color: #be0020;
+}
