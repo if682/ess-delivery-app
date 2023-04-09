@@ -17,7 +17,7 @@ export class MovieSearchUseCase{
         let movie = await this.moviesRepository.getMovie(id);
 
         if(!movie) {
-            movie = await this.moviesRepository.createMovie(id);
+            throw new Error("Bad request.")
         }
 
         return {
