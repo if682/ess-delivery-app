@@ -19,13 +19,14 @@ const LoginBox = () => {
                 password: password
             }),
         });
-        //let resJson = await res.json()
-        if(res.status === 201){
+        let resJson = await res.json()
+        console.log(resJson);
+        if(res.status === 200){
             console.log("Passou ok")
             setUsername("");
             setPassword("");
         }else{
-            alert("Ocorreu um erro no post")
+            alert("Usuário/Senha não cadastrado")
         }
     }catch (err){
         console.log(err);
