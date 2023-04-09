@@ -19,10 +19,10 @@ function TotalsTable() {
   let monthYearString = currentMonth + '/' + currentYear;
 
   useEffect(() => {
-    fetch('http://localhost:3001/orders')
+    fetch('http://localhost:3001/orders/2')
       .then(response => response.json())
       .then(data => {
-        orders.push(JSON.parse(data)[0])});
+        orders.push(JSON.parse(data))});
   }, []);
   
   currentOrders = orders.filter(order => order.date.substring(2) === monthYearString);

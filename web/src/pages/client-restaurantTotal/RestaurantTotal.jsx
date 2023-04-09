@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PageTitle from "../../components/atoms/page-title/PageTitle";
-import "./OrderTotals.css";
+import "./RestaurantTotal.css";
 import TotalsTable from "../../components/molecules/restaurantTotals-table/TotalsTable";
 import { useParams } from 'react-router-dom'
 
@@ -8,6 +8,7 @@ function OrderTotals()
 {
   // passar esses parametros para TotalsTable
   const {restaurantID, monthYear} = useParams();
+  let restaurantName = "test";
 
   return (
     <div className="order-totals-page-container">
