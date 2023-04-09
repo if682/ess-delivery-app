@@ -34,7 +34,7 @@ export class RegisterUserUseCase {
     }: IRegisterUserUseCaseRequest): Promise<IRegisterUserUseCaseReply> {
         var user;
         if(!isValidPassword(password)){
-            throw new Error("Unvalid Password.");
+            throw new Error("Invalid Password.");
         }
         else{
             const password_hash = await hash(password, 6);
