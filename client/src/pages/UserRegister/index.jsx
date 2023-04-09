@@ -1,4 +1,55 @@
+import { useState } from "react";
+
 const UserRegister = () => {
+
+    const [firstName, setFirstName] = useState("");
+    const [password, setPassword] = useState("");
+    const [username, setUserName] = useState("");
+    const [dateOfBirth, setdateOfBirth] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [location, setLocation] = useState("");
+
+    let handleSubmit = async (e) =>{
+        e.preventDefault();
+        console.log(dateOfBirth)
+        const date = new Date(dateOfBirth);
+        const iso = date.toISOString();
+        console.log(iso)
+        try{
+            let res = await fetch("http://localhost:4001/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: firstName,
+                    username: username,
+                    email: email,
+                    password: password,
+                    birthdate: iso,
+                    phone: phone,
+                    location: location  
+                }),
+            });
+            //let resJson = await res.json()
+            if(res.status === 201){
+                console.log("Passou ok")
+                setFirstName("");
+                setPassword("");
+                setEmail("");
+                setdateOfBirth("");
+                setLocation("");
+                setPhone("");
+                setUserName("");
+            }else{
+                alert("Ocorreu um erro no post")
+            }
+        }catch (err){
+            console.log(err);
+        }
+    };
+
     return(
     <div>
         <div class="w-full flex justify-end">
@@ -16,30 +67,30 @@ const UserRegister = () => {
             <div class = "w-3/4">
                 <form class = "flex flex-col">
                     <div class = "flex justify-between my-2">
-                        <input type="text" placeholder="First Name*" class="w-2/3 bg-none"/>
-                        <input type="text" placeholder="Second Name*" class="w-2/3 bg-none"/>
+                        <input value={firstName} type="text" placeholder="Name*" class="w-2/3 bg-none"  onChange={(e) => setFirstName(e.target.value)}/>
+                        <input value={password} type="text" placeholder="Password*" class="w-2/3 bg-none" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
 
                     <div class = "flex justify-between my-2">
-                        <input type="text" placeholder="Username*" class="w-2/3 bg-none"/>
-                        <input type="text" placeholder="Email*" class="w-2/3 bg-none"/>
+                        <input value={username} type="text" placeholder="Username*" class="w-2/3 bg-none" onChange={(e) => setUserName(e.target.value)}/>
+                        <input value={email} type="text" placeholder="Email*" class="w-2/3 bg-none" onChange={(e) => setEmail(e.target.value)}/>
                     </div>
 
-                    <div class = "my-2 w-auto flex justify-between">
+                    <div value={dateOfBirth} class = "my-2 w-auto flex justify-between">
                         <input type="date" class="
                         p-4 pr-[40px] bg-[#D9D9D9] text-[#77728D] mx-8
                         rounded-[10px] h-[50px] w-[512px]
-                        "/>
-                        <input type="phone" placeholder="Phone" class="
+                        " onChange={(e) => setdateOfBirth(e.target.value)}/>
+                        <input value={phone} type="phone" placeholder="Phone" class="
                         p-4 pr-[40px] bg-[#D9D9D9] text-[#77728D] mx-8
                         rounded-[10px] h-[50px] w-[512px]
-                        "/>
+                        " onChange={(e) => setPhone(e.target.value)}/>
                     </div>
 
-                    <input type="text" placeholder="Location" class="w-auto my-2 bg-none"/>
+                    <input value={location} type="text" placeholder="Location" class="w-auto my-2 bg-none" onChange={(e) => setLocation(e.target.value)}/>
 
                     <div class = "flex justify-center">
-                        <input type="submit" value="Register" className="my-2 w-[217px] h-[47px] bg-[#F4A4A4] text-white" />
+                        <input type="submit" value="Register" className="my-2 w-[217px] h-[47px] bg-[#F4A4A4] text-white" onClick={handleSubmit}/>
                     </div>
                 </form>
             </div>
