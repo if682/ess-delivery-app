@@ -26,6 +26,10 @@ export interface FormValues {
 export interface BookingTryValues {
   userId: string | undefined;
   reservationId: string | undefined;
+  paymentMethod: string | undefined;
+  guestNumber: number;
+  checkIn: string;
+  checkOut: string;
 }
 
 export interface ReservationResponse {
@@ -44,4 +48,8 @@ export interface ReservationResponse {
   beds: number;
   bathrooms: number;
   photos: Array<string>;
+}
+
+export interface RatingResponse {
+  id: string; userName: string; text: string; star: number; reservationId: string; userId: string; date: string;
 }

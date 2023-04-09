@@ -1,19 +1,24 @@
-import AppContainer from "../../components/Container";
+
 import CustomButton from "../../components/CustomButton";
 import { useParams } from 'react-router-dom';
 import GetReservationById from "../../hooks/getReservationById";
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { IconBathroomNumber, IconBedroomNumber, IconGuestNumber, IconMinus, IconPlus, IconRangeDate, IconStarUnselected, IconUserCircle } from "../../assets/icons";
+import { IconBathroomNumber, IconBedroomNumber, IconGuestNumber, IconMinus, IconPlus, IconRangeDate, IconSelectedRatingStar, IconStarUnselected, IconUnselectRatingStar, IconUserCircle } from "../../assets/icons";
 import { Input } from "../../components/Input";
 import CreateBookingTryByUser from "../../hooks/createBookingTryByUser";
 import { BookingTryValues } from "../../../services/api/interfaces";
 import { useSession } from "../../providers/SessionContext";
 import GetUserIdByToken from "../../hooks/getUserIdByToken";
+import Modal from "../../components/Modal";
+import GetRatingsByReservationId from "../../hooks/getRatingsByReservationId";
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
-const Container = styled.div`
+const CentralContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -146,208 +151,236 @@ const RatingTitleText = styled.span`
   align-self: flex-start
 `;
 
+const handleStarNumber = (starNumber: number) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+        if (i < starNumber) {
+            stars.push(IconSelectedRatingStar)
+        } else {
+            stars.push(IconUnselectRatingStar)
+        }
+    }
+    return stars;
+}
+
+
+
+const handleFormatDate = (date: string) => {
+    const formatedDate = new Date(date).toLocaleString()
+    return formatedDate;
+}
+
 export default function BookingPage() {
     const { id } = useParams();
     const { reservation } = GetReservationById({ id: id as string })
     const [guestNumber, setGuestNumber] = useState(0);
     // The selected drink
-    const [selectedDrink, setSelectedDrink] = useState<String>();
+    const [selectedPaymentMethod, setselectedPaymentMethod] = useState<string>();
 
     const { session } = useSession();
     const { userId } = GetUserIdByToken({ token: session.token as string })
 
+    const { ratings } = GetRatingsByReservationId({ id: id as string })
+
     // This function will be triggered when a radio button is selected
     const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedDrink(event.target.value);
+        setselectedPaymentMethod(event.target.value);
     };
 
     const { createElement, isLoading, isError, isSuccess } = CreateBookingTryByUser();
 
-    const onSubmit = async (values: BookingTryValues) => {
-        try {
-            await createElement(values);
-            alert('Reservation created successfully');
-        } catch (error) {
-            alert('Error creating reservation');
-        }
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [titleModal, setTitleModal] = useState("");
+
+    const [bodyModal, setBodyModal] = useState("");
+
+    const [rangeDate, setRangeDate] = useState(["", ""]);
+
+    useEffect(() => console.log(rangeDate), [rangeDate])
+
+
+
+    const handleOpenModal = (titleModal: string, bodyModal: string) => {
+        setTitleModal(titleModal)
+        setBodyModal(bodyModal)
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
 
+    const onSubmit = useCallback(async (values: BookingTryValues) => {
+
+        console.log(values.guestNumber, reservation?.guests)
+        //@ts-ignore
+        if (values.guestNumber > reservation?.guests) {
+            handleOpenModal("Mais pessoas do que o permitido", "A acomodação não comporta a quantidade de pessoas informada para a reserva.")
+            return;
+        }
+        if (rangeDate[0] == "" || rangeDate[1] == "") {
+            handleOpenModal("Período inválido", "Por favor selecione datas válidas para a sua reserva")
+            return;
+        }
+        try {
+            await createElement(values);
+            handleOpenModal("Reserva requisitada com sucesso", "O anfintrião da acomodação já foi avisado das suas intenções, qualquer atualização será informada no e-mail.")
+        } catch (error) {
+            alert('Error creating reservation');
+        }
+    }, [session, reservation, rangeDate])
+
     return (
-        <AppContainer>
-            <Container>
-                <Row>
-                    <TitleText>{reservation?.name + ", " + reservation?.city}</TitleText>
-                    {IconStarUnselected}
-                </Row>
-                <ImageContainer>
-                    <Image src="https://via.placeholder.com/400x400" alt="Imagem aleatória 1" />
-                    <Image src="https://via.placeholder.com/400x400" alt="Imagem aleatória 2" />
-                    <Image src="https://via.placeholder.com/400x400" alt="Imagem aleatória 3" />
-                </ImageContainer>
-                <Divider />
-                <Row>
-                    <DescriptionTitleText>Descrição</DescriptionTitleText>
-                    <PriceText>R$ {reservation?.budget}</PriceText>
-                </Row>
-                <DescriptionBodyText>{reservation?.additionalInfo}</DescriptionBodyText>
-                <Row>
-                    <IconWidget>
-                        {IconGuestNumber}
-                        <DescriptionIconText> {reservation?.guests}</DescriptionIconText>
-                    </IconWidget>
-                    <IconWidget>
-                        {IconRangeDate}
-                        <DescriptionIconText>{reservation?.checkIn} - {reservation?.checkOut}</DescriptionIconText>
-                    </IconWidget>
-                    <IconWidget>
-                        {IconBathroomNumber}
-                        <DescriptionIconText>{reservation?.bathrooms}</DescriptionIconText>
-                    </IconWidget>
-                    <IconWidget>
-                        {IconBedroomNumber}
-                        <DescriptionIconText>{reservation?.bedrooms}</DescriptionIconText>
-                    </IconWidget>
-                </Row>
-                <Divider />
-                <Row>
-                    <DescriptionTitleText>Reserva</DescriptionTitleText>
-                    <CustomButton onClick={() => onSubmit({ userId: userId, reservationId: id })} title={"Reservar"}></CustomButton>
-                </Row>
-                <SizedBoxVertical />
-                <SizedBoxVertical />
-                <SizedBoxVertical />
-                <Row>
-                    <fieldset>
-                        <MakeReservationContainer>
-                            <Row>
-                                <DescriptionReservationMakeText>Hóspedes</DescriptionReservationMakeText>
-                                <ClickableIcon onClick={function (): void {
-                                    setGuestNumber(previous => previous + 1)
-                                }}>
-                                    {IconPlus}
-                                </ClickableIcon>
-                                <DescriptionReservationMakeText>{guestNumber}</DescriptionReservationMakeText>
-                                <ClickableIcon onClick={function (): void {
-                                    setGuestNumber(previous => previous - 1)
-                                }}>
-                                    {IconMinus}
-                                </ClickableIcon>
-                            </Row>
-                            <SizedBoxVertical />
-                            <DescriptionReservationMakeText>Forma de Pagamento</DescriptionReservationMakeText>
-                            <SizedBoxVertical />
-                            <RadioLabel>
-                                <input
-                                    type="radio"
-                                    name="drink"
-                                    value="Coffee"
-                                    id="coffee"
-                                    onChange={radioHandler}
-                                />
-                                <DescriptionReservationMakeText>Pix</DescriptionReservationMakeText>
-                            </RadioLabel>
-                            <RadioLabel>
-                                <input
-                                    type="radio"
-                                    name="drink"
-                                    value="Tea"
-                                    id="tea"
-                                    onChange={radioHandler}
-                                />
-                                <DescriptionReservationMakeText>Cartão de Crédito</DescriptionReservationMakeText>
-                            </RadioLabel>
-
-                            <RadioLabel>
-                                <input
-                                    type="radio"
-                                    name="drink"
-                                    value="Pumpkin Juice"
-                                    id="pumpkin"
-                                    onChange={radioHandler}
-                                />
-                                <DescriptionReservationMakeText>Cartão de Débito</DescriptionReservationMakeText>
-                            </RadioLabel>
-
-                            <Row>
-                                <Input size="MEDIUM" placeholder="Número do cartão"></Input>
-                                <SizedBoxHorizontal />
-                                <Input size="SMALL" placeholder="CVV"></Input>
-                            </Row>
-                            <SizedBoxVertical />
-                            <Input size="MEDIUM" placeholder="Validade"></Input>
-                        </MakeReservationContainer>
-                    </fieldset>
-                    <Calendar />
-                </Row>
-                <Divider />
-                <DescriptionTitleText>Avaliações</DescriptionTitleText>
-                <SizedBoxVertical />
-                <SizedBoxVertical />
-                <Row>
-                    <RatingContainer>
+        <>
+            <CssBaseline />
+            <Container maxWidth="xl">
+                <Box sx={{ bgcolor: 'white', height: '100vh' }} style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', padding: '40px', alignItems: 'flex-start' }}>
+                    <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal} title={titleModal} description={bodyModal} />
+                    <CentralContainer>
                         <Row>
-                            {IconUserCircle}
-                            <RatingColumn>
-                                <RatingTitleText>Sônia Lemos</RatingTitleText>
-                                <RatingTitleText>{reservation?.checkIn}</RatingTitleText>
-                                <Row>
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                </Row>
-                                <RatingBodyText>
-                                    Nossa, o que falar dessa casa que é maravilhosa?A casa fica no topo de uma montanha, com uma vista linda, muito verde, ar puro, clima ameno (quando fomos), até um...
-                                </RatingBodyText>
-                            </RatingColumn>
-
+                            <TitleText>{reservation?.name + ", " + reservation?.city}</TitleText>
+                            {IconStarUnselected}
                         </Row>
-                    </RatingContainer>
-                    <RatingContainer>
+                        <ImageContainer>
+                            <Image src="https://via.placeholder.com/400x400" alt="Imagem aleatória 1" />
+                            <Image src="https://via.placeholder.com/400x400" alt="Imagem aleatória 2" />
+                            <Image src="https://via.placeholder.com/400x400" alt="Imagem aleatória 3" />
+                        </ImageContainer>
+                        <Divider />
                         <Row>
-                            {IconUserCircle}
-                            <RatingColumn>
-                                <RatingTitleText>Sônia Lemos</RatingTitleText>
-                                <RatingTitleText>{reservation?.checkIn}</RatingTitleText>
-                                <Row>
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                </Row>
-                                <RatingBodyText>
-                                    Nossa, o que falar dessa casa que é maravilhosa?A casa fica no topo de uma montanha, com uma vista linda, muito verde, ar puro, clima ameno (quando fomos), até um...
-                                </RatingBodyText>
-                            </RatingColumn>
-
+                            <DescriptionTitleText>Descrição</DescriptionTitleText>
+                            <PriceText>R$ {reservation?.budget}</PriceText>
                         </Row>
-                    </RatingContainer>
-                    <RatingContainer>
+                        <DescriptionBodyText>{reservation?.additionalInfo}</DescriptionBodyText>
                         <Row>
-                            {IconUserCircle}
-                            <RatingColumn>
-                                <RatingTitleText>Sônia Lemos</RatingTitleText>
-                                <RatingTitleText>{reservation?.checkIn}</RatingTitleText>
-                                <Row>
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                    {IconStarUnselected}
-                                </Row>
-                                <RatingBodyText>
-                                    Nossa, o que falar dessa casa que é maravilhosa?A casa fica no topo de uma montanha, com uma vista linda, muito verde, ar puro, clima ameno (quando fomos), até um...
-                                </RatingBodyText>
-                            </RatingColumn>
-
+                            <IconWidget>
+                                {IconGuestNumber}
+                                <DescriptionIconText> {reservation?.guests}</DescriptionIconText>
+                            </IconWidget>
+                            <IconWidget>
+                                {IconRangeDate}
+                                <DescriptionIconText>{reservation?.checkIn} - {reservation?.checkOut}</DescriptionIconText>
+                            </IconWidget>
+                            <IconWidget>
+                                {IconBathroomNumber}
+                                <DescriptionIconText>{reservation?.bathrooms}</DescriptionIconText>
+                            </IconWidget>
+                            <IconWidget>
+                                {IconBedroomNumber}
+                                <DescriptionIconText>{reservation?.bedrooms}</DescriptionIconText>
+                            </IconWidget>
                         </Row>
-                    </RatingContainer>
-                </Row>
+                        <Divider />
+                        <Row>
+                            <DescriptionTitleText>Reserva</DescriptionTitleText>
+                            <CustomButton onClick={() => onSubmit({ userId: "6ff5c112-2eb6-45f6-ae5b-8f6afa8ecc85", reservationId: id, paymentMethod: selectedPaymentMethod, guestNumber: guestNumber, checkIn: rangeDate[0], checkOut: rangeDate[1] })} title={"Reservar"}></CustomButton>
+                        </Row>
+                        <SizedBoxVertical />
+                        <SizedBoxVertical />
+                        <SizedBoxVertical />
+                        <Row>
+                            <fieldset>
+                                <MakeReservationContainer>
+                                    <Row>
+                                        <DescriptionReservationMakeText>Hóspedes</DescriptionReservationMakeText>
+                                        <ClickableIcon onClick={function (): void {
+                                            setGuestNumber(previous => previous + 1)
+                                        }}>
+                                            {IconPlus}
+                                        </ClickableIcon>
+                                        <DescriptionReservationMakeText>{guestNumber}</DescriptionReservationMakeText>
+                                        <ClickableIcon onClick={function (): void {
+                                            setGuestNumber(previous => previous - 1)
+                                        }}>
+                                            {IconMinus}
+                                        </ClickableIcon>
+                                    </Row>
+                                    <SizedBoxVertical />
+                                    <DescriptionReservationMakeText>Forma de Pagamento</DescriptionReservationMakeText>
+                                    <SizedBoxVertical />
+                                    <RadioLabel>
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="Pix"
+                                            id="pix"
+                                            onChange={radioHandler}
+                                        />
+                                        <DescriptionReservationMakeText>Pix</DescriptionReservationMakeText>
+                                    </RadioLabel>
+                                    <RadioLabel>
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="CartaoDeCredito"
+                                            id="cc"
+                                            onChange={radioHandler}
+                                        />
+                                        <DescriptionReservationMakeText>Cartão de Crédito</DescriptionReservationMakeText>
+                                    </RadioLabel>
+
+                                    <RadioLabel>
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="CartaoDeDebito"
+                                            id="cd"
+                                            onChange={radioHandler}
+                                        />
+                                        <DescriptionReservationMakeText>Cartão de Débito</DescriptionReservationMakeText>
+                                    </RadioLabel>
+
+                                    <Row>
+                                        <Input size="MEDIUM" placeholder="Número do cartão"></Input>
+                                        <SizedBoxHorizontal />
+                                        <Input size="SMALL" placeholder="CVV"></Input>
+                                    </Row>
+                                    <SizedBoxVertical />
+                                    <Input size="MEDIUM" placeholder="Validade"></Input>
+                                </MakeReservationContainer>
+                            </fieldset>
+                            {//@ts-ignore
+                                <Calendar value={rangeDate} selectRange onChange={setRangeDate} />
+                            }
+                        </Row>
+                        <Divider />
+                        <DescriptionTitleText>Avaliações</DescriptionTitleText>
+                        <SizedBoxVertical />
+                        <SizedBoxVertical />
+                        <Row>
+                            {ratings?.map((rating) => (
+                                <RatingContainer>
+                                    <Row>
+                                        {IconUserCircle}
+                                        <RatingColumn>
+                                            <RatingTitleText>{rating.userName}</RatingTitleText>
+                                            <RatingTitleText>
+                                                <>
+                                                    {handleFormatDate(rating.date)}
+                                                </>
+                                            </RatingTitleText>
+                                            <SizedBoxVertical />
+                                            <Row>
+                                                <>
+                                                    {handleStarNumber(rating?.star)}
+                                                </>
+                                            </Row>
+                                            <SizedBoxVertical />
+                                            <RatingBodyText>
+                                                {rating.text}
+                                            </RatingBodyText>
+                                        </RatingColumn>
+                                    </Row>
+                                </RatingContainer>
+                            ))}
+                        </Row>
+                    </CentralContainer>
+                </Box>
             </Container>
-        </AppContainer >
+        </>
     )
 }
 
