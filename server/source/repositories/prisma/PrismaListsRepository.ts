@@ -65,4 +65,15 @@ export class PrismaListsRepository implements IListsRepository {
 
         return (found ? true: false);
     }
+
+    async deleteList(userId: string, listName: string): Promise<void> {
+        await prisma.list.delete({
+            where: {
+                userId_name: {
+                    userId,
+                    name: listName
+                }
+            }
+        })
+    }
 }
