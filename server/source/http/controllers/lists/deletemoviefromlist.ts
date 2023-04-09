@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeDeleteMovieFromListUseCase } from "../../../use-cases/factories/make-deletemoviefromlist-usecase";
+import { makeDeleteMovieFromListUseCase } from "../../../use-cases/factories/list/make-deletemoviefromlist-usecase";
 
 export async function deleteMovieFromList(request: FastifyRequest, reply: FastifyReply){
     const deleteMovieFromListBodySchema = z.object({
