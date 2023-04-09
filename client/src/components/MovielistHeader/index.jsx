@@ -4,7 +4,7 @@ import "./styles.css";
 
 const MovielistHeader = ({ userAvatar, username, listName }) => {
   const { handleUserAvatarClick,
-          handleUserWatchedFilmsClick,
+          handleUserHistoryClick,
           handleUserLikedFilmsClick,
           handleUserReviewsClick,
           handleUserMovielistsClick
@@ -18,7 +18,7 @@ const MovielistHeader = ({ userAvatar, username, listName }) => {
             <h1 className="user-name">{username}'s {listName}</h1>
           </div>
           <div className="buttons-container">
-            <button className="watched-films-button" onClick={() => handleUserWatchedFilmsClick(username)} >
+            <button className="watched-films-button" onClick={() => handleUserHistoryClick(username)} >
             <img src="../../assets/films-icon.svg" alt="Ícone de filmes assistidos" />
             </button>
             <button className="like-button" onClick={() => handleUserLikedFilmsClick(username)}>
