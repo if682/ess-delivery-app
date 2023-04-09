@@ -7,4 +7,5 @@ export interface IUserRepository {
     findByEmail(email: string): Promise<User | null>;
     updateResetToken(id: string, newDate: Date, newToken: string): Promise<void>;
     changePassword(id: string, newPassword: string): Promise<void>;
+    save(user: User): Promise<User>;
 }
