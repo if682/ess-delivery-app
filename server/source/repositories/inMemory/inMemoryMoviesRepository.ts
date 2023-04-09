@@ -1,16 +1,20 @@
 import { Movie, Prisma, Evaluation } from "@prisma/client";
 import { IMoviesRepository } from "../IMoviesRepository";
+import { randomUUID } from "crypto";
 
 
 export class InMemoryMoviesRepository implements IMoviesRepository{
     public movies: Movie[] = []
     public evaluations: Evaluation[] = []
 
-    async createMovie(id: string): Promise<Movie> {
-        var movie = this.movies.find((item) => item.id == id)
+    async createMovie(data: Prisma.MovieUncheckedCreateInput): Promise<Movie> {
+        var movie = this.movies.find((item) => item.id == data.id)
         if(!movie){
             this.movies.push({
-                id
+                id: data.id ? data.id : randomUUID(),
+                title: data.title,
+                cover: data.cover,
+                description: data.description
             })
             return this.movies[this.movies.length - 1];
         }

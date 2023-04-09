@@ -5,7 +5,11 @@ import { IMoviesRepository } from "../repositories/IMoviesRepository";
 interface IAddMovieToListRequest{
     userId: string,
     listName: string,
-    movieId: string
+    movieId: string,
+    title: string,
+    cover: string,
+    description: string
+
 }
 
 interface IAddMovieToListReply{
@@ -21,9 +25,12 @@ export class AddMovieToListUseCase{
     async handle({
         userId,
         listName,
-        movieId
+        movieId,
+        title,
+        cover,
+        description
     }: IAddMovieToListRequest): Promise<IAddMovieToListReply>{
-        await this.moviesRepository.createMovie(movieId);
+        await this.moviesRepository.createMovie({id: movieId, title, cover, description});
 
         const found = await this.listsRepository.movieInList(userId, listName, movieId);
 
