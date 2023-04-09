@@ -2,8 +2,9 @@ import React from "react";
 import "./style.css";
 
 
-const Review = () => {
+const Review = (props) => {
 
+  console.log(props.review)
   return (
     <div className="review-container">
 
@@ -15,7 +16,7 @@ const Review = () => {
                 <img src="../../assets/star-icon.svg" />
                 <h3>10/10</h3>
             </div>
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis risus nec dui facilisis, non ultrices ante rutrum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent ligula tellus, faucibus sit amet lorem sed, elementum semper tellus.</h2>
+            <h2>{props.review.review}</h2>
         </div>
         
     </div>
