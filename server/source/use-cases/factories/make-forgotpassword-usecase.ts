@@ -1,6 +1,6 @@
 import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository";
 import { MailProvider } from "../../services/implementations/MailProvider";
-import { ForgotPasswordUseCase } from "../forgot-password";
+import { ForgotPasswordUseCase } from "../user/forgot-password";
 
 export function makeForgotPasswordUseCase() {
     const usersRepository = new PrismaUsersRepository();

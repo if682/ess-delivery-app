@@ -1,5 +1,5 @@
 import { Review } from "@prisma/client";
-import { IReviewsRepository } from "../repositories/IReviewsRepository";
+import { IReviewsRepository } from "../../repositories/IReviewsRepository";
 
 interface IFetchUserReviewsUseCaseRequest {
     authorId: string

@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
-import { IUserRepository } from "../repositories/IUsersRepository";
-import { isValidPassword } from "../utils/checkpassword";
+import { IUserRepository } from "../../repositories/IUsersRepository";
+import { isValidPassword } from "../../utils/checkpassword";
 import { hash, compare } from "bcryptjs";
 
 interface IChangePasswordUseCaseRequest{

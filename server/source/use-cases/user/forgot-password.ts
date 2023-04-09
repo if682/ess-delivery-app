@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
-import { IUserRepository } from "../repositories/IUsersRepository";
-import { IMailProvider } from "../services/IMailProvider";
+import { IUserRepository } from "../../repositories/IUsersRepository";
+import { IMailProvider } from "../../services/IMailProvider";
 import { randomBytes } from "crypto";
 
 interface IForgotPasswordUseCaseRequest{

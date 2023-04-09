@@ -1,5 +1,5 @@
 import { User } from "@prisma/client"
-import { IUserRepository } from "../repositories/IUsersRepository"
+import { IUserRepository } from "../../repositories/IUsersRepository"
 
 interface IGetUserProfileUseCaseRequest {
     id: string

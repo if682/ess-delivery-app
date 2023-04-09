@@ -1,8 +1,8 @@
 import { User } from "@prisma/client";
-import { IUserRepository } from "../repositories/IUsersRepository";
+import { IUserRepository } from "../../repositories/IUsersRepository";
 import { hash } from "bcryptjs";
-import { isValidPassword } from "../utils/checkpassword";
-import { IListsRepository } from "../repositories/IListsRepository";
+import { isValidPassword } from "../../utils/checkpassword";
+import { IListsRepository } from "../../repositories/IListsRepository";
 
 interface IRegisterUserUseCaseRequest {
     name: string
