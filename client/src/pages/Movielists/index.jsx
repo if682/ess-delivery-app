@@ -4,16 +4,35 @@ import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
+// ID provisório do usuário para testes
+const userId = "e84ba398-64fe-4929-b9a6-1e065cbdca2b";
+
 const Movielists = () => {
+  const [lists, setLists] = useState([]);
   const [newListTitle, setNewListTitle] = useState("");
   const navigate = useNavigate();
 
-  const [lists, setLists] = useState([
-    { title: "FILMES PRA VER COM A MÃE" },
-    { title: "Só os clássicos" },
-    { title: "todos os shrek" },
-    { title: "filmes que eu não gosto pra recomendar pra quem eu odeio" }
-  ]);
+  let handleGetLists = async (e) =>{
+      e.preventDefault();
+      try{
+          let res = await fetch(`http://localhost:4002/list/${userId}`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json"
+              }
+          });
+
+          if(res.ok){
+              console.log("Passou ok")
+              let data = await res.json();
+              setLists(data);
+          }else{
+            console.log("Ocorreu um erro no GET.")
+          }
+      }catch (err){
+          console.log(err);
+      }
+  };
 
   const handleUserListClick = ({ title }) => {
     alert(`Aqui deve ir para a página da lista ${title}`);
@@ -71,6 +90,10 @@ const Movielists = () => {
   useEffect(() => {
     // atualiza a lista na interface sempre que o estado de listas for atualizado
   }, [lists]);
+
+  useEffect(() => {
+    handleGetLists();
+  }, []);
   
   return (
     <div className="movielists-page">
@@ -88,16 +111,21 @@ const Movielists = () => {
           <button onClick={handleCreateListClick}>Create</button>
         </div>
 
-        <ul>
-        {lists.map((list) => (
-        <li key={list.title} className="movielists-list-item" onClick={() => handleUserListClick(list)}>
-          <div className="list-name-container">
-            <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.title)}>Delete</button>
-            <span className="list-name">{list.title}</span>
-          </div>
-        </li>
-        ))}
-        </ul>
+        {lists.length !== 0 ? (
+          <ul>
+            {lists.map((list) => (
+              <li key={list.title} className="movielists-list-item" onClick={() => handleUserListClick(list)}>
+                <div className="list-name-container">
+                  <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.title)}>Delete</button>
+                  <span className="list-name">{list.title}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>This user does not have any lists.</p>
+        )}
+
       </div>
     </div>
   );
