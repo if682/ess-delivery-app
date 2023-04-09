@@ -10,48 +10,49 @@ import { Row } from "react-bootstrap";
 function TotalsTable() {
   const navigate = useNavigate();
   const goBack = () => navigate("/total-pedidos");
-  const orders = [];
-  let currentOrders = [];
 
-  let currentDate = new Date();
-  let currentMonth = 1; //currentDate.getMonth()
-  let currentYear = 2021; //currentDate.getFullYear()
-  let monthYearString = currentMonth + '/' + currentYear;
+  const [orders, setOrders] = useState([]);
+  const [filterDate, setFilterDate] = useState(new Date());
 
   useEffect(() => {
-    fetch('http://localhost:3001/orders/2')
-      .then(response => response.json())
-      .then(data => {
-        orders.push(JSON.parse(data))});
+    (async function fetchData() {
+      const data = await loadOrders();
+      setOrders(data);
+    })();
   }, []);
-  
-  currentOrders = orders.filter(order => order.date.substring(2) === monthYearString);
 
-  const uniqueRestaurants = [...new Set(currentOrders.map((order) => order.place))];
-  const orderTotals = [];
-
-  for(let restaurant of uniqueRestaurants) {
-    let restaurantTotals;
-    
-    let totalSpent = 0;
-    currentOrders.filter(order => order.place === restaurant).map(order => totalSpent += order.values.total);
-
-    // ainda falta o item mais pedido
-    restaurantTotals.name = restaurant;
-    restaurantTotals.totalSpent = totalSpent;
-
-    orderTotals.push(restaurantTotals);
+  async function loadOrders() {
+    const response = await fetch(`${process.env.PUBLIC_URL}/db.json`);
+    const data = await response.json();
+    let userOrders = data?.orders["2"];
+    return userOrders;
   }
 
   return (
     <div className="totals-table-container">
       <button className="go-back-btn" onClick={goBack}>
         <ChevronLeft /> Voltar
+        <input
+          type="month"
+          id="date-input"
+          value={filterDate}
+          onChange={(event) => setFilterDate(event.target.value)}
+        />
       </button>
       
-      <div class="accordionTable">{orderTotals.map(RestaurantTotalAccordion)}</div>
+      <div class="accordionTable">
+      {orders
+        .filter(
+          (order) =>
+            (new Date(order.date).getMonth().toString() + new Date(order.date).getYear().toString())
+             === (new Date(filterDate).getMonth().toString() + new Date(filterDate).getYear().toString())
+        )
+        .map((order) => (
+          <h1>{order.id}</h1>
+        ))} </div>
     </div>
   );
 }
 
+// {orderTotals.map(RestaurantTotalAccordion)}
 export default TotalsTable;

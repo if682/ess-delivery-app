@@ -56,7 +56,7 @@
       "id": "098123",
       "place": "McDonald's",
       "address": "Rua dos Bobos, 0",
-      "date": "01/01/2021",
+      "date": "2021-01-01",
       "items": [
         {
           "name": "Big Mac",
@@ -80,7 +80,7 @@
       "id": "098124",
       "place": "Burger King",
       "address": "Rua dos Bobos, 0",
-      "date": "01/01/2021",
+      "date": "2021-01-01",
       "items": [
         {
           "name": "Whopper",
@@ -104,7 +104,7 @@
       "id": "098125",
       "place": "Subway",
       "address": "Rua dos Bobos, 0",
-      "date": "01/01/2021",
+      "date": "2021-01-01",
       "items": [
         {
           "name": "Subway Melt",

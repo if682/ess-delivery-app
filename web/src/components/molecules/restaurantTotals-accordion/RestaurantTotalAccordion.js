@@ -7,14 +7,13 @@ import Col from 'react-bootstrap/Col';
 import { useNavigate } from "react-router-dom";
 
 function RestaurantTotalAccordion({
-  restaurantID,
+  place,
   monthYear,
-  restaurantName,
   totalSpent
 }) 
 {
   const navigate = useNavigate();
-  const seeRestaurantTotals = () => navigate("/total-pedidos/" + restaurantID + "/" + monthYear);
+  const seeRestaurantTotals = () => navigate("/total-pedidos/" + place + "/" + monthYear);
   
   return (
     <Accordion>
@@ -23,7 +22,7 @@ function RestaurantTotalAccordion({
           <Container>
             <Row className="align-items-center">
               <Col sm={3}><img class="restImage" src="./sample.jpg" alt="Logo do Restaurante"/></Col>
-              <Col sm><strong class="restaurantName">{restaurantName}</strong></Col>
+              <Col sm><strong class="restaurantName">{place}</strong></Col>
               <Col sm><div>Total:<strong class="totalSpent"> R${totalSpent}</strong></div></Col>
             </Row>  
           </Container>
