@@ -22,8 +22,8 @@ function OrdersTable({ orders }) {
     ? () => setSelectedOrder(null)
     : () => navigate("/minha-conta");
 
-  useEffect(() => {
-    const filteredOrders = orders.filter((order) => {
+  const filterOrders = () => {
+    const filtered = orders.filter((order) => {
       const name = order.place.toLowerCase();
       const address = order.address.toLowerCase();
 
@@ -33,9 +33,13 @@ function OrdersTable({ orders }) {
       );
     });
 
-    setOrders(filteredOrders);
+    setOrders(filtered);
 
     if (filter === { name: "", address: "" }) setOrders(orders);
+  };
+
+  useEffect(() => {
+    filterOrders();
   }, [filter]);
 
   return (
@@ -73,7 +77,7 @@ function OrdersTable({ orders }) {
             {filteredOrders.map((order, i) => (
               <Order
                 {...order}
-                selectOrder={() => setSelectedOrder(order)}
+                selectOrder={() => {setSelectedOrder(order)}}
                 key={i}
               />
             ))}
