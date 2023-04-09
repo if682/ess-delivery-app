@@ -1,7 +1,7 @@
 import { PrismaMoviesRepository } from "../../repositories/prisma/PrismaMoviesRepository";
 import { CreateMovieUseCase } from "../create-movie";
 
-export async function makeCreateMovieUseCase() {
+export function makeCreateMovieUseCase() {
     const moviesRepository = new PrismaMoviesRepository()
     const createMovieUseCase = new CreateMovieUseCase(moviesRepository);
 
