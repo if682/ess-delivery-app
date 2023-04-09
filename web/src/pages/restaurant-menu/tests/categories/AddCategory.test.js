@@ -4,7 +4,7 @@ import { RestaurantMenu } from '../../RestaurantMenu';
 import deleteItemsAndCategories from '../RemoveTestData';
 import createCategory from '../CreateCategory';
 
-describe('CategoriesHome tests', () => { 
+describe('Add Categories tests', () => { 
     
     beforeEach(async () => {
         await deleteItemsAndCategories();
