@@ -1,15 +1,20 @@
 import axios, { AxiosInstance } from "axios";
 import { FormValues } from "./interfaces";
-import { BookingTryValues, RatingResponse, ReservationResponse, UserResponse } from './interfaces'
-import { APIConfig } from '../../configs/api/api.config'
-import { RegisterADMInterface } from '../../app/pages/AdmRegister'
+import {
+  BookingTryValues,
+  RatingResponse,
+  ReservationResponse,
+  UserResponse,
+} from "./interfaces";
+import { APIConfig } from "../../configs/api/api.config";
+import { RegisterADMInterface } from "../../app/pages/AdmRegister";
+import { PropsEvaluations } from "../../app/components/EvaluationField";
 
 interface SearchParams {
   cityName?: string;
   date?: string;
   guestsNumber?: number | null;
 }
-
 
 export class APIClient {
   private axiosClient: AxiosInstance;
@@ -120,9 +125,19 @@ export class APIClient {
     const response = await this.axiosClient.get<ReservationResponse[]>(
       `/reservation/completed/${id}`
     );
-    }
-  async getRatingsByReservationId(reservationId: string) {
-    const response = await this.axiosClient.get<RatingResponse[]>(`/reservation/evaluation/${reservationId}`);
     return response.data;
+  }
+  async getRatingsByReservationId(reservationId: string) {
+    const response = await this.axiosClient.get<RatingResponse[]>(
+      `/reservation/evaluation/${reservationId}`
+    );
+    return response.data;
+  }
+
+  async createEvaluation(evaluation: PropsEvaluations) {
+    const response = await this.axiosClient.post<void>(
+      `/reservation/evaluation`,
+      evaluation
+    );
   }
 }
