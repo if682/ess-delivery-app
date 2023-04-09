@@ -47,11 +47,13 @@ function MovieInfo() {
           return (
             <>
               <div  key={review.author.name} className="singleReview">
-                {/* <img
+
+                <img
                   className="singleReviewImage"
-                  src={review.reviewerPhoto}
-                  alt={`Foto de ${review.reviewerName}`}
-                /> */}
+                  src={review.author.photo ? review.author.photo : '../../assets/avatar-default.png'}
+                  alt={`Foto de ${review.author.name}`}
+                />
+              
                 <div className="reviewBox">
                   <div className="reviewedBy">
                     <div>
