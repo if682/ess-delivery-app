@@ -39,7 +39,6 @@ const ReviewModal = (props) => {
             "movieCover": movieCover, 
             "rating": parseFloat(rating),
           };
-        console.log(typeof(parseFloat(rating)))
         
         await postReview(reviewData);
         props.onClose();
@@ -50,7 +49,6 @@ const ReviewModal = (props) => {
         const fetchMovie = async () => {
           try {
             const response = await api.get(`/movie/${movieId}`);
-            console.log(response)
           } catch (error) {
             console.log(error);
           }

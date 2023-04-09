@@ -9,9 +9,7 @@ const SearchResult = (props) => {
           method: 'GET'
         })
         const dataJson = await dataResponse.json(); 
-        console.log(dataJson)
         let posterPath = `https://image.tmdb.org/t/p/w500${dataJson.backdrop_path}`
-        console.log(posterPath)
         localStorage.setItem('title', dataJson.title);
         localStorage.setItem('year', dataJson.release_date);
         localStorage.setItem('description', dataJson.overview);
