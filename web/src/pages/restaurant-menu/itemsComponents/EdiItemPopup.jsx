@@ -37,7 +37,7 @@ export const EdiItemPopup = (props) => {
             setWarningMessage("Já existe um item com esse nome!")
         }
         else {
-            let item = {name: name.trim(), description: description.trim(), price: price.trim()}
+            let item = {name: name.trim(), description: description.trim(), price: price.trim(), category: props.item.category}
 
             await fetch(`http://localhost:3001/items/${props.item?.id}`, {
                 method: 'PUT',
@@ -46,6 +46,8 @@ export const EdiItemPopup = (props) => {
                 },
                 body: JSON.stringify(item)
             });
+
+            props.onHide()
         }
     }
 
@@ -91,7 +93,7 @@ export const EdiItemPopup = (props) => {
         </Modal.Body>
         <Modal.Footer>
             <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-primary' onClick={() => EdiItem()}>Editar</Button>
+            <Button className='btn-primary' data-testid='popupEditButton' onClick={() => EdiItem()}>Editar</Button>
         </Modal.Footer>
         </Modal>
     );

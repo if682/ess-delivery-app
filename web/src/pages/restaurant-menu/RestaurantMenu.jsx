@@ -7,7 +7,6 @@ import RemCategoryPopup from "./categoriesComponents/RemCategoryPopup";
 import { Item } from "./itemsComponents/Item";
 import "./RestaurantMenu.scss"
 import Button from 'react-bootstrap/Button';
-import deleteItemsAndCategories from "./tests/RemoveTestData";
 
 export const RestaurantMenu = () => {
     const [items, setItems] = useState([]);
@@ -21,8 +20,6 @@ export const RestaurantMenu = () => {
     const [remCatToggle, setRemCatToggle] = useState([false, null]);
 
     useEffect(() => {
-        //deleteItemsAndCategories()
-
         fetch('http://localhost:3001/items')
             .then(response => response.json())
             .then(data => {
@@ -36,7 +33,7 @@ export const RestaurantMenu = () => {
 
     return (
         <div>
-            <AddCategory show={addCatToggle} onHide={() => setAddCatToggle(false)} data-testid = 'setAdd'/>
+            <AddCategory show={() => setAddCatToggle(true)} onHide={() => setAddCatToggle(false)} data-testid = 'setAdd'/>
             <RemCategoryPopup show={remCatToggle[0]} category={remCatToggle[1]} onHide={() => setRemCatToggle(false)}/>
 
             <AddItemPopup show={addItemToggle[0]} onHide={() => setAddItemToggle(false)} currentItems={items} category={addItemToggle[1]}/>

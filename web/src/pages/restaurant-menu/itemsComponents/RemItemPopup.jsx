@@ -6,6 +6,8 @@ export const RemItemPopup = (props) => {
         await fetch(`http://localhost:3001/items/${props.item}`, {
             method: "DELETE"
         })
+
+        props.onHide()
     }
 
     return (
@@ -25,10 +27,7 @@ export const RemItemPopup = (props) => {
         </Modal.Body>
         <Modal.Footer>
             <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-danger' data-testid='confirmRemoveButton' onClick={async () => {
-                RemItem()
-                props.onHide()
-            }}>Excluir</Button>
+            <Button className='btn-danger' data-testid='confirmRemoveButton' onClick={async () => {RemItem()}}>Excluir</Button>
         </Modal.Footer>
         </Modal>
     );

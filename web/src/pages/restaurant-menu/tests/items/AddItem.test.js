@@ -1,101 +1,99 @@
-import { render, screen, fireEvent, waitFor} from '@testing-library/react';
-import { AddItemPopup } from '../../itemsComponents/AddItemPopup';
-import { RestaurantMenu } from '../../RestaurantMenu';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import deleteItemsAndCategories from '../RemoveTestData';
+import { createItem } from '../CreateItem';
 
 describe('AddItemPopup', () => {
     beforeEach(async () => {
         await deleteItemsAndCategories();
-
-        render(<RestaurantMenu />);
-        
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(0));
+        await createItem();
     });
 
     afterEach(async () => {
         await deleteItemsAndCategories();
     });
 
-    const currentItems = [
-    { id: 1, name: 'Item 1', description: 'Descrição 1', price: '10,00', category: 'teste' },
-    { id: 2, name: 'Item 2', description: 'Descrição 2', price: '20,00', category: 'teste' },
-    ];
-
-    const onHideMock = jest.fn(() => {});
-
     it('should render AddItemPopup component when Adicionar Item button is clicked', async () => {
-        // Add a category
-        fireEvent.click(screen.getByTestId('add-category-button'));
-        fireEvent.change(screen.getByPlaceholderText('Nome'), { target: { value: 'Categoria Teste' } });
-        fireEvent.click(screen.getByTestId('create-category-button'));
-
         // Check that "Adicionar item" button now appears
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(1));
+        await waitFor(() => screen.findByTestId('addItemBtn'));
 
         // Click the "Adicionar item" button
-        waitFor(() => fireEvent.click(screen.getByTestId('addItemBtn')));
+        await waitFor(() => fireEvent.click(screen.getByTestId('addItemBtn')));
 
         // Check that the "AddItemPopup" component appears
-        waitFor(() => expect(screen.getByTestId('addButton')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByTestId('addButton')).toBeInTheDocument());
     });
 
     it('should close the modal when Cancelar button is clicked', async () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems} category={'teste'}/>);
-
-        fireEvent.click(screen.getByText('Cancelar'));
-
-        await waitFor(() => expect(onHideMock).toHaveBeenCalledTimes(1));
-
-        render(<RestaurantMenu />);
+        // Click the "Adicionar item" button
+        await waitFor(() => fireEvent.click(screen.getByTestId('addItemBtn')));
         
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(0));
+        // Click "Cancelar"
+        fireEvent.click(screen.getByText('Cancelar'));
+        
+        // Wait for the popup to disappear
+        await waitFor(() => expect(screen.queryByText('Cancelar')).toBeNull());
+
+        // Check if items are still the same
+        await waitFor(() => expect(screen.getAllByTestId('removeItemButton').length).toBe(1));
     });
 
-    it('should show a warning message if any field is left blank', () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems} category={'teste'}/>);
+    it('should show a warning message if any field is left blank', async () => {
+        // Click the "Adicionar item"
+        fireEvent.click(screen.getByTestId('addItemBtn'));
+        
+        // Check that the popup appears
+        await waitFor(() => expect(screen.getByTestId('addButton')).toBeInTheDocument());
 
+        fireEvent.change(screen.getByPlaceholderText('Nome'), {target: {value: ''}});
+
+        // Click "Adicionar"
         fireEvent.click(screen.getByTestId('addButton'));
 
-        expect(screen.getByText('Todas as entradas devem ser preenchidas!')).toBeInTheDocument();
+        // Expect error message
+        waitFor(() => screen.findByText('Todas as entradas devem ser preenchidas!'));
 
-        render(<RestaurantMenu />);
+        // Click "Cancelar"
+        fireEvent.click(screen.getByText('Cancelar'));
         
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(0));
+        // Wait for the popup to disappear
+        await waitFor(() => expect(screen.queryByText('Cancelar')).toBeNull());
+
+        // Check if items are still the same
+        await waitFor(() => expect(screen.getAllByTestId('removeItemButton').length).toBe(1));
     });
 
-    it('should show a warning message if the price format is invalid', () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems} category={'teste'}/>);
-
-        fireEvent.change(screen.getByPlaceholderText('Nome'), {target: {value: 'Item Teste'}});
-        fireEvent.change(screen.getByPlaceholderText('Descrição'), {target: {value: 'Descrição do item teste.'}});
+    it('should show a warning message if the price format is invalid', async () => {
+        // Click the "Adicionar item"
+        fireEvent.click(screen.getByTestId('addItemBtn'));
+        
+        // Check that the popup appears
+        await waitFor(() => expect(screen.getByTestId('addButton')).toBeInTheDocument());
+        
+        fireEvent.change(screen.getByPlaceholderText('Nome'), {target: {value: 'Item Teste 2'}});
+        fireEvent.change(screen.getByPlaceholderText('Descrição'), {target: {value: 'Descrição do item teste 2'}});
         fireEvent.change(screen.getByPlaceholderText('Preço'), {target: {value: '10.50'}});
 
         fireEvent.click(screen.getByTestId('addButton'));
-        
-        expect(screen.getByText('O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.')).toBeInTheDocument();
 
-        render(<RestaurantMenu />);
+        // Expect error message
+        await waitFor(() => expect(screen.getByText('O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.')).toBeInTheDocument());
         
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(0));
+        // Click "Cancelar"
+        fireEvent.click(screen.getByText('Cancelar'));
+        
+        // Wait for the popup to disappear
+        await waitFor(() => expect(screen.queryByText('Cancelar')).toBeNull());
+
+        // Check if items are still the same
+        await waitFor(() => expect(screen.getAllByTestId('removeItemButton').length).toBe(1));
     });
 
     it('should show a warning message if an item with the same name already exists', async () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems}/>);
-
-        fireEvent.change(screen.getByPlaceholderText('Nome'), {target: {value: 'Item 1'}});
-        fireEvent.change(screen.getByPlaceholderText('Descrição'), {target: {value: 'Descrição do item teste.'}});
-        fireEvent.change(screen.getByPlaceholderText('Preço'), {target: {value: '10,50'}});
-        fireEvent.click(screen.getByTestId('addButton'));
-
-        expect(screen.getByText("Já existe um item com esse nome!")).toBeInTheDocument();
-
-        render(<RestaurantMenu />);
+        // Click the "Adicionar item"
+        fireEvent.click(screen.getByTestId('addItemBtn'));
         
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(0));
-    });
-
-    it('should add a new item and close the pop-up when all fields are filled correctly', async () => {
-        render(<AddItemPopup show={true} onHide={onHideMock} currentItems={currentItems}/>);
+        // Check that the popup appears
+        await waitFor(() => expect(screen.getByTestId('addButton')).toBeInTheDocument());
 
         fireEvent.change(screen.getByPlaceholderText('Nome'), {target: {value: 'Item Teste'}});
         fireEvent.change(screen.getByPlaceholderText('Descrição'), {target: {value: 'Descrição do item teste.'}});
@@ -103,10 +101,38 @@ describe('AddItemPopup', () => {
 
         fireEvent.click(screen.getByTestId('addButton'));
 
-        await waitFor(() => expect(onHideMock).toHaveBeenCalledTimes(1));
+        // Expect error message
+        await waitFor(() => expect(screen.getByText("Já existe um item com esse nome!")).toBeInTheDocument());
 
-        render(<RestaurantMenu />);
+        // Click "Cancelar"
+        fireEvent.click(screen.getByText('Cancelar'));
         
-        waitFor(() => expect(screen.getAllByTestId('addItemBtn').length).toBe(1));
+        // Wait for the popup to disappear
+        await waitFor(() => expect(screen.queryByText('Cancelar')).toBeNull());
+
+        // Check if items are still the same
+        await waitFor(() => expect(screen.getAllByTestId('removeItemButton').length).toBe(1));
+    });
+
+    it('should add a new item and close the pop-up when all fields are filled correctly', async () => {
+        // Click the "Adicionar item"
+        fireEvent.click(screen.getByTestId('addItemBtn'));
+        
+        // Check that the popup appears
+        await waitFor(() => expect(screen.getByTestId('addButton')).toBeInTheDocument());
+
+        fireEvent.change(screen.getByPlaceholderText('Nome'), {target: {value: 'Item Teste 2'}});
+        fireEvent.change(screen.getByPlaceholderText('Descrição'), {target: {value: 'Descrição do item teste 2.'}});
+        fireEvent.change(screen.getByPlaceholderText('Preço'), {target: {value: '10,50'}});
+
+        // Click "Adicionar"
+        fireEvent.click(screen.getByTestId('addButton'));
+
+        // Wait for the popup to disappear
+        await waitFor(() => expect(screen.queryByText('Cancelar')).toBeNull());
+
+        // Check if item's been created
+        await waitFor(() => screen.findByText("Item Teste"));
+        await waitFor(() => screen.findByText("Item Teste 2"));
     });
 });
