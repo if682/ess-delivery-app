@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
 import { makeEditUserUseCase } from "../../../use-cases/factories/make-edituser-usecase";
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
+export async function editUser(request: FastifyRequest, reply: FastifyReply) {
     const registerBodySchema = z.object({
         name: z.string(),
         username: z.string(),
