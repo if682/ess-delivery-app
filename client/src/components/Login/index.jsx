@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginBox = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   let handleSubmit = async (e) =>{
     e.preventDefault();
     try{
@@ -19,13 +20,15 @@ const LoginBox = () => {
                 password: password
             }),
         });
-        //let resJson = await res.json()
-        if(res.status === 201){
+        let resJson = await res.json()
+        if(res.status === 200){
             console.log("Passou ok")
             setUsername("");
             setPassword("");
+            localStorage.setItem("userId", resJson.id)
+            navigate(`/profile`)
         }else{
-            alert("Ocorreu um erro no post")
+            alert("Usuário/Senha não cadastrado")
         }
     }catch (err){
         console.log(err);

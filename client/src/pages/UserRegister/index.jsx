@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserRegister = () => {
 
@@ -9,6 +10,8 @@ const UserRegister = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [location, setLocation] = useState("");
+
+    const navigate = useNavigate();
 
     let handleSubmit = async (e) =>{
         e.preventDefault();
@@ -42,6 +45,7 @@ const UserRegister = () => {
                 setLocation("");
                 setPhone("");
                 setUserName("");
+                navigate(`/`)
             }else{
                 alert("Ocorreu um erro no post")
             }
