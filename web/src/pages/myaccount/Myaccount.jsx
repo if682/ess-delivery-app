@@ -25,7 +25,7 @@ function MyAccountPage() {
 
       <RedOutlineButton onClick={goToMyData}>Meus dados</RedOutlineButton>
       <RedOutlineButton onClick={goToMyOrders}>Meus pedidos</RedOutlineButton>
-      <RedOutlineButton onClick={goToTotalOrders}>Total pedidos</RedOutlineButton>
+      <RedOutlineButton onClick={goToTotalOrders}>Total dos pedidos do mês</RedOutlineButton>
 
       <RedButton onClick={handleClick}>Desativar conta</RedButton>
     </div>
