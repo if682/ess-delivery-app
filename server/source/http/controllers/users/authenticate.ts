@@ -19,7 +19,7 @@ export async function authenticate (request: FastifyRequest, reply: FastifyReply
         })
 
     } catch(err) {
-        reply.status(500).send({ err });
+        reply.status(500).send(err);
         throw err;
     }
 
