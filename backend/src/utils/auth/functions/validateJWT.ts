@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
-const { API_KEY } = process.env;
+const API_KEY = process.env.API_KEY || 'API_KEY';
 
 interface DecodedToken {
   idUser: string;

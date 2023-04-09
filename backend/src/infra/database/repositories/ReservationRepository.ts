@@ -21,4 +21,5 @@ export abstract class ReservationRepository {
   abstract getCompletedEvaluationByUserId(
     id: string,
   ): Promise<CompletedReservation[]>;
+  abstract getAllSolicitationsOfReservations(): Promise<any[]>;
 }
