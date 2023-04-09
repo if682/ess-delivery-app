@@ -24,6 +24,7 @@ describe("Add movie to list use case", () => {
         await reg.handle({
             name: "Fulano",
             email: "fulano@gmail.com",
+            description: "",
             username: "fulaninho123",
             birthdate: new Date(),
             password: "FulanoBox345!",
