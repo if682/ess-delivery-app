@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeMovieEvaluationUseCase } from "../../../use-cases/factories/make-movieevaluation-usecase";
+import { makeMovieEvaluationUseCase } from "../../../use-cases/factories/movie/make-movieevaluation-usecase";
 
 export async function movieevaluation (request: FastifyRequest, reply: FastifyReply) {
     const movieevaluationBodySchema = z.object({

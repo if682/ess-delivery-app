@@ -1,5 +1,5 @@
-import { PrismaMoviesRepository } from "../../repositories/prisma/PrismaMoviesRepository";
-import { CreateMovieUseCase } from "../movie/create-movie";
+import { PrismaMoviesRepository } from "../../../repositories/prisma/PrismaMoviesRepository";
+import { CreateMovieUseCase } from "../../movie/create-movie";
 
 export function makeCreateMovieUseCase() {
     const moviesRepository = new PrismaMoviesRepository()

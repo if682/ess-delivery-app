@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { makeMovieSearchUseCase } from "../../../use-cases/factories/make-moviesearch-usecase";
+import { makeMovieSearchUseCase } from "../../../use-cases/factories/movie/make-moviesearch-usecase";
 
 export async function moviesearch (request: FastifyRequest, reply: FastifyReply) {
     const moviesearchParamsSchema = z.object({

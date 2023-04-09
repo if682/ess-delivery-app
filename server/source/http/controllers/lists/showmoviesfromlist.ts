@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply} from "fastify";
 import { z } from "zod";
-import { makeShowMoviesFromListUseCase } from "../../../use-cases/factories/make-showmoviesfromlist-usecase";
+import { makeShowMoviesFromListUseCase } from "../../../use-cases/factories/movie/make-showmoviesfromlist-usecase";
 
 export async function showmoviesfromlist(request: FastifyRequest, reply: FastifyReply) {
     const showmoviesfromlistParamsSchema = z.object({
