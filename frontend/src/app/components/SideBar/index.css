@@ -11,6 +11,7 @@
   height: 100%;
   animation-name: openSideBar;
   animation-duration: 0.5s;
+  z-index: 1;
 }
 
 @keyframes openSideBar {

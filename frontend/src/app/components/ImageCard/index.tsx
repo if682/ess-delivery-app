@@ -56,7 +56,7 @@ function ImageCard({
     if (favoritePage) {
       return "/favorites";
     } else if (descriptionFull) {
-      return "my-reservations";
+      return "/my-reservations";
     } else {
       return "/booking/" + id;
     }
