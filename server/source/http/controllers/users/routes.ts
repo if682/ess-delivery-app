@@ -10,5 +10,5 @@ export async function userRoutes(app: FastifyInstance) {
     app.post("/login", authenticate);
     app.put("/forgotpassword", forgotpassword);
     app.put("/changepassword", changepassword);
-    app.patch("/edit", editUser)
+    app.put("/edit", editUser)
 }
