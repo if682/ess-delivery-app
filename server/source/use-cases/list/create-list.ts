@@ -1,5 +1,5 @@
 import { List, User } from "@prisma/client";
-import { IListsRepository } from "../repositories/IListsRepository";
+import { IListsRepository } from "../../repositories/IListsRepository";
 
 interface ICreateListUseCaseRequest{
     name: string,

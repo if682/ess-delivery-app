@@ -1,6 +1,6 @@
 import { PrismaListsRepository } from "../../repositories/prisma/PrismaListsRepository";
 import { PrismaMoviesRepository } from "../../repositories/prisma/PrismaMoviesRepository";
-import { AddMovieToListUseCase } from "../add-movie-to-list";
+import { AddMovieToListUseCase } from "../list/add-movie-to-list";
 
 export function makeAddMovieToListUseCase(){
     const listsRepository = new PrismaListsRepository();

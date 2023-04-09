@@ -1,5 +1,5 @@
 import { PrismaListsRepository } from "../../repositories/prisma/PrismaListsRepository";
-import { CreateListUseCase } from "../create-list";
+import { CreateListUseCase } from "../list/create-list";
 
 export function makeCreateListUseCase(){
     const listsRepository = new PrismaListsRepository();

@@ -1,5 +1,5 @@
 import { PrismaListsRepository } from "../../repositories/prisma/PrismaListsRepository";
-import { DeleteListUseCase } from "../delete-list";
+import { DeleteListUseCase } from "../list/delete-list";
 
 export function makeDeleteListUseCase(){
     const listsRepository = new PrismaListsRepository();

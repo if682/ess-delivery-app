@@ -1,6 +1,6 @@
 import { List, MovieList } from "@prisma/client";
-import { IListsRepository } from "../repositories/IListsRepository";
-import { IMoviesRepository } from "../repositories/IMoviesRepository";
+import { IListsRepository } from "../../repositories/IListsRepository";
+import { IMoviesRepository } from "../../repositories/IMoviesRepository";
 
 interface IAddMovieToListRequest{
     userId: string,

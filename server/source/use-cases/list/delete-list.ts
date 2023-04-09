@@ -1,5 +1,5 @@
 import { List } from "@prisma/client";
-import { IListsRepository } from "../repositories/IListsRepository";
+import { IListsRepository } from "../../repositories/IListsRepository";
 
 interface IDeleteListUseCaseRequest{
     userId: string,

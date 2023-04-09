@@ -1,9 +1,9 @@
 import { expect, describe, test, beforeEach } from "vitest";
 import { AddMovieToListUseCase } from "./add-movie-to-list";
-import { RegisterUserUseCase } from "./register-user";
-import { InMemoryListsRepository } from "../repositories/inMemory/inMemoryListsRepository";
-import { InMemoryMoviesRepository } from "../repositories/inMemory/inMemoryMoviesRepository";
-import { InMemoryUsersRepository } from "../repositories/inMemory/inMemoryUsersRepository";
+import { RegisterUserUseCase } from "../user/register-user";
+import { InMemoryListsRepository } from "../../repositories/inMemory/inMemoryListsRepository";
+import { InMemoryMoviesRepository } from "../../repositories/inMemory/inMemoryMoviesRepository";
+import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
 
 let inMemoryListsRepository: InMemoryListsRepository
 let inMemoryMoviesRepository: InMemoryMoviesRepository
