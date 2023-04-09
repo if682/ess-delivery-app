@@ -5,12 +5,14 @@ import EvaluateFild from "../EvaluationField";
 
 interface Props {
   cards: ImageCardProps[];
+  evaluate: boolean;
 }
 
 const ImageCardRowWrapper = styled.div`
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
+  margin-top: 30px;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -53,12 +55,10 @@ const ArrowIcon = styled.div`
   transform: rotate(135deg);
 `;
 
-const ImageCardRow = ({ cards }: Props) => {
+const ImageCardRow = ({ cards, evaluate }: Props) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
-
-  const [evaluate, setEvaluate] = useState(true);
 
   const handleScroll = () => {
     if (!containerRef) return;
@@ -107,14 +107,40 @@ const ImageCardRow = ({ cards }: Props) => {
           <ArrowIcon />
         </ArrowWrapper>
       )}
-      <ImageCardRowWrapper onScroll={handleScroll} ref={setContainerRef}>
-        {cards.map((card) => (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <ImageCard key={card.id} {...card} />
-            {evaluate && <EvaluateFild />}
-          </div>
-        ))}
-      </ImageCardRowWrapper>
+      {cards.length >= 4 ? (
+        <ImageCardRowWrapper onScroll={handleScroll} ref={setContainerRef}>
+          {cards.map((card) => (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <ImageCard key={card.id} {...card} />
+              {evaluate && <EvaluateFild />}
+            </div>
+          ))}
+        </ImageCardRowWrapper>
+      ) : (
+        <ImageCardRowWrapper
+          style={{ justifyContent: "center" }}
+          onScroll={handleScroll}
+          ref={setContainerRef}
+        >
+          {cards.map((card) => (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <ImageCard key={card.id} {...card} />
+              {evaluate && <EvaluateFild />}
+            </div>
+          ))}
+        </ImageCardRowWrapper>
+      )}
+
       {showRightArrow && (
         <ArrowWrapper onClick={() => handleArrowClick("right")}>
           <ArrowIcon style={{ transform: "rotate(-45deg)" }} />
