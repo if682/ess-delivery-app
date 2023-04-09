@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const port = 4001;
 
 const LoginBox = () => {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ const LoginBox = () => {
   let handleSubmit = async (e) =>{
     e.preventDefault();
     try{
-        let res = await fetch("http://localhost:4001/login", {
+        let res = await fetch(`http://localhost:${port}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
