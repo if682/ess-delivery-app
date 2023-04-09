@@ -28,8 +28,7 @@ function ClientInfo() {
         setId(client[0].id)
         setCurrentClients(data)
       })
-    
-}, [])
+}, [email, name, password])
 
   const navigate = useNavigate();
   const goBack =  () =>{
@@ -47,9 +46,9 @@ function ClientInfo() {
         <ChevronLeft /> Voltar
       </button>
       <div>
-        <DataField fieldName="Nome" value={name} inputType="text" setShow={setShowEditName}/>
-        <DataField fieldName="E-mail" value={email} inputType="text" setShow={setShowEditEmail}/>
-        <DataField fieldName="Senha" value={password} inputType="password" setShow={setShowEditPassword}/>
+        <DataField fieldName="Nome" value={name} inputType="text" setShow={setShowEditName} placeholder="Nome" testid="nome"/>
+        <DataField fieldName="E-mail" value={email} inputType="text" setShow={setShowEditEmail} placeholder="E-mail" testid="email"/>
+        <DataField fieldName="Senha" value={password} inputType="password" setShow={setShowEditPassword} placeholder="Senha" testid="senha"/>
       </div>
     </div>
     </>
