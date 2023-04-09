@@ -6,6 +6,8 @@ interface ICreateReviewUseCaseRequest {
     review: string
     userId: string
     movieId: string
+    movieCover: string
+    rating: number
 }
 
 interface ICreateReviewUseCaseReply {
@@ -20,12 +22,16 @@ export class CreateReviewUseCase {
         review,
         movieId,
         userId,
+        movieCover,
+        rating
     }: ICreateReviewUseCaseRequest): Promise<ICreateReviewUseCaseReply> {
         const reviewObject = await this.reviewsRepository.create({
             title,
             review,
             movieId,
             userId,
+            movieCover,
+            rating
         })
 
         return {
