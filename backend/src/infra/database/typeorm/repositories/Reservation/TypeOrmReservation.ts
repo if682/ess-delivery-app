@@ -30,6 +30,7 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     const connections = await this.reservationConnectionRepository.find({
       where: {
         userId: id,
+        accepted: 'aceito',
       },
     });
 
@@ -37,8 +38,7 @@ export class TypeOrmReservationRepository implements ReservationRepository {
 
     const query = this.reservationRepository.createQueryBuilder('reservation');
     query
-      .where(`reservation.accepted = 'aceito'`)
-      .andWhere('DATE(reservation.checkIn) >= DATE(:date)', {
+      .andWhere('DATE(reservation.checkIn) <= DATE(:date)', {
         date: new Date(),
       })
       .andWhereInIds(ids);

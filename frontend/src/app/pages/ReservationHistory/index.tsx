@@ -41,6 +41,7 @@ export default function Favorites() {
           description: e.additionalInfo,
           favoritePage: false,
           descriptionFull: true,
+          evaluations: e.evaluations,
         } as unknown as Props;
         return newObject;
       });
@@ -60,7 +61,11 @@ export default function Favorites() {
   return (
     <div>
       <h1>HISTORICO DE RESERVAS</h1>
-      <ImageCardRow evaluate={true} cards={completedReservations} />
+      {completedReservations.length ? (
+        <h2>Você não possui nenhuma reserva em seu historico</h2>
+      ) : (
+        <ImageCardRow evaluate={true} cards={completedReservations} />
+      )}
     </div>
   );
 }
