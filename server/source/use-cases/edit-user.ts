@@ -11,7 +11,7 @@ interface IRegisterUserUseCaseReply {
     user: User
 }
 
-export class RegisterUserUseCase {
+export class EditUserUserUseCase {
     constructor(private usersRepository: IUserRepository) {}
 
     async handle({
