@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft } from "react-bootstrap-icons";
+import _ from "lodash";
 
 import "./TotalsTable.css";
 import RestaurantTotalAccordion from "../restaurantTotals-accordion/RestaurantTotalAccordion";
@@ -13,6 +14,7 @@ function TotalsTable() {
 
   const [orders, setOrders] = useState([]);
   const [filterDate, setFilterDate] = useState(new Date());
+  
 
   useEffect(() => {
     (async function fetchData() {
@@ -41,15 +43,16 @@ function TotalsTable() {
       </button>
       
       <div class="accordionTable">
-      {orders
+      {_(orders
         .filter(
           (order) =>
             (new Date(order.date).getMonth().toString() + new Date(order.date).getYear().toString())
              === (new Date(filterDate).getMonth().toString() + new Date(filterDate).getYear().toString())
-        )
-        .map((order) => (
-          <h1>{order.id}</h1>
-        ))} </div>
+        ))
+        .groupBy("place")
+        .map((value, key) => ({place: key, orders: value}))
+        .value()
+        .map(RestaurantTotalAccordion)} </div>
     </div>
   );
 }

@@ -8,12 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 function RestaurantTotalAccordion({
   place,
-  monthYear,
-  totalSpent
+  orders
 }) 
 {
   const navigate = useNavigate();
-  const seeRestaurantTotals = () => navigate("/total-pedidos/" + place + "/" + monthYear);
+  const seeRestaurantTotals = () => navigate("/total-pedidos/" + place);
   
   return (
     <Accordion>
@@ -23,7 +22,7 @@ function RestaurantTotalAccordion({
             <Row className="align-items-center">
               <Col sm={3}><img class="restImage" src="./sample.jpg" alt="Logo do Restaurante"/></Col>
               <Col sm><strong class="restaurantName">{place}</strong></Col>
-              <Col sm><div>Total:<strong class="totalSpent"> R${totalSpent}</strong></div></Col>
+              <Col sm><div>Total:<strong class="totalSpent"> R${orders[0].values.total}</strong></div></Col>
             </Row>  
           </Container>
 		    </Accordion.Header>
