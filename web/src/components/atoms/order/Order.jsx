@@ -75,6 +75,8 @@ function Order({
           <Col xs={1}>
             <ChevronRight
               size={20}
+              aria-label="Toggle Details"
+              data-testid="toggle-details"
               style={showDetails ? { transform: "rotate(90deg)" } : {}}
             />
           </Col>
