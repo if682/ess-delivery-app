@@ -58,4 +58,13 @@ export class InMemoryListsRepository implements IListsRepository{
         this.movieLists = new_array;
     }
 
+    async deleteMovieFromList(userId: string, listName: string, movieId: string): Promise<void> {
+        const index = this.movieLists.findIndex((item) =>
+            item.listName == listName &&
+            item.listOwner == userId && 
+            item.movieId == movieId
+        )
+        this.movieLists.splice(index, 1);
+    }
+
 }
