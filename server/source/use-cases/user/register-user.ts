@@ -8,6 +8,7 @@ interface IRegisterUserUseCaseRequest {
     name: string
     username: string
     email: string
+    description: string
     password: string
     birthdate: Date
     phone: string | null
@@ -26,6 +27,7 @@ export class RegisterUserUseCase {
     async handle({
         name,
         email,
+        description,
         username,
         birthdate,
         password,
@@ -42,6 +44,7 @@ export class RegisterUserUseCase {
             user = await this.usersRepository.create({
                 name,
                 email,
+                description,
                 username,
                 birthdate,
                 password: password_hash,
