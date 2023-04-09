@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeAuthenticateUseCase } from "../../../use-cases/factories/make-authenticate-usecase";
+import { makeAuthenticateUseCase } from "../../../use-cases/factories/user/make-authenticate-usecase";
 
 export async function authenticate (request: FastifyRequest, reply: FastifyReply) {
     const authenticateBodySchema = z.object({

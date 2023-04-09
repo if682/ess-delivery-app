@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { makeCreateReviewUseCase } from "../../../use-cases/factories/make-createreview-usecase";
+import { makeCreateReviewUseCase } from "../../../use-cases/factories/review/make-createreview-usecase";
 
 export async function createReview(request: FastifyRequest, reply: FastifyReply) {
     const createReviewBodySchema = z.object({

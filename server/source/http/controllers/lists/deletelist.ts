@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeDeleteListUseCase } from "../../../use-cases/factories/make-deletelist-usecase";
+import { makeDeleteListUseCase } from "../../../use-cases/factories/list/make-deletelist-usecase";
 
 export async function deletelist(request: FastifyRequest, reply: FastifyReply){
     const deletelistBodySchema = z.object({

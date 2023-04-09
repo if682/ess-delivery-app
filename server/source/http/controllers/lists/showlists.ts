@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply} from "fastify";
 import { z } from "zod";
-import { makeShowListsUseCase } from "../../../use-cases/factories/make-showlists-usecase";
+import { makeShowListsUseCase } from "../../../use-cases/factories/list/make-showlists-usecase";
 
 export async function showlists(request: FastifyRequest, reply: FastifyReply) {
     const showlistsParamsSchema = z.object({

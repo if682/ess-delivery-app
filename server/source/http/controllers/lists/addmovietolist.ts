@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeAddMovieToListUseCase } from "../../../use-cases/factories/make-addmovietolist-usecase";
+import { makeAddMovieToListUseCase } from "../../../use-cases/factories/list/make-addmovietolist-usecase";
 
 export async function addmovietolist(request: FastifyRequest, reply: FastifyReply){
     const addmovietolistBodySchema = z.object({
