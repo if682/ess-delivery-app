@@ -9,3 +9,9 @@
     color: #77728D;
     font-size: 18px;
 }
+
+.film-container img{
+    height: 300px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}

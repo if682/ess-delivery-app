@@ -1,13 +1,12 @@
 import React from "react";
 import "./style.css";
 
-const Films = () => {
+const Films = (props) => {
 
   return (
     <article className="film-container">
-        <img src="../../assets/movie-poster.svg"></img>
-        <h3>The GodFather</h3>
-        <h3>2012</h3>
+        <img src={props.movie.movieCover} alt="Movie cover"></img>
+        <h3>{props.movie.title}</h3>
     </article>
   );
 };
