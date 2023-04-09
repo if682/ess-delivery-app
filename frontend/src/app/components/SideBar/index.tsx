@@ -25,6 +25,13 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
     setTimeout(closeSideBar, 450);
   };
 
+  const setHouter = (value: string) => {
+    console.log("ENTREI");
+    if (window) {
+      window.location.href = value;
+    }
+  };
+
   return (
     <div className="sideBar">
       <button className="iconClose" onClick={closeSideBarAnimation}>
@@ -34,22 +41,44 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
       {false ? (
         <>
           <button className="sideBar_Option_Button">Gerenciar reservas</button>
-          <button className="sideBar_Option_Button">
+          <button
+            onClick={() => setHouter("/user-data")}
+            className="sideBar_Option_Button"
+          >
             Informações pessoais
           </button>
-          <button className="sideBar_Option_Button">
+          <button
+            onClick={() => setHouter("/register-adm")}
+            className="sideBar_Option_Button"
+          >
             Cadastrar novo usuario administrativo
           </button>
         </>
       ) : (
         <>
           <button className="sideBar_Option_Button">Gerenciar reservas</button>
-          <button className="sideBar_Option_Button">Minhas reservas</button>
-          <button className="sideBar_Option_Button">Favoritos</button>
-          <button className="sideBar_Option_Button">
+          <button
+            onClick={() => setHouter("/my-reservations")}
+            className="sideBar_Option_Button"
+          >
+            Minhas reservas
+          </button>
+          <button
+            onClick={() => setHouter("/favorites")}
+            className="sideBar_Option_Button"
+          >
+            Favoritos
+          </button>
+          <button
+            onClick={() => setHouter("/reservation-history")}
+            className="sideBar_Option_Button"
+          >
             Historico de reservas
           </button>
-          <button className="sideBar_Option_Button">
+          <button
+            onClick={() => setHouter("/user-data")}
+            className="sideBar_Option_Button"
+          >
             Informações pessoais
           </button>
           <button className="sideBar_Option_Button">Fale conosco</button>
