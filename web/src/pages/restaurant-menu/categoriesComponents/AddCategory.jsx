@@ -1,6 +1,7 @@
 import React from "react";
 import { isInputNull } from "../../../shared/functions/isInputNull";
 import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
+import Button from 'react-bootstrap/Button';
 
 
 export default function AddCategory(props) {
@@ -61,7 +62,7 @@ export default function AddCategory(props) {
     return (
         <div>
             <h1>Categories</h1>
-            <button onClick={handleAddCategoryClick} data-testid = "add-category-button">Add category</button>
+            <Button onClick={handleAddCategoryClick} data-testid = "add-category-button">Add category</Button>
             {showForm && (
                 <form onSubmit={handleConfirmClick}>
                     <label>
@@ -74,12 +75,12 @@ export default function AddCategory(props) {
                             data-testid = "add-category-input"
                         />
                     </label>
-                    <button type="button" onClick={handleCancelClick} data-testid = "cancel-button">
+                    <Button type="button" onClick={handleCancelClick} data-testid = "cancel-button">
                         Cancel
-                    </button>
-                    <button type="submit" data-testid = "create-category-button">
+                    </Button>
+                    <Button type="submit" data-testid = "create-category-button">
                         Confirm
-                    </button>
+                    </Button>
                 </form>
             )}
             {warningMessage && <p>{warningMessage}</p>}
