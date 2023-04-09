@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import { EditEmailPopup } from './EditEmailPopup';
+import { EditEmailPopup } from '../components/EditEmail/EditEmailPopup';
 
 describe('EditEmailPopup', () => {
   let onHideMock, props;

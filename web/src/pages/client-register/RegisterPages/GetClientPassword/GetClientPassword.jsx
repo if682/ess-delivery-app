@@ -62,7 +62,6 @@ export const GetClientPassword = (props) => {
                 </div>
                 <>
                     <text className='register_password_title'>Estamos quase lá, {name}!</text>
-                    <br></br>
                     <text className='register_password_text'>Crie uma senha para a sua conta</text>
                     <div className='display_password_inputs'>
                     <input

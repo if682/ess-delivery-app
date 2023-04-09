@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { EditNamePopup } from "./EditNamePopup";
+import { EditNamePopup } from "../components/EditName/EditNamePopup";
 
 describe("EditNamePopup", () => {
     let onHideMock, props;

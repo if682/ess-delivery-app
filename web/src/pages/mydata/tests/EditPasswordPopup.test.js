@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { EditPasswordPopup } from "./EditPasswordPopup";
+import { EditPasswordPopup } from "../components/EditPassword/EditPasswordPopup";
 
 describe("EditPasswordPopup", () => {
     let onHideMock, props;
