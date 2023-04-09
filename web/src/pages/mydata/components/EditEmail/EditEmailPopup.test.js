@@ -19,7 +19,7 @@ describe('EditEmailPopup', () => {
   });
 
   it('should render the component', () => {
-    const { getByText, getByPlaceholderText, getByTestId} = render(<EditEmailPopup {...props} />);
+    const { getByText, getByPlaceholderText} = render(<EditEmailPopup {...props} />);
     expect(getByText('Alterar e-mail')).toBeInTheDocument();
     expect(getByPlaceholderText('Novo e-mail')).toBeInTheDocument();
     expect(getByText('Cancelar')).toBeInTheDocument();
