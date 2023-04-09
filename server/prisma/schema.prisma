@@ -12,6 +12,7 @@ model User {
   name               String
   birthdate          DateTime
   email              String       @unique
+  description        String       @default("Descrição do usuário")
   location           String?
   phone              String?
   photo              String?

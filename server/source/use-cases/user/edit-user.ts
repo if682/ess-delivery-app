@@ -7,6 +7,7 @@ interface IEditUserUseCaseRequest {
     name: string
     username: string
     email: string
+    description: string
     password: string
     birthdate: Date
     phone: string | null
@@ -23,6 +24,7 @@ export class EditUserUserUseCase {
     async handle({
         name,
         email,
+        description,
         username,
         birthdate,
         password,
@@ -44,6 +46,7 @@ export class EditUserUserUseCase {
 
         user.name = name;
         user.email = email;
+        user.description = description;
         user.username = username;
         user.birthdate = birthdate;
         user.password = password_hash;
