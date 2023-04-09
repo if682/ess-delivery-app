@@ -2,7 +2,9 @@ import Header from "../../components/Header";
 import MovieInfoCard from "../../components/MovieInfoCard";
 import FeedbackSvg from "../../assets/feedback.svg";
 import StarSvg from "../../assets/star.svg";
+import { MovieContext } from "../../Context/MovieContext";
 import "./styles.css";
+import { useContext } from "react";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 
@@ -10,16 +12,10 @@ function MovieInfo() {
 
   const [movieReviews, setMovieReviews] = useState();
 
+  const [context, setContext] = useContext(MovieContext)
   const movieInfo = {
-    image: localStorage.getItem('posterPath'),
-    name: localStorage.getItem('title'),
-    year: localStorage.getItem('year'),
-    parentalRating: "14",
-    duration: localStorage.getItem('duration'),
-    description:localStorage.getItem('description'),
-    movieId: localStorage.getItem('id'),
+      movieContext:context
   };
-
 
   useEffect(() => {
     const fetchMovieReviews = async () => {

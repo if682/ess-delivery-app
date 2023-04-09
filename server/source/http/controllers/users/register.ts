@@ -28,7 +28,7 @@ export async function register (request: FastifyRequest, reply: FastifyReply) {
             phone,
         })
     } catch(err) {
-        reply.status(500).send({ err });
+        reply.status(500).send(err);
         throw err;
     }
 
