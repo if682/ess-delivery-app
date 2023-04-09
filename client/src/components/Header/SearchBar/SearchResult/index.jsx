@@ -8,6 +8,7 @@ const SearchResult = (props) => {
   const navigate = useNavigate()
 
   const handleSelectedMovie = async () => {
+
     const fetchDetails = async (url) =>{
         const dataResponse = await fetch(url, {
           method: 'GET'
@@ -17,6 +18,30 @@ const SearchResult = (props) => {
 
         setMovie(movie => ({...movie, title: dataJson.title, description: dataJson.overview, posterPath: posterPath,  releaseDate: dataJson.release_date, id: dataJson.id, duration: dataJson.runtime}))
         document.querySelector('.search-result-container').style.display = 'none'
+
+        let movieId = (dataJson.id).toString()
+        try{
+          let dataResponse = await fetch(`http://localhost:4001/movie`, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                id: movieId,
+                title: dataJson.title,
+                cover: posterPath,
+                description: dataJson.overview
+              }),
+          });
+          console.log("Deu certo?")
+          if(dataResponse.status === 201){
+              console.log("Salvei o filme")
+          }else{
+              console.log("Ja esta no servidor esse filme")
+          }
+        }catch(error){
+          console.log(error);
+        }
         navigate('/movieinfo')
       }
     fetchDetails(`https://api.themoviedb.org/3/movie/${props.id}?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR`)
