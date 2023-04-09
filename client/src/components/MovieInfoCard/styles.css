@@ -39,7 +39,7 @@
 
 .description {
     height: 50%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
 }

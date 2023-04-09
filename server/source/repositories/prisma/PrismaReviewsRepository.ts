@@ -27,7 +27,7 @@ export class PrismaReviewsRepository implements IReviewsRepository {
             where: {
                 movieId: id,
             },
-            include: { author: { select: { name: true } } }
+            include: { author: { select: { name: true, photo: true } } }
         })
         return reviews;
     }

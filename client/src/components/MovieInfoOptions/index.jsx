@@ -7,7 +7,7 @@ import { useState } from "react";
 import ReviewModal from "../ReviewModal";
 import HandleUserActions from "../../pages/handleUserActions.js";
 
-function MovieInfoOptions(data) {
+function MovieInfoOptions(movieContext) {
   const { handleAddToMovielistClick,
           handleLikeClick,
         } = HandleUserActions();
@@ -39,7 +39,7 @@ function MovieInfoOptions(data) {
         </button>
       </div>
       {showModal && (
-        <ReviewModal onClose={() => setShowModal(false)} />
+        <ReviewModal movie={movieContext} onClose={() => setShowModal(false)} />
       )}
     </div>
   );
