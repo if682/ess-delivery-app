@@ -18,7 +18,7 @@ export async function moviesearch (request: FastifyRequest, reply: FastifyReply)
 
         reply.status(200).send(movie);
     } catch(err){
-        reply.status(400).send({ err });
+        reply.status(400).send(err);
         throw err;
     }
 
