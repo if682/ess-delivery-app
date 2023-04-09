@@ -1,7 +1,11 @@
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { UserAuthDTO } from 'src/app/modules/auth/interfaces';
+import { UserService } from 'src/app/modules/user/user.service';
 import { UserCreationDTO } from 'src/infra/database/interfaces/user.interface';
+import { ADMUserContactDTO } from 'src/infra/database/interfaces/userContact.interface';
+import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
+import { ADMUserContact } from 'src/infra/database/typeorm/entities/ADMUserContact.entity';
 import { User } from 'src/infra/database/typeorm/entities/User.entity';
 import { JWTService } from 'src/utils/auth/jwt.service';
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
@@ -18,10 +22,6 @@ export class MockAuthService extends AuthService {
     return 'mockId';
   }
 }
-
-/* private userRepository: UserRepository,
-    private encryptService: EncryptService,
-    private jwtService: JWTService, */
 
 export class MockedJWTService extends JWTService {
   getJWT(idUser: string) {
@@ -104,3 +104,41 @@ export class MockedUserRepository extends UserRepository {
     return Promise.resolve(user);
   }
 }
+
+export class MockedUserContactRepository extends UserContactRepository {
+  getContactByUserId(id: string): Promise<ADMUserContact> {
+    const contact = new ADMUserContact();
+
+    Object.assign(contact, {
+      city: 'Cidade',
+      complement: 'Complemento',
+      neighborhood: 'Bairro',
+      phone_number: '81 9 9999-9999',
+      reference: 'Referencia',
+      state: 'Estado',
+      street: 'Rua',
+      userId: 'userId',
+    });
+
+    return Promise.resolve(contact);
+  }
+
+  createContact(contact: ADMUserContactDTO): Promise<ADMUserContact> {
+    const newContact = new ADMUserContact();
+
+    Object.assign(newContact, {
+      city: 'Cidade',
+      complement: 'Complemento',
+      neighborhood: 'Bairro',
+      phone_number: '81 9 9999-9999',
+      reference: 'Referencia',
+      state: 'Estado',
+      street: 'Rua',
+      userId: 'userId',
+    });
+
+    return Promise.resolve(newContact);
+  }
+}
+
+export class MockedUserService extends UserService {}
