@@ -1,0 +1,12 @@
+.input-text{
+    box-sizing: border-box;
+
+    width: 20rem;
+    height: 37px;
+
+    background: #ECF0FB;
+    border: 1px solid #D7D7D7;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}

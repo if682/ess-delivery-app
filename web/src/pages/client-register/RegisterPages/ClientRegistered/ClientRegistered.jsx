@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
-import "../RegisterClient.css"
+import "../../RegisterClient.css"
 import "./ClientRegistered.css"
-import { ReactComponent as Logo } from '../../../shared/assets/images/Logo.svg';
+import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate} from 'react-router-dom';
 
 
