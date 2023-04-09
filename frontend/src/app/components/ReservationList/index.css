@@ -1,0 +1,10 @@
+.bothLists{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.singleLists{
+    width: 30%;
+    padding-right: 10px;
+}
