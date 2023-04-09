@@ -4,6 +4,7 @@ import { IconClose } from "../../assets/icons";
 import { ChangeEvent, useState } from "react";
 import { APIClient } from "../../../services/api/client";
 import { useSession } from "../../providers/SessionContext";
+import Modal from "../Modal";
 
 interface LoginRegisterModalProps {
   isOpen: boolean;
@@ -19,6 +20,9 @@ export default function LoginRegisterModal({
   onRequestClose,
 }: LoginRegisterModalProps) {
   const { setSession } = useSession();
+  const [modal, setModal] = useState(false);
+  const [modalTittle, setModalTittle] = useState("");
+  const [modalDescription, setModalDescription] = useState("");
 
   const [data, setData] = useState({
     name: "",
@@ -61,134 +65,169 @@ export default function LoginRegisterModal({
   };
 
   const modalLogin = async (data: any) => {
-    const response = await API.sendFormLogin(data);
-    if (data.keepConnected) {
-      window.localStorage.setItem("sessionData", JSON.stringify(response));
-    }
-    setSession(() => response);
-    if (response.token) {
-      resetData();
+    try {
+      const response = await API.sendFormLogin(data);
+      if (data.keepConnected) {
+        window.localStorage.setItem("sessionData", JSON.stringify(response));
+      }
+      setSession(() => response);
+      if (response.token) {
+        resetData();
+      }
+    } catch {
+      setModalTittle("Falha no Login");
+      setModalDescription(
+        "Falha na realização do login, por favor verifique os dados e tente novamente."
+      );
+      setModal(true);
     }
   };
 
   const modalRegister = async (data: any) => {
-    await API.sendFormRegister(data);
+    try {
+      await API.sendFormRegister(data);
+      setModalTittle("Registro realizado com sucesso.");
+      setModalDescription(
+        "Seu registro foi realizado com sucesso, por favor realize o login para ter total acesso a plataforma."
+      );
+      setModal(true);
+    } catch {
+      setModalTittle("Falha no registro.");
+      setModalDescription(
+        "Falha na realização do cadastro, por favor verifique os dados e tente novamente."
+      );
+      setModal(true);
+    }
     resetData();
   };
 
   return (
-    <ReactModal
-      isOpen={isOpen}
-      onRequestClose={resetData}
-      parentSelector={() => document.querySelector("#root") as HTMLElement}
-      className="modalLoginRegister"
-      overlayClassName="overlayModalLoginRegister"
-    >
-      <div className="title">
-        <p>{newUser ? "Cadastre-se no Cinvago!" : "Faça Login no Cinvago!"} </p>
-        <button onClick={resetData}>{IconClose}</button>
-      </div>
-      <div className="formModalLoginRegister">
-        {newUser ? (
-          <input
-            type="text"
-            placeholder="Nome"
-            value={data.name}
-            name="name"
-            onChange={onChangeInputs}
-          />
-        ) : (
-          <></>
-        )}
-        <input
-          type="text"
-          placeholder="Email"
-          value={data.email}
-          name="email"
-          onChange={onChangeInputs}
+    <>
+      {modal ? (
+        <Modal
+          isOpen={modal}
+          onRequestClose={() => window.location.reload()}
+          title={modalTittle}
+          description={modalDescription}
+          showBlackBackground={true}
         />
-        {newUser ? (
-          <input
-            type="text"
-            placeholder="CPF"
-            value={data.cpf}
-            name="cpf"
-            onChange={onChangeInputs}
-          />
-        ) : (
-          <></>
-        )}
-        <input
-          type="password"
-          placeholder="Senha"
-          value={data.password}
-          name="password"
-          onChange={onChangeInputs}
-        />
-        {newUser ? (
-          <input
-            type="password"
-            placeholder="Repetir senha"
-            value={data.repeatPassword}
-            name="repeatPassword"
-            onChange={onChangeInputs}
-          />
-        ) : (
-          <></>
-        )}
-        <div className="checkboxFormModalLoginRegister">
-          {!newUser ? (
-            <span>
+      ) : (
+        <ReactModal
+          isOpen={isOpen}
+          onRequestClose={resetData}
+          parentSelector={() => document.querySelector("#root") as HTMLElement}
+          className="modalLoginRegister"
+          overlayClassName="overlayModalLoginRegister"
+        >
+          <div className="title">
+            <p>
+              {newUser ? "Cadastre-se no Cinvago!" : "Faça Login no Cinvago!"}{" "}
+            </p>
+            <button onClick={resetData}>{IconClose}</button>
+          </div>
+          <div className="formModalLoginRegister">
+            {newUser ? (
               <input
-                type="checkbox"
-                name="keepConnected"
-                checked={data.keepConnected}
-                onChange={onChangeInputsCheckbox}
+                type="text"
+                placeholder="Nome"
+                value={data.name}
+                name="name"
+                onChange={onChangeInputs}
               />
-              <label htmlFor="keepConnected">Manter-se conectado</label>
-            </span>
-          ) : (
-            <></>
-          )}
-          {newUser ? (
-            <>
-              <span>
-                <input
-                  type="checkbox"
-                  name="termsAndConditions"
-                  checked={data.termsAndConditions}
-                  onChange={onChangeInputsCheckbox}
-                />
-                <label htmlFor="termsAndConditions">
-                  Eu aceito os termos e condições
-                </label>
-              </span>
-              <span>
-                <input
-                  type="checkbox"
-                  name="promotions"
-                  checked={data.promotions}
-                  onChange={onChangeInputsCheckbox}
-                />
-                <label htmlFor="promotions">
-                  Aceito receber alertas promocionais por email
-                </label>
-              </span>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
-      </div>
-      <button
-        className="buttonModalLoginRegister"
-        onClick={() => {
-          console.log("testenado 1 2 3...  ", newUser);
-          newUser ? modalRegister(data) : modalLogin(data);
-        }}
-      >
-        {newUser ? "Criar conta" : "Login"}
-      </button>
-    </ReactModal>
+            ) : (
+              <></>
+            )}
+            <input
+              type="text"
+              placeholder="Email"
+              value={data.email}
+              name="email"
+              onChange={onChangeInputs}
+            />
+            {newUser ? (
+              <input
+                type="text"
+                placeholder="CPF"
+                value={data.cpf}
+                name="cpf"
+                onChange={onChangeInputs}
+              />
+            ) : (
+              <></>
+            )}
+            <input
+              type="password"
+              placeholder="Senha"
+              value={data.password}
+              name="password"
+              onChange={onChangeInputs}
+            />
+            {newUser ? (
+              <input
+                type="password"
+                placeholder="Repetir senha"
+                value={data.repeatPassword}
+                name="repeatPassword"
+                onChange={onChangeInputs}
+              />
+            ) : (
+              <></>
+            )}
+            <div className="checkboxFormModalLoginRegister">
+              {!newUser ? (
+                <span>
+                  <input
+                    type="checkbox"
+                    name="keepConnected"
+                    checked={data.keepConnected}
+                    onChange={onChangeInputsCheckbox}
+                  />
+                  <label htmlFor="keepConnected">Manter-se conectado</label>
+                </span>
+              ) : (
+                <></>
+              )}
+              {newUser ? (
+                <>
+                  <span>
+                    <input
+                      type="checkbox"
+                      name="termsAndConditions"
+                      checked={data.termsAndConditions}
+                      onChange={onChangeInputsCheckbox}
+                    />
+                    <label htmlFor="termsAndConditions">
+                      Eu aceito os termos e condições
+                    </label>
+                  </span>
+                  <span>
+                    <input
+                      type="checkbox"
+                      name="promotions"
+                      checked={data.promotions}
+                      onChange={onChangeInputsCheckbox}
+                    />
+                    <label htmlFor="promotions">
+                      Aceito receber alertas promocionais por email
+                    </label>
+                  </span>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+          <button
+            className="buttonModalLoginRegister"
+            onClick={() => {
+              console.log("testenado 1 2 3...  ", newUser);
+              newUser ? modalRegister(data) : modalLogin(data);
+            }}
+          >
+            {newUser ? "Criar conta" : "Login"}
+          </button>
+        </ReactModal>
+      )}
+    </>
   );
 }
