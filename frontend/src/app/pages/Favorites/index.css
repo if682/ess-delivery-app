@@ -3,3 +3,8 @@
   font-weight: 300;
   top: 20%;
 }
+
+.containerPageFavorites {
+  display: flex;
+  align-items: center;
+}

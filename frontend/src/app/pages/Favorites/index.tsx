@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ImageCardRow from "../../components/ImageCardRow";
 import "./index.css";
 import { Props } from "../../components/ImageCard";
-import GetReservations from "../../hooks/getReservations";
+import { useSession } from "../../providers/SessionContext";
+import { APIClient } from "../../../services/api/client";
 
 export default function FavoritesPage() {
-  const { reservations } = GetReservations();
+  const { session } = useSession();
+  console.log("FavoritesPage");
+  const getFavoritesReservations = useCallback(async () => {
+    const apiClient = new APIClient();
 
-  const [favoriteReservations, setFavoriteReservations] = useState<Props[]>([]);
+    try {
+      const id = await apiClient.getIdByToken(session.token);
+      const reservations = await apiClient.GetFavoritesReservations(id);
+      return reservations;
+    } catch (err) {
+      throw new Error("Error while getting users");
+    }
+  }, [session]);
 
-  useEffect(() => {
-    if (reservations?.length) {
+  const saveFavorites = useCallback(async () => {
+    const favorites = await getFavoritesReservations();
+    console.log(favorites);
+    if (favorites?.length) {
       console.log("Bolo");
-      const reservationsList = reservations.map((e) => {
+      const reservationsList = favorites.map((e: any) => {
         const newObject = {
           src: "",
           id: e.id,
@@ -31,17 +44,27 @@ export default function FavoritesPage() {
 
       setFavoriteReservations(reservationsList);
     }
-  }, [reservations]);
+  }, [getFavoritesReservations]);
+
+  useEffect(() => {
+    console.log("session");
+    if (session) {
+      console.log("useEffect");
+      saveFavorites();
+    }
+  }, [session]);
+
+  const [favoriteReservations, setFavoriteReservations] = useState<Props[]>([]);
 
   return (
     <>
       {favoriteReservations.length ? (
         <div>
-          <h1>FAVORITOS</h1>
-          <ImageCardRow cards={favoriteReservations} />
+          <h1>FAVORITOS!</h1>
+          <ImageCardRow evaluate={false} cards={favoriteReservations} />
         </div>
       ) : (
-        <h1 id="isEmpty">Esta lista está vazia</h1>
+        <h1 id="isEmpty">Esta lista está vazia!!</h1>
       )}
     </>
   );
