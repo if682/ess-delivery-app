@@ -100,16 +100,3 @@ const UserRegister = () => {
 }
 
 export default UserRegister
-
-// width: 1006px;
-//     height: 50px;
-//     padding: 1rem;
-//     color: #77728D;
-//     background: #D9D9D9;
-//     border-radius: 10px;
-//     margin: 0 2rem;
-//     padding-right: 40px;
-//     background-image: url('../../../../public/assets/search-icon.svg');
-//     background-repeat: no-repeat;
-//     background-position: right 10px center;
-//     background-size: 20px 20px;

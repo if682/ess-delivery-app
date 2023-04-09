@@ -1,6 +1,36 @@
 import React from "react";
+import { useState } from "react";
+
 
 const LoginBox = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  let handleSubmit = async (e) =>{
+    e.preventDefault();
+    try{
+        let res = await fetch("http://localhost:4001/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+        });
+        //let resJson = await res.json()
+        if(res.status === 201){
+            console.log("Passou ok")
+            setUsername("");
+            setPassword("");
+        }else{
+            alert("Ocorreu um erro no post")
+        }
+    }catch (err){
+        console.log(err);
+    }
+};
 
   return (
     <div class="h-screen flex flex-col justify-center items-center">
@@ -21,11 +51,11 @@ const LoginBox = () => {
 
         <form class="w-full h-1/2 flex flex-col items-center justify-around">
           <div class="w-full h-4/6 flex flex-col items-center justify-around">
-            <input type="text" placeholder="Email" class="w-2/3"/>
-            <input type="text" placeholder="Password" class="w-2/3"/>
+            <input value = {username} type="text" placeholder="Username" class="w-2/3 bg-none" onChange={(e) => setUsername(e.target.value)}/>
+            <input value = {password} type="text" placeholder="Password" class="w-2/3 bg-none " onChange={(e) => setPassword(e.target.value)}/>
           </div>
           
-          <input type="submit" value="Sign In" class="bg-[#F4A4A4] w-1/2 h-1/5 text-white rounded-lg"/>
+          <input type="submit" value="Sign In" class="bg-[#F4A4A4] w-1/2 h-1/5 text-white rounded-lg" onClick={handleSubmit}/>
         </form>
 
         <a href="login/recover" class="text-white underline underline-offset-1">Forget Password?</a>
