@@ -46,13 +46,13 @@ export class PrismaUsersRepository implements IUserRepository {
         const date = newDate.toISOString();
         await prisma.user.update({
             where: {
-              id
+                id
             },
             data: {
-              passwordResetToken: newToken,
-              resetTokenExpires: date
+                passwordResetToken: newToken,
+                resetTokenExpires: date
             }
-          })
+        })
     }
 
     async changePassword(id: string, newPassword: string) {
@@ -65,5 +65,16 @@ export class PrismaUsersRepository implements IUserRepository {
             }
         })
 
+    }
+
+    async save(data: User) {
+        const user = await prisma.user.update({
+            where: {
+                id: data.id,
+            },
+            data,
+        })
+
+        return user;
     }
 }
