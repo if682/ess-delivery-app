@@ -1,4 +1,4 @@
 export const formatCPF = (cpf: string) => {
-  const [, lastDigits] = cpf.split('-');
+  const lastDigits = cpf.substr(-2);
   return `***.***.***-${lastDigits}`;
 };
