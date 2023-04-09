@@ -45,12 +45,18 @@ describe("Add movie to list use case", () => {
                 userId: user.id,
                 listName: "Historico",
                 movieId: "Carros",
+                cover: "url",
+                description: "Um filme",
+                title: "Carros"
             })
 
             await sut.handle({
                 userId: user.id,
                 listName: "Curtidos",
-                movieId: "Carros"
+                movieId: "Carros",
+                cover: "url",
+                description: "Um filme",
+                title: "Carros"
             })
 
             const seen = await inMemoryListsRepository.showMoviesFromList(user.id, "Historico")
