@@ -12,9 +12,11 @@ export async function getProfile(request: FastifyRequest, reply: FastifyReply) {
     try {
         const getUserProfileUseCase = makeGetUserProfileUseCase();
 
-        const user = getUserProfileUseCase.handle({
+        const user = await getUserProfileUseCase.handle({
             id,
         });
+
+        user.user.password = "";
 
         return reply.status(200).send(user);
     } catch (err) {
