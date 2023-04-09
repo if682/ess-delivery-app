@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import PlaceIcon from "@mui/icons-material/Place";
 import CloseIcon from "@mui/icons-material/Close";
-import { Input, InputLabel } from "@mui/material";
+import { Input, InputLabel, TextareaAutosize } from "@mui/material";
 
 import RedOutlineButton from "../../atoms/red-outline-button/RedOutlineButton";
 
@@ -135,7 +135,7 @@ function OrderDetails({ order }) {
         </div>
       </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered data-testid="help-modal">
         <div className="d-flex flex-column align-items-center help-modal-container pt-4 pb-4">
           <CloseIcon
             className="position-absolute"
@@ -146,17 +146,21 @@ function OrderDetails({ order }) {
               cursor: "pointer",
             }}
             onClick={() => setShowModal(false)}
+            data-testid="close-modal"
           />
 
-          <Modal.Title className="mb-4">Como podemos ajudar?</Modal.Title>
+        <Modal.Title className="mb-4">Como podemos ajudar?</Modal.Title>
 
-          <InputLabel className="mb-2 input-label">
-            Assunto da mensagem
-          </InputLabel>
-          <Input className="textinput" />
+        <InputLabel htmlFor="subject" className="mb-2 input-label">
+          Assunto da mensagem
+        </InputLabel>
+        <Input id="subject" className="textinput" />
 
-          <InputLabel className="mb-2 mt-4 input-label">Mensagem</InputLabel>
-          <Input type="textarea" className="textarea" />
+        <InputLabel htmlFor="message" className="mb-2 mt-4 input-label">Mensagem</InputLabel>
+        <TextareaAutosize id="message" className="textarea" minRows={5} />
+        <Input data-testid="subject-input" id="subject" className="textinput" />
+        <TextareaAutosize data-testid="message-input" id="message" className="textarea" minRows={5} />
+
 
           <div className="buttons d-flex flex-row align-items-center justify-content-evenly mt-3 w-100 ps-3 pe-3">
             <RedOutlineButton
