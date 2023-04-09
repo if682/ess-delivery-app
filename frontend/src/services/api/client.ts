@@ -1,6 +1,6 @@
 
 import axios, { AxiosInstance } from 'axios'
-import { BookingTryValues, ReservationResponse, UserResponse } from './interfaces'
+import { BookingTryValues, RatingResponse, ReservationResponse, UserResponse } from './interfaces'
 import { APIConfig } from '../../configs/api/api.config'
 import { RegisterADMInterface } from '../../app/pages/AdmRegister'
 import { FormValues } from './interfaces'
@@ -71,6 +71,11 @@ export class APIClient {
 
   async getIdByToken(token: string) {
     const response = await this.axiosClient.get<string>(`login/${token}`);
+    return response.data;
+  }
+
+  async getRatingsByReservationId(reservationId: string) {
+    const response = await this.axiosClient.get<RatingResponse[]>(`/reservation/evaluation/${reservationId}`);
     return response.data;
   }
 }
