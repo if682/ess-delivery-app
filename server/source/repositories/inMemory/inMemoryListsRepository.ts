@@ -32,4 +32,14 @@ export class InMemoryListsRepository implements IListsRepository{
         return ret;
     }
 
+    async movieInList(movieId: string, listOwner: string, listName: string): Promise<boolean> {
+        const found = this.movieLists.find((item) => {
+            item.movieId == movieId &&
+            item.listOwner == listOwner &&
+            item.listName == listName
+        })
+
+        return (!found ? false : true)
+    }
+
 }
