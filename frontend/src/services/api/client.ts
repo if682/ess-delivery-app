@@ -1,10 +1,18 @@
+import axios, { AxiosInstance } from "axios";
+import {
+  BookingTryValues,
+  ReservationResponse,
+  UserResponse,
+} from "./interfaces";
+import { APIConfig } from "../../configs/api/api.config";
+import { RegisterADMInterface } from "../../app/pages/AdmRegister";
+import { FormValues } from "./interfaces";
 
-import axios, { AxiosInstance } from 'axios'
-import { BookingTryValues, ReservationResponse, UserResponse } from './interfaces'
-import { APIConfig } from '../../configs/api/api.config'
-import { RegisterADMInterface } from '../../app/pages/AdmRegister'
-import { FormValues } from './interfaces'
-
+interface SearchParams {
+  cityName?: string;
+  date?: string;
+  guestsNumber?: number | null;
+}
 
 export class APIClient {
   private axiosClient: AxiosInstance;
@@ -45,32 +53,76 @@ export class APIClient {
   }
 
   async createReservation(reservation: FormValues) {
-    const response = await this.axiosClient.post<FormValues>('/reservation', reservation)
-    return response.data
+    const response = await this.axiosClient.post<FormValues>(
+      "/reservation",
+      reservation
+    );
+    return response.data;
   }
 
   async createBookingTry(bookingTry: BookingTryValues) {
-    const response = await this.axiosClient.post<BookingTryValues>('/reservation/make', bookingTry);
+    const response = await this.axiosClient.post<BookingTryValues>(
+      "/reservation/make",
+      bookingTry
+    );
     return response.data;
   }
 
   async getReservations() {
-    const response = await this.axiosClient.get<ReservationResponse[]>('/reservation');
-    return response.data
+    const response = await this.axiosClient.get<ReservationResponse[]>(
+      "/reservation"
+    );
+    return response.data;
   }
 
   async getReservationById(ReservationID: string) {
-    const response = await this.axiosClient.get<ReservationResponse>(`/reservation/${ReservationID}`)
-    return response.data
+    const response = await this.axiosClient.get<ReservationResponse>(
+      `/reservation/${ReservationID}`
+    );
+    return response.data;
   }
 
   async getReservationByCEP(ReservationCEP: string) {
-    const response = await this.axiosClient.get<ReservationResponse>(`/reservation/cep/${ReservationCEP}`)
-    return response.data
+    const response = await this.axiosClient.get<ReservationResponse>(
+      `/reservation/cep/${ReservationCEP}`
+    );
+    return response.data;
   }
 
   async getIdByToken(token: string) {
     const response = await this.axiosClient.get<string>(`login/${token}`);
+    return response.data;
+  }
+
+  async GetFavoritesReservations(id: string) {
+    const response = await this.axiosClient.get<ReservationResponse[]>(
+      `/reservation/favorites/${id}`
+    );
+    return response.data;
+  }
+
+  async getCreatedReservation(id: string) {
+    const response = await this.axiosClient.get<ReservationResponse[]>(
+      `/reservation/created/${id}`
+    );
+    return response.data;
+  }
+
+  async getReservationWithFilter(obj: SearchParams) {
+    const response = await this.axiosClient.get<ReservationResponse[]>(
+      `/reservation/filters?${
+        obj.cityName ? `city=${encodeURI(obj.cityName)}` : ""
+      }${obj.date ? `&date=${obj.date}` : ""}${
+        obj.guestsNumber ? `&qtd=${obj.guestsNumber}` : ""
+      }`
+    );
+    return response.data;
+  }
+
+  async getCompletedReservations(id: string) {
+    const response = await this.axiosClient.get<ReservationResponse[]>(
+      `/reservation/completed/${id}`
+    );
     return response.data;
   }
 }
