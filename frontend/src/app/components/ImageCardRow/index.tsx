@@ -117,7 +117,12 @@ const ImageCardRow = ({ cards, evaluate }: Props) => {
               }}
             >
               <ImageCard key={card.id} {...card} />
-              {evaluate && <EvaluateFild />}
+              {evaluate && (
+                <EvaluateFild
+                  evaluation={card.evaluations}
+                  reservationId={card.id}
+                />
+              )}
             </div>
           ))}
         </ImageCardRowWrapper>
@@ -135,7 +140,12 @@ const ImageCardRow = ({ cards, evaluate }: Props) => {
               }}
             >
               <ImageCard key={card.id} {...card} />
-              {evaluate && <EvaluateFild />}
+              {evaluate && (
+                <EvaluateFild
+                  evaluation={card.evaluations}
+                  reservationId={card.id}
+                />
+              )}
             </div>
           ))}
         </ImageCardRowWrapper>
