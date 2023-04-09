@@ -13,15 +13,14 @@ export async function authenticate (request: FastifyRequest, reply: FastifyReply
     try {
         const authenticateUseCase = makeAuthenticateUseCase();
 
-        await authenticateUseCase.handle({
+        const user = await authenticateUseCase.handle({
             username,
             password,
         })
 
+        return reply.status(200).send({ id: user.user.id });
     } catch(err) {
         reply.status(500).send(err);
         throw err;
     }
-
-    return reply.status(200).send();
 }
