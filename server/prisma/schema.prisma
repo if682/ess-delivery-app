@@ -62,10 +62,13 @@ model Comment {
 }
 
 model Movie {
-  id         String       @id @default(uuid())
-  Evaluation Evaluation[]
-  lists      MovieList[]
-  Review     Review[]
+  id          String       @id @default(uuid())
+  title       String
+  cover       String
+  description String
+  Evaluation  Evaluation[]
+  lists       MovieList[]
+  Review      Review[]
 
   @@map("movies")
 }
