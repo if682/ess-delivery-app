@@ -2,20 +2,20 @@ import React from "react";
 import "./style.css";
 
 
-const Review = () => {
+const Review = (props) => {
 
   return (
     <div className="review-container">
 
-       <img src="../../assets/movie-poster.svg" />
+       <img src={props.review.movieCover} />
         <div className="review-text">
 
             <div className="review-title">
-                <h2>The GodFather (2012) </h2>
+                <h2>{props.review.title}</h2>
                 <img src="../../assets/star-icon.svg" />
-                <h3>10/10</h3>
+                <h3>{props.review.rating}/5</h3>
             </div>
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis risus nec dui facilisis, non ultrices ante rutrum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent ligula tellus, faucibus sit amet lorem sed, elementum semper tellus.</h2>
+            <h2>{props.review.review}</h2>
         </div>
         
     </div>

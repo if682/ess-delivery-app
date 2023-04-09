@@ -1,0 +1,63 @@
+.options {
+    display: flex;
+    flex-direction: column;
+    align-content: left;
+    background-color: #77728D;
+    border-radius: 10px;
+    color: #F4A4A4;
+    gap: 10px;
+    font-size: 1.2rem;
+    padding-left: 40px;
+    padding-right: 130px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    white-space: nowrap;
+}
+
+.like {
+    display: flex;
+}
+
+.heartSvg {
+    height: 30px;
+    padding-right: 10px;
+}
+
+.like button{
+    display: flex;
+}
+
+.watchlist {
+    display: flex;
+}
+
+.bookmarkSvg {
+    height: 30px;
+    padding-right: 10px;
+}
+
+.watchlist button{
+    display: flex;
+}
+
+.feedback {
+    display: flex;
+}
+
+.feedbackSvg {
+    height: 30px;
+    padding-right: 10px;
+}
+
+.feedback button{
+    display: flex;
+}
+
+.rating {
+    display: flex;
+}
+
+.starSvg {
+    height: 30px;
+    padding-right: 10px;
+}

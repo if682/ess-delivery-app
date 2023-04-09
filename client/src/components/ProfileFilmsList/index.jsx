@@ -2,22 +2,13 @@ import React from "react";
 import Films from "./Films";
 import "./style.css";
 
-const ProfileFilmsList = () => {
+const ProfileFilmsList = (props) => {
 
   return (
     <article className="profile-films">
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
-        <Films />
+      {props.movies?.map((movie) => (
+        <Films movie={movie} />
+      ))}
     </article>
   );
 };
