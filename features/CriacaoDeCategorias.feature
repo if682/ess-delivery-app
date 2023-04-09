@@ -68,9 +68,9 @@ Feature: Criação de categorias de itens
         Then eu devo ser redirecionado para a página "Categorias" do restaurante "LaFamme"
         When eu clico no botão "Nova categoria"
         Then surgirá um campo de texto "Nome da categoria"
-        When eu preencho o campo "Nome da categoria" com "Pratão"
+        When eu preencho o campo "Nome da categoria" com "Massas"
         And clico no botão "Cancelar"
-        Then o sistema não armazenará a categoria "Pratão" para o restaurante "LaFamme"
+        Then o sistema não armazenará a categoria "Massas" para o restaurante "LaFamme"
     
     Scenario: Cancelar a Exclusão de uma categoria
         Given que eu estou logado como "Admin" com o login "pepe"
