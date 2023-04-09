@@ -17,7 +17,6 @@ const SearchResult = (props) => {
 
         setMovie(movie => ({...movie, title: dataJson.title, description: dataJson.overview, posterPath: posterPath,  releaseDate: dataJson.release_date, id: dataJson.id, duration: dataJson.runtime}))
 
-        console.log(movie)
         document.querySelector('.search-result-container').style.display = 'none'
         navigate('/movieinfo')
       }

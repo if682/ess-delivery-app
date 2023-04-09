@@ -14,7 +14,7 @@ function MovieInfoCard({
         </div>
         <div className="description">{movieContext.description}</div>
       </div>
-      <MovieInfoOptions rating="9"/>
+      <MovieInfoOptions movieContext={movieContext} />
     </div>
   );
 }

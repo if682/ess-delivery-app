@@ -6,10 +6,8 @@ import api from "../../services/api";
 
 const ReviewModal = (props) => {
 
-    const storage = window.localStorage;
-    const movieTitle = storage.getItem("title");
-    const movieId = storage.getItem("id");
-    const movieCover = storage.getItem("posterPath");
+    const { title, id, posterPath } = props.movie.movieContext;
+
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState('');
 
@@ -32,11 +30,11 @@ const ReviewModal = (props) => {
 
     const handleSubmit = async () => {
         const reviewData = {
-            "title": movieTitle,
+            "title": title,
             "review": reviewText,
-            "movieId": movieId,
+            "movieId": id.toString(),
             "userId": "ca22d758-eea5-4ddb-a0a0-437a8d596347",
-            "movieCover": movieCover, 
+            "movieCover": posterPath, 
             "rating": parseFloat(rating),
           };
         
@@ -48,13 +46,13 @@ const ReviewModal = (props) => {
     useEffect(() => {
         const fetchMovie = async () => {
           try {
-            const response = await api.get(`/movie/${movieId}`);
+            await api.get(`/movie/${id}`);
           } catch (error) {
             console.log(error);
           }
         };
         fetchMovie();
-      }, [movieId]);
+      }, [id]);
 
   return (
     <div className="modal">

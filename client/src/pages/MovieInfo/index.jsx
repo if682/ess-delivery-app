@@ -17,17 +17,19 @@ function MovieInfo() {
       movieContext:context
   };
 
+  const movieId = context.id;
+
   useEffect(() => {
     const fetchMovieReviews = async () => {
         try {
-          const response = await api.get(`review/movie/${movieInfo.movieId}`);
+          const response = await api.get(`review/movie/${movieId}`);
           setMovieReviews(response.data);
         } catch (error) {
           alert("Erro ao pegar reviews do filme");
         }
       };
       fetchMovieReviews();
-  }, [movieInfo.movieId]);
+  }, [movieId]);
 
   return (
     <div className="page">
@@ -42,7 +44,7 @@ function MovieInfo() {
         {movieReviews?.reviews?.map((review, index) => {
           return (
             <>
-              <div  key={review.author.name} className="singleReview">
+              <div key={review.author.name} className="singleReview">
 
                 <img
                   className="singleReviewImage"
