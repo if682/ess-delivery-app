@@ -51,7 +51,7 @@
       "place": "Burger King",
       "address": "Rua dos Bobos, 0",
       "date": "01/01/2021",
-      "itens": [
+      "items": [
         {
           "name": "Whopper",
           "quantity": 1,
@@ -75,7 +75,7 @@
       "place": "Subway",
       "address": "Rua dos Bobos, 0",
       "date": "01/01/2021",
-      "itens": [
+      "items": [
         {
           "name": "Subway Melt",
           "quantity": 1,
