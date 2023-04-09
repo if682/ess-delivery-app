@@ -188,4 +188,11 @@ export class ReservationController {
     }));
     return response;
   }
+
+  @Get('/solicitations')
+  async getAllReservationSolicitation() {
+    const data =
+      await this.reservationRepository.getAllSolicitationsOfReservations();
+    return data;
+  }
 }

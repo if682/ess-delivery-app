@@ -10,6 +10,7 @@ import { ReservationConnection } from '../../entities/ReservationConnection.enti
 import { postgreDatasource } from '../../datasource';
 import { FilterParams } from 'src/app/modules/reservation/reservation.controller';
 import { Evaluation } from '../../entities/Evaluation.entity';
+import { User } from '../../entities/User.entity';
 
 @Injectable()
 export class TypeOrmReservationRepository implements ReservationRepository {
@@ -20,6 +21,8 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     private reservationConnectionRepository: Repository<ReservationConnection>,
     @Inject('EVALUATION_REPOSITORY')
     private evaluationRespository: Repository<Evaluation>,
+    @Inject('USER_REPOSITORY')
+    private userRepository: Repository<User>,
   ) {}
 
   async getCompletedEvaluationByUserId(
@@ -185,5 +188,29 @@ export class TypeOrmReservationRepository implements ReservationRepository {
     const result = await query.getMany();
 
     return result;
+  }
+
+  async getAllSolicitationsOfReservations() {
+    const solicitations = await this.reservationConnectionRepository.find();
+    const response = [];
+    for (const solicitation of solicitations) {
+      const user = await this.userRepository.find({
+        where: {
+          id: solicitation.userId,
+        },
+      });
+      const reservation = await this.reservationRepository.find({
+        where: {
+          id: solicitation.reservationId,
+        },
+      });
+      response.push({
+        ...solicitation,
+        reservation,
+        user,
+      });
+    }
+
+    return response;
   }
 }
