@@ -2,18 +2,14 @@ import Header from "../../components/Header";
 import MovieInfoCard from "../../components/MovieInfoCard";
 import FeedbackSvg from "../../assets/feedback.svg";
 import StarSvg from "../../assets/star.svg";
+import { MovieContext } from "../../Context/MovieContext";
 import "./styles.css";
+import { useContext } from "react";
 
 function MovieInfo() {
+  const [context, setContext] = useContext(MovieContext)
   const movieInfo = {
-    image:
-    localStorage.getItem('posterPath'),
-    name: localStorage.getItem('title'),
-    year: localStorage.getItem('year'),
-    parentalRating: "14",
-    duration: localStorage.getItem('duration'),
-    description:localStorage.getItem('description'),
-    rating: "9.5",
+      movieContext:context
   };
 
   const reviews = [
