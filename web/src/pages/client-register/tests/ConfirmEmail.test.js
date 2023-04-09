@@ -1,5 +1,5 @@
 import { render, fireEvent, act } from '@testing-library/react';
-import { ConfirmEmail } from './ConfirmEmail';
+import { ConfirmEmail } from '../RegisterPages/ConfirmEmail/ConfirmEmail';
 import { BrowserRouter } from 'react-router-dom';
 
 

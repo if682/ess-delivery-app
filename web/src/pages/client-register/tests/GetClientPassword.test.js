@@ -1,5 +1,5 @@
 import { render, fireEvent, act, waitFor} from '@testing-library/react';
-import { GetClientPassword } from './GetClientPassword';
+import { GetClientPassword } from '../RegisterPages/GetClientPassword/GetClientPassword';
 import { BrowserRouter } from 'react-router-dom';
 
 

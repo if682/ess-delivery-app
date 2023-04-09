@@ -1,5 +1,5 @@
 import { render, fireEvent, act } from '@testing-library/react';
-import { ClientRegistered } from './ClientRegistered';
+import { ClientRegistered } from '../RegisterPages/ClientRegistered/ClientRegistered';
 import { BrowserRouter } from 'react-router-dom';
 
 

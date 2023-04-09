@@ -1,6 +1,6 @@
 import { render, fireEvent, act } from '@testing-library/react';
-import { GetClientEmail} from './GetClientEmail';
-import { GetClientName } from '../GetClientName/GetClientName';
+import { GetClientEmail} from '../RegisterPages/GetClientEmail/GetClientEmail';
+import { GetClientName } from '../RegisterPages/GetClientName/GetClientName';
 import { BrowserRouter, Router} from 'react-router-dom';
 
 
