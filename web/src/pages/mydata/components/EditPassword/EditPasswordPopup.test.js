@@ -54,7 +54,7 @@ describe("EditPasswordPopup", () => {
         expect(warningMessage).toBeInTheDocument();
     });
 
-    it("should call the EditPassword function when save button is clicked with correct inputs", async () => {
+    it("should call the fetch function to update the password when save button is clicked with correct inputs", async () => {
         global.fetch = jest.fn(() =>
         Promise.resolve({
             json: () => Promise.resolve({ id: 123, name: 'test', email: 'teste@hotmail.com', password: 'newPassword' })
