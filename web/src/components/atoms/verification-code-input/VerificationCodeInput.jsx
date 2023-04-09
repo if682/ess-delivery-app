@@ -11,17 +11,20 @@ export const VerificationCodeInput = (props) => {
     const [fourthDigit, setFourthDigit] = useState(null)
     
     useEffect(() => {
+        
         props.setWarningMessage(null)
         props.setClicked(false)
     }, [firstDigit, secDigit, thirdDigit, fourthDigit])
 
     useEffect(() => {
+        console.log(props.clicked)
         if(props.clicked == true){
             ValidateCode()
         }
-    }, [props])
+    }, [props.clicked])
 
     const ValidateCode = () => {
+        console.log(firstDigit, secDigit, thirdDigit, fourthDigit)
         if(isInputNull(firstDigit) || isInputNull(secDigit) || isInputNull(thirdDigit) || isInputNull(fourthDigit)){
             props.setWarningMessage('Preencha todos os campos!')
         }

@@ -2,6 +2,9 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
+import { WarningText } from '../../../../components/atoms/warning-text/WarningText';
+import { InputText } from '../../../../components/atoms/input-text/InputText';
+import './EditPasswordPopup.css'
 
 export const EditPasswordPopup = (props) => {
     const [password, setPassword] = useState("");
@@ -46,25 +49,14 @@ export const EditPasswordPopup = (props) => {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <text>
+            <text className='edit-password-text'>
             Digite sua senha atual e logo em seguida a nova senha
             </text>
-            <br></br>
-            <input
-                onChange={(event) => setOldPassword(event.target.value)}
-                type="password"
-                class="form-control"
-                placeholder="Senha atual"
-            />
-            <br></br>
-            <input
-                onChange={(event) => setPassword(event.target.value)}
-                type="password"
-                class="form-control"
-                placeholder="Nova senha"
-            />
-
-            {warningMessage}
+            <div className='input-texts'>
+                <InputText setInput={setOldPassword} type="password" placeholder="Senha atual"/>
+                <InputText setInput={setPassword} type="password" placeholder="Nova senha"/>
+                <WarningText warningMessage={warningMessage}/>
+            </div>
         </Modal.Body>
         <Modal.Footer>
             <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>

@@ -2,6 +2,9 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
+import { WarningText } from '../../../../components/atoms/warning-text/WarningText';
+import { InputText } from '../../../../components/atoms/input-text/InputText';
+import './EditNamePopup.css'
 
 export const EditNamePopup = (props) => {
     const [name, setName] = useState("");
@@ -42,15 +45,11 @@ export const EditNamePopup = (props) => {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <br></br>
-            <input
-                onChange={(event) => setName(event.target.value)}
-                type="text"
-                class="form-control"
-                placeholder="Novo nome"
-            />
-
-            {warningMessage}
+            <div className='input-texts'>
+                <InputText setInput={setName} type="text" placeholder="Novo nome"/>
+                <WarningText warningMessage={warningMessage}/>
+            </div>
+            
         </Modal.Body>
         <Modal.Footer>
             <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
