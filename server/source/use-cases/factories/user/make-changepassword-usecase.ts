@@ -1,5 +1,5 @@
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository";
-import { ChangePasswordUseCase } from "../user/change-password";
+import { PrismaUsersRepository } from "../../../repositories/prisma/PrismaUsersRepository";
+import { ChangePasswordUseCase } from "../../user/change-password";
 
 export function makeChangePasswordUseCase() {
     const usersRepository = new PrismaUsersRepository();

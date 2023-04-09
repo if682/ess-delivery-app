@@ -1,5 +1,5 @@
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository";
-import { EditUserUserUseCase } from "../user/edit-user";
+import { PrismaUsersRepository } from "../../../repositories/prisma/PrismaUsersRepository";
+import { EditUserUserUseCase } from "../../user/edit-user";
 
 export function makeEditUserUseCase() {
     const usersRepository = new PrismaUsersRepository();

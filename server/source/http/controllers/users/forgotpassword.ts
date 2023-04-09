@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeForgotPasswordUseCase } from "../../../use-cases/factories/make-forgotpassword-usecase";
+import { makeForgotPasswordUseCase } from "../../../use-cases/factories/user/make-forgotpassword-usecase";
 
 export async function forgotpassword (request: FastifyRequest, reply: FastifyReply) {
     const forgotpasswordBodySchema = z.object({
