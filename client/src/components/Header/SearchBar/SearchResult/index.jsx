@@ -20,10 +20,6 @@ const SearchResult = (props) => {
         document.querySelector('.search-result-container').style.display = 'none'
 
         let movieId = (dataJson.id).toString()
-        console.log(movieId)
-        console.log(dataJson.title)
-        console.log(posterPath)
-        console.log(dataJson.overview)
         try{
           let dataResponse = await fetch(`http://localhost:4001/movie`, {
               method: "POST",
