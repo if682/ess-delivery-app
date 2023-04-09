@@ -10,11 +10,11 @@ import { join } from 'path';
       // transport: 'smtps://user@example.com:topsecret@smtp.example.com',
       // or
       transport: {
-        host: 'smtp.example.com',
+        host: 'sandbox.smtp.mailtrap.io',
         secure: false,
         auth: {
-          user: 'user@example.com',
-          pass: 'topsecret',
+          user: 'b4a063e02e00ec',
+          pass: 'c3958670b12e80',
         },
       },
       defaults: {

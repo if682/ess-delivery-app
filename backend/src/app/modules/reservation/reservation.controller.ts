@@ -19,6 +19,7 @@ import { ReservationRepository } from 'src/infra/database/repositories/Reservati
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
 import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
+import { MailService } from 'src/mail/mail.service'; 
 
 export interface FilterParams {
   city?: string;
@@ -39,6 +40,8 @@ export class ReservationController {
     private reservationService: ReservationService,
     private reservationConnectionRepository: ReservationConnectionRepository,
     private favoritesRepository: FavoritesRepository,
+    private mailService: MailService,
+    private userRepository: UserRepository
   ) {}
 
   @Get()
@@ -88,6 +91,10 @@ export class ReservationController {
       acceptReservation.id,
       acceptReservation.accepted,
     );
+    const reservationId = await this.reservationConnectionRepository.getConnectionById(acceptReservation.id);
+    const userGotAccepted = await this.userRepository.getUserById(reservationId.userId)
+
+    await this.mailService.sendUserConfirmation(userGotAccepted)
   }
 
   @Get('/created/:id')
