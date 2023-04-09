@@ -11,6 +11,6 @@ export async function listRoutes(app: FastifyInstance){
     app.get("/list/:userId", showlists);
     app.post("/list/:userId/:listName", addmovietolist);
     app.get("/list/:userId/:listName", showmoviesfromlist);
-    app.post("/list/:userId", deletelist);
-    app.post("/list/:userId/:listName", deleteMovieFromList)
+    app.delete("/list/:userId", deletelist);
+    app.delete("/list/:userId/:listName", deleteMovieFromList)
 }
