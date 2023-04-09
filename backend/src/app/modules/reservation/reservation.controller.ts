@@ -20,6 +20,8 @@ import { ReservationConnectionRepository } from 'src/infra/database/repositories
 import UserRepository from 'src/infra/database/repositories/UserRepository';
 import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
 import { MailService } from 'src/mail/mail.service'; 
+import { EvaluationCreationDTO } from 'src/infra/database/interfaces/evalutation.interface';
+import EvaluationRepository from 'src/infra/database/repositories/EvaluationRepository';
 
 export interface FilterParams {
   city?: string;
@@ -41,7 +43,8 @@ export class ReservationController {
     private reservationConnectionRepository: ReservationConnectionRepository,
     private favoritesRepository: FavoritesRepository,
     private mailService: MailService,
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private evaluationRepository: EvaluationRepository,
   ) {}
 
   @Get()
@@ -159,5 +162,37 @@ export class ReservationController {
     );
 
     return reservations;
+  }
+
+  @Post('/evaluation')
+  async createEvaluation(@Body() creationBody: EvaluationCreationDTO) {
+    return this.evaluationRepository.create(creationBody);
+  }
+
+  @Get('/evaluation/:reservationId')
+  async getEvaluationByReservationId(@Param('reservationId') id: string) {
+    return this.evaluationRepository.getAllByReservationId(id);
+  }
+
+  @Get('/evaluation/:reservationId/:userId')
+  async getEvaluationByReservationIdAndUserId(
+    @Param('reservationId') reservationId: string,
+    @Param('userId') userId: string,
+  ) {
+    return this.evaluationRepository.getAllByUserAndReservationId(
+      userId,
+      reservationId,
+    );
+  }
+
+  @Get('/completed/:userId')
+  async getCompletedReservationByUserId(@Param('userId') id: string) {
+    const data =
+      await this.reservationRepository.getCompletedEvaluationByUserId(id);
+    const response = data.map((e) => ({
+      ...e,
+      evaluations: e.evaluations[e.evaluations.length - 1],
+    }));
+    return response;
   }
 }

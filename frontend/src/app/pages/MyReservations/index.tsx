@@ -1,22 +1,21 @@
-import { useCallback, useEffect, useState } from "react";
-import ImageCardRow from "../../components/ImageCardRow";
+import { Link } from "react-router-dom";
 import "./index.css";
 import { APIClient } from "../../../services/api/client";
+import { useCallback, useEffect, useState } from "react";
 import { useSession } from "../../providers/SessionContext";
 import { Props } from "../../components/ImageCard";
+import ImageCardRow from "../../components/ImageCardRow";
 
-export default function Favorites() {
+export default function MyReservationsPage() {
   const { session } = useSession();
-  const [completedReservations, setCompletedReservations] = useState<Props[]>(
-    []
-  );
+  const [myReservations, setMyReservations] = useState<Props[]>([]);
 
   const getCreatedReservation = useCallback(async () => {
     const apiClient = new APIClient();
 
     try {
       const id = await apiClient.getIdByToken(session.token);
-      const reservations = await apiClient.getCompletedReservations(id);
+      const reservations = await apiClient.getCreatedReservation(id);
       return reservations;
     } catch (err) {
       throw new Error("Error while getting users");
@@ -41,12 +40,11 @@ export default function Favorites() {
           description: e.additionalInfo,
           favoritePage: false,
           descriptionFull: true,
-          evaluations: e.evaluations,
         } as unknown as Props;
         return newObject;
       });
 
-      setCompletedReservations(reservationsList);
+      setMyReservations(reservationsList);
     }
   }, [getCreatedReservation]);
 
@@ -59,13 +57,16 @@ export default function Favorites() {
   }, [session]);
 
   return (
-    <div>
-      <h1>HISTORICO DE RESERVAS</h1>
-      {completedReservations.length ? (
-        <h2>Você não possui nenhuma reserva em seu historico</h2>
+    <>
+      <h1>MINHAS RESERVAS</h1>
+      {myReservations.length ? (
+        <ImageCardRow evaluate={false} cards={myReservations} />
       ) : (
-        <ImageCardRow evaluate={true} cards={completedReservations} />
+        <h2>Você não possui propriedades cadastradas</h2>
       )}
-    </div>
+      <Link to={"/reservation"} className="createNewReservation">
+        Cadastrar nova reserva
+      </Link>
+    </>
   );
 }

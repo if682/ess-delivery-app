@@ -1,0 +1,43 @@
+.evaluationContainer {
+  position: relative;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.evaluationHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.evaluationStar {
+  all: unset;
+}
+
+.evaluationStar svg {
+  width: 30px;
+  fill: #dfca14;
+  cursor: pointer;
+}
+
+.sendEvaluation {
+  all: unset;
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  cursor: pointer;
+  background: #2d3138;
+  color: white;
+  padding: 0px 10px;
+  border-radius: 4px;
+}
+
+.sendEvaluation:hover {
+  background: #15171b;
+}

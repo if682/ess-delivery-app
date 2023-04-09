@@ -16,6 +16,9 @@ import { TypeOrmReservationConnectionRepository } from './typeorm/repositories/R
 import { FavoritesProviders } from './typeorm/providers/favoritesProvider';
 import FavoritesRepository from './repositories/FavoritesRepository';
 import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeOrmFavorites';
+import { EvalutationProvider } from './typeorm/providers/evaluationProvider';
+import EvaluationRepository from './repositories/EvaluationRepository';
+import { TypeOrmEvaluationRepository } from './typeorm/repositories/Reservation/TypeOrmEvalutation';
 @Module({
   providers: [
     databaseProviders,
@@ -24,6 +27,7 @@ import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeO
     ...ReservationProviders,
     ...ReservationConnectionProvider,
     ...FavoritesProviders,
+    ...EvalutationProvider,
     {
       provide: UserRepository,
       useClass: TypeOrmUserRepository,
@@ -44,6 +48,10 @@ import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeO
       provide: FavoritesRepository,
       useClass: TypeormFavoritesRepository,
     },
+    {
+      provide: EvaluationRepository,
+      useClass: TypeOrmEvaluationRepository,
+    },
     EncryptService,
   ],
   exports: [
@@ -53,6 +61,7 @@ import TypeormFavoritesRepository from './typeorm/repositories/Reservation/TypeO
     ReservationRepository,
     ReservationConnectionRepository,
     FavoritesRepository,
+    EvaluationRepository,
   ],
 })
 export class DatabaseModule {}

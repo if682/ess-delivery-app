@@ -1,22 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
 import ImageCardRow from "../../components/ImageCardRow";
 import "./index.css";
-import { APIClient } from "../../../services/api/client";
-import { useSession } from "../../providers/SessionContext";
 import { Props } from "../../components/ImageCard";
+import { useSession } from "../../providers/SessionContext";
+import { APIClient } from "../../../services/api/client";
 
-export default function Favorites() {
+export default function FavoritesPage() {
   const { session } = useSession();
-  const [completedReservations, setCompletedReservations] = useState<Props[]>(
-    []
-  );
-
-  const getCreatedReservation = useCallback(async () => {
+  console.log("FavoritesPage");
+  const getFavoritesReservations = useCallback(async () => {
     const apiClient = new APIClient();
 
     try {
       const id = await apiClient.getIdByToken(session.token);
-      const reservations = await apiClient.getCompletedReservations(id);
+      const reservations = await apiClient.GetFavoritesReservations(id);
       return reservations;
     } catch (err) {
       throw new Error("Error while getting users");
@@ -24,7 +21,7 @@ export default function Favorites() {
   }, [session]);
 
   const saveFavorites = useCallback(async () => {
-    const favorites = await getCreatedReservation();
+    const favorites = await getFavoritesReservations();
     console.log(favorites);
     if (favorites?.length) {
       console.log("Bolo");
@@ -39,16 +36,15 @@ export default function Favorites() {
           location: e.city,
           price: e.budget,
           description: e.additionalInfo,
-          favoritePage: false,
+          favoritePage: true,
           descriptionFull: true,
-          evaluations: e.evaluations,
         } as unknown as Props;
         return newObject;
       });
 
-      setCompletedReservations(reservationsList);
+      setFavoriteReservations(reservationsList);
     }
-  }, [getCreatedReservation]);
+  }, [getFavoritesReservations]);
 
   useEffect(() => {
     console.log("session");
@@ -58,14 +54,18 @@ export default function Favorites() {
     }
   }, [session]);
 
+  const [favoriteReservations, setFavoriteReservations] = useState<Props[]>([]);
+
   return (
-    <div>
-      <h1>HISTORICO DE RESERVAS</h1>
-      {completedReservations.length ? (
-        <h2>Você não possui nenhuma reserva em seu historico</h2>
+    <>
+      {favoriteReservations.length ? (
+        <div>
+          <h1>FAVORITOS!</h1>
+          <ImageCardRow evaluate={false} cards={favoriteReservations} />
+        </div>
       ) : (
-        <ImageCardRow evaluate={true} cards={completedReservations} />
+        <h1 id="isEmpty">Esta lista está vazia!!</h1>
       )}
-    </div>
+    </>
   );
 }
