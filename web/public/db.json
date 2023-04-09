@@ -15,7 +15,16 @@
       "category": "qsqs"
     }
   ],
-  "categories": [],
+  "categories": [
+    {
+      "id": 1681070194747,
+      "name": "a"
+    },
+    {
+      "id": 1681070368674,
+      "name": "aa"
+    }
+  ],
   "clients": [
     {
       "id": 128291,

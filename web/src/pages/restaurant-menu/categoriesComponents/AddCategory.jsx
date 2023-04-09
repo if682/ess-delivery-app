@@ -1,19 +1,16 @@
 import React from "react";
 import { isInputNull } from "../../../shared/functions/isInputNull";
 import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
-import * as Icon from 'react-bootstrap-icons';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import PrimaryButton from "../../../components/atoms/primary-button/PrimaryButton";
+
 
 export default function AddCategory(props) {
-  const [showForm, setShowForm] = React.useState(true);
+  const [showForm, setShowForm] = React.useState(false);
   const [newCategory, setNewCategory] = React.useState("");
   const [warningMessage, setWarningMessage] = React.useState(null);
   const [currentCategories, setCurrentCategories] = React.useState([]);
-  const url = window.location.href
 
   React.useEffect(() => {
-    fetch(url)
+    fetch("http://localhost:3001/categories")
       .then(response => response.json())
       .then(data => {
         setCurrentCategories(data);
@@ -26,7 +23,6 @@ export default function AddCategory(props) {
 
   function handleAddCategoryClick() {
     setShowForm(true);
-    props.show()
   }
 
   function handleCancelClick() {
@@ -47,7 +43,7 @@ export default function AddCategory(props) {
     } else {
       let category = { id: Date.now(), name: newCategory };
 
-      await fetch(url, {
+      await fetch("http://localhost:3001/categories", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -62,32 +58,30 @@ export default function AddCategory(props) {
   }
 
   return (
-    <div className='restaurant-menu-root'>
-    <div className='header'>
-      <div className='title-description'>
-        <h1>Cardápio</h1>
-        <p>Gerencie por essa página todos os itens e categorias cadastrados no seu restaurante.</p>
-      </div>
-      <CopyToClipboard className='copy-button' text={url}>
-        <button><Icon.ShareFill color='red' className='share-link'/></button>
-      </CopyToClipboard>
-    </div>
-    <div className='add-category-area'>
-       {showForm && (
+    <div>
+      <h1>Categories</h1>
+      <button onClick={handleAddCategoryClick} data-testid="add-category-button">Add category</button>
+      {showForm && (
         <form onSubmit={handleConfirmClick}>
-          <input
-            placeholder="Digite categoria a ser adicionada"
-            type="text"
-            value={newCategory}
-            onChange={handleNewCategoryChange}
-            data-testid="add-category-input"
-          />
-          <PrimaryButton buttonContent="Adicionar categoria" type="submit" data-testid="create-category-button">
-          </PrimaryButton>
+          <label>
+            Category name:
+            <input
+              placeholder="Nome"
+              type="text"
+              value={newCategory}
+              onChange={handleNewCategoryChange}
+              data-testid="add-category-input"
+            />
+          </label>
+          <button type="button" onClick={handleCancelClick} data-testid="cancel-button">
+            Cancel
+          </button>
+          <button type="submit" data-testid="create-category-button">
+            Confirm
+          </button>
         </form>
       )}
       {warningMessage && <p>{warningMessage}</p>}
     </div>
-  </div>
   );
 }
