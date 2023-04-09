@@ -16,7 +16,6 @@ const SearchResult = (props) => {
         let posterPath = `https://image.tmdb.org/t/p/w500${dataJson.backdrop_path}`
 
         setMovie(movie => ({...movie, title: dataJson.title, description: dataJson.overview, posterPath: posterPath,  releaseDate: dataJson.release_date, id: dataJson.id, duration: dataJson.runtime}))
-
         document.querySelector('.search-result-container').style.display = 'none'
         navigate('/movieinfo')
       }

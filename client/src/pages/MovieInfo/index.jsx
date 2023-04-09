@@ -18,7 +18,38 @@ function MovieInfo() {
   };
 
   const movieId = context.id;
+  const userId = localStorage.getItem("userId")
 
+  useEffect(() => {
+    const sendMovieToHistorico = async () =>{
+      console.log(`http://localhost:4001/list/${userId}/Historico`)
+      let movieIdS = movieId.toString();
+      console.log(movieIdS)
+      try{
+        let dataResponse = await fetch(`http://localhost:4001/list/${userId}/Historico`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              userId: userId,
+              listName: "Historico",
+              movieId: movieIdS
+            }),
+        });
+        console.log("estou aqui")
+        if(dataResponse.status === 201){
+            console.log("Passsou ok")
+        }else{
+            console.log("Ja esta no servidor esse filme")
+        }
+      }catch(error){
+        console.log(error);
+      }
+    }
+    sendMovieToHistorico();
+  }, []);
+  
   useEffect(() => {
     const fetchMovieReviews = async () => {
         try {
