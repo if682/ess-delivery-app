@@ -1,5 +1,5 @@
 import { PrismaReviewsRepository } from "../../repositories/prisma/PrismaReviewsRepository";
-import { FetchMovieReviewsUseCase } from "../fetch-movie-reviews";
+import { FetchMovieReviewsUseCase } from "../review/fetch-movie-reviews";
 
 export function makeFetchMovieReviewsUseCase() {
     const reviewsRepository = new PrismaReviewsRepository();
