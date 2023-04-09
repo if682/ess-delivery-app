@@ -37,12 +37,6 @@ function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
             {isLogged() ? (
               <>
                 <button
-                  onClick={() => console.log("Reservas")}
-                  className="AppBar_Reservas_Button"
-                >
-                  Reservas
-                </button>
-                <button
                   onClick={() => setShowSideBar(true)}
                   className="AppBar_User_Button"
                 >
@@ -52,12 +46,6 @@ function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
               </>
             ) : (
               <>
-                <button
-                  onClick={() => console.log("Reservas")}
-                  className="AppBar_Reservas_Button"
-                >
-                  Reservas
-                </button>
                 <button
                   onClick={() => showLoginRegisterModal(true)}
                   className="AppBar_Cadastro_Button"
