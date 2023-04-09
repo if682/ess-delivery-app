@@ -1,6 +1,4 @@
-import { render, screen, fireEvent, waitFor} from '@testing-library/react';
-import { EdiItemPopup } from '../../itemsComponents/EdiItemPopup';
-import { RestaurantMenu } from '../../RestaurantMenu';
+import { screen, fireEvent, waitFor} from '@testing-library/react';
 import deleteItemsAndCategories from '../RemoveTestData';
 import { createItem } from '../CreateItem';
 
@@ -14,12 +12,6 @@ describe('EdiItemPopup', () => {
     afterEach(async () => {
         await deleteItemsAndCategories();
     });
-
-    const testItem = [
-    { name: 'Item Teste', description: 'Descrição do item teste.', price: '10,50', category: 'Categoria Teste' }
-    ];
-
-    const onHideMock = jest.fn(() => {});
 
     it('should render EdiItemPopup component when Editar button is clicked', async () => {
         // Check that "Editar" button now appears
