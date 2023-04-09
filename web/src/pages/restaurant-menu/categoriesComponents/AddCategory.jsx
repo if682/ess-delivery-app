@@ -23,6 +23,7 @@ export default function AddCategory(props) {
 
   function handleAddCategoryClick() {
     setShowForm(true);
+    props.show()
   }
 
   function handleCancelClick() {
