@@ -6,11 +6,15 @@ const ProfileFilmsList = (props) => {
 
   return (
     <article className="profile-films">
-      {props.movies?.map((movie) => (
-        <Films movie={movie} />
-      ))}
+      {props.movies.length !== 0 ? (
+        props.movies.map((movieId) => (
+          <Films key={movieId} movie={movieId} />
+        ))
+      ) : (
+        <h3>There are no movies in this user's history.</h3>
+      )}
     </article>
-  );
+  );  
 };
 
 export default ProfileFilmsList;
