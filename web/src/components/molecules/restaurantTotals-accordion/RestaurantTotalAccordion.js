@@ -11,9 +11,14 @@ function RestaurantTotalAccordion({
   orders
 }) 
 {
+  /*
   const navigate = useNavigate();
   const seeRestaurantTotals = () => navigate("/total-pedidos/" + place);
-  
+  */
+
+  // calcular a soma
+  const orderSum = 10;
+
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
@@ -22,7 +27,7 @@ function RestaurantTotalAccordion({
             <Row className="align-items-center">
               <Col sm={3}><img class="restImage" src="./sample.jpg" alt="Logo do Restaurante"/></Col>
               <Col sm><strong class="restaurantName">{place}</strong></Col>
-              <Col sm><div>Total:<strong class="totalSpent"> R${orders[0].values.total}</strong></div></Col>
+              <Col sm><div>Total:<strong class="totalSpent"> R${orderSum}</strong></div></Col>
             </Row>  
           </Container>
 		    </Accordion.Header>
@@ -33,7 +38,7 @@ function RestaurantTotalAccordion({
               <Col sm><div class="mostDescription">Mais pedido:<br/><strong class="mostOrdered">BigMac<br/></strong>5 unidades</div></Col>
               <Col sm={3}>
                 <RedOutlineButton
-                  onClick={seeRestaurantTotals}
+                  onClick={"seeRestaurantTotals"}
                   chevron={false}
                   width="10rem">
                   Ver todos

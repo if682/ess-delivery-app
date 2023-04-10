@@ -17,10 +17,8 @@ function TotalsTable() {
   const navigate = useNavigate();
   const goBack = () => navigate("/total-pedidos");
 
-  const [orders, setOrders] = useState([]);
   const [filterDate, setFilterDate] = useState(convertToMonthFormat(new Date()));
-  //const [filteredOrders, setFilteredOrders] = useState([]);
-  
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     (async function fetchData() {
@@ -36,10 +34,6 @@ function TotalsTable() {
     return userOrders;
   }
 
-  const updateFilterDate = (e) => {
-    setFilterDate(e.target.value);
-  }
-
   return (
     <div className="totals-table-container">
       <button className="go-back-btn" onClick={goBack}>
@@ -48,7 +42,7 @@ function TotalsTable() {
           type="month"
           id="date-input"
           value={filterDate}
-          onChange={updateFilterDate}
+          onChange={(e) => {setFilterDate(e.target.value)}}
         />
       </button>
       
@@ -63,6 +57,4 @@ function TotalsTable() {
   );
 }
 
-
-// {orderTotals.map(RestaurantTotalAccordion)}
 export default TotalsTable;
