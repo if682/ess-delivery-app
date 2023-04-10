@@ -39,7 +39,7 @@ export class InMemoryListsRepository implements IListsRepository{
             item.listName == listName
         )
 
-        return (!found ? false : true)
+        return (found ? true : false)
     }
 
     async deleteList(userId: string, listName: string): Promise<void> {
@@ -65,6 +65,11 @@ export class InMemoryListsRepository implements IListsRepository{
             item.movieId == movieId
         )
         this.movieLists.splice(index, 1);
+    }
+
+    async findList(userId: string, listName: string): Promise<boolean> {
+        const found = this.lists.find((item) => item.name == listName && item.userId == userId)
+        return (found ? true : false);
     }
 
 }

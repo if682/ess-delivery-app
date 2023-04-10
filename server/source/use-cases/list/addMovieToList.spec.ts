@@ -10,6 +10,7 @@ let inMemoryMoviesRepository: InMemoryMoviesRepository
 let inMemoryUsersRepository: InMemoryUsersRepository
 let sut: AddMovieToListUseCase
 let reg: RegisterUserUseCase
+let user_id: string
 
 describe("Add movie to list use case", () => {
     beforeEach(async () => {
@@ -32,18 +33,19 @@ describe("Add movie to list use case", () => {
             phone: null
         })
         
+        const user = await inMemoryUsersRepository.findByEmail("fulano@gmail.com");
+        
+        if(!user){
+            throw new Error("erro procurando usuário por email")
+        }
+        user_id = user.id
+        
     })
 
     test("should be able to add movie to default list", async () =>{
         
-        const user = await inMemoryUsersRepository.findByEmail("fulano@gmail.com");
-        
-        if(!user){
-            console.log("erro procurando fulano");
-        }
-        else{
-            await sut.handle({
-                userId: user.id,
+        await sut.handle({
+                userId: user_id ,
                 listName: "Historico",
                 movieId: "Carros",
                 cover: "url",
@@ -51,8 +53,8 @@ describe("Add movie to list use case", () => {
                 title: "Carros"
             })
 
-            await sut.handle({
-                userId: user.id,
+        await sut.handle({
+                userId: user_id,
                 listName: "Curtidos",
                 movieId: "Carros",
                 cover: "url",
@@ -60,17 +62,45 @@ describe("Add movie to list use case", () => {
                 title: "Carros"
             })
 
-            const seen = await inMemoryListsRepository.showMoviesFromList(user.id, "Historico")
-            const liked = await inMemoryListsRepository.showMoviesFromList(user.id, "Curtidos")
-            expect(seen.length).toEqual(1);
-            expect(liked.length).toEqual(1);
-        }
+        const seen = await inMemoryListsRepository.showMoviesFromList(user_id, "Historico")
+        const liked = await inMemoryListsRepository.showMoviesFromList(user_id, "Curtidos")
+
+        expect(seen.length).toEqual(1);
+        expect(liked.length).toEqual(1);
+        
 
     })
 
     test("should not be able to add the same movie twice to a list", async() => {
+     
+        await sut.handle({
+                userId: user_id,
+                listName: "Historico",
+                movieId: "Mickey",
+                cover: "url",
+                description: "disney",
+                title: "Mickey"
+            })
+           
+            
+        expect(async() => 
+            await sut.handle({
+                userId: user_id,
+                listName: "Historico",
+                movieId: "Mickey",
+                cover: "url",
+                description: "disney",
+                title: "Mickey"
+            })
+        ).rejects.toThrowError('Movie already in List');
         
     })
+
+    test("should not be able to add movie to a list that was not created", async() => {
+        
+    })
+
+
 
 
 
