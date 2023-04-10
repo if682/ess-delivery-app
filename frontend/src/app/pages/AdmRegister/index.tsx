@@ -84,6 +84,7 @@ export default function AdmRegisterPage() {
 
     try {
       const api = new APIClient();
+      console.log(api)
       await api.createAdmUser(data);
       setSuccess(true);
     } catch (e) {
@@ -143,6 +144,7 @@ export default function AdmRegisterPage() {
                 placeholder="Joaquim Pinto"
               />
             </div>
+<<<<<<< HEAD
             <div className="input-div">
               <label>Email *</label>
               <Input
@@ -192,6 +194,39 @@ export default function AdmRegisterPage() {
                 type="text"
                 placeholder="123.123.123-12"
               />
+=======
+            <div className="rightAdmPage">
+              <div className="input-div">
+                <label>Senha inicial *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("password", e.target.value);
+                  }}
+                  type="password"
+                  placeholder="*********"
+                />
+              </div>
+              <div className="input-div">
+                <label>Repetir senha inicial *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("repassword", e.target.value);
+                  }}
+                  type="password"
+                  placeholder="**********"
+                />
+              </div>
+              <div className="input-div">
+                <label>CPF *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("cpf", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="123.123.123-12"
+                />
+              </div>
+>>>>>>> refs/remotes/origin/master
             </div>
           </div>
         </div>
@@ -208,6 +243,7 @@ export default function AdmRegisterPage() {
                 placeholder="Pernambuco"
               />
             </div>
+<<<<<<< HEAD
             <div className="input-div">
               <label>Cidade *</label>
               <Input
@@ -257,6 +293,39 @@ export default function AdmRegisterPage() {
                 type="text"
                 placeholder="Próximo a padaria Doce Pão"
               />
+=======
+            <div className="rightAdmPage">
+              <div className="input-div">
+                <label>Rua *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("street", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Rua das alamedas"
+                />
+              </div>
+              <div className="input-div">
+                <label>Complemento *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("complement", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="N 123, Apto 101"
+                />
+              </div>
+              <div className="input-div">
+                <label>Referência *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("reference", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Próximo a padaria Doce Pão"
+                />
+              </div>
+>>>>>>> refs/remotes/origin/master
             </div>
           </div>
         </div>
