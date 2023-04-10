@@ -14,6 +14,20 @@ export class DeleteMovieFromListUseCase{
         listName,
         movieId
     }: IDeleteMovieFromListUseCaseRequest): Promise<void>{
-        await this.listsRepository.deleteMovieFromList(userId, listName, movieId);
+
+        const list = await this.listsRepository.findList(userId, listName);
+
+        if(!list){
+            throw new Error('Invalid')
+        }
+
+        const movie = await this.listsRepository.movieInList(movieId, userId, list.name);
+        
+        if(!movie){
+            throw new Error('Invalid')
+        }
+
+
+        await this.listsRepository.deleteMovieFromList(userId, list.name, movieId);
     }
 }
