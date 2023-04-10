@@ -35,39 +35,42 @@ const HandleUserActions = () => {
     alert(`Curtiu o filme ${title}`);
   };
 
-  const handleAddToMovielistClick = async (title, lista) => {
-    //no momento estou recebendo o título mas devo receber o id do filme
-    //ou talvez mais infos do filme(?)
+  const getMovieInfo = async (movieId) => {
+    const dataResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR`, {
+      method: 'GET'
+    });
+    const movieData = await dataResponse.json();
+    return movieData;
+  };
 
-      //let movieIdS = movieId.toString();
-      console.log("userId: " + userId);
-      console.log("lista: " + lista);
-      console.log("title: " + title);
-      try{
-        let response = await fetch(`http://localhost:${port}/list/${userId}/${lista}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              userId: userId,
-              listName: lista,
-              movieId: "1245", //a ser alterado
-              title: title,
-              cover: "xxxx", //a ser alterado
-              description: "filme top" //a ser alterado
-            }),
-        });
-
-        if(response.ok){
-            console.log(response);
-            console.log("O filme foi adicionado a lista.");
-        }else{
-            console.log("Erro no POST.");
-        }
-      }catch(error){
-        console.log(error);
+  const handleAddToMovielistClick = async (movieId, lista) => {
+    const movieData = await getMovieInfo(movieId);
+  
+    try{
+      let response = await fetch(`http://localhost:${port}/list/${userId}/${lista}`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId,
+            listName: lista,
+            movieId: movieData.id.toString(),
+            title: movieData.title,
+            cover: movieData.poster_path,
+            description: movieData.overview,
+          }),
+      });
+  
+      if(response.ok){
+          console.log(response);
+          console.log("O filme foi adicionado a lista.");
+      }else{
+          console.log("Não consegui adicionar o filme a lista.");
       }
+    }catch(error){
+      console.log(error);
+    }
   };
 
   const handleMovieClick = () => {
@@ -84,6 +87,7 @@ const HandleUserActions = () => {
     handleLikeClick,
     handleAddToMovielistClick,
     handleMovieClick,
+    getMovieInfo,
   };
 };
 
