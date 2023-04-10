@@ -8,6 +8,8 @@ import { useContext } from "react";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 
+const port = 4001;
+
 function MovieInfo() {
 
   const [movieReviews, setMovieReviews] = useState();
@@ -24,7 +26,7 @@ function MovieInfo() {
     const sendMovieToHistorico = async () =>{
       let movieIdS = movieId.toString();
       try{
-        let dataResponse = await fetch(`http://localhost:4001/list/${userId}/Historico`, {
+        let dataResponse = await fetch(`http://localhost:${port}/list/${userId}/Historico`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

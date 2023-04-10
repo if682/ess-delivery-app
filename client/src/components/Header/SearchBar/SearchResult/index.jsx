@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { MovieContext } from "../../../../Context/MovieContext";
 import { useContext } from "react";
 
+const port = 4001;
+
 const SearchResult = (props) => {
   const [movie, setMovie] = useContext(MovieContext)
   const navigate = useNavigate()
@@ -21,7 +23,7 @@ const SearchResult = (props) => {
 
         let movieId = (dataJson.id).toString()
         try{
-          let dataResponse = await fetch(`http://localhost:4001/movie`, {
+          let dataResponse = await fetch(`http://localhost:${port}/movie`, {
               method: "POST",
               headers: {
                   "Content-Type": "application/json"

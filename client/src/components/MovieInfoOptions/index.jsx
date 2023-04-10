@@ -9,6 +9,8 @@ import HandleUserActions from "../../pages/handleUserActions.js";
 import { MovieContext } from "../../Context/MovieContext";
 import { useContext } from "react";
 
+const port = 4001;
+
 function MovieInfoOptions(movieContext) {
   const { handleAddToMovielistClick,
           handleLikeClick,
@@ -27,7 +29,7 @@ function MovieInfoOptions(movieContext) {
     const sendMovieToLikes = async () =>{
       let movieIdS = movieId.toString();
       try{
-        let dataResponse = await fetch(`http://localhost:4001/list/${userId}/Curtidos`, {
+        let dataResponse = await fetch(`http://localhost:${port}/list/${userId}/Curtidos`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
