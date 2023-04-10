@@ -31,9 +31,15 @@ export class AddMovieToListUseCase{
         description
     }: IAddMovieToListRequest): Promise<IAddMovieToListReply>{
 
-        const found = await this.listsRepository.movieInList(userId, listName, movieId);
+        const foundList = await this.listsRepository.findList(userId, listName);
 
-        if(found){
+        if(!foundList){
+            throw new Error('List does not exist')
+        }
+
+        const foundMovieInList = await this.listsRepository.movieInList(movieId, userId, listName);
+
+        if(foundMovieInList){
             throw new Error('Movie already in List');
         }
 

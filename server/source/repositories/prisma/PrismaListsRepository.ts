@@ -88,4 +88,15 @@ export class PrismaListsRepository implements IListsRepository {
             }
         })
     }
+
+    async findList(userId: string, listName: string): Promise<boolean> {
+        const found = await prisma.list.count({
+            where: {
+                userId,
+                name: listName
+            }
+        })
+
+        return (found ? true : false);
+    }
 }

@@ -8,4 +8,5 @@ export interface IListsRepository{
     movieInList(movieId: string, listOwner: string, listName: string): Promise<boolean>;
     deleteList(userId: string, listName: string): Promise<void>;
     deleteMovieFromList(userId: string, listName: string, movieId: string): Promise<void>;
+    findList(userId: string, listName: string): Promise<boolean>;
 }
