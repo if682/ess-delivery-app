@@ -84,6 +84,7 @@ export default function AdmRegisterPage() {
 
     try {
       const api = new APIClient();
+      console.log(api)
       await api.createAdmUser(data);
       setSuccess(true);
     } catch (e) {
@@ -183,7 +184,7 @@ export default function AdmRegisterPage() {
                     handleInputGeneric("repassword", e.target.value);
                   }}
                   type="password"
-                  placeholder="*********"
+                  placeholder="**********"
                 />
               </div>
               <div className="input-div">
@@ -241,7 +242,7 @@ export default function AdmRegisterPage() {
                   onChange={(e) => {
                     handleInputGeneric("street", e.target.value);
                   }}
-                  type="password"
+                  type="text"
                   placeholder="Rua das alamedas"
                 />
               </div>
@@ -251,7 +252,7 @@ export default function AdmRegisterPage() {
                   onChange={(e) => {
                     handleInputGeneric("complement", e.target.value);
                   }}
-                  type="password"
+                  type="text"
                   placeholder="N 123, Apto 101"
                 />
               </div>
