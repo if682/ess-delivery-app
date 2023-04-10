@@ -13,6 +13,12 @@ export class DeleteListUseCase{
         userId,
         listName
     }: IDeleteListUseCaseRequest): Promise<void>{
-        await this.listsRepository.deleteList(userId, listName);
+
+        const foundList = await this.listsRepository.findList(userId, listName);
+        if(!foundList){
+            throw new Error('Not Found')
+        }
+
+        await this.listsRepository.deleteList(userId, foundList.name);
     }
 }
