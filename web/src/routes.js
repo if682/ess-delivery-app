@@ -28,7 +28,7 @@ const UrlRoutes = () => {
         <Route path="/cadastro-email" element={<GetClientEmail/>}/>
         <Route path="/cadastro-finalizado" element={<ClientRegistered/>}/>
         <Route path="/validacao-email" element={<ConfirmEmail/>}/>
-        <Route path="/restaurantMenu" element={<RestaurantMenu/>} />
+        <Route path="/cardapio" element={<RestaurantMenu/>} />
 		    <Route path="/total-pedidos" element={<OrderTotals />} />
         <Route path="/meus-dados" element={<MyData />} />
       </Routes>

@@ -3,6 +3,18 @@
   "categories": [],
   "clients": [
     {
+      "name": "bia",
+      "email": "bia@hotmail.com",
+      "password": "senha",
+      "id": 1
+    },
+    {
+      "name": "teste",
+      "email": "teste@hotmail.com",
+      "password": "teste",
+      "id": 2
+    },
+    {
       "id": 128291,
       "name": "Pedro",
       "email": "pasp@cin.ufpe.br",
