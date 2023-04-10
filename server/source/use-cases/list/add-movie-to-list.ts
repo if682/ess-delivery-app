@@ -37,13 +37,13 @@ export class AddMovieToListUseCase{
             throw new Error('List does not exist')
         }
 
-        const foundMovieInList = await this.listsRepository.movieInList(movieId, userId, listName);
+        const foundMovieInList = await this.listsRepository.movieInList(movieId, userId, foundList.name);
 
         if(foundMovieInList){
             throw new Error('Movie already in List');
         }
 
-        const movielist = await this.listsRepository.addMovieToList(userId, listName, movieId);
+        const movielist = await this.listsRepository.addMovieToList(userId, foundList.name, movieId);
 
         return{
             movielist
