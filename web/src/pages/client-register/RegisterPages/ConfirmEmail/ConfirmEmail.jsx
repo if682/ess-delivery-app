@@ -3,8 +3,8 @@ import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
 import "../../RegisterClient.css"
 import "./ConfirmEmail.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
 
 
 export const ConfirmEmail = (props) => {
@@ -39,12 +39,8 @@ export const ConfirmEmail = (props) => {
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='email_confirmation_title'>Agora, confirme o seu endereço de e-mail</text>
                     <text className='email_confirmation_text'>Nós enviamos um código para</text>
                     <text className='email_address'>{email}</text>
@@ -91,9 +87,7 @@ export const ConfirmEmail = (props) => {
                     <text className='email_confirmation_text_resend'>Não recebeu o código ? <text className='resend' onClick={handleResend}>Reenviar</text></text>
                     <Button onClick={() => ConfirmEmail()} className='email_confirmation_button'>Verificar  ></Button>
                 </>
-                
-            </div>
-        </div>
+        </RegisterPageContainer>
     );
 
 

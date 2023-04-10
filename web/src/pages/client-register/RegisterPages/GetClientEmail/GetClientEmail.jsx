@@ -1,10 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
-import "../../RegisterClient.css"
 import "./GetClientEmail.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
 
 
 
@@ -54,12 +53,8 @@ export const GetClientEmail = (props) => {
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='register_box_title_email'>Olá {name}!</text>
                     <br></br>
                     <text className='register_box_subtitle_email'>Seja bem vinde :)</text>
@@ -74,10 +69,8 @@ export const GetClientEmail = (props) => {
                     
                     <text className='warning_text_email' id="warning_message">{warningMessage}</text>
                     <Button onClick={() => getEmail()} className='register_box_button_email' data-testid="button-reg-email">Continuar  ></Button>
-                </>
-                
-            </div>
-        </div>
+            </>
+        </RegisterPageContainer>
     );
 
 

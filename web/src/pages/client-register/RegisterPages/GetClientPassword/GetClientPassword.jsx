@@ -1,11 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
-import "../../RegisterClient.css"
 import "./GetClientPassword.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
 
 
 
@@ -55,12 +54,8 @@ export const GetClientPassword = (props) => {
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='register_password_title'>Estamos quase lá, {name}!</text>
                     <text className='register_password_text'>Crie uma senha para a sua conta</text>
                     <div className='display_password_inputs'>
@@ -87,10 +82,8 @@ export const GetClientPassword = (props) => {
                     </div>
                     
                     <Button onClick={() => getPassword()} className='register_password_button'>Continuar  ></Button>
-                </>
-                
-            </div>
-        </div>
+            </>
+        </RegisterPageContainer>
     );
 
 
