@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import "./style.css";
 import { useContext, useState } from "react";
  
+const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const ProfileNumbers = () => {
 
     const [movies, setMovies] = useState([]);
-    const userId = localStorage.getItem("userId")
 
     useEffect(() => {
         const fetchMovies = async (url) =>{
@@ -37,16 +37,6 @@ const ProfileNumbers = () => {
             <div className="movies">
                 <p>{movies.length}</p>
                 <p>movies</p>
-            </div>
-
-            <div className="following">
-                <p>12</p>
-                <p>following</p>
-            </div>
-
-            <div className="followers">
-                <p>11</p>
-                <p>followers</p>
             </div>
         </section>
   );
