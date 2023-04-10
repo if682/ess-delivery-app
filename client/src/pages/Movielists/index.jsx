@@ -109,6 +109,7 @@ const Movielists = () => {
 
   useEffect(() => {
     console.log(lists);
+    localStorage.setItem("userLists", JSON.stringify(lists));
     // atualiza a lista na interface sempre que o estado de listas for atualizado
   }, [lists]);
 
