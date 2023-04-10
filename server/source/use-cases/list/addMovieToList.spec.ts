@@ -24,11 +24,11 @@ describe("Add movie to list use case", () => {
         // cria usuário antes de cada teste
         await reg.handle({
             name: "Fulano",
-            email: "fulano@gmail.com",
-            description: "",
             username: "fulaninho123",
-            birthdate: new Date(),
+            email: "fulano@gmail.com",
             password: "FulanoBox345!",
+            description: "",
+            birthdate: new Date(),
             location: null,
             phone: null
         })
