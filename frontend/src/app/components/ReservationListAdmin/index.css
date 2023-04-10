@@ -8,3 +8,11 @@
     width: 30%;
     padding-right: 10px;
 }
+
+.textsReservas {
+    margin-left: 25px;
+    font-family: "TrajanusBricks";
+    color: black;
+    font-size: 48px;
+    font-weight: lighter;
+  }

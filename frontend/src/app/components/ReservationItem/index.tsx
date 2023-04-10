@@ -31,6 +31,7 @@ interface ReservationDetails {
   owner: string;
 }
 interface ReservationProps {
+  renderType: string;
   reservation: {
     id: number;
     userId: string;
@@ -42,7 +43,7 @@ interface ReservationProps {
   };
 }
 
-function ReservationItem({ reservation }: ReservationProps) {
+function ReservationItem({ reservation, renderType }: ReservationProps) {
 
   const handleAcceptClick = async (connectionId: number) => {
     try {
@@ -53,9 +54,9 @@ function ReservationItem({ reservation }: ReservationProps) {
           accepted: true
         }
       );
-      console.log(response.data); // Log the response data if successful
+      window.location.reload();
     } catch (error) {
-      console.error(error); // Log the error if the reque`st fails
+      console.error(error);
     }
   };
 
@@ -68,38 +69,95 @@ function ReservationItem({ reservation }: ReservationProps) {
           accepted: false
         }
       );
-      console.log(response.data); // Log the response data if successful
+      window.location.reload();
     } catch (error) {
-      console.error(error); // Log the error if the reque`st fails
+      console.error(error);
     }
   };
 
 
   return (
-<div className="reservationCardFull">
-  <div>
-    <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
-    <h1 className="reservationLocation">{reservation.reservationDetails.name}</h1>
-  </div>
-  <div className="reservationContent">
-    <div>
-      <p className="reservationDates">From: {reservation.reservationDetails.checkIn}</p>
-      <p className="reservationDates" style={{ paddingBottom: "20px" }}>To: {reservation.reservationDetails.checkOut}</p>
-    </div>
-    <div className="reservationActions">
-      {!(reservation.accepted == 'aceito') && (
-        <button className="reservationAction" onClick={() => handleAcceptClick(reservation.id)}>
-          Aceitar
-        </button>
+    <div >
+      {renderType === "guestRender" && ( //guest view
+        <div className="reservationCardFull">
+          <div>
+            <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
+            <h1 className="reservationLocation">{reservation.reservationDetails.name},</h1>
+            <h1 className="reservationLocation">{reservation.reservationDetails.city}</h1>
+          </div>
+          <div className="reservationContent">
+            <div>
+              <p className="reservationDates">Check-in: {reservation.reservationDetails.checkIn}</p>
+              <p className="reservationDates" style={{ paddingBottom: "20px" }}>Check-out: {reservation.reservationDetails.checkOut}</p>
+            </div>
+            <div className="reservationActions">
+              <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
+                Cancelar
+              </button>
+              {reservation.user && <p>{reservation.user.cpf}</p>}
+            </div>
+          </div>
+        </div>
       )}
-      <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
-        Deletar
-      </button>
+
+      {renderType === "ownerRender" && ( //owner and admin view (can accept)
+        <div className="reservationCardFull">
+          <div>
+            <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
+            <h1 className="reservationLocation">{reservation.reservationDetails.name},</h1>
+            <h1 className="reservationLocation">{reservation.reservationDetails.city}</h1>
+          </div>
+          <div className="reservationContent">
+            <div>
+              <p className="reservationDates">Check-in: {reservation.reservationDetails.checkIn}</p>
+              <p className="reservationDates" style={{ paddingBottom: "20px" }}>Check-out: {reservation.reservationDetails.checkOut}</p>
+            </div>
+            <div className="reservationActions">
+              {!(reservation.accepted == 'aceito') && (
+                <button className="reservationAction" onClick={() => handleAcceptClick(reservation.id)}>
+                  Aceitar
+                </button>
+              )}
+              <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
+                Cancelar
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {renderType === "adminRender" && ( //admin -> see IDs
+        <div className="reservationCardFull">
+          <div>
+            <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
+            <h1 className="reservationLocation">{reservation.reservationDetails.name},</h1>
+            <h1 className="reservationLocation">{reservation.reservationDetails.city}</h1>
+          </div>
+          <div className="reservationContent">
+            <div>
+              <p className="reservationDates">Check-in: {reservation.reservationDetails.checkIn}</p>
+              <p className="reservationDates" style={{ paddingBottom: "20px" }}>Check-out: {reservation.reservationDetails.checkOut}</p>
+            </div>
+            <div className="reservationActions">
+              {!(reservation.accepted == 'aceito') && (
+                <button className="reservationAction" onClick={() => handleAcceptClick(reservation.id)}>
+                  Aceitar
+                </button>
+              )}
+              <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+          <div>
+              <p className="reservationDates" >ID reserva:{reservation.reservationDetails.id}</p>
+              <p className="reservationDates" >ID anfitrião:{reservation.reservationDetails.owner}</p>
+              <p className="reservationDates" style={{ paddingBottom: "20px" }}>ID inquilino:{reservation.userId}</p>
+          </div>
+        </div>
+      )}  
     </div>
-  </div>
-</div>
-
-
   );
 }
 

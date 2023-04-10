@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ReservationListGuest from '../../components/ReservationListGuest';
+import ReservationListHost from '../../components/ReservationListHost';
 import './index.css';
 import { useSession } from "../../providers/SessionContext";
 import { APIClient } from "../../../services/api/client";
@@ -56,12 +56,14 @@ const createReservation = (data: ReservationProps) => {
   return reservation;
 }
 
+
+
 const getUserId = async () => {
   const response = await axios.get(`/login/<token-usuário>`);
   return response.data.userId;
 };
 
-const ReservasGuests: React.FC = () => {
+const ReservasHost: React.FC = () => {
   const { session } = useSession();
   const [reservations, setReservations] = useState([]);
   const [userId, setUserId] = useState("");
@@ -82,7 +84,7 @@ const ReservasGuests: React.FC = () => {
 
     fetchReservations();
   }, []);
-
+  console.log(userId)
   if (!reservations || reservations.length === 0) {
     return(
       <div>
@@ -108,23 +110,24 @@ const ReservasGuests: React.FC = () => {
   return (
     <div>
       <div className='contentTitle'>
-      <div>
-          <h1 className='texts'>Reservas como inquilino</h1>
-        </div>
-        <div className='divButton'>
-          <button
-            className='reservations_Switch_Button'
-            onClick={() => window.location.href = 'http://localhost:3000/hospedagens-host'}
-          >
-            Ir para reservas como anfitrião
-          </button>
-        </div>
+        <div>
+            <h1 className='texts'>Reservas como anfitrião</h1>
+            <p>{userId}</p>
+          </div>
+          <div className='divButton'>
+            <button
+              className='reservations_Switch_Button'
+              onClick={() => window.location.href = 'http://localhost:3000/hospedagens-guests'}
+            >
+              Ir para reservas como inquilino
+            </button>
+          </div>
       </div>
       <div>
-        <ReservationListGuest reservations={reservations} userId={userId} />
+        <ReservationListHost reservations={reservations} userId={userId} />
       </div>
     </div>
   );
 };
 
-export default ReservasGuests;
+export default ReservasHost;

@@ -30,6 +30,7 @@ interface ReservationDetails {
   owner: string;
 }
 interface ReservationProps {
+  userId: string;
   reservations: {
     id: number;
     userId: string;
@@ -41,13 +42,13 @@ interface ReservationProps {
   }[];
 }
 
-const ReservationList = ({ reservations }: ReservationProps) => {
+const ReservationListHost = ({ reservations, userId }: ReservationProps) => {
   const confirmedReservations = reservations.filter(
-    (reservation) => reservation.accepted == 'aceito'
+    (reservation) => reservation.reservationDetails.owner === userId && reservation.accepted === 'aceito'
   );
 
   const pendingReservations = reservations.filter(
-    (reservation) => reservation.accepted == 'espera'
+    (reservation) => reservation.reservationDetails.owner === userId && reservation.accepted === 'espera'
   );
  
   if (!reservations || reservations.length === 0) {
@@ -55,6 +56,7 @@ const ReservationList = ({ reservations }: ReservationProps) => {
   }
 
   return (
+    
     <div className='bothLists'>
       <div className='singleLists'>
         <h1 className='textsReservas'>Reservas confirmadas</h1>
@@ -62,7 +64,7 @@ const ReservationList = ({ reservations }: ReservationProps) => {
           <ReservationItem
             key={reservation.id}
             reservation={reservation}
-            renderType='adminRender'
+            renderType='ownerRender'
           />
         ))}
       </div>
@@ -73,7 +75,7 @@ const ReservationList = ({ reservations }: ReservationProps) => {
           <ReservationItem
             key={reservation.id}
             reservation={reservation}
-            renderType='adminRender'
+            renderType='ownerRender'
           />
         ))}
       </div>
@@ -82,4 +84,4 @@ const ReservationList = ({ reservations }: ReservationProps) => {
 };
 
 
-export default ReservationList;
+export default ReservationListHost;

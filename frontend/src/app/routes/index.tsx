@@ -9,6 +9,7 @@ import Favorites from "../pages/Favorites";
 import UserData from "../pages/UserData";
 import BookingPage from '../pages/BookingPage'
 import ReservasGuests from "../pages/ReservasGuest";
+import ReservasHost from "../pages/ReservasHost";
 
 
 
@@ -20,6 +21,7 @@ export default function Router() {
         <Route path="/register-adm" element={<AdmRegisterPage />} />
         <Route path="/hospedagens-admin" element={<ReservasAdmin />} />
         <Route path="/hospedagens-guests" element={<ReservasGuests />} />
+        <Route path="/hospedagens-host" element={<ReservasHost />} />
         <Route path="/reservation" element={<ReservationPage />} />
         <Route path="/my-reservations" element={<MyReservationsPage />} />
         <Route

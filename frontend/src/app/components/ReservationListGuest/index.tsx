@@ -59,21 +59,23 @@ const ReservationListGuest = ({ reservations, userId }: ReservationProps) => {
     
     <div className='bothLists'>
       <div className='singleLists'>
-        <h1>Confirmed Reservations</h1>
+        <h1 className='textsReservas'>Reservas confirmadas</h1>
         {confirmedReservations.map((reservation) => (
           <ReservationItem
             key={reservation.id}
             reservation={reservation}
+            renderType='guestRender'
           />
         ))}
       </div>
 
       <div className='singleLists'>
-        <h1>Pending Reservations</h1>
+        <h1 className='textsReservas'>Reservas pendentes</h1>
         {pendingReservations.map((reservation) => (
           <ReservationItem
             key={reservation.id}
             reservation={reservation}
+            renderType='guestRender'
           />
         ))}
       </div>
