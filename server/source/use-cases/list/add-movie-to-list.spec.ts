@@ -2,11 +2,9 @@ import { expect, describe, test, beforeEach } from "vitest";
 import { AddMovieToListUseCase } from "./add-movie-to-list";
 import { RegisterUserUseCase } from "../user/register-user";
 import { InMemoryListsRepository } from "../../repositories/inMemory/inMemoryListsRepository";
-import { InMemoryMoviesRepository } from "../../repositories/inMemory/inMemoryMoviesRepository";
 import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
 
 let inMemoryListsRepository: InMemoryListsRepository
-let inMemoryMoviesRepository: InMemoryMoviesRepository
 let inMemoryUsersRepository: InMemoryUsersRepository
 let sut: AddMovieToListUseCase
 let reg: RegisterUserUseCase
@@ -15,10 +13,9 @@ let user_id: string
 describe("Add movie to list use case", () => {
     beforeEach(async () => {
         inMemoryListsRepository = new InMemoryListsRepository();
-        inMemoryMoviesRepository = new InMemoryMoviesRepository();
         inMemoryUsersRepository = new InMemoryUsersRepository();
 
-        sut = new AddMovieToListUseCase(inMemoryListsRepository, inMemoryMoviesRepository);
+        sut = new AddMovieToListUseCase(inMemoryListsRepository);
         reg = new RegisterUserUseCase(inMemoryUsersRepository,inMemoryListsRepository);
         
         // cria usuário antes de cada teste

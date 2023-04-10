@@ -17,10 +17,7 @@ interface IAddMovieToListReply{
 }
 
 export class AddMovieToListUseCase{
-    constructor(
-        private listsRepository: IListsRepository,
-        private moviesRepository: IMoviesRepository
-                ){}
+    constructor(private listsRepository: IListsRepository){}
 
     async handle({
         userId,
