@@ -8,12 +8,18 @@ import RestaurantTotalAccordion from "../restaurantTotals-accordion/RestaurantTo
 import Order from "../../atoms/order/Order";
 import { Row } from "react-bootstrap";
 
+// Converte para YYYY-MM, que é o formato do input month de HTML
+const convertToMonthFormat = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-GB').split('/').reverse().join('-').substring(0,7)
+}
+
 function TotalsTable() {
   const navigate = useNavigate();
   const goBack = () => navigate("/total-pedidos");
 
   const [orders, setOrders] = useState([]);
-  const [filterDate, setFilterDate] = useState(new Date());
+  const [filterDate, setFilterDate] = useState(convertToMonthFormat(new Date()));
+  //const [filteredOrders, setFilteredOrders] = useState([]);
   
 
   useEffect(() => {
@@ -24,10 +30,14 @@ function TotalsTable() {
   }, []);
 
   async function loadOrders() {
-    const response = await fetch(`${process.env.PUBLIC_URL}/db.json`);
+    const response = await fetch("http://localhost:3001/orders");
     const data = await response.json();
-    let userOrders = data?.orders["2"];
+    let userOrders = data['2'];
     return userOrders;
+  }
+
+  const updateFilterDate = (e) => {
+    setFilterDate(e.target.value);
   }
 
   return (
@@ -38,17 +48,13 @@ function TotalsTable() {
           type="month"
           id="date-input"
           value={filterDate}
-          onChange={(event) => setFilterDate(event.target.value)}
+          onChange={updateFilterDate}
         />
       </button>
       
       <div class="accordionTable">
-      {_(orders
-        .filter(
-          (order) =>
-            (new Date(order.date).getMonth().toString() + new Date(order.date).getYear().toString())
-             === (new Date(filterDate).getMonth().toString() + new Date(filterDate).getYear().toString())
-        ))
+      {_(orders)
+        .filter((order) => (convertToMonthFormat(order.date)) === convertToMonthFormat(filterDate))
         .groupBy("place")
         .map((value, key) => ({place: key, orders: value}))
         .value()
@@ -56,6 +62,7 @@ function TotalsTable() {
     </div>
   );
 }
+
 
 // {orderTotals.map(RestaurantTotalAccordion)}
 export default TotalsTable;
