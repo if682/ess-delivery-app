@@ -4,10 +4,14 @@ import MovielistHeader from "../../components/MovielistHeader";
 import Movie from "../../components/Movie";
 import "./styles.css";
 
+const userId = localStorage.getItem("userId");
+const port = 4001;
+
 const Movielist = () => {
   const listName = "Movielist";
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
+  const [username, setUsername] = useState("");
   const [movies, setMovies] = useState([
     { title: "The Godfather", year: 1972, genre: ["Crime"] },
     { title: "Come and See", year: 1985, genre: ["War"] },
@@ -107,10 +111,33 @@ const Movielist = () => {
     // atualiza a lista de filmes na interface sempre que o estado de movies for atualizado
   }, [movies]);
 
+  useEffect(() => {
+    // pega o nome do usuário logado
+    const handleGetUsername = async () => {
+      try {
+        let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
+          method: "GET",
+        });
+  
+        if (response.ok) {
+          let data = await response.json();
+          setUsername(data.user.username);
+          console.log("GET realizado com sucesso.");
+        } else {
+          console.log("Ocorreu um erro no GET.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleGetUsername();
+  }, []);
+
   return (
     <div className="movielist-page">
       <Header />
-      <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName={listName} />
+      <MovielistHeader userAvatar="../../assets/avatar-default.png" username={username} listName={listName} />
       
       <div className="filter-sort-icons">
         <div className="filter-container">
