@@ -89,14 +89,17 @@ export class PrismaListsRepository implements IListsRepository {
         })
     }
 
-    async findList(userId: string, listName: string): Promise<boolean> {
-        const found = await prisma.list.count({
+    async findList(userId: string, listName: string): Promise<List | null> {
+        const found = await prisma.list.findFirst({
             where: {
                 userId,
-                name: listName
+                name: {
+                    equals: listName,
+                    mode: 'insensitive'
+                }
             }
         })
 
-        return (found ? true : false);
+        return found;
     }
 }

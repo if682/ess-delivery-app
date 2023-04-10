@@ -2,11 +2,9 @@ import { expect, describe, test, beforeEach } from "vitest";
 import { AddMovieToListUseCase } from "./add-movie-to-list";
 import { RegisterUserUseCase } from "../user/register-user";
 import { InMemoryListsRepository } from "../../repositories/inMemory/inMemoryListsRepository";
-import { InMemoryMoviesRepository } from "../../repositories/inMemory/inMemoryMoviesRepository";
 import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
 
 let inMemoryListsRepository: InMemoryListsRepository
-let inMemoryMoviesRepository: InMemoryMoviesRepository
 let inMemoryUsersRepository: InMemoryUsersRepository
 let sut: AddMovieToListUseCase
 let reg: RegisterUserUseCase
@@ -15,20 +13,19 @@ let user_id: string
 describe("Add movie to list use case", () => {
     beforeEach(async () => {
         inMemoryListsRepository = new InMemoryListsRepository();
-        inMemoryMoviesRepository = new InMemoryMoviesRepository();
         inMemoryUsersRepository = new InMemoryUsersRepository();
 
-        sut = new AddMovieToListUseCase(inMemoryListsRepository, inMemoryMoviesRepository);
+        sut = new AddMovieToListUseCase(inMemoryListsRepository);
         reg = new RegisterUserUseCase(inMemoryUsersRepository,inMemoryListsRepository);
         
         // cria usuário antes de cada teste
         await reg.handle({
             name: "Fulano",
-            email: "fulano@gmail.com",
-            description: "",
             username: "fulaninho123",
-            birthdate: new Date(),
+            email: "fulano@gmail.com",
             password: "FulanoBox345!",
+            description: "",
+            birthdate: new Date(),
             location: null,
             phone: null
         })
@@ -71,7 +68,7 @@ describe("Add movie to list use case", () => {
 
     })
 
-    test("should not be able to add the same movie twice to a list", async() => {
+    test("should not be able to add the same movie to a list twice", async() => {
      
         await sut.handle({
                 userId: user_id,

@@ -67,9 +67,9 @@ export class InMemoryListsRepository implements IListsRepository{
         this.movieLists.splice(index, 1);
     }
 
-    async findList(userId: string, listName: string): Promise<boolean> {
-        const found = this.lists.find((item) => item.name == listName && item.userId == userId)
-        return (found ? true : false);
+    async findList(userId: string, listName: string): Promise<List | null> {
+        const found = this.lists.find((item) => item.name.toLowerCase() == listName.toLowerCase() && item.userId == userId)
+        return (found ? found : null);
     }
 
 }
