@@ -71,7 +71,7 @@ describe("Add movie to list use case", () => {
 
     })
 
-    test("should not be able to add the same movie twice to a list", async() => {
+    test("should not be able to add the same movie to a list twice", async() => {
      
         await sut.handle({
                 userId: user_id,

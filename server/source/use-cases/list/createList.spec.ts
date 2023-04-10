@@ -58,11 +58,16 @@ describe("Create list use case", async() => {
 
         expect(async() => 
             await sut.handle({
-                name: "Feliz",
+                name: "fEliz",
                 userId: user_id
             })
         ).rejects.toThrowError('This list already exists');
     })
+
+    // nao deve poder criar lista com nome vazio
+    // nao deve poder criar lista com nome apenas espaços
+    // nao deve poder criar lista com nome com mais de 80 caracteres
+    // nao deve poder criar lista que tenha algum dos caracteres '&', '@', '%' ou '$'
 
 
 })
