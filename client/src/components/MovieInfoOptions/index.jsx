@@ -10,6 +10,7 @@ import { MovieContext } from "../../Context/MovieContext";
 import { useContext } from "react";
 
 const port = 4001;
+const lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
 
 function MovieInfoOptions(movieContext) {
   const { handleAddToMovielistClick,
@@ -20,6 +21,8 @@ function MovieInfoOptions(movieContext) {
   const [context, setContext] = useContext(MovieContext)
   const userId = localStorage.getItem("userId")
   const movieId = context.id;
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleClick = () => {
     setShowModal(true);
@@ -64,10 +67,20 @@ function MovieInfoOptions(movieContext) {
         </button>
       </div>
       <div className="watchlist">
-        <button onClick={() => handleAddToMovielistClick("movieID")}>
+        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
           <img className="bookmarkSvg" src={BookmarkSvg} alt="Ícone de adicionar a movielist" />
           Add to movielist
         </button>
+        {isDropdownOpen && (
+          <div className="dropdown-container">
+            <p>Add to list:</p>
+            {lists.map((list) => (
+              <button key={list.name} onClick={() => handleAddToMovielistClick(movieId, list.name)}>
+                {list.name}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="feedback">
         <button onClick={handleClick}>
