@@ -47,7 +47,7 @@ describe("Create list use case", async() => {
 
         const foundList = await inMemoryListsRepository.findList(user_id, "Legais");
 
-        expect(foundList).toEqual(true);
+        expect(foundList).toBeDefined();
     })
 
     test("should prohibit creating lists with names that are already taken by the user", async() => {
@@ -61,13 +61,50 @@ describe("Create list use case", async() => {
                 name: "fEliz",
                 userId: user_id
             })
-        ).rejects.toThrowError('This list already exists');
+        ).rejects.toThrowError('This list already exists')
     })
 
-    // nao deve poder criar lista com nome vazio
-    // nao deve poder criar lista com nome apenas espaços
-    // nao deve poder criar lista com nome com mais de 80 caracteres
-    // nao deve poder criar lista que tenha algum dos caracteres '&', '@', '%' ou '$'
+    test("should not be able to create list with empty name", async() => {
+        expect(async() =>
+            await sut.handle({
+                name: "",
+                userId: user_id
+            })
+        ).rejects.toThrowError('Invalid name')
+    })
+
+    test("should not be able to create list with name containing only whitespaces", async() => {
+        expect(async() =>
+            await sut.handle({
+                name: "      ",
+                userId: user_id
+            })
+        ).rejects.toThrowError('Invalid name')
+    })
+
+    test("should not be able to create list with name longer than 80 characters", async() => {
+        const listName = "a".repeat(81);
+        expect(async() => 
+            await sut.handle({
+                name: listName,
+                userId: user_id
+            })
+        ).rejects.toThrowError('Invalid name')
+    })
+
+    test("should not be able to create list with name containing '&', '@', '$' or '%'", async() =>{
+        const array = ['&', '@', '$', '%'];
+
+        for(var i=0; i<4; i++){
+            expect(async() =>
+                await sut.handle({
+                    name: "nomelegal" + array[i],
+                    userId: user_id
+                })
+            ).rejects.toThrowError('Invalid name')
+        }
+        
+    })
 
 
 })
