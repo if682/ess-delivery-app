@@ -34,7 +34,7 @@ export class AddMovieToListUseCase{
         const foundList = await this.listsRepository.findList(userId, listName);
 
         if(!foundList){
-            throw new Error('List does not exists')
+            throw new Error('List does not exist')
         }
 
         const foundMovieInList = await this.listsRepository.movieInList(movieId, userId, listName);
@@ -42,9 +42,6 @@ export class AddMovieToListUseCase{
         if(foundMovieInList){
             throw new Error('Movie already in List');
         }
-
-        
-
 
         const movielist = await this.listsRepository.addMovieToList(userId, listName, movieId);
 

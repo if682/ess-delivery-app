@@ -42,7 +42,7 @@ describe("Add movie to list use case", () => {
         
     })
 
-    test("should be able to add movie to default list", async () =>{
+    test("should be able to add movie to list", async () =>{
         
         await sut.handle({
                 userId: user_id ,
@@ -97,14 +97,17 @@ describe("Add movie to list use case", () => {
     })
 
     test("should not be able to add movie to a list that was not created", async() => {
-        
+        expect(async() =>
+            await sut.handle({
+                userId: user_id,
+                listName: "Ferias",
+                movieId: "Carros",
+                cover: "url",
+                description: "filme",
+                title: "Carros"
+            })
+        ).rejects.toThrowError('List does not exist');
     })
-
-
-
-
-
-
 
 
 })
