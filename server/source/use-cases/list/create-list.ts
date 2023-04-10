@@ -17,6 +17,11 @@ export class CreateListUseCase{
         name,
         userId
     }: ICreateListUseCaseRequest): Promise<ICreateListUseCaseReply>{
+        const found = await this.listsRepository.findList(userId, name);
+
+        if(found){
+            throw new Error('This list already exists')
+        }
 
         const list = await this.listsRepository.createList(name, userId);
 
