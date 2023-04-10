@@ -1,21 +1,19 @@
 import React from "react";
 import "./style.css";
 import { useState, useEffect } from "react";
+import HandleUserActions from "../../../pages/handleUserActions";
 
 const Films = (props) => {
   const [movie, setMovie] = useState();
+  const { getMovieInfo } = HandleUserActions();
 
   useEffect(() => {
-    const fetchMovie = async (url) => {
-      const dataResponse = await fetch(url, {
-        method: 'GET'
-      })
-      const dataJson = await dataResponse.json();
-      console.log(dataJson);
-      setMovie(dataJson);
-    }
+    const fetchMovieInfo = async () => {
+      const movieInfo = await getMovieInfo(props.movie);
+      setMovie(movieInfo);
+    };
 
-    fetchMovie(`https://api.themoviedb.org/3/movie/${props.movie}?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR`);
+    fetchMovieInfo();
   }, []);
 
   return (
