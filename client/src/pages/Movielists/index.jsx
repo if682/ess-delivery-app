@@ -10,6 +10,7 @@ const port = 4001;
 const Movielists = () => {
   const [lists, setLists] = useState([]);
   const [newListTitle, setNewListTitle] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleUserListClick = ({ name }) => {
@@ -130,14 +131,33 @@ const Movielists = () => {
         console.log(err);
       }
     };
+
+    const handleGetUsername = async () => {
+      try {
+        let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
+          method: "GET",
+        });
   
+        if (response.ok) {
+          let data = await response.json();
+          setUsername(data.user.username);
+          console.log("GET realizado com sucesso.");
+        } else {
+          console.log("Ocorreu um erro no GET.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleGetUsername();
     handleGetLists();
   }, []);  
   
   return (
     <div className="movielists-page">
       <Header />
-      <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName="Lists" />
+      <MovielistHeader userAvatar="../../assets/avatar-default.png" username={username} listName="Lists" />
       
       <div className="movielists-list">
         <div className="movielists-new-list">
