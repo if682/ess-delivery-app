@@ -36,8 +36,20 @@ const Profile = () => {
           }
         };
 
+        const fetchUserLists = async () => {
+          try {
+            const response = await api.get(`list/${userId}`);
+            let data = await response.json();
+            localStorage.setItem("userLists", JSON.stringify(Object.values(data).flat()));
+            console.log("GET realizado com sucesso.");
+            } catch (err) {
+            console.log(err);
+          }
+        };
+
         fetchUserReviews();
         fetchUserHistory();
+        fetchUserLists();
     }, []);
 
     const filteredReviews = Object.values(
