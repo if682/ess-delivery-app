@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ReservationList from '../../components/ReservationListAdmin';
+import ReservationListGuest from '../../components/ReservationListGuest';
 import './index.css';
+
 interface User {
   id: string;
   email: string;
@@ -40,26 +41,34 @@ interface ReservationProps {
   user: User[];
 }
 
-const ReservasAdmin: React.FC = () => {
-  
-  const [reservations, setReservations] = useState([]);
+const createReservation = (data: ReservationProps) => {
+  const reservation = {
+      id: data.id,
+      userId: data.userId,
+      reservationId: data.reservationId,
+      accepted: data.accepted,
+      createdAt: data.createdAt,
+      reservationDetails: data.reservation[0],
+      userDetails: data.user[0]
+  };
+  return reservation;
+}
 
-  const createReservation = (data: ReservationProps) => {
-    const reservation = {
-        id: data.id,
-        userId: data.userId,
-        reservationId: data.reservationId,
-        accepted: data.accepted,
-        createdAt: data.createdAt,
-        reservationDetails: data.reservation[0],
-        userDetails: data.user[0]
-    };
-    return reservation;
-  }
+const getUserId = async () => {
+  const response = await axios.get(`/login/<token-usuário>`);
+  return response.data.userId;
+};
+
+const ReservasGuests: React.FC = () => {
+   
+  const [reservations, setReservations] = useState([]);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     async function fetchReservations() {
       try {
+        const id = 'e414767d-afcd-4223-bae8-f6eee662b9a7';
+        setUserId(id);
         const response = await axios.get(`http://localhost:8080/reservation/solicitations`);
         const formattedReservations = response.data.map(createReservation);
         setReservations(formattedReservations);
@@ -71,17 +80,16 @@ const ReservasAdmin: React.FC = () => {
     fetchReservations();
   }, []);
 
-
   if (!reservations || reservations.length === 0) {
-    return <div>No reservations to display.</div>;
+    return <div className='container'>No reservations to display.</div>;
   }
 
   return (  
-    <div>
-      <ReservationList reservations={reservations} />
+    <div className='container'>
+      <ReservationListGuest reservations={reservations} userId={userId} />
     </div>
 
   );
 };
 
-export default ReservasAdmin;
+export default ReservasGuests;

@@ -2,26 +2,42 @@ import React, { useEffect, useState } from 'react';
 import "./index.css";
 import ReservationItem from '../ReservationItem';
 
+interface User {
+  id: string;
+  email: string;
+  cpf: string;
+  name: string;
+  password: string;
+  role: string;
+}
+
+interface ReservationDetails {
+  id: string;
+  name: string;
+  city: string;
+  street: string;
+  streetNumber: number;
+  cep: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  budget: number;
+  additionalInfo: string;
+  bedrooms: number;
+  beds: number;
+  bathrooms: number;
+  photos: Array<File>;
+  owner: string;
+}
 interface ReservationProps {
   reservations: {
-    id: string;
-    name: string;
-    city: string;
-    street: string;
-    streetNumber: number;
-    cep: string;
-    checkIn: string;
-    checkOut: string;
-    guests: number;
-    budget: number;
-    additionalInfo: string;
-    bedrooms: number;
-    beds: number;
-    bathrooms: number;
-    photos: Array<File>;
-    owner: string;
-    accepted:string;
-    connectionId: number;
+    id: number;
+    userId: string;
+    reservationId: string;
+    accepted: string;
+    createdAt: string;
+    reservationDetails: ReservationDetails;
+    user: User;
   }[];
 }
 
@@ -39,7 +55,6 @@ const ReservationList = ({ reservations }: ReservationProps) => {
   }
 
   return (
-    
     <div className='bothLists'>
       <div className='singleLists'>
         <h1>Confirmed Reservations</h1>
