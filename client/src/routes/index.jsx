@@ -4,7 +4,6 @@ import EditProfile from "../pages/EditProfile";
 import Movielist from "../pages/Movielist";
 import Movielists from "../pages/Movielists";
 import Likes from "../pages/Likes";
-import Watched from "../pages/Watched";
 import Login from "../pages/Login";
 import RecoverPassword from "../pages/ForgetPassword";
 import PassChange from "../pages/ForgetPassword/ChangePassword";
