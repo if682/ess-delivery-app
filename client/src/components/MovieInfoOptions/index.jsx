@@ -25,9 +25,7 @@ function MovieInfoOptions(movieContext) {
 
   const handleLike = () =>{
     const sendMovieToLikes = async () =>{
-      console.log(`http://localhost:4001/list/${userId}/Curtidos`)
       let movieIdS = movieId.toString();
-      console.log(movieIdS)
       try{
         let dataResponse = await fetch(`http://localhost:4001/list/${userId}/Curtidos`, {
             method: "POST",
@@ -37,12 +35,14 @@ function MovieInfoOptions(movieContext) {
             body: JSON.stringify({
               userId: userId,
               listName: "Curtidos",
-              movieId: movieIdS
+              movieId: movieIdS,
+              title: context.title,
+              cover: context.posterPath,
+              description: context.description
             }),
         });
-        console.log("estou aqui")
         if(dataResponse.status === 201){
-            console.log("Passsou ok")
+            console.log("Salvei no Likes")
         }else{
             console.log("Ja esta no servidor esse filme")
         }

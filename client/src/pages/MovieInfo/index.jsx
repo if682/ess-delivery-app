@@ -22,9 +22,7 @@ function MovieInfo() {
 
   useEffect(() => {
     const sendMovieToHistorico = async () =>{
-      console.log(`http://localhost:4001/list/${userId}/Historico`)
       let movieIdS = movieId.toString();
-      console.log(movieIdS)
       try{
         let dataResponse = await fetch(`http://localhost:4001/list/${userId}/Historico`, {
             method: "POST",
@@ -34,12 +32,14 @@ function MovieInfo() {
             body: JSON.stringify({
               userId: userId,
               listName: "Historico",
-              movieId: movieIdS
+              movieId: movieIdS,
+              title: context.title,
+              cover: context.posterPath,
+              description: context.description
             }),
         });
-        console.log("estou aqui")
         if(dataResponse.status === 201){
-            console.log("Passsou ok")
+            console.log("Salvei no historico")
         }else{
             console.log("Ja esta no servidor esse filme")
         }
@@ -48,7 +48,7 @@ function MovieInfo() {
       }
     }
     sendMovieToHistorico();
-  }, []);
+  }, [context]);
   
   useEffect(() => {
     const fetchMovieReviews = async () => {
