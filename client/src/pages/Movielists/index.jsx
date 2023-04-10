@@ -5,7 +5,7 @@ import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
 const userId = localStorage.getItem("userId");
-const port = 4002;
+const port = 4001;
 
 const Movielists = () => {
   const [lists, setLists] = useState([]);
