@@ -6,29 +6,18 @@ import WithoutReviews from "../WithoutReviews";
 
 const ProfileReviewsList = (props) => {
 
-  const [userReviews, setUserReviews] = useState();
-  const userId = localStorage.getItem("userId");
-  
-  useEffect(() => {
-      const getUserReviews = async () => {
-          try {
-            const response = await api.get(`review/${userId}`);
-            setUserReviews(response.data);
-          } catch (error) {
-            alert("Erro ao pegar reviews do usuário");
-          }
-        };
-        getUserReviews();
-    }, []);
+  const sortedReviews = props.data.reviews?.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   return (
     <div className="list-reviews-section">
 
-      {props.data.reviews?.length ? (props.data.reviews.map((review) => (
-            <Review review={review} />
-          ))) : (
-            <WithoutReviews text={"This user hasn't registered any reviews yet."} />
-          )}
+      {sortedReviews?.length ? (
+        sortedReviews.map((review) => <Review review={review} />)
+      ) : (
+        <WithoutReviews text={"This user hasn't registered any reviews yet."} />
+      )}
 
     </div>
   );
