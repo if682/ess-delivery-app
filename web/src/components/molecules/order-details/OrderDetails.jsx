@@ -158,8 +158,6 @@ function OrderDetails({ order }) {
 
         <InputLabel htmlFor="message" className="mb-2 mt-4 input-label">Mensagem</InputLabel>
         <TextareaAutosize id="message" className="textarea" minRows={5} />
-        <Input data-testid="subject-input" id="subject" className="textinput" />
-        <TextareaAutosize data-testid="message-input" id="message" className="textarea" minRows={5} />
 
 
           <div className="buttons d-flex flex-row align-items-center justify-content-evenly mt-3 w-100 ps-3 pe-3">
