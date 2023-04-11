@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { LoginContext } from "../../Context/LoginContext";
 import "./style.css";
 import Rating from "./Rating";
 import api from "../../services/api";
@@ -10,8 +8,7 @@ import StarRating from "./StarRating";
 const ReviewModal = (props) => {
 
   const { title, id, posterPath } = props.movie.movieContext;
-  const [context, setContext] = useContext(LoginContext)
-  const userId = context.userId
+  const userId = localStorage.getItem("userId");
 
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');

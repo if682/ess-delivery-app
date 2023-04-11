@@ -6,14 +6,12 @@ import Movie from "../../components/Movie";
 import "./styles.css";
 import HandleUserActions from "../handleUserActions";
 import api from "../../services/api";
-import { useContext } from "react";
-import { LoginContext } from "../../Context/LoginContext";
+
 
 const port = 4001;
 
 const Movielist = () => {
-  const [context, setContext] = useContext(LoginContext)
-  const userId = context.userId
+  const userId = localStorage.getItem("userId");
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
   const [username, setUsername] = useState("");
