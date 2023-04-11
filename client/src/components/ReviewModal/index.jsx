@@ -44,17 +44,6 @@ const ReviewModal = (props) => {
       props.onClose();
   };
 
-  useEffect(() => {
-      const fetchMovie = async () => {
-        try {
-          await api.get(`/movie/${id}`);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchMovie();
-    }, [id]);
-
   return (
     <div className="modal">
 
