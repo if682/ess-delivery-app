@@ -13,7 +13,16 @@ const ProfileReviewsList = (props) => {
     <div className="list-reviews-section">
 
       {sortedReviews?.length ? (
-        sortedReviews.map((review) => <Review review={review} />)
+        sortedReviews.map((review) => 
+          <Review
+          key={review.id} 
+          title={review.title} 
+          rating={review.rating} 
+          review={review.review}
+          movieCover={review.movieCover}
+          createdAt={review.createdAt}
+        />
+        )
       ) : (
         <WithoutReviews text={"This user hasn't registered any reviews yet."} />
       )}
