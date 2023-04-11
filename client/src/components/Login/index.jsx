@@ -11,6 +11,15 @@ const LoginBox = () => {
   let handleSubmit = async (e) =>{
     e.preventDefault();
     try{
+        if(username === ""){
+          console.log("Campo username vazio")
+          alert("Campo username vazio")
+        }else if(password === ""){
+          console.log("Campo senha vazio")
+          alert("Campo senha vazio")
+        }else{
+          console.log("Login bem sucedido")
+        }
         let res = await fetch(`http://localhost:${port}/login`, {
             method: "POST",
             headers: {
@@ -55,11 +64,11 @@ const LoginBox = () => {
 
         <form class="w-full h-1/2 flex flex-col items-center justify-around">
           <div class="w-full h-4/6 flex flex-col items-center justify-around">
-            <input value = {username} type="text" placeholder="Username" class="w-2/3 bg-none" onChange={(e) => setUsername(e.target.value)}/>
-            <input value = {password} type="text" placeholder="Password" class="w-2/3 bg-none " onChange={(e) => setPassword(e.target.value)}/>
+            <input data-testId = "username" value = {username} type="text" placeholder="Username" class="w-2/3 bg-none" onChange={(e) => setUsername(e.target.value)}/>
+            <input data-testId = "password" value = {password} type="text" placeholder="Password" class="w-2/3 bg-none " onChange={(e) => setPassword(e.target.value)}/>
           </div>
           
-          <input type="submit" value="Sign In" class="bg-[#F4A4A4] w-1/2 h-1/5 text-white rounded-lg" onClick={handleSubmit}/>
+          <input data-testId = "submit" type="submit" value="Sign In" class="bg-[#F4A4A4] w-1/2 h-1/5 text-white rounded-lg" onClick={handleSubmit}/>
         </form>
 
         <a href="login/recover" class="text-white underline underline-offset-1">Forget Password?</a>
