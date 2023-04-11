@@ -45,8 +45,8 @@ const Likes = () => {
       const selGenre = prompt("Digite o gênero que deseja filtrar:");
     
       if (selGenre) {
-        filteredMovies = filteredMovies.filter(movie => movie.genres.name.includes(selGenre));
-      }
+        filteredMovies = filteredMovies.filter(movie => movie.genres.some(genre => genre.name === selGenre));
+      } 
     }
 
     else {
