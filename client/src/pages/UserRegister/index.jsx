@@ -31,6 +31,7 @@ const UserRegister = () => {
                     name: firstName,
                     username: username,
                     email: email,
+                    description: "O usuário ainda não possui descrição cadastrada",
                     password: password,
                     birthdate: iso,
                     phone: phone,

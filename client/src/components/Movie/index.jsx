@@ -3,7 +3,6 @@ import HandleUserActions from "../../pages/handleUserActions.js";
 import "./styles.css";
 import { useState } from "react";
 
-const lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
 
 const Movie = ({ poster, title, year }) => {
   const { handleAddToMovielistClick,
@@ -12,6 +11,7 @@ const Movie = ({ poster, title, year }) => {
         } = HandleUserActions();
   
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
 
   return (
     <div className="movie-container">
