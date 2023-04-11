@@ -3,16 +3,19 @@ import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import Movie from "../../components/Movie";
 import "./styles.css";
+import HandleUserActions from "../handleUserActions";
+import api from "../../services/api";
+
+const userId = localStorage.getItem("userId");
+const port = 4001;
 
 const Likes = () => {
   const listName = "Likes";
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
-  const [movies, setMovies] = useState([
-    { title: "The Godfather", year: 1972, genre: ["Crime"] },
-    { title: "Come and See", year: 1985, genre: ["War"] },
-    { title: "Filme", year: 1998, genre: ["Comedy", "Drama"] },
-  ]);
+  const [username, setUsername] = useState("");
+  const [movies, setMovies] = useState([]);
+  const { getMovieInfo } = HandleUserActions();
 
   // cria uma cópia da lista de filmes original para que ela não seja alterada ao aplicar os filtros e ordenações
   const originalMovies = [...movies];
@@ -30,7 +33,7 @@ const Likes = () => {
       
       // verifica se o ano digitado é um número
       if (/^\d+$/.test(selYear)) {
-        filteredMovies = filteredMovies.filter(movie => movie.year === parseInt(selYear));
+        filteredMovies = filteredMovies.filter(movie => movie.release_date.substring(0, 4) === selYear);
       }
       
       else {
@@ -42,7 +45,7 @@ const Likes = () => {
       const selGenre = prompt("Digite o gênero que deseja filtrar:");
     
       if (selGenre) {
-        filteredMovies = filteredMovies.filter(movie => movie.genre.includes(selGenre));
+        filteredMovies = filteredMovies.filter(movie => movie.genres.name.includes(selGenre));
       }
     }
 
@@ -62,11 +65,11 @@ const Likes = () => {
     let sortedMovies = [...originalMovies];
   
     if (sortOption === "year-asc") {
-      sortedMovies.sort((a, b) => a.year - b.year);
+      sortedMovies.sort((a, b) => a.release_date.substring(0, 4) - b.release_date.substring(0, 4));
     }
     
     else if (sortOption === "year-desc") {
-      sortedMovies.sort((a, b) => b.year - a.year);
+      sortedMovies.sort((a, b) => b.release_date.substring(0, 4) - a.release_date.substring(0, 4));
     }
     
     else if (sortOption === "alphabetical") {
@@ -85,10 +88,52 @@ const Likes = () => {
     // atualiza a lista de filmes na interface sempre que o estado de movies for atualizado
   }, [movies]);
 
+  useEffect(() => {
+    // pega o nome do usuário logado
+    const handleGetUsername = async () => {
+      try {
+        let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
+          method: "GET",
+        });
+  
+        if (response.ok) {
+          let data = await response.json();
+          setUsername(data.user.username);
+          console.log("Peguei o username com sucesso.");
+        } else {
+          console.log("Ocorreu um erro ao pegar o username.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    // pega os filmes da lista de likes do usuário
+    const fetchMovies = async () => {
+      let movielist;
+      try {
+        const response = await api.get(`list/${userId}/Curtidos`);
+        movielist = Object.values(response.data).flat(); // é um array contendo os moviesId
+        let moviesTemp = [];
+
+        for (let i = 0; i < movielist.length; i++) {
+          const movieInfo = await getMovieInfo(movielist[i]); // pega as informações de cada filme
+          moviesTemp.push(movieInfo); // armazena no array
+        };
+        setMovies([...moviesTemp.flat()]);
+      } catch (error) {
+        alert("Erro ao pegar filmes curtidos do usuário.");
+        // exibe uma janela de diálogo perguntando ao usuário se ele realmente deseja excluir a lista
+      }};
+
+    handleGetUsername();
+    fetchMovies();
+  }, []);
+
   return (
     <div className="likes-page">
       <Header />
-      <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName={listName} />
+      <MovielistHeader userAvatar="../../assets/avatar-default.png" username={username} listName={listName} />
       
       <div className="filter-sort-icons">
         <div className="filter-container">
@@ -115,12 +160,12 @@ const Likes = () => {
           <button className="sort-button" onClick={() => handleSortClick()}>Sort</button>
         </div>
       </div>
-      
+
       <div className="movies-grid">
-        {movies.map((movie, index) => (
-          <div className="movie-wrapper" key={index}>
-            <Movie poster="../../assets/movie-poster.svg" title={movie.title} year={movie.year}/>
-            </div>
+        {movies && movies.map((movie) => (
+          <div className="movie-wrapper" key={movie.id}>
+            <Movie poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} title={movie.title} movieId={movie.id} year={movie.release_date.substring(0, 4)}/>
+          </div>
         ))}
       </div>
     </div>
