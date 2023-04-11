@@ -38,5 +38,16 @@ describe("Authenticate use case", () => {
         
     })
 
-    
+    test("should not be able to edit unexisting user", async () => {
+
+        await expect(() => sut.handle({
+            name: "Joao Silva Santos",
+            email: "joaosilva@email.com",
+            birthdate: new Date(),
+            description: "My description",
+            location: "",
+            phone: "",
+            username: "",
+        })).rejects.toBeInstanceOf(Error) 
+    })
 })
