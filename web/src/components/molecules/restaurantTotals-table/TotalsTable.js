@@ -40,7 +40,7 @@ function TotalsTable() {
         <ChevronLeft /> Voltar
         <input
           type="month"
-          id="date-input"
+          class="month-input"
           value={filterDate}
           onChange={(e) => {setFilterDate(e.target.value)}}
         />

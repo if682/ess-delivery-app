@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 function OrderTotals()
 {
   // passar esses parametros para TotalsTable
-  const {restaurantID, monthYear} = useParams();
+  const {restaurantID} = useParams();
   let restaurantName = "test";
 
   return (

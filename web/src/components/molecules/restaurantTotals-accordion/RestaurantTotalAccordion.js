@@ -6,6 +6,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from "react-router-dom";
 
+/*
+function findAndCountMostOrdered(orders) {
+  let mostOrdered = ""
+
+  for(let )
+
+}
+*/
+
 function RestaurantTotalAccordion({
   place,
   orders
@@ -17,7 +26,8 @@ function RestaurantTotalAccordion({
   */
 
   // calcular a soma
-  const orderSum = 10;
+  const orderSum = orders.reduce((total, order) => {return total + order.values.total}, 0);
+  //const [mostOrdered, quantity] = ;
 
   return (
     <Accordion>
