@@ -3,8 +3,8 @@ import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
 import "../../RegisterClient.css"
 import "./ConfirmEmail.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
 
 
 export const ConfirmEmail = (props) => {
@@ -18,33 +18,34 @@ export const ConfirmEmail = (props) => {
     const {state} = useLocation()
     const {name, email} = (state != null) ? state : props.state;
 
+    //o valor de warningMessage sempre é recebe null se houver mudanças nos valores dos inputs
     useEffect(() => {
         setWarningMessage(null)
     }, [firstDigit, secDigit, thirdDigit, fourthDigit])
 
     const ConfirmEmail = () => {
+        //verifica se há algum input vazio
         if(isInputNull(firstDigit) || isInputNull(secDigit) || isInputNull(thirdDigit) || isInputNull(fourthDigit)){
             setWarningMessage('Preencha todos os campos!')
         }
+        //verifica se o código de verificação fornecido está errado
         else if((firstDigit != 1) || (secDigit != 1) || (thirdDigit != 1) || (fourthDigit != 1)){
             setWarningMessage('Código de verificação incorreto')
         }
         else{
+            //vai para a página de cadastro de senha e manda os valores do nome e email obtidos nas páginas de cadastro anteriores a essa
             navigate('/cadastro-senha', {state: {name: name, email: email}})
         }
     }
 
+    //atualiza a página
     const handleResend = () =>{
         window.location.reload()
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='email_confirmation_title'>Agora, confirme o seu endereço de e-mail</text>
                     <text className='email_confirmation_text'>Nós enviamos um código para</text>
                     <text className='email_address'>{email}</text>
@@ -91,9 +92,7 @@ export const ConfirmEmail = (props) => {
                     <text className='email_confirmation_text_resend'>Não recebeu o código ? <text className='resend' onClick={handleResend}>Reenviar</text></text>
                     <Button onClick={() => ConfirmEmail()} className='email_confirmation_button'>Verificar  ></Button>
                 </>
-                
-            </div>
-        </div>
+        </RegisterPageContainer>
     );
 
 

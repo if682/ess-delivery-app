@@ -31,6 +31,30 @@
       "name": "Beatriz Andrade",
       "email": "baa@cin.ufpe.br",
       "password": "senha3"
+    },
+    {
+      "name": "bia",
+      "email": "biazita@hotmail.com",
+      "password": "bia1",
+      "id": 128294
+    },
+    {
+      "name": "teste12",
+      "email": "teste12@hotmail.com",
+      "password": "teste",
+      "id": 128295
+    },
+    {
+      "name": "socorro_novo",
+      "email": "scr2@hotmail.com",
+      "password": "help2",
+      "id": 128296
+    },
+    {
+      "name": "diaD2",
+      "email": "dia_d@hotmail.com",
+      "password": "senha",
+      "id": 128297
     }
   ],
   "orders": {
@@ -107,10 +131,111 @@
       "paymentMethod": "Dinheiro"
     },
     {
-      "id": "098126",
+      "id" : "098126",
+      "place" : "Subway",
+      "address" : "Rua dos Bobos, 0",
+      "date" : "2022-11-01",
+      "items" : [
+        {
+          "name" : "Barato do dia",
+          "quantity" : 2,
+          "price" : 20.0
+        },
+        {
+          "name" : "Pepsi",
+          "quantity" : 1,
+          "price" : 2.0
+        },
+        {
+          "name" : "Biscoito",
+          "quantity" : 1,
+          "price" : 5.0
+        }
+      ],
+      "values" : {
+        "subtotal" : 27.0,
+        "deliveryFee" : 5.0,
+        "total" : 32.0
+      },
+      "paymentMethod" : "Dinheiro"
+    },
+    {
+      "id": "098127",
       "place": "McDonald's",
       "address": "Rua dos Bobos, 0",
-      "date": "2021-01-01",
+      "date": "2023-02-21",
+      "items": [
+        {
+          "name": "Big Mac",
+          "quantity": 1,
+          "price": 10.0
+        },
+        {
+          "name": "Coca-Cola",
+          "quantity": 1,
+          "price": 5.0
+        }
+      ],
+      "values": {
+        "subtotal": 15.0,
+        "deliveryFee": 5.0,
+        "total": 20.0
+      },
+      "paymentMethod": "Cartão de crédito"
+    },
+    {
+      "id": "098128",
+      "place": "Burger King",
+      "address": "Rua dos Bobos, 0",
+      "date": "2023-03-03",
+      "items": [
+        {
+          "name": "Whopper",
+          "quantity": 1,
+          "price": 10.0
+        },
+        {
+          "name": "Coca-Cola",
+          "quantity": 1,
+          "price": 5.0
+        }
+      ],
+      "values": {
+        "subtotal": 15.0,
+        "deliveryFee": 5.0,
+        "total": 20.0
+      },
+      "paymentMethod": "Pix"
+    },
+    {
+      "id": "098129",
+      "place": "Subway",
+      "address": "Rua dos Bobos, 0",
+      "date": "2023-03-14",
+      "items": [
+        {
+          "name": "Subway Melt",
+          "quantity": 1,
+          "price": 10.0
+        },
+        {
+          "name": "Fanta",
+          "quantity": 1,
+          "price": 3.0
+        }
+      ],
+      "values": {
+        "subtotal": 13.0,
+        "deliveryFee": 5.0,
+        "total": 18.0
+      },
+      "paymentMethod": "Dinheiro"
+    },
+    {
+      "id": "098130",
+      "place": "McDonald's",
+      "address": "Rua dos Bobos, 0",
+      "date": "2023-03-21",
       "items": [
         {
           "name": "Big Mac",
@@ -131,10 +256,10 @@
       "paymentMethod": "Cartão de crédito"
     },
     {
-      "id": "098127",
+      "id": "098131",
       "place": "Subway",
       "address": "Rua dos Bobos, 0",
-      "date": "2021-01-01",
+      "date": "2023-03-22",
       "items": [
         {
           "name": "Subway Melt",
@@ -155,10 +280,10 @@
       "paymentMethod": "Dinheiro"
     },
     {
-      "id": "098128",
+      "id": "098132",
       "place": "Subway",
       "address": "Av Caxangá, 234",
-      "date": "2023-04-05",
+      "date": "2023-04-01",
       "items": [
         {
           "name": "BMT",
@@ -189,7 +314,7 @@
       "paymentMethod": "Dinheiro"
     },
     {
-      "id": "098130",
+      "id": "098133",
       "place": "McDonald's",
       "address": "Rua dos Bobos, 0",
       "date": "2021-04-09",

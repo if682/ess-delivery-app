@@ -14,6 +14,7 @@ import { RestaurantMenu } from "./pages/restaurant-menu/RestaurantMenu";
 import OrderTotals from "./pages/client-orderTotals/OrderTotals";
 import RestaurantTotal from "./pages/client-restaurantTotal/RestaurantTotal";
 import MyData from "./pages/mydata/Mydata";
+import RestaurantTotal from "./pages/client-restaurantTotal/RestaurantTotal";
 
 const UrlRoutes = () => {
   return (
@@ -33,6 +34,8 @@ const UrlRoutes = () => {
 		    <Route path="/total-pedidos" element={<OrderTotals />} />
 		    <Route path="/total-pedidos/restaurante/:restaurantID" element={<RestaurantTotal />} />
         <Route path="/meus-dados" element={<MyData />} />
+        <Route path="/total-pedidos/restaurante/:restaurantID" element={<RestaurantTotal />} />
+        <Route path="*" element={<h1>404 - Página não Encontrada</h1>} />
       </Routes>
     </BrowserRouter>
   );

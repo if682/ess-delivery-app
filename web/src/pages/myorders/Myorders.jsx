@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import PageTitle from "../../components/atoms/page-title/PageTitle";
 import "./Myorders.css";
@@ -9,17 +8,18 @@ function MyOrders() {
 
   useEffect(() => {
     (async function fetchData() {
-      const data = await loadOrders();
+      const data = await fetchOrders();
       setOrders(data);
     })();
   }, []);
 
-  async function loadOrders() {
+  async function fetchOrders() {
     const response = await fetch(`${process.env.PUBLIC_URL}/db.json`);
     const data = await response.json();
     let order = data?.orders["2"];
     return order;
   }
+  
 
   return (
     <div className="my-orders-page-container position-relative d-flex flex-column align-items-center justify-content-center vh-100 p-4">
