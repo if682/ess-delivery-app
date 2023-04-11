@@ -11,7 +11,6 @@ const port = 4001;
 
 const Movielist = () => {
   const userId = localStorage.getItem("userId");
-  const listName = "Movielist";
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
   const [username, setUsername] = useState("");
