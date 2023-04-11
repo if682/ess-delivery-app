@@ -10,7 +10,6 @@ const EditProfileFormsSection = () => {
     const [userName, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [description, setDescription] = useState("");
-    const [password, setPassword] = useState("");
 
     const [userData, setUserData] = useState("");
 
@@ -37,14 +36,18 @@ const EditProfileFormsSection = () => {
     }, []);
 
     let handleSubmit = async (e) =>{
+        if(name === ""){
+          console.log("Campo nome vazio");
+        }else if(userName === ""){
+          console.log("Campo username vazio");
+        }else if(email === ""){
+          console.log("Campo email vazio");
+        }else if(description === ""){
+          console.log("Campo descrição vazio");
+        }else{
+          console.log("Edit profile foi enviado")
+        }
         e.preventDefault();
-        console.log(name)
-        console.log(userName)
-        console.log(description)
-        console.log(password)
-        console.log(userData.birthdate)
-        console.log(userData.phone)
-        console.log(userData.location)
         try{
             let res = await fetch(`http://localhost:${port}/edit`, { //Esse link de post é um dummy apy
                 method: "PUT",
@@ -80,17 +83,17 @@ const EditProfileFormsSection = () => {
     <article>
         <form onSubmit={handleSubmit}>
             <div className="input-row">
-                <input className="first-input" type="text" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)} required/>
-                <input className="second-input"type="text" value={userName} placeholder="Username" onChange={(e) => setUsername(e.target.value)} required/>
+                <input data-testId = "name" className="first-input" type="text" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)} required/>
+                <input data-testId = "username" className="second-input"type="text" value={userName} placeholder="Username" onChange={(e) => setUsername(e.target.value)} required/>
             </div>
             
             <div className="input-row">
-                <input className="first-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
-                <input className="second-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+                <input data-testId = "email" className="first-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
+                <input data-testId = "description" className="second-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
             </div>
 
             <div className="submit-button-container">
-                <button className="submit-form" type="submit">Save</button>
+                <button  data-testId = "submit" className="submit-form" type="submit">Save</button>
             </div>
         </form>
     </article>
