@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const TotalPedidosPage = (props) => {
+const TotalPedidosPage = () => {
   const { restaurantID } = useParams();
   const [orders, setOrders] = useState([]);
-  const [selectedMonth, setSelectedMonth] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-    
 
-  useEffect(async() => {
-    try {
-      
-      const response = await fetch('http://localhost:3001/orders');
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const response = await fetch(`http://localhost:3001/orders`);
       const data = await response.json();
-      const Userorders = data['2']
-      setOrders(Userorders);
+      const userOrders = data['2'];
+      setOrders(userOrders);
       setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [restaurantID]);
+      console.log(orders); // Valor antigo de orders
+      console.log(userOrders); // Valor atualizado de orders
+      console.log(restaurantID); // Valor atualizado de restaurantID (não estava sendo atualizado antes)
+    };
+
+    fetchOrders();
+  }, [restaurantID]); // Removido isLoading das dependências
 
   return (
     <div>
       <h1>Total de Pedidos do Restaurante {restaurantID}</h1>
       {isLoading ? (
         <p>Carregando...</p>
+        
       ) :
       orders.length > 0 ? (
         <ul>
