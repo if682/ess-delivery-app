@@ -56,7 +56,6 @@ const EditProfileFormsSection = () => {
                     username: userName,
                     email: email,
                     description: description,
-                    password: password,
                     birthdate: userData.birthdate,
                     phone: userData.phone,
                     location: userData.location
