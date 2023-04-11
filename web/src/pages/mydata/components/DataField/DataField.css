@@ -1,0 +1,40 @@
+.data-field-container {
+    margin-bottom: 1.5rem;
+  }
+
+.data-field-container text{
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #202020;
+}
+
+.data-field-container input{
+    box-sizing: border-box;
+    width: 18rem;
+    height: 2.2rem;
+    margin-right: 2rem;
+
+    background: #ECF0FB;
+    border: 1px solid #D7D7D7;
+    border-radius: 5px;
+}
+
+.data-field-container Button{
+    background: #EB0029;
+    border-radius: 5px;
+    margin-bottom: 0.4rem;
+    border-color: #EB0029;
+    color: #ffffff;
+}
+
+.data-field-container Button:hover{
+    background: #ffffff;
+    border-color: #EB0029;
+    color: #EB0029;
+}
+
+.data-field-container Button:active{
+    background: #ffffff;
+    border-color: #EB0029;
+    color: #EB0029;
+}

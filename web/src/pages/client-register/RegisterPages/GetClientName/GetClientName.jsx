@@ -1,8 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import {useState, useEffect} from 'react';
-import { isInputNull } from '../../../shared/functions/isInputNull';
-import "../RegisterClient.css"
-import { ReactComponent as Logo } from '../../../shared/assets/images/Logo.svg';
+import { isInputNull } from '../../../../shared/functions/isInputNull';
+import "../../RegisterClient.css"
+import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
 
 export const GetClientName = () => {
