@@ -1,13 +1,17 @@
 import React from "react";
 import { isInputNull } from "../../../shared/functions/isInputNull";
 import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
-
+import * as Icon from 'react-bootstrap-icons';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import PrimaryButton from "../../../components/atoms/primary-button/PrimaryButton";
+import "./AddCategory.scss"
 
 export default function AddCategory(props) {
-  const [showForm, setShowForm] = React.useState(false);
+  const [showForm, setShowForm] = React.useState(true);
   const [newCategory, setNewCategory] = React.useState("");
   const [warningMessage, setWarningMessage] = React.useState(null);
   const [currentCategories, setCurrentCategories] = React.useState([]);
+  const url = window.location.href
 
   React.useEffect(() => {
     fetch("http://localhost:3001/categories")
@@ -23,10 +27,11 @@ export default function AddCategory(props) {
 
   function handleAddCategoryClick() {
     setShowForm(true);
+    props.show()
   }
 
   function handleCancelClick() {
-    setShowForm(false);
+    setShowForm(true);
     setNewCategory("");
     setWarningMessage(null);
   }
@@ -51,37 +56,39 @@ export default function AddCategory(props) {
         body: JSON.stringify(category)
       });
 
-      setShowForm(false);
+      setShowForm(true);
       setNewCategory("");
       props.onHide()
     }
   }
 
   return (
-    <div>
-      <h1>Categories</h1>
-      <button onClick={handleAddCategoryClick} data-testid="add-category-button">Add category</button>
-      {showForm && (
-        <form onSubmit={handleConfirmClick}>
-          <label>
-            Category name:
+    <div className='add-category-root'>
+      <div className='header'>
+        <div className='title-description'>
+          <h1>Cardápio</h1>
+          <p>Gerencie por essa página todos os itens e categorias cadastrados no seu restaurante.</p>
+        </div>
+        <CopyToClipboard className='copy-button' text={url}>
+          <button><Icon.ShareFill color='red' className='share-link' /></button>
+        </CopyToClipboard>
+      </div>
+      <div className='add-category-area'>
+        {showForm && (
+          <form onSubmit={handleConfirmClick}>
             <input
-              placeholder="Nome"
+              placeholder="Digite categoria a ser adicionada"
               type="text"
               value={newCategory}
               onChange={handleNewCategoryChange}
               data-testid="add-category-input"
             />
-          </label>
-          <button type="button" onClick={handleCancelClick} data-testid="cancel-button">
-            Cancel
-          </button>
-          <button type="submit" data-testid="create-category-button">
-            Confirm
-          </button>
-        </form>
-      )}
-      {warningMessage && <p>{warningMessage}</p>}
+            <PrimaryButton buttonContent="Adicionar categoria" type="submit" data-testid="create-category-button">
+            </PrimaryButton>
+          </form>
+        )}
+        {warningMessage && <p>{warningMessage}</p>}
+      </div>
     </div>
   );
 }

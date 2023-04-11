@@ -4,6 +4,7 @@
     width: 100%;
     max-width: 450px;
     border-radius: 5px;
+    color: white;
 }
 
 .primary-button:hover {

@@ -13,6 +13,20 @@
       "description": "desc test",
       "price": "100,00",
       "category": "qsqs"
+    },
+    {
+      "id": 1681071088243,
+      "name": "test test",
+      "description": "ytfdvaervwev",
+      "price": "20,00",
+      "category": "a"
+    },
+    {
+      "id": 1681071873752,
+      "name": "3232r",
+      "description": "231q3",
+      "price": "10,00",
+      "category": "a"
     }
   ],
   "categories": [
@@ -21,8 +35,24 @@
       "name": "a"
     },
     {
-      "id": 1681070368674,
-      "name": "aa"
+      "id": 1681070799013,
+      "name": "aaaa"
+    },
+    {
+      "id": 1681071003626,
+      "name": "asdqwdqw"
+    },
+    {
+      "id": 1681071062036,
+      "name": "QWDQWD"
+    },
+    {
+      "id": 1681073332992,
+      "name": "wewqwefw"
+    },
+    {
+      "id": 1681250515592,
+      "name": "1111111"
     }
   ],
   "clients": [
