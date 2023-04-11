@@ -27,10 +27,10 @@
   }
   
   .poster-container {
-    margin-bottom: 10px;
-    width: 180px;
     height: 250px;
-    border-radius: 5px;
+    width: 180px;
+    border-radius: 10px;
+    margin-bottom: 1.3rem;
     cursor: pointer;
   }
   
@@ -41,10 +41,19 @@
   }
   
   .title {
-    font-family: 'Lato';
     font-style: normal;
     font-weight: bold;
     font-size: 1.3rem;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #77728D;
+  }
+
+  .year {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.0rem;
     line-height: 24px;
     text-align: center;
     margin-bottom: 5px;

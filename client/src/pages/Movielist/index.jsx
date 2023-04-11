@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import Movie from "../../components/Movie";
 import "./styles.css";
+import HandleUserActions from "../handleUserActions";
+import api from "../../services/api";
 
 const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const Movielist = () => {
-  const listName = "Movielist";
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");
   const [username, setUsername] = useState("");
-  const [movies, setMovies] = useState([
-    { title: "The Godfather", year: 1972, genre: ["Crime"] },
-    { title: "Come and See", year: 1985, genre: ["War"] },
-    { title: "Filme", year: 1998, genre: ["Comedy", "Drama"] },
-    { title: "Movie 4", year: 2002, genre: ["Drama"] },
-    { title: "Qualquer um", year: 1950, genre: ["Comedy", "War"] },
-    { title: "Abc", year: 2028, genre: ["Comedy", "Drama"] },
-    { title: "123 Filme", year: 2000, genre: ["Comedy"] },
-  ]);
+  const [movies, setMovies] = useState([]);
+  const { getMovieInfo } = HandleUserActions();
+  const { listName } = useParams();
 
   // cria uma cópia da lista de filmes original para que ela não seja alterada ao aplicar os filtros e ordenações
-  const [originalMovies, setOriginalMovies] = useState([...movies]);
+  const [originalMovies, setOriginalMovies] = useState([]);
 
   function handleFilterOptionChange(e) {
     setFilterOption(e.target.value);
@@ -59,7 +55,7 @@ const Movielist = () => {
       filteredMovies = [...originalMovies];
     }
 
-    setMovies(filteredMovies);
+    //setUserMovielist(filteredMovies);
   };
   
   function handleSortOptionChange(e) {
@@ -86,7 +82,7 @@ const Movielist = () => {
       sortedMovies = [...originalMovies];
     }
   
-    setMovies(sortedMovies);
+    //setUserMovielist(sortedMovies);
   };
 
   const handleDeleteMovieFromListClick = (event, title) => {
@@ -122,16 +118,36 @@ const Movielist = () => {
         if (response.ok) {
           let data = await response.json();
           setUsername(data.user.username);
-          console.log("GET realizado com sucesso.");
+          console.log("Peguei o username com sucesso.");
         } else {
-          console.log("Ocorreu um erro no GET.");
+          console.log("Ocorreu um erro ao pegar o username.");
         }
       } catch (err) {
         console.log(err);
       }
     };
 
+    // pega os filmes da lista do usuário
+    const fetchMovies = async () => {
+      let movielist;
+      try {
+        const response = await api.get(`list/${userId}/${listName}`);
+        movielist = Object.values(response.data).flat(); // é um array contendo os moviesId
+        let moviesTemp = [];
+
+        for (let i = 0; i < movielist.length; i++) {
+          const movieInfo = await getMovieInfo(movielist[i]); // pega as informações de cada filme
+          moviesTemp.push(movieInfo); // armazena no array
+        };
+        setMovies([...moviesTemp.flat()]);
+        setOriginalMovies([...moviesTemp.flat()]);
+      } catch (error) {
+        alert("Erro ao pegar filmes da lista do usuário");
+      }
+    };
+
     handleGetUsername();
+    fetchMovies();
   }, []);
 
   return (
@@ -139,7 +155,7 @@ const Movielist = () => {
       <Header />
       <MovielistHeader userAvatar="../../assets/avatar-default.png" username={username} listName={listName} />
       
-      <div className="filter-sort-icons">
+      {/*<div className="filter-sort-icons">
         <div className="filter-container">
           <div className="filter-dropdown">
             <select onChange = {(e) => handleFilterOptionChange(e)}>
@@ -163,12 +179,12 @@ const Movielist = () => {
 
           <button className="sort-button" onClick={() => handleSortClick()}>Sort</button>
         </div>
-      </div>
+      </div>*/}
       
       <div className="movies-grid">
-        {movies.map((movie, index) => (
-          <div className="movie-wrapper" key={index}>
-            <Movie poster="../../assets/movie-poster.svg" title={movie.title} year={movie.year}/>
+        {movies && movies.map((movie) => (
+          <div className="movie-wrapper" key={movie.id}>
+            <Movie poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} title={movie.title} movieId={movie.id} year={movie.release_date.substring(0, 4)}/>
             <button className="delete-movie" onClick={(event) => handleDeleteMovieFromListClick(event, movie.title)}>Delete</button>
           </div>
         ))}
