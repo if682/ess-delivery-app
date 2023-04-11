@@ -22,6 +22,12 @@ export class InMemoryListsRepository implements IListsRepository{
     }
     
     async showMoviesFromList(userId: string, listName: string): Promise<string[]> {
+        const found = this.lists.find((item) => item.name.toLowerCase() == listName.toLowerCase() && item.userId == userId)
+
+        if(!found) {
+            throw new Error("List not found")
+        }
+
         const movies = this.movieLists.filter((item) => item.listOwner == userId && item.listName == listName);
         
         var ret: string[] = [];
