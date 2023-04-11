@@ -15,6 +15,7 @@ const Movielists = () => {
 
   // Vai pra página da lista escolhida
   const handleUserListClick = (listName) => {
+    console.log("A lista foi acessada.");
     let path = `${listName}`;
     navigate(path);
   };  
@@ -28,14 +29,17 @@ const Movielists = () => {
     const maxLength = 80;
 
     if (newListTitle.trim() === "") {
+      console.log("Lista com nome vazio.");
       alert("Lista com nome vazio.");
     }
     
     else if (forbiddenChars.some(char => newListTitle.includes(char))) {
+      console.log("O nome da lista não pode conter &,%,$ ou @.");
       alert("O nome da lista não pode conter &,%,$ ou @.");
     }
     
     else if (newListTitle.length > maxLength) {
+      console.log(`O nome da lista não pode ter mais de ${maxLength} caracteres.`);
       alert(`O nome da lista não pode ter mais de ${maxLength} caracteres.`);
     }
     
@@ -65,9 +69,9 @@ const Movielists = () => {
             setLists(newList);
             localStorage.setItem("userLists", JSON.stringify(newList)); // atualiza o localStorage
             setNewListTitle("");
-            console.log("POST realizado com sucesso.");
+            console.log("A lista foi criada.");
           } else {
-            console.log("Ocorreu um erro no POST.");
+            console.log("A lista não foi criada.");
           }
         } catch (err) {
           console.log(err);
@@ -100,9 +104,9 @@ const Movielists = () => {
           const newList = lists.filter((list) => list.name !== name);
           setLists(newList);
           localStorage.setItem("userLists", JSON.stringify(newList)); // atualiza o localStorage
-          console.log("DELETE realizado com sucesso.");
+          console.log("A lista foi deletada.");
         } else {
-          console.log("Ocorreu um erro no DELETE.");
+          console.log("A lista não foi deletada.");
         }
       } catch (err) {
         console.log(err);
@@ -125,9 +129,9 @@ const Movielists = () => {
         if (response.ok) {
           let data = await response.json();
           setLists(Object.values(data).flat());
-          console.log("GET realizado com sucesso.");
+          console.log("As listas foram carregadas.");
         } else {
-          console.log("Ocorreu um erro no GET.");
+          console.log("As listas não foram carregadas.");
         }
       } catch (err) {
         console.log(err);
@@ -144,9 +148,6 @@ const Movielists = () => {
         if (response.ok) {
           let data = await response.json();
           setUsername(data.user.username);
-          console.log("GET realizado com sucesso.");
-        } else {
-          console.log("Ocorreu um erro no GET.");
         }
       } catch (err) {
         console.log(err);
@@ -165,34 +166,35 @@ const Movielists = () => {
       <div className="movielists-list">
         <div className="movielists-new-list">
           <input
+            data-testid="createListField"
             type="text"
             placeholder="Create a new list"
             value={newListTitle}
             onChange={handleNewListTitleChange}
           />
-          <button onClick={handleCreateListClick}>Create</button>
+          <button data-testid="createListButton" onClick={handleCreateListClick}>Create</button>
         </div>
-
+  
         {lists.length === 0 ? (<p>Loading...</p>) : (
           <ul>
             {lists.filter(list => list.name !== "Curtidos" && list.name !== "Historico").map((list) =>
                 <li key={list.name} className="movielists-list-item" onClick={() => handleUserListClick(list.name)}>
                   <div className="list-name-container">
-                    <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.name)}>Delete</button>
-                    <span className="list-name">{list.name}</span>
+                    <button data-testid="deleteListButton" className="delete-list" onClick={(event) => handleDeleteListClick(event, list.name)} >Delete</button>
+                    <span data-testid="listName" className="list-name">{list.name}</span>
                   </div>
                 </li>
               )
             }
           </ul>
         )}
-
+  
         {/*Usuário só tem as listas Curtidos e Historico*/}
         {lists.length === 2 && <p>This user does not have any lists.</p>}
-
+  
       </div>
     </div>
-  );
+  );  
 };
 
 export default Movielists;
