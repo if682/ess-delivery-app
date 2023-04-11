@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft } from "react-bootstrap-icons";
 import Cookies from "js-cookie";
 import "./ClientInfo.css";
-import { DataField } from "../DataField/DataField";
+import { DataField } from "../../../../components/atoms/data-field/DataField";
 import { EditEmailPopup } from "../EditEmail/EditEmailPopup";
 import { EditPasswordPopup } from "../EditPassword/EditPasswordPopup";
 import { EditNamePopup } from "../EditName/EditNamePopup";
@@ -18,6 +18,10 @@ function ClientInfo() {
   const [showEditPassword, setShowEditPassword] = useState(false)
   const [showEditName, setShowEditName] = useState(false)
 
+  //para cada mudança nos valores de email, nome e senha
+  //define um valor para currentClients a partir dos dados dos clientes da db
+  //a partir desse valor e do e-mail dado pelo token do usuário resgata os outros dados de cadastro:
+  //id, nome e senha
   useEffect(() => {
     fetch('http://localhost:3001/clients')
       .then(response => response.json())
@@ -28,10 +32,11 @@ function ClientInfo() {
         setId(client[0].id)
         setCurrentClients(data)
       })
-    
-}, [])
+}, [email, name, password])
 
   const navigate = useNavigate();
+
+  //volta para a página minha conta
   const goBack =  () =>{
     navigate("/minha-conta");
   }
@@ -47,9 +52,9 @@ function ClientInfo() {
         <ChevronLeft /> Voltar
       </button>
       <div>
-        <DataField fieldName="Nome" value={name} inputType="text" setShow={setShowEditName}/>
-        <DataField fieldName="E-mail" value={email} inputType="text" setShow={setShowEditEmail}/>
-        <DataField fieldName="Senha" value={password} inputType="password" setShow={setShowEditPassword}/>
+        <DataField fieldName="Nome" value={name} inputType="text" setShow={setShowEditName} placeholder="Nome" testid="nome"/>
+        <DataField fieldName="E-mail" value={email} inputType="text" setShow={setShowEditEmail} placeholder="E-mail" testid="email"/>
+        <DataField fieldName="Senha" value={password} inputType="password" setShow={setShowEditPassword} placeholder="Senha" testid="senha"/>
       </div>
     </div>
     </>

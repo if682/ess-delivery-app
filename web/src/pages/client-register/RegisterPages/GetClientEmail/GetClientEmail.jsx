@@ -1,12 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
-import "../../RegisterClient.css"
 import "./GetClientEmail.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
-
-
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
+import { validateEmail } from '../../../../shared/functions/ValidateEmail';
 
 export const GetClientEmail = (props) => {
     const [email, setEmail] = useState("");
@@ -18,10 +16,12 @@ export const GetClientEmail = (props) => {
 
     let navigate = useNavigate();
 
+    //warningMessage recebe o valor null toda vez que email tem seu valor atualizaddo
     useEffect(() => {
         setWarningMessage(null)
     }, [email])
 
+    //define um valor para currentClients ao selecionar os dados de todos os clientes da db
     useEffect(() => {
         fetch('http://localhost:3001/clients')
           .then(response => response.json())
@@ -34,32 +34,30 @@ export const GetClientEmail = (props) => {
         
     }, [])
 
-    function validateEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-      }
 
     const getEmail = () => {
+        //checa se o valor do input não é nulo
         if(isInputNull(email)){
             setWarningMessage('Esse campo é de preenchimento obrigatório!')
         }
+        //checa se o e-mail dado é válido
         else if(!validateEmail(email)){
             setWarningMessage('O e-mail fornecido possui um formato inválido')
         }
+        //checa se o e-mail dado pertence ao registro de outro cliente
         else if(currentClients.filter(item => item.email == email).length == 1){
+            //vai para a página de login e envia o e-mail que já estava cadastrado
             navigate('/login', {state: {email: email}})
         }
         else{
+            //vai para a página de validação de e-mail e envia os valores de nome e e-mail obtidos nas outras páginas de cadastro
             navigate('/validacao-email', {state: {name: name, email: email}})
         }
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='register_box_title_email'>Olá {name}!</text>
                     <br></br>
                     <text className='register_box_subtitle_email'>Seja bem vinde :)</text>
@@ -74,10 +72,8 @@ export const GetClientEmail = (props) => {
                     
                     <text className='warning_text_email' id="warning_message">{warningMessage}</text>
                     <Button onClick={() => getEmail()} className='register_box_button_email' data-testid="button-reg-email">Continuar  ></Button>
-                </>
-                
-            </div>
-        </div>
+            </>
+        </RegisterPageContainer>
     );
 
 

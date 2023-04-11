@@ -31,6 +31,30 @@
       "name": "Beatriz Andrade",
       "email": "baa@cin.ufpe.br",
       "password": "senha3"
+    },
+    {
+      "name": "bia",
+      "email": "biazita@hotmail.com",
+      "password": "bia1",
+      "id": 128294
+    },
+    {
+      "name": "teste12",
+      "email": "teste12@hotmail.com",
+      "password": "teste",
+      "id": 128295
+    },
+    {
+      "name": "socorro_novo",
+      "email": "scr2@hotmail.com",
+      "password": "help2",
+      "id": 128296
+    },
+    {
+      "name": "diaD2",
+      "email": "dia_d@hotmail.com",
+      "password": "senha",
+      "id": 128297
     }
   ]
 }
