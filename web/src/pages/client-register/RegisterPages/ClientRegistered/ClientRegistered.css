@@ -1,0 +1,41 @@
+.register_success{
+    position: absolute;
+    width: 249px;
+    height: 108px;
+    left: 32%;
+    top: 28%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 40px;
+    /* or 111% */
+
+    text-align: center;
+
+    color: #202020;
+}
+
+.order_now_button{
+    position: absolute;
+    width: 178px;
+    height: 41px;
+    left: 38%;
+    top: 68%;
+
+    background: #EB0029;
+    border-radius: 5px;
+    border: 1px solid #EB0029;
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+.order_now_button:hover{
+    color: #EB0029;
+    background: #FFFFFF;
+}

@@ -1,0 +1,105 @@
+.register_box_title_email{
+    position: relative;
+    width: fit-content;
+    height: 10%;
+    left: 40%;
+    top: 26%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 700;
+    font-size: x-large;
+    line-height: 30px;
+    color: #202020;
+}
+
+.register_box_subtitle_email{
+    position: absolute;
+    width: 25%;
+    height: 10%;
+    left: 36%;
+    top: 35%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 10px;
+    /* or 50% */
+
+    text-align: center;
+
+    color: #202020;
+}
+
+.register_box_text_email{
+    position: absolute;
+    width: 38%;
+    height: 10%;
+    left: 30%;
+    top: 42%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    /* or 150% */
+
+    text-align: center;
+
+    color: #252525;
+}
+
+.register_box_input_email{
+    position: absolute;
+    width: 43%;
+    height: 8%;
+    left: 28%;
+    top: 58%;
+
+    background: #ECF0FB;
+    border: 1px solid #D7D7D7;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+
+.register_box_button_email{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 178px;
+    height: 41px;
+    left: 44.5%;
+    top: 78%;
+
+    background: #FFFFFF;
+    border: 1px solid #EB0029;
+    border-radius: 5px;
+    color: #EB0029;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.register_box_button_email:hover{
+    background: #EB0029;
+    border: 1px solid #EB0029;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+
+
+.warning_text_email{
+    position: absolute;
+    color: #EB0029;
+    font-size: 12px;
+    font-weight: 400;
+    left: 28%;
+    top: 68%;
+}

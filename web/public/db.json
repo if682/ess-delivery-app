@@ -1,0 +1,60 @@
+{
+  "items": [],
+  "categories": [],
+  "clients": [
+    {
+      "name": "bia",
+      "email": "bia@hotmail.com",
+      "password": "senha",
+      "id": 1
+    },
+    {
+      "name": "teste",
+      "email": "teste@hotmail.com",
+      "password": "teste",
+      "id": 2
+    },
+    {
+      "id": 128291,
+      "name": "Pedro",
+      "email": "pasp@cin.ufpe.br",
+      "password": "senha1"
+    },
+    {
+      "id": 128292,
+      "name": "Luca",
+      "email": "lddr@cin.ufpe.br",
+      "password": "senha2"
+    },
+    {
+      "id": 128293,
+      "name": "Beatriz Andrade",
+      "email": "baa@cin.ufpe.br",
+      "password": "senha3"
+    },
+    {
+      "name": "bia",
+      "email": "biazita@hotmail.com",
+      "password": "bia1",
+      "id": 128294
+    },
+    {
+      "name": "teste12",
+      "email": "teste12@hotmail.com",
+      "password": "teste",
+      "id": 128295
+    },
+    {
+      "name": "socorro_novo",
+      "email": "scr2@hotmail.com",
+      "password": "help2",
+      "id": 128296
+    },
+    {
+      "name": "diaD2",
+      "email": "dia_d@hotmail.com",
+      "password": "senha",
+      "id": 128297
+    }
+  ]
+}

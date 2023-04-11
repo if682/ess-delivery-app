@@ -1,0 +1,10 @@
+.page-title {
+  color: #272727;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  position: absolute;
+  top: 4rem;
+  left: 3rem;
+}

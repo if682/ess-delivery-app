@@ -1,0 +1,20 @@
+.red-button {
+  width: 15rem;
+  height: 2.5rem;
+
+  background: #eb0029;
+  border: none;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+
+  position: absolute;
+  right: 5rem;
+  bottom: 5rem;
+}
