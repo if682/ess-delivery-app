@@ -17,7 +17,10 @@ interface IAddMovieToListReply{
 }
 
 export class AddMovieToListUseCase{
-    constructor(private listsRepository: IListsRepository){}
+    constructor(
+        private listsRepository: IListsRepository,
+        private moviesRepository: IMoviesRepository
+        ){}
 
     async handle({
         userId,
@@ -31,7 +34,7 @@ export class AddMovieToListUseCase{
         const foundList = await this.listsRepository.findList(userId, listName);
 
         if(!foundList){
-            throw new Error('List does not exist')
+            throw new Error('Bad request')
         }
 
         const foundMovieInList = await this.listsRepository.movieInList(movieId, userId, foundList.name);
@@ -39,6 +42,13 @@ export class AddMovieToListUseCase{
         if(foundMovieInList){
             throw new Error('Movie already in List');
         }
+
+        await this.moviesRepository.createMovie({
+            id: movieId,
+            title: title,
+            cover: cover,
+            description: description
+        })
 
         const movielist = await this.listsRepository.addMovieToList(userId, foundList.name, movieId);
 

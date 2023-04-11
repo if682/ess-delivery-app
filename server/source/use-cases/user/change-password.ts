@@ -52,7 +52,7 @@ export class ChangePasswordUseCase{
 
         // se chegou até aqui, então atualiza senha do usuário
         const changedPassword = await hash(newPassword, 6);
-        this.usersRepository.changePassword(user.id, changedPassword);
+        await this.usersRepository.changePassword(user.id, changedPassword);
 
         user.password = changedPassword;
 

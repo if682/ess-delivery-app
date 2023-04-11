@@ -3,9 +3,11 @@ import { AddMovieToListUseCase } from "./add-movie-to-list";
 import { RegisterUserUseCase } from "../user/register-user";
 import { InMemoryListsRepository } from "../../repositories/inMemory/inMemoryListsRepository";
 import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
+import { InMemoryMoviesRepository } from "../../repositories/inMemory/inMemoryMoviesRepository";
 
 let inMemoryListsRepository: InMemoryListsRepository
 let inMemoryUsersRepository: InMemoryUsersRepository
+let inMemoryMoviesRepository: InMemoryMoviesRepository
 let sut: AddMovieToListUseCase
 let reg: RegisterUserUseCase
 let user_id: string
@@ -14,8 +16,9 @@ describe("Add movie to list use case", () => {
     beforeEach(async () => {
         inMemoryListsRepository = new InMemoryListsRepository();
         inMemoryUsersRepository = new InMemoryUsersRepository();
+        inMemoryMoviesRepository = new InMemoryMoviesRepository();
 
-        sut = new AddMovieToListUseCase(inMemoryListsRepository);
+        sut = new AddMovieToListUseCase(inMemoryListsRepository, inMemoryMoviesRepository);
         reg = new RegisterUserUseCase(inMemoryUsersRepository,inMemoryListsRepository);
         
         // cria usuário antes de cada teste
@@ -103,7 +106,7 @@ describe("Add movie to list use case", () => {
                 description: "filme",
                 title: "Carros"
             })
-        ).rejects.toThrowError('List does not exist');
+        ).rejects.toThrowError('Bad request');
     })
 
 
