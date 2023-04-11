@@ -28,4 +28,10 @@ describe("Authenticate use case", () => {
 
         expect(user.username).toEqual("joao");
     })
+
+    test("should not be able to get a inexistent users profile", async () => {
+        await expect(() => sut.handle({
+            id: "123"
+        })).rejects.toBeInstanceOf(Error)
+    })
 })
