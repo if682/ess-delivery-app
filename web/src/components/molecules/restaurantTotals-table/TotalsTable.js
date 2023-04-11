@@ -5,8 +5,6 @@ import _ from "lodash";
 
 import "./TotalsTable.css";
 import RestaurantTotalAccordion from "../restaurantTotals-accordion/RestaurantTotalAccordion";
-import Order from "../../atoms/order/Order";
-import { Row } from "react-bootstrap";
 
 // Converte para YYYY-MM, que é o formato do input month de HTML
 const convertToMonthFormat = (dateString) => {
@@ -48,7 +46,7 @@ function TotalsTable() {
       
       <div class="accordionTable">
       {_(orders)
-        .filter((order) => (convertToMonthFormat(order.date)) === convertToMonthFormat(filterDate))
+        .filter((order) => (order.date.substring(0,7) === filterDate))
         .groupBy("place")
         .map((value, key) => ({place: key, orders: value}))
         .value()

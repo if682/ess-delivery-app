@@ -6,20 +6,32 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from "react-router-dom";
 
-/*
+
 function findAndCountMostOrdered(orders) {
-  let mostOrdered = ""
+  let allItems = orders.reduce((items,order) => {return items.concat(order.items)}, []);
+  let allSummed = []
 
-  for(let )
+  // soma items entre pedidos
+  allItems.reduce((res, item) => {
+    if (!res[item.name]) {
+      res[item.name] = { name: item.name, quantity: 0 };
+      allSummed.push(res[item.name])
+    }
+    res[item.name].quantity += item.quantity;
+    return res;
+  }, {});
 
+  let mostOrdered = allSummed.reduce((max, item) => max.quantity > item.quantity ? max : item);
+
+  return [mostOrdered.name, mostOrdered.quantity];
 }
-*/
 
 function RestaurantTotalAccordion({
   place,
   orders
 }) 
 {
+  //fazer dessa maneira quebrou, causa hooks condicionais (BAD)
   /*
   const navigate = useNavigate();
   const seeRestaurantTotals = () => navigate("/total-pedidos/" + place);
@@ -27,7 +39,8 @@ function RestaurantTotalAccordion({
 
   // calcular a soma
   const orderSum = orders.reduce((total, order) => {return total + order.values.total}, 0);
-  //const [mostOrdered, quantity] = ;
+  // encontra o item mais pedido entre os pedidos recebidos
+  const [mostOrdered, quantity] = findAndCountMostOrdered(orders);
 
   return (
     <Accordion>
@@ -45,7 +58,7 @@ function RestaurantTotalAccordion({
           <Container>
             <Row className="align-items-center">
               <Col sm={3}><img class="itemImage" src="./sample.jpg" alt="Item mais pedido"/></Col>
-              <Col sm><div class="mostDescription">Mais pedido:<br/><strong class="mostOrdered">BigMac<br/></strong>5 unidades</div></Col>
+              <Col sm><div class="mostDescription">Mais pedido:<br/><strong class="mostOrdered">{mostOrdered}<br/></strong>{quantity} unidades</div></Col>
               <Col sm={3}>
                 <RedOutlineButton
                   onClick={"seeRestaurantTotals"}

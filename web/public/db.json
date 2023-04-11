@@ -105,6 +105,112 @@
         "total": 18.0
       },
       "paymentMethod": "Dinheiro"
+    },
+    {
+      "id": "098126",
+      "place": "McDonald's",
+      "address": "Rua dos Bobos, 0",
+      "date": "2021-01-01",
+      "items": [
+        {
+          "name": "Big Mac",
+          "quantity": 3,
+          "price": 10.0
+        },
+        {
+          "name": "Batata frita pequena",
+          "quantity": 1,
+          "price": 7.0
+        }
+      ],
+      "values": {
+        "subtotal": 37.0,
+        "deliveryFee": 5.0,
+        "total": 42.0
+      },
+      "paymentMethod": "Cartão de crédito"
+    },
+    {
+      "id": "098127",
+      "place": "Subway",
+      "address": "Rua dos Bobos, 0",
+      "date": "2021-01-01",
+      "items": [
+        {
+          "name": "Subway Melt",
+          "quantity": 2,
+          "price": 10.0
+        },
+        {
+          "name": "Fanta",
+          "quantity": 1,
+          "price": 3.0
+        }
+      ],
+      "values": {
+        "subtotal": 23.0,
+        "deliveryFee": 5.0,
+        "total": 28.0
+      },
+      "paymentMethod": "Dinheiro"
+    },
+    {
+      "id": "098128",
+      "place": "Subway",
+      "address": "Av Caxangá, 234",
+      "date": "2023-04-05",
+      "items": [
+        {
+          "name": "BMT",
+          "quantity": 1,
+          "price": 20.0
+        },
+        {
+          "name": "Cookie Diamante Negro",
+          "quantity": 3,
+          "price": 5.0
+        },
+        {
+          "name": "Fanta",
+          "quantity": 1,
+          "price": 3.0
+        },
+        {
+          "name": "Guaraná Jesus",
+          "quantity": 1,
+          "price": 3.0
+        }
+      ],
+      "values": {
+        "subtotal": 41.0,
+        "deliveryFee": 5.0,
+        "total": 46.0
+      },
+      "paymentMethod": "Dinheiro"
+    },
+    {
+      "id": "098130",
+      "place": "McDonald's",
+      "address": "Rua dos Bobos, 0",
+      "date": "2021-04-09",
+      "items": [
+        {
+          "name": "Big Mac",
+          "quantity": 3,
+          "price": 10.0
+        },
+        {
+          "name": "Batata frita pequena",
+          "quantity": 1,
+          "price": 7.0
+        }
+      ],
+      "values": {
+        "subtotal": 37.0,
+        "deliveryFee": 5.0,
+        "total": 42.0
+      },
+      "paymentMethod": "Cartão de crédito"
     }
   ],
     "128291": [],
