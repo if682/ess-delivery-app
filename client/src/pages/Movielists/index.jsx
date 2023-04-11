@@ -3,14 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
-import { useContext } from "react";
-import { LoginContext } from "../../Context/LoginContext";
 
 const port = 4001;
 
 const Movielists = () => {
-  const [context, setContext] = useContext(LoginContext)
-  const userId = context.userId
+  const userId = localStorage.getItem("userId");
   const [lists, setLists] = useState([]);
   const [newListTitle, setNewListTitle] = useState("");
   const [username, setUsername] = useState("");

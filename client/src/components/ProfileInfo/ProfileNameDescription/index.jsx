@@ -2,14 +2,11 @@ import React from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { LoginContext } from "../../../Context/LoginContext"
-import { useContext } from "react";
 
 const port = 4001;
 
 const NameDescription = () => {
-  const [context, setContext] = useContext(LoginContext)
-  const userId = context.userId
+  const userId = localStorage.getItem("userId");
   const [userData, setUserData] = useState("");
 
   let navigate = useNavigate();
