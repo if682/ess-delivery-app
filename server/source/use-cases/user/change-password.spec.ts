@@ -16,6 +16,9 @@ describe("Authenticate use case", () => {
     test("should be able to change password", async () => {
         const token = randomBytes(20).toString('hex');
 
+        var date = new Date()
+        date.setDate(date.getDate() + 1)
+
         await inMemoryUsersRepository.create({
             email: "joao@email.com",
             username: "joao",
@@ -23,7 +26,7 @@ describe("Authenticate use case", () => {
             password: await hash("Senha!12345", 6),
             birthdate: new Date(),
             passwordResetToken: token,
-            resetTokenExpires: new Date(),
+            resetTokenExpires: date,
         })
 
         const { user } = await sut.handle({
@@ -41,6 +44,9 @@ describe("Authenticate use case", () => {
     test("should not be able to change password when tokens dont match", async () => {
         const token = randomBytes(20).toString('hex');
 
+        var date = new Date()
+        date.setDate(date.getDate() + 1)
+
         await inMemoryUsersRepository.create({
             email: "joao@email.com",
             username: "joao",
@@ -48,7 +54,7 @@ describe("Authenticate use case", () => {
             password: await hash("Senha!12345", 6),
             birthdate: new Date(),
             passwordResetToken: null,
-            resetTokenExpires: new Date(),
+            resetTokenExpires: date,
         })
 
         await expect(() => sut.handle({

@@ -4,6 +4,7 @@ import { ForgotPasswordUseCase } from "./forgot-password";
 import { hash } from "bcryptjs";
 import { IMailProvider } from "../../services/IMailProvider";
 import { MailProvider } from "../../services/implementations/MailProvider";
+import { rejects } from "assert";
 
 let inMemoryUsersRepository: InMemoryUsersRepository
 let mailProvider: IMailProvider
@@ -31,5 +32,13 @@ describe("Authenticate use case", () => {
 
         expect(user.passwordResetToken).toEqual(expect.any(String));
         expect(user.resetTokenExpires).toEqual(expect.any(Date));
+    })
+
+    test("should not be able to request for password change for unexistent user", async () => {
+    
+        await expect(() => sut.handle({
+            email: "joao@email.com"
+        })).rejects.toBeInstanceOf(Error)
+        
     })
 })
