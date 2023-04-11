@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom'; // add this import
 import ClientLogin from '../../ClientLogin';
 import ForgetPwd from '../../ForgetPwd/ForgetPwd';
-import { GetClientName } from '../../../client-register/RegisterPages/GetClientName';
+import { GetClientName } from '../../../client-register/RegisterPages/GetClientName/GetClientName';
 import Home from '../../../home/Home';
 
 describe('LoginTest', () => { // This is the test suite for the login page
