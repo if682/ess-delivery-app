@@ -2,6 +2,7 @@ version: "3"
 
 services:
   moviereview-pg:
+    platform: linux/amd64
     image: bitnami/postgresql
     ports:
       - 5432:5432
