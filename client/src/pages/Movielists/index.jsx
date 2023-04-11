@@ -13,11 +13,11 @@ const Movielists = () => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  const handleUserListClick = ({ name }) => {
-    alert(`Aqui deve ir para a página da lista ${name}`);
-    let path = `/profile/movielists/movielist`;
+  // Vai pra página da lista escolhida
+  const handleUserListClick = (listName) => {
+    let path = `${listName}`;
     navigate(path);
-  };
+  };  
 
   const handleNewListTitleChange = (event) => {
     setNewListTitle(event.target.value);
@@ -108,8 +108,6 @@ const Movielists = () => {
   };  
 
   useEffect(() => {
-    console.log(lists);
-    localStorage.setItem("userLists", JSON.stringify(lists));
     // atualiza a lista na interface sempre que o estado de listas for atualizado
   }, [lists]);
 
@@ -133,6 +131,7 @@ const Movielists = () => {
       }
     };
 
+    // faz uma requisição GET para a API para obter o nome do usuário
     const handleGetUsername = async () => {
       try {
         let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
@@ -174,7 +173,7 @@ const Movielists = () => {
         {lists.length === 0 ? (<p>Loading...</p>) : (
           <ul>
             {lists.filter(list => list.name !== "Curtidos" && list.name !== "Historico").map((list) =>
-                <li key={list.name} className="movielists-list-item" onClick={() => handleUserListClick(list)}>
+                <li key={list.name} className="movielists-list-item" onClick={() => handleUserListClick(list.name)}>
                   <div className="list-name-container">
                     <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.name)}>Delete</button>
                     <span className="list-name">{list.name}</span>

@@ -4,10 +4,9 @@ import "./styles.css";
 import { useState } from "react";
 
 
-const Movie = ({ poster, title, year }) => {
+const Movie = ({ poster, title, movieId, year }) => {
   const { handleAddToMovielistClick,
           handleLikeClick,
-          handleMovieClick
         } = HandleUserActions();
   
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -22,7 +21,7 @@ const Movie = ({ poster, title, year }) => {
             <div className="dropdown-container">
               <p>Add to list:</p>
               {lists.map((list) => (
-                <button key={list.name} onClick={() => handleAddToMovielistClick(title, list.name)}>
+                <button key={list.name} onClick={() => handleAddToMovielistClick(movieId, list.name)}>
                   {list.name}
                 </button>
               ))}
@@ -30,17 +29,18 @@ const Movie = ({ poster, title, year }) => {
           )}
         </button>
 
-        <button className="like-button" onClick={() => handleLikeClick(title)}>
+        <button className="like-button" onClick={() => handleLikeClick(movieId)}>
           <img src="../../assets/like-icon.svg" alt="Ícone de like" />
         </button>
       </div>
 
-      <div className="poster-container" onClick={() => handleMovieClick()} >
+      <div className="poster-container" >
         <img src={poster} alt="Poster do filme" />
       </div>
 
       <div className="info-container">
         <p className="title">{title}</p>
+        <p className="year">{year}</p>
       </div>
     </div>
   );

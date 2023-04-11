@@ -31,48 +31,100 @@ const HandleUserActions = () => {
     navigate(path);
   };
 
-  const handleLikeClick = (title) => {
-    alert(`Curtiu o filme ${title}`);
-  };
-
-  const handleAddToMovielistClick = async (title, lista) => {
-    //no momento estou recebendo o título mas devo receber o id do filme
-    //ou talvez mais infos do filme(?)
-
-      //let movieIdS = movieId.toString();
-      console.log("userId: " + userId);
-      console.log("lista: " + lista);
-      console.log("title: " + title);
-      try{
-        let response = await fetch(`http://localhost:${port}/list/${userId}/${lista}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              userId: userId,
-              listName: lista,
-              movieId: "1245", //a ser alterado
-              title: title,
-              cover: "xxxx", //a ser alterado
-              description: "filme top" //a ser alterado
-            }),
-        });
-
-        if(response.ok){
-            console.log(response);
-            console.log("O filme foi adicionado a lista.");
-        }else{
-            console.log("Erro no POST.");
+  const handleLikeClick = async (movieId) => {
+    const movieData = await getMovieInfo(movieId);
+  
+    try{
+      let response = await fetch(`http://localhost:${port}/list/${userId}/Curtidos`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId,
+            listName: "Curtidos",
+            movieId: movieData.id.toString(),
+            title: movieData.title,
+            cover: movieData.poster_path,
+            description: movieData.overview,
+          }),
+      });
+  
+      if(response.ok){
+          console.log(response);
+          console.log("O filme foi curtido.");
+          alert("Curtido!");
+      }else{
+          console.log("Não consegui curtir o filme.");
+          const userConfirmation = window.confirm(`Tem certeza que deseja descurtir o filme"?`);
+        
+          if (userConfirmation) {
+            try {
+              let response = await fetch(`http://localhost:${port}/list/${userId}/Curtidos`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  userId: userId, 
+                  listName: "Curtidos",
+                  movieId: movieId.toString(),
+                }),
+              });
+        
+              if (response.ok) {
+                console.log("DELETE realizado com sucesso.");
+                alert("Descurtido!");
+              } else {
+                console.log("Ocorreu um erro no DELETE.");
+              }
+            } catch (err) {
+              console.log(err);
+            }
+          }
         }
-      }catch(error){
-        console.log(error);
-      }
+      } catch (err) {
+          console.log(err);
+        }
   };
 
-  const handleMovieClick = () => {
-    let path = `/movieinfo`;
-    navigate(path);
+  const getMovieInfo = async (movieId) => {
+    const dataResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=ecfc4f2c404a65285db2275752af4018&language=pt-BR`, {
+      method: 'GET'
+    });
+    const movieData = await dataResponse.json();
+    return movieData;
+  };
+
+  const handleAddToMovielistClick = async (movieId, lista) => {
+    const movieData = await getMovieInfo(movieId);
+  
+    try{
+      let response = await fetch(`http://localhost:${port}/list/${userId}/${lista}`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId,
+            listName: lista,
+            movieId: movieData.id.toString(),
+            title: movieData.title,
+            cover: movieData.poster_path,
+            description: movieData.overview,
+          }),
+      });
+  
+      if(response.ok){
+          console.log(response);
+          console.log("O filme foi adicionado a lista.");
+          alert("O filme foi adicionado a lista.");
+      }else{
+          console.log("Não consegui adicionar o filme a lista.");
+      }
+    }catch(error){
+      console.log(error);
+    }
   };
 
   return {
@@ -83,7 +135,7 @@ const HandleUserActions = () => {
     handleUserMovielistsClick,
     handleLikeClick,
     handleAddToMovielistClick,
-    handleMovieClick,
+    getMovieInfo,
   };
 };
 
