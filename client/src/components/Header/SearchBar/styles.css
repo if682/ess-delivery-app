@@ -16,3 +16,22 @@ input[type=text] {
 input[type=text]:focus {
     outline: none;
 }
+
+.search-result-container{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #FFF5F5;
+    left: 210px;
+    right: 80px;
+    border-radius: 10px;
+    padding: 12px;
+    z-index: 10;
+    border: 1px solid #77728D;
+}
+.movie-selected-from-search{
+    padding: 12px;
+    text-align: left;
+    color:#77728D;
+    border-bottom: 1px solid #77728D;
+}

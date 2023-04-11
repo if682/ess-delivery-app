@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { makeMovieSearchUseCase } from "../../../use-cases/factories/make-moviesearch-usecase";
+import { makeMovieSearchUseCase } from "../../../use-cases/factories/movie/make-moviesearch-usecase";
 
 export async function moviesearch (request: FastifyRequest, reply: FastifyReply) {
     const moviesearchParamsSchema = z.object({
@@ -12,14 +12,14 @@ export async function moviesearch (request: FastifyRequest, reply: FastifyReply)
 
     try{
         const moviesearchUseCase = makeMovieSearchUseCase();
-        await moviesearchUseCase.handle({
+        const movie = await moviesearchUseCase.handle({
             id,
         })
+
+        reply.status(200).send(movie);
     } catch(err){
-        reply.status(400).send({ err });
+        reply.status(400).send(err);
         throw err;
     }
 
-
-    reply.status(200).send();
 }

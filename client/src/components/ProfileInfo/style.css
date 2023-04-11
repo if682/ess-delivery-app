@@ -8,3 +8,10 @@
     margin-right: 40px;
     margin-left: 50px;
 }
+
+.avatar-container img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #77728D;
+}

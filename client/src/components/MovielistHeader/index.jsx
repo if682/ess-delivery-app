@@ -4,7 +4,7 @@ import "./styles.css";
 
 const MovielistHeader = ({ userAvatar, username, listName }) => {
   const { handleUserAvatarClick,
-          handleUserWatchedFilmsClick,
+          handleUserHistoryClick,
           handleUserLikedFilmsClick,
           handleUserReviewsClick,
           handleUserMovielistsClick
@@ -14,20 +14,20 @@ const MovielistHeader = ({ userAvatar, username, listName }) => {
     <div className="movielist-header">
       <div className="listname-container">
           <div className="user-info">
-            <img className="user-avatar" src={userAvatar} alt="Avatar do usuário" onClick={() => handleUserAvatarClick(username)} />
+            <img className="user-avatar" src={userAvatar} alt="Avatar do usuário" onClick={() => handleUserAvatarClick()} />
             <h1 className="user-name">{username}'s {listName}</h1>
           </div>
           <div className="buttons-container">
-            <button className="watched-films-button" onClick={() => handleUserWatchedFilmsClick(username)} >
+            <button className="watched-films-button" onClick={() => handleUserHistoryClick()} >
             <img src="../../assets/films-icon.svg" alt="Ícone de filmes assistidos" />
             </button>
-            <button className="like-button" onClick={() => handleUserLikedFilmsClick(username)}>
+            <button className="like-button" onClick={() => handleUserLikedFilmsClick()}>
             <img src="../../assets/like-icon.svg" alt="Ícone de like" />
             </button>
-            <button className="review-button" onClick={() => handleUserReviewsClick(username)}>
+            <button className="review-button" onClick={() => handleUserReviewsClick()}>
             <img src="../../assets/review-icon.svg" alt="Ícone de review" />
             </button>
-            <button className="movielist-button" onClick={() => handleUserMovielistsClick(username)}>
+            <button className="movielist-button" onClick={() => handleUserMovielistsClick()}>
             <img src="../../assets/movielist-icon.svg" alt="Ícone de movielist" />
             </button>
           </div>

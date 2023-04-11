@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { makeCreateReviewUseCase } from "../../../use-cases/factories/make-createreview-usecase";
+import { makeCreateReviewUseCase } from "../../../use-cases/factories/review/make-createreview-usecase";
 
 export async function createReview(request: FastifyRequest, reply: FastifyReply) {
     const createReviewBodySchema = z.object({
@@ -8,9 +8,11 @@ export async function createReview(request: FastifyRequest, reply: FastifyReply)
         review: z.string(),
         movieId: z.string(),
         userId: z.string(),
+        movieCover: z.string(),
+        rating: z.number(),
     })
 
-    const { title, review, movieId, userId } = createReviewBodySchema.parse(request.body);
+    const { title, review, movieId, userId, movieCover, rating } = createReviewBodySchema.parse(request.body);
 
     const createReviewUseCase = makeCreateReviewUseCase();
 
@@ -19,6 +21,8 @@ export async function createReview(request: FastifyRequest, reply: FastifyReply)
         review,
         movieId,
         userId,
+        movieCover,
+        rating
     })
 
     reply.status(201).send(createReview);

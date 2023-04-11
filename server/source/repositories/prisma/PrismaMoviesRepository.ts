@@ -4,16 +4,22 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export class PrismaMoviesRepository implements IMoviesRepository {
-    async createMovie(id: string){
-        const movie = await prisma.movie.upsert({
-            where: {
-                id
-            },
-            create: {id},
-            update: {id : id}
+    async createMovie(data: Prisma.MovieUncheckedCreateInput){
+        const movie = await prisma.movie.create({
+            data
         })
 
         return movie;
+    }
+
+    async getMovie(id: string) {
+        const movie = await prisma.movie.findUnique({
+            where: {
+                id,
+            }
+        })
+
+        return movie
     }
 
     async getAverage(id: string){
@@ -56,5 +62,15 @@ export class PrismaMoviesRepository implements IMoviesRepository {
         })
 
         return evaluation;
+    }
+
+    async getUserEvaluations(id: string) {
+        const evaluations = await prisma.evaluation.findMany({
+            where: {
+                userId: id,
+            }
+        })
+
+        return evaluations;
     }
 }

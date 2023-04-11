@@ -2,34 +2,19 @@ import MovieInfoOptions from "../MovieInfoOptions";
 import "./styles.css";
 
 function MovieInfoCard({
-  image,
-  name,
-  directorList,
-  year,
-  parentalRating,
-  duration,
-  description,
-  rating,
+  movieContext
 }) {
   return (
     <div className="mainDiv">
-      <img className="image" src={image} alt={"Movie" + { name }} />
+      <img className="image" src={movieContext.posterPath} alt={"Movie poster"} />
       <div className="secondaryDiv">
-        <div className="name">{name}</div>
-        <div className="directorList">
-          Directed by
-          {directorList.map((directorName, index) => {
-            return index < directorList.length - 1
-              ? " " + directorName + ","
-              : " " + directorName;
-          })}
-        </div>
+        <div className="name">{movieContext.title}</div>
         <div className="infos">
-          {year} - {parentalRating} - {duration}
+          {movieContext.releaseDate} - {movieContext.duration}
         </div>
-        <div className="description">{description}</div>
+        <div className="description">{movieContext.description}</div>
       </div>
-      <MovieInfoOptions rating={rating} />
+      <MovieInfoOptions movieContext={movieContext} />
     </div>
   );
 }

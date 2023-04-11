@@ -21,4 +21,15 @@ export class PrismaReviewsRepository implements IReviewsRepository {
 
         return reviews;
     }
+
+    async findManyByMovieId(id: string) {
+        const reviews = await prisma.review.findMany({
+            where: {
+                movieId: id,
+            },
+            include: { author: { select: { name: true, photo: true } } }
+        })
+        return reviews;
+    }
+
 }

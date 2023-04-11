@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { makeAuthenticateUseCase } from "../../../use-cases/factories/make-authenticate-usecase";
+import { makeAuthenticateUseCase } from "../../../use-cases/factories/user/make-authenticate-usecase";
 
 export async function authenticate (request: FastifyRequest, reply: FastifyReply) {
     const authenticateBodySchema = z.object({
@@ -13,15 +13,14 @@ export async function authenticate (request: FastifyRequest, reply: FastifyReply
     try {
         const authenticateUseCase = makeAuthenticateUseCase();
 
-        await authenticateUseCase.handle({
+        const user = await authenticateUseCase.handle({
             username,
             password,
         })
 
+        return reply.status(200).send({ id: user.user.id });
     } catch(err) {
-        reply.status(500).send({ err });
+        reply.status(500).send(err);
         throw err;
     }
-
-    return reply.status(200).send();
 }

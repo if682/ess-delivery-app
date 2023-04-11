@@ -4,28 +4,26 @@ import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
+const port = 4001;
+
 const Movielists = () => {
+  const userId = localStorage.getItem("userId");
+  const [lists, setLists] = useState([]);
   const [newListTitle, setNewListTitle] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  const [lists, setLists] = useState([
-    { title: "FILMES PRA VER COM A MÃE" },
-    { title: "Só os clássicos" },
-    { title: "todos os shrek" },
-    { title: "filmes que eu não gosto pra recomendar pra quem eu odeio" }
-  ]);
-
-  const handleUserListClick = ({ title }) => {
-    alert(`Aqui deve ir para a página da lista ${title}`);
-    let path = `/profile/movielists/movielist`;
+  // Vai pra página da lista escolhida
+  const handleUserListClick = (listName) => {
+    let path = `${listName}`;
     navigate(path);
-  };
+  };  
 
   const handleNewListTitleChange = (event) => {
     setNewListTitle(event.target.value);
   };
   
-  const handleCreateListClick = () => {
+  const handleCreateListClick = async () => {
     const forbiddenChars = ["&", "%", "$", "@"];
     const maxLength = 80;
 
@@ -42,40 +40,127 @@ const Movielists = () => {
     }
     
     else {
-      const existingList = lists.find((list) => list.title.toLowerCase() === newListTitle.trim().toLowerCase());
+      const existingList = lists.find((list) => list.name.toLowerCase() === newListTitle.trim().toLowerCase());
       
       if (existingList) {
         alert(`A lista "${newListTitle.trim()}" já existe!`);
       }
       
       else {
-        setLists([...lists, { title: newListTitle.trim() }]);
-        setNewListTitle("");
+        // faz uma requisição POST para a API para criar uma nova lista
+        try {
+          let response = await fetch(`http://localhost:${port}/list/${userId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              userId: userId,
+              name: newListTitle.trim(),
+            }),
+          });
+
+          if (response.ok) {
+            const newList = [...lists, { name: newListTitle.trim(), userId: userId }];
+            setLists(newList);
+            localStorage.setItem("userLists", JSON.stringify(newList)); // atualiza o localStorage
+            setNewListTitle("");
+            console.log("POST realizado com sucesso.");
+          } else {
+            console.log("Ocorreu um erro no POST.");
+          }
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
   };
 
-  const handleDeleteListClick = (event, title) => {
+  const handleDeleteListClick = async (event, name) => {
     // impede que o evento de clique na lista seja disparado
     event.stopPropagation();
     
     // exibe uma janela de diálogo perguntando ao usuário se ele realmente deseja excluir a lista
-    const userConfirmation = window.confirm(`Tem certeza que deseja excluir a lista "${title}"?`);
+    const userConfirmation = window.confirm(`Tem certeza que deseja excluir a lista "${name}"?`);
     
     if (userConfirmation) {
-      const newList = lists.filter((list) => list.title !== title);
-      setLists(newList);
+      try {
+        let response = await fetch(`http://localhost:${port}/list/${userId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId,
+            listName: name.trim(),
+          }),
+        });
+  
+        if (response.ok) {
+          const newList = lists.filter((list) => list.name !== name);
+          setLists(newList);
+          localStorage.setItem("userLists", JSON.stringify(newList)); // atualiza o localStorage
+          console.log("DELETE realizado com sucesso.");
+        } else {
+          console.log("Ocorreu um erro no DELETE.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
-  };
+  };  
 
   useEffect(() => {
     // atualiza a lista na interface sempre que o estado de listas for atualizado
   }, [lists]);
+
+  useEffect(() => {
+    // faz uma requisição GET para a API para obter as listas do usuário
+    const handleGetLists = async () => {
+      try {
+        let response = await fetch(`http://localhost:${port}/list/${userId}`, {
+          method: "GET",
+        });
+  
+        if (response.ok) {
+          let data = await response.json();
+          setLists(Object.values(data).flat());
+          console.log("GET realizado com sucesso.");
+        } else {
+          console.log("Ocorreu um erro no GET.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    // faz uma requisição GET para a API para obter o nome do usuário
+    const handleGetUsername = async () => {
+      try {
+        let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
+          method: "GET",
+        });
+  
+        if (response.ok) {
+          let data = await response.json();
+          setUsername(data.user.username);
+          console.log("GET realizado com sucesso.");
+        } else {
+          console.log("Ocorreu um erro no GET.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleGetUsername();
+    handleGetLists();
+  }, []);  
   
   return (
     <div className="movielists-page">
       <Header />
-      <MovielistHeader userAvatar="../../assets/profile-pic.svg" username="Mia Goth" listName="Lists" />
+      <MovielistHeader userAvatar="../../assets/avatar-default.png" username={username} listName="Lists" />
       
       <div className="movielists-list">
         <div className="movielists-new-list">
@@ -88,16 +173,23 @@ const Movielists = () => {
           <button onClick={handleCreateListClick}>Create</button>
         </div>
 
-        <ul>
-        {lists.map((list) => (
-        <li key={list.title} className="movielists-list-item" onClick={() => handleUserListClick(list)}>
-          <div className="list-name-container">
-            <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.title)}>Delete</button>
-            <span className="list-name">{list.title}</span>
-          </div>
-        </li>
-        ))}
-        </ul>
+        {lists.length === 0 ? (<p>Loading...</p>) : (
+          <ul>
+            {lists.filter(list => list.name !== "Curtidos" && list.name !== "Historico").map((list) =>
+                <li key={list.name} className="movielists-list-item" onClick={() => handleUserListClick(list.name)}>
+                  <div className="list-name-container">
+                    <button className="delete-list" onClick={(event) => handleDeleteListClick(event, list.name)}>Delete</button>
+                    <span className="list-name">{list.name}</span>
+                  </div>
+                </li>
+              )
+            }
+          </ul>
+        )}
+
+        {/*Usuário só tem as listas Curtidos e Historico*/}
+        {lists.length === 2 && <p>This user does not have any lists.</p>}
+
       </div>
     </div>
   );
