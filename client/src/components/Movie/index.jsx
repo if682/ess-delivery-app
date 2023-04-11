@@ -10,7 +10,11 @@ const Movie = ({ poster, title, movieId, year }) => {
         } = HandleUserActions();
   
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
+  let lists = [];
+
+  if(localStorage.getItem("userLists") !== null) {
+    lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
+  }
 
   return (
     <div className="movie-container">
