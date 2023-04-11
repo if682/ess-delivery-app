@@ -1,12 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style.css";
 const EditProfileFormsSection = () => {
-  
+    const port = 4001
+    const userId = localStorage.getItem("userId");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [dateOfBirth, setdateOfBirth] = useState("");
     const [email, setEmail] = useState("");
     const [description, setDescription] = useState("");
+    const [userData, setUserData] = useState("");
+
+    useEffect(() => {
+        const handleGetUserData = async () => {
+          try {
+            let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
+              method: "GET",
+            });
+      
+            if (response.ok) {
+              let data = await response.json();
+              setUserData(data.user);
+              console.log("GET realizado com sucesso.");
+            } else {
+              console.log("Ocorreu um erro no GET.");
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        };
+    }, []);
 
     let handleSubmit = async (e) =>{
         e.preventDefault();
