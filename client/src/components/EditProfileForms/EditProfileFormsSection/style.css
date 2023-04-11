@@ -13,7 +13,7 @@
     padding-left: 24px;
 }
 .input-row .first-input{
-    margin-left: 0; 
+    margin-left: 0;
 }
 
 .input-row .second-input{
@@ -21,7 +21,10 @@
 }
 
 .input-row .description-input{
-    margin-right: 0;
+    margin: 0;
+    background-image: none;
+    width: 100%;
+    display: block;
 }
 
 .submit-button-container{
