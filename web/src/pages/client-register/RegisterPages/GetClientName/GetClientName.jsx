@@ -11,6 +11,7 @@ export const GetClientName = () => {
 
     let navigate = useNavigate();
 
+    //warningMessage recebe o valor null toda vez que name tem seu valor atualizaddo
     useEffect(() => {
         setWarningMessage(null)
     }, [name])
@@ -18,6 +19,7 @@ export const GetClientName = () => {
     
 
     const getName = () => {
+        //checa se o valor de name é null
         if(isInputNull(name)){
             setWarningMessage('Esse campo é de preenchimento obrigatório!')
         }

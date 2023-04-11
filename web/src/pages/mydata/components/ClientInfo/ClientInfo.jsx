@@ -18,6 +18,10 @@ function ClientInfo() {
   const [showEditPassword, setShowEditPassword] = useState(false)
   const [showEditName, setShowEditName] = useState(false)
 
+  //para cada mudança nos valores de email, nome e senha
+  //define um valor para currentClients a partir dos dados dos clientes da db
+  //a partir desse valor e do e-mail dado pelo token do usuário resgata os outros dados de cadastro:
+  //id, nome e senha
   useEffect(() => {
     fetch('http://localhost:3001/clients')
       .then(response => response.json())
@@ -31,6 +35,8 @@ function ClientInfo() {
 }, [email, name, password])
 
   const navigate = useNavigate();
+
+  //volta para a página minha conta
   const goBack =  () =>{
     navigate("/minha-conta");
   }

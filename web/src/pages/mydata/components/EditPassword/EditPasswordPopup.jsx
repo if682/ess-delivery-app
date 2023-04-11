@@ -10,22 +10,26 @@ export const EditPasswordPopup = (props) => {
     const [password, setPassword] = useState("");
     const [oldPassword, setOldPassword] = useState("")
     const [warningMessage, setWarningMessage] = useState(null);
-    
+
+    //warningMessage recebe valor nulo quando os valores da senha antiga e da nova são atualizados
     useEffect(() => {
         setWarningMessage(null)
     }, [password, oldPassword])
 
 
     async function EditPassword () {
+        //verifica se há algum input com valor nulo
         if(isInputNull(password) || isInputNull(oldPassword)){
             setWarningMessage('Preencha todos os campos!')
         }
+        //checa se o valor fornecido para oldPassword corresponde a senha atual do cliente (validação)
         else if(oldPassword != props.currentPassword){
             setWarningMessage('O valor fornecido para a senha atual está incorreto')
         }
         else {
             let item = {name: props.name, email: props.email, password: password}
 
+            //Atualiza o valor da senha do cliente
             await fetch(`http://localhost:3001/clients/${props.client_id}`, {
                 method: 'PUT',
                 headers: {

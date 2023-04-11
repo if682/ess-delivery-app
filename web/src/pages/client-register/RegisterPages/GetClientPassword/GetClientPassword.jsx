@@ -18,10 +18,12 @@ export const GetClientPassword = (props) => {
     const {state} = useLocation()
     const { name, email} = (state != null) ? state : props.state;
 
+    //warningMessage recebe o valor null toda vez que name tem seu valor atualizaddo
     useEffect(() => {
         setWarningMessage(null)
     }, [password])
 
+    //altera o estado da checkbox, checked ou not checked
     const handleOnChange = () => {
         setChecked(!checked);
       };
@@ -29,16 +31,20 @@ export const GetClientPassword = (props) => {
 
 
     async function getPassword() {
+        //verifica se a password ou/e a passwordConfirmation possui valor nulo
         if(isInputNull(password) || isInputNull(passwordConfirmation)){
             setWarningMessage('Preencha todos os campos!')
         }
+        //checa se a senha e a sua confirmação são diferentes
         else if(password != passwordConfirmation){
             setWarningMessage('As senhas não coincidem')
         }
+        //verifica se a checkbox está no estado "checked"
         else if(checked == false){
             setWarningMessage('Aceite os termos de privacidade')
         }
         else{
+            //adiciona um novo cliente na db
             let item = {"name": name, "email": email, "password": password}
             await fetch('http://localhost:3001/clients', {
                   method: 'POST',
@@ -47,7 +53,9 @@ export const GetClientPassword = (props) => {
                   },
                   body: JSON.stringify(item),
                 });
+            //cria um token de acesso para o novo cliente
             Cookies.set('token', email, { expires: 7 });
+            //vai para a página de cadastro finalizado
             navigate('/cadastro-finalizado');
         }
            

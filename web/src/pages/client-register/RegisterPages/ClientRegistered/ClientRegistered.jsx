@@ -10,6 +10,7 @@ export const ClientRegistered = () => {
 
     let navigate = useNavigate();
 
+    //Navega para a página principal (home)
     const handleClick = () =>{
         navigate('/')
     }
