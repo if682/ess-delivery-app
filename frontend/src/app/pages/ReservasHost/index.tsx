@@ -57,12 +57,6 @@ const createReservation = (data: ReservationProps) => {
 }
 
 
-
-const getUserId = async () => {
-  const response = await axios.get(`/login/<token-usuário>`);
-  return response.data.userId;
-};
-
 const ReservasHost: React.FC = () => {
   const { session } = useSession();
   const [reservations, setReservations] = useState([]);
@@ -81,38 +75,14 @@ const ReservasHost: React.FC = () => {
         console.error('Error fetching reservations:', error);
       }
     }
-
     fetchReservations();
   }, []);
-  console.log(userId)
-  if (!reservations || reservations.length === 0) {
-    return(
-      <div>
-        <div className='contentTitle'>
-          <div>
-              <h1 className='texts'>Reservas como anfitrião</h1>
-              <p>{userId}</p>
-            </div>
-            <div className='divButton'>
-              <button
-                className='reservations_Switch_Button'
-                onClick={() => window.location.href = 'http://localhost:3000/hospedagens-guests'}
-              >
-                Ir para reservas como inquilino
-              </button>
-            </div>
-        </div>
-        <div className='texts'>Sem reservas para mostrar.</div>
-      </div>
-    );
-  }
 
   return (
     <div>
       <div className='contentTitle'>
         <div>
             <h1 className='texts'>Reservas como anfitrião</h1>
-            <p>{userId}</p>
           </div>
           <div className='divButton'>
             <button

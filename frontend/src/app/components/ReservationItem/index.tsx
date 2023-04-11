@@ -81,7 +81,7 @@ function ReservationItem({ reservation, renderType }: ReservationProps) {
       {renderType === "guestRender" && ( //guest view
         <div className="reservationCardFull">
           <div>
-            <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
+            <img src={'https://ogimg.infoglobo.com.br/in/25167959-ae9-a68/FT1086A/MAU_1533.jpg'} alt="" className="reservationPicture" />
             <h1 className="reservationLocation">{reservation.reservationDetails.name},</h1>
             <h1 className="reservationLocation">{reservation.reservationDetails.city}</h1>
           </div>
@@ -103,7 +103,7 @@ function ReservationItem({ reservation, renderType }: ReservationProps) {
       {renderType === "ownerRender" && ( //owner and admin view (can accept)
         <div className="reservationCardFull">
           <div>
-            <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
+            <img src={'https://ogimg.infoglobo.com.br/in/25167959-ae9-a68/FT1086A/MAU_1533.jpg'} alt="" className="reservationPicture" />
             <h1 className="reservationLocation">{reservation.reservationDetails.name},</h1>
             <h1 className="reservationLocation">{reservation.reservationDetails.city}</h1>
           </div>
@@ -130,7 +130,7 @@ function ReservationItem({ reservation, renderType }: ReservationProps) {
       {renderType === "adminRender" && ( //admin -> see IDs
         <div className="reservationCardFull">
           <div>
-            <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24q9wnZHX7WrmRdNCiSiSuBGd13ma8Av7dq4x_Bripg&s'} alt="" className="reservationPicture" />
+            <img src={'https://ogimg.infoglobo.com.br/in/25167959-ae9-a68/FT1086A/MAU_1533.jpg'} alt="" className="reservationPicture" />
             <h1 className="reservationLocation">{reservation.reservationDetails.name},</h1>
             <h1 className="reservationLocation">{reservation.reservationDetails.city}</h1>
           </div>

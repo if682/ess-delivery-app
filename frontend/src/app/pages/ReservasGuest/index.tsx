@@ -83,28 +83,6 @@ const ReservasGuests: React.FC = () => {
     fetchReservations();
   }, []);
 
-  if (!reservations || reservations.length === 0) {
-    return(
-      <div>
-        <div className='contentTitle'>
-          <div>
-              <h1 className='texts'>Reservas como anfitrião</h1>
-              <p>{userId}</p>
-            </div>
-            <div className='divButton'>
-              <button
-                className='reservations_Switch_Button'
-                onClick={() => window.location.href = 'http://localhost:3000/hospedagens-guests'}
-              >
-                Ir para reservas como inquilino
-              </button>
-            </div>
-        </div>
-        <div className='texts'>Sem reservas para mostrar.</div>
-      </div>
-    );
-  }
-
   return (
     <div>
       <div className='contentTitle'>

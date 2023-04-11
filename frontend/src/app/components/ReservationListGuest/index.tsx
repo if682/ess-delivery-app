@@ -51,8 +51,8 @@ const ReservationListGuest = ({ reservations, userId }: ReservationProps) => {
     (reservation) => reservation.userId === userId && reservation.accepted === 'espera'
   );
  
-  if (!reservations || reservations.length === 0) {
-    return <div>No reservations to display</div>;
+  if (!reservations || (confirmedReservations.length === 0 && pendingReservations.length === 0)) {
+    return <div className="noData">Sem Reservas para mostrar</div>;
   }
 
   return (

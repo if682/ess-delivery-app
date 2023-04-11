@@ -50,14 +50,15 @@ const ReservationListHost = ({ reservations, userId }: ReservationProps) => {
   const pendingReservations = reservations.filter(
     (reservation) => reservation.reservationDetails.owner === userId && reservation.accepted === 'espera'
   );
- 
-  if (!reservations || reservations.length === 0) {
-    return <div>No reservations to display</div>;
+
+  if (!reservations || (confirmedReservations.length === 0 && pendingReservations.length === 0)) {
+    return <div className="noData">Sem Reservas para mostrar</div>;
   }
 
   return (
     
     <div className='bothLists'>
+      <p>{reservations.length }</p>
       <div className='singleLists'>
         <h1 className='textsReservas'>Reservas confirmadas</h1>
         {confirmedReservations.map((reservation) => (
