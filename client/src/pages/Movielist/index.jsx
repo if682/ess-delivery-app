@@ -8,7 +8,7 @@ import HandleUserActions from "../handleUserActions";
 import api from "../../services/api";
 
 const userId = localStorage.getItem("userId");
-const port = 4002;
+const port = 4001;
 
 const Movielist = () => {
   const [sortOption, setSortOption] = useState("select");
