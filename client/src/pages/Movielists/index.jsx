@@ -61,7 +61,9 @@ const Movielists = () => {
           });
 
           if (response.ok) {
-            setLists([...lists, { name: newListTitle.trim(), userId: userId }]);
+            const newList = [...lists, { name: newListTitle.trim(), userId: userId }];
+            setLists(newList);
+            localStorage.setItem("userLists", JSON.stringify(newList)); // atualiza o localStorage
             setNewListTitle("");
             console.log("POST realizado com sucesso.");
           } else {
@@ -97,6 +99,7 @@ const Movielists = () => {
         if (response.ok) {
           const newList = lists.filter((list) => list.name !== name);
           setLists(newList);
+          localStorage.setItem("userLists", JSON.stringify(newList)); // atualiza o localStorage
           console.log("DELETE realizado com sucesso.");
         } else {
           console.log("Ocorreu um erro no DELETE.");
