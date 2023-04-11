@@ -1,12 +1,12 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom'; // add this import
 import ClientLogin from '../../ClientLogin';
-import { GetClientName } from '../../../client-register/RegisterPages/GetClientName';
+import { GetClientName } from '../../../client-register/RegisterPages/GetClientName/GetClientName';
 import Home from '../../../home/Home';
 
-describe('LoginTest', () => {
+describe('LoginTest', () => { // This is the test suite for the login page
 
-    const currentClients = [
+    const currentClients = [ // This is the list of clients that are currently registered in the system
         {
             id: 121231,
             name: "NomeTeste",
@@ -27,11 +27,8 @@ describe('LoginTest', () => {
         }
     ];
 
-    const onHideMock = jest.fn(() => { });
-    const onShowMock = jest.fn(() => { });
-
     it('should render invalid email error after logging in with incorrect email', () => { // This test is for the login page to show an error message when the email is incorrect
-        render(
+        render( // Wrap ClientLogin with MemoryRouter
             <MemoryRouter> {/* Wrap ClientLogin with MemoryRouter */}
                 <ClientLogin Items={currentClients} />
             </MemoryRouter>
@@ -45,7 +42,7 @@ describe('LoginTest', () => {
     });
 
     it('should render invalid password error after logging in with incorrect password', () => { // This test is for the login page to show an error message when the password is incorrect
-        render(
+        render( // Wrap ClientLogin with MemoryRouter
             <MemoryRouter>
                 <ClientLogin Items={currentClients} />
             </MemoryRouter>
@@ -54,7 +51,7 @@ describe('LoginTest', () => {
         const passwordInput = screen.getByPlaceholderText('Insira uma senha');
         const loginButton = screen.getByText('Entrar');
         
-        fireEvent.change(emailInput, { target: { value: 'pasp@cin.ufpe.br' } });
+        fireEvent.change(emailInput, { target: { value: 'pasp@cin.ufpe.br' } }); 
         fireEvent.change(passwordInput, { target: { value: 'senhaErrada' } });
         fireEvent.click(loginButton);
         
@@ -63,8 +60,8 @@ describe('LoginTest', () => {
     });
     
     it('should move to next page after successfully logged in', () => { // This test is for the login page to move to the home page after logging in
-        render(
-            <MemoryRouter initialEntries={['/login']}>
+        render( // Wrap ClientLogin with MemoryRouter
+            <MemoryRouter initialEntries={['/login']}> 
             <Routes>
               <Route path="/login" element={<ClientLogin Items={currentClients} />}>
               </Route>
@@ -86,7 +83,7 @@ describe('LoginTest', () => {
     });
     
     it("should move to cadastro-nome after clicking in the 'Cadastre-se'", () => { // This test is for the login page to move to the cadastro-nome page after clicking in the 'Ainda não possui o cadastro?' button
-        render(
+        render( // Wrap ClientLogin with MemoryRouter
             <MemoryRouter initialEntries={['/login']}>
             <Routes>
               <Route path="/login" element={<ClientLogin Items={currentClients} />}>
@@ -104,7 +101,7 @@ describe('LoginTest', () => {
         expect(successfulMessage).toBeInTheDocument();
     });
     it('should remember login after successfully logged in and clicked the checkbox to remember login', () => { 
-        render(
+        render( // Wrap ClientLogin with MemoryRouter
             <MemoryRouter initialEntries={['/login']}>
             <Routes>
               <Route path="/login" element={<ClientLogin Items={currentClients} />}>

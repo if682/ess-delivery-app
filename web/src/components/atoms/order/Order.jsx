@@ -21,7 +21,7 @@ function Order({
   const [showDetails, setShowDetails] = useState(false);
   const toggleDetails = () => setShowDetails(!showDetails);
 
-  const openOrderDetails = () => {
+  const handleOpenOrderDetails= () => {
     selectOrder();
     setShowDetails(false);
   };
@@ -66,7 +66,7 @@ function Order({
             <RedOutlineButton
               chevron={false}
               width="10rem"
-              onClick={openOrderDetails}
+              onClick={handleOpenOrderDetails}
             >
               Ajuda
             </RedOutlineButton>

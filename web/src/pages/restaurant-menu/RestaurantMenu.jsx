@@ -33,7 +33,7 @@ export const RestaurantMenu = () => {
 
     return (
         <div>
-            <AddCategory show={() => setAddCatToggle(true)} onHide={() => setAddCatToggle(false)} data-testid = 'setAdd'/>
+            <AddCategory show={() => setAddCatToggle(true)} onHide={() => setAddCatToggle(false)}/>
             <RemCategoryPopup show={remCatToggle[0]} category={remCatToggle[1]} onHide={() => setRemCatToggle(false)}/>
 
             <AddItemPopup show={addItemToggle[0]} onHide={() => setAddItemToggle(false)} currentItems={items} category={addItemToggle[1]}/>
@@ -45,7 +45,7 @@ export const RestaurantMenu = () => {
                 <div key={category.id}>
                     <li>{category.name}</li>
 
-                    <button variant='primary' onClick={() => setRemCatToggle([true, category.id])} data-testid = {`remove-category-button-${category.name}`}>Remover categoria</button>
+                    <Button variant='primary' onClick={() => setRemCatToggle([true, category])} data-testid = {`remove-category-button-${category.name}`}>Remover categoria</Button>
                     
                     <Button variant='success' onClick={() => setAddItemToggle([true, category.name])} data-testid = 'addItemBtn'>
                         Adicionar item
