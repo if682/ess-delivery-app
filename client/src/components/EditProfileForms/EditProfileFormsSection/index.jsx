@@ -3,17 +3,17 @@ import "./style.css";
 const EditProfileFormsSection = () => {
     const port = 4001
     const userId = localStorage.getItem("userId");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [dateOfBirth, setdateOfBirth] = useState("");
+    const [name, setName] = useState("");
+    const [userName, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [description, setDescription] = useState("");
+
     const [userData, setUserData] = useState("");
 
     useEffect(() => {
         const handleGetUserData = async () => {
           try {
-            let response = await fetch(`http://localhost:${port}/profile/${userId}`, {
+            let response = await fetch(`http://localhost:${port}/edit`, {
               method: "GET",
             });
       
@@ -36,20 +36,22 @@ const EditProfileFormsSection = () => {
             let res = await fetch("https://httpbin.org/post", { //Esse link de post é um dummy apy
                 method: "POST",
                 body: JSON.stringify({
-                    firstName: firstName,
-                    lastName: lastName,
-                    dateOfBirth: dateOfBirth,
+                    name: name,
+                    username: userName,
                     email: email,
                     description: description,
+                    password: userData.password,
+                    birthdate: userData.birthdate,
+                    phone: userData.phone,
+                    location: userData.location
                 }),
             });
 
-            let resJson = await res.json()
             if(res.status === 200){
-                setFirstName("");
-                setLastName("");
+                console.log("Edit user deu certo, ok?")
+                setName("");
+                setUsername("");
                 setEmail("");
-                setdateOfBirth("");
                 setDescription("");
             }else{
                 alert("Ocorreu um erro no post")
@@ -63,17 +65,13 @@ const EditProfileFormsSection = () => {
     <article>
         <form onSubmit={handleSubmit}>
             <div className="input-row">
-                <input className="first-input" type="text" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required/>
-                <input className="second-input"type="text" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required/>
+                <input className="first-input" type="text" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)} required/>
+                <input className="second-input"type="text" value={userName} placeholder="Username" onChange={(e) => setUsername(e.target.value)} required/>
             </div>
             
             <div className="input-row">
-                <input className="first-input" type="text" value={dateOfBirth} placeholder="Date of birth" onChange={(e) => setdateOfBirth(e.target.value)} required/>
-                <input className="second-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
-            </div>
-
-            <div className="input-row">
-                <input className="description-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+                <input className="first-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
+                <input className="second-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
             </div>
 
             <div className="submit-button-container">

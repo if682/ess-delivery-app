@@ -21,10 +21,7 @@
 }
 
 .input-row .description-input{
-    margin: 0;
-    background-image: none;
-    width: 100%;
-    display: block;
+    margin-right: 0;
 }
 
 .submit-button-container{
