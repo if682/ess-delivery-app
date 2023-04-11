@@ -1,5 +1,7 @@
 import { Review } from "@prisma/client";
 import { IReviewsRepository } from "../../repositories/IReviewsRepository";
+import { IUserRepository } from "../../repositories/IUsersRepository";
+import { IMoviesRepository } from "../../repositories/IMoviesRepository";
 
 interface ICreateReviewUseCaseRequest {
     title: string
@@ -15,7 +17,11 @@ interface ICreateReviewUseCaseReply {
 }
 
 export class CreateReviewUseCase {
-    constructor(private reviewsRepository: IReviewsRepository){}
+    constructor(
+        private reviewsRepository: IReviewsRepository,
+        private usersRepository: IUserRepository,
+        private moviesRepository: IMoviesRepository
+        ){}
 
     async handle({
         title,
@@ -25,6 +31,18 @@ export class CreateReviewUseCase {
         movieCover,
         rating
     }: ICreateReviewUseCaseRequest): Promise<ICreateReviewUseCaseReply> {
+        const user = await this.usersRepository.findById(userId);
+
+        if(!user){
+            throw new Error('Bad request')
+        }
+        
+        const movie = await this.moviesRepository.getMovie(movieId);
+
+        if(!movie){
+            throw new Error('Bad request')
+        }
+
         const reviewObject = await this.reviewsRepository.create({
             title,
             review,

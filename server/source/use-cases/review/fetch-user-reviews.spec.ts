@@ -1,12 +1,9 @@
-// should be able to fetch reviews from user
-// should not be able to fetch reviews from an inexistent user
 import { beforeEach, describe, expect, test } from "vitest";
 import { FetchUserReviewsUseCase } from "./fetch-user-reviews";
 import { InMemoryReviewsRepository } from "../../repositories/inMemory/inMemoryReviewsRepository";
 import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
 import { InMemoryMoviesRepository } from "../../repositories/inMemory/inMemoryMoviesRepository";
 import { hash } from "bcryptjs";
-import exp from "constants";
 
 let inMemoryReviewsRepository: InMemoryReviewsRepository
 let inMemoryUsersRepository: InMemoryUsersRepository
