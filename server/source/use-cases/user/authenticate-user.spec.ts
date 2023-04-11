@@ -44,4 +44,11 @@ describe("Authenticate use case", () => {
             password: "senhaerrada",
         })).rejects.toBeInstanceOf(Error)
     })
+
+    test("should not be able to authenticate with non existing username", async () => {
+        await expect(() => sut.handle({
+            username: "joao",
+            password: "Senha!12345",
+        })).rejects.toBeInstanceOf(Error)
+    })
 })
