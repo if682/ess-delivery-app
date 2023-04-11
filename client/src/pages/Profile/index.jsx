@@ -6,10 +6,13 @@ import ProfileReviewsList from "../../components/ProfileReviewsList";
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import api from "../../services/api";
+import { LoginContext } from "../../Context/LoginContext";
+import { useContext } from "react";
 
 const Profile = () => {
 
-  const userId = localStorage.getItem("userId");
+  const [context, setContext] = useContext(LoginContext)
+  const userId = context.userId
 
   const [userReviews, setUserReviews] = useState();
   const [userHistory, setUserHistory] = useState([]);
