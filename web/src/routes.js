@@ -14,7 +14,6 @@ import { RestaurantMenu } from "./pages/restaurant-menu/RestaurantMenu";
 import OrderTotals from "./pages/client-orderTotals/OrderTotals";
 import RestaurantTotal from "./pages/client-restaurantTotal/RestaurantTotal";
 import MyData from "./pages/mydata/Mydata";
-import RestaurantTotal from "./pages/client-restaurantTotal/RestaurantTotal";
 
 const UrlRoutes = () => {
   return (

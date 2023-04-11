@@ -31,11 +31,7 @@ function RestaurantTotalAccordion({
   orders
 }) 
 {
-  //fazer dessa maneira quebrou, causa hooks condicionais (BAD)
-  /*
-  const navigate = useNavigate();
-  const seeRestaurantTotals = () => navigate("/total-pedidos/" + place);
-  */
+  const restTotalsLink = "http://localhost:3000/total-pedidos/restaurante/" + place;
 
   // calcular a soma
   const orderSum = orders.reduce((total, order) => {return total + order.values.total}, 0);
@@ -60,12 +56,9 @@ function RestaurantTotalAccordion({
               <Col sm={3}><img class="itemImage" src="./sample.jpg" alt="Item mais pedido"/></Col>
               <Col sm><div class="mostDescription">Mais pedido:<br/><strong class="mostOrdered">{mostOrdered}<br/></strong>{quantity} unidades</div></Col>
               <Col sm={3}>
-                <RedOutlineButton
-                  onClick={"seeRestaurantTotals"}
-                  chevron={false}
-                  width="10rem">
-                  Ver todos
-                </RedOutlineButton>
+                <a href={restTotalsLink}>
+                  <strong class = "mostOrdered">Ver todos</strong>
+                </a> 
               </Col>
             </Row>  
           </Container>

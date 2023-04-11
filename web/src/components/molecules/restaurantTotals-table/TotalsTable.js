@@ -36,13 +36,13 @@ function TotalsTable() {
     <div className="totals-table-container">
       <button className="go-back-btn" onClick={goBack}>
         <ChevronLeft /> Voltar
-        <input
-          type="month"
-          class="month-input"
-          value={filterDate}
-          onChange={(e) => {setFilterDate(e.target.value)}}
-        />
       </button>
+      <input
+        type="month"
+        class="month-input"
+        value={filterDate}
+        onChange={(e) => {setFilterDate(e.target.value)}}
+      />
       
       <div class="accordionTable">
       {_(orders)
