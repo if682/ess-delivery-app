@@ -13,7 +13,7 @@ const convertToMonthFormat = (dateString) => {
 
 function TotalsTable() {
   const navigate = useNavigate();
-  const goBack = () => navigate("/total-pedidos");
+  const goBack = () => navigate("/minha-conta");
 
   const [filterDate, setFilterDate] = useState(convertToMonthFormat(new Date()));
   const [orders, setOrders] = useState([]);
