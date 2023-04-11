@@ -6,7 +6,7 @@ import { hash } from "bcryptjs";
 let inMemoryUsersRepository: InMemoryUsersRepository
 let sut: EditUserUserUseCase
 
-describe("Authenticate use case", () => {
+describe("Edit user use case", () => {
     beforeEach(() => {
         inMemoryUsersRepository = new InMemoryUsersRepository();
         sut = new EditUserUserUseCase(inMemoryUsersRepository);

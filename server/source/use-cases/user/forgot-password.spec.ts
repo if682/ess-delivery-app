@@ -10,7 +10,7 @@ let inMemoryUsersRepository: InMemoryUsersRepository
 let mailProvider: IMailProvider
 let sut: ForgotPasswordUseCase
 
-describe("Authenticate use case", () => {
+describe("Forgot password use case", () => {
     beforeEach(() => {
         inMemoryUsersRepository = new InMemoryUsersRepository();
         mailProvider = new MailProvider;
@@ -39,6 +39,6 @@ describe("Authenticate use case", () => {
         await expect(() => sut.handle({
             email: "joao@email.com"
         })).rejects.toBeInstanceOf(Error)
-        
+
     })
 })

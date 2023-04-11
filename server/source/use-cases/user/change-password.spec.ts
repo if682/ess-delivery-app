@@ -7,7 +7,7 @@ import { randomBytes } from "crypto";
 let inMemoryUsersRepository: InMemoryUsersRepository
 let sut: ChangePasswordUseCase
 
-describe("Authenticate use case", () => {
+describe("Change password use case", () => {
     beforeEach(() => {
         inMemoryUsersRepository = new InMemoryUsersRepository();
         sut = new ChangePasswordUseCase(inMemoryUsersRepository);

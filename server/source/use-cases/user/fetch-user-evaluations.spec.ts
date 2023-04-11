@@ -7,7 +7,7 @@ import { InMemoryMoviesRepository } from "../../repositories/inMemory/inMemoryMo
 let inMemoryMoviesRepository: InMemoryMoviesRepository
 let sut: FetchUserEvaluationsUseCase
 
-describe("Authenticate use case", () => {
+describe("Fetch user evaluations use case", () => {
     beforeEach(() => {
         inMemoryMoviesRepository = new InMemoryMoviesRepository();
         sut = new FetchUserEvaluationsUseCase(inMemoryMoviesRepository);
