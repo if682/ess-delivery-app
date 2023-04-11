@@ -61,8 +61,7 @@ const EditProfileFormsSection = () => {
                     location: userData.location
                 }),
             });
-            console.log(res.status)
-            if(res.status === 201){
+            if(res.status === 200){
                 console.log("Edit user deu certo, ok?")
                 navigate('/profile')
                 setName("");
