@@ -105,7 +105,37 @@
         "total": 18.0
       },
       "paymentMethod": "Dinheiro"
+    },
+    {
+      "id" : "098126",
+      "place" : "Subway",
+      "address" : "Rua dos Bobos, 0",
+      "date" : "2022-11-01",
+      "items" : [
+        {
+          "name" : "Barato do dia",
+          "quantity" : 2,
+          "price" : 20.0
+        },
+        {
+          "name" : "Pepsi",
+          "quantity" : 1,
+          "price" : 2.0
+        },
+        {
+          "name" : "Biscoito",
+          "quantity" : 1,
+          "price" : 5.0
+        }
+      ],
+      "values" : {
+        "subtotal" : 27.0,
+        "deliveryFee" : 5.0,
+        "total" : 32.0
+      },
+      "paymentMethod" : "Dinheiro"
     }
+    
   ],
     "128291": [],
     "128292": [],

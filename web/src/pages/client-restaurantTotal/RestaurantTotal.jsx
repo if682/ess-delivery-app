@@ -6,7 +6,7 @@ const TotalPedidosPage = (props) => {
   const { restaurantID } = useParams();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedMonth, setSelectedMonth] = useState(moment().format('YYYY-MM'));
+  const [selectedMonth, setSelectedMonth] = useState(moment(props.month).format('YYYY-MM'));
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -18,7 +18,7 @@ const TotalPedidosPage = (props) => {
     };
 
     fetchOrders();
-  }, []);
+  }, [  ]);
 
   const filteredOrders = orders.filter(order => {
     const orderMonth = moment(order.date).format('YYYY-MM');
@@ -33,6 +33,8 @@ const TotalPedidosPage = (props) => {
         type="month"
         id="monthInput"
         value={selectedMonth}
+        min = "yyyy-MM"
+        max = {moment().format('YYYY-MM')}
         onChange={(e) => setSelectedMonth(e.target.value)}
       />
       {isLoading ? (
