@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, test } from "vitest";
 import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
 import { AuthenticateUserUseCase } from "./authenticate-user";
-import { string } from "zod";
 import { hash } from "bcryptjs";
 
 let inMemoryUsersRepository: InMemoryUsersRepository
