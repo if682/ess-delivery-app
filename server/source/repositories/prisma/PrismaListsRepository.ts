@@ -67,6 +67,13 @@ export class PrismaListsRepository implements IListsRepository {
     }
 
     async deleteList(userId: string, listName: string): Promise<void> {
+        await prisma.movieList.deleteMany({
+            where: {
+                listName,
+                listOwner: userId
+            }
+        })
+
         await prisma.list.delete({
             where: {
                 userId_name: {

@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../Context/LoginContext";
 
 const port = 4001;
 
 const HandleUserActions = () => {
-  const userId = localStorage.getItem("userId");
+  const [context, setContext] = useContext(LoginContext)
+  const userId = context.userId
   const navigate = useNavigate();
 
   const handleUserAvatarClick = () => {

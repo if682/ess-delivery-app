@@ -68,9 +68,4 @@ describe("Delete movie from list use case", async() => {
 
     })
 
-
-
-
-    // nao deve conseguir mostrar as listas de um usuário que nao foi criado
-
 })

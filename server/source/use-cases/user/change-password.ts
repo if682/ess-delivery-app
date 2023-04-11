@@ -54,6 +54,8 @@ export class ChangePasswordUseCase{
         const changedPassword = await hash(newPassword, 6);
         this.usersRepository.changePassword(user.id, changedPassword);
 
+        user.password = changedPassword;
+
         return {
             user,
         }
