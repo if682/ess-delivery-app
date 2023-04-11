@@ -18,6 +18,7 @@ export class DeleteListUseCase{
         if(!foundList){
             throw new Error('Not Found')
         }
+        console.log(foundList.name);
 
         await this.listsRepository.deleteList(userId, foundList.name);
     }
