@@ -38,8 +38,14 @@ export class ForgotPasswordUseCase{
             })
         }
         
+        const updatedUser = await this.usersRepository.findByEmail(email);
+
+        if(!updatedUser) {
+            throw new Error();
+        }
+
         return {
-            user,
+            user: updatedUser,
         }
         
     }
