@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Navigate  } from 'react-router-dom';
 import moment from 'moment';
 
 const TotalPedidosPage = (props) => {
   const { restaurantID } = useParams();
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMonth, setSelectedMonth] = useState(moment(props.month).format('YYYY-MM'));
@@ -19,6 +20,10 @@ const TotalPedidosPage = (props) => {
 
     fetchOrders();
   }, [  ]);
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const filteredOrders = orders.filter(order => {
     const orderMonth = moment(order.date).format('YYYY-MM');
@@ -37,6 +42,7 @@ const TotalPedidosPage = (props) => {
         max = {moment().format('YYYY-MM')}
         onChange={(e) => setSelectedMonth(e.target.value)}
       />
+      <button onClick={handleGoBack}>Voltar</button>
       {isLoading ? (
         <p>Carregando...</p>
         
