@@ -5,11 +5,14 @@ import Movie from "../../components/Movie";
 import "./styles.css";
 import HandleUserActions from "../handleUserActions";
 import api from "../../services/api";
+import { LoginContext } from "../../Context/LoginContext";
+import { useContext } from "react";
 
 const port = 4001;
 
 const Likes = () => {
-  const userId = localStorage.getItem("userId");
+  const [context, setContext] = useContext(LoginContext)
+  const userId = context.userId
 
   const listName = "Likes";
   const [sortOption, setSortOption] = useState("select");

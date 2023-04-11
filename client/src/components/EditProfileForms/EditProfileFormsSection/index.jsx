@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../Context/LoginContext";
+import { useContext } from "react";
 
 const EditProfileFormsSection = () => {
     const port = 4001
     const navigate = useNavigate()
-    const userId = localStorage.getItem("userId");
+    const [context, setContext] = useContext(LoginContext)
+    const userId = context.userId
     const [name, setName] = useState("");
     const [userName, setUsername] = useState("");
     const [email, setEmail] = useState("");
