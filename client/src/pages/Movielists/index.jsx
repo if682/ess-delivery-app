@@ -4,10 +4,10 @@ import Header from "../../components/Header";
 import MovielistHeader from "../../components/MovielistHeader";
 import "./styles.css";
 
-const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const Movielists = () => {
+  const userId = localStorage.getItem("userId");
   const [lists, setLists] = useState([]);
   const [newListTitle, setNewListTitle] = useState("");
   const [username, setUsername] = useState("");
