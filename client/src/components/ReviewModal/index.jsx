@@ -4,9 +4,11 @@ import "./style.css";
 import Rating from "./Rating";
 import api from "../../services/api";
 import StarRating from "./StarRating";
+import { useNavigate } from "react-router-dom";
 
 const ReviewModal = (props) => {
 
+  const navigate = useNavigate();
   const { title, id, posterPath } = props.movie.movieContext;
   const userId = localStorage.getItem("userId");
 
@@ -25,6 +27,7 @@ const ReviewModal = (props) => {
       try {
         await api.post('review', reviewData);
         alert('Review enviado com sucesso!');
+        navigate('/profile');
       } catch (error) {
         alert('Erro ao enviar review');
       }

@@ -22,12 +22,12 @@ input[type=text]:focus {
     flex-direction: column;
     position: absolute;
     background-color: #FFF5F5;
-    left: 210px;
+    left: 190px;
     right: 80px;
     border-radius: 10px;
-    padding: 12px;
     z-index: 10;
     border: 1px solid #77728D;
+    width: 1000px;
 }
 .movie-selected-from-search{
     padding: 12px;

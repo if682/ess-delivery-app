@@ -7,6 +7,7 @@ import "./styles.css";
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
+import WithoutReviews from "../../components/WithoutReviews";
 
 const port = 4001;
 
@@ -74,11 +75,13 @@ function MovieInfo() {
           Reviews
         </div>
         <hr className="reviewsHr" />
-        {movieReviews?.reviews?.map((review, index) => {
+
+        {movieReviews?.reviews?.length === 0 && <WithoutReviews text={"This movie has no reviews yet."} />}
+
+        {movieReviews && movieReviews?.reviews?.map((review, index) => {
           return (
             <>
               <div key={review.author.name} className="singleReview">
-
                 <img
                   className="singleReviewImage"
                   src={review.author.photo ? review.author.photo : '../../assets/avatar-default.png'}
