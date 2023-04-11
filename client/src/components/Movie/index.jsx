@@ -8,7 +8,6 @@ const lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => lis
 const Movie = ({ poster, title, movieId, year }) => {
   const { handleAddToMovielistClick,
           handleLikeClick,
-          handleMovieClick
         } = HandleUserActions();
   
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -30,12 +29,12 @@ const Movie = ({ poster, title, movieId, year }) => {
           )}
         </button>
 
-        <button className="like-button" onClick={() => handleLikeClick(title)}>
+        <button className="like-button" onClick={() => handleLikeClick(movieId)}>
           <img src="../../assets/like-icon.svg" alt="Ícone de like" />
         </button>
       </div>
 
-      <div className="poster-container" onClick={() => handleMovieClick()} >
+      <div className="poster-container" >
         <img src={poster} alt="Poster do filme" />
       </div>
 

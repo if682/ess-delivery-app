@@ -31,8 +31,61 @@ const HandleUserActions = () => {
     navigate(path);
   };
 
-  const handleLikeClick = (title) => {
-    alert(`Curtiu o filme ${title}`);
+  const handleLikeClick = async (movieId) => {
+    const movieData = await getMovieInfo(movieId);
+  
+    try{
+      let response = await fetch(`http://localhost:${port}/list/${userId}/Curtidos`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId,
+            listName: "Curtidos",
+            movieId: movieData.id.toString(),
+            title: movieData.title,
+            cover: movieData.poster_path,
+            description: movieData.overview,
+          }),
+      });
+  
+      if(response.ok){
+          console.log(response);
+          console.log("O filme foi curtido.");
+          alert("Curtido!");
+      }else{
+          console.log("Não consegui curtir o filme.");
+          const userConfirmation = window.confirm(`Tem certeza que deseja descurtir o filme"?`);
+        
+          if (userConfirmation) {
+            try {
+              let response = await fetch(`http://localhost:${port}/list/${userId}/Curtidos`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  userId: userId, 
+                  listName: "Curtidos",
+                  movieId: movieId.toString(),
+                }),
+              });
+        
+              if (response.ok) {
+                console.log("DELETE realizado com sucesso.");
+                alert("Descurtido!");
+              } else {
+                console.log("Ocorreu um erro no DELETE.");
+              }
+            } catch (err) {
+              console.log(err);
+            }
+          }
+        }
+      } catch (err) {
+          console.log(err);
+        }
   };
 
   const getMovieInfo = async (movieId) => {
@@ -65,17 +118,13 @@ const HandleUserActions = () => {
       if(response.ok){
           console.log(response);
           console.log("O filme foi adicionado a lista.");
+          alert("O filme foi adicionado a lista.");
       }else{
           console.log("Não consegui adicionar o filme a lista.");
       }
     }catch(error){
       console.log(error);
     }
-  };
-
-  const handleMovieClick = () => {
-    let path = `/movieinfo`;
-    navigate(path);
   };
 
   return {
@@ -86,7 +135,6 @@ const HandleUserActions = () => {
     handleUserMovielistsClick,
     handleLikeClick,
     handleAddToMovielistClick,
-    handleMovieClick,
     getMovieInfo,
   };
 };

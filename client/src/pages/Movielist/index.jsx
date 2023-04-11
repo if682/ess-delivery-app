@@ -34,7 +34,7 @@ const Movielist = () => {
       
       // verifica se o ano digitado é um número
       if (/^\d+$/.test(selYear)) {
-        filteredMovies = filteredMovies.filter(movie => movie.year === parseInt(selYear));
+        filteredMovies = filteredMovies.filter(movie => movie.release_date.substring(0, 4) === selYear);
       }
       
       else {
@@ -46,7 +46,7 @@ const Movielist = () => {
       const selGenre = prompt("Digite o gênero que deseja filtrar:");
     
       if (selGenre) {
-        filteredMovies = filteredMovies.filter(movie => movie.genre.includes(selGenre));
+        filteredMovies = filteredMovies.filter(movie => movie.genres.name.includes(selGenre));
       }
     }
 
@@ -55,7 +55,7 @@ const Movielist = () => {
       filteredMovies = [...originalMovies];
     }
 
-    //setUserMovielist(filteredMovies);
+    setMovies(filteredMovies);
   };
   
   function handleSortOptionChange(e) {
@@ -66,11 +66,11 @@ const Movielist = () => {
     let sortedMovies = [...originalMovies];
   
     if (sortOption === "year-asc") {
-      sortedMovies.sort((a, b) => a.year - b.year);
+      sortedMovies.sort((a, b) => a.release_date.substring(0, 4) - b.release_date.substring(0, 4));
     }
     
     else if (sortOption === "year-desc") {
-      sortedMovies.sort((a, b) => b.year - a.year);
+      sortedMovies.sort((a, b) => b.release_date.substring(0, 4) - a.release_date.substring(0, 4));
     }
     
     else if (sortOption === "alphabetical") {
@@ -82,7 +82,7 @@ const Movielist = () => {
       sortedMovies = [...originalMovies];
     }
   
-    //setUserMovielist(sortedMovies);
+    setMovies(sortedMovies);
   };
 
   const handleDeleteMovieFromListClick = (event, title) => {
@@ -155,7 +155,7 @@ const Movielist = () => {
       <Header />
       <MovielistHeader userAvatar="../../assets/avatar-default.png" username={username} listName={listName} />
       
-      {/*<div className="filter-sort-icons">
+      <div className="filter-sort-icons">
         <div className="filter-container">
           <div className="filter-dropdown">
             <select onChange = {(e) => handleFilterOptionChange(e)}>
@@ -179,7 +179,7 @@ const Movielist = () => {
 
           <button className="sort-button" onClick={() => handleSortClick()}>Sort</button>
         </div>
-      </div>*/}
+      </div>
       
       <div className="movies-grid">
         {movies && movies.map((movie) => (
