@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import Review from "./Review";
 import api from "../../services/api";
-
-
+import WithoutReviews from "../WithoutReviews";
 
 const ProfileReviewsList = (props) => {
 
@@ -28,7 +27,7 @@ const ProfileReviewsList = (props) => {
       {props.data.reviews?.length ? (props.data.reviews.map((review) => (
             <Review review={review} />
           ))) : (
-            <h2>This user hasn't registered any reviews yet.</h2>
+            <WithoutReviews text={"This user hasn't registered any reviews yet."} />
           )}
 
     </div>

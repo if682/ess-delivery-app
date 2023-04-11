@@ -7,6 +7,11 @@
     margin-top: 47px;
     margin-right: 40px;
     margin-left: 50px;
+    width: 1200px;
+}
+
+.avatar-container{
+    display: flex;
 }
 
 .avatar-container img{
