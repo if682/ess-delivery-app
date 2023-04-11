@@ -12,6 +12,7 @@ const Profile = () => {
   const userId = localStorage.getItem("userId");
 
   const [userReviews, setUserReviews] = useState();
+  const [userHistory, setUserHistory] = useState([]);
 
   useEffect(() => {
       const fetchUserReviews = async () => {
@@ -22,7 +23,33 @@ const Profile = () => {
             alert("Erro ao pegar reviews do usuário");
           }
         };
+
+        const fetchUserHistory = async () => {
+          try {
+            const response = await api.get(`list/${userId}/Historico`);
+            console.log(response.data);
+            console.log(Object.values(response.data));
+            console.log(Object.values(response.data).flat());
+            setUserHistory(Object.values(response.data).flat()); // o histórico é um array contendo os moviesId
+          } catch (error) {
+            alert("Erro ao pegar filmes do histórico do usuário");
+          }
+        };
+
+        const fetchUserLists = async () => {
+          try {
+            const response = await api.get(`list/${userId}`);
+            let data = await response.json();
+            localStorage.setItem("userLists", JSON.stringify(Object.values(data).flat()));
+            console.log("GET realizado com sucesso.");
+            } catch (err) {
+            console.log(err);
+          }
+        };
+
         fetchUserReviews();
+        fetchUserHistory();
+        fetchUserLists();
     }, []);
 
     const filteredReviews = Object.values(
@@ -44,7 +71,7 @@ const Profile = () => {
     if (tab === 'reviews') {
       return <ProfileReviewsList data={userReviews} />;
     } else {
-      return <ProfileFilmsList movies={filteredReviews} />;
+      return <ProfileFilmsList movies={userHistory} />;
     }
   };
   return (

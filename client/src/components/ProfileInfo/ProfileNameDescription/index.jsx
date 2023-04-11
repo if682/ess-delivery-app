@@ -3,10 +3,10 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const NameDescription = () => {
+  const userId = localStorage.getItem("userId");
   const [userData, setUserData] = useState("");
 
   let navigate = useNavigate();

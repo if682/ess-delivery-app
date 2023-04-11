@@ -8,7 +8,6 @@ interface IEditUserUseCaseRequest {
     username: string
     email: string
     description: string
-    password: string
     birthdate: Date
     phone: string | null
     location: string | null
@@ -27,16 +26,9 @@ export class EditUserUserUseCase {
         description,
         username,
         birthdate,
-        password,
         location,
         phone,
     }: IEditUserUseCaseRequest): Promise<IEditUserUseCaseReply> {
-
-        if (!isValidPassword(password)) {
-            throw new Error("Unvalid Password.");
-        }
-
-        const password_hash = await hash(password, 6);
 
         const user = await this.usersRepository.findByUsername(username);
 
@@ -49,7 +41,6 @@ export class EditUserUserUseCase {
         user.description = description;
         user.username = username;
         user.birthdate = birthdate;
-        user.password = password_hash;
         user.location = location;
         user.phone = phone;
 
