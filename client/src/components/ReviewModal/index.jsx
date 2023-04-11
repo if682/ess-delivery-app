@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import Rating from "./Rating";
 import api from "../../services/api";
+import StarRating from "./StarRating";
 
 const ReviewModal = (props) => {
 
@@ -65,7 +66,7 @@ const ReviewModal = (props) => {
         </div>
         <p>Add your review about this movie below:</p>
         <textarea value={reviewText} onChange={handleTextChange} />
-        <Rating defaultRating={rating} onRatingChange={handleRatingChange} />
+        <StarRating defaultRating={rating} onRatingChange={handleRatingChange}/>
         <button onClick={handleSubmit}>Save</button>
     </div>
   );
