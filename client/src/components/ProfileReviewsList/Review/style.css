@@ -28,6 +28,10 @@
     color: #F4A4A4;
 }
 
+.review-text p{
+    font-size: 14px;
+}
+
 .review-title{
     display: flex;
     justify-content: flex-start;
