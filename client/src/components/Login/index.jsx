@@ -1,15 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../../Context/LoginContext";
-import { useContext } from "react";
 
 const port = 4001;
 
 const LoginBox = () => {
-
-  const [userId, setUserId] = useContext(LoginContext)
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -31,7 +26,7 @@ const LoginBox = () => {
             console.log("Passou ok")
             setUsername("");
             setPassword("");
-            setUserId(id => ({...id, userId: resJson.id}))
+            localStorage.setItem("userId", resJson.id)
             navigate(`/profile`)
         }else{
             alert("Usuário/Senha não cadastrado")

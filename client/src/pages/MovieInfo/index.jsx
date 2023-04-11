@@ -7,7 +7,6 @@ import "./styles.css";
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { LoginContext } from "../../Context/LoginContext";
 
 const port = 4001;
 
@@ -21,8 +20,7 @@ function MovieInfo() {
   };
 
   const movieId = context.id;
-  const [userContext, setUserContext] = useContext(LoginContext)
-  const userId = userContext.userId
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const sendMovieToHistorico = async () =>{
