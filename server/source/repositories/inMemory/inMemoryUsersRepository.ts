@@ -17,6 +17,7 @@ export class InMemoryUsersRepository implements IUserRepository{
             phone: null,
             birthdate: new Date(),
             email: data.email,
+            description: data.description || "",
             passwordResetToken: null,
             resetTokenExpires: null,
             photo: null
