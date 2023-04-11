@@ -8,13 +8,12 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
         username: z.string(),
         email: z.string().email(),
         description: z.string().nullable(),
-        password: z.string(),
         birthdate: z.string().datetime(),
         phone: z.string().nullable(),
         location: z.string().nullable(),
     });
 
-    const { name, username, email, description,  password, birthdate, phone, location } = registerBodySchema.parse(request.body);
+    const { name, username, email, description, birthdate, phone, location } = registerBodySchema.parse(request.body);
 
     try {
         const editUserUseCase = makeEditUserUseCase();
@@ -24,7 +23,6 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
             username, 
             email,
             description: description || "",
-            password, 
             birthdate: new Date(birthdate), 
             phone, 
             location,
@@ -34,5 +32,5 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
         throw err;
     }
 
-    return reply.status(201).send();
+    return reply.status(200).send();
 }
