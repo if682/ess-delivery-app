@@ -88,11 +88,7 @@ const EditProfileFormsSection = () => {
             
             <div className="input-row">
                 <input className="first-input" type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
-                <input className="second-input" type="text" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-            </div>
-
-            <div className="input-row">
-                <input className="description-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+                <input className="second-input" type="text" value={description} placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
             </div>
 
             <div className="submit-button-container">
