@@ -4,7 +4,6 @@ import "./style.css";
 
 const Review = (props) => {
 
-  console.log(props.review)
   return (
     <div className="review-container">
 
