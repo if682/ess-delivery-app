@@ -1,6 +1,7 @@
 import React from "react";
 import { isInputNull } from "../../../shared/functions/isInputNull";
 import { isDuplicateCategory } from "../../../shared/functions/isDuplicateCategory";
+import Button from 'react-bootstrap/Button';
 
 
 export default function AddCategory(props) {
@@ -58,31 +59,31 @@ export default function AddCategory(props) {
     }
   }
 
-  return (
-    <div>
-      <h1>Categories</h1>
-      <button onClick={handleAddCategoryClick} data-testid="add-category-button">Add category</button>
-      {showForm && (
-        <form onSubmit={handleConfirmClick}>
-          <label>
-            Category name:
-            <input
-              placeholder="Nome"
-              type="text"
-              value={newCategory}
-              onChange={handleNewCategoryChange}
-              data-testid="add-category-input"
-            />
-          </label>
-          <button type="button" onClick={handleCancelClick} data-testid="cancel-button">
-            Cancel
-          </button>
-          <button type="submit" data-testid="create-category-button">
-            Confirm
-          </button>
-        </form>
-      )}
-      {warningMessage && <p>{warningMessage}</p>}
-    </div>
-  );
+    return (
+        <div>
+            <h1>Categories</h1>
+            <Button onClick={handleAddCategoryClick} data-testid = "add-category-button">Add category</Button>
+            {showForm && (
+                <form onSubmit={handleConfirmClick}>
+                    <label>
+                        Category name:
+                        <input
+                            placeholder="Nome"
+                            type="text"
+                            value={newCategory}
+                            onChange={handleNewCategoryChange}
+                            data-testid = "add-category-input"
+                        />
+                    </label>
+                    <Button type="button" onClick={handleCancelClick} data-testid = "cancel-button">
+                        Cancel
+                    </Button>
+                    <Button type="submit" data-testid = "create-category-button">
+                        Confirm
+                    </Button>
+                </form>
+            )}
+            {warningMessage && <p>{warningMessage}</p>}
+        </div>
+    );
 }
