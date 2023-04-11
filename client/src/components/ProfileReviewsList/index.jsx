@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./style.css";
 import Review from "./Review";
-import api from "../../services/api";
 import WithoutReviews from "../WithoutReviews";
 
 const ProfileReviewsList = (props) => {
