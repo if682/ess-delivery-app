@@ -33,7 +33,6 @@ const UrlRoutes = () => {
 		    <Route path="/total-pedidos" element={<OrderTotals />} />
 		    <Route path="/total-pedidos/restaurante/:restaurantID" element={<RestaurantTotal />} />
         <Route path="/meus-dados" element={<MyData />} />
-        <Route path="/total-pedidos/restaurante/:restaurantID" element={<RestaurantTotal />} />
         <Route path="*" element={<h1>404 - Página não Encontrada</h1>} />
       </Routes>
     </BrowserRouter>
