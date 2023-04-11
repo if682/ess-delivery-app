@@ -6,7 +6,7 @@ let nameField,usernameField, emailField, descriptionField, submitButton
 const mockLog = jest.spyOn(console, 'log');
 
 beforeEach(() =>{
-    const { getByTestId, getByRole } = render(
+    const { getByTestId } = render(
         <Router>
             <EditProfileFormsSection />
         </Router>
