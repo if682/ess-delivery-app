@@ -37,4 +37,25 @@ describe("Authenticate use case", () => {
 
         expect(passwordMatches).toEqual(true);
     })
+
+    test("should not be able to change password when tokens dont match", async () => {
+        const token = randomBytes(20).toString('hex');
+
+        await inMemoryUsersRepository.create({
+            email: "joao@email.com",
+            username: "joao",
+            name: "Joao Silva",
+            password: await hash("Senha!12345", 6),
+            birthdate: new Date(),
+            passwordResetToken: null,
+            resetTokenExpires: new Date(),
+        })
+
+        await expect(() => sut.handle({
+            email: "joao@email.com",
+            token: token,
+            newPassword: "NovaSenha!12345",
+            repeatNewPassword: "NovaSenha!12345"
+        })).rejects.toBeInstanceOf(Error)
+    })
 })
