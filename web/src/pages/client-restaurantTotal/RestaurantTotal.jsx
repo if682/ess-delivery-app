@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
-const TotalPedidosPage = () => {
+const TotalPedidosPage = (props) => {
   const { restaurantID } = useParams();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedMonth, setSelectedMonth] = useState(moment().format('YYYY-MM'));
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -13,24 +15,33 @@ const TotalPedidosPage = () => {
       const userOrders = data['2'];
       setOrders(userOrders);
       setIsLoading(false);
-      console.log(orders); // Valor antigo de orders
-      console.log(userOrders); // Valor atualizado de orders
-      console.log(restaurantID); // Valor atualizado de restaurantID (não estava sendo atualizado antes)
     };
 
     fetchOrders();
-  }, [restaurantID]); // Removido isLoading das dependências
+  }, []);
+
+  const filteredOrders = orders.filter(order => {
+    const orderMonth = moment(order.date).format('YYYY-MM');
+    return order.place === restaurantID && orderMonth === selectedMonth;
+  });
 
   return (
     <div>
       <h1>Total de Pedidos do Restaurante {restaurantID}</h1>
+      <label htmlFor='monthInput'>Filtrar por data:</label>
+      <input
+        type="month"
+        id="monthInput"
+        value={selectedMonth}
+        onChange={(e) => setSelectedMonth(e.target.value)}
+      />
       {isLoading ? (
         <p>Carregando...</p>
         
       ) :
-      orders.length > 0 ? (
+      filteredOrders.length > 0 ? (
         <ul>
-          {orders.map(order => (
+          {filteredOrders.map(order => (
             <li key={order.id}>
               <strong>ID do Pedido:</strong> {order.id}<br />
               <strong>Restaurante:</strong> {order.place}<br />
