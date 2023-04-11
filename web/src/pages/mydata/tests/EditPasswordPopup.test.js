@@ -21,8 +21,8 @@ describe("EditPasswordPopup", () => {
     it('renders correctly', () => {
         const { container } = render(<EditPasswordPopup {...props} />);
 
-//checa se o que foi renderizado corresponde ao snapshot do componente
-expect(container.firstChild).toMatchSnapshot();
+       //checa se o que foi renderizado corresponde ao snapshot do componente
+       expect(container.firstChild).toMatchSnapshot();
     });
 
 //Verifica se a função mockada onHide é chamada quando se clica no botão de cancelar
