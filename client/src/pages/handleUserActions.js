@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const HandleUserActions = () => {
+  const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
   const handleUserAvatarClick = () => {

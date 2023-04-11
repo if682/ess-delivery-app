@@ -8,9 +8,14 @@ import HandleUserActions from "../../pages/handleUserActions.js";
 import { MovieContext } from "../../Context/MovieContext";
 import { useContext } from "react";
 
-const lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
 
 function MovieInfoOptions(movieContext) {
+  let lists
+  if(localStorage.getItem("userLists") != null){
+    lists = JSON.parse(localStorage.getItem("userLists")).filter((list) => list.name !== "Curtidos" && list.name !== "Historico");
+  }else{
+    lists = []
+  }
   const { handleAddToMovielistClick,
           handleLikeClick,
         } = HandleUserActions();
