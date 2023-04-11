@@ -6,10 +6,11 @@ import "./styles.css";
 import HandleUserActions from "../handleUserActions";
 import api from "../../services/api";
 
-const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const Likes = () => {
+  const userId = localStorage.getItem("userId");
+
   const listName = "Likes";
   const [sortOption, setSortOption] = useState("select");
   const [filterOption, setFilterOption] = useState("select");

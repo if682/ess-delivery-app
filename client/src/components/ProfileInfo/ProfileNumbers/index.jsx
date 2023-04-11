@@ -3,11 +3,10 @@ import { useEffect } from "react";
 import "./style.css";
 import { useContext, useState } from "react";
  
-const userId = localStorage.getItem("userId");
 const port = 4001;
 
 const ProfileNumbers = () => {
-
+    const userId = localStorage.getItem("userId");
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
