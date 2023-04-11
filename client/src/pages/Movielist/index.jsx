@@ -85,23 +85,45 @@ const Movielist = () => {
     setMovies(sortedMovies);
   };
 
-  const handleDeleteMovieFromListClick = (event, title) => {
+  const handleDeleteMovieFromListClick = async (event, movieId) => {
     event.stopPropagation();
     
     // exibe uma janela de diálogo perguntando ao usuário se ele realmente deseja excluir o filme da lista
-    const userConfirmation = window.confirm(`Tem certeza que deseja excluir o filme "${title}" da lista?`);
-    
+    const userConfirmation = window.confirm(`Tem certeza que deseja excluir o filme da lista?`);
+
     if (userConfirmation) {
-      // cria um novo array de filmes sem o filme selecionado
-      const newMovies = movies.filter(movie => movie.title !== title);
+      try {
+        // realiza a requisição DELETE para remover o filme da lista
+        let response = await fetch(`http://localhost:${port}/list/${userId}/${listName}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userId: userId, 
+            listName: listName,
+            movieId: movieId.toString(),
+          }),
+        });
 
-      // atualiza a lista de filmes original com o novo array sem o filme selecionado
-      setOriginalMovies([...newMovies]);
+        if (response.ok) {
+          // cria um novo array de filmes sem o filme selecionado
+          const newMovies = movies.filter(movie => movie.id !== movieId);
 
-      // atualiza o estado dos filmes com o novo array sem o filme selecionado
-      setMovies(newMovies);
+          // atualiza a lista de filmes original com o novo array sem o filme selecionado
+          setOriginalMovies([...newMovies]);
+
+          // atualiza o estado dos filmes com o novo array sem o filme selecionado
+          setMovies(newMovies);
+          alert("Filme removido da lista com sucesso.");
+        } else {
+          console.log("Ocorreu um erro ao remover o filme da lista.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }
+  };
 
   useEffect(() => {
     // atualiza a lista de filmes na interface sempre que o estado de movies for atualizado
@@ -185,7 +207,7 @@ const Movielist = () => {
         {movies && movies.map((movie) => (
           <div className="movie-wrapper" key={movie.id}>
             <Movie poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} title={movie.title} movieId={movie.id} year={movie.release_date.substring(0, 4)}/>
-            <button className="delete-movie" onClick={(event) => handleDeleteMovieFromListClick(event, movie.title)}>Delete</button>
+            <button className="delete-movie" onClick={(event) => handleDeleteMovieFromListClick(event, movie.id)}>Delete</button>
           </div>
         ))}
       </div>
