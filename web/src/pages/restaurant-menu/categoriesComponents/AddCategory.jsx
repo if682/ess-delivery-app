@@ -5,59 +5,59 @@ import Button from 'react-bootstrap/Button';
 
 
 export default function AddCategory(props) {
-    const [showForm, setShowForm] = React.useState(false);
-    const [newCategory, setNewCategory] = React.useState("");
-    const [warningMessage, setWarningMessage] = React.useState(null);
-    const [currentCategories, setCurrentCategories] = React.useState([]);
+  const [showForm, setShowForm] = React.useState(false);
+  const [newCategory, setNewCategory] = React.useState("");
+  const [warningMessage, setWarningMessage] = React.useState(null);
+  const [currentCategories, setCurrentCategories] = React.useState([]);
 
-    React.useEffect(() => {
-        fetch("http://localhost:3001/categories")
-            .then(response => response.json())
-            .then(data => {
-                setCurrentCategories(data);
-            });
-    }, []);
+  React.useEffect(() => {
+    fetch("http://localhost:3001/categories")
+      .then(response => response.json())
+      .then(data => {
+        setCurrentCategories(data);
+      });
+  }, []);
 
-    function handleNewCategoryChange(event) {
-        setNewCategory(event.target.value);
+  function handleNewCategoryChange(event) {
+    setNewCategory(event.target.value);
+  }
+
+  function handleAddCategoryClick() {
+    setShowForm(true);
+    props.show()
+  }
+
+  function handleCancelClick() {
+    setShowForm(false);
+    setNewCategory("");
+    setWarningMessage(null);
+  }
+
+  async function handleConfirmClick(event) {
+    event.preventDefault();
+
+    if (isInputNull(newCategory)) {
+      setWarningMessage("Please enter a category name!");
+    } else if (
+      isDuplicateCategory(newCategory, currentCategories)
+    ) {
+      setWarningMessage("There is already a category with that name!");
+    } else {
+      let category = { id: Date.now(), name: newCategory };
+
+      await fetch("http://localhost:3001/categories", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(category)
+      });
+
+      setShowForm(false);
+      setNewCategory("");
+      props.onHide()
     }
-
-    function handleAddCategoryClick() {
-        setShowForm(true);
-        props.show()
-    }
-
-    function handleCancelClick() {
-        setShowForm(false);
-        setNewCategory("");
-        setWarningMessage(null);
-    }
-
-    async function handleConfirmClick(event) {
-        event.preventDefault();
-        
-        if (isInputNull(newCategory)) {
-            setWarningMessage("Please enter a category name!");
-        } else if (
-            isDuplicateCategory(newCategory, currentCategories)
-        ) {
-            setWarningMessage("There is already a category with that name!");
-        } else {
-            let category = { id: Date.now(), name: newCategory };
-
-            await fetch("http://localhost:3001/categories", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(category)
-            });
-
-            setShowForm(false);
-            setNewCategory("");
-            props.onHide()
-        }
-    }
+  }
 
     return (
         <div>
