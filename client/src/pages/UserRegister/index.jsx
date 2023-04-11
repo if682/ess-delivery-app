@@ -17,11 +17,10 @@ const UserRegister = () => {
 
     let handleSubmit = async (e) =>{
         e.preventDefault();
-        console.log(dateOfBirth)
         const date = new Date(dateOfBirth);
         const iso = date.toISOString();
-        console.log(iso)
         try{
+            console.log("Enviei ok")
             let res = await fetch(`http://localhost:${port}/register`, {
                 method: "POST",
                 headers: {
@@ -74,30 +73,30 @@ const UserRegister = () => {
             <div class = "w-3/4">
                 <form class = "flex flex-col">
                     <div class = "flex justify-between my-2">
-                        <input value={firstName} type="text" placeholder="Name*" class="w-2/3 bg-none"  onChange={(e) => setFirstName(e.target.value)}/>
-                        <input value={password} type="text" placeholder="Password*" class="w-2/3 bg-none" onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
+                        <input data-testId="name" value={firstName} type="text" placeholder="Name*" class="w-2/3 bg-none" onChange={(e) => setFirstName(e.target.value)} required />
+                    <input required data-testId = "password" value={password} type="text" placeholder="Password*" class="w-2/3 bg-none" onChange={(e) => setPassword(e.target.value)}/>
+                    </div> 
 
                     <div class = "flex justify-between my-2">
-                        <input value={username} type="text" placeholder="Username*" class="w-2/3 bg-none" onChange={(e) => setUserName(e.target.value)}/>
-                        <input value={email} type="text" placeholder="Email*" class="w-2/3 bg-none" onChange={(e) => setEmail(e.target.value)}/>
+                        <input required data-testId = "username" value={username} type="text" placeholder="Username*" class="w-2/3 bg-none" onChange={(e) => setUserName(e.target.value)}/>
+                        <input required data-testId = "email" value={email} type="text" placeholder="Email*" class="w-2/3 bg-none" onChange={(e) => setEmail(e.target.value)}/>
                     </div>
 
                     <div value={dateOfBirth} class = "my-2 w-auto flex justify-between">
-                        <input type="date" class="
+                        <input required data-testId = "birthday" type="date" class="
                         p-4 pr-[40px] bg-[#D9D9D9] text-[#77728D] mx-8
                         rounded-[10px] h-[50px] w-[512px]
                         " onChange={(e) => setdateOfBirth(e.target.value)}/>
-                        <input value={phone} type="phone" placeholder="Phone" class="
+                        <input required data-testId = "phone" value={phone} type="phone" placeholder="Phone" class="
                         p-4 pr-[40px] bg-[#D9D9D9] text-[#77728D] mx-8
                         rounded-[10px] h-[50px] w-[512px]
                         " onChange={(e) => setPhone(e.target.value)}/>
                     </div>
 
-                    <input value={location} type="text" placeholder="Location" class="w-auto my-2 bg-none" onChange={(e) => setLocation(e.target.value)}/>
+                    <input required data-testId = "location" value={location} type="text" placeholder="Location" class="w-auto my-2 bg-none" onChange={(e) => setLocation(e.target.value)}/>
 
                     <div class = "flex justify-center">
-                        <input type="submit" value="Register" className="my-2 w-[217px] h-[47px] bg-[#F4A4A4] text-white" onClick={handleSubmit}/>
+                        <input required data-testId = "submit" type="submit" value="Register" className="my-2 w-[217px] h-[47px] bg-[#F4A4A4] text-white" onClick={handleSubmit}/>
                     </div>
                 </form>
             </div>
