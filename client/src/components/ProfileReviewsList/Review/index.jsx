@@ -7,7 +7,7 @@ const Review = (props) => {
   return (
     <div className="review-container">
 
-       <img src={props.review.movieCover} />
+       <img src={props.review.movieCover} alt="Movier poster"/>
         <div className="review-text">
 
             <div className="review-title">
