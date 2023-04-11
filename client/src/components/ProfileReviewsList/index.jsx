@@ -3,19 +3,17 @@ import "./style.css";
 import Review from "./Review";
 import api from "../../services/api";
 
-const mockedUserId = "ca22d758-eea5-4ddb-a0a0-437a8d596347"
 
 
 const ProfileReviewsList = (props) => {
 
   const [userReviews, setUserReviews] = useState();
-
-  useEffect(() => {console.log(userReviews)}, [userReviews]);
+  const userId = localStorage.getItem("userId");
   
   useEffect(() => {
       const getUserReviews = async () => {
           try {
-            const response = await api.get(`review/${mockedUserId}`);
+            const response = await api.get(`review/${userId}`);
             setUserReviews(response.data);
           } catch (error) {
             alert("Erro ao pegar reviews do usuário");
