@@ -1,11 +1,9 @@
 import React from "react";
 import "./style.css";
 
-
 const Review = (props) => {
 
-
-  const createdAtDate = new Date(props.review.createdAt);
+  const createdAtDate = new Date(props.createdAt);
 
   const day = createdAtDate.getDate();
   const month = createdAtDate.getMonth() + 1;
@@ -19,22 +17,21 @@ const Review = (props) => {
   return (
     <div className="review-container">
 
-       <img src={props.review.movieCover} alt="Movier poster"/>
+       <img src={props.movieCover} alt="Movier poster"/>
         <div className="review-text">
 
             <div className="review-title">
-                <h2>{props.review.title}</h2>
-                {props.review.rating >= 1 && 
+                <h2>{props.title}</h2>
+                {props.rating >= 1 && 
                   <>
                     <img src="../../assets/star-icon.svg" alt="Rating star icon"/>
-                    <h3>{props.review.rating}/5</h3>
+                    <h3>{props.rating}/5</h3>
                   </>
                 }
             </div>
-            <p>Logged review on {formattedCreatedAt}</p>
-            <h2>{props.review.review}</h2>
+            <p className="review-date">{props.createdAt}</p>
+            <h2>{props.review}</h2>
         </div>
-        
     </div>
   );
 };
