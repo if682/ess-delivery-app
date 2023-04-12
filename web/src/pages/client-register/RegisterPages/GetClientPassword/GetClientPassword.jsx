@@ -1,11 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
-import "../../RegisterClient.css"
 import "./GetClientPassword.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate, useLocation} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
 
 
 
@@ -19,10 +18,12 @@ export const GetClientPassword = (props) => {
     const {state} = useLocation()
     const { name, email} = (state != null) ? state : props.state;
 
+    //warningMessage recebe o valor null toda vez que name tem seu valor atualizaddo
     useEffect(() => {
         setWarningMessage(null)
     }, [password])
 
+    //altera o estado da checkbox, checked ou not checked
     const handleOnChange = () => {
         setChecked(!checked);
       };
@@ -30,16 +31,20 @@ export const GetClientPassword = (props) => {
 
 
     async function getPassword() {
+        //verifica se a password ou/e a passwordConfirmation possui valor nulo
         if(isInputNull(password) || isInputNull(passwordConfirmation)){
             setWarningMessage('Preencha todos os campos!')
         }
+        //checa se a senha e a sua confirmação são diferentes
         else if(password != passwordConfirmation){
             setWarningMessage('As senhas não coincidem')
         }
+        //verifica se a checkbox está no estado "checked"
         else if(checked == false){
             setWarningMessage('Aceite os termos de privacidade')
         }
         else{
+            //adiciona um novo cliente na db
             let item = {"name": name, "email": email, "password": password}
             await fetch('http://localhost:3001/clients', {
                   method: 'POST',
@@ -48,21 +53,18 @@ export const GetClientPassword = (props) => {
                   },
                   body: JSON.stringify(item),
                 });
+            //cria um token de acesso para o novo cliente
             Cookies.set('token', email, { expires: 7 });
+            //vai para a página de cadastro finalizado
             navigate('/cadastro-finalizado');
         }
            
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='register_password_title'>Estamos quase lá, {name}!</text>
-                    <br></br>
                     <text className='register_password_text'>Crie uma senha para a sua conta</text>
                     <div className='display_password_inputs'>
                     <input
@@ -88,10 +90,8 @@ export const GetClientPassword = (props) => {
                     </div>
                     
                     <Button onClick={() => getPassword()} className='register_password_button'>Continuar  ></Button>
-                </>
-                
-            </div>
-        </div>
+            </>
+        </RegisterPageContainer>
     );
 
 

@@ -6,6 +6,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PrimaryButton from "../../../components/atoms/primary-button/PrimaryButton";
 import "./AddCategory.scss"
 import CopyLink from "../../../components/atoms/copy-link/CopyLink.js";
+import Button from 'react-bootstrap/Button';
 
 export default function AddCategory(props) {
   const [showForm, setShowForm] = React.useState(true);
@@ -63,31 +64,31 @@ export default function AddCategory(props) {
     }
   }
 
-  return (
-    <div className='add-category-root'>
-      <div className='header'>
-        <div className='title-description'>
-          <h1>Cardápio</h1>
-          <p>Gerencie por essa página todos os itens e categorias cadastrados no seu restaurante.</p>
+    return (
+        <div>
+            <h1>Categories</h1>
+            <Button onClick={handleAddCategoryClick} data-testid = "add-category-button">Add category</Button>
+            {showForm && (
+                <form onSubmit={handleConfirmClick}>
+                    <label>
+                        Category name:
+                        <input
+                            placeholder="Nome"
+                            type="text"
+                            value={newCategory}
+                            onChange={handleNewCategoryChange}
+                            data-testid = "add-category-input"
+                        />
+                    </label>
+                    <Button type="button" onClick={handleCancelClick} data-testid = "cancel-button">
+                        Cancel
+                    </Button>
+                    <Button type="submit" data-testid = "create-category-button">
+                        Confirm
+                    </Button>
+                </form>
+            )}
+            {warningMessage && <p>{warningMessage}</p>}
         </div>
-        <CopyLink text={url}></CopyLink>
-      </div>
-      <div className='add-category-area'>
-        {showForm && (
-          <form onSubmit={handleConfirmClick}>
-            <input
-              placeholder="Digite categoria a ser adicionada"
-              type="text"
-              value={newCategory}
-              onChange={handleNewCategoryChange}
-              data-testid="add-category-input"
-            />
-            <PrimaryButton buttonContent="Adicionar categoria" type="submit" data-testid="create-category-button">
-            </PrimaryButton>
-          </form>
-        )}
-        {warningMessage && <p>{warningMessage}</p>}
-      </div>
-    </div>
-  );
+    );
 }

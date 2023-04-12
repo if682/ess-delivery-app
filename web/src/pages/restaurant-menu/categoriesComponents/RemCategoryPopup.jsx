@@ -4,9 +4,21 @@ import React from 'react';
 
 export default function RemCategoryPopup(props) {
     async function RemCategory () {
-        await fetch(`http://localhost:3001/categories/${props.category}`, {
+
+        const items = await fetch('http://localhost:3001/items');
+        const itemsJson = await items.json();    
+        itemsJson.forEach(async (item) => {
+            if (item.category === props.category.name) {
+                await fetch(`http://localhost:3001/items/${item.id}`, {
+                    method: "DELETE"
+                })
+            }
+        })
+        
+        await fetch(`http://localhost:3001/categories/${props.category.id}`, {
             method: "DELETE"
         })
+        
     }
 
     return (    

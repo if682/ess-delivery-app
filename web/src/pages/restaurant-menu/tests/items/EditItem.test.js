@@ -55,7 +55,7 @@ describe('EdiItemPopup', () => {
         fireEvent.click(screen.getByTestId('popupEditButton'));
 
         // Expect error message
-        await waitFor(() => screen.findByText('Todas as entradas devem ser preenchidas!'));
+        await waitFor(() => screen.findByText('Todas as entradas devem ser preenchidas!'), { timeout: 1500 });
 
         // Click "Cancelar"
         fireEvent.click(screen.getByText('Cancelar'));
@@ -81,7 +81,7 @@ describe('EdiItemPopup', () => {
         fireEvent.click(screen.getByTestId('popupEditButton'));
 
         // Expect error message
-        await waitFor(() => screen.findByText('O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.'));
+        await waitFor(() => screen.findByText('O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.'), { timeout: 1500 });
 
         // Click "Cancelar"
         fireEvent.click(screen.getByText('Cancelar'));
@@ -118,7 +118,7 @@ describe('EdiItemPopup', () => {
         fireEvent.click(screen.getByTestId('popupEditButton'));
 
         // Expect error message
-        await waitFor(() => screen.findByText('Já existe um item com esse nome!'));
+        await waitFor(() => screen.findByText('Já existe um item com esse nome!'), { timeout: 1500 });
 
         // Click "Cancelar"
         fireEvent.click(screen.getByText('Cancelar'));

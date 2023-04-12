@@ -22,7 +22,7 @@ export function Sidemenu(props) {
         <Icon.Shop />
         <p>Restaurantes</p>
       </Button>
-      <Button className="sidemenu-item restaurant" data-testid="perfil-nav" href="/perfil">
+      <Button className="sidemenu-item restaurant" data-testid="perfil-nav" href="/minha-conta">
         <Icon.Person />
         <p>Perfil</p>
       </Button>
