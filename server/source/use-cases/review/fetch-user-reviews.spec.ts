@@ -50,13 +50,4 @@ describe("Fetch user reviews use case", () => {
         expect(reviews[0].movieId).toEqual("pluto");
        
     })
-
-    test("should not be able to fetch reviews from an inexistent user", async() =>{
-        
-        expect(async() =>
-            await sut.handle({
-                authorId: "JoaoInexistente"
-            })
-        ).rejects.toThrowError('Bad request')
-    })
 }) 

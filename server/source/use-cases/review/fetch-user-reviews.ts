@@ -19,11 +19,11 @@ export class FetchUserReviewsUseCase {
     async handle({
         authorId,
     }: IFetchUserReviewsUseCaseRequest): Promise<IFetchUserReviewsUseCaseReply> {
-        const user = await this.usersRepository.findById(authorId);
+        // const user = await this.usersRepository.findById(authorId);
 
-        if(!user){
-            throw new Error('Bad request')
-        }
+        // if(!user){
+        //     throw new Error('Bad request')
+        // }
 
         const reviews = await this.reviewsRepository.findManyByAuthorId(authorId);
 
