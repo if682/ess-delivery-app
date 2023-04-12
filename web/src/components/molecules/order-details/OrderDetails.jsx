@@ -154,10 +154,10 @@ function OrderDetails({ order }) {
         <InputLabel htmlFor="subject" className="mb-2 input-label">
           Assunto da mensagem
         </InputLabel>
-        <Input id="subject" className="textinput" />
+        <Input id="subject" className="textinput" data-testid="subject-input"/>
 
         <InputLabel htmlFor="message" className="mb-2 mt-4 input-label">Mensagem</InputLabel>
-        <TextareaAutosize id="message" className="textarea" minRows={5} />
+        <TextareaAutosize id="message" className="textarea" minRows={5} data-testid="message-input" />
 
 
           <div className="buttons d-flex flex-row align-items-center justify-content-evenly mt-3 w-100 ps-3 pe-3">

@@ -7,6 +7,7 @@ import './DeactivateAccountPopup.css'
 export const DeactivateAccountPopup = (props) => {
     const navigate = useNavigate();
 
+    //retorna para a página de login e remove o token de acesso do usuário
     function DeactivateAccount(){
         navigate('/login');
         Cookies.remove("token");

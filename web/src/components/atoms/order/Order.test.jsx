@@ -28,7 +28,7 @@ describe('Order', () => {
     paymentMethod: "Cartão de crédito"
   };
 
-  test('verifica se todos os elementos estão sendo renderizados na tela', () => {
+  test('checks that all elements are being rendered on the screen', () => {
     render(<Order {...orderData} />);
 
     expect(screen.getByText(`#${orderData.id}`)).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('Order', () => {
     expect(screen.getByText(orderData.date)).toBeInTheDocument();
   });
 
-  test('exibe os detalhes do pedido corretamente quando o "Detalhes" é clicado', () => {
+  test('displays the order details correctly when the "Detalhes" is clicked', () => {
     render(<Order {...orderData} />);
   
     const toggleButton = screen.getByTestId('toggle-details');
@@ -48,7 +48,7 @@ describe('Order', () => {
     expect(screen.getByText(orderData.paymentMethod)).toBeInTheDocument();
   });
 
-  test('verifica se a função selectOrder é chamada quando o botão "Ajuda" é clicado', () => {
+  test('checks if the selectOrder function is called when the "Ajuda" button is clicked', () => {
     const selectOrderMock = jest.fn();
     render(<Order {...orderData} selectOrder={selectOrderMock} />);
   

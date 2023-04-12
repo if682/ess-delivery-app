@@ -3,6 +3,8 @@ import { EditNamePopup } from "../components/EditName/EditNamePopup";
 
 describe("EditNamePopup", () => {
     let onHideMock, props;
+    
+    //mocka a função onHide e o props recebido pelo popup
     beforeEach(() => {
         onHideMock = jest.fn();
         props = {
@@ -13,7 +15,8 @@ describe("EditNamePopup", () => {
             onHide: onHideMock
         };
     });
-    
+
+    //Verifica se o popup é renderizado corretamente
     it('renders correctly', () => {
         const { container } = render(<EditNamePopup {...props} />);
         expect(container.firstChild).toMatchSnapshot();
@@ -23,6 +26,8 @@ describe("EditNamePopup", () => {
         fireEvent.click(getByText('Cancelar'));
         expect(onHideMock).toHaveBeenCalled();
       });
+
+    //Verifica se a mensagem de erro "Esse campo é de preenchimento obrigatório!" é exibida no popup quando se clica em salvar com a caixa de nome vazio
     it('should display warning message "Esse campo é de preenchimento obrigatório!" if either input field is null', async () => {
         const {getByPlaceholderText, getByText} = render(<EditNamePopup {...props} />);
         const nameField = getByPlaceholderText("Novo nome");
@@ -35,6 +40,7 @@ describe("EditNamePopup", () => {
         expect(warningMessage).toBeInTheDocument();
     });
 
+    //Verifica se a função fetch é chamada para atualizar o nome do usuário quando se clica em salvar com a caixa de texto preenchida
     it("should call the fetch function to update the name when save button is clicked with not null input", async () => {
         global.fetch = jest.fn(() =>
         Promise.resolve({
