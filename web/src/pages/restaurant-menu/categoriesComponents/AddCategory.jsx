@@ -5,7 +5,7 @@ import * as Icon from 'react-bootstrap-icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PrimaryButton from "../../../components/atoms/primary-button/PrimaryButton";
 import "./AddCategory.scss"
-import CopyLink from "../../../components/atoms/copy-link/CopyLink";
+import CopyLink from "../../../components/atoms/copy-link/CopyLink.js";
 
 export default function AddCategory(props) {
   const [showForm, setShowForm] = React.useState(true);

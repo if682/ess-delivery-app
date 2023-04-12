@@ -1,6 +1,30 @@
 {
-  "items": [],
-  "categories": [],
+  "items": [
+    {
+      "id": 1681262236426,
+      "name": "21313",
+      "description": "12312",
+      "price": "12,00",
+      "category": "1qwqe"
+    },
+    {
+      "id": 1681262468057,
+      "name": "2131313",
+      "description": "123213123123",
+      "price": "12,00",
+      "category": "1qwqe"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1681262208196,
+      "name": "1qwqe"
+    },
+    {
+      "id": 1681262218598,
+      "name": "1231323123"
+    }
+  ],
   "clients": [
     {
       "id": 128291,

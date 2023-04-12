@@ -38,9 +38,9 @@
     }
 
     .header-description {
-      display: flex;
-      gap: 200px;
+      display: grid;
       border-top: 2px solid #CBCBCB;
+      grid-template-columns: 5fr 8fr 7fr;
       padding: 0px 30px;
       justify-content: flex-start;
       align-items: center;
