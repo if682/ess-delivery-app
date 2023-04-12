@@ -41,7 +41,7 @@ export const RestaurantMenu = () => {
     <div className="restaurant-menu-root">
       <AddCategory show={() => setAddCatToggle(true)} onHide={() => setAddCatToggle(false)} data-testid='setAdd' />
       <RemCategoryPopup show={remCatToggle[0]} category={remCatToggle[1]} onHide={() => setRemCatToggle(false)} />
-
+      
       <AddItemPopup show={addItemToggle[0]} onHide={() => setAddItemToggle(false)} currentItems={items} category={addItemToggle[1]} />
       <RemItemPopup show={remItemToggle[0]} item={remItemToggle[1]} onHide={() => setRemItemToggle([false, null])} />
       <EdiItemPopup show={ediItemToggle[0]} item={ediItemToggle[1]} onHide={() => setEdiItemToggle([false, null])} />

@@ -7,37 +7,40 @@ import { VerificationCodeInput } from '../../../../components/atoms/verification
 import { WarningText } from '../../../../components/atoms/warning-text/WarningText';
 import "./EditEmailPopup.css"
 import { InputText } from '../../../../components/atoms/input-text/InputText';
+import { validateEmail } from '../../../../shared/functions/ValidateEmail';
 
 export const EditEmailPopup = (props) => {
     const [email, setEmail] = useState("");
     const [warningMessage, setWarningMessage] = useState(null);
     const [clicked, setClicked] = useState(false)
-    
+
+    //warningMessage e clicked recebem os valores null e false sempre que o valor de e-mail é atualizado
     useEffect(() => {
         setWarningMessage(null)
         setClicked(false)
     }, [email])
 
 
-    function validateEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-    }
-
     async function EditEmail () {
+        //clicked assume estado oposto
         setClicked(!clicked)
 
+        //checa se o valor do input não é nulo
         if(isInputNull(email)){
             setWarningMessage('Esse campo é de preenchimento obrigatório!')
         }
+        //checa se o e-mail fornecido possui um formato válido
         else if(!validateEmail(email)){
             setWarningMessage('O e-mail fornecido possui um formato inválido')
         }
+        //checa se o e-mail dado pertence ao registro de outro cliente
         else if(props.currentClients.filter(item => item.email == email).length == 1){
             setWarningMessage('Esse e-mail já está sendo usado')
         }
         else {
             let item = {name: props.name, email: email, password: props.password}
 
+            //Atualiza o valor do e-mail no registro do cliente, o qual é identificado pelo seu id (props.client_id)
             await fetch(`http://localhost:3001/clients/${props.client_id}`, {
                 method: 'PUT',
                 headers: {
@@ -45,6 +48,7 @@ export const EditEmailPopup = (props) => {
                 },
                 body: JSON.stringify(item)
             });
+            //cria um novo token para o e-mail atualizado
             Cookies.set('token', email, { expires: 7 });
         }
     }

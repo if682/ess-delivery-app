@@ -9,19 +9,22 @@ import './EditNamePopup.css'
 export const EditNamePopup = (props) => {
     const [name, setName] = useState("");
     const [warningMessage, setWarningMessage] = useState(null);
-    
+
+    //warningMessage recebe o valor null sempre que o nome é atualizado
     useEffect(() => {
         setWarningMessage(null)
     }, [name])
 
 
     async function EditName () {
+        //checa se o valor de name é nulo
         if(isInputNull(name)){
             setWarningMessage('Esse campo é de preenchimento obrigatório!')
         }
         else {
             let item = {name: name, email: props.email, password: props.password}
 
+            //Atualiza o valor do nome do cliente na db
             await fetch(`http://localhost:3001/clients/${props.client_id}`, {
                 method: 'PUT',
                 headers: {

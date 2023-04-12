@@ -2,8 +2,8 @@ import Button from 'react-bootstrap/Button';
 import {useState, useEffect} from 'react';
 import { isInputNull } from '../../../../shared/functions/isInputNull';
 import "../../RegisterClient.css"
-import { ReactComponent as Logo } from '../../../../shared/assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { RegisterPageContainer } from '../../../../components/atoms/register-page-container/RegisterPageContainer';
 
 export const GetClientName = () => {
     const [name, setName] = useState("");
@@ -11,6 +11,7 @@ export const GetClientName = () => {
 
     let navigate = useNavigate();
 
+    //warningMessage recebe o valor null toda vez que name tem seu valor atualizaddo
     useEffect(() => {
         setWarningMessage(null)
     }, [name])
@@ -18,6 +19,7 @@ export const GetClientName = () => {
     
 
     const getName = () => {
+        //checa se o valor de name é null
         if(isInputNull(name)){
             setWarningMessage('Esse campo é de preenchimento obrigatório!')
         }
@@ -28,12 +30,8 @@ export const GetClientName = () => {
     }
 
     return(
-        <div className='register_bg'>
-            <div className='register_box'>
-                <div className='register_box_logo'>
-                    <Logo />
-                </div>
-                <>
+        <RegisterPageContainer>
+            <>
                     <text className='register_box_title'>Vamos iniciar seu cadastro? :)</text>
                     <text className='register_box_text'>Primeiramente, como você gostaria de ser chamade?</text>
                     <input
@@ -46,10 +44,8 @@ export const GetClientName = () => {
                     
                     <text className='warning_text' id="warning_message">{warningMessage}</text>
                     <Button onClick={() => getName()} className='register_box_button'>Continuar ></Button>
-                </>
-                
-            </div>
-        </div>
+            </>
+        </RegisterPageContainer>
     );
 
 

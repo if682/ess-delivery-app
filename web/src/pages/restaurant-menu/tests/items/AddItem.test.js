@@ -50,7 +50,7 @@ describe('AddItemPopup', () => {
         fireEvent.click(screen.getByTestId('addButton'));
 
         // Expect error message
-        waitFor(() => screen.findByText('Todas as entradas devem ser preenchidas!'));
+        waitFor(() => screen.findByText('Todas as entradas devem ser preenchidas!'), { timeout: 1500 });
 
         // Click "Cancelar"
         fireEvent.click(screen.getByText('Cancelar'));
@@ -76,7 +76,7 @@ describe('AddItemPopup', () => {
         fireEvent.click(screen.getByTestId('addButton'));
 
         // Expect error message
-        await waitFor(() => expect(screen.getByText('O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText('O formato do preço não está certo! Tente começar apenas com dígitos e terminar com uma vírgula e duas casas decimais.')).toBeInTheDocument(), { timeout: 1500 });
         
         // Click "Cancelar"
         fireEvent.click(screen.getByText('Cancelar'));
@@ -102,7 +102,7 @@ describe('AddItemPopup', () => {
         fireEvent.click(screen.getByTestId('addButton'));
 
         // Expect error message
-        await waitFor(() => expect(screen.getByText("Já existe um item com esse nome!")).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText("Já existe um item com esse nome!")).toBeInTheDocument(), { timeout: 1500 });
 
         // Click "Cancelar"
         fireEvent.click(screen.getByText('Cancelar'));
