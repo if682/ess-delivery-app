@@ -40,6 +40,7 @@ function TotalsTable() {
       <input
         type="month"
         class="month-input"
+        data-testid="monthInput"
         value={filterDate}
         onChange={(e) => {setFilterDate(e.target.value)}}
       />
