@@ -35,7 +35,7 @@ const RestaurantTotal = () => {
       const response = await fetch(`http://localhost:3001/orders`);
       const data = await response.json();
       const userOrders = data['2'];
-      setOrders(userOrders);
+      setOrders(userOrders.filter((order) => ((order.place == restaurantID))));
     };
     fetchOrders();
   }, []);
@@ -44,7 +44,8 @@ const RestaurantTotal = () => {
     navigate("/total-pedidos");
   };
 
-  const filteredOrders = orders.filter((order) => ((order.place == restaurantID) && (moment(new Date(order.date)).format('YYYY-MM') === selectedMonth)));
+  //KNOWN ISSUE: filteredOrders não atualiza
+  const filteredOrders = orders.filter((order) => (moment(new Date(order.date)).format('YYYY-MM') === selectedMonth));
   const totalItems = sumItems(filteredOrders);
 
   return (
@@ -55,7 +56,7 @@ const RestaurantTotal = () => {
       <label htmlFor='monthInput'>Filtrar por data:</label>
       <input
         type="month"
-        id="monthInput"
+        class="month-input"
         data-testid="monthInput"
         value={selectedMonth}
         onChange={(e) => setSelectedMonth(e.target.value)}
@@ -63,7 +64,7 @@ const RestaurantTotal = () => {
       <button onClick={handleGoBack}>Voltar</button>
       {totalItems != [] ? (
         <ul>
-          {totalItems.map(itemList)}
+          {sumItems(filteredOrders).map(itemList)}
         </ul>
       ) : (
         <p>Nenhum pedido encontrado.</p>
