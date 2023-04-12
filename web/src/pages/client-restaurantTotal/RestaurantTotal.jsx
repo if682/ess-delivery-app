@@ -41,7 +41,7 @@ const RestaurantTotal = () => {
   }, []);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate("/total-pedidos");
   };
 
   const filteredOrders = orders.filter((order) => ((order.place == restaurantID) && (moment(new Date(order.date)).format('YYYY-MM') === selectedMonth)));
@@ -56,6 +56,7 @@ const RestaurantTotal = () => {
       <input
         type="month"
         id="monthInput"
+        data-testid="monthInput"
         value={selectedMonth}
         onChange={(e) => setSelectedMonth(e.target.value)}
       />

@@ -6,7 +6,7 @@ import OrderTotals from "./OrderTotals";
 import userEvent from '@testing-library/user-event'
 import { wait } from "@testing-library/user-event/dist/utils";
 
-describe("Total orders from restaurant", () => {
+describe("Total of orders from restaurants", () => {
   let props;
   let { container } = render(<BrowserRouter><OrderTotals {...props} /></BrowserRouter>);
   beforeEach(() => {container = render(<BrowserRouter><OrderTotals {...props} /></BrowserRouter>);})
@@ -18,13 +18,13 @@ describe("Total orders from restaurant", () => {
     const currentDateYYYYMM = moment(new Date()).to("YYYY-MM");
     expect(screen.findByDisplayValue(currentDateYYYYMM)).toBeDefined();
   });
-  it('should be able to input data into monthInput', () => {
+  it('should be able to input data into monthInput', async () => {
     const testDateYYYYMM = "2021-01";
-    // nao faz input por algum motivo misterioso
-    userEvent.input(screen.findByTestId("monthInput"), { target: { value: testDateYYYYMM } })
+    // nao faz input por algum motivo misterioso, "not an input function" (é literalmente um elemento input)
+    userEvent.input(await screen.findByTestId("monthInput"), { target: { value: testDateYYYYMM } })
     expect(screen.findByDisplayValue(testDateYYYYMM)).toBeDefined();
   });
-  it('should have this months order total for a restaurant', () => {
+  it('should have this months total items for a restaurant', () => {
     //current date has one order, previous step should've set to test date but it's broken for no reason
     expect(screen.findByDisplayValue("Total: R$\d{1,}")).toBeDefined();
   });
