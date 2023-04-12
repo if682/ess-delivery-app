@@ -3,13 +3,11 @@ import { InMemoryListsRepository } from "../../repositories/inMemory/inMemoryLis
 import { InMemoryUsersRepository } from "../../repositories/inMemory/inMemoryUsersRepository";
 import { RegisterUserUseCase } from "../user/register-user";
 import { DeleteMovieFromListUseCase } from "./delete-movie-from-list";
-import { AddMovieToListUseCase } from "./add-movie-to-list";
 
 let inMemoryListsRepository: InMemoryListsRepository
 let inMemoryUsersRepository: InMemoryUsersRepository
 let sut: DeleteMovieFromListUseCase
 let reg: RegisterUserUseCase
-let add: AddMovieToListUseCase
 let user_id: string
 
 describe("Delete movie from list use case", async() => {
@@ -19,9 +17,8 @@ describe("Delete movie from list use case", async() => {
 
         sut = new DeleteMovieFromListUseCase(inMemoryListsRepository);
         reg = new RegisterUserUseCase(inMemoryUsersRepository, inMemoryListsRepository);
-        add = new AddMovieToListUseCase(inMemoryListsRepository);
 
-        await reg.handle({
+        const { user } =  await reg.handle({
             name: "Francisco",
             username: "francisco42",
             email: "fran77@gmail.com",
@@ -32,10 +29,8 @@ describe("Delete movie from list use case", async() => {
             phone: null
         })
 
-        const user = await inMemoryUsersRepository.findByEmail("fran77@gmail.com");
-
         if(!user){
-            throw new Error('erro procurando usuário por email');
+            throw new Error('erro no registro');
         }
         const listExists = await inMemoryListsRepository.findList(user_id, "Historico");
         expect(listExists).toBeDefined();

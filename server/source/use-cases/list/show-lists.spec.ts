@@ -21,7 +21,7 @@ describe("Delete movie from list use case", async() => {
         reg = new RegisterUserUseCase(inMemoryUsersRepository, inMemoryListsRepository);
 
 
-        await reg.handle({
+        const { user } = await reg.handle({
             name: "Messi",
             username: "messinho123",
             email: "goat@gmail.com",
@@ -32,10 +32,9 @@ describe("Delete movie from list use case", async() => {
             phone: null
         })
 
-        const user = await inMemoryUsersRepository.findByEmail("goat@gmail.com");
 
         if(!user){
-            throw new Error('erro procurando usuário por email');
+            throw new Error('erro no registro');
         }
 
         user_id = user.id;
