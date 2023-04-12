@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ProfileReviewsList from "../../src/components/ProfileReviewsList";
+import ProfileReviewsList from ".";
 import { format } from 'date-fns';
 
 
