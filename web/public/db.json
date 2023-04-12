@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "id": 1681262236426,
+      "name": "21313",
+      "description": "12312",
+      "price": "12,00",
+      "category": "1qwqe"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1681262208196,
+      "name": "1qwqe"
+    },
+    {
+      "id": 1681262218598,
+      "name": "1231323123"
+    }
+  ],
+  "clients": [
+    {
+      "id": 128291,
+      "name": "Pedro",
+      "email": "pasp@cin.ufpe.br",
+      "password": "senha1"
+    },
+    {
+      "id": 128292,
+      "name": "Luca",
+      "email": "lddr@cin.ufpe.br",
+      "password": "senha2"
+    },
+    {
+      "id": 128293,
+      "name": "Beatriz Andrade",
+      "email": "baa@cin.ufpe.br",
+      "password": "senha3"
+    }
+  ]
+}

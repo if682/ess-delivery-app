@@ -1,0 +1,90 @@
+.item-cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+}
+
+.all-content {
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.restaurant-menu-root {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  gap: 15px;
+  list-style: none;
+  color: #272727;
+  margin-bottom: 80px;
+
+  .category-item-area {
+    margin: 25px 70px 0px;
+    border: 2px solid #CBCBCB;
+    border-radius: 10px;
+
+    .category-item-header {
+      display: flex;
+      height: 70px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 15px;
+
+      .category-title {
+        font-size: 24px;
+      }
+    }
+
+    .header-description {
+      display: grid;
+      border-top: 2px solid #CBCBCB;
+      grid-template-columns: 5fr 8fr 7fr;
+      padding: 0px 30px;
+      justify-content: flex-start;
+      align-items: center;
+
+      p {
+        margin: 10px 0px;
+        font-weight: bold;
+        color: #3b3b3b;
+      }
+    }
+
+    .buttons-area {
+      display: flex;
+      gap: 10px;
+    }
+
+    .items-container .item-component {
+      display: flex;
+      flex-direction: column;
+      border-top: 2px solid #CBCBCB;
+
+      .card {
+        border: none;
+        margin: 0!important;
+        width: 100%!important;
+
+        .card-body {
+          border: none;
+          display: grid;
+          grid-template-columns: 5fr 8fr 5fr 1fr 1fr;
+          width: 100%;
+          align-items: center;
+
+          div, p {
+            margin: 0;
+            align-items: center;
+          }
+
+          .secondary-button {
+            width: fit-content;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}

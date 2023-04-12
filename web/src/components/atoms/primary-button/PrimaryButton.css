@@ -1,0 +1,12 @@
+.primary-button {
+    background-color: #EB0029;
+    border: none;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 5px;
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #be0020;
+}
