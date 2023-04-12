@@ -5,6 +5,7 @@ import * as Icon from 'react-bootstrap-icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PrimaryButton from "../../../components/atoms/primary-button/PrimaryButton";
 import "./AddCategory.scss"
+import CopyLink from "../../../components/atoms/copy-link/CopyLink";
 
 export default function AddCategory(props) {
   const [showForm, setShowForm] = React.useState(true);
@@ -69,9 +70,7 @@ export default function AddCategory(props) {
           <h1>Cardápio</h1>
           <p>Gerencie por essa página todos os itens e categorias cadastrados no seu restaurante.</p>
         </div>
-        <CopyToClipboard className='copy-button' text={url}>
-          <button><Icon.ShareFill color='red' className='share-link' /></button>
-        </CopyToClipboard>
+        <CopyLink text={url}></CopyLink>
       </div>
       <div className='add-category-area'>
         {showForm && (

@@ -1,60 +1,6 @@
 {
-  "items": [
-    {
-      "id": 1681066065970,
-      "name": "teste",
-      "description": "desc test",
-      "price": "20,00",
-      "category": "qsqs"
-    },
-    {
-      "id": 1681069461245,
-      "name": "teste 2",
-      "description": "desc test",
-      "price": "100,00",
-      "category": "qsqs"
-    },
-    {
-      "id": 1681071088243,
-      "name": "test test",
-      "description": "ytfdvaervwev",
-      "price": "20,00",
-      "category": "a"
-    },
-    {
-      "id": 1681071873752,
-      "name": "3232r",
-      "description": "231q3",
-      "price": "10,00",
-      "category": "a"
-    }
-  ],
-  "categories": [
-    {
-      "id": 1681070194747,
-      "name": "a"
-    },
-    {
-      "id": 1681070799013,
-      "name": "aaaa"
-    },
-    {
-      "id": 1681071003626,
-      "name": "asdqwdqw"
-    },
-    {
-      "id": 1681071062036,
-      "name": "QWDQWD"
-    },
-    {
-      "id": 1681073332992,
-      "name": "wewqwefw"
-    },
-    {
-      "id": 1681250515592,
-      "name": "1111111"
-    }
-  ],
+  "items": [],
+  "categories": [],
   "clients": [
     {
       "id": 128291,
@@ -73,24 +19,6 @@
       "name": "Beatriz Andrade",
       "email": "baa@cin.ufpe.br",
       "password": "senha3"
-    },
-    {
-      "name": "bia",
-      "email": "biazita@hotmail.com",
-      "password": "bia1",
-      "id": 128294
-    },
-    {
-      "name": "teste12",
-      "email": "teste12@hotmail.com",
-      "password": "teste",
-      "id": 128295
-    },
-    {
-      "name": "socorro_novo",
-      "email": "scr2@hotmail.com",
-      "password": "help2",
-      "id": 128296
     }
   ]
 }
