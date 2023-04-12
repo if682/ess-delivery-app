@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ProfileReviewsList from "../../src/components/ProfileReviewsList";
+import { format } from 'date-fns';
+
 
 describe("ProfileReviewsList", () => {
 
@@ -51,19 +53,20 @@ describe("ProfileReviewsList", () => {
                 reviews,
               },
             };
-            
+                      
             render(<ProfileReviewsList {...props} />);
             const reviewTitles = screen.getAllByText(/Movie/);
             let previousCreatedAtMillis = Infinity;
-
+          
             let previousCreatedAt = new Date();
             reviewTitles.forEach((title) => {
-                const parent = title.closest(".list-reviews-section");
-                const createdAtString = parent.querySelector(".review-date").textContent;
-                const createdAtMillis = new Date(createdAtString).getTime();
-                expect(createdAtMillis).toBeLessThanOrEqual(previousCreatedAtMillis);
-                previousCreatedAtMillis = createdAtMillis;
-              });
+              const parent = title.closest('.list-reviews-section');
+              const createdAtString = parent.querySelector('.review-date').textContent;
+              const createdAt = format(new Date(createdAtString.split('on ')[1]), 'yyyy-MM-dd HH:mm:ss');
+              const createdAtMillis = new Date(createdAt).getTime();
+              expect(createdAtMillis).toBeLessThanOrEqual(previousCreatedAtMillis);
+              previousCreatedAtMillis = createdAtMillis;
+            });
           });
 });
 
