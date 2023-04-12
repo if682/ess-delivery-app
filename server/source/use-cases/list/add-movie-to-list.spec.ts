@@ -22,7 +22,7 @@ describe("Add movie to list use case", () => {
         reg = new RegisterUserUseCase(inMemoryUsersRepository,inMemoryListsRepository);
         
         // cria usuário antes de cada teste
-        await reg.handle({
+        const { user } = await reg.handle({
             name: "Fulano",
             username: "fulaninho123",
             email: "fulano@gmail.com",
@@ -32,11 +32,9 @@ describe("Add movie to list use case", () => {
             location: null,
             phone: null
         })
-        
-        const user = await inMemoryUsersRepository.findByEmail("fulano@gmail.com");
-        
+    
         if(!user){
-            throw new Error("erro procurando usuário por email")
+            throw new Error("erro no registro")
         }
         user_id = user.id
         

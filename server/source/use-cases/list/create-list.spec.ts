@@ -19,7 +19,7 @@ describe("Create list use case", async() => {
         sut = new CreateListUseCase(inMemoryListsRepository);
         reg = new RegisterUserUseCase(inMemoryUsersRepository, inMemoryListsRepository);
 
-        await reg.handle({
+        const { user } = await reg.handle({
             name: "Joao",
             username: "joaozinho75",
             email: "joao23@gmail.com",
@@ -30,10 +30,9 @@ describe("Create list use case", async() => {
             phone: null
         })
 
-        const user = await inMemoryUsersRepository.findByUsername("joaozinho75");
-
+        
         if(!user){
-            throw new Error('erro procurando usuário por username');
+            throw new Error('erro no regsitro');
         }
 
         user_id = user.id;
