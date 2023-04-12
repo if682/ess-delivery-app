@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Navigate  } from 'react-router-dom';
 import moment from 'moment';
+import PageTitle from "../../components/atoms/page-title/PageTitle";
 
-const TotalPedidosPage = (props) => {
+function sumItems(orders) {
+  let allItems = orders.reduce((items,order) => {return items.concat(order.items)}, []);
+  let allSummed = []
+
+  // soma items entre pedidos
+  allItems.reduce((res, item) => {
+    if (!res[item.name]) {
+      res[item.name] = { name: item.name, quantity: 0 };
+      allSummed.push(res[item.name])
+    }
+    res[item.name].quantity += item.quantity;
+    return res;
+  }, {});
+
+  return allSummed;
+}
+
+function itemList(item) {
+  return (<li><strong>{item.name}</strong>, {item.quantity} pedidos</li>);
+}
+
+const RestaurantTotal = () => {
   const { restaurantID } = useParams();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedMonth, setSelectedMonth] = useState(moment(props.month).format('YYYY-MM'));
+  const [selectedMonth, setSelectedMonth] = useState(moment(new Date()).format('YYYY-MM'));
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -15,68 +36,34 @@ const TotalPedidosPage = (props) => {
       const data = await response.json();
       const userOrders = data['2'];
       setOrders(userOrders);
-      setIsLoading(false);
     };
-
     fetchOrders();
-  }, [  ]);
+  }, []);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate("/total-pedidos");
   };
 
-  const filteredOrders = orders.filter(order => {
-    const orderMonth = moment(order.date).format('YYYY-MM');
-    return order.place === restaurantID && orderMonth === selectedMonth;
-  });
+  const filteredOrders = orders.filter((order) => ((order.place == restaurantID) && (moment(new Date(order.date)).format('YYYY-MM') === selectedMonth)));
+  const totalItems = sumItems(filteredOrders);
 
   return (
-    <div>
-      <h1>Total de Pedidos do Restaurante {restaurantID}</h1>
+    <div className="order-totals-page-container">
+      <PageTitle>Total de Pedidos do Restaurante {restaurantID}</PageTitle>
+
+      
       <label htmlFor='monthInput'>Filtrar por data:</label>
       <input
         type="month"
         id="monthInput"
+        data-testid="monthInput"
         value={selectedMonth}
-        min = "yyyy-MM"
-        max = {moment().format('YYYY-MM')}
         onChange={(e) => setSelectedMonth(e.target.value)}
       />
       <button onClick={handleGoBack}>Voltar</button>
-      {isLoading ? (
-        <p>Carregando...</p>
-        
-      ) :
-      filteredOrders.length > 0 ? (
+      {totalItems != [] ? (
         <ul>
-          {filteredOrders.map(order => (
-            <li key={order.id}>
-              <strong>ID do Pedido:</strong> {order.id}<br />
-              <strong>Restaurante:</strong> {order.place}<br />
-              <strong>Data:</strong> {order.date}<br />
-              <strong>Itens:</strong>
-              <ul>
-                {order.items.map(item => (
-                  <li key={item.name}>
-                    {item.name} - Quantidade: {item.quantity} - Preço: R$ {item.price.toFixed(2)}
-                  </li>
-                ))}
-              </ul>
-              <strong>Valores:</strong>
-              <ul>
-                <li>
-                  Subtotal: R$ {order.values.subtotal.toFixed(2)}
-                </li>
-                <li>
-                  Taxa de Entrega: R$ {order.values.deliveryFee.toFixed(2)}
-                </li>
-                <li>
-                  Total: R$ {order.values.total.toFixed(2)}
-                </li>
-              </ul>
-              <strong>Método de Pagamento:</strong> {order.paymentMethod}
-            </li>
-          ))}
+          {totalItems.map(itemList)}
         </ul>
       ) : (
         <p>Nenhum pedido encontrado.</p>
@@ -85,4 +72,4 @@ const TotalPedidosPage = (props) => {
   );
 };
 
-export default TotalPedidosPage;
+export default RestaurantTotal;

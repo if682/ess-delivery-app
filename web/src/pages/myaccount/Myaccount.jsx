@@ -10,6 +10,7 @@ import "./Myaccount.css";
 function MyAccountPage() {
   const navigate = useNavigate();
   const goToMyOrders = () => navigate("/meus-pedidos");
+  const goToTotalOrders = () => navigate("/total-pedidos");
   const goToMyData = () => navigate("/meus-dados")
   const[showPopup, setShowPopup] = useState(false)
 
@@ -24,6 +25,7 @@ function MyAccountPage() {
 
       <RedOutlineButton onClick={goToMyData}>Meus dados</RedOutlineButton>
       <RedOutlineButton onClick={goToMyOrders}>Meus pedidos</RedOutlineButton>
+      <RedOutlineButton onClick={goToTotalOrders}>Total dos pedidos do mês</RedOutlineButton>
 
       <RedButton onClick={handleClick}>Desativar conta</RedButton>
     </div>
