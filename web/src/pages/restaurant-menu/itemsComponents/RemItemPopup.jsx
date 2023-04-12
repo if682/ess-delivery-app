@@ -1,5 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
+import PrimaryButton from '../../../components/atoms/primary-button/PrimaryButton';
+import SecondaryButton from '../../../components/atoms/secondary-button/SecondaryButton';
 
 export const RemItemPopup = (props) => {
     async function RemItem () {
@@ -26,8 +28,17 @@ export const RemItemPopup = (props) => {
             Tem certeza que deseja remover esse item do cardápio? A ação é permanente.
         </Modal.Body>
         <Modal.Footer>
-            <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-danger' data-testid='confirmRemoveButton' onClick={async () => {RemItem()}}>Excluir</Button>
+            <SecondaryButton
+                className='btn-secondary'
+                onClick={props.onHide}
+                buttonContent="Cancelar">
+            </SecondaryButton>
+            <PrimaryButton
+                className='btn-danger'
+                data-testid='confirmRemoveButton'
+                onClick={async () => {RemItem()}}
+                buttonContent="Excluir">
+            </PrimaryButton>
         </Modal.Footer>
         </Modal>
     );

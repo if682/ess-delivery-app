@@ -1,6 +1,8 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import React from 'react';
+import PrimaryButton from '../../../components/atoms/primary-button/PrimaryButton';
+import SecondaryButton from '../../../components/atoms/secondary-button/SecondaryButton';
 
 export default function RemCategoryPopup(props) {
     async function RemCategory () {
@@ -38,12 +40,21 @@ export default function RemCategoryPopup(props) {
             Tem certeza que deseja remover essa categoria? A ação é permanente.
         </Modal.Body>
         <Modal.Footer>
-            <Button className='btn-secondary' onClick={props.onHide} data-testid = 'cancel-delete-button'>Cancelar</Button>
-            <Button className='btn-danger' onClick={() => {
-                RemCategory()
-                props.onHide()
-            }} data-testid = 'confirm-delete-button' 
-            >Excluir</Button>
+            <SecondaryButton
+                className='btn-secondary'
+                onClick={props.onHide}
+                data-testid = 'cancel-delete-button'
+                buttonContent="Cancelar">
+            </SecondaryButton>
+            <PrimaryButton
+                className='btn-danger'
+                onClick={() => {
+                    RemCategory()
+                    props.onHide()
+                }}
+                data-testid = 'confirm-delete-button'
+                buttonContent="Excluir">
+            </PrimaryButton>
         </Modal.Footer>
         </Modal>
     );

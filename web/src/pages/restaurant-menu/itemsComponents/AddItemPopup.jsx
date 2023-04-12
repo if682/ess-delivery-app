@@ -2,6 +2,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { isInputNull } from '../../../shared/functions/isInputNull';
+import PrimaryButton from '../../../components/atoms/primary-button/PrimaryButton';
+import SecondaryButton from '../../../components/atoms/secondary-button/SecondaryButton';
 
 export const AddItemPopup = (props) => {
     const [name, setName] = useState("");
@@ -80,9 +82,14 @@ export const AddItemPopup = (props) => {
                 {warningMessage}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='secondary' onClick={() => (props.onHide())}>Cancelar</Button>
-                <Button variant='primary' data-testid="addButton"
-                onClick={async () => await addItem()}>Adicionar</Button>
+                <SecondaryButton
+                     onClick={() => (props.onHide())}
+                    buttonContent="Cancelar">
+                </SecondaryButton>
+                <PrimaryButton data-testid="addButton"
+                    onClick={async () => await addItem()}
+                    buttonContent="Adicionar">
+                </PrimaryButton>
             </Modal.Footer>
             </Modal>
         </>

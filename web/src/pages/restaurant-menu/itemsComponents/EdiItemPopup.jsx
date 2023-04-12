@@ -2,6 +2,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { isInputNull } from '../../../shared/functions/isInputNull';
+import PrimaryButton from '../../../components/atoms/primary-button/PrimaryButton';
+import SecondaryButton from '../../../components/atoms/secondary-button/SecondaryButton';
 
 export const EdiItemPopup = (props) => {
     const [name, setName] = useState();
@@ -92,8 +94,17 @@ export const EdiItemPopup = (props) => {
             {warningMessage}
         </Modal.Body>
         <Modal.Footer>
-            <Button className='btn-secondary' onClick={props.onHide}>Cancelar</Button>
-            <Button className='btn-primary' data-testid='popupEditButton' onClick={() => EdiItem()}>Editar</Button>
+            <SecondaryButton
+                className='btn-secondary'
+                 onClick={props.onHide}
+                buttonContent="Cancelar">
+            </SecondaryButton>
+            <PrimaryButton 
+                className='btn-primary'
+                data-testid='popupEditButton'
+                onClick={() => EdiItem()}
+                buttonContent="Editar">
+            </PrimaryButton>
         </Modal.Footer>
         </Modal>
     );
