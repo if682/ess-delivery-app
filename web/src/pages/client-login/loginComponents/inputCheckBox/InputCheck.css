@@ -1,0 +1,15 @@
+.inputCheck {
+    width: 13px;
+    height: 13px;
+    margin-right: 5px;
+    border-radius: 10px;
+    background: #6A707C;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin-right: 5px;
+    border-radius: 10px;
+    background: #6A707C !important;
+}

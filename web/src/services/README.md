@@ -1,0 +1,1 @@
+# Aqui se coloca as classes que vão puxar/publicar do JSON e repassar para a GUI

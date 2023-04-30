@@ -1,0 +1,131 @@
+.display_input_code {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 45%;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+.email_confirmation_input {
+    width: 50px;
+    height: 50px;
+    background: #EDEDED;
+    border: 1.5px solid #888888;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0.1px;
+}
+  
+  
+
+
+.email_confirmation_text{
+    position: absolute;
+    width: 38%;
+    height: 10%;
+    left: 30%;
+    top: 38%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    /* or 150% */
+
+    text-align: center;
+
+    color: #252525;
+}
+.email_address{
+    position: absolute;
+    width: 38%;
+    height: 10%;
+    left: 30%;
+    top: 42%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 30px;
+
+    text-align: center;
+
+    color: #252525;
+}
+
+.email_confirmation_title{
+    position: relative;
+    width: fit-content;
+    height: 10%;
+    left: 20%;
+    top: 28%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 700;
+    font-size: x-large;
+    line-height: 30px;
+    color: #202020;
+}
+
+
+.email_confirmation_button{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 178px;
+    height: 41px;
+    left: 44.5%;
+    top: 86%;
+
+    background: #FFFFFF;
+    border: 1px solid #EB0029;
+    border-radius: 5px;
+    color: #EB0029;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.email_confirmation_button:hover{
+    background: #EB0029;
+    border: 1px solid #EB0029;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+
+.email_confirmation_text_resend{
+    position: absolute;
+    width: 38%;
+    height: 10%;
+    left: 32%;
+    top: 74%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    /* or 150% */
+
+    text-align: center;
+
+    color: #252525;
+}
+
+.resend{
+    color: #EB0029;
+    text-decoration: underline;
+    font-weight: bold;
+}
+

@@ -1,0 +1,17 @@
+DropdownButton {
+    align-items: center;
+    justify-content: left;
+  
+    width: 24rem;
+    height: 2.5rem;
+  
+    background: none;
+    border: 1px solid #eb0029;
+    border-radius: 5px;
+  
+    color: #eb0029;
+  
+    font-weight: 600;
+    font-size: 1rem;
+}
+  
