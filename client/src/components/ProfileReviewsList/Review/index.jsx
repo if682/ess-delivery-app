@@ -1,18 +1,11 @@
 import React from "react";
 import "./style.css";
+import { format } from "date-fns";
 
 const Review = (props) => {
 
   const createdAtDate = new Date(props.createdAt);
-
-  const day = createdAtDate.getDate();
-  const month = createdAtDate.getMonth() + 1;
-  const year = createdAtDate.getFullYear();
-  const hour = createdAtDate.getHours();
-  const minute = createdAtDate.getMinutes();
-  const second = createdAtDate.getSeconds();
-
-  const formattedCreatedAt = `${day}/${month}/${year} at ${hour}:${minute}:${second}`;
+  const formattedDate = format(createdAtDate, 'dd/MM/yyyy HH:mm');
 
   return (
     <div className="review-container">
@@ -29,7 +22,7 @@ const Review = (props) => {
                   </>
                 }
             </div>
-            <p className="review-date">{props.createdAt}</p>
+            <p className="review-date">Logged on {formattedDate}</p>
             <h2>{props.review}</h2>
         </div>
     </div>

@@ -1,15 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./style.css";
-import Rating from "./Rating";
-import api from "../../services/api";
 import StarRating from "./StarRating";
 import { useNavigate } from "react-router-dom";
 
 const ReviewModal = (props) => {
-
   const navigate = useNavigate();
-  const { title, id, posterPath } = props.movie.movieContext;
+  const { title, id, posterPath } = props.movie.movieContext || {};
   const userId = localStorage.getItem("userId");
 
   const [rating, setRating] = useState(0);
@@ -49,7 +46,6 @@ const ReviewModal = (props) => {
 
   return (
     <div className="modal">
-
         <div className="modal-header">
             <h2>Share your thoughts</h2>
             <div className="close-button" onClick={props.onClose}>
