@@ -1,0 +1,69 @@
+.movielist-header {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.listname-container {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: rgba(244, 164, 164, 0.19);
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.user-name {
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #77728D;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.buttons-container button {
+  background-color: transparent;
+  margin-right: 10px;
+  border: none;
+  padding: 5px;
+}
+
+.buttons-container button img {
+  width: 20px;
+  height: 20px;
+}
+
+.buttons-container button:hover {
+  transform: translateY(-2px);
+}
+
+.buttons-container button:active {
+  transform: translateY(1px);
+}

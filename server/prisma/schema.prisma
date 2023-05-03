@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String       @id @default(uuid())
+  name               String
+  birthdate          DateTime
+  email              String       @unique
+  description        String       @default("Descrição do usuário")
+  location           String?
+  phone              String?
+  photo              String?
+  username           String       @unique
+  role               Role         @default(USER)
+  password           String
+  passwordResetToken String?
+  resetTokenExpires  DateTime?
+  Comment            Comment[]
+  Evaluation         Evaluation[]
+  List               List[]
+  Review             Review[]
+
+  @@map("users")
+}
+
+model Review {
+  id                String      @id @default(uuid())
+  movieId           String
+  title             String
+  review            String
+  createdAt         DateTime    @default(now())
+  likes             Int         @default(0)
+  userId            String
+  evaluationMovieId String?
+  evaluationUserId  String?
+  movieCover        String?
+  rating            Float?
+  Comment           Comment[]
+  Evaluation        Evaluation? @relation(fields: [evaluationUserId, evaluationMovieId], references: [userId, movieId])
+  movie             Movie       @relation(fields: [movieId], references: [id])
+  author            User        @relation(fields: [userId], references: [id])
+
+  @@unique([evaluationUserId, evaluationMovieId])
+  @@map("reviews")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  comment   String
+  createdAt DateTime @default(now())
+  reviewId  String
+  userId    String
+  review    Review   @relation(fields: [reviewId], references: [id])
+  author    User     @relation(fields: [userId], references: [id])
+
+  @@map("comments")
+}
+
+model Movie {
+  id          String       @id @default(uuid())
+  title       String
+  cover       String
+  description String
+  Evaluation  Evaluation[]
+  lists       MovieList[]
+  Review      Review[]
+
+  @@map("movies")
+}
+
+model Evaluation {
+  userId  String
+  movieId String
+  rating  Int
+  movie   Movie   @relation(fields: [movieId], references: [id])
+  author  User    @relation(fields: [userId], references: [id])
+  review  Review?
+
+  @@id([userId, movieId])
+  @@map("evaluations")
+}
+
+model List {
+  name   String
+  userId String
+  owner  User        @relation(fields: [userId], references: [id])
+  movies MovieList[]
+
+  @@id([userId, name])
+  @@map("lists")
+}
+
+model MovieList {
+  listOwner String
+  listName  String
+  movieId   String
+  List      List   @relation(fields: [listOwner, listName], references: [userId, name])
+  Movie     Movie  @relation(fields: [movieId], references: [id])
+
+  @@id([listOwner, listName, movieId])
+  @@map("movie_lists")
+}
+
+enum Role {
+  USER
+  ADMIN
+}

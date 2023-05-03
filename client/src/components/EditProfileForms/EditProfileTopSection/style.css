@@ -1,0 +1,21 @@
+.edit-profile-avatar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding-top: 57px;
+    padding-bottom: 57px;
+}
+
+.images-component{  
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.edit-profile-hr{
+    border: 1px solid #F4A4A4;
+    margin: 0;
+    margin-left: 55px;
+    margin-right: 56px;
+}

@@ -1,0 +1,11 @@
+.list-reviews-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 200px;
+    margin-top: 30px;
+    margin-right: 40px;
+    margin-left: 50px;
+    color: #77728D;
+}

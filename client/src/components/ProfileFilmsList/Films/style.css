@@ -1,0 +1,17 @@
+.film-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 230px;
+    min-width: 230px;
+    align-items: center;
+    margin-top: 48px;
+    margin-left: 25px;
+    color: #77728D;
+    font-size: 18px;
+}
+
+.film-container img{
+    height: 300px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,27 @@
+.name-description-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    color: #77728D;
+}
+
+.name-description-container .user-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px;
+    font-size: 1.5rem;
+}
+
+.user-name p{
+    padding-right: 12px;
+}
+
+.name-description-container .user-description{
+    padding: 4px;
+    font-size: 1rem;
+}

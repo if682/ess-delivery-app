@@ -1,0 +1,22 @@
+.profile-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    margin-top: 47px;
+    margin-right: 40px;
+    margin-left: 50px;
+    width: 1200px;
+}
+
+.avatar-container{
+    display: flex;
+}
+
+.avatar-container img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #77728D;
+}

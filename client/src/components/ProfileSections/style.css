@@ -1,0 +1,18 @@
+.profile-sections{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 40px;
+    margin-top: 40px;
+    border: 2px solid hsl(0, 78%, 80%);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #77728D;
+    width: 1200px;    
+}
+
+.profile-sections img{
+    display: inline;
+    margin-right: 6px;
+}

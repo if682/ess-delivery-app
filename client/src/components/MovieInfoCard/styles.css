@@ -1,0 +1,45 @@
+.mainDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #77728D;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 50px;
+}
+
+.image {
+    height: 200px;
+    width: 350px;
+    border-radius: 10px;
+}
+
+.secondaryDiv {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-left: 25px;
+    padding-right: 50px;
+}
+
+.name {
+    font-size: 2rem;
+}
+
+.directorList {
+    font-size: 1.5rem;
+}
+
+.infos {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.description {
+    height: 50%;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
